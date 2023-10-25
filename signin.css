@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  text-align: center;
+  font-family: "Pretendard GOV Variable", "Pretendard GOV", Arial;
+  background-color:  #F0F6FF;
+  white-space: nowrap;
+  font-weight: 400;
+  line-height: 150%;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+
+}
+
+.signin_box {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 27.78vw;
+}
+
+p {
+  margin-top: 1rem;
+}
+
+p a {
+  font-weight: 600;
+  color: #6D6AFE;
+}
