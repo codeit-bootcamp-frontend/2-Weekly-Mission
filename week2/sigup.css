@@ -2,6 +2,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  --linkbrary-primary-color: #6D6AFE;
+  --linkbrary-white: #FFF;
+  --linkbrary-gray-10: #E7EFFB;
+  --linkbrary-gray-20: #CCD5E3;
+  --linkbrary-bg: #F0F6FF;
+  --gra-purpleblue-to-skyblue: linear-gradient(91deg, #6D6AFE 0.12%, #6AE3FE 101.84%);
+}
+
 body {
   text-align: center;
   justify-content: center;
