@@ -58,6 +58,11 @@ input {
   width: 25rem;
   border: 1px solid var(--linkbrary-gray-20);
   background:var(--linkbrary-white);
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid var(--linkbrary-primary-color);
 
 }
 
