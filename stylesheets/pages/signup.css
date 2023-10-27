@@ -1,4 +1,4 @@
-.signin--main {
+.signup--main {
   background: var(--linkbrary-bg, #F0F6FF);
 
 height: 100vh;
@@ -10,7 +10,7 @@ height: 100vh;
   gap: 32px;
 }
 
-.signin--container {
+.signup--container {
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -55,13 +55,13 @@ height: 100vh;
   text-decoration: underline;
 }
 
-.signin--form {
+.signup--form {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.signin--form label, .social-login p {
+.signup--form label, .social-login p {
   color: var(--black, #000);
 
   font-size: 14px;
@@ -70,7 +70,7 @@ height: 100vh;
   line-height: normal;
 }
 
-.signin--form input {
+.signup--form input {
   width: 400px;
 
   padding: 18px 15px;
@@ -80,7 +80,7 @@ height: 100vh;
   background: var(--linkbrary-white, #FFF);
 }
 
-.signin--form input:focus {
+.signup--form input:focus {
   border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
 }
 
@@ -96,11 +96,11 @@ height: 100vh;
   gap: 24px;
 }
 
-.password--box {
+.password--box, .password-check--box {
   position: relative;
 }
 
-.eye-off {
+.eye-on {
   width: 16px;
   height: 16px;
 

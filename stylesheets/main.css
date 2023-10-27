@@ -5,6 +5,7 @@
 
 @import url(./pages/landing.css);
 @import url(./pages/signin.css);
+@import url(./pages/signup.css);
 
 body {
   font-family: Pretendard, sans-serif;
