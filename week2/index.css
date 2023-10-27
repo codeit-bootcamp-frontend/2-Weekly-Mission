@@ -82,32 +82,31 @@ header article {
 
 .search_page_box {
   width: 70rem;
-  height: 33.75rem;
+  height: 41.1875rem;
   border-radius: 25px 25px 0 0;
   background-image: 
     linear-gradient(180deg, rgba(196, 196, 196, 0.00) 67.68%, #F0F6FF 94.76%),
-    url('week1_img/title.png');
+    url('img/tittle.png');
   background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
+  background-position: top;
+  background-size: 120%;
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.08); 
   
 } 
 
 .information {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 9.8125rem;
-  margin: 6.25rem 28.8125rem;
-  /* padding: 6.25rem 28.8125rem; */
+  margin: 6.25rem auto;
+  padding: 0 28.8125rem;
 }
 
 .information img {
   width: 34.375rem;
   height: 28.125rem;
   flex-shrink: 0;
-  border-radius: 15px;
 }
 
 .little_title {
