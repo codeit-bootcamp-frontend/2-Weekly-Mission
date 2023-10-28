@@ -1,3 +1,7 @@
+body {
+  margin-top: 9.4rem;
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -7,6 +11,9 @@ header {
 }
 
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,6 +21,7 @@ nav {
   max-width: 192rem;
   height: 9.4rem;
   padding: 0 20rem;
+  background-color: #edf7ff;
 }
 
 .hero-header {
