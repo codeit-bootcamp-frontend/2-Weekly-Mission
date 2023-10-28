@@ -72,11 +72,15 @@ input {
   padding: 1.12rem 0.94rem;
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid #CCD5E3;  
-  outline-color: #6D6AFE;
-
+  border: 1px solid #CCD5E3;
+  outline: none;
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+input:focus {
+  border-radius: 0.5rem;
+  border: 1px solid #6D6AFE;
 }
 
 .social {
