@@ -1,5 +1,5 @@
 body {
-  background-color: #F0F6FF;
+  background-color: var(--linkbrary-bg);
 }
 
 .container {
@@ -37,7 +37,7 @@ body {
 }
 
 .signin-link {
-  color: #6D6AFE;
+  color: var(--linkbrary-primary-color);
   font-weight: 600;
   text-decoration: underline;
   text-underline-position: under;
@@ -55,7 +55,7 @@ form {
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   text-align: center;
-  background-image: linear-gradient(135deg, #6d6afe 0%, #6ae3fe 100%);
+  background-image: linear-gradient(135deg, var(--linkbrary-primary-color) 0%, #6ae3fe 100%);
   color: #F5F5F5;
   font-size: 1.125rem;
   font-weight: 600;
@@ -72,7 +72,7 @@ input {
   padding: 1.12rem 0.94rem;
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid #CCD5E3;
+  border: 1px solid var(--linkbrary-gray-20);
   outline: none;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -80,7 +80,7 @@ input {
 
 input:focus {
   border-radius: 0.5rem;
-  border: 1px solid #6D6AFE;
+  border: 1px solid var(--linkbrary-primary-color);
 }
 
 .social {
@@ -90,12 +90,12 @@ input:focus {
   align-items: center;
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid #CCD5E3;
-  background: #E7EFFB;
+  border: 1px solid var(--linkbrary-gray-20);
+  background: var(--linkbrary-gray-10);
 }
 
 .social-text {
-  color: #373740;
+  color: var(--linkbrary-gray-100);
   font-size: 0.875rem;
 }
 
