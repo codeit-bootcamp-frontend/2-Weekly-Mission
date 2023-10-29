@@ -2,6 +2,34 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="signin-style.css"/>
     <title>로그인</title>
   </head>
+  <body>
+        
+    <form>
+      <div class="login-title">
+        <img class="logo" src="./images/logo.svg" alt="로고" href="">
+        <div class="title">
+          <h3>회원이 아니신가요?</h3>
+          <h3 class="signup-link" href="/signup">회원 가입하기</h3>
+        </div>
+      </div>
+      
+      <label for="username">이메일</label>
+      <input id="username" name="username">
+      <label for="password">비밀번호</label>
+      <input id="password" name="password" type="password">
+      <button class="login-button">로그인</button>
+    </form>
+
+    <div class="social">
+      <button class="social-button">
+        소셜 로그인
+      <img src="/images/Google_icon.png" alt="구글 아이콘" href="https://www.google.com/">
+      <img src="/images/kakaotalk_icon.png" alt="카카오톡 아이콘" href="https://www.kakaocorp.com/page/">
+      </button>
+     </div>
+
+  </body>
 </html>

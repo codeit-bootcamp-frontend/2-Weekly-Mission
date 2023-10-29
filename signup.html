@@ -2,6 +2,37 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="signup-style.css"/>
     <title>회원가입</title>
   </head>
+  <body>
+        
+    <form>
+      <div class="login-title">
+        <img class="logo" src="./images/logo.svg" alt="로고" href="">
+        <div class="title">
+          <h3>이미 회원이신가요?</h3>
+          <h3 class="signin-link" href="/signin">로그인 하기</h3>
+        </div>
+      </div>
+      
+      <label for="username">이메일</label>
+      <input id="username" name="username">
+      <label for="password">비밀번호</label>
+      <input id="password" name="password" type="password">
+      <label for="password-check">비밀번호 확인</label>
+      <input id="password-check" name="password-check" type="password">
+      <button class="login-button">회원가입</button>
+    </form>
+
+    <div class="social">
+      <button class="social-button">
+        다른 방식으로 가입하기
+      <img src="/images/Google_icon.png" alt="구글 아이콘" href="https://www.google.com/">
+      <img src="/images/kakaotalk_icon.png" alt="카카오톡 아이콘" href="https://www.kakaocorp.com/page/">
+      </button>
+     </div>
+
+  </body>
+  
 </html>
