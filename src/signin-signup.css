@@ -99,8 +99,8 @@ body {
   height: 1.6rem;
   background-image: url("../images/invisible.svg");
   position: absolute;
-  left: 0.5rem;
-  bottom: 0.2rem;
+  right: 2.3rem;
+  top: 2.3rem;
 }
 
 .signForm_button {
