@@ -37,19 +37,16 @@ input {
   width: 100%;
 }
 
-button {
-  display: block;
-  font-size: 18px;
-  margin: 24px 0;
-  padding: 16px;
-  width: 100%;
-}
-
 .login-button {
   background: linear-gradient(to right,#6d6afe,#6ADFFE);
   border: none;
   border-radius: 10px;
   color: #ffffff;
+  display: block;
+  font-size: 18px;
+  margin: 24px 0;
+  padding: 16px;
+  width: 100%;
 }
 
 .login-title {
@@ -79,22 +76,37 @@ button {
 
 .social {
   border: #2c2c2c;
-  margin: 24px 0;
   width: 360px;
-}
-
-.social-button {
-  width: 360px;
+  height: 60px;
   background-color: #e7effb;
   border: solid 1px #ccd5e3;
   border-radius: 10px;
   color: #111322;
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 15px;
 }
 
-.social-button > img {
-  width: 25px;
-  height: 25px;
+.sns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  width: 40px;
+  height: 40px;
 }
+
+.goggle { 
+  background-color: #ffffff;
+  border: solid 1px #d3d4dd;
+  border-radius: 50%;
+}
+
+.kakao {
+  background-color: #f5e14b;
+  border: solid 1px #d3d4dd;
+  border-radius: 50%;
+}
+
