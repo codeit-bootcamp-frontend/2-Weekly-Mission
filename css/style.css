@@ -16,35 +16,35 @@ main {
   -webkit-text-fill-color: transparent;
 }
 
-.banner .gradient {
+.banner-gradient {
   background-image: linear-gradient(
     90deg,
     rgb(109, 106, 254),
     rgb(255, 159, 159)
   );
 }
-.save .gradient {
+.save-gradient {
   background-image: linear-gradient(
     90deg,
     rgb(254, 138, 138),
     rgb(164, 206, 255)
   );
 }
-.manage .gradient {
+.manage-gradient {
   background-image: linear-gradient(
     90deg,
     rgb(255, 216, 139),
     rgb(111, 186, 255)
   );
 }
-.share h1 .gradient {
+.share-gradient {
   background-image: linear-gradient(
     90deg,
     rgb(109, 124, 205),
     rgba(82, 136, 133, 0.22)
   );
 }
-.search h1 .gradient {
+.search-gradient {
   background-image: linear-gradient(
     90deg,
     rgb(104, 232, 249),
@@ -52,22 +52,15 @@ main {
   );
 }
 
-/* 콘텐츠 */
+/* 헤더 */
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: var(--gray-bg-color);
   position: sticky;
   top: 0;
   z-index: 1;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 192rem;
   padding: 2rem 20rem;
 }
 
@@ -76,10 +69,7 @@ nav {
   text-decoration: none;
 }
 
-nav img {
-  width: 13.3rem;
-}
-
+/* 콘텐츠 */
 .banner {
   display: flex;
   flex-direction: column;
@@ -103,7 +93,7 @@ nav img {
 }
 
 .banner img {
-  width: 116.8em;
+  width: 111.8rem;
 }
 
 .information {
@@ -120,10 +110,7 @@ article {
   padding: 5rem 0;
 }
 
-.search .right h1,
-.share .left h1,
-.manage .right h1,
-.save .left h1 {
+.information article > .text > h1 {
   font-size: 4.8rem;
   margin-bottom: 1rem;
   font-weight: 700;
@@ -131,97 +118,19 @@ article {
   line-height: 5.75rem;
 }
 
-.search .right p,
-.share .left p,
-.manage .right p,
-.save .left p {
+.information article > .text > p {
   font-size: 1.6rem;
   font-weight: 500;
   color: #6b6b6b;
   line-height: 2.4rem;
 }
 
-.search .left,
-.share .right,
-.manage .left,
-.save .right {
+.information article > img {
   width: 55rem;
   height: 45rem;
-  background-color: var(--gray-bg-color);
-  overflow: hidden;
-  border-radius: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.cards {
-  width: 81.3rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  position: relative;
-}
-
-.card {
-  width: 14.7rem;
-}
-.card-cneter {
-  width: 27.9rem;
-}
-
-.card-cneter__box {
-  width: 24.4rem;
-  height: 24.0rem;
-  border-radius: 1.1rem;
-  border: 0.3rem solid var(--primary-color);
-  position: absolute;
-  top: 1.4rem;
-  right: 17rem;
-}
-
-.card-cneter__icon {
-  width: 4.6rem;
-  height: 4.6rem;
-  border-radius: 50%;
-  background-color: var(--primary-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 22.4rem;
-  right: 15.5rem;
-}
-
-.card-cneter__icon img {
-  width: 1.8rem;
-  bottom: 1.5rem;
-  right: 1.5rem;
-}
-
-.manage .left {
-  padding: 11.4rem 6.8rem 6.6rem;
-}
-
-.manage img {
-  width: 41.4rem;
-}
-
-.share .right {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url(../images/팝업이미지\ 배경.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 11.2rem 6.7rem 6.7rem;
-}
-
-.share img {
-  width: 46.1rem;
-}
-
-.search .left img {
-  margin: 5.5rem 0 0 6rem;
-  width: 51.5rem;
 }
 
 footer {
@@ -257,4 +166,12 @@ footer .sns {
 
 footer .sns img {
   width: 2rem;
+}
+
+/* Tablet: 768px 이상 ~ 1199px 이하 */
+@media (min-width: 768px) and (max-width: 1199px) {
+}
+
+/* Mobile: 375px 이상 ~ 767px 이하 */
+@media (min-width: 375px) and (max-width: 767px) {
 }
