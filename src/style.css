@@ -15,8 +15,8 @@ header {
   height: 59rem;
 }
 
-/* nav */
-nav {
+/* header__div-from */
+.header__div-login {
   width: 100%;
   height: 9.4rem;
   max-width: 192rem;
@@ -27,18 +27,18 @@ nav {
   position: fixed;
 }
 
-.nav-next-div {
+.header__div-description {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 7rem;
   row-gap: 4rem;
 
-  /* nav fixed로 인한 margin 설정*/
+  /* .haader__div-login fixed로 인한 margin 설정*/
   margin-top: 9.4rem;
 }
 
-.nav-next-div h1 {
+.header__div-description h1 {
   color: black;
   font-size: 6.4rem;
   font-weight: 700;
