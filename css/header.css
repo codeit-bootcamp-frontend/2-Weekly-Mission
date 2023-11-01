@@ -79,6 +79,10 @@ nav {
 
 /* for Tablet */
 @media (min-width: 768px) {
+  nav {
+    max-width: 80rem;
+    padding: 2rem 3.2rem;
+  }
 }
 
 /* for PC */
