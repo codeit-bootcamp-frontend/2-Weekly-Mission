@@ -40,6 +40,10 @@
   width: 55rem;
 }
 
+.main-container section:nth-child(1) {
+  margin-top: 0;
+}
+
 .main-container > section h2 span {
   background: linear-gradient(96deg, #fe8a8a 1.72%, #a4ceff 74.97%);
   background-clip: text;
