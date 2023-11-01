@@ -40,7 +40,3 @@ footer > section > p {
   gap: 12px;
   cursor: pointer;
 }
-
-.footer-icon img {
-  cursor: pointer;
-}
