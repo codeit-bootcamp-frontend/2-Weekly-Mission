@@ -19,4 +19,40 @@
 
 /* Mobile */
 @media all and (min-width: 375px) and (max-width: 767px) {
+  * {
+    white-space: wrap;
+  }
+
+  br {
+    display: none;
+  }
+
+  .background {
+    background-color: white;
+  }
+
+  .header-section {
+    padding: 0 32px;
+    flex-wrap: warp;
+  }
+
+  .header-section img {
+    width: 100%;
+  }
+
+  .nav-bar {
+    padding: 2rem 32px;
+  }
+  .main-container {
+    padding: 0 32px;
+  }
+  .main-container section {
+    flex-wrap: wrap;
+    margin: 4rem 0;
+    gap: 2.4rem;
+    justify-content: normal;
+  }
+  .main-container section img {
+    width: 100%;
+  }
 }
