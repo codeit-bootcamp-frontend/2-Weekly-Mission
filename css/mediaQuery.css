@@ -51,10 +51,17 @@
     flex-wrap: wrap;
     margin: 4rem 0;
     gap: 2.4rem;
-    justify-content: normal;
+    align-items: normal;
   }
 
   .main-container section img {
     width: 100%;
+  }
+
+  .main-container-section2 {
+    flex-direction: column-reverse;
+  }
+  .main-container-section4 {
+    flex-direction: column-reverse;
   }
 }
