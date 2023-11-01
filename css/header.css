@@ -74,3 +74,15 @@ nav {
   width: 120rem;
   height: 59rem;
 }
+
+/* for PC */
+@media (min-width: 1200px) {
+}
+
+/* for Tablet */
+@media (min-width: 768px) {
+}
+
+/* for Mobile */
+@media (min-width: 375px) {
+}
