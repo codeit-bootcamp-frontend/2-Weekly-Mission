@@ -38,5 +38,4 @@ footer > section > p {
 .footer-icon {
   display: flex;
   gap: 12px;
-  cursor: pointer;
 }
