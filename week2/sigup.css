@@ -63,8 +63,7 @@ input {
 }
 
 input:focus {
-  outline: none;
-  border: 1px solid var(--linkbrary-primary-color);
+  outline: 1px solid var(--linkbrary-primary-color);
 }
 
 button {

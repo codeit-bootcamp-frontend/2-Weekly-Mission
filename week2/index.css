@@ -25,9 +25,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.25rem 10.42vw;
+  padding: 0.25rem 12.5rem;
   width: 100%;
-  z-index: 5;
+  /* z-index: 5; */
 }
 
 #logo {
