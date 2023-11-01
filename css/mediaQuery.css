@@ -64,4 +64,22 @@
   .main-container-section4 {
     flex-direction: column-reverse;
   }
+
+  .footer-section {
+    flex-wrap: wrap;
+  }
+
+  footer > section > p {
+    order: 3;
+  }
+
+  .footer-middle {
+    width: 70%;
+    margin-bottom: 20%;
+  }
+
+  .footer-icon {
+    width: 30%;
+    justify-content: space-between;
+  }
 }
