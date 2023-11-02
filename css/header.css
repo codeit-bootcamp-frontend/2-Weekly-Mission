@@ -30,10 +30,6 @@ nav {
   width: 100%;
 }
 
-.btn-short {
-  width: 12.8rem;
-}
-
 /* ============================= */
 /* hero 구간 */
 /* ============================= */
@@ -78,6 +74,9 @@ nav {
   .hero-image {
     width: 100%;
   }
+  .btn-short {
+    width: 8rem;
+  }
 }
 
 /* for Tablet */
@@ -98,6 +97,9 @@ nav {
   .br-toggle {
     display: block;
   }
+  .btn-short {
+    width: 12.8rem;
+  }
 }
 
 /* for PC */
@@ -117,5 +119,8 @@ nav {
   }
   .br-toggle {
     display: none;
+  }
+  .btn-short {
+    width: 12.8rem;
   }
 }
