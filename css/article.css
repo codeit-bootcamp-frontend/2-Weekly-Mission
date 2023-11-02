@@ -2,10 +2,8 @@
 /* article 구간 */
 /* ============================= */
 article {
-  padding-top: 7rem;
   padding-bottom: 12rem;
   background-color: var(--linkbrary-white, #ffffff);
-  max-width: 192rem;
   margin: 0 auto;
 }
 
@@ -85,4 +83,24 @@ section:nth-of-type(even) {
     --fandom-k-gra-blue-to-pink,
     linear-gradient(271deg, #fe578f -9.84%, #68e8f9 107.18%)
   );
+}
+
+/* for mobile */
+@media (min-width: 375px) {
+}
+
+/* for tablet */
+@media (min-width: 768px) {
+  article {
+    padding-top: 3rem;
+    max-width: 120rem;
+  }
+}
+
+/* for pc */
+@media (min-width: 1200px) {
+  article {
+    padding-top: 7rem;
+    max-width: 192rem;
+  }
 }
