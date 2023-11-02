@@ -21,11 +21,6 @@ nav {
   /* background-color: var(--linkbrary-bg, #f0f6ff); */
 }
 
-.home-link {
-  width: 13.3rem;
-  height: 2.4rem;
-}
-
 .home-link img {
   width: 100%;
 }
@@ -77,6 +72,10 @@ nav {
   .btn-short {
     width: 8rem;
   }
+  .home-link {
+    width: 8.8rem;
+    height: 1.3rem;
+  }
 }
 
 /* for Tablet */
@@ -100,6 +99,10 @@ nav {
   .btn-short {
     width: 12.8rem;
   }
+  .home-link {
+    width: 13.3rem;
+    height: 2.4rem;
+  }
 }
 
 /* for PC */
@@ -122,5 +125,9 @@ nav {
   }
   .btn-short {
     width: 12.8rem;
+  }
+  .home-link {
+    width: 13.3rem;
+    height: 2.4rem;
   }
 }
