@@ -4,6 +4,7 @@ header {
   flex-direction: column;
   width: 100%;
   position: relative;
+
   align-items: center;
 }
 
@@ -80,8 +81,9 @@ nav {
 /* for Tablet */
 @media (min-width: 768px) {
   nav {
-    max-width: 80rem;
+    max-width: 86.4rem;
     padding: 2rem 3.2rem;
+    margin: 0 auto;
   }
 }
 
