@@ -57,7 +57,7 @@ nav {
   }
   .hero {
     max-width: 76.8rem;
-    padding-top: 9.1rem; /* 기존 nav의 높이만큼 추가 */
+    padding: 9.1rem 3.2rem 0; /* 기존 nav의 높이만큼 추가 */
     row-gap: 2.4rem;
   }
   .hero-image {
