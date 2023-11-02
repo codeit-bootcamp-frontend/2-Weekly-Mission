@@ -11,9 +11,7 @@ article {
 section {
   display: grid;
   justify-content: center;
-  row-gap: 1rem;
   width: 100%;
-  padding: 5rem 0;
 }
 
 /* 섹션 제목 */
@@ -63,19 +61,58 @@ section {
 }
 
 /* for mobile */
-@media (min-width: 375px) {
+@media (min-width: 375px) and (max-width: 767px) {
+  article {
+    padding-bottom: 4rem;
+    background-color: var(--linkbrary-white, #ffffff);
+    margin: 0 auto;
+  }
+  section {
+    /* row-gap: 1rem; */
+    width: 100%;
+    padding: 4rem 3.2rem;
+  }
+
+  .section-title {
+    font-size: 2.4rem;
+  }
+  .description {
+    font-size: 1.5rem;
+  }
+
+  section:nth-of-type(odd) {
+    grid-template:
+      "title"
+      "image"
+      "description";
+  }
+  /* 짝수번째 텍스트:우, 이미지:좌 / 우width 29.1rem, 좌width 55rem */
+  section:nth-of-type(even) {
+    grid-template:
+      "title"
+      "image"
+      "description";
+  }
+
+  .image-card {
+    width: 100%;
+    margin: 2rem 0 1.6rem;
+  }
 }
 
 /* for tablet */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   article {
     padding-top: 3rem;
+    padding-bottom: 12rem;
     max-width: 120rem;
   }
 
   section {
     column-gap: 5.1rem;
     height: 42.5rem;
+    row-gap: 1rem;
+    padding: 5rem 0;
   }
 
   /* 홀수번째 텍스트:좌, 이미지:우 / 좌width 29.1rem, 우width 55rem */
@@ -107,12 +144,15 @@ section {
 @media (min-width: 1200px) {
   article {
     padding-top: 7rem;
+    padding-bottom: 12rem;
     max-width: 192rem;
   }
 
   section {
     column-gap: 15.7rem;
     height: 55rem;
+    row-gap: 1rem;
+    padding: 5rem 0;
   }
 
   /* 홀수번째 텍스트:좌, 이미지:우 / 좌width 29.1rem, 우width 55rem */
