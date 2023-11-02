@@ -8,14 +8,6 @@ article {
   background: var(--linkbrary-bg, #f0f6ff);
 }
 
-.signin {
-  padding: 23.8rem 0 25.2rem;
-}
-
-.signup {
-  padding: 23.8rem 0 11.6rem;
-}
-
 section {
   display: flex;
   flex: 0 0 auto;
@@ -157,11 +149,35 @@ input:focus {
 }
 
 @media (min-width: 375px) {
+  .signin {
+    padding: 12rem 0 23.2rem;
+  }
+
+  .signup {
+    padding: 12rem 3.2 11.9rem;
+  }
+  .btn {
+    height: 5.4rem;
+  }
 }
 
 /* for tablet, pc */
 @media (min-width: 768px) {
+  .signin {
+    padding: 20rem 0 29rem;
+  }
+
+  .signup {
+    padding: 20rem 0 17.7rem;
+  }
 }
 
 @media (min-width: 1200px) {
+  .signin {
+    padding: 23.8rem 0 25.2rem;
+  }
+
+  .signup {
+    padding: 23.8rem 0 11.6rem;
+  }
 }
