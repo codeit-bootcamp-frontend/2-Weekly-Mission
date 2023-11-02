@@ -87,6 +87,9 @@ nav {
     width: 69.8rem;
     height: 34.3rem;
   }
+  .br-toggle {
+    display: block;
+  }
 }
 
 /* for PC */
@@ -102,5 +105,8 @@ nav {
   .hero-image {
     width: 120rem;
     height: 59rem;
+  }
+  .br-toggle {
+    display: none;
   }
 }
