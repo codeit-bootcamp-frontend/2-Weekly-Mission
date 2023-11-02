@@ -14,44 +14,48 @@
 
 <hr>
 
-- 👀 index.html  
-  => 메인이 되는 랜딩페이지이며 현재시점( **Week2** )으로 `a`` 태그를 활용한 클릭이벤트( 로고 , 로그인 , 링크추가하기 , 그 외 Footer-bar ) 가 구현되어있습니다.
-- 👀 signin.html  
-  => 로그인 페이지이며 회원 가입하기 텍스르를 누를시 **' singup '** 페이지로 전환됩니다. 또 `input`에 아이콘을 `position` 및 `transform` 을 사용하여 구현하였습니다. `input`이 `focus` 될 시 테두리색상이 바뀌는것도 재미있는요소 입니다. :>
+- 👀 index.html
+  > 메인이 되는 랜딩페이지 입니다. 현재시점( **Week3** )으로 이미지들의 크기단위가 rem=>px 고정단위로 변경 하였으며 인라인 스타일을 제외하고 class로 재구현하였습니다.
+- 👀 signin.html
 
-- 👀 singup.html  
-  => 회원가입 페이지이며 ' **signin.html** '과 동일한 디자인에 비밀번호 확인 `input`이 추가되었습니다. 재밌는점은 **eyes_icon** 이 눈을 뜨고있는 형태로 변경하였는데 `input`안의 텍스트가 ' **signin.html** ' 에서는 안 보이지만 ' **sing.up.html** ' 에서는 텍스트가 보입니다.
+  > 로그인 페이지이며 마찬가지로 이미지들의 크기단위를 고정단위(px)로 변경하였습니다. 다만 인라인스타일쪽에서의 고민이 있었는데 밑의 `' 스스로 생각하는 개선점 '` 에서 서술하겠습니다.
+
+- 👀 singup.html
+  > 로그인페이지와 변경내용이 동일합니다.
 
 ### 🚀 Css Part
 
 <hr>
 
-- 👀 footer/header/main.css  
-  => **' index.html '** 의 Style Sheet 입니다. 앞으로 볼 전체적인 **Css 파일**에서 각 섹션의 `container` 혹은 **' 공통 '** 된 스타일을 가진 요소에 `class` 와 `id` 를 부여해줬으며 `item` 들은 `CSS선택자` 를 유연하게 사용하였습니다. 또한 재밌는포인트는 각각의 섹션들은 최대크기를 가지고있으며 ' ctrl+마우스휠 '을 사용하여 크기를 아무리 줄여도 최대크기 밖으로는 안 나간다는 점입니다. 그 외 nav-bar의 고정 등등이 있겠네요
+- 👀 file:main
 
-- 👀 singinup.css  
-  => **' signin.html '** 과 **' signup.html '** 은 `input`이 하나만 추가 된다는걸 제외하면 각 각 똑같은 디자인과 똑같은 배치를 가지고있습니다. 그리하여 하나의 **' Style Sheet '** 로 통일하였으며 각 각 똑같은 상단여백을 가지고있다는 포인트가있습니다.
+  > index.html 의 css파일을 모두 `' main '` 디렉토리에 종합하였습니다.
 
-- 👀 mediaQuery.css  
-  => **Reset** / **html,body** / **:root** 와 같은 전역에서 사용하는 style들을 담고있습니다.
+- 👀 file:signinup
 
-- 👀 mediaQuery.css  
-  => 3주차에 배울 내용이지만 1주차 Weekly Mission 심화미션(html의 font-size에 따라 전체요소의 크기가 달라지게 만들어보세요)을 잘못이해하여 만들었습니다. 3주차에 수정예정입니다. ~~지금은 쓸모없는파일 ㅠㅠ~~
+  > **' signin.html '** && **' signup.html '** 의 스타일시트를 담당하는 **signinup.css** 또한 디렉토리에 담아두었습니다. css파일이 하나이긴하나 가독성을 생각하여 디렉토리를 생성하여 보다 깔끔한 구조를 만들었습니다.
+
+- 👀 global.css
+
+  > **Reset** / **html,body** / **:root** 와 같은 전역에서 사용하는 `style`들을 담고있습니다. 디렉토리로 구조화를 하지않은 이뉴는 다른 css들과 달리 전역에서 사용될 css파일이라 바로 보이게 배치해두었습니다.
+
+- 👀 file:mediaQuery
+  > 각 페이지의 반응형 `mediaQuery.css` 들을 담고있는 파일입니다.
 
 ### 🚀 Extra Point
 
 <hr>
 
 - 👀 img , svg 디렉토리 추가설명  
-  => 각 디렉토리 오픈시 처음으로 나오는 `png` , `svg` 파일들은 **랜딩페이지**의 png와 svg파일들 입니다. 그 `signin.html` 혹은 `signup.html` 등등 랜딩페이지 이외 소스파일들은 각 각 `img`, `svg` 디렉토리 안의 다른 디렉토리(ex. read.md 디렉토리)로 구분되어있습니다.
+  => 이전과 동일하나 index.html에 들어갈 `img,svg` 파일들 또한 디렉토리를 새로 만들었습니다.
 
 ## 2. 각 주차별 체크박스
 
 > ✍️ 각 주차별로 체크의 위치가 변경됩니다. 해당 체크가 있는곳이 지금 읽고계시는 read.md의 내용이라고 보시면 되겠습니다.
 
 - [ ] Week 1
-- [x] Week 2
-- [ ] Week 3
+- [ ] Week 2
+- [x] Week 3
 - [ ] Week 4
 - [ ] Week 5
 - [ ] Week 6
