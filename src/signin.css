@@ -83,7 +83,6 @@ input {
 }
 
 input:focus {
-  border-radius: 0.5rem;
   border: 1px solid var(--linkbrary-primary-color);
 }
 
