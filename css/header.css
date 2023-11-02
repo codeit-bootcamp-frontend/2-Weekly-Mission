@@ -38,9 +38,7 @@ nav {
 /* 슬로건 글자 설정 */
 .slogan {
   text-align: center;
-  font-size: 6.4rem;
   font-weight: 700;
-  line-height: 8rem;
 }
 
 /* 슬로건 강조 */
@@ -75,6 +73,10 @@ nav {
   .btn-long {
     width: 20rem;
   }
+  .slogan {
+    font-size: 3.2rem;
+    line-height: 4.2rem;
+  }
 }
 
 /* for Tablet */
@@ -105,6 +107,10 @@ nav {
   .btn-long {
     width: 35rem;
   }
+  .slogan {
+    font-size: 6.4rem;
+    line-height: 8rem;
+  }
 }
 
 /* for PC */
@@ -134,5 +140,9 @@ nav {
   }
   .btn-long {
     width: 35rem;
+  }
+  .slogan {
+    font-size: 6.4rem;
+    line-height: 8rem;
   }
 }
