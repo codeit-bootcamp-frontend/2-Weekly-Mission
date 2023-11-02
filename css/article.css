@@ -12,29 +12,8 @@ section {
   display: grid;
   justify-content: center;
   row-gap: 1rem;
-  column-gap: 15.7rem;
   width: 100%;
-  height: 55rem;
   padding: 5rem 0;
-}
-
-/* 홀수번째 텍스트:좌, 이미지:우 / 좌width 29.1rem, 우width 55rem */
-section:nth-of-type(odd) {
-  grid-template:
-    ". image"
-    "title image"
-    "description image"
-    ". image"
-    /29.1rem 55rem;
-}
-/* 짝수번째 텍스트:우, 이미지:좌 / 우width 29.1rem, 좌width 55rem */
-section:nth-of-type(even) {
-  grid-template:
-    "image ."
-    "image title"
-    "image description"
-    "image ."
-    /55rem 29.1rem;
 }
 
 /* 섹션 제목 */
@@ -57,8 +36,6 @@ section:nth-of-type(even) {
 /* 이미지 사진 */
 .image-card {
   grid-area: image;
-  width: 55rem;
-  height: 45rem;
 }
 
 /* 섹션 제목의 그라디언트 */
@@ -95,6 +72,35 @@ section:nth-of-type(even) {
     padding-top: 3rem;
     max-width: 120rem;
   }
+
+  section {
+    column-gap: 5.1rem;
+    height: 42.5rem;
+  }
+
+  /* 홀수번째 텍스트:좌, 이미지:우 / 좌width 29.1rem, 우width 55rem */
+  section:nth-of-type(odd) {
+    grid-template:
+      ". image"
+      "title image"
+      "description image"
+      ". image"
+      /26.2rem 38.5rem;
+  }
+  /* 짝수번째 텍스트:우, 이미지:좌 / 우width 29.1rem, 좌width 55rem */
+  section:nth-of-type(even) {
+    grid-template:
+      "image ."
+      "image title"
+      "image description"
+      "image ."
+      /38.5rem 26.2rem;
+  }
+
+  .image-card {
+    width: 38.5rem;
+    height: 31.5rem;
+  }
 }
 
 /* for pc */
@@ -102,5 +108,33 @@ section:nth-of-type(even) {
   article {
     padding-top: 7rem;
     max-width: 192rem;
+  }
+
+  section {
+    column-gap: 15.7rem;
+    height: 55rem;
+  }
+
+  /* 홀수번째 텍스트:좌, 이미지:우 / 좌width 29.1rem, 우width 55rem */
+  section:nth-of-type(odd) {
+    grid-template:
+      ". image"
+      "title image"
+      "description image"
+      ". image"
+      /29.1rem 55rem;
+  }
+  /* 짝수번째 텍스트:우, 이미지:좌 / 우width 29.1rem, 좌width 55rem */
+  section:nth-of-type(even) {
+    grid-template:
+      "image ."
+      "image title"
+      "image description"
+      "image ."
+      /55rem 29.1rem;
+  }
+  .image-card {
+    width: 55rem;
+    height: 45rem;
   }
 }
