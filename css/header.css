@@ -4,7 +4,6 @@ header {
   flex-direction: column;
   width: 100%;
   position: relative;
-
   align-items: center;
 }
 
@@ -76,6 +75,9 @@ nav {
 
 /* for Mobile */
 @media (min-width: 375px) {
+  nav {
+    padding: 2rem 3.2rem;
+  }
 }
 
 /* for Tablet */
