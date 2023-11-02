@@ -155,3 +155,13 @@ input:focus {
   top: 5.2rem;
   right: 1.5rem;
 }
+
+@media (min-width: 375px) {
+}
+
+/* for tablet, pc */
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1200px) {
+}
