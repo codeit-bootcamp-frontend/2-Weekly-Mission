@@ -2,6 +2,9 @@
 
 /* PC */
 @media all and (min-width: 1200px) {
+  .br-none {
+    display: none;
+  }
 }
 
 /* Tablet */
@@ -27,7 +30,11 @@
     white-space: wrap;
   }
 
-  br {
+  .header-font {
+    white-space: now;
+  }
+
+  .br-none-mobile {
     display: none;
   }
 
