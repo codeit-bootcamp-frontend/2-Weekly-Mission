@@ -13,7 +13,6 @@
   align-items: center;
   max-width: 1920px;
   margin: 0 auto;
-  
 }
 
 .landing--logo {
@@ -40,7 +39,7 @@
   line-height: normal;
 }
 
-.login {
+.login--btn {
   width: 128px;
 }
 
@@ -79,11 +78,15 @@
   line-height: 80px;
 
   width: 708px;
-  height: 160px;
+  height: fit-content;
 
   text-align: center;
 
   margin: 0;
+}
+
+.break {
+  display: none;
 }
 
 .title .gradient {
@@ -257,3 +260,45 @@ footer {
   display: flex;
   gap: 12px;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1199px){
+  .header-bar {
+    padding: 20px 0px;
+    margin: 0 auto;
+    max-width: 799px;
+  }
+
+  .landing--logo {
+    margin-left: 32px;
+  }
+
+  .login--btn {
+    margin-right: 32px;
+  }
+
+  .break {
+    display: inline-block;
+  }
+
+  .main--image {
+    width: 650px;
+    height: 313px;
+    flex-shrink: 0;
+  }
+
+  .content {
+    justify-content: center;
+    column-gap: 51px;
+    row-gap: 10px;
+    padding: 50px 0;
+  }
+
+  .content-01 img, .content-02 img, .content-03 img, .content-04 img {
+    width: 385px;
+    height: 315px;
+  }
+}
+
+/* @media screen and (min-width: 375px) and (max-width: 767px) {
+  
+} */
