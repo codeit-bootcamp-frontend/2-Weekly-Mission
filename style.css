@@ -470,3 +470,19 @@ footer {
     top: 23%;
     left: 22%;
 }
+
+/* 미디어 쿼리를 사용하여 Tablet 사이즈에서의 스타일링을 적용 */
+@media (max-width: 1199px) {
+  /* 헤더 스타일링 */
+  header {
+    padding: 20px 32px; /* 좌우 여백 조절 */
+  }
+
+  .logoimage {
+    margin-left: 32px; /* "Linkbrary" 로고 왼쪽 여백 */
+  }
+
+  .loginButton {
+    margin-right: 32px; /* "로그인" 버튼 오른쪽 여백 */
+  }
+}
