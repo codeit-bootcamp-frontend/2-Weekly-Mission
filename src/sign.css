@@ -3,11 +3,20 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  padding-top: 23.8rem;
+  padding-bottom: 25.2rem;
   background-color: var(--gray1);
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.6rem;
+  margin-bottom: 3rem;
 }
 main {
   display: flex;
@@ -22,51 +31,36 @@ main {
 
 input {
   width: 100%;
+  border: 0.1rem solid var(--Gray3);
+  line-height: 150%;
+  margin-top: 1.2rem;
+  margin-bottom: 2.4rem;
+  padding: 1.8rem 1.5rem;
+  border-radius: 0.8rem;
 }
 
-/* article */
-article:nth-of-type(1) {
-  display: flex;
-  flex-direction: column;
-  row-gap: 3rem;
-  margin-bottom: 3.2rem;
-}
-
-/* section1 : 회원가입  */
-section:nth-of-type(1) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  row-gap: 1.6rem;
-}
-
-.section1__sign-text-form {
+/* section */
+.header__sign-text-form {
   display: flex;
   column-gap: 0.8rem;
   font-size: 1.6rem;
 }
-.section1__sign-text {
+.header__sign-text {
   color: var(--Black);
 
   font-weight: 400;
   line-height: 2.4rem;
 }
-.section1__login-link {
+.header__login-link {
   color: var(--Primary);
   font-weight: 600;
 }
-.section1__login-hr {
+.header__login-hr {
   border: 0.1rem solid var(--Primary);
 }
-.section1__logo {
+.header__logo {
   width: 21rem;
   height: 3.8rem;
-}
-
-/* section2 : input */
-input {
-  border: 0.1rem solid var(--Gray6);
 }
 
 input:focus {
@@ -74,31 +68,14 @@ input:focus {
   border: 0.1rem solid var(--Primary);
 }
 
-.section2__input-form {
-  display: flex;
-  flex-direction: column;
-  row-gap: 2.4rem;
-  width: 40rem;
-}
-
-.section2__input-form input {
-  padding: 1.8rem 1.5rem;
-  border-radius: 0.8rem;
-}
-.section2__input-wrap {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.2rem;
-}
-
-.section2__input-check-form {
+.section__input-check-form {
   margin-top: 0.6rem;
 }
 
-.section2__input-check-text {
+.section__input-check-text {
   color: var(--Red);
 }
-.section2__input {
+.section__input {
   position: relative;
 }
 
@@ -118,6 +95,8 @@ input:focus {
   font-size: 1.8rem;
   font-weight: 600;
   border: 0;
+  margin-top: 0.6rem;
+  margin-bottom: 3.2rem;
 }
 
 /* social */
@@ -153,4 +132,31 @@ input:focus {
 }
 .sns-bg2 {
   background-image: url("../images/kakaobg.svg");
+}
+
+/* tablet */
+@media (max-width: 1199px) {
+  body {
+    padding-top: 20rem;
+    padding-bottom: 29rem;
+  }
+}
+/* mobile */
+@media (max-width: 767px) {
+  body {
+    padding: 12rem 3.2rem 23.2rem 3.3rem;
+  }
+
+  input {
+    max-width: 32.5rem;
+  }
+
+  .sign-btn {
+    max-width: 32.5rem;
+  }
+
+  .social-form {
+    max-width: 32.5rem;
+    margin-top: 0.2rem;
+  }
 }
