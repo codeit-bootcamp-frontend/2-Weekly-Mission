@@ -7,18 +7,22 @@ header {
 }
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   max-width: 192rem;
   height: 9.4rem;
-  padding:2rem 20rem;
-  gap: 8px;
 }
 
 .nav_fixed {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
+  padding:2rem 20rem;
+  top: 0;
+  left:0;
+  gap: 8px;
+  width: 100%;
+  background-color: #edf7ff;
 }
 
 .title_header {
