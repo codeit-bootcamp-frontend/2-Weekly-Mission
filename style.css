@@ -4,7 +4,7 @@
 
 /* 전체 페이지 스타일링 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Pretendard, Arial, sans-serif;
     background-color: #EDF7FF;
     margin: 0;
     padding: 0;
@@ -40,7 +40,7 @@ input {
 
 input:focus {
     border-color: blue;
-}  
+}
 
 /* 헤더 스타일링 */
 header {
@@ -54,8 +54,7 @@ header {
     padding: 20px 200px;
     align-items: center;
     gap: 8px;
-    align-self: stretch;    
-    
+    align-self: stretch;        
 }
 
 .loginButton {
@@ -98,7 +97,6 @@ header {
     text-align: center;
     padding: 0;
     color: #000;
-    font-family: Pretendard;
     font-size: 64px;
     font-style: normal;
     font-weight: 700;
@@ -106,8 +104,7 @@ header {
 }
 
 .top-title {
-    text-align: center;
-    font-family: Pretendard;
+    text-align: center;    
     font-size: 64px;
     font-style: normal;
     font-weight: 700;
@@ -129,7 +126,6 @@ header {
     border-style: none;
     background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6D6AFE 0.12%, #6AE3FE 101.84%));
     color: var(--grey-light, #F5F5F5);
-    font-family: Pretendard;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -140,7 +136,6 @@ header {
 /* 본문 텍스트 스타일링 */
 .big-text {
     color: #000;
-    font-family: Pretendard;
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
@@ -149,8 +144,7 @@ header {
 }
 
 .small-text {
-    color: #6B6B6B;
-    font-family: Pretendard;
+    color: #6B6B6B;    
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -191,8 +185,7 @@ header {
     background: linear-gradient(96deg, #FE8A8A 1.72%, #A4CEFF 74.97%);
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: Pretendard;
+    -webkit-text-fill-color: transparent;    
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
@@ -231,8 +224,7 @@ header {
     background: linear-gradient(277deg, #6FBAFF 59.22%, #FFD88B 93.66%); 
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: Pretendard;
+    -webkit-text-fill-color: transparent;    
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
@@ -273,8 +265,7 @@ header {
     background: linear-gradient(99deg, #6D7CCD 19.76%, rgba(82, 136, 133, 0.22) 52.69%); 
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: Pretendard;
+    -webkit-text-fill-color: transparent;    
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
@@ -313,8 +304,7 @@ header {
     background: var(--fandom-k-gra-blue-to-pink, linear-gradient(271deg, #FE578F -9.84%, #68E8F9 107.18%)); 
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: Pretendard;
+    -webkit-text-fill-color: transparent;    
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
@@ -411,9 +401,7 @@ footer {
 }
 
 .signheadertext {
-    color: var(--black, #000);
-    /* Linkbrary/body1-regular */
-    font-family: Pretendard;
+    color: var(--black, #000);        
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -435,8 +423,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 10px; 
-    color: var(--grey-light, #F5F5F5);
-    font-family: Pretendard;
+    color: var(--grey-light, #F5F5F5);    
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -453,9 +440,7 @@ footer {
     border-radius: 8px;
     border: 1px solid var(--linkbrary-gray-20, #CCD5E3);
     background: var(--linkbrary-gray-10, #E7EFFB); 
-    color: var(--linkbrary-gray-100, #373740);
-    /* Linkbrary/body2-regular */
-    font-family: Pretendard;
+    color: var(--linkbrary-gray-100, #373740);        
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
