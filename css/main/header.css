@@ -28,6 +28,11 @@
   transform: translate(-50%, 0);
 }
 
+.nav-bar img {
+  width: 13rem;
+  height: 2.4rem;
+}
+
 .nav-item {
   display: flex;
   justify-content: space-between;
