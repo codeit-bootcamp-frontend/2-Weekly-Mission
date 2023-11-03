@@ -65,6 +65,10 @@ nav {
   color: transparent;
 }
 
+br.break {
+  display: none;
+}
+
 .signup {
   display: flex;
   justify-content: center;
@@ -86,6 +90,7 @@ nav {
 main {
   padding-top: 7rem;
   padding-bottom: 12rem;
+  width: 100%;
 }
 
 .introduce {
@@ -185,11 +190,101 @@ footer {
   color: #cfcfcf;
   font-family: Arial;
   font-size: 1.6rem;
+  justify-content: center;
 }
 
 .sns {
   display: flex;
   column-gap: 1.2rem;
   height: 2rem;
+  justify-content: center;
 }
 
+@media(max-width: 767px) {
+
+  .nav_fixed {
+    padding: 13px 32px;
+    /* background-color: red; */
+  }
+
+  .slogan_gradient{
+    width: 100vw;
+    height: auto;
+  }
+
+  br.break {
+    display: inline;
+  }
+
+  .hero-image {
+    width: 90%;
+    height: auto;
+  }
+
+  .introduce {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 100%;
+  }
+
+  br.main_break {
+    display: none;
+  }
+
+  .title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 2.9rem;
+    padding: 0 3.2rem;
+  }
+
+  .description {
+    padding: 0 3.2rem;
+  }
+
+  .content-image {
+    width: 100%;
+    height: auto;
+    padding: 3.2rem;
+  }
+
+  .footer-box {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    'a b c'
+    'd . .';
+    width: 100%;
+    max-width: 192rem;
+    height: fit-content;
+    padding: 0 3.2rem;
+    gap: 6rem;
+  }
+
+  .footer-links {
+    padding: 0;
+    display: contents;
+  }
+
+  .footer-link.privacy {
+   grid-area: a;
+  }
+
+  .footer-link.faq {
+    grid-area: b;
+  }
+
+  .sns {
+    grid-area: c;
+  }
+
+  .copyright {
+    grid-area: d;
+  }
+
+}
