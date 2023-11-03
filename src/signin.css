@@ -119,3 +119,18 @@ input:focus {
   width: 4.2rem;
   height: 4.2rem;
 }
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    margin-top: 20rem;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .container {
+    margin-top: 12rem;
+    padding: 0 3.2rem;
+    width: 100%;
+    max-width: 46.4rem;
+  }
+}
