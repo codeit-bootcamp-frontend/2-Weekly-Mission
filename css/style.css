@@ -17,39 +17,19 @@ main {
 }
 
 .banner-gradient {
-  background-image: linear-gradient(
-    90deg,
-    rgb(109, 106, 254),
-    rgb(255, 159, 159)
-  );
+  background-image: linear-gradient(90deg, rgb(109, 106, 254), rgb(255, 159, 159));
 }
 .save-gradient {
-  background-image: linear-gradient(
-    90deg,
-    rgb(254, 138, 138),
-    rgb(164, 206, 255)
-  );
+  background-image: linear-gradient(90deg, rgb(254, 138, 138), rgb(164, 206, 255));
 }
 .manage-gradient {
-  background-image: linear-gradient(
-    90deg,
-    rgb(255, 216, 139),
-    rgb(111, 186, 255)
-  );
+  background-image: linear-gradient(90deg, rgb(255, 216, 139), rgb(111, 186, 255));
 }
 .share-gradient {
-  background-image: linear-gradient(
-    90deg,
-    rgb(109, 124, 205),
-    rgba(82, 136, 133, 0.22)
-  );
+  background-image: linear-gradient(90deg, rgb(109, 124, 205), rgba(82, 136, 133, 0.22));
 }
 .search-gradient {
-  background-image: linear-gradient(
-    90deg,
-    rgb(104, 232, 249),
-    rgb(254, 87, 143)
-  );
+  background-image: linear-gradient(90deg, rgb(104, 232, 249), rgb(254, 87, 143));
 }
 
 /* 헤더 */
