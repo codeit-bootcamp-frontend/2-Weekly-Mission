@@ -44,17 +44,18 @@ input:focus {
 
 /* 헤더 스타일링 */
 header {
-    position: fixed;    
-    width: 100%;
-    background-color: #EDF7FF;
-    color: #fff;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 200px;
-    align-items: center;
-    gap: 8px;
-    align-self: stretch;        
+  position: fixed;
+  width: 100%;
+  background-color: #EDF7FF;    
+  padding: 20px;  
+}
+
+.header-contents {
+  display: flex;
+  align-items: center;  
+  align-self: stretch;
+  justify-content: space-between;
+  margin: 0 auto;  
 }
 
 .loginButton {
@@ -470,10 +471,10 @@ footer {
 }
 
 /* 미디어 쿼리를 사용하여 Tablet 사이즈에서의 스타일링을 적용 */
-@media (max-width: 1199px) {
-  /* 헤더 스타일링 */
-  header {
-    padding: 20px 32px; /* 좌우 여백 조절 */
+@media (max-width: 1199px) {  
+  .header-contents {
+    padding: 0 32px; /* 좌우 여백 조절 */
+    max-width: 600px; /* 간격 유지하고 좌우 여백 줄어드는 부분. 사이즈에 대한 내용은 따로 없어서 임의로 정함 */           
   }
 
   .logoimage {
@@ -530,5 +531,11 @@ footer {
 
 /* 미디어 쿼리를 사용하여 Mobile  사이즈에서의 스타일링을 적용 */
 @media (max-width: 767px) {
-  
+  .top-contents {
+    gap: 24px;      
+  }
+
+  .top-heading {
+    font-size: 32px;
+  }
 }
