@@ -5,12 +5,12 @@ body {
   align-items: center;
 }
 
-header{
-  margin: 23.8rem 0 3rem;
+header {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 23.8rem 0 3rem;
 }
 
 .logo-img {
@@ -42,7 +42,6 @@ label {
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.671rem;
-  
 }
 
 input {
@@ -88,11 +87,7 @@ input:focus {
 }
 button {
   padding: 1.6rem 2rem;
-  background-image: linear-gradient(
-    90deg,
-    rgba(109, 106, 254, 1),
-    rgba(106, 227, 254, 1)
-  );
+  background-image: linear-gradient(90deg, rgba(109, 106, 254, 1), rgba(106, 227, 254, 1));
   border: none;
   border-radius: 0.8rem;
   color: var(--white-color);
@@ -133,4 +128,21 @@ button {
 .login-sns a:nth-child(2) {
   background-color: rgba(245, 225, 75, 1);
   padding: 1rem 0.8rem 1rem;
+}
+
+/* Tablet: 768px 이상 ~ 1199px 이하 */
+@media (min-width: 768px) and (max-width: 1199px) {
+  header {
+    margin-top: 20rem;
+  }
+}
+
+/* Mobile: 375px 이상 ~ 767px 이하 */
+@media (min-width: 375px) and (max-width: 767px) {
+  form {
+    width: 32.5rem;
+  }
+  header {
+    margin-top: 12rem;
+  }
 }
