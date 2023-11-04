@@ -9,12 +9,12 @@ body {
   font-size: 62.5%;
 }
 
-html {
-  padding: 238px 0 116px;
-}
-
 body {
   background-color: #edf7ff;
+}
+
+main.container {
+  padding-top: 120px;
 }
 
 .logo {
