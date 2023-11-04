@@ -326,4 +326,15 @@ footer {
   .content-image {
     width: 100%;
   }
+
+  .footer-box {
+    position: relative;
+    padding: 0 3.2rem;
+  }
+
+  .copyright {
+    position: absolute;
+    top: 7.8rem;
+    left: 3.2rem;
+  }
 } 
