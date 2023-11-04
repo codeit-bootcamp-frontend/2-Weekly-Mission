@@ -192,5 +192,39 @@ footer {
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
+  nav {
+    max-width: 79.9rem;
+    padding: 2rem 3.2rem;
+  }
+
+  .hero-header {
+    padding-top: 3.9rem;
+  }
+
+  .hero-image {
+    width: 69.8rem;
+    height: 34.3rem;
+  }
+
+  article {
+    padding-top: 3rem;
+  }
   
+  section {
+    column-gap: 5.1rem;
+    height: 36.5rem;
+  }
+
+  section:nth-of-type(odd) {
+    grid-template-columns: 26.2rem 38.5rem;
+  }
+
+  section:nth-of-type(even) {
+    grid-template-columns: 38.5rem 26.2rem;
+  }
+
+  .content-image {
+    width: 38.5rem;
+    height: 31.5rem;
+  }
 }
