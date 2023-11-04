@@ -11,10 +11,21 @@ body {
 
 body {
   background-color: #edf7ff;
+  padding-top: 238px;
+  padding-bottom: 252px;
 }
 
 main.container {
-  padding-top: 120px;
+  position: absolute;
+  text-align: center;
+  
+  width: 400px;
+  height: 394px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+
 }
 
 .logo {
@@ -39,17 +50,6 @@ main.container {
   margin: 16px 0 30px 0;
 }
 
-.container {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  text-align: center;
-  margin-left: -200px;
-  margin-top: -380px;
-  left: 50%;
-  top: 60%;
-}
-
 label {
   display: block;
   text-align: left;
@@ -71,22 +71,31 @@ input {
 
 .eye-off {
   position: absolute;
-  bottom: 110px;
-  right: 15px;
+  top: 170px;
+  bottom: 0;
+  right: 17px;
+  margin: auto 2px;
+  height: 20px;
   z-index: 1;
 }
 
 .eye-on {
   position: absolute;
-  bottom: 110px;
-  right: 15px;
+  top: 170px;
+  bottom: 0;
+  right: 17px;
+  margin: auto 2px;
+  height: 20px;
   z-index: 1;
 }
 
 .eye-on-check {
   position: absolute;
-  bottom: -1px;
-  right: 15px;
+  top: 395px;
+  bottom: 0;
+  right: 17px;
+  margin: auto 2px;
+  height: 20px;
   z-index: 1;
 }
 
@@ -139,4 +148,10 @@ input:focus {
   justify-content: center;
   align-items: center;
   gap: 16px;
+}
+
+@media(max-width: 767px) {
+  body {
+    padding: 238px 32px 252px 32px;
+  }
 }
