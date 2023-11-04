@@ -31,6 +31,10 @@ main {
 .search-gradient {
   background-image: linear-gradient(90deg, rgb(104, 232, 249), rgb(254, 87, 143));
 }
+/* 줄바꿈 */
+.line-break-tablet {
+  display: block;
+}
 
 /* 헤더 */
 header {
@@ -44,7 +48,7 @@ header {
   align-items: center;
 }
 
-.header-box {
+.header__box {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,31 +60,44 @@ header {
   padding: 1.6rem 4.05rem;
   text-decoration: none;
 }
-
+.line-break {
+  display: block;
+}
+.line-break-tablet {
+  display: inline;
+}
 /* 콘텐츠 */
 .banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-bg-color);
+  margin-bottom: 30px;
+}
+
+.banner__box {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: var(--gray-bg-color);
   padding-top: 7rem;
-  margin-bottom: 7rem;
+  width: 69.8rem;
+  gap: 4rem;
 }
 
-.banner h1 {
+.banner__box h1 {
   text-align: center;
   font-size: 6.4rem;
   font-weight: 700;
-  margin-bottom: 4rem;
   line-height: 8rem;
+  width: 70.8rem;
 }
 
-.banner a {
+.banner__box a {
   padding: 1.6rem 12.6rem;
-  margin-bottom: 3.9rem;
 }
 
-.banner img {
+.banner__box img {
   width: 111.8rem;
 }
 
@@ -90,7 +107,7 @@ header {
   align-items: center;
 }
 
-article {
+.information > article {
   width: 99.8rem;
   display: flex;
   justify-content: space-between;
@@ -98,12 +115,18 @@ article {
   padding: 5rem 0;
 }
 
+.information > article:nth-child(even) {
+  flex-direction: row-reverse;
+}
+.information article > .text {
+  width: 29.1rem;
+}
+
 .information article > .text > h1 {
   font-size: 4.8rem;
   margin-bottom: 1rem;
   font-weight: 700;
   letter-spacing: -0.03rem;
-  line-height: 5.75rem;
 }
 
 .information article > .text > p {
@@ -111,6 +134,7 @@ article {
   font-weight: 500;
   color: #6b6b6b;
   line-height: 2.4rem;
+  padding-bottom: 2.4rem;
 }
 
 .information article > img {
@@ -158,18 +182,118 @@ footer .sns img {
 
 /* Tablet: 768px 이상 ~ 1199px 이하 */
 @media (min-width: 768px) and (max-width: 1199px) {
-  .header-box {
+  .header__box {
     padding: 0 3.2rem;
     margin: 2rem 0;
     max-width: 79.9rem;
+  }
+  .banner__box {
+    width: 69.8rem;
+    padding-top: 3.9rem;
+  }
+
+  .banner__box > img {
+    width: 69.8rem;
+  }
+  .information article {
+    width: 69.8rem;
+  }
+  .information article > img {
+    width: 385px;
+    height: auto;
+  }
+  .information article > .text {
+    width: 26.2rem;
+  }
+
+  .line-break-tablet {
+    display: block;
   }
 }
 
 /* Mobile: 375px 이상 ~ 767px 이하 */
 @media (min-width: 375px) and (max-width: 767px) {
-  .header-box {
+  .line-break {
+    display: inline;
+  }
+  .line-break-tablet {
+    display: block;
+  }
+  .line-break-mobile {
+    display: block;
+  }
+  .header__box {
     padding: 0 3.2rem;
     margin: 2rem 0;
     width: 100%;
+  }
+  .login-link {
+    padding: 1rem 2.15rem;
+    font-size: 1.4rem;
+  }
+  .header__logo-img {
+    width: 8.9rem;
+  }
+  main {
+    padding-bottom: 4rem;
+  }
+
+  .banner {
+    margin-bottom: 0px;
+  }
+  .banner__box {
+    width: 100%;
+    padding: 2.8rem 3.2rem 0;
+    gap: 2.4rem;
+  }
+  .banner__box > img {
+    width: 100%;
+  }
+
+  .banner__box h1 {
+    font-size: 3.2rem;
+    line-height: 4.2rem;
+  }
+
+  .banner a {
+    font-size: 1.4rem;
+    padding: 1rem 6.2rem;
+  }
+  .information article {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: start;
+    width: 100%;
+    padding: 4rem 3.2rem 4.3rem;
+  }
+  .information article:nth-child(2n) {
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    padding: 3.2rem;
+  }
+
+  .information article > img {
+    width: 100%;
+    height: auto;
+  }
+  .information article > .text {
+    width: 100%;
+  }
+
+  .information article > .text h1 {
+    font-size: 2.4rem;
+  }
+  .information article > .text p {
+    font-size: 1.5rem;
+  }
+  footer {
+    position: relative;
+    padding: 3.2rem 3.2rem 10.8rem;
+  }
+
+  .copyright {
+    position: absolute;
+    top: 11rem;
   }
 }
