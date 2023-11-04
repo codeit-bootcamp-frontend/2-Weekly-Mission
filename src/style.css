@@ -212,7 +212,7 @@ footer {
   
   section {
     column-gap: 5.1rem;
-    height: 36.5rem;
+    height: 41.5rem;
   }
 
   section:nth-of-type(odd) {
@@ -228,3 +228,4 @@ footer {
     height: 31.5rem;
   }
 }
+
