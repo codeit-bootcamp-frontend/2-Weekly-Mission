@@ -78,7 +78,8 @@ button {
   color: var(--grey-light);
   font-weight: 400;
   border: none;
-  font-family:"Pretendard GOV Variable"
+  font-family:"Pretendard GOV Variable";
+  cursor: pointer;
 } 
  
 

@@ -15,6 +15,7 @@ body {
   white-space: nowrap;
   font-family: "Pretendard GOV Variable", "Pretendard GOV";
   margin: 0 auto;
+  padding: 0;
   cursor: default;
 }
 
@@ -23,11 +24,21 @@ nav {
   position: fixed;
   top: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 1.25rem  12.5rem;
   width: 100%;
   z-index: 1;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 95rem;
+  align-items: center;
+  margin: 1.25rem auto;
+  padding: 0 12.5rem;
+
 }
 
 #logo {
@@ -49,7 +60,7 @@ nav {
   width: 8rem;
 }
 
-.all {
+.pc_br {
   display: block;
 }
 
@@ -73,7 +84,6 @@ header {
   line-height: 125%;
   margin: 0 auto;
   padding-top: 10.25rem;
-  
 }
 
 #sigup {
@@ -83,8 +93,11 @@ header {
 }
 
 .search_page_box {
-  width: 58.23%;
-  height: 41.1875rem;
+  width: 100%;
+  max-width: 70rem;
+  height: 41rem;
+  /* position: relative;
+  bottom: -7.5rem; */
   border-radius: 25px 25px 0 0;
   background-image: 
     linear-gradient(180deg, rgba(196, 196, 196, 0.00) 67.68%, #F0F6FF 94.76%),
@@ -92,8 +105,7 @@ header {
   background-repeat: no-repeat;
   background-position: top;
   background-size: 120%;
-  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.08); 
-  
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.08);  
 } 
 
 .information {
@@ -103,6 +115,10 @@ header {
   gap: 9.8125rem;
   margin: 6.25rem auto;
   width: 42.7%;
+}
+
+.text_mobile {
+  display: none;
 }
 
 .information img {
@@ -115,6 +131,7 @@ header {
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: -0.3px;
+  margin: 0;
   margin-bottom: 0.625rem;
 }
 
@@ -167,6 +184,8 @@ flex-direction: row-reverse;
 footer {
   height: 7.75rem;
   margin-top: 7.5rem;
+  display: flex;
+  justify-content: center;
   background: #111322;
   align-self: stretch;
   padding-top: 2rem;
@@ -178,6 +197,8 @@ footer {
   justify-content: space-between;
   font-weight: 400;
   margin: 0 6.5rem 4rem;
+  width: 100%;
+  max-width: 95rem;
 }
 
 #small_logo {
@@ -194,16 +215,17 @@ footer {
 }
 
 .sns {
-  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
 
 @media (max-width: 1199px) {
-  .title .space {
+  .space {
     display: block;
   }
 
-  nav {
-    padding: 1.25rem 16.6%;    
+  .nav-bar {
+    padding: 0 3.2rem;
+    max-width: 79.9rem;
   }
 
   .search_page_box {
@@ -228,36 +250,71 @@ footer {
 }
 
 @media (max-width: 767px) {
-  .space {
-    display: inline;
+  .pc_br {
+    display: none;
   }
 
+  .space {
+    display: block;
+  }
 
-  nav {
-    padding: 1.25rem 2rem;
+  .nav-bar {
+    padding: 0 2rem;
+  }
+
+   .header {
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+  } 
+  
+  .title {
+    padding: 10.25rem 2rem 0;
+    white-space: normal;
+  }
+
+  .text_pc {
+    display: none;
+  }
+
+  .text_mobile {
+    margin-top: 1rem;
+    display: block;
   }
 
   .search_page_box {
-    margin: 0, 2rem;
+    height: 17rem;
+    width: 90%;
+    position: relative;
+    bottom: -2.4rem;
+    margin: 0 2rem;
   }
+
+  /* 이미지를 백그라운드로 깔아둔건 페이지의 사이즈가 변할때 어떻게 항상 같은 화면으로 보일 수 있을까요... */
  
   .information {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    padding: 0 2rem;
     width: 100%;
+    margin-top: 0;
     margin-bottom: 5.2rem;
+    white-space: wrap;
   }
 
-  .information section {
-    margin: 0 2rem;
+  .chapt1 {
+    margin-top: 2.5rem;
   }
 
+  .little_title {
+    margin-bottom: 1.25rem;
+  }
+ 
   .information img {
     display: block;
     width: 100%;
     height: auto;
-    padding: 2rem;
   }
 
   footer {
@@ -270,14 +327,12 @@ footer {
   #underbar{
     margin: 0;
     padding: 0;
+    align-items: flex-start;
   }
 
   #small_logo {
     position: absolute;
     left: 2rem;
     bottom: 2rem;
-  }
-  
-
- 
+  } 
 }
