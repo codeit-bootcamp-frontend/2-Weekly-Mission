@@ -155,20 +155,3 @@
   width: 26px;
   height: 24px;
 }
-
-@media screen and (min-width: 768px) and (max-width: 1199px){
-  .account--main {
-    padding-top: 200px;
-  }
-}
-
-@media screen and (min-width: 375px) and (max-width: 767px) {
-  .account--main {
-    padding: 120px 32px 0;
-  }
-
-  .account--form input, .social-login {
-    max-width: 400px;
-    width: calc(100vw - 64px);
-  }
-}
