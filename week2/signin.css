@@ -115,11 +115,13 @@ footer {
 
   .signin_box {
     width: 100%;
+    max-width: 25rem;
     padding: 2rem;
   }
 
   footer {
     width: 100%;
+    max-width: 25rem;
   }
 
 }
