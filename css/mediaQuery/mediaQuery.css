@@ -27,7 +27,7 @@
 /* Mobile */
 @media all and (min-width: 375px) and (max-width: 767px) {
   * {
-    white-space: wrap;
+    white-space: normal;
   }
 
   .br-none-mobile {
