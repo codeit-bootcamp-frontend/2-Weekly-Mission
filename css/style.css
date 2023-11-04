@@ -34,14 +34,22 @@ main {
 
 /* 헤더 */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: var(--gray-bg-color);
   position: sticky;
   top: 0;
   z-index: 1;
-  padding: 2rem 20rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 20rem;
 }
 
 .login-link {
@@ -150,8 +158,18 @@ footer .sns img {
 
 /* Tablet: 768px 이상 ~ 1199px 이하 */
 @media (min-width: 768px) and (max-width: 1199px) {
+  .header-box {
+    padding: 0 3.2rem;
+    margin: 2rem 0;
+    max-width: 79.9rem;
+  }
 }
 
 /* Mobile: 375px 이상 ~ 767px 이하 */
 @media (min-width: 375px) and (max-width: 767px) {
+  .header-box {
+    padding: 0 3.2rem;
+    margin: 2rem 0;
+    width: 100%;
+  }
 }
