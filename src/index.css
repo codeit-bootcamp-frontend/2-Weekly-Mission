@@ -259,10 +259,10 @@ footer {
   }
 
   .header__login-form {
-    max-width: 39rem;
     padding: 1.3rem 3.2rem;
   }
   .header__text-form {
+    width: 100%;
     padding: 2.8rem 3.2rem 0 3.3rem;
     row-gap: 2.4rem;
   }
@@ -278,7 +278,8 @@ footer {
   }
 
   .header__hero {
-    width: 30.2rem;
+    width: 100%;
+    min-width: 30.2rem;
     height: 17.8rem;
   }
 
@@ -297,11 +298,11 @@ footer {
   section:nth-of-type(odd),
   section:nth-of-type(even) {
     grid-template:
-      "section__title-text section__title-text"
-      "section__title-img section__title-img"
-      "section__title-img section__title-img"
-      "section__text section__text";
+      "section__title-text"
+      "section__title-img"
+      "section__text" / 100%;
   }
+
   .section__title-text {
     font-size: 2.4rem;
   }
@@ -315,7 +316,8 @@ footer {
   }
 
   .section__title-img {
-    width: 32.5rem;
+    width: 100%;
+    min-width: 32.5rem;
     height: 26.5rem;
   }
   .section__text,
