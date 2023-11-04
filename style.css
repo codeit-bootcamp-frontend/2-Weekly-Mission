@@ -8,7 +8,6 @@ body {
   background-color: #EDF7FF;
   margin: 0;
   padding: 0;
-  gap: 8px;
   align-items: flex-start;
 }
 
@@ -477,7 +476,7 @@ footer {
   .header-contents {
     padding: 0 32px;
     /* 좌우 여백 조절 */
-    max-width: 600px;
+    max-width: 800px;
     /* 간격 유지하고 좌우 여백 줄어드는 부분. 사이즈에 대한 내용은 따로 없어서 임의로 정함 */
   }
 
@@ -531,11 +530,11 @@ footer {
   }
 }
 
-/* 미디어 쿼리를 사용하여 Mobile  사이즈에서의 스타일링을 적용 */
+/* Mobile 사이즈 스타일 적용 */
 @media (max-width: 767px) {
   .top-contents {
     gap: 24px;
-    padding: 0 32px;
+    padding: 80px 32px 0px 32px;
   }
 
   .top-heading {
@@ -549,7 +548,7 @@ footer {
   .search-contents {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; 
     align-items: flex-start;
     gap: 24px; 
     padding: 32px;
