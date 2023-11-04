@@ -3,7 +3,7 @@
   background: linear-gradient(90.99deg, #6d6afe 0.12%, #6ae3fe 101.84%);
   border: none;
   border-radius: 8px;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--white);
@@ -58,7 +58,7 @@
 
 .header-font {
   color: var(--black);
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 6.4rem;
   font-style: normal;
   font-weight: 700;

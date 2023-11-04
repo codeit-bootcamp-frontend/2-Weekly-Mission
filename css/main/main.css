@@ -21,7 +21,7 @@
 }
 
 .main-container h2 {
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 4.8rem;
   font-weight: 700;
   letter-spacing: -0.3px;
@@ -30,7 +30,7 @@
 
 .main-container p {
   color: #6b6b6b;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 150%; /* 24px */
