@@ -85,19 +85,18 @@ header {
   gap: 4rem;
 }
 
-.banner__box h1 {
+.banner__box > h1 {
   text-align: center;
-  font-size: 6.4rem;
+  font-size: 6.3rem;
   font-weight: 700;
   line-height: 8rem;
-  width: 70.8rem;
 }
 
-.banner__box a {
+.banner__box > a {
   padding: 1.6rem 12.6rem;
 }
 
-.banner__box img {
+.banner__box > img {
   width: 111.8rem;
 }
 
@@ -148,7 +147,7 @@ article:nth-child(even) {
   grid-area: text;
 }
 
-.information article img {
+.information > article > img {
   width: 55rem;
   grid-area: image;
 }
@@ -187,12 +186,12 @@ footer .sns img {
   width: 2rem;
 }
 
-/* Tablet: 768px 이상 ~ 1199px 이하 */
-@media (min-width: 768px) and (max-width: 1199px) {
+/* Tablet*/
+@media (max-width: 1200px) {
   .header__box {
     padding: 0 3.2rem;
     margin: 2rem 0;
-    max-width: 79.9rem;
+    width: 79.9rem;
   }
 
   .banner {
@@ -200,18 +199,17 @@ footer .sns img {
   }
 
   .banner__box {
-    width: 69.8rem;
     padding-top: 3.9rem;
   }
 
   .banner__box > img {
     width: 69.8rem;
   }
-  .information article {
+  .information > article {
     width: 69.8rem;
     column-gap: 5.1rem;
   }
-  .information article > img {
+  .information > article > img {
     width: 385px;
     height: auto;
   }
@@ -221,8 +219,8 @@ footer .sns img {
   }
 }
 
-/* Mobile: 375px 이상 ~ 767px 이하 */
-@media (min-width: 375px) and (max-width: 767px) {
+/* Mobile*/
+@media (max-width: 768px) {
   .line-break {
     display: inline;
   }
@@ -233,9 +231,9 @@ footer .sns img {
     display: block;
   }
   .header__box {
+    width: 100%;
     padding: 0 3.2rem;
     margin: 2rem 0;
-    width: 100%;
   }
   .login-link {
     padding: 1rem 2.15rem;
@@ -261,44 +259,45 @@ footer .sns img {
     width: 100%;
   }
 
-  .banner__box h1 {
+  .banner__box > h1 {
     font-size: 3.2rem;
     line-height: 4.2rem;
   }
 
-  .banner a {
+  .banner > a {
     font-size: 1.4rem;
     padding: 1rem 6.2rem;
   }
 
-  .information article {
+  .information > article {
     width: 100%;
     row-gap: 0;
     padding: 4rem 3.2rem;
   }
-  article:nth-child(odd) {
+
+  .information > article:nth-child(odd) {
     grid-template-areas:
       "title"
       "image"
       "text";
   }
-  article:nth-child(even) {
+  .information > article:nth-child(even) {
     grid-template-areas:
       "title"
       "image"
       "text";
   }
 
-  .information article h1 {
+  .information > article > h1 {
     font-size: 2.4rem;
     margin-bottom: 2rem;
   }
-  .information article img {
+  .information > article > img {
     width: 100%;
     margin-bottom: 1.6rem;
   }
 
-  .information article p {
+  .information > article > p {
     font-size: 1.5rem;
   }
   footer {
