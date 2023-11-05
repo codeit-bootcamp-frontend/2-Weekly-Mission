@@ -14,17 +14,17 @@ header {
   margin: 23.8rem 0 3rem;
 }
 
-.logo-img {
+#logo-img {
   width: 21.058rem;
   margin-bottom: 1.6rem;
 }
 
-.signup-text {
+#signup-text {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.4rem;
 }
-.signup-text a {
+#signup-link {
   margin-left: 0.8rem;
   font-size: 1.6rem;
   line-height: 1.909rem;
