@@ -145,4 +145,8 @@ button {
   header {
     margin-top: 12rem;
   }
+
+  .password__input-area img {
+    top: 50%;
+  }
 }
