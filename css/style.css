@@ -186,6 +186,18 @@ footer .sns img {
   width: 2rem;
 }
 
+@media (max-width: 1200px) {
+  .banner__box img {
+    width: 698px;
+    height: auto;
+  }
+
+  .information article img {
+    width: 385px;
+    height: auto;
+  }
+}
+
 /* Tablet*/
 @media (max-width: 1200px) {
   .header__box {
@@ -203,7 +215,7 @@ footer .sns img {
   }
 
   .banner__box img {
-    width: 69.8rem;
+    width: 698px;
   }
   .information article {
     width: 69.8rem;
