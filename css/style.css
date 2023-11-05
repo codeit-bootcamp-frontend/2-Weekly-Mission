@@ -85,18 +85,18 @@ header {
   gap: 4rem;
 }
 
-.banner__box > h1 {
+.banner__box h1 {
   text-align: center;
   font-size: 6.3rem;
   font-weight: 700;
   line-height: 8rem;
 }
 
-.banner__box > a {
+.banner__box a {
   padding: 1.6rem 12.6rem;
 }
 
-.banner__box > img {
+.banner__box img {
   width: 111.8rem;
 }
 
@@ -132,14 +132,14 @@ article:nth-child(even) {
     "image .";
 }
 
-.information article > h1 {
+.information article h1 {
   font-size: 4.8rem;
   font-weight: 700;
   letter-spacing: -0.03rem;
   grid-area: title;
 }
 
-.information article > p {
+.information article p {
   font-size: 1.6rem;
   font-weight: 500;
   color: #6b6b6b;
@@ -147,7 +147,7 @@ article:nth-child(even) {
   grid-area: text;
 }
 
-.information > article > img {
+.information article img {
   width: 55rem;
   grid-area: image;
 }
@@ -202,14 +202,14 @@ footer .sns img {
     padding-top: 3.9rem;
   }
 
-  .banner__box > img {
+  .banner__box img {
     width: 69.8rem;
   }
-  .information > article {
+  .information article {
     width: 69.8rem;
     column-gap: 5.1rem;
   }
-  .information > article > img {
+  .information article img {
     width: 385px;
     height: auto;
   }
@@ -259,45 +259,45 @@ footer .sns img {
     width: 100%;
   }
 
-  .banner__box > h1 {
+  .banner__box h1 {
     font-size: 3.2rem;
     line-height: 4.2rem;
   }
 
-  .banner > a {
+  .banner a {
     font-size: 1.4rem;
     padding: 1rem 6.2rem;
   }
 
-  .information > article {
+  .information article {
     width: 100%;
     row-gap: 0;
     padding: 4rem 3.2rem;
   }
 
-  .information > article:nth-child(odd) {
+  .information article:nth-child(odd) {
     grid-template-areas:
       "title"
       "image"
       "text";
   }
-  .information > article:nth-child(even) {
+  .information article:nth-child(even) {
     grid-template-areas:
       "title"
       "image"
       "text";
   }
 
-  .information > article > h1 {
+  .information article h1 {
     font-size: 2.4rem;
     margin-bottom: 2rem;
   }
-  .information > article > img {
+  .information article img {
     width: 100%;
     margin-bottom: 1.6rem;
   }
 
-  .information > article > p {
+  .information article p {
     font-size: 1.5rem;
   }
   footer {
