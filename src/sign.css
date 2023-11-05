@@ -68,6 +68,13 @@ input:focus {
   border: 0.1rem solid var(--Primary);
 }
 
+section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 40rem;
+}
+
 .section__input-check-form {
   margin-top: 0.6rem;
 }
@@ -88,7 +95,6 @@ input:focus {
 }
 
 .sign-btn {
-  width: 40rem;
   padding: 1.6rem 2rem;
   border-radius: 0.8rem;
   color: var(--White3);
@@ -101,7 +107,6 @@ input:focus {
 
 /* social */
 .social-form {
-  width: 40rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,17 +151,7 @@ input:focus {
   body {
     padding: 12rem 3.2rem 23.2rem 3.3rem;
   }
-
-  input {
-    max-width: 32.5rem;
-  }
-
-  .sign-btn {
-    max-width: 32.5rem;
-  }
-
   .social-form {
-    max-width: 32.5rem;
     margin-top: 0.2rem;
   }
 }
