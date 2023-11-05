@@ -194,4 +194,23 @@ footer {
 }
 /* Mobile */
 @media screen and (min-width: 375px) and (max-width: 767px) {
+  .loginBar {
+    padding: 0 3.2rem;
+  }
+
+  section {
+    width: 100%;
+    height: fit-content;
+    padding: 4rem 3.2rem;
+    display: block;
+  }
+
+  .title,
+  .description,
+  .content-image {
+    display: block;
+    width: 100%;
+    height: fit-content;
+    margin: 2rem auto;
+  }
 }
