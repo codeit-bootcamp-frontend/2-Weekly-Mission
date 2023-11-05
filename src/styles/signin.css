@@ -137,3 +137,16 @@ section {
 .socialContainer .socialButtons .iconWrapper:last-child {
   margin-right: 0;
 }
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+}
+/* Mobile */
+@media screen and (min-width: 375px) and (max-width: 767px) {
+  section {
+    width: 100%;
+    padding: 0 3.2rem;
+    max-width: 40rem;
+    box-sizing: content-box;
+  }
+}

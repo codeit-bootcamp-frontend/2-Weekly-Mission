@@ -180,3 +180,18 @@ footer {
   column-gap: 1.2rem;
   height: 2rem;
 }
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .loginBar {
+    padding: 0 3.2rem;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: fit-content;
+  }
+}
+/* Mobile */
+@media screen and (min-width: 375px) and (max-width: 767px) {
+}
