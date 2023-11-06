@@ -138,9 +138,6 @@ button {
     max-width: 40rem;
     margin: 0 3.2rem;
   }
-  form > * {
-    width: calc(100%);
-  }
 
   header {
     margin-top: 12rem;

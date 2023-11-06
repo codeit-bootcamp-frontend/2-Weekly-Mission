@@ -232,23 +232,14 @@ footer {
     width: 385px;
     height: auto;
   }
-
-  .line-break-tablet {
-    display: block;
-  }
 }
 
 /* Mobile*/
 @media (max-width: 768px) {
-  .line-break {
-    display: inline;
+  .mobile-line-break {
+    display: none;
   }
-  .line-break-tablet {
-    display: block;
-  }
-  .line-break-mobile {
-    display: block;
-  }
+
   .header__box {
     width: 100%;
     padding: 0 3.2rem;
