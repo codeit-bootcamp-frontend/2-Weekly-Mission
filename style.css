@@ -128,6 +128,10 @@ header {
   text-decoration-line: none;
 }
 
+.top-image {
+  width: 1118px;
+}
+
 /* 본문 텍스트 스타일링 */
 .big-text {
   color: #000;
@@ -366,105 +370,6 @@ footer {
   gap: 12px;
 }
 
-/* 로그인과 회원가입 부분 */
-/* 페이지 전체 */
-.signin {
-  display: flex;
-  padding: 238px 0px 252px 0px;
-  justify-content: center;
-  align-items: center;
-}
-
-.signincontents {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-
-/* 로고 이미지와 텍스트 */
-.signheader {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.signlogoimage {
-  width: 100%;
-}
-
-.signheadertext {
-  color: var(--black, #000);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-  /* 150% */
-}
-
-.signheaderlink {
-  text-decoration: underline;
-}
-
-/* 로그인과 회원가입 버튼 */
-.signloginButton {
-  border: none;
-  border-radius: 8px;
-  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6D6AFE 0.12%, #6AE3FE 101.84%));
-  display: flex;
-  width: 400px;
-  padding: 16px 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  color: var(--grey-light, #F5F5F5);
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-/* 소셜 부분 */
-.sociallogin {
-  display: flex;
-  width: 400px;
-  padding: 12px 24px;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 8px;
-  border: 1px solid var(--linkbrary-gray-20, #CCD5E3);
-  background: var(--linkbrary-gray-10, #E7EFFB);
-  color: var(--linkbrary-gray-100, #373740);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.socialloginicons {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.socialicon {
-  position: relative;
-  width: 42px;
-  height: 42px;
-}
-
-.socialiconinner {
-  position: absolute;
-  top: 25%;
-  left: 25%;
-}
-
-.socialiconinner-kakao {
-  position: absolute;
-  top: 23%;
-  left: 22%;
-}
-
 @media (min-width: 1200px) {
   .br-none {
     display: none;
@@ -491,24 +396,12 @@ footer {
   }
 
   .top-image {
-    width: 650px;
+    width: 650px;    
   }
 
-  .save-image {
-    width: 385px;
-    height: 315px;
-  }
-
-  .manage-image {
-    width: 385px;
-    height: 315px;
-  }
-
-  .share-image {
-    width: 385px;
-    height: 315px;
-  }
-
+  .save-image,
+  .manage-image,
+  .share-image,
   .search-image {
     width: 385px;
     height: 315px;
