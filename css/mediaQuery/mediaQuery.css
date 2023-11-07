@@ -2,7 +2,7 @@
 
 /* PC */
 @media all and (min-width: 1200px) {
-  .br-none {
+  .min1200px-display-none {
     display: none;
   }
 }
@@ -30,7 +30,7 @@
     white-space: normal;
   }
 
-  .br-none-mobile {
+  .min375px-max767px-display-none {
     display: none;
   }
 
