@@ -13,7 +13,7 @@
 
 body {
   white-space: nowrap;
-  font-family: "Pretendard GOV Variable", "Pretendard GOV";
+  font-family: "Pretendard GOV Variable";
   margin: 0 auto;
   padding: 0;
   cursor: default;
@@ -74,30 +74,48 @@ header {
   overflow: hidden;
 }
 
-.title {
-  background-image: linear-gradient(91deg, #6D6AFE 17.28%, #FF9F9F 74.98%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  text-align: center;
+.title_all{
   font-size: 4rem;
   font-weight: 700;
   line-height: 125%;
-  margin: 0 auto;
-  padding-top: 10.25rem;
+  text-align: center;
+  margin: 0;
 }
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 125%;
+  text-align: center;
+  margin: 0;
+}
+
+.title_all .space {
+  white-space: wrap;
+  display: inline-block;
+}
+.title_top {
+  background-image: linear-gradient(91deg, #6D6AFE 17.28%, #FF9F9F 74.98%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  padding-top: 10.25rem;
+  margin: 0;
+}
+
 
 #sigup {
   position: relative;
   width: 21.875rem;
-  margin-bottom: 1.87rem;
 }
 
 .search_page_box {
   width: 100%;
   max-width: 70rem;
   height: 41rem;
-  /* position: relative;
-  bottom: -7.5rem; */
   border-radius: 25px 25px 0 0;
   background-image: 
     linear-gradient(180deg, rgba(196, 196, 196, 0.00) 67.68%, #F0F6FF 94.76%),
@@ -219,7 +237,7 @@ footer {
 }
 
 @media (max-width: 1199px) {
-  .space {
+  .mob_br {
     display: block;
   }
 
@@ -254,9 +272,6 @@ footer {
     display: none;
   }
 
-  .space {
-    display: block;
-  }
 
   .nav-bar {
     padding: 0 2rem;
@@ -268,14 +283,19 @@ footer {
 
   } 
   
-  .title {
+  .title_top {
     padding: 10.25rem 2rem 0;
-    white-space: normal;
+    display: inline-block;
+  }
+
+  .title {
+    flex-direction: column;
   }
 
   .text_pc {
     display: none;
   }
+
 
   .text_mobile {
     margin-top: 1rem;
@@ -283,14 +303,13 @@ footer {
   }
 
   .search_page_box {
-    height: 17rem;
-    width: 90%;
+    height: 44.4vw;
+    width: 77.7vw;
     position: relative;
     bottom: -2.4rem;
     margin: 0 2rem;
   }
 
-  /* 이미지를 백그라운드로 깔아둔건 페이지의 사이즈가 변할때 어떻게 항상 같은 화면으로 보일 수 있을까요... */
  
   .information {
     flex-direction: column;
