@@ -10,6 +10,7 @@
 
 .header a img {
   margin-bottom: 1.6rem;
+  width: 21rem;
 }
 .header p {
   font-size: 1.6rem;
@@ -37,6 +38,14 @@
   margin-bottom: 1.2rem;
 }
 
+.email_input {
+  margin-bottom: 2.4rem;
+}
+
+.password_check_label {
+  margin-top: 2.4rem;
+}
+
 .login_form form input[type="text"],
 .login_form form input[type="password"] {
   width: 100%;
@@ -60,7 +69,8 @@
   transform: translate(0, -50%);
 }
 
-.login_form form input[type="submit"] {
+.login_button {
+  margin: 3rem 0 3.2rem;
   width: 100%;
   padding: 1.6rem 2rem;
   border-radius: 8px;
