@@ -13,7 +13,15 @@ submitBtn.addEventListener("click", function (e) {
 });
 
 function handleInvalidLogin() {
-  if (emailInput.value === "") {
-    console.log("이메일좀 확인해보셈");
+  createWarningText(emailInput, "이메일을 확인해주세요.");
+  createWarningText(passwordInput, "비밀번호를 확인해주세요.");
+}
+
+function createWarningText(element, message) {
+  const warningText = document.createElement("div");
+  warningText.textContent = message;
+  warningText.classList.add("alert-danger");
+  if (element.parentElement.lastElementChild.className !== "alert-danger") {
+    element.parentElement.appendChild(warningText);
   }
 }
