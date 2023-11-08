@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>로그인</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="./src/reset.css" />
+    <link rel="stylesheet" href="./src/signin.css" />
+  </head>
+  <body>
+    <div class="signin">
+      <div class="signin-body">
+        <a href="/">
+          <img src="./images/logo.svg" alt="홈으로 연결된 Linkbrary 로고" id="logo">
+        </a>
+        <div class="check-user">
+          <p>회원이 아니신가요?</p>
+          <a href="/signup.html">회원 가입하기</a>
+        </div>
+        <div class="input-div">
+          <p>이메일</p>
+          <input id="email" type="email">
+        </div>
+        <div class="input-div">
+          <p>비밀번호</p>
+          <input id="password" type="password">
+          <img src="/images/eye-off.svg" class="eye" id="eye-off">
+          <!-- <img src="/images/eye-on.svg" class="eye" id="eye-on"> -->
+        </div>
+        <a class="cta">
+          <span>로그인</span>
+        </a>
+        <div class="social-login">
+          <p>소셜 로그인</p>
+          <div class="social-icons">
+            <a href="https://www.google.com/" class="social-icon">
+              <img src="/images/google.svg" class="icon-frame">
+              <img src="/images/google.png" id="icon-google">
+            </a>
+            <a href="https://www.kakaocorp.com/page/" class="social-icon">
+              <img src="/images/Kakao-yellow.svg" class="icon-frame">
+              <img src="/images/Kakao.svg" id="icon-kakao">
+            </a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>
