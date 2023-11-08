@@ -90,7 +90,7 @@ nav {
     width: 69.8rem;
     height: 34.3rem;
   }
-  .br-toggle {
+  .min-1200px-show-toggle {
     display: block;
   }
   .btn-short {
@@ -125,7 +125,7 @@ nav {
     width: 120rem;
     height: 59rem;
   }
-  .br-toggle {
+  .min-1200px-show-toggle {
     display: none;
   }
   .btn-short {
