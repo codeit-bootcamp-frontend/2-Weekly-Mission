@@ -8,5 +8,12 @@ submitBtn.addEventListener("click", function (e) {
     passwordInput.value !== "codeit101"
   ) {
     e.preventDefault();
+    handleInvalidLogin();
   }
 });
+
+function handleInvalidLogin() {
+  if (emailInput.value === "") {
+    console.log("이메일좀 확인해보셈");
+  }
+}
