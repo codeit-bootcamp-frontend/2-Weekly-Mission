@@ -5,6 +5,9 @@ const inputForm = document.querySelector(".input-container");
 
 inputForm.addEventListener("focusout", function (e) {
   if (e.target.id === "input-id") {
+    if (e.target.value === "") {
+      createWarningText(emailInput, "이메일을 입력해주세요.");
+    }
     console.log("이메일 창에서 focusout 함");
   } else if (e.target.id === "input-pwd") {
     console.log("비밀번호 창에서 focusout 함");
@@ -35,10 +38,12 @@ function handleInvalidLogin() {
 }
 
 function createWarningText(element, message) {
-  const warningText = document.createElement("div");
-  warningText.textContent = message;
-  warningText.classList.add("alert-danger");
   if (element.parentElement.lastElementChild.className !== "alert-danger") {
+    const warningText = document.createElement("div");
+    warningText.textContent = message;
+    warningText.classList.add("alert-danger");
     element.parentElement.appendChild(warningText);
+  } else {
+    element.parentElement.lastElementChild.textContent = message;
   }
 }
