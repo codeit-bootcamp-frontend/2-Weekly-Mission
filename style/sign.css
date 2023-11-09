@@ -97,6 +97,9 @@ header {
 
 .sign-input-box .sign-input-field {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2rem;
 }
 
 .sign-input-box .sign-input-field .eye-button {

@@ -2,15 +2,16 @@ import { ERROR_MESSAGE, USER_EMAIL } from './../constants.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   let emailInput = document.querySelector('.sign-input[type="email"]');
-  let html = '';
-  let warningMessage = document.querySelector('.warning-message');
+  let passwordInput = document.querySelector('.sign-input[type="password');
+  let warningMessage = document.querySelectorAll('.warning-message');
 
   emailInput.addEventListener('focusout', vaildateEmail);
+  passwordInput.addEventListener('focusout', vaildatePassWord);
 
   function vaildateEmail() {
     if (emailInput.value != '' && isEmail(emailInput.value)) {
       emailInput.style.borderColor = '#ccd5e3';
-      warningMessage.innerHTML = '';
+      warningMessage[0].innerHTML = '';
     } else if (emailInput.value == '') {
       printErrorMessage(ERROR_MESSAGE.emptyEmail);
     } else if (!isEmail(emailInput.value)) {
@@ -18,10 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function vaildatePassWord() {
+    if (passwordInput.value == '') {
+      let html = `<p class="warning-message">${ERROR_MESSAGE.emptyPassWord}</p>`;
+      passwordInput.style.borderColor = '#ff5b56';
+      warningMessage[1].innerHTML = html;
+    }
+  }
+
   function printErrorMessage(message) {
-    html = `<p class="warning-message">${message}</p>`;
+    let html = `<p class="warning-message">${message}</p>`;
     emailInput.style.borderColor = '#ff5b56';
-    warningMessage.innerHTML = html;
+    warningMessage[0].innerHTML = html;
   }
 
   function isEmail(asValue) {
