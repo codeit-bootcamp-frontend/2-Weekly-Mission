@@ -1,6 +1,8 @@
 import { submitBtn, emailInput, passwordInput, inputForm } from "./modules/domSelectors.js";
 import regEmail from "./modules/regexPatterns.js";
 import { authEvent, toggleWarningborder, createWarningText } from "./modules/authModule.js";
+import userData from "./database/userData.js";
+import { verifyLoginCredentials } from "./modules/verifyUser.js";
 
 authEvent();
 
@@ -18,16 +20,17 @@ inputForm.addEventListener("focusout", (e) => {
   }
 });
 
+const handleInvalidLogin = (element, text) => {
+  toggleWarningborder(element);
+  createWarningText(element, text);
+};
+
 const submitSignInHandler = submitBtn.addEventListener("click", (e) => {
-  if (emailInput.value !== "test@codeit.com" || passwordInput.value !== "codeit101") {
+  if (verifyLoginCredentials(userData, emailInput.value, passwordInput.value)) {
+    submitBtn.parentElement.action = "./folder.html";
+  } else {
     e.preventDefault();
-    handleInvalidLogin();
+    handleInvalidLogin(emailInput, "이메일을 확인해주세요");
+    handleInvalidLogin(passwordInput, "비밀번호를 확인해주세요.");
   }
 });
-
-function handleInvalidLogin() {
-  toggleWarningborder(emailInput);
-  toggleWarningborder(passwordInput);
-  createWarningText(emailInput, "이메일을 확인해주세요.");
-  createWarningText(passwordInput, "비밀번호를 확인해주세요.");
-}
