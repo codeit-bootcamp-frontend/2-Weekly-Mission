@@ -35,6 +35,20 @@ submitBtn.addEventListener("click", function (e) {
   }
 });
 
+inputForm.addEventListener("click", function (e) {
+  if (e.target.classList.contains("toggle-show-pwd")) {
+    if (e.target.dataset.show === "true") {
+      e.target.src = "../images/eye-off.svg";
+      e.target.previousElementSibling.type = "password";
+      e.target.dataset.show = "false";
+    } else {
+      e.target.src = "../images/eye-on.svg";
+      e.target.previousElementSibling.type = "text";
+      e.target.dataset.show = "true";
+    }
+  }
+});
+
 function handleInvalidLogin() {
   toggleWarningborder(emailInput);
   toggleWarningborder(passwordInput);
