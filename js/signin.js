@@ -3,12 +3,15 @@ const emailInput = document.querySelector("#input-id");
 const passwordInput = document.querySelector("#input-pwd");
 const inputForm = document.querySelector(".input-container");
 
+const regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
 inputForm.addEventListener("focusout", function (e) {
   if (e.target.id === "input-id") {
     if (e.target.value === "") {
       createWarningText(emailInput, "이메일을 입력해주세요.");
+    } else if (!regEmail.test(e.target.value)) {
+      createWarningText(emailInput, "올바른 이메일 주소가 아닙니다.");
     }
-    console.log("이메일 창에서 focusout 함");
   } else if (e.target.id === "input-pwd") {
     console.log("비밀번호 창에서 focusout 함");
   }
