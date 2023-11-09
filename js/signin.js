@@ -6,7 +6,7 @@ import { verifyLoginCredentials } from "./modules/verifyUser.js";
 
 authEvent();
 
-inputForm.addEventListener("focusout", (e) => {
+const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
   if (e.target.id === "input-id") {
     if (e.target.value === "") {
       specifyWarningPosition(emailInput, "이메일을 입력해주세요.");
