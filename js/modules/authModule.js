@@ -46,4 +46,9 @@ const createWarningText = (element, message) => {
   toggleWarningborder(element);
 };
 
-export { authEvent, toggleWarningborder, createWarningText };
+const specifyWarningPosition = (element, text) => {
+  toggleWarningborder(element);
+  createWarningText(element, text);
+};
+
+export { authEvent, specifyWarningPosition };
