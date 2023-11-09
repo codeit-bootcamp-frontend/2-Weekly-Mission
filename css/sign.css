@@ -90,12 +90,13 @@ section {
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 0.6rem;
   position: relative;
 }
 
 .input-box {
   outline: none;
+  margin-top: 0.6rem;
   padding: 1.8rem 1.5rem;
   border-radius: 0.8rem;
   border: 1px solid var(--linkbrary-gray-20, #ccd5e3);
