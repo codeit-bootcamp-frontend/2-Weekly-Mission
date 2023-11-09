@@ -147,6 +147,10 @@ input:focus {
   right: 1.5rem;
 }
 
+.alert-danger {
+  color: var(--linkbrary-red, #ff5b56);
+}
+
 @media (min-width: 375px) {
   .signin {
     padding: 12rem 3.2rem 23.2rem;
