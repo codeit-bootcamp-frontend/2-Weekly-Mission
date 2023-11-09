@@ -1,7 +1,4 @@
-const submitBtn = document.querySelector(".btn-long-40");
-const emailInput = document.querySelector("#input-id");
-const passwordInput = document.querySelector("#input-pwd");
-const inputForm = document.querySelector(".input-container");
+import { submitBtn, emailInput, passwordInput, inputForm } from "./modules/domSelectors.js";
 
 const regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
