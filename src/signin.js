@@ -1,14 +1,17 @@
-import { ERROR_MESSAGE, USER_EMAIL, USER_PASSWORDS } from './../constants.js';
+import { ERROR_MESSAGE, USER_EMAIL, USER_PASSWORD } from './../constants.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   let emailInput = document.querySelector('.sign-input[type="email"]');
   let passwordInput = document.querySelector('.sign-input[type="password');
   let warningMessage = document.querySelectorAll('.warning-message');
   let loginBtn = document.querySelector('.login-btn');
+  let eyeBtn = document.querySelector('.eye-button');
+  let eyeBtnIcon = eyeBtn.firstElementChild;
 
   emailInput.addEventListener('focusout', vaildateEmail);
   passwordInput.addEventListener('focusout', vaildatePassWord);
   loginBtn.addEventListener('click', performLogin);
+  eyeBtn.addEventListener('click', showAndHidePassword);
 
   function vaildateEmail() {
     if (emailInput.value != '' && isEmail(emailInput.value)) {
@@ -23,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function vaildatePassWord() {
     if (passwordInput.value == '') {
-      printErrorMessage(ERROR_MESSAGE.emptyPassWord, 1);
+      let html = `<p class="warning-message">${ERROR_MESSAGE.emptyPassWord}</p>`;
+      passwordInput.style.borderColor = '#ff5b56';
+      warningMessage[1].innerHTML = html;
     }
   }
 
@@ -36,17 +41,32 @@ document.addEventListener('DOMContentLoaded', () => {
   function performLogin(e) {
     e.preventDefault();
 
-    if (emailInput.value != USER_EMAIL && passwordInput.value != USER_PASSWORDS) {
-      let wrongEmail = `<p class="warning-message">${ERROR_MESSAGE.wrongEmail}</p>`;
-      let wrongPassWord = `<p class="warning-message">${ERROR_MESSAGE.wrongPassWord}</p>`;
-
-      emailInput.style.borderColor = '#ff5b56';
-      passwordInput.style.borderColor = '#ff5b56';
-
-      warningMessage[0].innerHTML = wrongEmail;
-      warningMessage[1].innerHTML = wrongPassWord;
+    if (emailInput.value != USER_EMAIL || passwordInput.value != USER_PASSWORD) {
+      if (emailInput.value != USER_EMAIL) {
+        let wrongEmail = `<p class="warning-message">${ERROR_MESSAGE.wrongEmail}</p>`;
+        emailInput.style.borderColor = '#ff5b56';
+        warningMessage[0].innerHTML = wrongEmail;
+      }
+      if (passwordInput.value != USER_PASSWORD) {
+        let wrongPassWord = `<p class="warning-message">${ERROR_MESSAGE.wrongPassWord}</p>`;
+        passwordInput.style.borderColor = '#ff5b56';
+        warningMessage[1].innerHTML = wrongPassWord;
+      } else if (passwordInput.value != '' || passwordInput.value == USER_PASSWORD) {
+        passwordInput.style.borderColor = '#ccd5e3';
+        warningMessage[1].innerHTML = '';
+      }
     } else {
       window.location.href = '/folder.html';
+    }
+  }
+
+  function showAndHidePassword() {
+    if (passwordInput.type == 'password') {
+      passwordInput.type = 'text';
+      eyeBtnIcon.src = './images/eye-on.svg';
+    } else if (passwordInput.type == 'text') {
+      passwordInput.type = 'password';
+      eyeBtnIcon.src = './images/eye-off.svg';
     }
   }
 

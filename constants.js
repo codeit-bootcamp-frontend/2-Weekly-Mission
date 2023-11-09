@@ -7,4 +7,4 @@ export const ERROR_MESSAGE = {
 };
 
 export const USER_EMAIL = 'test@codeit.com';
-export const USER_PASSWORDS = 'codeit101';
+export const USER_PASSWORD = 'codeit101';
