@@ -1,4 +1,4 @@
-import { submitBtn, emailInput, passwordInput, inputForm } from "./modules/domSelectors.js";
+import { submitBtn, emailInput, passwordInput, inputForm, passwordVerifyInput } from "./modules/domSelectors.js";
 import { regEmail, regPassword } from "./modules/regexPatterns.js";
 import { authEvent, specifyWarningPosition } from "./modules/authModule.js";
 import userData from "./database/userData.js";
@@ -19,6 +19,11 @@ const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
       specifyWarningPosition(passwordInput, "비밀번호를 입력해주세요.");
     } else if (!regPassword.test(passwordInput.value)) {
       specifyWarningPosition(passwordInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
+    }
+  }
+  if (e.target === passwordVerifyInput) {
+    if (passwordInput.value !== e.target.value) {
+      specifyWarningPosition(passwordVerifyInput, "비밀번호가 일치하지 않아요.");
     }
   }
 });
