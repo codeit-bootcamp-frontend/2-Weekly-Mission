@@ -29,10 +29,7 @@ inputForm.addEventListener("focusin", function (e) {
 });
 
 submitBtn.addEventListener("click", function (e) {
-  if (
-    emailInput.value !== "test@codeit.com" ||
-    passwordInput.value !== "codeit101"
-  ) {
+  if (emailInput.value !== "test@codeit.com" || passwordInput.value !== "codeit101") {
     e.preventDefault();
     handleInvalidLogin();
   }
