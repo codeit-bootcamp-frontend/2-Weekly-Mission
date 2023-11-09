@@ -21,9 +21,9 @@ inputForm.addEventListener("focusout", function (e) {
 
 inputForm.addEventListener("focusin", function (e) {
   if (e.target.id === "input-id") {
-    console.log("이메일 창에 focusin 함");
+    deleteWarningText(emailInput);
   } else if (e.target.id === "input-pwd") {
-    console.log("비밀번호 창에 focusin 함");
+    deleteWarningText(passwordInput);
   }
 });
 
@@ -50,5 +50,12 @@ function createWarningText(element, message) {
     element.parentElement.appendChild(warningText);
   } else {
     element.parentElement.lastElementChild.textContent = message;
+  }
+}
+
+function deleteWarningText(element) {
+  const deleteTarget = element.parentElement.lastElementChild;
+  if (deleteTarget.className === "alert-danger") {
+    deleteTarget.remove();
   }
 }
