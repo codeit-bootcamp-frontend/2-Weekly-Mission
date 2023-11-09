@@ -13,7 +13,9 @@ inputForm.addEventListener("focusout", function (e) {
       createWarningText(emailInput, "올바른 이메일 주소가 아닙니다.");
     }
   } else if (e.target.id === "input-pwd") {
-    console.log("비밀번호 창에서 focusout 함");
+    if (e.target.value === "") {
+      createWarningText(passwordInput, "비밀번호를 입력해주세요.");
+    }
   }
 });
 
