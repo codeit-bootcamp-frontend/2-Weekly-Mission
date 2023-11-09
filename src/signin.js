@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       warningMessage[0].innerHTML = wrongEmail;
       warningMessage[1].innerHTML = wrongPassWord;
+    } else {
+      window.location.href = '/folder.html';
     }
   }
 
