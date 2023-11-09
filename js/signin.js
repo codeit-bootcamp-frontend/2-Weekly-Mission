@@ -20,6 +20,7 @@ inputForm.addEventListener("focusout", function (e) {
 });
 
 inputForm.addEventListener("focusin", function (e) {
+  toggleWarningborder(e.target);
   if (e.target.id === "input-id") {
     deleteWarningText(emailInput);
   } else if (e.target.id === "input-pwd") {
@@ -38,6 +39,8 @@ submitBtn.addEventListener("click", function (e) {
 });
 
 function handleInvalidLogin() {
+  toggleWarningborder(emailInput);
+  toggleWarningborder(passwordInput);
   createWarningText(emailInput, "이메일을 확인해주세요.");
   createWarningText(passwordInput, "비밀번호를 확인해주세요.");
 }
@@ -51,11 +54,18 @@ function createWarningText(element, message) {
   } else {
     element.parentElement.lastElementChild.textContent = message;
   }
+  toggleWarningborder(element);
 }
 
 function deleteWarningText(element) {
   const deleteTarget = element.parentElement.lastElementChild;
   if (deleteTarget.className === "alert-danger") {
     deleteTarget.remove();
+  }
+}
+
+function toggleWarningborder(element) {
+  if (element.parentElement.lastElementChild.className === "alert-danger") {
+    element.classList.toggle("warning-alert-border");
   }
 }

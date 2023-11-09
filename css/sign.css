@@ -147,6 +147,10 @@ input:focus {
   right: 1.5rem;
 }
 
+.warning-alert-border {
+  border: 1px solid var(--linkbrary-red, #ff5b56);
+}
+
 .alert-danger {
   color: var(--linkbrary-red, #ff5b56);
 }
