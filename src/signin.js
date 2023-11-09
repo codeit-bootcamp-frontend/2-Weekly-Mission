@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from './../constants.js';
+import { ERROR_MESSAGE, USER_EMAIL } from './../constants.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   let emailInput = document.querySelector('.sign-input[type="email"]');
@@ -12,14 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
       emailInput.style.borderColor = '#ccd5e3';
       warningMessage.innerHTML = '';
     } else if (emailInput.value == '') {
-      html = `<p class="warning-message">${ERROR_MESSAGE.emptyEmail}</p>`;
-      emailInput.style.borderColor = '#ff5b56';
-      warningMessage.innerHTML = html;
+      printErrorMessage(ERROR_MESSAGE.emptyEmail);
     } else if (!isEmail(emailInput.value)) {
-      html = `<p class="warning-message">${ERROR_MESSAGE.isNotVaildEmail}</p>`;
-      emailInput.style.borderColor = '#ff5b56';
-      warningMessage.innerHTML = html;
+      printErrorMessage(ERROR_MESSAGE.isNotVaildEmail);
     }
+  }
+
+  function printErrorMessage(message) {
+    html = `<p class="warning-message">${message}</p>`;
+    emailInput.style.borderColor = '#ff5b56';
+    warningMessage.innerHTML = html;
   }
 
   function isEmail(asValue) {
