@@ -68,16 +68,13 @@ header {
   row-gap: 1.2rem;
 }
 
-.sign-password {
-  position: relative;
-}
-
 .sign-input-label {
   font-size: 1.4rem;
   font-weight: 400;
 }
 
 .sign-input {
+  width: 100%;
   padding: 1.8rem 1.5rem;
   border-radius: 0.8rem;
   border: 0.1rem solid var(--gray20);
@@ -98,10 +95,15 @@ header {
   line-height: normal;
 }
 
-.eye-button {
+.sign-input-box .sign-input-field {
+  position: relative;
+}
+
+.sign-input-box .sign-input-field .eye-button {
   position: absolute;
-  bottom: 2.2rem;
+  top: 50%;
   right: 1.5rem;
+  transform: translateY(-50%);
   width: 1.6rem;
   height: 1.6rem;
 }
