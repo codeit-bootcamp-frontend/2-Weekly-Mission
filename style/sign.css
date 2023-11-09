@@ -1,4 +1,4 @@
-@import "./global.css";
+@import './global.css';
 
 body {
   padding-top: 23.8rem;
@@ -87,6 +87,15 @@ header {
 
 .sign-input:focus {
   border-color: var(--primary);
+}
+
+.sign-input-box .warning-message {
+  color: #ff5b56;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .eye-button {
