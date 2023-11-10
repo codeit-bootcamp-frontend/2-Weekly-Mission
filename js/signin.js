@@ -1,8 +1,6 @@
 import { submitBtn, emailInput, passwordInput, inputForm } from "./modules/domSelectors.js";
-import { regEmail, regPassword } from "./modules/regexPatterns.js";
 import { authEvent, specifyWarningPosition, emailErrorCheck, pwdErrorCheck } from "./modules/authModule.js";
-import userData from "./database/userData.js";
-import { verifyLoginCredentials, CheckEmailExist } from "./modules/verifyUser.js";
+import { verifyLoginCredentials } from "./modules/verifyUser.js";
 
 authEvent();
 
@@ -19,7 +17,7 @@ const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
 });
 
 const submitSignInHandler = submitBtn.addEventListener("click", (e) => {
-  if (verifyLoginCredentials(userData, emailInput.value, passwordInput.value)) {
+  if (verifyLoginCredentials(emailInput.value, passwordInput.value)) {
     submitBtn.parentElement.action = "./folder.html";
   } else {
     e.preventDefault();

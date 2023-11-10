@@ -1,6 +1,7 @@
 import { inputForm, emailInput, passwordInput, passwordVerifyInput } from "./domSelectors.js";
 import { regEmail, regPassword } from "./regexPatterns.js";
 import { CheckEmailExist } from "./verifyUser.js";
+
 const authEvent = () => {
   const formFocusInHandler = inputForm.addEventListener("focusin", (e) => {
     toggleWarningborder(e.target);

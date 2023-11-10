@@ -1,10 +1,10 @@
 import userData from "../database/userData.js";
 import { regEmail, regPassword } from "./regexPatterns.js";
 
-const verifyLoginCredentials = (data, email, password) => {
-  for (const key in data) {
-    if (data[key].email === email) {
-      if (data[key].password === password) {
+const verifyLoginCredentials = (email, password) => {
+  for (const key in userData) {
+    if (userData[key].email === email) {
+      if (userData[key].password === password) {
         return true;
       } else {
         return false;
@@ -32,8 +32,8 @@ const verifyValidPassword = (password) => {
   return password !== "" && regPassword.test(password) ? true : false;
 };
 
-const verifyValidPasswordRepeat = (password, passwordRepeat) => {
+const verifyValidPasswordVerify = (password, passwordRepeat) => {
   return passwordRepeat !== "" && regPassword.test(passwordRepeat) && password === passwordRepeat ? true : false;
 };
 
-export { verifyLoginCredentials, verifyValidId, verifyValidPassword, verifyValidPasswordRepeat, CheckEmailExist };
+export { verifyLoginCredentials, verifyValidId, verifyValidPassword, verifyValidPasswordVerify, CheckEmailExist };

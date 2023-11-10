@@ -1,13 +1,6 @@
 import { submitBtn, emailInput, passwordInput, inputForm, passwordVerifyInput } from "./modules/domSelectors.js";
-import { regEmail, regPassword } from "./modules/regexPatterns.js";
-import {
-  authEvent,
-  emailErrorCheck,
-  pwdErrorCheck,
-  pwdVerifyErrorCheck,
-  specifyWarningPosition,
-} from "./modules/authModule.js";
-import { verifyValidId, verifyValidPassword, verifyValidPasswordRepeat } from "./modules/verifyUser.js";
+import { authEvent, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck } from "./modules/authModule.js";
+import { verifyValidId, verifyValidPassword, verifyValidPasswordVerify } from "./modules/verifyUser.js";
 authEvent();
 
 const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
@@ -28,13 +21,13 @@ const submitSignUpHandler = submitBtn.addEventListener("click", (e) => {
   if (
     verifyValidId(emailInput.value) &&
     verifyValidPassword(passwordInput.value) &&
-    verifyValidPasswordRepeat(passwordInput.value, passwordVerifyInput.value)
+    verifyValidPasswordVerify(passwordInput.value, passwordVerifyInput.value)
   ) {
     submitBtn.parentElement.action = "./folder.html";
   } else {
     e.preventDefault();
     verifyValidId(emailInput.value) ? null : emailErrorCheck("signUp");
     verifyValidPassword(passwordInput.value) ? null : pwdErrorCheck();
-    verifyValidPasswordRepeat(passwordInput.value, passwordVerifyInput.value) ? null : pwdVerifyErrorCheck();
+    verifyValidPasswordVerify(passwordInput.value, passwordVerifyInput.value) ? null : pwdVerifyErrorCheck();
   }
 });
