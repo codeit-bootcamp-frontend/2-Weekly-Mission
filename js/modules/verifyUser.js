@@ -16,8 +16,8 @@ const verifyLoginCredentials = (data, email, password) => {
 };
 
 const CheckEmailExist = (email) => {
-  for (const key in userData) {
-    if (userData[key].email === email) {
+  for (const key in user) {
+    if (user[key].email === email) {
       return true;
     }
   }

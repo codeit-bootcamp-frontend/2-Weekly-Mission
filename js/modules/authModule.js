@@ -1,4 +1,4 @@
-import { inputForm, emailInput, passwordInput } from "./domSelectors.js";
+import { inputForm, emailInput, passwordInput, passwordVerifyInput } from "./domSelectors.js";
 import { regEmail, regPassword } from "./regexPatterns.js";
 import { CheckEmailExist } from "./verifyUser.js";
 const authEvent = () => {
@@ -70,4 +70,14 @@ const pwdErrorCheck = () => {
   }
 };
 
-export { authEvent, specifyWarningPosition, emailErrorCheck, pwdErrorCheck };
+const pwdVerifyErrorCheck = () => {
+  if (passwordVerifyInput.value !== passwordInput.value) {
+    specifyWarningPosition(passwordVerifyInput, "비밀번호가 일치하지 않아요.");
+  } else if (passwordVerifyInput.value === "") {
+    specifyWarningPosition(passwordVerifyInput, "비밀번호를 입력해주세요.");
+  } else if (!regPassword.test(passwordVerifyInput.value)) {
+    specifyWarningPosition(passwordVerifyInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
+  }
+};
+
+export { authEvent, specifyWarningPosition, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck };

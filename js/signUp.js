@@ -1,29 +1,26 @@
 import { submitBtn, emailInput, passwordInput, inputForm, passwordVerifyInput } from "./modules/domSelectors.js";
 import { regEmail, regPassword } from "./modules/regexPatterns.js";
-import { authEvent, specifyWarningPosition } from "./modules/authModule.js";
+import {
+  authEvent,
+  emailErrorCheck,
+  pwdErrorCheck,
+  pwdVerifyErrorCheck,
+  specifyWarningPosition,
+} from "./modules/authModule.js";
 import { verifyValidId, verifyValidPassword, verifyValidPasswordRepeat } from "./modules/verifyUser.js";
 authEvent();
 
 const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
-  if (e.target.id === "input-id") {
-    if (e.target.value === "") {
-      specifyWarningPosition(emailInput, "이메일을 입력해주세요.");
-    } else if (!regEmail.test(e.target.value)) {
-      specifyWarningPosition(emailInput, "올바른 이메일 주소가 아닙니다.");
-    } else if (e.target.value === "test@codeit.com") {
-      specifyWarningPosition(emailInput, "이미 사용 중인 이메일입니다.");
-    }
-  } else if (e.target.id === "input-pwd") {
-    if (e.target.value === "") {
-      specifyWarningPosition(passwordInput, "비밀번호를 입력해주세요.");
-    } else if (!regPassword.test(passwordInput.value)) {
-      specifyWarningPosition(passwordInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
-    }
-  }
-  if (e.target === passwordVerifyInput) {
-    if (passwordInput.value !== e.target.value) {
-      specifyWarningPosition(passwordVerifyInput, "비밀번호가 일치하지 않아요.");
-    }
+  switch (e.target) {
+    case emailInput:
+      emailErrorCheck("signUp");
+      break;
+    case passwordInput:
+      pwdErrorCheck();
+    default:
+    case passwordVerifyInput:
+      pwdVerifyErrorCheck();
+      break;
   }
 });
 
@@ -36,10 +33,8 @@ const submitSignUpHandler = submitBtn.addEventListener("click", (e) => {
     submitBtn.parentElement.action = "./folder.html";
   } else {
     e.preventDefault();
-    verifyValidId(emailInput.value, "signUp") ? null : specifyWarningPosition(emailInput, "이메일을 확인해주세요");
-    verifyValidPassword(passwordInput.value) ? null : specifyWarningPosition(passwordInput, "비밀번호를 확인해주세요.");
-    verifyValidPasswordRepeat(passwordInput.value, passwordVerifyInput.value)
-      ? null
-      : specifyWarningPosition(passwordVerifyInput, "비밀번호가 일치하지 않아요.");
+    verifyValidId(emailInput.value, "signUp") ? null : emailErrorCheck("signUp");
+    verifyValidPassword(passwordInput.value) ? null : pwdErrorCheck();
+    verifyValidPasswordRepeat(passwordInput.value, passwordVerifyInput.value) ? null : pwdVerifyErrorCheck();
   }
 });
