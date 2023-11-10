@@ -110,12 +110,12 @@ input:focus {
   font-size: 1.4rem;
 }
 
-.social-logo {
+.social-logo-container {
   display: flex;
   gap: 1.6rem;
 }
 
-.social-logo img {
+.social-logo-container img {
   width: 4.2rem;
   height: 4.2rem;
 }
