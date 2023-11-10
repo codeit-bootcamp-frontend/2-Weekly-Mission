@@ -16,18 +16,16 @@ const verifyLoginCredentials = (data, email, password) => {
 };
 
 const CheckEmailExist = (email) => {
-  for (const key in user) {
-    if (user[key].email === email) {
+  for (const key in userData) {
+    if (userData[key].email === email) {
       return true;
     }
   }
   return false;
 };
 
-const verifyValidId = (email, checkCase) => {
-  return email !== "" && regEmail.test(email) && CheckEmailExist(userData, email) && checkCase !== "signUp"
-    ? true
-    : false;
+const verifyValidId = (email) => {
+  return email !== "" && regEmail.test(email) && !CheckEmailExist(email) ? true : false;
 };
 
 const verifyValidPassword = (password) => {

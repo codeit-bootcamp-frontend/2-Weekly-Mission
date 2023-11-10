@@ -26,14 +26,14 @@ const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
 
 const submitSignUpHandler = submitBtn.addEventListener("click", (e) => {
   if (
-    verifyValidId(emailInput.value, "signUp") &&
+    verifyValidId(emailInput.value) &&
     verifyValidPassword(passwordInput.value) &&
     verifyValidPasswordRepeat(passwordInput.value, passwordVerifyInput.value)
   ) {
     submitBtn.parentElement.action = "./folder.html";
   } else {
     e.preventDefault();
-    verifyValidId(emailInput.value, "signUp") ? null : emailErrorCheck("signUp");
+    verifyValidId(emailInput.value) ? null : emailErrorCheck("signUp");
     verifyValidPassword(passwordInput.value) ? null : pwdErrorCheck();
     verifyValidPasswordRepeat(passwordInput.value, passwordVerifyInput.value) ? null : pwdVerifyErrorCheck();
   }
