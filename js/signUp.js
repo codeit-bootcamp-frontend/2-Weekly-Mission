@@ -1,8 +1,7 @@
 import { submitBtn, emailInput, passwordInput, inputForm, passwordVerifyInput } from "./modules/domSelectors.js";
 import { regEmail, regPassword } from "./modules/regexPatterns.js";
 import { authEvent, specifyWarningPosition } from "./modules/authModule.js";
-import userData from "./database/userData.js";
-
+import { verifyValidId, verifyValidPassword, verifyValidPasswordRepeat } from "./modules/verifyUser.js";
 authEvent();
 
 const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
@@ -25,5 +24,22 @@ const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
     if (passwordInput.value !== e.target.value) {
       specifyWarningPosition(passwordVerifyInput, "비밀번호가 일치하지 않아요.");
     }
+  }
+});
+
+const submitSignUpHandler = submitBtn.addEventListener("click", (e) => {
+  if (
+    verifyValidId(emailInput.value, "signUp") &&
+    verifyValidPassword(passwordInput.value) &&
+    verifyValidPasswordRepeat(passwordInput.value, passwordVerifyInput.value)
+  ) {
+    submitBtn.parentElement.action = "./folder.html";
+  } else {
+    e.preventDefault();
+    verifyValidId(emailInput.value, "signUp") ? null : specifyWarningPosition(emailInput, "이메일을 확인해주세요");
+    verifyValidPassword(passwordInput.value) ? null : specifyWarningPosition(passwordInput, "비밀번호를 확인해주세요.");
+    verifyValidPasswordRepeat(passwordInput.value, passwordVerifyInput.value)
+      ? null
+      : specifyWarningPosition(passwordVerifyInput, "비밀번호가 일치하지 않아요.");
   }
 });
