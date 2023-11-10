@@ -1,6 +1,6 @@
 import { inputForm, emailInput, passwordInput, passwordVerifyInput } from "./domSelectors.js";
 import { regEmail, regPassword } from "./regexPatterns.js";
-import { CheckEmailExist } from "./verifyUser.js";
+import { CheckEmailExist } from "./authVerifyUser.js";
 import { specifyWarningPosition, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
 
 const authEvent = () => {

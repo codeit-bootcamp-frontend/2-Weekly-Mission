@@ -1,6 +1,6 @@
 import { submitBtn, emailInput, passwordInput, inputForm, passwordVerifyInput } from "./modules/domSelectors.js";
 import { authEvent, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck } from "./modules/authEventHandler.js";
-import { verifyValidId, verifyValidPassword, verifyValidPasswordVerify } from "./modules/verifyUser.js";
+import { verifyValidId, verifyValidPassword, verifyValidPasswordVerify } from "./modules/authVerifyUser.js";
 
 authEvent();
 

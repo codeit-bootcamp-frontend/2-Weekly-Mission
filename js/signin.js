@@ -1,7 +1,7 @@
 import { submitBtn, emailInput, passwordInput } from "./modules/domSelectors.js";
 import { authEvent } from "./modules/authEventHandler.js";
 import { specifyWarningPosition } from "./modules/authEventHandler.js";
-import { verifyLoginCredentials } from "./modules/verifyUser.js";
+import { verifyLoginCredentials } from "./modules/authVerifyUser.js";
 
 authEvent();
 
