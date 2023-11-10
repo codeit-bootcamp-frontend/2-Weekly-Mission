@@ -21,6 +21,22 @@ const authEvent = () => {
       }
     }
   });
+
+  const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
+    const userActionType = inputForm.childElementCount > 2 ? "singUp" : "signIn";
+    switch (e.target) {
+      case emailInput:
+        emailErrorCheck(userActionType);
+        break;
+      case passwordInput:
+        pwdErrorCheck();
+        break;
+      case passwordVerifyInput:
+        pwdVerifyErrorCheck();
+        break;
+      default:
+    }
+  });
 };
 
 const deleteWarningText = (element) => {

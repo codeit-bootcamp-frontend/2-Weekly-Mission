@@ -1,21 +1,8 @@
 import { submitBtn, emailInput, passwordInput, inputForm, passwordVerifyInput } from "./modules/domSelectors.js";
 import { authEvent, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck } from "./modules/authModule.js";
 import { verifyValidId, verifyValidPassword, verifyValidPasswordVerify } from "./modules/verifyUser.js";
-authEvent();
 
-const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
-  switch (e.target) {
-    case emailInput:
-      emailErrorCheck("signUp");
-      break;
-    case passwordInput:
-      pwdErrorCheck();
-    default:
-    case passwordVerifyInput:
-      pwdVerifyErrorCheck();
-      break;
-  }
-});
+authEvent();
 
 const submitSignUpHandler = submitBtn.addEventListener("click", (e) => {
   if (
