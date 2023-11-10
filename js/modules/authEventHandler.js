@@ -1,6 +1,7 @@
 import { inputForm, emailInput, passwordInput, passwordVerifyInput } from "./domSelectors.js";
 import { regEmail, regPassword } from "./regexPatterns.js";
 import { CheckEmailExist } from "./verifyUser.js";
+import { specifyWarningPosition, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
 
 const authEvent = () => {
   const formFocusInHandler = inputForm.addEventListener("focusin", (e) => {
@@ -23,7 +24,7 @@ const authEvent = () => {
   });
 
   const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
-    const userActionType = inputForm.childElementCount > 2 ? "singUp" : "signIn";
+    const userActionType = inputForm.childElementCount > 2 ? "signUp" : "signIn";
     switch (e.target) {
       case emailInput:
         emailErrorCheck(userActionType);
@@ -37,36 +38,6 @@ const authEvent = () => {
       default:
     }
   });
-};
-
-const deleteWarningText = (element) => {
-  const deleteTarget = element.parentElement.lastElementChild;
-  if (deleteTarget.className === "alert-danger") {
-    deleteTarget.remove();
-  }
-};
-
-const toggleWarningborder = (element) => {
-  if (element.parentElement.lastElementChild.className === "alert-danger") {
-    element.classList.toggle("warning-alert-border");
-  }
-};
-
-const createWarningText = (element, message) => {
-  if (element.parentElement.lastElementChild.className !== "alert-danger") {
-    const warningText = document.createElement("div");
-    warningText.textContent = message;
-    warningText.classList.add("alert-danger");
-    element.parentElement.appendChild(warningText);
-  } else {
-    element.parentElement.lastElementChild.textContent = message;
-  }
-  toggleWarningborder(element);
-};
-
-const specifyWarningPosition = (element, text) => {
-  toggleWarningborder(element);
-  createWarningText(element, text);
 };
 
 const emailErrorCheck = (checkCase) => {
