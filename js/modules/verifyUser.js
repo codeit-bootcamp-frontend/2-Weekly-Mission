@@ -15,21 +15,19 @@ const verifyLoginCredentials = (data, email, password) => {
   }
 };
 
-const CheckEmailExist = (data, email, checkCase) => {
-  for (const key in data) {
-    if (data[key].email === email) {
-      if (checkCase === "signUp") {
-        return false;
-      } else {
-        return true;
-      }
+const CheckEmailExist = (email) => {
+  for (const key in userData) {
+    if (userData[key].email === email) {
+      return true;
     }
   }
   return false;
 };
 
 const verifyValidId = (email, checkCase) => {
-  return email !== "" && regEmail.test(email) && !CheckEmailExist(userData, email, checkCase) ? true : false;
+  return email !== "" && regEmail.test(email) && CheckEmailExist(userData, email) && checkCase !== "signUp"
+    ? true
+    : false;
 };
 
 const verifyValidPassword = (password) => {
@@ -40,4 +38,4 @@ const verifyValidPasswordRepeat = (password, passwordRepeat) => {
   return passwordRepeat !== "" && regPassword.test(passwordRepeat) && password === passwordRepeat ? true : false;
 };
 
-export { verifyLoginCredentials, verifyValidId, verifyValidPassword, verifyValidPasswordRepeat };
+export { verifyLoginCredentials, verifyValidId, verifyValidPassword, verifyValidPasswordRepeat, CheckEmailExist };
