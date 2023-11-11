@@ -70,4 +70,6 @@ export {
   emailErrorMsg,
   pwErrorMsg,
   pwCheckErrorMsg,
+  showError,
+  doneError,
 };
