@@ -1,5 +1,6 @@
 import makeDOM from "./makeDOM.js"
 
+const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
 const passwordCheckInput = document.querySelector('#password-check');
 
@@ -34,5 +35,20 @@ const checkPassword = (e) => {
   }
   }
 }
+
+const testEmail = (e) => {
+  if(e.target === emailInput) {
+    if(e.target.value === 'test@codeit.com') {
+      const errorMessage = makeDOM('p', {
+        className:'email-error error-message',
+        innerText: '이미 사용 중인 이메일입니다..',
+      })
+      e.target.parentNode.appendChild(errorMessage);
+      e.target.classList.add('input--error');
+    }
+  }
+};
+
+emailInput.addEventListener('focusout', testEmail);
 passwordCheckInput.addEventListener('focusout', confirmPassword);
 passwordInput.addEventListener('focusout', checkPassword);
