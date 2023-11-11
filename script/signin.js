@@ -9,8 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const pwIcon = document.querySelector(".password_eyes");
   const loginBtn = document.querySelector("#login_btn");
 
+  // icon 추적/변경용 변수
   let pwVisibleToggle = false;
 
+  // 로그인 클릭 버튼 이벤트함수
   function loginHandler(e) {
     if (
       emailInput.value === "test@codeit.com" &&
@@ -23,25 +25,27 @@ document.addEventListener("DOMContentLoaded", function () {
       showError(pwErrorMsg, pwInput, "비밀번호를 확인해주세요.");
     }
   }
-
+  // 로그인 핸들러 / 엔터기능구현
   loginBtn.addEventListener("click", loginHandler);
   loginBtn.addEventListener("keyup", (e) => {
     e.keyCode === 13 && loginHandler(e);
   });
 
+  // 에러이벤트 표시용 함수
   function showError(errorMsg, input, message) {
     errorMsg.classList.remove("done");
     errorMsg.classList.add("show");
     errorMsg.innerHTML = message;
     input.classList.add("errorInput_style");
   }
-
+  // 에러이벤트 숨김용 함수
   function doneError(errorMsg, input) {
     errorMsg.classList.remove("show");
     errorMsg.classList.add("done");
     input.classList.remove("errorInput_style");
   }
 
+  //이메일인풋 에러핸들러
   emailInput.addEventListener("blur", () => {
     if (emailInput.value === "") {
       showError(emailErrorMsg, emailInput, "이메일 주소를 입력하세요.");
@@ -53,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       doneError(emailErrorMsg, emailInput);
     }
   });
-
+  //패스워드인풋 에러핸들러
   pwInput.addEventListener("blur", () => {
     if (pwInput.value === "") {
       showError(pwErrorMsg, pwInput, "비밀번호를 입력해주세요.");
@@ -71,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
       doneError(pwErrorMsg, pwInput);
     }
   });
-
+  //아이콘 변경용 핸들러
   pwIcon.addEventListener("click", () => {
     if (pwVisibleToggle) {
       pwIcon.src = "./svg/signin/eye-off.svg";
