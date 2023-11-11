@@ -8,9 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const emailErrorMsg = document.querySelector("#email_error");
   const pwErrorMsg = document.querySelector("#pw_error");
   const pwCheckErrorMsg = document.querySelector("#pwCheck_error");
-  const pwIcons = document.querySelectorAll(".password_eyes");
+  const icons = document.querySelectorAll(".password_eyes");
+  const pwIcon = icons[0];
+  const pwCheckedIcon = icons[1];
 
-  let pwVisibleToggle = true;
+  let pwVisibleToggle = false;
+  let pwCheckedVisibleToggle = false;
 
   function showError(errorMsg, input, message) {
     errorMsg.classList.remove("done");
@@ -63,19 +66,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  pwIcons.forEach((icon) => {
-    icon.addEventListener("click", () => {
-      if (pwVisibleToggle) {
-        icon.src = "./svg/signin/eye-off.svg";
-        pwInput.type = "password";
-        pwCheckInput.type = "password";
-      } else {
-        icon.src = "./svg/signin/eye-on.svg";
-        pwInput.type = "text";
-        pwCheckInput.type = "text";
-      }
-      pwVisibleToggle = !pwVisibleToggle;
-    });
+  pwIcon.addEventListener("click", () => {
+    if (pwVisibleToggle) {
+      pwIcon.src = "./svg/signin/eye-off.svg";
+      pwInput.type = "password";
+    } else {
+      pwIcon.src = "./svg/signin/eye-on.svg";
+      pwInput.type = "text";
+    }
+    pwVisibleToggle = !pwVisibleToggle;
+  });
+
+  pwCheckedIcon.addEventListener("click", () => {
+    if (pwCheckedVisibleToggle) {
+      pwCheckedIcon.src = "./svg/signin/eye-off.svg";
+      pwCheckInput.type = "password";
+    } else {
+      pwCheckedIcon.src = "./svg/signin/eye-on.svg";
+      pwCheckInput.type = "text";
+    }
+    pwCheckedVisibleToggle = !pwCheckedVisibleToggle;
   });
 
   // =================================================================

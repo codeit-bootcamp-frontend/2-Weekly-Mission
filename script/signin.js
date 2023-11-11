@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const pwInput = document.querySelector("#password");
   const emailErrorMsg = document.querySelector("#email_error");
   const pwErrorMsg = document.querySelector("#pw_error");
-  const pwIcons = document.querySelectorAll(".password_eyes");
+  const pwIcon = document.querySelector(".password_eyes");
 
-  let pwVisibleToggle = true;
+  let pwVisibleToggle = false;
 
   function showError(errorMsg, input, message) {
     errorMsg.classList.remove("done");
@@ -53,18 +53,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  pwIcons.forEach((icon) => {
-    icon.addEventListener("click", () => {
-      if (pwVisibleToggle) {
-        icon.src = "./svg/signin/eye-off.svg";
-        pwInput.type = "password";
-      } else {
-        icon.src = "./svg/signin/eye-on.svg";
-        pwInput.type = "text";
-      }
-      pwVisibleToggle = !pwVisibleToggle;
-    });
+  pwIcons.addEventListener("click", () => {
+    if (pwVisibleToggle) {
+      pwIcon.src = "./svg/signin/eye-off.svg";
+      pwInput.type = "password";
+    } else {
+      pwIcon.src = "./svg/signin/eye-on.svg";
+      pwInput.type = "text";
+    }
+    pwVisibleToggle = !pwVisibleToggle;
   });
-
   // =================================================================
 });
