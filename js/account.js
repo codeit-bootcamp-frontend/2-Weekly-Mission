@@ -1,23 +1,27 @@
 import makeDOM from "./makeDOM.js";
 
-const emailBox = document.querySelector('.email--box');
-const emailInput = document.querySelector('#email');
 const inputList = Array.from(document.querySelectorAll('input'));
 
-
-
-const checkEmail = (event) => {
-  if(event.target === emailInput) {
-    if(event.target.value === '') {
+const checkEmpty = (event) => {
+  if(event.target.value === '') {
+    if(event.target.id === 'email'){
       const errorMessage = makeDOM('p', {
         className:'email-error error-message',
         innerText: '이메일을 입력해주세요',
       })
-      emailBox.appendChild(errorMessage);
-      emailInput.classList.add('input--error');
+      event.target.parentNode.appendChild(errorMessage);
+      event.target.classList.add('input--error');
+    }
+    if(event.target.id === 'password') {
+      const errorMessage = makeDOM('p', {
+        className:'password-error error-message',
+        innerText: '비밀번호를 입력해주세요',
+      })
+      event.target.parentNode.appendChild(errorMessage);
+      event.target.classList.add('input--error');
     }
   }
-};
+}
 
 const disappearError = (event) => {
   if(inputList.includes(event.target)) {
@@ -30,5 +34,5 @@ const disappearError = (event) => {
   }
 }
 
-emailInput.addEventListener('blur', checkEmail);
+inputList.forEach((element) => {element.addEventListener('focusout', checkEmpty)});
 inputList.forEach((element) => {element.addEventListener('focusin', disappearError)});
