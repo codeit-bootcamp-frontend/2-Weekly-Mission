@@ -12,7 +12,7 @@ const checkEmpty = (event) => {
       event.target.parentNode.appendChild(errorMessage);
       event.target.classList.add('input--error');
     }
-    if(event.target.id === 'password') {
+    if(event.target.classList.contains('password')) {
       const errorMessage = makeDOM('p', {
         className:'password-error error-message',
         innerText: '비밀번호를 입력해주세요',
