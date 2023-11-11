@@ -64,5 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     pwVisibleToggle = !pwVisibleToggle;
   });
+
+  loginBtn.addEventListener("submit", () => {});
   // =================================================================
 });

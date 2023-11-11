@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const pwErrorMsg = document.querySelector("#pw_error");
   const pwCheckErrorMsg = document.querySelector("#pwCheck_error");
   const icons = document.querySelectorAll(".password_eyes");
-  const signUpBtn = document.querySelector("#signupBtn");
+  const signUpBtn = document.querySelector("#signup_btn");
   const pwIcon = icons[0];
   const pwCheckedIcon = icons[1];
 
@@ -89,5 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
     pwCheckedVisibleToggle = !pwCheckedVisibleToggle;
   });
 
+  signUpBtn.addEventListener("submit", () => {});
   // =================================================================
 });
