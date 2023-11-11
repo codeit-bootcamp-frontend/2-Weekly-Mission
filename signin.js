@@ -33,3 +33,15 @@ function invalidEmail(event) {
 }
 
 emailInput.addEventListener("focusout", invalidEmail);
+
+//3. 공통: 이메일 input에서 focus out 일 때
+//input 값이 test@codeit.com 일 경우 input에 빨강색 테두리와 아래에 “이미 사용 중인 이메일입니다.” 빨강색 에러 메세지가 보입니다.
+
+function duplicateEmail(event) {
+  if (event.target.value === "test@codeit.com"){
+    event.target.classList.add("input-error");
+    emailErrorMessage.textContent = "이미 사용 중인 이메일입니다.";
+  }
+}
+
+emailInput.addEventListener("focusout", duplicateEmail);
