@@ -70,14 +70,20 @@ function resetPasswordInput(event) {
 passwordInput.addEventListener("focusout", invalidPassword);
 passwordInput.addEventListener("focusin", resetPasswordInput);
 
-//5. 로그인 페이지
+//5. 7. 로그인 페이지
 //이메일: test@codeit.com, 비밀번호: codeit101 으로 로그인 시도경우, “/folder” 페이지로 이동합니다.
+//이외의 로그인 시도의 경우 이메일, 비밀번호 input에 빨강색 테두리와 각각의 input아래에 “이메일을 확인해주세요.”, “비밀번호를 확인해주세요.” 빨강색 에러 메세지가 보입니다.
 
 const loginButton = document.querySelector(".login-button");
 
 function testLogin(event) {
   if (emailInput.value === "test@codeit.com" && passwordInput.value === "codeit101") {
     loginButton.href = "/folder";
+  } else {
+    emailInput.classList.add("input-error");
+    emailErrorMessage.textContent = "이메일을 확인해주세요.";
+    passwordInput.classList.add("input-error");
+    passwordErrorMessage.textContent = "비밀번호를 확인해주세요.";
   }
 }
 
