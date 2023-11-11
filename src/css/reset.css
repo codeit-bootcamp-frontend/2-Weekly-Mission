@@ -21,3 +21,11 @@ label {
   font-size: 1.4rem;
   font-weight: 400;
 }
+
+button {
+  border: none;
+  padding: unset;
+  background-color: unset;
+  cursor: pointer;
+  /* outline: none; */
+}
