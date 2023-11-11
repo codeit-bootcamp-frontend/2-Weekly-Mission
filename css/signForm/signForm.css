@@ -118,4 +118,5 @@
 .password-error {
   border: 1px solid --red;
   margin: 0.6rem 0;
+  color: var(--red);
 }
