@@ -82,3 +82,15 @@ function testLogin(event) {
 }
 
 loginButton.addEventListener("click", testLogin)
+
+//6. 공통: 비밀번호 input에서 focus out 할 때
+//값이 없을 경우 아래에 “비밀번호를 입력해주세요.” 에러 메세지가 보입니다.
+
+function blankPassword(event) {
+  if (event.target.value === ""){
+    event.target.classList.add("input-error");
+    passwordErrorMessage.textContent = "비밀번호를 입력해주세요.";
+  }
+}
+
+passwordInput.addEventListener("focusout", blankPassword);
