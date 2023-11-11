@@ -35,9 +35,9 @@ const disappearError = (event) => {
 }
 
 const showPassword = (e) => {
-  if(e.target === document.querySelector('.eye')){
-    const eyeIcon = document.querySelector('.eye');
-    const passwordInput = document.querySelector('#password');
+  if(e.target.classList.contains('eye')){
+    const eyeIcon = e.target;
+    const passwordInput = e.target.parentNode.children[1];
     eyeIcon.classList.toggle('eye-off');
     eyeIcon.classList.toggle('eye-on');
     if(eyeIcon.classList.contains('eye-off')){
