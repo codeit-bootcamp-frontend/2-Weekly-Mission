@@ -26,17 +26,21 @@
       <!-- ================================== -->
       <section class="login_form">
         <form action="">
-          <label for="email">이메일</label>
-          <input type="text" id="email" name="email" class="email_input" />
+          <div class="email_container">
+            <label for="email">이메일</label>
+            <input type="text" id="email" name="email" class="email_input" />
+          </div>
 
-          <label for="password">비밀번호 </label>
-          <div class="password_eyes_container">
-            <input type="password" id="password" name="password" />
-            <img
-              src="svg/signinup/eye-off.svg"
-              alt="eye_off"
-              class="password_eyes"
-            />
+          <div class="password_container">
+            <label for="password">비밀번호 </label>
+            <div class="password_eyes_container">
+              <input type="password" id="password" name="password" />
+              <img
+                src="svg/signinup/eye-off.svg"
+                alt="eye_off"
+                class="password_eyes"
+              />
+            </div>
           </div>
 
           <input type="submit" value="로그인" class="login_button" />

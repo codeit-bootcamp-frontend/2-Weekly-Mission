@@ -38,8 +38,15 @@
   margin-bottom: 1.2rem;
 }
 
-.email_input {
-  margin-bottom: 2.4rem;
+.email_container {
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: 1.6rem;
+}
+
+.password_container {
+  display: inline-flex;
+  flex-direction: column;
 }
 
 .password_check_label {
