@@ -8,31 +8,17 @@ import {
   pwCheckInput,
 } from "./module/signForm/inputErrMsg.js";
 
+import {
+  pwIcon,
+  pwiconChangeHandler,
+  pwCheckedIcon,
+  pwCkdIconChangeHandler,
+} from "./module/signForm/iconEvent.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   // =================================================================
 
-  const icons = document.querySelectorAll(".password_eyes");
   const signUpBtn = document.querySelector("#signup_btn");
-  const pwIcon = icons[0];
-  const pwCheckedIcon = icons[1];
-
-  // icon 추적/변경용 변수
-  let pwVisibleToggle = false;
-  let pwCheckedVisibleToggle = false;
-
-  // 에러이벤트 표시용 함수
-  function showError(errorMsg, input, message) {
-    errorMsg.classList.remove("done");
-    errorMsg.classList.add("show");
-    errorMsg.innerHTML = message;
-    input.classList.add("errorInput_style");
-  }
-  // 에러이벤트 숨김용 함수
-  function doneError(errorMsg, input) {
-    errorMsg.classList.remove("show");
-    errorMsg.classList.add("done");
-    input.classList.remove("errorInput_style");
-  }
 
   //이메일인풋 에러핸들러
   emailInput.addEventListener("blur", emailErrHandler);
@@ -41,27 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
   //패스워드체크(재확인) 에러핸들러
   pwCheckInput.addEventListener("blur", pwCkdErrHandler);
   //아이콘 변경용 핸들러
-  pwIcon.addEventListener("click", () => {
-    if (pwVisibleToggle) {
-      pwIcon.src = "./svg/signin/eye-off.svg";
-      pwInput.type = "password";
-    } else {
-      pwIcon.src = "./svg/signin/eye-on.svg";
-      pwInput.type = "text";
-    }
-    pwVisibleToggle = !pwVisibleToggle;
-  });
+  pwIcon.addEventListener("click", pwiconChangeHandler);
   //아이콘(패스워드체크) 변경용 핸들러
-  pwCheckedIcon.addEventListener("click", () => {
-    if (pwCheckedVisibleToggle) {
-      pwCheckedIcon.src = "./svg/signin/eye-off.svg";
-      pwCheckInput.type = "password";
-    } else {
-      pwCheckedIcon.src = "./svg/signin/eye-on.svg";
-      pwCheckInput.type = "text";
-    }
-    pwCheckedVisibleToggle = !pwCheckedVisibleToggle;
-  });
+  pwCheckedIcon.addEventListener("click", pwCkdIconChangeHandler);
 
   // 회원가입 클릭 버튼 이벤트함수
   function signupHandler(e) {

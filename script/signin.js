@@ -1,20 +1,18 @@
 "use strict";
-// import 할 때 한 번에 가져오기
+
 import {
-  emailErrHandler, // 이벤트헨들러
-  pwErrHandler, // 이벤트헨들러
-  emailInput, // 상수
-  pwInput, // 상수
+  emailErrHandler,
+  pwErrHandler,
+  emailInput,
+  pwInput,
 } from "./module/signForm/inputErrMsg.js";
+
+import { pwIcon, pwiconChangeHandler } from "./module/signForm/iconEvent.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // =================================================================
 
-  const pwIcon = document.querySelector(".password_eyes");
   const loginBtn = document.querySelector("#login_btn");
-
-  // icon 추적/변경용 변수
-  let pwVisibleToggle = false;
 
   // 로그인 클릭 버튼 이벤트함수
   function loginHandler(e) {
@@ -39,18 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
   emailInput.addEventListener("blur", emailErrHandler);
   //패스워드인풋 에러핸들러
   pwInput.addEventListener("blur", pwErrHandler);
-
   //아이콘 변경용 핸들러
-  pwIcon.addEventListener("click", () => {
-    if (pwVisibleToggle) {
-      pwIcon.src = "./svg/signin/eye-off.svg";
-      pwInput.type = "password";
-    } else {
-      pwIcon.src = "./svg/signin/eye-on.svg";
-      pwInput.type = "text";
-    }
-    pwVisibleToggle = !pwVisibleToggle;
-  });
+  pwIcon.addEventListener("click", pwiconChangeHandler);
 
   // =================================================================
 });
