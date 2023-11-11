@@ -113,3 +113,9 @@
   outline: none;
   border-color: var(--primary);
 }
+
+/* js error event */
+.password-error {
+  border: 1px solid --red;
+  margin: 0.6rem 0;
+}
