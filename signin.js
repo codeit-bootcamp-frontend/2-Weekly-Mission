@@ -69,3 +69,16 @@ function resetPasswordInput(event) {
 
 passwordInput.addEventListener("focusout", invalidPassword);
 passwordInput.addEventListener("focusin", resetPasswordInput);
+
+//5. 로그인 페이지
+//이메일: test@codeit.com, 비밀번호: codeit101 으로 로그인 시도경우, “/folder” 페이지로 이동합니다.
+
+const loginButton = document.querySelector(".login-button");
+
+function testLogin(event) {
+  if (emailInput.value === "test@codeit.com" && passwordInput.value === "codeit101") {
+    loginButton.href = "/folder";
+  }
+}
+
+loginButton.addEventListener("click", testLogin)
