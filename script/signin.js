@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  pwIcons.addEventListener("click", () => {
+  pwIcon.addEventListener("click", () => {
     if (pwVisibleToggle) {
       pwIcon.src = "./svg/signin/eye-off.svg";
       pwInput.type = "password";
