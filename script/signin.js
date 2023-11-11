@@ -5,9 +5,9 @@ import {
   pwErrHandler,
   emailInput,
   pwInput,
-} from "./module/signForm/inputErrMsg.js";
+} from "./module/signForm/inputErrMsg.mjs";
 
-import { pwIcon, pwiconChangeHandler } from "./module/signForm/iconEvent.js";
+import { pwIcon, pwiconChangeHandler } from "./module/signForm/iconEvent.mjs";
 
 document.addEventListener("DOMContentLoaded", function () {
   // =================================================================

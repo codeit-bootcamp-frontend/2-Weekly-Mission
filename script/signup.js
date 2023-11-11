@@ -6,14 +6,14 @@ import {
   emailInput,
   pwInput,
   pwCheckInput,
-} from "./module/signForm/inputErrMsg.js";
+} from "./module/signForm/inputErrMsg.mjs";
 
 import {
   pwIcon,
   pwiconChangeHandler,
   pwCheckedIcon,
   pwCkdIconChangeHandler,
-} from "./module/signForm/iconEvent.js";
+} from "./module/signForm/iconEvent.mjs";
 
 document.addEventListener("DOMContentLoaded", function () {
   // =================================================================
