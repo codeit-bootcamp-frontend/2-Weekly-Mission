@@ -11,6 +11,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let pwVisibleToggle = false;
 
+  function loginHandler(e) {
+    if (
+      emailInput.value === "test@codeit.com" &&
+      pwInput.value === "codeit101"
+    ) {
+      console.log("Sucess Login");
+    } else {
+      e.preventDefault();
+      showError(emailErrorMsg, emailInput, "이메일을 확인해주세요.");
+      showError(pwErrorMsg, pwInput, "비밀번호를 확인해주세요.");
+    }
+  }
+
+  loginBtn.addEventListener("click", loginHandler);
+  loginBtn.addEventListener("keyup", (e) => {
+    e.keyCode === 13 && loginHandler(e);
+  });
+
   function showError(errorMsg, input, message) {
     errorMsg.classList.remove("done");
     errorMsg.classList.add("show");
@@ -65,6 +83,5 @@ document.addEventListener("DOMContentLoaded", function () {
     pwVisibleToggle = !pwVisibleToggle;
   });
 
-  loginBtn.addEventListener("submit", () => {});
   // =================================================================
 });
