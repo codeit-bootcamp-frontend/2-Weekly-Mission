@@ -81,3 +81,21 @@ function blankPassword(event) {
 }
 
 passwordInput.addEventListener("focusout", blankPassword);
+
+//8. 회원가입 페이지
+//비밀번호 input과 비밀번호 확인 input의 값이 다른 경우, 비밀번호 확인 input에 빨강색 테두리와 아래에 “비밀번호가 일치하지 않아요.” 빨강색 에러 메세지가 보입니다.
+
+const checkPasswordInput = document.getElementById("check-password");
+const checkPasswordErrorMessage = checkPasswordInput.nextElementSibling;
+
+function checkPassword(event) {
+  if (passwordInput.value !== checkPasswordInput.value) {
+    event.target.classList.add("input-error");
+    checkPasswordErrorMessage.textContent = "비밀번호가 일치하지 않아요.";
+  } else {
+    event.target.classList.remove("input-error");
+    checkPasswordErrorMessage.textContent = "";
+  }
+}
+
+checkPasswordInput.addEventListener("keyup", checkPassword);
