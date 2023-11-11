@@ -122,7 +122,13 @@
 }
 
 /* js error event */
-.password-error {
+.errorMsg_style {
   margin: 0.6rem 0;
   color: var(--red);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.errorInput_style {
+  border: 1px solid var(--red) !important;
 }
