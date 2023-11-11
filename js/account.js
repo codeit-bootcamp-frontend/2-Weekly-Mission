@@ -34,5 +34,23 @@ const disappearError = (event) => {
   }
 }
 
+const showPassword = (e) => {
+  if(e.target === document.querySelector('.eye')){
+    const eyeIcon = document.querySelector('.eye');
+    const passwordInput = document.querySelector('#password');
+    eyeIcon.classList.toggle('eye-off');
+    eyeIcon.classList.toggle('eye-on');
+    if(eyeIcon.classList.contains('eye-off')){
+      eyeIcon.src = './assets/icon/eye-on.svg';
+      passwordInput.type = 'text';
+    }
+    if(eyeIcon.classList.contains('eye-on')){
+      eyeIcon.src = './assets/icon/eye-off.svg';
+      passwordInput.type = 'password';
+    }
+  }
+}
+
 inputList.forEach((element) => {element.addEventListener('focusout', checkEmpty)});
 inputList.forEach((element) => {element.addEventListener('focusin', disappearError)});
+window.addEventListener('click', showPassword);
