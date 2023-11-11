@@ -1,4 +1,4 @@
-//이메일 input에서 focus out 할 때
+//1. 공통: 이메일 input에서 focus out 할 때
 //값이 없을 경우 input에 빨강색 테두리와 아래에 “이메일을 입력해주세요.” 빨강색 에러 메세지가 보입니다
 
 const emailInput = document.getElementById("email");
@@ -19,3 +19,17 @@ function resetEmailInput(event) {
 
 emailInput.addEventListener("focusout", blankEmail);
 emailInput.addEventListener("focusin", resetEmailInput);
+
+//2. 공통: 이메일 input에서 focus out 할 때, 
+//이메일 형식에 맞지 않는 값이 있는 경우 input에 빨강색 테두리와 아래에 “올바른 이메일 주소가 아닙니다.” 빨강색 에러 메세지가 보입니다
+
+const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+function invalidEmail(event) {
+  if (!(event.target.value === "") && !(emailPattern.test(event.target.value))){
+    event.target.classList.add("input-error");
+    emailErrorMessage.textContent = "올바른 이메일 주소가 아닙니다.";
+  }
+}
+
+emailInput.addEventListener("focusout", invalidEmail);
