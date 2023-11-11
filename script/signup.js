@@ -4,10 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // =================================================================
   const emailInput = document.querySelector("#email");
   const pwInput = document.querySelector("#password");
-  const pwChckInput = document.querySelector("#password_check");
+  const pwCheckInput = document.querySelector("#password_check");
   const emailErrorMsg = document.querySelector("#email_error");
   const pwErrorMsg = document.querySelector("#pw_error");
   const pwCheckErrorMsg = document.querySelector("#pwCheck_error");
+  const pwIcons = document.querySelectorAll(".password_eyes");
+
+  let pwVisibleToggle = true;
 
   emailInput.addEventListener("blur", () => {
     if (emailInput.value === "") {
@@ -55,12 +58,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  pwChckInput.addEventListener("blur", () => {
-    if (pwInput.value !== pwChckInput.value) {
+  pwIcons.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      if (pwVisibleToggle) {
+        icon.src = "./svg/signin/eye-off.svg";
+        pwInput.type = "password";
+        pwCheckInput.type = "password";
+      } else {
+        icon.src = "./svg/signin/eye-on.svg";
+        pwInput.type = "text";
+        pwCheckInput.type = "text";
+      }
+      pwVisibleToggle = !pwVisibleToggle;
+    });
+  });
+
+  pwCheckInput.addEventListener("blur", () => {
+    if (pwInput.value !== pwCheckInput.value) {
       pwCheckErrorMsg.classList.remove("done");
       pwCheckErrorMsg.classList.add("show");
       pwCheckErrorMsg.innerHTML = "비밀번호가 일치하지 않아요.";
-      pwChckInput.classList.add("errorInput_style");
+      pwCheckInput.classList.add("errorInput_style");
     } else {
       pwCheckErrorMsg.classList.remove("show");
       pwCheckErrorMsg.classList.add("done");
