@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const emailErrorMsg = document.querySelector("#email_error");
   const pwErrorMsg = document.querySelector("#pw_error");
   const pwIcon = document.querySelector(".password_eyes");
+  const loginBtn = document.querySelector("#login_btn");
 
   let pwVisibleToggle = false;
 
