@@ -34,11 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
       pwErrorMsg.classList.add("show");
       pwErrorMsg.innerHTML =
         "이메일 주소는 8자 이상이어야 하며, 문자와 숫자를 혼합해야 합니다.";
-      emailInput.classList.add("errorInput_style");
+      pwInput.classList.add("errorInput_style");
     } else {
       pwErrorMsg.classList.remove("show");
       pwErrorMsg.classList.add("done");
-      emailInput.classList.remove("errorInput_style");
+      pwInput.classList.remove("errorInput_style");
     }
   });
 
