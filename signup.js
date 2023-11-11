@@ -99,3 +99,17 @@ function checkPassword(event) {
 }
 
 checkPasswordInput.addEventListener("keyup", checkPassword);
+
+//9. 10. 회원가입 페이지
+//회원가입을 실행할 경우, 문제가 있는 경우 문제가 있는 input에 에러 메세지로 알립니다.
+//이외의 유효한 회원가입 시도의 경우, “/folder”로 이동합니다.
+
+const signupButton = document.querySelector(".signup-button");
+
+function testSignup(event) {
+  if (!emailInput.classList.contains("input-error") && !passwordInput.classList.contains("input-error") && !checkPasswordInput.classList.contains("input-error")) {
+    signupButton.href = "/folder";
+  }
+}
+
+signupButton.addEventListener("click", testSignup);
