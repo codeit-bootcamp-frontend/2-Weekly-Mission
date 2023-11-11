@@ -19,12 +19,14 @@ header {
   margin-bottom: 1.6rem;
 }
 
-#signup-text {
+#join-text,
+#login-text {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.4rem;
 }
-#signup-link {
+#join-link,
+#login-link {
   margin-left: 0.8rem;
   font-size: 1.6rem;
   line-height: 1.909rem;
@@ -88,7 +90,8 @@ input:focus {
 .password-check {
   margin-bottom: 5.3rem;
 }
-#signin-page-button {
+#login-page-button,
+#join-page-button {
   padding: 1.6rem 2rem;
   background-image: linear-gradient(90deg, rgba(109, 106, 254, 1), rgba(106, 227, 254, 1));
   border: none;
@@ -132,6 +135,18 @@ input:focus {
 .login-sns a:nth-child(2) {
   background-color: rgba(245, 225, 75, 1);
   padding: 1rem 0.8rem 1rem;
+}
+
+.alert-line {
+  border: 1px solid var(--focus-alert);
+}
+
+.email-alert-text,
+.password-alert-text,
+.check-alert-text {
+  color: var(--focus-alert);
+  font-size: 1.4rem;
+  margin-top: 0.6rem;
 }
 
 /* Mobile*/
