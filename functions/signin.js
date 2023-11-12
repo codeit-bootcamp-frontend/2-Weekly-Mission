@@ -79,7 +79,7 @@ function login(e) {
 }
 
 function onPassword(){
-    passwordWitch = !passwordWitch;
+        passwordWitch = !passwordWitch;
     if(!passwordWitch){
         passwordIcon.setAttribute('src', '../images/password-icon.png');
         inputPassword.setAttribute('type','password')

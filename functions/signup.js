@@ -18,7 +18,6 @@ let div = document.createElement('div');
 let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
- 
 
 function emailFocus(e){
     if(e.target.value === ""){
