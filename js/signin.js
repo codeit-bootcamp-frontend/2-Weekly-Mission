@@ -1,10 +1,45 @@
-import { checkEmail } from "./check.js";
+import { checkEmail, checkEmpty } from "./check.js";
+import disappearError from "./disappearError.js";
 import makeDOM from "./makeDOM.js";
 import showError from "./showError.js";
 
 const emailInput = document.querySelector('#email');
 const signInBtn = document.querySelector('.signin--btn');
 
+const inputList = Array.from(document.querySelectorAll('input'));
+
+const checkEmptyEvent = (e) => {
+  if(inputList.includes(e.target)) checkEmpty(e.target);
+}
+
+const disappearErrorEvent = (e) => {
+  if(inputList.includes(e.target)) disappearError(e.target);
+}
+
+// const checkEmpty = (event) => {
+//   if(event.target.value === '') {
+//     if(event.target.id === 'email'){
+//       showError(event.target, '이메일을 입력해주세요.');
+//     }
+//     if(event.target.classList.contains('password')) {
+//       showError(event.target, '비밀번호를 입력해주세요.');
+//     }
+//   }
+// }
+
+// const disappearError = (event) => {
+//   if(inputList.includes(event.target)) {
+//     event.target.classList.remove('input--error');
+//     const parent = event.target.parentNode;
+//     const lastNode = event.target.parentNode.lastChild;
+//     if(lastNode.classList.contains('error-message')){
+//       parent.removeChild(lastNode);
+//     }
+//   }
+// }
+
+inputList.forEach((element) => {element.addEventListener('focusout', checkEmptyEvent)});
+inputList.forEach((element) => {element.addEventListener('focusin', disappearErrorEvent)});
 
 // const checkEmail = (e) => {
 //   if(e.target === emailInput) {
