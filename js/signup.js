@@ -124,7 +124,6 @@ passwordInput.addEventListener('input', checkPassword);
 document.body.addEventListener('click', showPasswordEvent);
 signUpBtn.addEventListener('click', testSignUp);
 document.addEventListener('keydown', function (e) {
-  e.preventDefault();
   if (e.key === 'Enter' || e.keyCode === 13) {
     document.querySelector('.signup--btn').click();
   }
