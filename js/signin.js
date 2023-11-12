@@ -1,5 +1,5 @@
 import { checkEmail, checkEmpty } from "./check.js";
-import disappearError from "./disappearError.js";
+import deleteError from "./deleteError.js";
 import makeDOM from "./makeDOM.js";
 import showError from "./showError.js";
 import showPassword from "./showPassword.js";
@@ -13,8 +13,8 @@ const checkEmptyEvent = (e) => {
   if(inputList.includes(e.target)) checkEmpty(e.target);
 }
 
-const disappearErrorEvent = (e) => {
-  if(inputList.includes(e.target)) disappearError(e.target);
+const deleteErrorEvent = (e) => {
+  if(inputList.includes(e.target)) deleteError(e.target);
 }
 
 // const checkEmpty = (event) => {
@@ -40,7 +40,7 @@ const disappearErrorEvent = (e) => {
 // }
 
 inputList.forEach((element) => {element.addEventListener('focusout', checkEmptyEvent)});
-inputList.forEach((element) => {element.addEventListener('focusin', disappearErrorEvent)});
+inputList.forEach((element) => {element.addEventListener('focusin', deleteErrorEvent)});
 
 // const checkEmail = (e) => {
 //   if(e.target === emailInput) {

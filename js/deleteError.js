@@ -1,4 +1,4 @@
-const disappearError = (tag) => {
+const deleteError = (tag) => {
   tag.classList.remove('input--error');
   const parent = tag.parentNode;
   const lastNode = tag.parentNode.lastChild;
@@ -7,4 +7,4 @@ const disappearError = (tag) => {
   }
 }
 
-export default disappearError;
+export default deleteError;
