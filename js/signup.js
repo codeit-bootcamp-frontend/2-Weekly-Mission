@@ -1,9 +1,24 @@
 import makeDOM from "./makeDOM.js"
+import { checkEmail, checkEmpty } from "./check.js";
 import showError from "./showError.js";
+import disappearError from "./disappearError.js";
 
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
 const passwordCheckInput = document.querySelector('#password-check');
+
+const inputList = Array.from(document.querySelectorAll('input'));
+
+const checkEmptyEvent = (e) => {
+  if(inputList.includes(e.target)) checkEmpty(e.target);
+}
+
+const disappearErrorEvent = (e) => {
+  if(inputList.includes(e.target)) disappearError(e.target);
+}
+
+inputList.forEach((element) => {element.addEventListener('focusout', checkEmptyEvent)});
+inputList.forEach((element) => {element.addEventListener('focusin', disappearErrorEvent)});
 
 const confirmPassword = (e) => {
   if(e.target.id === 'password-check'){
