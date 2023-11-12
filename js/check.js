@@ -28,7 +28,7 @@ export const checkEmail = (tag) => {
       tag.classList.remove('input--error')
       return true;
     }
-    else return true; // 질문
+    else return true;
   }
   else {
     showError(tag, '올바른 이메일 주소가 아닙니다.');
