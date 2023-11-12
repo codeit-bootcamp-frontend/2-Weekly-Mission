@@ -100,3 +100,23 @@ function blankPassword(event) {
 }
 
 passwordInput.addEventListener("focusout", blankPassword);
+
+//12. 공통(심화): 눈 모양 아이콘 클릭시 비밀번호의 문자열이 보이기도 하고, 가려지기도 합니다.
+//비밀번호의 문자열이 가려질 때는 눈 모양 아이콘에는 사선이 그어져있고, 비밀번호의 문자열이 보일 때는 사선이 없는 눈 모양 아이콘이 보이도록 합니다.
+
+const passwordIcon =passwordInput.parentElement.lastElementChild;
+
+function showPassword(event) {
+  event.target.classList.toggle("eye-on");
+  if (event.target.classList.contains("eye-on")) {
+    event.target.parentElement.firstElementChild.type = "text";
+    event.target.src = "./images/eye-on.png";
+    event.target.alt="비밀번호 보이기 icon";
+  } else {
+    event.target.parentElement.firstElementChild.type = "password";
+    event.target.src = "./images/eye-off.png";
+    event.target.alt="비밀번호 가리기 icon";
+  }
+}
+
+passwordIcon.addEventListener("click", showPassword);

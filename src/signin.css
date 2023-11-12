@@ -97,7 +97,7 @@ input:focus {
   color: var(--linkbrary-red, #FF5B56);
 }
 
-.eyeoff-icon {
+.eye-icon {
   position: absolute;
   top: 2.2rem;
   right: 1.8rem;
