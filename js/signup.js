@@ -20,16 +20,30 @@ const disappearErrorEvent = (e) => {
 inputList.forEach((element) => {element.addEventListener('focusout', checkEmptyEvent)});
 inputList.forEach((element) => {element.addEventListener('focusin', disappearErrorEvent)});
 
-const confirmPassword = (e) => {
-  if(e.target.id === 'password-check'){
-    if(passwordInput.value === passwordCheckInput.value) return true;
+// const confirmPassword = (e) => {
+//   if(e.target.id === 'password-check'){
+//     if(passwordInput.value === passwordCheckInput.value) return true;
+//     else {
+//       if(e.target.value === '') return;
+//       if(e.target.parentNode.lastChild.classList.contains('error-message')) return;
+//       showError(e.target, '비밀번호가 일치하지 않아요.');
+//       return false;
+//     }
+//   }
+// }
+
+const confirmPassword = (passwordTag, passwordCheckTag) => {
+    if(passwordTag.value === passwordCheckTag.value) return true;
     else {
-      if(e.target.value === '') return;
-      if(e.target.parentNode.lastChild.classList.contains('error-message')) return;
-      showError(e.target, '비밀번호가 일치하지 않아요.');
+      if(passwordCheckTag.value === '') return;
+      if(passwordCheckTag.parentNode.lastChild.className ==='error-message') return;
+      showError(passwordCheckTag, '비밀번호가 일치하지 않아요.');
       return false;
     }
-  }
+}
+
+const confirmPasswordEvent = (e) => {
+  if(e.target.id === 'password-check') confirmPassword(passwordInput, passwordCheckInput);
 }
 
 const checkPasswordEvent = (e) => {
@@ -88,8 +102,8 @@ const checkEmailEvent = (e) => {
 emailInput.addEventListener('input', checkEmailEvent);
 emailInput.addEventListener('blur', checkEmailEvent);
 emailInput.addEventListener('focusout', testEmail);
-passwordCheckInput.addEventListener('focusout', confirmPassword);
+passwordCheckInput.addEventListener('focusout', confirmPasswordEvent);
 passwordInput.addEventListener('focusout', checkPasswordEvent);
 emailInput.addEventListener('input', testEmail);
-passwordCheckInput.addEventListener('input', confirmPassword);
+// passwordCheckInput.addEventListener('input', confirmPasswordEvent);
 passwordInput.addEventListener('input', checkPassword);
