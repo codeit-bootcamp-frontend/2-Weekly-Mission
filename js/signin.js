@@ -24,7 +24,7 @@ const signInBtn = document.querySelector('.signin--btn');
 //   }
 // };
 
-const emailCheckEvent = (e) => {
+const checkEmailEvent = (e) => {
   if(e.target === document.querySelector('#email')) checkEmail(e.target);
 }
 
@@ -46,6 +46,6 @@ const signInTest = (e) => {
   }
 };
 
-emailInput.addEventListener('input', emailCheckEvent);
-emailInput.addEventListener('blur', emailCheckEvent);
+emailInput.addEventListener('input', checkEmailEvent);
+emailInput.addEventListener('blur', checkEmailEvent);
 signInBtn.addEventListener('click', signInTest);
