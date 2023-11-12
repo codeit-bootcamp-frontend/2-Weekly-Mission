@@ -4,14 +4,18 @@ export const checkEmpty = (tag) => {
   if(tag.value === '') {
     if(tag.id === 'email'){
       showError(tag, '이메일을 입력해주세요.');
+      return false;
     }
     if(tag.id === 'password') {
       showError(tag, '비밀번호를 입력해주세요.');
+      return false;
     }
     if(tag.id === 'password-check') {
       showError(tag, '비밀번호를 입력해주세요.');
+      return false;
     }
   }
+  return true;
 }
 
 export const checkEmail = (tag) => {
