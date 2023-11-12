@@ -18,6 +18,7 @@ window.onload = function(){
 
     const EnterdEmail = function(value){
         value.indexOf('@') === -1 || value.indexOf('.') === -1 ? incorrectEmail() : {};
+        value === 'test@codeit.com' ? dupEmail() : {};
     }
 
     const incorrectEmail = function(){
@@ -27,6 +28,16 @@ window.onload = function(){
         massage.style.color = 'red';
         inputList[0].style.border = '1px solid red';
         signBox.appendChild(massage);
+    }
+
+    const dupEmail = function(){
+        const massage = document.createElement('small');
+        const signBox = document.querySelectorAll('.sign-input-box')[0];
+        massage.textContent = '이미 사용 중인 이메일 입니다.';
+        massage.style.color = 'red';
+        inputList[0].style.border = '1px solid red';
+        signBox.appendChild(massage);
+        
     }
 
     const checkPw = function(e){
@@ -58,5 +69,4 @@ window.onload = function(){
 
     inputList[0].addEventListener('focusout', checkEmail);
     inputList[1].addEventListener('focusout', checkPw);
-
 }
