@@ -23,7 +23,7 @@ export const checkEmail = (tag) => {
   const emailValue = tag.value.trim();
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   if (emailRegex.test(emailValue)) {
-    if(tag.parentNode.lastChild.classList.contains('error-message')) {
+    if(tag.parentNode.lastChild.className ==='error-message') {
       tag.parentNode.removeChild(tag.parentNode.lastChild);
       tag.classList.remove('input--error')
       return true;
