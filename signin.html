@@ -32,7 +32,7 @@
           <label class="signForm_label">
             비밀번호
             <div class="password">
-              <input type="password" name="password" class="signForm_input" required>
+              <input type="password" name="password" class="signForm_input password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
               <button class="password_visible"></button>
             </div>
           </label>
@@ -51,5 +51,6 @@
         </div>
       </main>
     </div>
+    <script src="signin.js"></script>
   </body>
 </html>
