@@ -1,9 +1,10 @@
-import { emailCheck } from "./check.js";
+import { checkEmail } from "./check.js";
 import makeDOM from "./makeDOM.js";
 import showError from "./showError.js";
 
 const emailInput = document.querySelector('#email');
 const signInBtn = document.querySelector('.signin--btn');
+
 
 // const checkEmail = (e) => {
 //   if(e.target === emailInput) {
@@ -24,7 +25,7 @@ const signInBtn = document.querySelector('.signin--btn');
 // };
 
 const emailCheckEvent = (e) => {
-  if(e.target === document.querySelector('#email')) emailCheck(e.target);
+  if(e.target === document.querySelector('#email')) checkEmail(e.target);
 }
 
 const signInTest = (e) => {

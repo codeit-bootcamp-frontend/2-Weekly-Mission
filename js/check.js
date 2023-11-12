@@ -11,7 +11,7 @@ export const checkEmpty = (tag) => {
   }
 }
 
-export const emailCheck = (tag) => {
+export const checkEmail = (tag) => {
   if(tag.value === '') return;
   const emailValue = tag.value.trim();
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -27,7 +27,7 @@ export const emailCheck = (tag) => {
   }
 }
 
-export const passwordCheck = (tag) => {
+export const checkPassword = (tag) => {
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
   if (passwordRegex.test(tag.value)) return;
   else {
