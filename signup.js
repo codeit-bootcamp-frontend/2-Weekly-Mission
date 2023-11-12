@@ -15,7 +15,19 @@ const CLASSNAME_ERROR_MSG = "error-msg";
 const CLASSNAME_BLIND = "blind";
 
 const emailInputNode = document.querySelector(".signForm_input.email")
-const passwordInputList = document.querySelectorAll(".signForm_input.password")
+const passwordInputNode = document.querySelectorAll(".signForm_input.password")[0]
+const passwordCheckInputNode = document.querySelectorAll(".signForm_input.password")[1]
+
+function validPasswordCheck(e){
+    const password = passwordInputNode.value
+    const passwordCheckInput = e.target
+    const passwordCheck = e.target.value
+    removeErrorClass(passwordCheckInput)
+    if (!(passwordCheck === password)){
+        addErrorClass(passwordCheckInput, "비밀번호가 일치하지 않아요")
+        return
+    }
+}
 
 function addErrorClass(target, msg=""){
     target.classList.add(CLASSNAME_ERROR)
@@ -67,5 +79,7 @@ function focusoutEmailInput(e){
     }
 };
 
+//위임 쓰지 말고 그냥 id. password 별로 달기 or form에 리스너 달고 핸들러에 if문 쓰기
 emailInputNode.addEventListener("focusout", focusoutEmailInput)
-passwordInputList.forEach(node => {node.addEventListener("focusout", focusoutPasswordInput)});
+passwordInputNode.addEventListener("focusout", focusoutPasswordInput)
+passwordCheckInputNode.addEventListener("input", validPasswordCheck);
