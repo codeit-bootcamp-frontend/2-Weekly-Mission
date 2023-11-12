@@ -26,19 +26,22 @@ export const checkEmail = (tag) => {
     if(tag.parentNode.lastChild.classList.contains('error-message')) {
       tag.parentNode.removeChild(tag.parentNode.lastChild);
       tag.classList.remove('input--error')
+      return true;
     }
-    else return;
+    else return true; // 질문
   }
   else {
     showError(tag, '올바른 이메일 주소가 아닙니다.');
+    return false;
   }
 }
 
 export const checkPassword = (tag) => {
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
-  if (passwordRegex.test(tag.value)) return;
+  if (passwordRegex.test(tag.value)) return true;
   else {
-    if(tag.value === '') return;
+    if(tag.value === '') return false;
     showError(tag, '비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.');
+    return false;
   }
 }
