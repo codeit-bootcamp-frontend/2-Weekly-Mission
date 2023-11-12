@@ -1,0 +1,26 @@
+import showError from "./showError.js";
+
+export const emailCheck = (tag) => {
+  if(tag.value === '') return;
+  const emailValue = tag.value.trim();
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (emailRegex.test(emailValue)) {
+    if(tag.parentNode.lastChild.classList.contains('error-message')) {
+      tag.parentNode.removeChild(tag.parentNode.lastChild);
+      tag.classList.remove('input--error')
+    }
+    else return;
+  }
+  else {
+    showError(tag, '올바른 이메일 주소가 아닙니다.');
+  }
+}
+
+export const passwordCheck = (tag) => {
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+  if (passwordRegex.test(tag.value)) return;
+  else {
+    if(tag.value === '') return;
+    showError(tag, '비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.');
+  }
+}
