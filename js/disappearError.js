@@ -2,7 +2,7 @@ const disappearError = (tag) => {
   tag.classList.remove('input--error');
   const parent = tag.parentNode;
   const lastNode = tag.parentNode.lastChild;
-  if(lastNode.classList.contains('error-message')){
+  if(lastNode.className === 'error-message'){
     parent.removeChild(lastNode);
   }
 }
