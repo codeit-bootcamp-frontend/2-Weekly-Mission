@@ -117,6 +117,10 @@ body {
   top: 5.6rem;
 }
 
+.password[type="text"] + .password_visible{
+  background-image: url("../images/visible.svg");
+}
+
 .signForm_button {
   display: block;
   width: 100%;
