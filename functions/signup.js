@@ -5,17 +5,20 @@ const inputEmail = document.querySelector('#join-email__input');
 const inputPassword = document.querySelector('#join-password__input');
 const inputPasswordCheck = document.querySelector('.password-check__input');
 const passwordCheck = document.querySelector('#password-check');
-const joinButton = document.querySelector('#join-page-button') 
+const joinButton = document.querySelector('#join-page-button');
+const passwordIcons = document.querySelectorAll('.password-icon');
 
 let isJoin ={
     email: false,
     password: false
 }
+let passwordWitch = false;
 let span = document.createElement('span');
 let div = document.createElement('div');
 let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+ 
 
 function emailFocus(e){
     if(e.target.value === ""){
@@ -59,7 +62,6 @@ function passwordFocus(e){
         span.classList.add('password-alert-text');
     }else{
         isJoin.password = true
-        isAlert.password =true
         inputPassword.classList.remove('alert-line');
         e.currentTarget.parentElement.nextElementSibling.remove()
     }
@@ -101,9 +103,23 @@ function join(e) {
     }
 }
 
-
+function onPassword(e){
+    passwordWitch = !passwordWitch;
+    if(!passwordWitch){
+        e.target.setAttribute('src', '../images/password-icon.png');
+        inputPassword.setAttribute('type','password')
+    }else{
+        e.target.setAttribute('src', '../images/eye-on.png');
+        inputPassword.setAttribute('type','text')
+    }
+}
 
 inputEmail.addEventListener('focusout', emailFocus);
-inputPassword.addEventListener('focusout', passwordFocus)
-inputPasswordCheck.addEventListener('focusout', validatePassword)
-joinButton.addEventListener('click', join )
+inputPassword.addEventListener('focusout', passwordFocus);
+inputPasswordCheck.addEventListener('focusout', validatePassword);
+joinButton.addEventListener('click', join );
+passwordIcons.forEach(icon => {
+    icon.addEventListener('click', onPassword);
+})
+
+

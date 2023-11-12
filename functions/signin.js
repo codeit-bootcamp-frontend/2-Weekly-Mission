@@ -3,11 +3,13 @@ const password = document.querySelector('#login-password');
 const inputEmail = document.querySelector('#login-email__input');
 const inputPassword = document.querySelector('#login-password__input');
 const loginButton = document.querySelector('#login-page-button')
+const passwordIcon = document.querySelector('.password-icon')
 
 let isLogin ={
     email: false,
     password: false
 }
+let passwordWitch=false;
 
 let span = document.createElement('span');
 let div = document.createElement('div');
@@ -76,8 +78,19 @@ function login(e) {
     }
 }
 
+function onPassword(){
+    passwordWitch = !passwordWitch;
+    if(!passwordWitch){
+        passwordIcon.setAttribute('src', '../images/password-icon.png');
+        inputPassword.setAttribute('type','password')
+    }else{
+        passwordIcon.setAttribute('src', '../images/eye-on.png');
+        inputPassword.setAttribute('type','text')
+    }
+}
+
 
 inputEmail.addEventListener('focusout', emailFocus);
-inputPassword.addEventListener('focusout', passwordFocus)
-loginButton.addEventListener('click', login)
-
+inputPassword.addEventListener('focusout', passwordFocus);
+loginButton.addEventListener('click', login);
+passwordIcon.addEventListener('click', onPassword);
