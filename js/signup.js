@@ -53,6 +53,10 @@ const checkPasswordEvent = (e) => {
   if(e.target.id === 'password') checkPassword(e.target);
 }
 
+const showPasswordEvent = (e) => {
+  if(e.target.classList.contains('eye')) showPassword(e.target);
+}
+
 // const checkPassword = (e) => {
 //   if(e.target.id === 'password'){
 //     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
@@ -117,7 +121,7 @@ passwordInput.addEventListener('focusout', checkPasswordEvent);
 emailInput.addEventListener('input', testEmail);
 // passwordCheckInput.addEventListener('input', confirmPasswordEvent);
 passwordInput.addEventListener('input', checkPassword);
-document.body.addEventListener('click', showPassword);
+document.body.addEventListener('click', showPasswordEvent);
 signUpBtn.addEventListener('click', testSignUp);
 document.addEventListener('keydown', function (e) {
   e.preventDefault();
