@@ -71,6 +71,33 @@ input:focus {
   border: 1px solid #6D6AFE;
 }
 
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  background: url(../images/eye-off.svg) center/cover no-repeat;
+  width: 20px;
+  height: 20px;
+}
+
+.toggle-password-pressed {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: url(../images/eye-on.svg) center/cover no-repeat;
+  width: 20px;
+  height: 20px;
+}
+
 
 .emailDuplication, .passwordLength, .passwordSame{
   padding: 0rem 0 0rem;
@@ -211,6 +238,34 @@ input{
 input:focus {
   outline: none;
   border: 1px solid #6D6AFE;
+}
+
+
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  background: url(../images/eye-off.svg) center/cover no-repeat;
+  width: 20px;
+  height: 20px;
+}
+
+.toggle-password-pressed {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: url(../images/eye-on.svg) center/cover no-repeat;
+  width: 20px;
+  height: 20px;
 }
 
 
@@ -356,6 +411,33 @@ white-space: nowrap;
     border: 1px solid #6D6AFE;
   }
   
+  
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  background: url(../images/eye-off.svg) center/cover no-repeat;
+  width: 20px;
+  height: 20px;
+}
+
+.toggle-password-pressed {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: url(../images/eye-on.svg) center/cover no-repeat;
+  width: 20px;
+  height: 20px;
+}
 
   .emailDuplication, .passwordLength, .passwordSame{
     padding: 0rem 0 0rem;

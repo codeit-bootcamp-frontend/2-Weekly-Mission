@@ -104,13 +104,13 @@ body{
     height: 20px;
   }
   
-  .toggle-password {
+  .toggle-password-pressed {
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
-    background: url(../images/eye-off.svg) center/cover no-repeat;
+    background: url(../images/eye-on.svg) center/cover no-repeat;
     width: 20px;
     height: 20px;
   }
@@ -275,13 +275,13 @@ body{
     height: 20px;
   }
   
-  .toggle-password {
+  .toggle-password-pressed {
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
-    background: url(../images/eye-off.svg) center/cover no-repeat;
+    background: url(../images/eye-on.svg) center/cover no-repeat;
     width: 20px;
     height: 20px;
   }
@@ -445,13 +445,13 @@ input[type="password"] {
   height: 20px;
 }
 
-.toggle-password {
+.toggle-password-pressed {
   position: absolute;
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
-  background: url(../images/eye-off.svg) center/cover no-repeat;
+  background: url(../images/eye-on.svg) center/cover no-repeat;
   width: 20px;
   height: 20px;
 }

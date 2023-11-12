@@ -1,9 +1,14 @@
 function togglePasswordVisibility() {
   const passwordField = document.getElementById("password");
+  const eye = document.querySelector('.eye')
   if (passwordField.type === "password") {
     passwordField.type = "text";
+    eye.classList.toggle('toggle-password');
+    eye.classList.toggle('toggle-password-pressed');
   } else {
     passwordField.type = "password";
+    eye.classList.toggle('toggle-password');
+    eye.classList.toggle('toggle-password-pressed');
   }
 }
 

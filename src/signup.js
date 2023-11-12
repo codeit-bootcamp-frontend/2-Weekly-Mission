@@ -1,9 +1,32 @@
 function togglePasswordVisibility() {
   const passwordField = document.getElementById("password");
+  const eye = document.querySelector('.eye')
+
   if (passwordField.type === "password") {
     passwordField.type = "text";
-  } else {
+    eye.classList.toggle('toggle-password');
+    eye.classList.toggle('toggle-password-pressed');
+  }
+  else {
     passwordField.type = "password";
+    eye.classList.toggle('toggle-password');
+    eye.classList.toggle('toggle-password-pressed');
+}
+}
+
+  function togglePasswordVisibility2() {
+    const passwordCheckField = document.getElementById("password-check");
+    const eye2 = document.querySelector('.eye2')
+  
+    if (passwordCheckField.type === "password") {
+      passwordCheckField.type = "text";
+      eye2.classList.toggle('toggle-password');
+      eye2.classList.toggle('toggle-password-pressed');
+    }
+  else {
+    passwordCheckField.type = "password";
+    eye2.classList.toggle('toggle-password');
+    eye2.classList.toggle('toggle-password-pressed');
   }
 }
 
@@ -108,3 +131,10 @@ signUpping.addEventListener('mousedown',canISignup);
 emailDuplication.addEventListener('keydown',Enter);
 passwordInput.addEventListener('keydown',Enter);
 passwordCheckInput.addEventListener('keydown',Enter);
+
+
+const eye = document.querySelector('.eye');
+const eye2 = document.querySelector('.eye2');
+
+eye.addEventListener('click', togglePasswordVisibility)
+eye2.addEventListener('click', togglePasswordVisibility2)
