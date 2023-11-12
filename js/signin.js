@@ -2,6 +2,7 @@ import { checkEmail, checkEmpty } from "./check.js";
 import disappearError from "./disappearError.js";
 import makeDOM from "./makeDOM.js";
 import showError from "./showError.js";
+import showPassword from "./showPassword.js";
 
 const emailInput = document.querySelector('#email');
 const signInBtn = document.querySelector('.signin--btn');
@@ -84,3 +85,4 @@ const signInTest = (e) => {
 emailInput.addEventListener('input', checkEmailEvent);
 emailInput.addEventListener('blur', checkEmailEvent);
 signInBtn.addEventListener('click', signInTest);
+document.body.addEventListener('click', showPassword);

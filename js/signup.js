@@ -2,6 +2,7 @@ import makeDOM from "./makeDOM.js"
 import { checkEmail, checkEmpty, checkPassword } from "./check.js";
 import showError from "./showError.js";
 import disappearError from "./disappearError.js";
+import showPassword from "./showPassword.js";
 
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
@@ -116,6 +117,7 @@ passwordInput.addEventListener('focusout', checkPasswordEvent);
 emailInput.addEventListener('input', testEmail);
 // passwordCheckInput.addEventListener('input', confirmPasswordEvent);
 passwordInput.addEventListener('input', checkPassword);
+document.body.addEventListener('click', showPassword);
 signUpBtn.addEventListener('click', testSignUp);
 document.addEventListener('keydown', function (e) {
   e.preventDefault();
