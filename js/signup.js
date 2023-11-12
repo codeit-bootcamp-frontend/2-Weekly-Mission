@@ -9,6 +9,8 @@ const passwordCheckInput = document.querySelector('#password-check');
 
 const inputList = Array.from(document.querySelectorAll('input'));
 
+const signUpBtn = document.querySelector('.signup--btn');
+
 const checkEmptyEvent = (e) => {
   if(inputList.includes(e.target)) checkEmpty(e.target);
 }
@@ -73,14 +75,21 @@ const checkEmailEvent = (e) => {
   if(e.target === document.querySelector('#email')) checkEmail(e.target);
 }
 
-// const testSignUp = (e) => {
-//   e.preventDefault();
-//   if(e.target === document.querySelector('.siginup--btn')) {
-//     inputList.forEach((input) => checkEmpty(input));
-    
-    
-//   }
-// }
+const testSignUp = (e) => {
+  e.preventDefault();
+  if(e.target === document.querySelector('.signup--btn')) {
+    if(checkEmail(emailInput) && checkPassword(passwordInput) && confirmPassword(passwordInput, passwordCheckInput)){
+      window.location.href = './folder.html';
+      console.log('성공?');
+    } else {
+      console.log('실패?');
+      inputList.forEach( element => checkEmpty(element));
+      checkEmail(emailInput);
+      checkPassword(passwordInput);
+      confirmPassword(passwordInput, passwordCheckInput);
+    }
+  }
+}
 // const signInTest = (e) => {
 //   e.preventDefault();
 //   if(e.target === document.querySelector('.signin--btn')){
@@ -107,3 +116,4 @@ passwordInput.addEventListener('focusout', checkPasswordEvent);
 emailInput.addEventListener('input', testEmail);
 // passwordCheckInput.addEventListener('input', confirmPasswordEvent);
 passwordInput.addEventListener('input', checkPassword);
+signUpBtn.addEventListener('click', testSignUp);
