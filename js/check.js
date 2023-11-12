@@ -1,5 +1,16 @@
 import showError from "./showError.js";
 
+export const checkEmpty = (tag) => {
+  if(tag.value === '') {
+    if(tag.id === 'email'){
+      showError(tag, '이메일을 입력해주세요.');
+    }
+    if(tag.classList.contains('password')) {
+      showError(tag, '비밀번호를 입력해주세요.');
+    }
+  }
+}
+
 export const emailCheck = (tag) => {
   if(tag.value === '') return;
   const emailValue = tag.value.trim();
