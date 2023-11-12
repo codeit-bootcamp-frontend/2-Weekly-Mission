@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link rel="stylesheet" href="styles/signin_signup.css" />
   </head>
@@ -14,11 +15,22 @@
       <form>
         <label for="email">이메일</label>
         <input id="email" name="email" type="email">
-        <label for="password">비밀번호<img src="./images/eye-on.svg" class="eye-on"alt="비밀번호 보기"></label>
-        <input id="password" name="password" type="password">
-        <label for="password">비밀번호 확인<img src="./images/eye-on.svg" class="eye-on-check"alt="비밀번호 보기"></label>
-        <input id="password" name="password" type="password">
-        <button>회원가입</button>
+        <div class="error-message" id="error-message"></div>
+        <div class="password-form">
+          <label for="password">비밀번호</label>
+          <input id="password" name="password" type="password">
+          <div class="error-message" id="password-error-message"></div>
+          <button class="eye-off"></button>
+          <button class="eye-on"></button>
+        </div>
+        <div class="password-check-form">
+          <label for="password">비밀번호 확인</label>
+          <input id="confirm-password" name="password" type="password">
+          <div class="error-message" id="confirm-password-error-message"></div>
+          <button class="check-off"></button>
+          <button class="check-on"></button>
+        </div>
+        <button class="signup-button">회원가입</button>
       </form>
       <div class="social">
         <div>다른 방식으로 가입하기</div>
@@ -28,5 +40,8 @@
       </div>
       </div>
     </main>
+    <script src="/js/signup_email.js"></script>
+    <script src="/js/password_check.js"></script>
+    <script src="/js/login.js"></script>
   </body>
 </html>
