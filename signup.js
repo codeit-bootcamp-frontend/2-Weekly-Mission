@@ -98,7 +98,7 @@ function checkPassword(event) {
   }
 }
 
-checkPasswordInput.addEventListener("keyup", checkPassword);
+checkPasswordInput.addEventListener("focusout", checkPassword);
 
 //9. 10. 11. 회원가입 페이지
 //회원가입을 실행할 경우, 문제가 있는 경우 문제가 있는 input에 에러 메세지로 알립니다.
