@@ -22,11 +22,12 @@ inputList.forEach((element) => {element.addEventListener('focusin', disappearErr
 
 const confirmPassword = (e) => {
   if(e.target.id === 'password-check'){
-    if(passwordInput.value === passwordCheckInput.value) return;
+    if(passwordInput.value === passwordCheckInput.value) return true;
     else {
       if(e.target.value === '') return;
       if(e.target.parentNode.lastChild.classList.contains('error-message')) return;
       showError(e.target, '비밀번호가 일치하지 않아요.');
+      return false;
     }
   }
 }
@@ -58,12 +59,10 @@ const checkEmailEvent = (e) => {
   if(e.target === document.querySelector('#email')) checkEmail(e.target);
 }
 
-// const validSignUp = (e) => {
+// const testSignUp = (e) => {
 //   e.preventDefault();
 //   if(e.target === document.querySelector('.siginup--btn')) {
-//     const emailInput = document.querySelector('#email');
-//     const passwordInput = document.querySelector('#password');
-//     const passwordCheckInput = document.querySelector('#password-check');
+//     inputList.forEach((input) => checkEmpty(input));
     
     
 //   }
