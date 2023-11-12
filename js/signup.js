@@ -117,3 +117,9 @@ emailInput.addEventListener('input', testEmail);
 // passwordCheckInput.addEventListener('input', confirmPasswordEvent);
 passwordInput.addEventListener('input', checkPassword);
 signUpBtn.addEventListener('click', testSignUp);
+document.addEventListener('keydown', function (e) {
+  e.preventDefault();
+  if (e.key === 'Enter' || e.keyCode === 13) {
+    document.querySelector('.signup--btn').click();
+  }
+});
