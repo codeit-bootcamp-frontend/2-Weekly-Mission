@@ -27,9 +27,10 @@
       </header>
     <main>
       <section>
-        <form>
+        <form id = 'form'>
           <label for="email">이메일</label>
           <input id="email" name="username">
+          <label class="email-error" for="email"></label>
           <label for="password">비밀번호</label>
           <div class="password-container">
           <input id="password" name="password" type="password">
@@ -53,15 +54,5 @@
       </section>
     </main>
   </div>
-
-  <script>
-    function togglePasswordVisibility() {
-      const passwordField = document.getElementById("password");
-      if (passwordField.type === "password") {
-        passwordField.type = "text";
-      } else {
-        passwordField.type = "password";
-      }
-    }
-  </script>
+  <script src="./src/signin.js"></script>
 </body>

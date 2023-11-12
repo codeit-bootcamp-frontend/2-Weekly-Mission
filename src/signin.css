@@ -64,7 +64,26 @@ body{
     padding: 1.8rem 1.5rem;
     border: 1px #CCD5E3 solid;
   }
-  
+
+
+
+  .email-error{
+    padding: 0rem 0 0rem;
+  }
+
+  .inputErrorBorder{
+    border: 1px #FF5B56 solid;
+  }
+
+  .inputError{
+    color: #FF5B56;
+    font-size: 1.4rem;
+    font-family: Pretendard;
+    font-weight: 400;
+    text-align: left;
+    padding: 0.6rem 0 1rem;
+  }  
+
   .password-container {
     position: relative;
   }
@@ -217,6 +236,25 @@ body{
     border: 1px #CCD5E3 solid;
   }
   
+ 
+
+  .email-error{
+    padding: 0rem 0 0rem;
+  }
+
+  .inputErrorBorder{
+    border: 1px #FF5B56 solid;
+  }
+
+  .inputError{
+    color: #FF5B56;;
+    font-size: 1.4rem;
+    font-family: Pretendard;
+    font-weight: 400;
+    text-align: left;
+    padding: 0.6rem 0 1rem;
+  }  
+
   .password-container {
     position: relative;
   }
@@ -369,6 +407,24 @@ input{
   padding: 1.8rem 1.5rem;
   border: 1px #CCD5E3 solid;
 }
+
+
+.email-error{
+  padding: 0rem 0 0rem;
+}
+
+.inputErrorBorder{
+  border: 1px #FF5B56 solid;
+}
+
+.inputError{
+  color: #FF5B56;;
+  font-size: 1.4rem;
+  font-family: Pretendard;
+  font-weight: 400;
+  text-align: left;
+  padding: 0.6rem 0 1rem;
+}  
 
 .password-container {
   position: relative;
