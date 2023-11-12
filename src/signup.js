@@ -86,6 +86,12 @@ function canISignup () {
 
 }
 
+function Enter (e){
+  if (e.key ==='Enter'){
+    e.preventDefault ();
+    canISignup ();
+  }
+};
 
 //로그인, 회원가입 불가
 const emailDuplication = document.querySelector('#email');
@@ -98,3 +104,7 @@ passwordInput.addEventListener('focusout', passwordLengthError);
 passwordCheckInput.addEventListener('focusout', passwordSameError);
 signUpping.addEventListener('mousedown',canISignup);
 
+//엔터쳤을때 회원가입
+emailDuplication.addEventListener('keydown',Enter);
+passwordInput.addEventListener('keydown',Enter);
+passwordCheckInput.addEventListener('keydown',Enter);

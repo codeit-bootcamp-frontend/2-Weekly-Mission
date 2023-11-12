@@ -33,12 +33,60 @@ function validEmail () {
   }
 }
 
+function noPassword () {
+  const passwordError = document.querySelector('.passwordError')
+  const passwordInput = document.querySelector('#password');
+  passwordError.classList.remove('inputError');
+  
 
+  if(passwordInput.value ===''){
+    passwordError.textContent = '비밀번호를 입력해주세요.'
+    passwordError.classList.add('inputError')
+    passwordInput.classList.add('inputErrorBorder')
+  }
+  else{
+    passwordError.textContent = ''
+    passwordError.classList.remove('inputError')
+    passwordInput.classList.remove('inputErrorBorder')
+  }
+}
 
+function testLogin (event) {
+  event.preventDefault ();
+
+  const emailInput = document.querySelector('#email')
+  const passwordInput = document.querySelector('#password');
+
+  const emailError = document.querySelector('.email-error');
+  const passwordError = document.querySelector('.passwordError')
+
+  const loginTest = 
+  (emailInput.value === 'test@codeit.com')&&(passwordInput.value === "codeit101"); 
+
+  if(loginTest){
+    window.location.href = "./folder/"
+  }
+  else{
+    
+    emailError.textContent = '이메일을 확인해주세요.'
+    emailError.classList.add('inputError')
+    emailInput.classList.add('inputErrorBorder')
+
+    passwordError.textContent = '비밀번호를 확인해주세요.'
+    passwordError.classList.add('inputError')
+    passwordInput.classList.add('inputErrorBorder')
+  }
+  
+
+}
+
+// 로그인 에러메시지
 const emailInput = document.querySelector('#email')
+const passwordInput = document.querySelector('#password');
+const signinning = document.querySelector('#signinning')
 
 emailInput.addEventListener('focusout', validEmail)
-
-
+passwordInput.addEventListener('focusout',noPassword)
+signinning.addEventListener('click', testLogin)
 
 

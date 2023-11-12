@@ -67,7 +67,7 @@ body{
 
 
 
-  .email-error{
+  .email-error, .passwordError{
     padding: 0rem 0 0rem;
   }
 
