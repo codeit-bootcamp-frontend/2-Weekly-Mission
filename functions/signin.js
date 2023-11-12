@@ -8,106 +8,76 @@ let isLogin ={
     email: false,
     password: false
 }
-let isAlert = {
-    email: false,
-    password: false
-}
-function removeElement(container, alertInput, addClassText){
-    let div = document.querySelector(addClassText);
-    container.removeChild(div);
-    alertInput.classList.remove('alert-line'); 
-    isAlert.email =true
-    isAlert.password =true
-}
 
-function updateAlert(tag, text, container){
-    tag.innerHTML = text;
-    container.classList.add('alert-line');
-}
+let span = document.createElement('span');
+let div = document.createElement('div');
+let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function emailFocus(){
-    let div = document.createElement('div');
-    if(inputEmail.value === ""){
-        updateAlert(div,"이메일을 입력해주세요.",inputEmail)
+
+function emailFocus(e){
+    if(e.target.value === ""){
         isLogin.email=false
+        inputEmail.classList.add('alert-line');
+        div.innerHTML = "이메일을 입력해주세요.";
         email.appendChild(div);  
+        div.classList.add('email-alert-text');
+    }else if (!emailRegex.test(inputEmail.value)){
+        isLogin.email=false
+        inputEmail.classList.add('alert-line');
+        div.innerHTML = "올바른 이메일 주소가 아닙니다.";
+        email.appendChild(div);  
+        div.classList.add('email-alert-text');
     }else{
-        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(inputEmail.value)) {
-            updateAlert(div, "올바른 이메일 주소가 아닙니다.", inputEmail)
-            isLogin.email=false
-            email.appendChild(div);  
-        }else{
-            isLogin.email=true
-            isAlert.email =true
-        }
-      }
-      div.classList.add('email-alert-text');
+        isLogin.email=true
+        inputEmail.classList.remove('alert-line');
+        e.target.nextElementSibling.remove()
+    }
+        
 }
 
-function passwordFocus(){
-    let div = document.createElement('div');
-    let emailRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+function passwordFocus(e){
     if(inputPassword.value === ""){ 
-        updateAlert(div, "비밀번호를 입력해주세요.", inputPassword)
         isLogin.password = false
-        password.appendChild(div);
+        inputPassword.classList.add('alert-line');
+        span.innerHTML = "비밀번호를 입력해주세요.";
+        password.appendChild(span);
+        span.classList.add('password-alert-text');
+    }else if((!passwordRegex.test(inputPassword.value))){
+        isLogin.password = false
+        inputPassword.classList.add('alert-line');
+        span.innerHTML = "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요.";
+        password.appendChild(span);
+        span.classList.add('password-alert-text');
     }else{
-        if((!emailRegex.test(inputPassword.value))){
-            updateAlert(div, "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요.", inputPassword)
-            isLogin.password = false
-            password.appendChild(div);
-        }else{
-            isLogin.password = true
-            isAlert.password =true
+        isLogin.password = true
+        inputPassword.classList.remove('alert-line');
+        e.currentTarget.parentElement.nextElementSibling.remove()
+    }
+}
+
+function login(e) {
+    e.preventDefault();
+    if (isLogin.email && isLogin.password) {
+        window.location.href = "../folder.html";
+    }else{
+        if(!isLogin.email){
+            inputEmail.classList.add('alert-line');
+            div.innerHTML = "이메일을 확인해주세요.";
+            div.classList.add('email-alert-text');
+            email.appendChild(div);  
         }
-    }
-    div.classList.add('password-alert-text');
-}
-
-function  emailFocusHandle(e){
-    if(e.type == 'focus'){
-        removeElement( email, inputEmail, '.email-alert-text')
-    }else if(e.type =='blur'){
-        emailFocus() 
-    }
-}
-
-function passwordFocusHandle(e){
-    if(e.type=='focus'){
-        removeElement(password, inputPassword, '.password-alert-text')
-    }else if(e.type =='blur'){
-        passwordFocus()
+        if(!isLogin.password){
+            inputPassword.classList.add('alert-line');
+            span.innerHTML = "비밀번호를 확인해주세요.";
+            password.appendChild(span);
+            span.classList.add('password-alert-text');
+         }
     }
 }
 
 
-function login(e){
-    e.preventDefault()
-    if(isLogin.email && isLogin.password){
-        window.location.href="../folder.html"
-        isAlert.email=false
-        isAlert.password=false
-    }else{
-      if(!isLogin.email && !isAlert.email){
-        emailFocus()
-        isAlert.email=true
-      }
-      if(!isLogin.password  && !isAlert.password){
-        passwordFocus()
-        isAlert.password=true
-        isAlert.email=true
-      }
-    }
-}
-
-
-
-
-
-inputEmail.addEventListener('blur', emailFocusHandle);
-inputEmail.addEventListener('focus',emailFocusHandle);
-inputPassword.addEventListener('blur', passwordFocusHandle);
-inputPassword.addEventListener('focus', passwordFocusHandle);
+inputEmail.addEventListener('focusout', emailFocus);
+inputPassword.addEventListener('focusout', passwordFocus)
 loginButton.addEventListener('click', login)
 
