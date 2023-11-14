@@ -11,7 +11,9 @@ const initializeSignForm = () => {
   });
 
   const eyeIconClickHandler = $inputForm.addEventListener("click", ({ target }) => {
-    if (target.classList.contains("toggle-show-pwd")) {
+    if (!target.classList.contains("toggle-show-pwd")) return;
+    // 위 조건으로 인해, 아래 라인에서는 있다고 가정하고 로직 진행
+    else {
       if (target.dataset.show === "true") {
         target.src = "../images/eye-off.svg";
         target.previousElementSibling.type = "password";
