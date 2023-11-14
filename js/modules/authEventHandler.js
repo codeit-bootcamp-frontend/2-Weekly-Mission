@@ -1,4 +1,4 @@
-import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domSelectors.js";
+import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domElements.js";
 import { isRegEmail, isRegPassword } from "./validator.js";
 import { CheckEmailExist } from "./authVerifyUser.js";
 import { specifyWarningPosition, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";

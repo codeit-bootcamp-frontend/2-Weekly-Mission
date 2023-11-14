@@ -1,4 +1,4 @@
-import { $submitBtn, $emailInput, $passwordInput, $passwordVerifyInput } from "./modules/domSelectors.js";
+import { $submitBtn, $emailInput, $passwordInput, $passwordVerifyInput } from "./modules/domElements.js";
 import {
   emailErrorCheck,
   initializeSignForm as initializeSignUpForm,

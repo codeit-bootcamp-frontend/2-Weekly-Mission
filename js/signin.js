@@ -1,4 +1,4 @@
-import { $submitBtn, $emailInput, $passwordInput } from "./modules/domSelectors.js";
+import { $submitBtn, $emailInput, $passwordInput } from "./modules/domElements.js";
 import { initializeSignForm as initializeSignInForm } from "./modules/authEventHandler.js";
 import { specifyWarningPosition } from "./modules/authEventHandler.js";
 import { verifyLoginCredentials } from "./modules/authVerifyUser.js";
