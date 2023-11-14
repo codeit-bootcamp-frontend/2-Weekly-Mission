@@ -1,7 +1,7 @@
 import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domElements.js";
 import { isRegEmail, isRegPassword } from "./validator.js";
 import { checkEmailExist } from "./authVerifyUser.js";
-import { specifyWarningPosition, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
+import { triggerInputValidationError, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
 
 const $inputForm = document.querySelector(".input-container");
 
@@ -44,30 +44,30 @@ const initializeSignForm = () => {
 
 const emailErrorCheck = (checkCase) => {
   if ($emailInput.value === "") {
-    specifyWarningPosition($emailInput, "이메일을 입력해주세요.");
+    triggerInputValidationError($emailInput, "이메일을 입력해주세요.");
   } else if (!isRegEmail($emailInput.value)) {
-    specifyWarningPosition($emailInput, "올바른 이메일 주소가 아닙니다.");
+    triggerInputValidationError($emailInput, "올바른 이메일 주소가 아닙니다.");
   } else if (checkEmailExist($emailInput.value) && checkCase === "signUp") {
-    specifyWarningPosition($emailInput, "이미 사용 중인 이메일입니다.");
+    triggerInputValidationError($emailInput, "이미 사용 중인 이메일입니다.");
   }
 };
 
 const pwdErrorCheck = () => {
   if ($passwordInput.value === "") {
-    specifyWarningPosition($passwordInput, "비밀번호를 입력해주세요.");
+    triggerInputValidationError($passwordInput, "비밀번호를 입력해주세요.");
   } else if (!isRegPassword($passwordInput.value)) {
-    specifyWarningPosition($passwordInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
+    triggerInputValidationError($passwordInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
   }
 };
 
 const pwdVerifyErrorCheck = () => {
   if ($passwordVerifyInput.value !== $passwordInput.value) {
-    specifyWarningPosition($passwordVerifyInput, "비밀번호가 일치하지 않아요.");
+    triggerInputValidationError($passwordVerifyInput, "비밀번호가 일치하지 않아요.");
   } else if ($passwordVerifyInput.value === "") {
-    specifyWarningPosition($passwordVerifyInput, "비밀번호를 입력해주세요.");
+    triggerInputValidationError($passwordVerifyInput, "비밀번호를 입력해주세요.");
   } else if (!isRegPassword($passwordVerifyInput.value)) {
-    specifyWarningPosition($passwordVerifyInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
+    triggerInputValidationError($passwordVerifyInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
   }
 };
 
-export { initializeSignForm, specifyWarningPosition, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck };
+export { initializeSignForm, triggerInputValidationError, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck };

@@ -23,9 +23,9 @@ const createWarningText = (element, message) => {
   toggleWarningborder(element);
 };
 
-const specifyWarningPosition = (element, text) => {
-  toggleWarningborder(element);
-  createWarningText(element, text);
+const triggerInputValidationError = (input, message) => {
+  toggleWarningborder(input);
+  createWarningText(input, message);
 };
 
-export { deleteWarningText, toggleWarningborder, createWarningText, specifyWarningPosition };
+export { deleteWarningText, toggleWarningborder, createWarningText, triggerInputValidationError };
