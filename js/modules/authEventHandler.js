@@ -1,5 +1,5 @@
 import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domElements.js";
-import { verifyValidId, verifyValidPassword, verifyValidPasswordVerify } from "./authVerifyUser.js";
+import { validateEmail, validatePassword, validatePasswordVerify } from "./authVerifyUser.js";
 import { triggerInputValidationError, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
 
 const $inputForm = document.querySelector(".input-container");
@@ -28,15 +28,15 @@ const initializeSignForm = () => {
     const userActionType = $inputForm.childElementCount > 2 ? "signUp" : "signIn";
     switch (e.target) {
       case $emailInput:
-        const emailValidation = verifyValidId($emailInput.value, userActionType);
+        const emailValidation = validateEmail($emailInput.value, userActionType);
         if (!emailValidation.result) triggerInputValidationError($emailInput, emailValidation.message);
         break;
       case $passwordInput:
-        const passwordValidation = verifyValidPassword($passwordInput.value);
+        const passwordValidation = validatePassword($passwordInput.value);
         if (!passwordValidation.result) triggerInputValidationError($passwordInput, passwordValidation.message);
         break;
       case $passwordVerifyInput:
-        const passwordVerifyValidation = verifyValidPasswordVerify($passwordInput.value, $passwordVerifyInput.value);
+        const passwordVerifyValidation = validatePasswordVerify($passwordInput.value, $passwordVerifyInput.value);
         if (!passwordVerifyValidation.result)
           triggerInputValidationError($passwordVerifyInput, passwordVerifyValidation.message);
         break;
