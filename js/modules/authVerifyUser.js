@@ -15,7 +15,7 @@ const verifyLoginCredentials = (email, password) => {
   }
 };
 
-const CheckEmailExist = (email) => {
+const checkEmailExist = (email) => {
   for (const key in userData) {
     if (userData[key].email === email) {
       return true;
@@ -25,7 +25,7 @@ const CheckEmailExist = (email) => {
 };
 
 const verifyValidId = (email) => {
-  return email !== "" && isRegEmail(email) && !CheckEmailExist(email) ? true : false;
+  return email !== "" && isRegEmail(email) && !checkEmailExist(email) ? true : false;
 };
 
 const verifyValidPassword = (password) => {
@@ -36,4 +36,4 @@ const verifyValidPasswordVerify = (password, passwordRepeat) => {
   return passwordRepeat !== "" && isRegPassword(passwordRepeat) && password === passwordRepeat ? true : false;
 };
 
-export { verifyLoginCredentials, verifyValidId, verifyValidPassword, verifyValidPasswordVerify, CheckEmailExist };
+export { verifyLoginCredentials, verifyValidId, verifyValidPassword, verifyValidPasswordVerify, checkEmailExist };

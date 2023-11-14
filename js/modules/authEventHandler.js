@@ -1,6 +1,6 @@
 import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domElements.js";
 import { isRegEmail, isRegPassword } from "./validator.js";
-import { CheckEmailExist } from "./authVerifyUser.js";
+import { checkEmailExist } from "./authVerifyUser.js";
 import { specifyWarningPosition, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
 
 const $inputForm = document.querySelector(".input-container");
@@ -47,7 +47,7 @@ const emailErrorCheck = (checkCase) => {
     specifyWarningPosition($emailInput, "이메일을 입력해주세요.");
   } else if (!isRegEmail($emailInput.value)) {
     specifyWarningPosition($emailInput, "올바른 이메일 주소가 아닙니다.");
-  } else if (CheckEmailExist($emailInput.value) && checkCase === "signUp") {
+  } else if (checkEmailExist($emailInput.value) && checkCase === "signUp") {
     specifyWarningPosition($emailInput, "이미 사용 중인 이메일입니다.");
   }
 };
