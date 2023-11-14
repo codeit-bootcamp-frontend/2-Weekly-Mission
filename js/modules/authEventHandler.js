@@ -1,5 +1,5 @@
 import { inputForm, emailInput, passwordInput, passwordVerifyInput } from "./domSelectors.js";
-import { regEmail, regPassword } from "./regexPatterns.js";
+import { isRegEmail, isRegPassword } from "./validator.js";
 import { CheckEmailExist } from "./authVerifyUser.js";
 import { specifyWarningPosition, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
 
@@ -43,7 +43,7 @@ const initializeSignForm = () => {
 const emailErrorCheck = (checkCase) => {
   if (emailInput.value === "") {
     specifyWarningPosition(emailInput, "이메일을 입력해주세요.");
-  } else if (!regEmail.test(emailInput.value)) {
+  } else if (!isRegEmail(emailInput.value)) {
     specifyWarningPosition(emailInput, "올바른 이메일 주소가 아닙니다.");
   } else if (CheckEmailExist(emailInput.value) && checkCase === "signUp") {
     specifyWarningPosition(emailInput, "이미 사용 중인 이메일입니다.");
@@ -53,7 +53,7 @@ const emailErrorCheck = (checkCase) => {
 const pwdErrorCheck = () => {
   if (passwordInput.value === "") {
     specifyWarningPosition(passwordInput, "비밀번호를 입력해주세요.");
-  } else if (!regPassword.test(passwordInput.value)) {
+  } else if (!isRegPassword(passwordInput.value)) {
     specifyWarningPosition(passwordInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
   }
 };
@@ -63,7 +63,7 @@ const pwdVerifyErrorCheck = () => {
     specifyWarningPosition(passwordVerifyInput, "비밀번호가 일치하지 않아요.");
   } else if (passwordVerifyInput.value === "") {
     specifyWarningPosition(passwordVerifyInput, "비밀번호를 입력해주세요.");
-  } else if (!regPassword.test(passwordVerifyInput.value)) {
+  } else if (!isRegPassword(passwordVerifyInput.value)) {
     specifyWarningPosition(passwordVerifyInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
   }
 };

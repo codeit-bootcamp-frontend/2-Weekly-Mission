@@ -1,5 +1,5 @@
 import userData from "../database/userData.js";
-import { regEmail, regPassword } from "./regexPatterns.js";
+import { isRegEmail, isRegPassword } from "./validator.js";
 
 const verifyLoginCredentials = (email, password) => {
   for (const key in userData) {
@@ -25,15 +25,15 @@ const CheckEmailExist = (email) => {
 };
 
 const verifyValidId = (email) => {
-  return email !== "" && regEmail.test(email) && !CheckEmailExist(email) ? true : false;
+  return email !== "" && isRegEmail(email) && !CheckEmailExist(email) ? true : false;
 };
 
 const verifyValidPassword = (password) => {
-  return password !== "" && regPassword.test(password) ? true : false;
+  return password !== "" && isRegPassword(password) ? true : false;
 };
 
 const verifyValidPasswordVerify = (password, passwordRepeat) => {
-  return passwordRepeat !== "" && regPassword.test(passwordRepeat) && password === passwordRepeat ? true : false;
+  return passwordRepeat !== "" && isRegPassword(passwordRepeat) && password === passwordRepeat ? true : false;
 };
 
 export { verifyLoginCredentials, verifyValidId, verifyValidPassword, verifyValidPasswordVerify, CheckEmailExist };
