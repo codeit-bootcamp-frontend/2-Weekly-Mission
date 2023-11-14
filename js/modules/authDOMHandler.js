@@ -12,13 +12,13 @@ const toggleWarningborder = (element) => {
 };
 
 const createWarningText = (element, message) => {
-  if (element.parentElement.lastElementChild.className !== "alert-danger") {
+  if (element.parentElement.lastElementChild.className === "alert-danger") {
+    element.parentElement.lastElementChild.textContent = message;
+  } else {
     const warningText = document.createElement("div");
     warningText.textContent = message;
     warningText.classList.add("alert-danger");
     element.parentElement.appendChild(warningText);
-  } else {
-    element.parentElement.lastElementChild.textContent = message;
   }
   toggleWarningborder(element);
 };
