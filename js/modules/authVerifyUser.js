@@ -15,14 +15,7 @@ const verifyLoginCredentials = (email, password) => {
   }
 };
 
-const checkEmailExist = (email) => {
-  for (const key in userData) {
-    if (userData[key].email === email) {
-      return true;
-    }
-  }
-  return false;
-};
+const checkEmailExist = (email) => Object.values(userData).some((user) => user.email === email);
 
 const verifyValidId = (email, checkCase) => {
   if (email === "") return { result: false, message: "이메일을 입력해주세요." };
