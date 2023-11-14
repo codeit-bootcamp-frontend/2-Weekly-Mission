@@ -1,8 +1,13 @@
 import { submitBtn, emailInput, passwordInput, inputForm, passwordVerifyInput } from "./modules/domSelectors.js";
-import { authEvent, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck } from "./modules/authEventHandler.js";
+import {
+  emailErrorCheck,
+  initializeSignForm as initializeSignUpForm,
+  pwdErrorCheck,
+  pwdVerifyErrorCheck,
+} from "./modules/authEventHandler.js";
 import { verifyValidId, verifyValidPassword, verifyValidPasswordVerify } from "./modules/authVerifyUser.js";
 
-authEvent();
+initializeSignUpForm();
 
 const submitSignUpHandler = submitBtn.addEventListener("click", (e) => {
   if (

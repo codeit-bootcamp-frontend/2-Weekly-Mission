@@ -1,9 +1,9 @@
 import { submitBtn, emailInput, passwordInput } from "./modules/domSelectors.js";
-import { authEvent } from "./modules/authEventHandler.js";
+import { initializeSignForm as initializeSignInForm } from "./modules/authEventHandler.js";
 import { specifyWarningPosition } from "./modules/authEventHandler.js";
 import { verifyLoginCredentials } from "./modules/authVerifyUser.js";
 
-authEvent();
+initializeSignInForm();
 
 const submitSignInHandler = submitBtn.addEventListener("click", (e) => {
   if (verifyLoginCredentials(emailInput.value, passwordInput.value)) {

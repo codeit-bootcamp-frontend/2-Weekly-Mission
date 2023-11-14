@@ -3,7 +3,7 @@ import { regEmail, regPassword } from "./regexPatterns.js";
 import { CheckEmailExist } from "./authVerifyUser.js";
 import { specifyWarningPosition, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
 
-const authEvent = () => {
+const initializeSignForm = () => {
   const formFocusInHandler = inputForm.addEventListener("focusin", (e) => {
     toggleWarningborder(e.target);
     deleteWarningText(e.target);
@@ -68,4 +68,4 @@ const pwdVerifyErrorCheck = () => {
   }
 };
 
-export { authEvent, specifyWarningPosition, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck };
+export { initializeSignForm, specifyWarningPosition, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck };
