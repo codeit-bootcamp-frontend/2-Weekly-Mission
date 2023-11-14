@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   font-family: "Pretendard";
+  word-break: keep-all;
 }
 
 html,
@@ -20,7 +21,6 @@ a {
 input:focus {
   outline: none;
 }
-
 
 button {
   border: none;
