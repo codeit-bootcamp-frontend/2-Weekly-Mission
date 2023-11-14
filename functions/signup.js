@@ -1,124 +1,120 @@
-
-const email = document.querySelector('#join-email');
-const password = document.querySelector('#join-password');
-const inputEmail = document.querySelector('#join-email__input');
-const inputPassword = document.querySelector('#join-password__input');
-const inputPasswordCheck = document.querySelector('.password-check__input');
+import {message} from "./signin.js"
+import{emailRegex,passwordRegex,updateAlert,removeAlert,} from "./utils.js"
+const email = document.querySelector('#email');
+const password = document.querySelector('#password');
 const passwordCheck = document.querySelector('#password-check');
+const inputEmail = document.querySelector('#email__input');
+const inputPassword = document.querySelector('#password__input');
+const inputPasswordCheck = document.querySelector('#password-check__input');
 const joinButton = document.querySelector('#join-page-button');
 const passwordIcons = document.querySelectorAll('.password-icon');
 
-let isJoin ={
-    email: false,
-    password: false
-}
-let passwordWitch = false;
-let span = document.createElement('span');
-let div = document.createElement('div');
-let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
-function emailFocus(e){
-    if(e.target.value === ""){
-        isJoin.email=false
-        inputEmail.classList.add('alert-line');
-        div.innerHTML = "이메일을 입력해주세요.";
-        email.appendChild(div);  
-        div.classList.add('email-alert-text');
-    }else if(inputEmail.value ==='test@codeit.com'){
-        isJoin.email=false
-        inputEmail.classList.add('alert-line');
-        div.innerHTML = "이미 사용 중인 이메일입니다.";
-        email.appendChild(div);  
-        div.classList.add('email-alert-text');
-    }else if (!emailRegex.test(inputEmail.value)){
-        isJoin.email=false
-        inputEmail.classList.add('alert-line');
-        div.innerHTML = "올바른 이메일 주소가 아닙니다.";
-        email.appendChild(div);  
-        div.classList.add('email-alert-text');
-    }else{
-        isJoin.email=true
-        inputEmail.classList.remove('alert-line');
-        e.target.nextElementSibling.remove()
+function validation(choice){
+    let result = "" 
+    if(choice == email){
+        if(inputEmail.value === ""){
+            result=  message.email.null
+        }else if(!emailRegex.test(inputEmail.value)){
+            result = message.email.invalid
+        }else if(inputEmail.value === "test@codeit.com"){
+            result = message.email.duplicate
+        }else{
+            result = ""
+        }
+    }else if(choice == password){
+        if(inputPassword.value === ""){
+            result=  message.password.null
+        }else if(!passwordRegex.test(inputPassword.value)){
+            result = message.password.invalid
+        }else{
+            result = ""
+        }
+    }else if(choice == passwordCheck){
+        if(inputPasswordCheck.value==""){
+            result = message.password.check
+        }else if(inputPassword.value !== inputPasswordCheck.value){
+            result = message.password.match
+        }else{
+            result = ""
+        }
     }
-        
-}
-
-function passwordFocus(e){
-    if(inputPassword.value === ""){ 
-        isJoin.password = false
-        inputPassword.classList.add('alert-line');
-        span.innerHTML = "비밀번호를 입력해주세요.";
-        password.appendChild(span);
-        span.classList.add('password-alert-text');
-    }else if((!passwordRegex.test(inputPassword.value))){
-        isJoin.password = false
-        inputPassword.classList.add('alert-line');
-        span.innerHTML = "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요.";
-        password.appendChild(span);
-        span.classList.add('password-alert-text');
-    }else{
-        isJoin.password = true
-        inputPassword.classList.remove('alert-line');
-        e.currentTarget.parentElement.nextElementSibling.remove()
-    }
+    return result
 }
 
 
-function validatePassword(e){
-    if(inputPassword.value !== inputPasswordCheck.value){
-        isJoin.passwordCheck =false
-        span.innerHTML = "비밀번호가 일치하지 않아요.";
-        inputPasswordCheck.classList.add('alert-line')
-        span.classList.add('check-alert-text');
-        passwordCheck.appendChild(span);
-    }else{
-        isJoin.passwordCheck =true
-        inputPasswordCheck.classList.remove('alert-line');
-        e.currentTarget.parentElement.nextElementSibling.remove()
+function emailFocus(){
+    let alert = document.querySelector('.email-alert-text')
+    if(alert){
+        alert.remove();
     }
+    if(validation(email) === ""){
+        removeAlert(alert,inputEmail)
+    }else{
+        updateAlert(inputEmail, email,"email-alert-text", validation(email));
+    }       
+}
+
+function passwordFocus(){
+    let alert = document.querySelector('.password-alert-text')
+    if(alert){
+        alert.remove();
+    }
+    if(validation(password) === ""){
+        removeAlert(alert,inputPassword)
+    }else{
+        updateAlert(inputPassword, password,"password-alert-text", validation(password));
+    }       
+}
+
+function passwordCheckFocus(){
+    let alert = document.querySelector('.check-alert-text')
+    if(alert){
+        alert.remove();
+    }
+    if(validation(passwordCheck) === ""){
+        removeAlert(alert,inputPasswordCheck)
+    }else{
+        updateAlert(inputPasswordCheck, passwordCheck,"check-alert-text", validation(passwordCheck));
+    }   
 }
 
 
 function join(e) {
     e.preventDefault();
-    if (isJoin.email && isJoin.password && isJoin.passwordCheck) {
+    if (validation(email)=="" && validation(password)=="" && validation(passwordCheck) =="") {
         window.location.href = "../folder.html";
     }else{
-        if(!isJoin.email){
-            inputEmail.classList.add('alert-line');
-            div.innerHTML = "이메일을 확인해주세요.";
-            div.classList.add('email-alert-text');
-            email.appendChild(div);  
+        if(validation(email) !==""){
+           emailFocus();
         }
-        if(!isJoin.password){
-            inputPassword.classList.add('alert-line');
-            span.innerHTML = "비밀번호를 확인해주세요.";
-            password.appendChild(span);
-            span.classList.add('password-alert-text');
+        if(validation(password) !==""){
+            passwordFocus();
+         }
+         if(validation(passwordCheck) !==""){
+            passwordCheckFocus();
          }
     }
 }
 
-function onPassword(e){
-    passwordWitch = !passwordWitch;
-    if(!passwordWitch){
+
+let passwordToggle =false;
+function passwordActivation(e) {
+    passwordToggle = !passwordToggle
+    if (!passwordToggle) {
         e.target.setAttribute('src', '../images/password-icon.png');
-        inputPassword.setAttribute('type','password')
-    }else{
+        inputPassword.type = 'password';
+    } else {
         e.target.setAttribute('src', '../images/eye-on.png');
-        inputPassword.setAttribute('type','text')
+        inputPassword.type = 'text';
     }
 }
 
 inputEmail.addEventListener('focusout', emailFocus);
 inputPassword.addEventListener('focusout', passwordFocus);
-inputPasswordCheck.addEventListener('focusout', validatePassword);
-joinButton.addEventListener('click', join );
-passwordIcons.forEach(icon => {
-    icon.addEventListener('click', onPassword);
+inputPasswordCheck.addEventListener('focusout', passwordCheckFocus);
+passwordIcons.forEach((icon)=>{
+    icon.addEventListener('click' ,passwordActivation)
 })
-
-
+joinButton.addEventListener('click', join );
