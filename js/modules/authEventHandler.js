@@ -1,14 +1,11 @@
 import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domElements.js";
 import { validateEmail, validatePassword, validatePasswordVerify } from "./authVerifyUser.js";
-import { triggerInputValidationError, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
+import { triggerInputValidationError, resetInputValidationError } from "./authDOMHandler.js";
 
 const $inputForm = document.querySelector(".input-container");
 
 const initializeSignForm = () => {
-  const formFocusInHandler = $inputForm.addEventListener("focusin", (e) => {
-    toggleWarningborder(e.target);
-    deleteWarningText(e.target);
-  });
+  const formFocusInHandler = $inputForm.addEventListener("focusin", resetInputValidationError);
 
   const eyeIconClickHandler = $inputForm.addEventListener("click", ({ target }) => {
     if (!target.classList.contains("toggle-show-pwd")) return;
