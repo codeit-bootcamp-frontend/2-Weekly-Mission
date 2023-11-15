@@ -9,8 +9,10 @@ const isRegPassword = (value) => regPassword.test(value);
 const validateEmail = (email, checkCase) => {
   if (email === "") return { result: false, message: "이메일을 입력해주세요." };
   if (!isRegEmail(email)) return { result: false, message: "올바른 이메일 주소가 아닙니다." };
-  if (checkCase === "signUp" && checkEmailExist(email))
-    return { result: false, message: "이미 사용 중인 이메일입니다." };
+  if (checkCase === "signUp") {
+    checkEmailExist(email);
+    // return { result: false, message: "이미 사용 중인 이메일입니다." };
+  }
   return { result: true, message: null };
 };
 

@@ -30,6 +30,25 @@ const postLogin = async (user) => {
   }
 };
 
-const checkEmailExist = (email) => Object.values(userData).some((user) => user.email === email);
+const checkEmailExist = async (email) => {
+  try {
+    const userEmail = {
+      email: email,
+    };
+    const response = await fetch(`${API_URL}/api/check-email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userEmail),
+    });
+    if (!response.ok) {
+      throw new Error();
+    }
+    alert("사용가능한 이메일입니다.");
+  } catch (error) {
+    triggerInputValidationError($emailInput, "이미 사용 중인 이메일입니다.");
+  }
+};
 
 export { postLogin, checkEmailExist };
