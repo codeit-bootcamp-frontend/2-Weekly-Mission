@@ -5,15 +5,15 @@ import {
   inputClassAdd,
   inputClassRemove,
   pwToggleClick,
-} from "./common/common.js";
+} from "./common/sign.js";
 import { userInfo } from "./common/userInfo.js";
 
 const { signEmail, signEmailText, signPw, signPwText, pwToggle, signBtn } =
   domElements;
 
-// 비밀번호 체크
 const signPwCheck = document.getElementById("sign-pwCheck");
 const signPwCheckText = document.getElementById("sign-pwCheck-text");
+const pwCheckToggled = document.getElementById("password-check-toggled");
 
 /**
  * 이메일 focusout
@@ -105,6 +105,5 @@ signEmail.addEventListener("focusout", emailValidation);
 signPw.addEventListener("focusout", pwValidation);
 signPwCheck.addEventListener("focusout", pwCheckValidation);
 signBtn.addEventListener("click", signBtnClick);
-pwToggle.forEach((pwToggle) => {
-  pwToggle.addEventListener("click", pwToggleClick);
-});
+pwToggle.addEventListener("click", pwToggleClick);
+pwCheckToggled.addEventListener("click", pwToggleClick);

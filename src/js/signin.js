@@ -5,7 +5,7 @@ import {
   inputClassAdd,
   inputClassRemove,
   pwToggleClick,
-} from "./common/common.js";
+} from "./common/sign.js";
 
 const { signEmail, signEmailText, signPw, signPwText, pwToggle, signBtn } =
   domElements;
@@ -57,6 +57,4 @@ function signBtnClcik() {
 signBtn.addEventListener("click", signBtnClcik);
 signEmail.addEventListener("focusout", signEmailClcik);
 signPw.addEventListener("focusout", signPwClcik);
-pwToggle.forEach((pwToggle) => {
-  pwToggle.addEventListener("click", pwToggleClick);
-});
+pwToggle.addEventListener("click", pwToggleClick);

@@ -11,7 +11,7 @@ const domElements = {
   signPwText: document.getElementById("signPwText"),
 
   // 비밀번호 toggle
-  pwToggle: document.querySelectorAll(".password-toggled"),
+  pwToggle: document.getElementById("password-toggled"),
 
   // button from
   signBtn: document.getElementById("signBtn"),
