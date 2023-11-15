@@ -3,6 +3,13 @@ import { triggerInputValidationError } from "./authDOMHandler.js";
 
 const API_URL = "https://bootcamp-api.codeit.kr/api";
 
+const redirectIfAccessTokenExists = (directURL) => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    location.replace(directURL);
+  }
+};
+
 const postSignIn = async (user) => {
   try {
     const response = await fetch(`${API_URL}/sign-in`, {
@@ -84,4 +91,4 @@ const postSignUp = async (user, emailValidation, passwordValidation, passwordVer
   }
 };
 
-export { postSignIn, checkEmailExist, postSignUp };
+export { postSignIn, checkEmailExist, postSignUp, redirectIfAccessTokenExists };

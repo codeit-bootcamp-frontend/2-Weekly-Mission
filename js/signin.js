@@ -1,13 +1,6 @@
 import { $submitBtn, $emailInput, $passwordInput } from "./modules/domElements.js";
 import { initializeSignForm as initializeSignInForm } from "./modules/authEventHandler.js";
-import { postSignIn } from "./modules/authApiUtils.js";
-
-const redirectIfAccessTokenExists = (directURL) => {
-  const accessToken = localStorage.getItem("accessToken");
-  if (accessToken) {
-    location.replace(directURL);
-  }
-};
+import { postSignIn, redirectIfAccessTokenExists } from "./modules/authApiUtils.js";
 
 redirectIfAccessTokenExists("./folder.html");
 

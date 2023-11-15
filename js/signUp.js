@@ -1,7 +1,9 @@
 import { $submitBtn, $emailInput, $passwordInput, $passwordVerifyInput } from "./modules/domElements.js";
 import { initializeSignForm as initializeSignUpForm } from "./modules/authEventHandler.js";
-import { postSignUp } from "./modules/authApiUtils.js";
+import { postSignUp, redirectIfAccessTokenExists } from "./modules/authApiUtils.js";
 import { validateEmail, validatePassword, validatePasswordVerify } from "./modules/validator.js";
+
+redirectIfAccessTokenExists("./folder.html");
 
 initializeSignUpForm();
 
