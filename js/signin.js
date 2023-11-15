@@ -16,8 +16,7 @@ const submitSignInHandler = $submitBtn.addEventListener("click", (e) => {
 // if (verifyLoginCredentials($emailInput.value, $passwordInput.value)) {
 //   $submitBtn.parentElement.action = "./folder.html";
 // } else {
-//   triggerInputValidationError($emailInput, "이메일을 확인해주세요");
-//   triggerInputValidationError($passwordInput, "비밀번호를 확인해주세요.");
+
 // }
 
 const tryLogin = async (user) => {
@@ -29,6 +28,12 @@ const tryLogin = async (user) => {
       },
       body: JSON.stringify(user),
     });
-    console.log(response);
-  } catch (error) {}
+    if (!response.ok) {
+      throw new Error();
+    }
+    // console.log(response);
+  } catch (error) {
+    triggerInputValidationError($emailInput, "이메일을 확인해주세요");
+    triggerInputValidationError($passwordInput, "비밀번호를 확인해주세요.");
+  }
 };
