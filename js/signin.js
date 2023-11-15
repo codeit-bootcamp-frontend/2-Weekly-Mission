@@ -3,8 +3,16 @@ import { initializeSignForm as initializeSignInForm } from "./modules/authEventH
 import { triggerInputValidationError } from "./modules/authDOMHandler.js";
 import { verifyLoginCredentials } from "./modules/authVerifyUser.js";
 
-initializeSignInForm();
+const redirectIfAccessTokenExists = (directURL) => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    location.replace(directURL);
+  }
+};
 
+redirectIfAccessTokenExists("./folder.html");
+
+initializeSignInForm();
 const submitSignInHandler = $submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const user = {
@@ -13,11 +21,6 @@ const submitSignInHandler = $submitBtn.addEventListener("click", (e) => {
   };
   tryLogin(user);
 });
-// if (verifyLoginCredentials($emailInput.value, $passwordInput.value)) {
-//   $submitBtn.parentElement.action = "./folder.html";
-// } else {
-
-// }
 
 const tryLogin = async (user) => {
   try {
@@ -31,7 +34,14 @@ const tryLogin = async (user) => {
     if (!response.ok) {
       throw new Error();
     }
-    // console.log(response);
+    const result = await response.json();
+    const { data } = result;
+
+    for (const key in data) {
+      localStorage.setItem(key, data[key]);
+    }
+
+    location.href = "./folder.html";
   } catch (error) {
     triggerInputValidationError($emailInput, "이메일을 확인해주세요");
     triggerInputValidationError($passwordInput, "비밀번호를 확인해주세요.");
