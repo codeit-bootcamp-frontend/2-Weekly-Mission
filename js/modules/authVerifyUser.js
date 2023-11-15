@@ -1,12 +1,12 @@
 import userData from "../database/userData.js";
-import { $emailInput, $passwordInput } from "./domElements.js";
+import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domElements.js";
 import { triggerInputValidationError } from "./authDOMHandler.js";
 
-const API_URL = "https://bootcamp-api.codeit.kr";
+const API_URL = "https://bootcamp-api.codeit.kr/api";
 
 const postLogin = async (user) => {
   try {
-    const response = await fetch(`${API_URL}/api/sign-in`, {
+    const response = await fetch(`${API_URL}/sign-in`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const checkEmailExist = async (email) => {
     const userEmail = {
       email: email,
     };
-    const response = await fetch(`${API_URL}/api/check-email`, {
+    const response = await fetch(`${API_URL}/check-email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,4 +52,37 @@ const checkEmailExist = async (email) => {
   }
 };
 
-export { postLogin, checkEmailExist };
+const trySignUp = async (user, emailValidation, passwordValidation, passwordVerifyValidation) => {
+  try {
+    if (!(emailValidation.result && passwordValidation.result && passwordVerifyValidation.result)) {
+      throw new Error();
+    }
+    const response = await fetch(`${API_URL}/sign-up`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+    if (!response.ok) {
+      throw new Error();
+    }
+
+    const result = await response.json();
+
+    const { data } = result;
+
+    for (const key in data) {
+      localStorage.setItem(key, data[key]);
+    }
+
+    location.href = "./folder.html";
+  } catch {
+    if (!emailValidation.result) triggerInputValidationError($emailInput, emailValidation.message);
+    if (!passwordValidation.result) triggerInputValidationError($passwordInput, passwordValidation.message);
+    if (!passwordVerifyValidation.result)
+      triggerInputValidationError($passwordVerifyInput, passwordVerifyValidation.message);
+  }
+};
+
+export { postLogin, checkEmailExist, trySignUp };
