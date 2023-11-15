@@ -39,16 +39,17 @@ function inputClassRemove(inputId, textId, text) {
  * toggle 버튼 클릭
  *
  */
-let isToggled = false;
-function pwToggleClick({ target }) {
-  isToggled = !isToggled;
+function pwToggleClick(input, toggledBtn) {
+  const toggleImg = toggledBtn.getElementsByTagName("img")[0];
+  const eyeOnPath = "/images/eye-on.svg";
+  const eyeOffPath = "/images/eye-off.svg";
 
-  if (isToggled) {
-    target.src = "/images/eye-on.svg";
-    target.parentElement.previousSibling.previousSibling.type = "text";
+  if (input.getAttribute("type") === "password") {
+    input.setAttribute("type", "text");
+    toggleImg.setAttribute("src", eyeOnPath);
   } else {
-    target.src = "/images/eye-off.svg";
-    target.parentElement.previousSibling.previousSibling.type = "password";
+    input.setAttribute("type", "password");
+    toggleImg.setAttribute("src", eyeOffPath);
   }
 }
 export { domElements, inputClassAdd, inputClassRemove, pwToggleClick };

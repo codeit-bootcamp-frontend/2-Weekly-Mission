@@ -105,5 +105,7 @@ signEmail.addEventListener("focusout", emailValidation);
 signPw.addEventListener("focusout", pwValidation);
 signPwCheck.addEventListener("focusout", pwCheckValidation);
 signBtn.addEventListener("click", signBtnClick);
-pwToggle.addEventListener("click", pwToggleClick);
-pwCheckToggled.addEventListener("click", pwToggleClick);
+pwToggle.addEventListener("click", () => pwToggleClick(signPw, pwToggle));
+pwCheckToggled.addEventListener("click", () =>
+  pwToggleClick(signPwCheck, pwCheckToggled)
+);

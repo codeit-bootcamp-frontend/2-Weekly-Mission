@@ -57,4 +57,4 @@ function signBtnClcik() {
 signBtn.addEventListener("click", signBtnClcik);
 signEmail.addEventListener("focusout", signEmailClcik);
 signPw.addEventListener("focusout", signPwClcik);
-pwToggle.addEventListener("click", pwToggleClick);
+pwToggle.addEventListener("click", () => pwToggleClick(signPw, pwToggle));
