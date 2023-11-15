@@ -1,5 +1,5 @@
 import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domElements.js";
-import { validateEmail, validatePassword, validatePasswordVerify } from "./authVerifyUser.js";
+import { validateEmail, validatePassword, validatePasswordVerify } from "./validator.js";
 import { triggerInputValidationError, resetInputValidationError } from "./authDOMHandler.js";
 
 const $inputForm = document.querySelector(".input-container");
