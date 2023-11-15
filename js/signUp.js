@@ -1,5 +1,6 @@
 import { $submitBtn, $emailInput, $passwordInput, $passwordVerifyInput } from "./modules/domElements.js";
-import { initializeSignForm as initializeSignUpForm, triggerInputValidationError } from "./modules/authEventHandler.js";
+import { initializeSignForm as initializeSignUpForm } from "./modules/authEventHandler.js";
+import { triggerInputValidationError } from "./modules/authDOMHandler.js";
 import { validateEmail, validatePassword, validatePasswordVerify } from "./modules/validator.js";
 
 initializeSignUpForm();

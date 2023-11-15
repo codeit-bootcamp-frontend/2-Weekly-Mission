@@ -44,4 +44,4 @@ const initializeSignForm = () => {
   });
 };
 
-export { initializeSignForm, triggerInputValidationError };
+export { initializeSignForm };
