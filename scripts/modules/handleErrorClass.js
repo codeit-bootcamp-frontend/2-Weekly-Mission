@@ -1,22 +1,31 @@
 const CLASSNAME_ERROR = "error";
 const CLASSNAME_ERROR_MSG = "error-msg";
 
-function addErrorClass(target, msg=""){
+function renderErrorMSGNode(target, msg){
     target.classList.add(CLASSNAME_ERROR)
+    const parentLabel = target.closest(".signForm_label");
+
+    const errorMSGNode = parentLabel.querySelector(`.${CLASSNAME_ERROR_MSG}`) ?? document.createElement("p")
+    const prevErrorMSG = errorMSGNode?.textContent
+
+    if (msg === prevErrorMSG){
+        return
+    }
     if (msg){
-        const errorMSG = document.createElement("p")
-        errorMSG.classList.add(CLASSNAME_ERROR_MSG)
-        errorMSG.textContent = msg
-        target.parentElement.append(errorMSG)
+        errorMSGNode.classList.add(CLASSNAME_ERROR_MSG)
+        errorMSGNode.textContent = msg
+        if (!parentLabel.querySelector(`.${CLASSNAME_ERROR_MSG}`)){
+            parentLabel.append(errorMSGNode) 
+        }
     }
 }
 
-function removeErrorClass(target){
+function removeErrorMSGNode(target){
     target.classList.remove(CLASSNAME_ERROR);
-    const errorMSG = target.parentElement.querySelector(`.${CLASSNAME_ERROR_MSG}`);
-    if (errorMSG) {
-        errorMSG.remove()
+    const errorMSGNode = target.parentElement.querySelector(`.${CLASSNAME_ERROR_MSG}`);
+    if (errorMSGNode) {
+        errorMSGNode.remove()
     }
 }
 
-export {addErrorClass, removeErrorClass};
+export {renderErrorMSGNode, removeErrorMSGNode};

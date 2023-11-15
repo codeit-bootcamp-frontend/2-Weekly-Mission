@@ -48,6 +48,25 @@ function removeErrorClass(target){
         errorMSG.remove()
     }
 }
+
+function focusoutEmailInput(e){
+    const emailInput = e.target
+    const email = e.target.value;
+    if (email === ""){
+        addErrorClass(emailInput, "이메일을 입력해주세요")
+        return
+    }
+    if (!emailInput.validity.valid){
+        addErrorClass(emailInput, "올바른 이메일 주소가 아닙니다.")
+        return
+    }    
+    if (email === "test@codeit.com"){
+        addErrorClass(emailInput, "이미 사용중인 이메일입니다")
+        return
+    }
+    removeErrorClass(emailInput)
+};
+
 function focusoutPasswordInput(e){
     const passwordInput = e.target
     const password = e.target.value
@@ -63,23 +82,6 @@ function focusoutPasswordInput(e){
 }
 
 
-function focusoutEmailInput(e){
-    const emailInput = e.target
-    const email = e.target.value;
-    removeErrorClass(emailInput)
-    if (email === ""){
-        addErrorClass(emailInput, "이메일을 입력해주세요")
-        return
-    }
-    if (!emailInput.validity.valid){
-        addErrorClass(emailInput, "올바른 이메일 주소가 아닙니다.")
-        return
-    }    
-    if (email === "test@codeit.com"){
-        addErrorClass(emailInput, "이미 사용중인 이메일입니다")
-        return
-    }
-};
 
 emailInputNode.addEventListener("focusout", focusoutEmailInput)
 passwordInputNode.addEventListener("focusout", focusoutPasswordInput)

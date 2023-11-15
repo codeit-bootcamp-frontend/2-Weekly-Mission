@@ -14,8 +14,8 @@ function handleSubmitSignUp(e){
     }
 }
 
-emailInputNode.addEventListener("focusout", validator.validateEmail)
-passwordInputNode.addEventListener("focusout", validator.validatePassword)
-passwordCheckInputNode.addEventListener("input", validator.validatePasswordCheck);
+emailInputNode.addEventListener("focusout", validator.validateEmailOnFocusout)
+passwordInputNode.addEventListener("focusout", validator.validatePasswordOnFocusout)
+passwordCheckInputNode.addEventListener("input", validator.validatePasswordCheckOnInput);
 togglePasswordBtn.forEach(btn => {btn.addEventListener("click", togglePasswordHidden)});
 signForm.addEventListener("submit", handleSubmitSignUp)

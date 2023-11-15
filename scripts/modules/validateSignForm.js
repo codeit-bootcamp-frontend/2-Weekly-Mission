@@ -1,48 +1,49 @@
-import { addErrorClass,removeErrorClass } from "./handleErrorClass.js";
+import { renderErrorMSGNode, removeErrorMSGNode } from "./handleErrorClass.js";
 
 const passwordInputNode = document.querySelectorAll(".signForm_input.password")[0]
 
-function validateEmail(e){
+function validateEmailOnFocusout(e){
     const emailInput = e.target
     const email = e.target.value;
-    removeErrorClass(emailInput)
     if (email === ""){
-        addErrorClass(emailInput, "이메일을 입력해주세요")
+        renderErrorMSGNode(emailInput, "이메일을 입력해주세요")
         return
     }
     if (!emailInput.validity.valid){
-        addErrorClass(emailInput, "올바른 이메일 주소가 아닙니다.")
+        renderErrorMSGNode(emailInput, "올바른 이메일 주소가 아닙니다.")
         return
     }    
     if (email === "test@codeit.com"){
-        addErrorClass(emailInput, "이미 사용중인 이메일입니다")
+        renderErrorMSGNode(emailInput, "이미 사용중인 이메일입니다")
         return
     }
+    removeErrorMSGNode(emailInput)
 };
 
-function validatePassword(e){
+function validatePasswordOnFocusout(e){
     const passwordInput = e.target
     const password = e.target.value
-    removeErrorClass(passwordInput)
     if (password === ""){
-        addErrorClass(passwordInput, "비밀번호를 입력해주세요")
+        renderErrorMSGNode(passwordInput, "비밀번호를 입력해주세요")
+        console.log("리스너")
         return
     }
     if (!passwordInput.validity.valid){
-        addErrorClass(passwordInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.")
+        renderErrorMSGNode(passwordInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.")
         return
     }
+    removeErrorMSGNode(passwordInput)
 }
 
-function validatePasswordCheck(e){
+function validatePasswordCheckOnInput(e){
     const password = passwordInputNode.value
     const passwordCheckInput = e.target
     const passwordCheck = e.target.value
-    removeErrorClass(passwordCheckInput)
     if (!(passwordCheck === password)){
-        addErrorClass(passwordCheckInput, "비밀번호가 일치하지 않아요")
+        renderErrorMSGNode(passwordCheckInput, "비밀번호가 일치하지 않아요")
         return
     }
+    removeErrorMSGNode(passwordCheckInput)
 }
 
-export default {validateEmail, validatePassword, validatePasswordCheck}
+export default {validateEmailOnFocusout, validatePasswordOnFocusout, validatePasswordCheckOnInput}
