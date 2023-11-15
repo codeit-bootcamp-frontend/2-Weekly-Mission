@@ -3,9 +3,11 @@ import { checkEmailExist } from "./authApiUtils.js";
 const regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 const regPassword = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
 
+// 정규식 검증 함수들
 const isRegEmail = (value) => regEmail.test(value);
 const isRegPassword = (value) => regPassword.test(value);
 
+// 입력값 유효성 검증 함수들
 const validateEmail = (email, checkCase) => {
   if (email === "") return { result: false, message: "이메일을 입력해주세요." };
   if (!isRegEmail(email)) return { result: false, message: "올바른 이메일 주소가 아닙니다." };
