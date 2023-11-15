@@ -1,4 +1,3 @@
-import userData from "../database/userData.js";
 import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domElements.js";
 import { triggerInputValidationError } from "./authDOMHandler.js";
 
