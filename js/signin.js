@@ -6,11 +6,29 @@ import { verifyLoginCredentials } from "./modules/authVerifyUser.js";
 initializeSignInForm();
 
 const submitSignInHandler = $submitBtn.addEventListener("click", (e) => {
-  if (verifyLoginCredentials($emailInput.value, $passwordInput.value)) {
-    $submitBtn.parentElement.action = "./folder.html";
-  } else {
-    e.preventDefault();
-    triggerInputValidationError($emailInput, "이메일을 확인해주세요");
-    triggerInputValidationError($passwordInput, "비밀번호를 확인해주세요.");
-  }
+  e.preventDefault();
+  const user = {
+    email: $emailInput.value,
+    password: $passwordInput.value,
+  };
+  tryLogin(user);
 });
+// if (verifyLoginCredentials($emailInput.value, $passwordInput.value)) {
+//   $submitBtn.parentElement.action = "./folder.html";
+// } else {
+//   triggerInputValidationError($emailInput, "이메일을 확인해주세요");
+//   triggerInputValidationError($passwordInput, "비밀번호를 확인해주세요.");
+// }
+
+const tryLogin = async (user) => {
+  try {
+    const response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+    console.log(response);
+  } catch (error) {}
+};
