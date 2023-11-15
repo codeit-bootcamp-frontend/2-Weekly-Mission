@@ -39,7 +39,9 @@ passwordInput.addEventListener("focusout", function () {
 const checkEmail = document.getElementById("checkEmail");
 const checkPassword = document.getElementById("checkPassword");
 
-function checkAccount() {
+function checkAccount(event) {
+  event.preventDefault();
+
   const emailValue = emailInput.value;
   const passwordValue = passwordInput.value;
   const rightAccount = {
