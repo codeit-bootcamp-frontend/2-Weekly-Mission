@@ -48,6 +48,7 @@ const checkEmailExist = async (email) => {
     alert("사용가능한 이메일입니다.");
   } catch (error) {
     triggerInputValidationError($emailInput, "이미 사용 중인 이메일입니다.");
+    return;
   }
 };
 
