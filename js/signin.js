@@ -1,6 +1,6 @@
 import { $submitBtn, $emailInput, $passwordInput } from "./modules/domElements.js";
 import { initializeSignForm as initializeSignInForm } from "./modules/authEventHandler.js";
-import { postLogin } from "./modules/authVerifyUser.js";
+import { postSignIn } from "./modules/authApiUtils.js";
 
 const redirectIfAccessTokenExists = (directURL) => {
   const accessToken = localStorage.getItem("accessToken");
@@ -23,5 +23,5 @@ const submitSignInHandler = $submitBtn.addEventListener("click", (e) => {
   };
 
   // login 시도
-  postLogin(user);
+  postSignIn(user);
 });

@@ -1,6 +1,6 @@
 import { $submitBtn, $emailInput, $passwordInput, $passwordVerifyInput } from "./modules/domElements.js";
 import { initializeSignForm as initializeSignUpForm } from "./modules/authEventHandler.js";
-import { trySignUp } from "./modules/authVerifyUser.js";
+import { postSignUp } from "./modules/authApiUtils.js";
 import { validateEmail, validatePassword, validatePasswordVerify } from "./modules/validator.js";
 
 initializeSignUpForm();
@@ -17,5 +17,5 @@ const submitSignUpHandler = $submitBtn.addEventListener("click", (e) => {
     password: $passwordInput.value,
   };
 
-  trySignUp(newUser, emailValidation, passwordValidation, passwordVerifyValidation);
+  postSignUp(newUser, emailValidation, passwordValidation, passwordVerifyValidation);
 });

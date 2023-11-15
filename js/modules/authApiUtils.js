@@ -3,7 +3,7 @@ import { triggerInputValidationError } from "./authDOMHandler.js";
 
 const API_URL = "https://bootcamp-api.codeit.kr/api";
 
-const postLogin = async (user) => {
+const postSignIn = async (user) => {
   try {
     const response = await fetch(`${API_URL}/sign-in`, {
       method: "POST",
@@ -51,7 +51,7 @@ const checkEmailExist = async (email) => {
   }
 };
 
-const trySignUp = async (user, emailValidation, passwordValidation, passwordVerifyValidation) => {
+const postSignUp = async (user, emailValidation, passwordValidation, passwordVerifyValidation) => {
   try {
     if (!(emailValidation.result && passwordValidation.result && passwordVerifyValidation.result)) {
       throw new Error();
@@ -84,4 +84,4 @@ const trySignUp = async (user, emailValidation, passwordValidation, passwordVeri
   }
 };
 
-export { postLogin, checkEmailExist, trySignUp };
+export { postSignIn, checkEmailExist, postSignUp };
