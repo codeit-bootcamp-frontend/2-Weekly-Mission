@@ -2,8 +2,8 @@ import { signErrMsg } from "./common/errMsg.js";
 import { signRegex } from "./common/regex.js";
 import {
   domElements,
-  inputClassAdd,
-  inputClassRemove,
+  inputFocusOutClassAdd,
+  inputFocusOutClassRemove,
   pwToggleClick,
 } from "./common/sign.js";
 import { userInfo } from "./common/userInfo.js";
@@ -18,23 +18,23 @@ const pwCheckToggled = document.getElementById("password-check-toggled");
 /**
  * 이메일 focusout
  */
-function emailValidation() {
+function signEmailClick() {
   const value = signEmail.value;
-  const { email } = userInfo;
+  const { userEmail } = userInfo;
   const { emailErrMsg1, emailErrMsg2, emailErrMsg3 } = signErrMsg;
   const { emailRegex } = signRegex;
 
   if (value === "") {
-    inputClassAdd(signEmail, signEmailText, emailErrMsg1);
+    inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg1);
     return false;
   } else if (!emailRegex.test(value)) {
-    inputClassAdd(signEmail, signEmailText, emailErrMsg2);
+    inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg2);
     return false;
-  } else if (value === email) {
-    inputClassAdd(signEmail, signEmailText, emailErrMsg3);
+  } else if (value === userEmail) {
+    inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg3);
     return false;
   } else {
-    inputClassRemove(signEmail, signEmailText, "");
+    inputFocusOutClassRemove(signEmail, signEmailText, "");
   }
 
   return true;
@@ -43,7 +43,7 @@ function emailValidation() {
 /**
  * 비밀번호 focusout
  */
-function pwValidation() {
+function signPwClick() {
   const value = signPw.value;
   const { pwErrMsg1 } = signErrMsg;
   const { pwMinLength, pwRegexOnlyStr, pwRegexOnlyNum } = signRegex;
@@ -53,15 +53,15 @@ function pwValidation() {
     pwRegexOnlyStr.test(value) ||
     pwRegexOnlyNum.test(value)
   ) {
-    inputClassAdd(signPw, signPwText, pwErrMsg1);
+    inputFocusOutClassAdd(signPw, signPwText, pwErrMsg1);
     return false;
   } else {
-    inputClassRemove(signPw, signPwText, "");
+    inputFocusOutClassRemove(signPw, signPwText, "");
   }
 
   // 비밀번호 체크와 값이 동일한경우
   if (value === signPwCheck.value)
-    inputClassRemove(signPwCheck, signPwCheckText, "");
+    inputFocusOutClassRemove(signPwCheck, signPwCheckText, "");
 
   return true;
 }
@@ -69,14 +69,14 @@ function pwValidation() {
 /**
  * 비밀번호 확인 focusout
  */
-function pwCheckValidation() {
+function singPwCheckClick() {
   const value = signPwCheck.value;
   const { pwCheckErrMsg1 } = signErrMsg;
 
   if (value === signPw.value) {
-    inputClassRemove(signPwCheck, signPwCheckText, "");
+    inputFocusOutClassRemove(signPwCheck, signPwCheckText, "");
   } else {
-    inputClassAdd(signPwCheck, signPwCheckText, pwCheckErrMsg1);
+    inputFocusOutClassAdd(signPwCheck, signPwCheckText, pwCheckErrMsg1);
     return false;
   }
 
@@ -90,9 +90,9 @@ function pwCheckValidation() {
  */
 function signBtnClick() {
   const signUpValues = {
-    email: emailValidation(),
-    password: pwValidation(),
-    passwordCheck: pwCheckValidation(),
+    email: signEmailClick(),
+    password: signPwClick(),
+    passwordCheck: singPwCheckClick(),
   };
 
   if (signUpValues.email && signUpValues.password && signUpValues.passwordCheck)
@@ -100,9 +100,9 @@ function signBtnClick() {
 }
 
 // 이벤트리스너
-signEmail.addEventListener("focusout", emailValidation);
-signPw.addEventListener("focusout", pwValidation);
-signPwCheck.addEventListener("focusout", pwCheckValidation);
+signEmail.addEventListener("focusout", signEmailClick);
+signPw.addEventListener("focusout", signPwClick);
+signPwCheck.addEventListener("focusout", singPwCheckClick);
 signBtn.addEventListener("click", signBtnClick);
 pwToggle.addEventListener("click", () => pwToggleClick(signPw, pwToggle));
 pwCheckToggled.addEventListener("click", () =>

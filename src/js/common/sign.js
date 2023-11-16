@@ -20,7 +20,7 @@ const domElements = {
 /**
  * input focusout일때 관련 class를 추가하는 함수
  */
-function inputClassAdd(inputId, textId, text) {
+function inputFocusOutClassAdd(inputId, textId, text) {
   inputId.classList.add("input-validation-fail");
   textId.textContent = text;
   textId.classList.add("font14-we4", "section__input-check-text");
@@ -29,7 +29,7 @@ function inputClassAdd(inputId, textId, text) {
 /**
  * input focusout일때 관련 class를 제거하는 함수
  */
-function inputClassRemove(inputId, textId, text) {
+function inputFocusOutClassRemove(inputId, textId, text) {
   inputId.classList.remove("input-validation-fail");
   textId.textContent = text;
   textId.classList.remove("font14-we4", "section__input-check-text");
@@ -52,4 +52,9 @@ function pwToggleClick(input, toggledBtn) {
     toggleImg.setAttribute("src", eyeOffPath);
   }
 }
-export { domElements, inputClassAdd, inputClassRemove, pwToggleClick };
+export {
+  domElements,
+  inputFocusOutClassAdd,
+  inputFocusOutClassRemove,
+  pwToggleClick,
+};
