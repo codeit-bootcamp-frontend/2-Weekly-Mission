@@ -21,9 +21,11 @@ const domElements = {
  * input focusout일때 관련 class를 추가하는 함수
  */
 function inputFocusOutClassAdd(inputId, textId, text) {
+  debugger;
   inputId.classList.add("input-validation-fail");
   textId.textContent = text;
   textId.classList.add("font14-we4", "section__input-check-text");
+  return false;
 }
 
 /**
@@ -33,6 +35,7 @@ function inputFocusOutClassRemove(inputId, textId, text) {
   inputId.classList.remove("input-validation-fail");
   textId.textContent = text;
   textId.classList.remove("font14-we4", "section__input-check-text");
+  return true;
 }
 
 /**

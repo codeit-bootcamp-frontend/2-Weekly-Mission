@@ -17,10 +17,10 @@ function signEmailClick() {
   const { emailErrMsg1 } = signErrMsg;
 
   if (signEmail.value === "") {
-    inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg1);
-  } else {
-    inputFocusOutClassRemove(signEmail, signEmailText, "");
+    return inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg1);
   }
+
+  return inputFocusOutClassRemove(signEmail, signEmailText, "");
 }
 
 /**
@@ -30,10 +30,10 @@ function signPwClick() {
   const { pwErrMsg2 } = signErrMsg;
 
   if (signPw.value === "") {
-    inputFocusOutClassAdd(signPw, signPwText, pwErrMsg2);
-  } else {
-    inputFocusOutClassRemove(signPw, signPwText, "");
+    return inputFocusOutClassAdd(signPw, signPwText, pwErrMsg2);
   }
+
+  return inputFocusOutClassRemove(signPw, signPwText, "");
 }
 
 /**

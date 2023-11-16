@@ -16,7 +16,7 @@ const signPwCheckText = document.getElementById("sign-pwCheck-text");
 const pwCheckToggled = document.getElementById("password-check-toggled");
 
 /**
- * 이메일 focusout
+ * (수정)이메일 focusout
  */
 function signEmailClick() {
   const value = signEmail.value;
@@ -24,20 +24,16 @@ function signEmailClick() {
   const { emailErrMsg1, emailErrMsg2, emailErrMsg3 } = signErrMsg;
   const { emailRegex } = signRegex;
 
-  if (value === "") {
-    inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg1);
-    return false;
-  } else if (!emailRegex.test(value)) {
-    inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg2);
-    return false;
-  } else if (value === userEmail) {
-    inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg3);
-    return false;
-  } else {
-    inputFocusOutClassRemove(signEmail, signEmailText, "");
-  }
+  if (value === "")
+    return inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg1);
 
-  return true;
+  if (!emailRegex.test(value))
+    return inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg2);
+
+  if (value === userEmail)
+    return inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg3);
+
+  return inputFocusOutClassRemove(signEmail, signEmailText, "");
 }
 
 /**
@@ -53,17 +49,15 @@ function signPwClick() {
     pwRegexOnlyStr.test(value) ||
     pwRegexOnlyNum.test(value)
   ) {
-    inputFocusOutClassAdd(signPw, signPwText, pwErrMsg1);
-    return false;
-  } else {
-    inputFocusOutClassRemove(signPw, signPwText, "");
+    return inputFocusOutClassAdd(signPw, signPwText, pwErrMsg1);
   }
 
   // 비밀번호 체크와 값이 동일한경우
-  if (value === signPwCheck.value)
+  if (value === signPwCheck.value) {
     inputFocusOutClassRemove(signPwCheck, signPwCheckText, "");
+  }
 
-  return true;
+  return inputFocusOutClassRemove(signPw, signPwText, "");
 }
 
 /**
@@ -73,16 +67,11 @@ function singPwCheckClick() {
   const value = signPwCheck.value;
   const { pwCheckErrMsg1 } = signErrMsg;
 
-  if (value === signPw.value) {
-    inputFocusOutClassRemove(signPwCheck, signPwCheckText, "");
-  } else {
-    inputFocusOutClassAdd(signPwCheck, signPwCheckText, pwCheckErrMsg1);
-    return false;
+  if (value !== signPw.value) {
+    return inputFocusOutClassAdd(signPwCheck, signPwCheckText, pwCheckErrMsg1);
   }
 
-  if (value === "") return false;
-
-  return true;
+  return inputFocusOutClassRemove(signPwCheck, signPwCheckText, "");
 }
 
 /**
