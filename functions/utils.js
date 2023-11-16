@@ -11,7 +11,7 @@ export function updateAlert(inputElement, parentElement, className, message) {
 
 export function removeAlert(alert, inputElement) {
   inputElement.classList.remove("alert-line");
-  alert.remove();
+  alert?.remove();
 }
 
 export let message = {

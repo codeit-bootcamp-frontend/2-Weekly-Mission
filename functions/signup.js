@@ -8,38 +8,53 @@ const inputPasswordCheck = document.querySelector("#password-check__input");
 const joinButton = document.querySelector("#join-page-button");
 const passwordIcons = document.querySelectorAll(".password-icon");
 
-function validateEmail(selectInput) {
-  let inputValue = selectInput;
+let isLogin={
+  email:false,
+  password:false,
+  passwordCheck:false
+}
+
+
+
+function validateEmail(inputValue) {
   if (inputValue == "") {
+    isLogin.email =false
     return message.email.null;
   }else if(!emailRegex.test(inputValue)){
+    isLogin.email =false
     return message.email.invalid;
-  }else if(emailValue === "test@codeit.com"){
+  }else if(inputValue === "test@codeit.com"){
     return message.email.duplicate;
   }else{
+    isLogin.email =true
     return ""
   }
 }
 
-function validatePassword(selectInput){
-  let inputValue = selectInput
+function validatePassword(inputValue){
   if (inputValue == "") {
+    isLogin.password =false
     return message.password.null;
   }else if(!passwordRegex.test(inputValue)){
+    isLogin.password =false
     return message.password.invalid;
   }else{
+    isLogin.password = true
     return ""
   }
 }
 
-function validatePasswordCheck(selectInput){
-  let inputValue = selectInput
+function validatePasswordCheck(inputValue){
   if (inputValue == "") {
+    isLogin.passwordCheck =false
     return message.password.check;
   }else if(inputPassword.value != inputValue){
+    isLogin.passwordCheck =false
     return message.password.match;
-  }
+  }else{
+    isLogin.passwordCheck = true
     return ""
+  }
 }
 
 function emailFocus(e) {
@@ -83,32 +98,34 @@ function passwordCheckFocus(e) {
 
 function join(e) {
   e.preventDefault();
-  if (validateEmail == "" && validatePassword == "" && validatePasswordCheck == "") {
+  if (isLogin.email && isLogin.password && isLogin.passwordCheck) {
     window.location.href = "../folder.html";
-  } else {
-    if (inputEmail !== "") {
-      emailFocus();
-    }
-    if (inputPassword !== "") {
-      passwordFocus();
-    }
-    if (inputPasswordCheck !== ""){
-      passwordCheckFocus();
-    }
   }
+  if (!isLogin.email) {
+    emailFocus();
+  }
+  
+  if (!isLogin.password) {
+    console.log('Password is false.');
+    passwordFocus();
+  }
+  
+  if (!isLogin.passwordCheck) {
+    console.log('PasswordCheck is false.');
+    passwordCheckFocus();
+  }
+  
 }
 
-let passwordToggle =false
+
 function passwordActivation(e) {
-  let input = e.target.parentElement
-  passwordToggle = !passwordToggle
-  console.log(input)
-  if (!passwordToggle) {
-    e.target.setAttribute("src", "../images/password-icon.png");
-    input.type = "password";
-  } else {
+  let input = e.target.parentElement.querySelector('input')
+  if (input.type === 'password') {
     e.target.setAttribute("src", "../images/eye-on.png");
     input.type = "text";
+  } else if((input.type === 'text')) {
+    e.target.setAttribute("src", "../images/password-icon.png");
+    input.type = "password";
   }
 }
 
