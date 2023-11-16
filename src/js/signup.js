@@ -24,8 +24,6 @@ function emailValidation() {
   const { emailErrMsg1, emailErrMsg2, emailErrMsg3 } = signErrMsg;
   const { emailRegex } = signRegex;
 
-  let isVaild = true;
-
   if (value === "") {
     inputClassAdd(signEmail, signEmailText, emailErrMsg1);
     return false;
@@ -39,7 +37,7 @@ function emailValidation() {
     inputClassRemove(signEmail, signEmailText, "");
   }
 
-  return isVaild;
+  return true;
 }
 
 /**
@@ -47,7 +45,6 @@ function emailValidation() {
  */
 function pwValidation() {
   const value = signPw.value;
-  let isVaild = true;
   const { pwErrMsg1 } = signErrMsg;
   const { pwMinLength, pwRegexOnlyStr, pwRegexOnlyNum } = signRegex;
 
@@ -66,7 +63,7 @@ function pwValidation() {
   if (value === signPwCheck.value)
     inputClassRemove(signPwCheck, signPwCheckText, "");
 
-  return isVaild;
+  return true;
 }
 
 /**
@@ -74,7 +71,6 @@ function pwValidation() {
  */
 function pwCheckValidation() {
   const value = signPwCheck.value;
-  let isVaild = true;
   const { pwCheckErrMsg1 } = signErrMsg;
 
   if (value === signPw.value) {
@@ -86,18 +82,21 @@ function pwCheckValidation() {
 
   if (value === "") return false;
 
-  return isVaild;
+  return true;
 }
 
 /**
  * 회원가입 버튼 click
  */
 function signBtnClick() {
-  const emailValid = emailValidation();
-  const pwValid = pwValidation();
-  const pwCheckValid = pwCheckValidation();
+  const signUpValues = {
+    email: emailValidation(),
+    password: pwValidation(),
+    passwordCheck: pwCheckValidation(),
+  };
 
-  if (emailValid && pwValid && pwCheckValid) window.location.href = "/faq.html";
+  if (signUpValues.email && signUpValues.password && signUpValues.passwordCheck)
+    window.location.href = "/faq.html";
 }
 
 // 이벤트리스너

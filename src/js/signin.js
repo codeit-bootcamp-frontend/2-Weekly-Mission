@@ -49,7 +49,6 @@ function signBtnClcik() {
   } else {
     inputClassAdd(signEmail, signEmailText, emailErrMsg4);
     inputClassAdd(signPw, signPwText, pwErrMsg3);
-    return false;
   }
 }
 
