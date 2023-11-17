@@ -6,79 +6,88 @@ const inputPassword = document.querySelector("#password__input");
 const loginButton = document.querySelector("#login-page-button");
 const passwordIcon = document.querySelector(".password-icon");
 
+let isLogin = {
+  email: false,
+  password: false,
+  passwordCheck: false,
+};
 
 
-//객체의 키로 줄여보기
-function validation(choice) {
-  let result = "";
-  if (choice == email) {
-    if (inputEmail.value === "") {
-      result = message.email.null;
-    } else if (!emailRegex.test(inputEmail.value)) {
-      result = message.email.invalid;
-    } else {
-      result = "";
-    }
-  } else if (choice == password) {
-    if (inputPassword.value === "") {
-      result = message.password.null;
-    } else if (!passwordRegex.test(inputPassword.value)) {
-      result = message.password.invalid;
-    } else {
-      result = "";
-    }
+function validateEmail(inputValue) {
+  if (inputValue == "") {
+    isLogin.email = false;
+    return message.email.null;
+  } else if (!emailRegex.test(inputValue)) {
+    isLogin.email = false;
+    return message.email.invalid;
+  } else if (inputValue === "test@codeit.com") {
+    return message.email.duplicate;
+  } else {
+    isLogin.email = true;
+    return "";
   }
-  return result;
 }
 
-function emailFocus(e) {
+function validatePassword(inputValue) {
+  if (inputValue == "") {
+    isLogin.password = false;
+    return message.password.null;
+  } else if (!passwordRegex.test(inputValue)) {
+    isLogin.password = false;
+    return message.password.invalid;
+  } else {
+    isLogin.password = true;
+    return "";
+  }
+}
+
+function emailFocus() {
+  const errorMessage = validateEmail(inputEmail.value);
   let alert = document.querySelector(".email-alert-text");
   if (alert) {
     alert.remove();
   }
-  if (validation(e.c) === "") {
+  if (errorMessage === "") {
     removeAlert(alert, inputEmail);
   } else {
-    updateAlert(inputEmail, email, "email-alert-text", validation(email));
+    updateAlert(inputEmail, email, "email-alert-text", errorMessage);
   }
 }
 
-function passwordFocus(e) {
+function passwordFocus() {
+  const errorMessage = validatePassword(inputPassword.value);
   let alert = document.querySelector(".password-alert-text");
   if (alert) {
     alert.remove();
   }
-  if (validation(password) === "") {
+  if (errorMessage === "") {
     removeAlert(alert, inputPassword);
   } else {
-    updateAlert(inputPassword, password, "password-alert-text", validation(password));
+    updateAlert(inputPassword, password, "password-alert-text", errorMessage);
   }
 }
 
 function login(e) {
   e.preventDefault();
-  if (validation(email) == "" && validation(password) == "") {
+  if (isLogin.email && isLogin.password && isLogin.passwordCheck) {
     window.location.href = "../folder.html";
-  } else {
-    if (validation(email) !== "") {
-      emailFocus();
-    }
-    if (validation(password) !== "") {
-      passwordFocus();
-    }
+  }
+  if (!isLogin.email) {
+    emailFocus(inputEmail.value);
+  }
+  if (!isLogin.password) {
+    passwordFocus(inputPassword.value);
   }
 }
 
-// 전역변수 고려해서 은닉화 하기
-let passwordToggle = false;
-function passwordActivation() {
-  passwordToggle = !passwordToggle;
-  if (!passwordToggle) {
-    passwordIcon.setAttribute("src", "../images/password-icon.png");
-    inputPassword.type = "password";
-  } else {
-    passwordIcon.setAttribute("src", "../images/eye-on.png");
-    inputPassword.type = "text";
+function passwordActivation(e) {
+  let input = e.target.parentElement.querySelector("input");
+  if (input.type === "password") {
+    e.target.setAttribute("src", "../images/eye-on.png");
+    input.type = "text";
+  } else if (input.type === "text") {
+    e.target.setAttribute("src", "../images/password-icon.png");
+    input.type = "password";
   }
 }
 

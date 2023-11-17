@@ -8,57 +8,55 @@ const inputPasswordCheck = document.querySelector("#password-check__input");
 const joinButton = document.querySelector("#join-page-button");
 const passwordIcons = document.querySelectorAll(".password-icon");
 
-let isLogin={
-  email:false,
-  password:false,
-  passwordCheck:false
-}
-
-
+let isJoin = {
+  email: false,
+  password: false,
+  passwordCheck: false,
+};
 
 function validateEmail(inputValue) {
   if (inputValue == "") {
-    isLogin.email =false
+    isJoin.email = false;
     return message.email.null;
-  }else if(!emailRegex.test(inputValue)){
-    isLogin.email =false
+  } else if (!emailRegex.test(inputValue)) {
+    isJoin.email = false;
     return message.email.invalid;
-  }else if(inputValue === "test@codeit.com"){
+  } else if (inputValue === "test@codeit.com") {
     return message.email.duplicate;
-  }else{
-    isLogin.email =true
-    return ""
+  } else {
+    isJoin.email = true;
+    return "";
   }
 }
 
-function validatePassword(inputValue){
+function validatePassword(inputValue) {
   if (inputValue == "") {
-    isLogin.password =false
+    isJoin.password = false;
     return message.password.null;
-  }else if(!passwordRegex.test(inputValue)){
-    isLogin.password =false
+  } else if (!passwordRegex.test(inputValue)) {
+    isJoin.password = false;
     return message.password.invalid;
-  }else{
-    isLogin.password = true
-    return ""
+  } else {
+    isJoin.password = true;
+    return "";
   }
 }
 
-function validatePasswordCheck(inputValue){
+function validatePasswordCheck(inputValue) {
   if (inputValue == "") {
-    isLogin.passwordCheck =false
+    isJoin.passwordCheck = false;
     return message.password.check;
-  }else if(inputPassword.value != inputValue){
-    isLogin.passwordCheck =false
+  } else if (inputPassword.value != inputValue) {
+    isJoin.passwordCheck = false;
     return message.password.match;
-  }else{
-    isLogin.passwordCheck = true
-    return ""
+  } else {
+    isJoin.passwordCheck = true;
+    return "";
   }
 }
 
-function emailFocus(e) {
-  const errorMessage = validateEmail(e.target.value);
+function emailFocus() {
+  const errorMessage = validateEmail(inputEmail.value);
   let alert = document.querySelector(".email-alert-text");
   if (alert) {
     alert.remove();
@@ -70,8 +68,8 @@ function emailFocus(e) {
   }
 }
 
-function passwordFocus(e) {
-  const errorMessage = validatePassword(e.target.value);
+function passwordFocus() {
+  const errorMessage = validatePassword(inputPassword.value);
   let alert = document.querySelector(".password-alert-text");
   if (alert) {
     alert.remove();
@@ -83,8 +81,8 @@ function passwordFocus(e) {
   }
 }
 
-function passwordCheckFocus(e) {
-  const errorMessage = validatePasswordCheck(e.target.value);
+function passwordCheckFocus() {
+  const errorMessage = validatePasswordCheck(inputPasswordCheck.value);
   let alert = document.querySelector(".check-alert-text");
   if (alert) {
     alert.remove();
@@ -98,32 +96,26 @@ function passwordCheckFocus(e) {
 
 function join(e) {
   e.preventDefault();
-  if (isLogin.email && isLogin.password && isLogin.passwordCheck) {
+  if (isJoin.email && isJoin.password && isJoin.passwordCheck) {
     window.location.href = "../folder.html";
   }
-  if (!isLogin.email) {
-    emailFocus();
+  if (!isJoin.email) {
+    emailFocus(inputEmail.value);
   }
-  
-  if (!isLogin.password) {
-    console.log('Password is false.');
-    passwordFocus();
+  if (!isJoin.password) {
+    passwordFocus(inputPassword.value);
   }
-  
-  if (!isLogin.passwordCheck) {
-    console.log('PasswordCheck is false.');
-    passwordCheckFocus();
+  if (!isJoin.passwordCheck) {
+    passwordCheckFocus(inputPasswordCheck.value);
   }
-  
 }
 
-
 function passwordActivation(e) {
-  let input = e.target.parentElement.querySelector('input')
-  if (input.type === 'password') {
+  let input = e.target.parentElement.querySelector("input");
+  if (input.type === "password") {
     e.target.setAttribute("src", "../images/eye-on.png");
     input.type = "text";
-  } else if((input.type === 'text')) {
+  } else if (input.type === "text") {
     e.target.setAttribute("src", "../images/password-icon.png");
     input.type = "password";
   }
