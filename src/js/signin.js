@@ -1,5 +1,4 @@
 import { signErrMsg } from "./common/util/errMsg.js";
-import { userInfo } from "./common/util/userInfo.js";
 import {
   domElements,
   inputFocusOutClassAdd,
@@ -51,7 +50,6 @@ function signPwClick() {
  *
  */
 async function signBtnClick() {
-  const { userEmail, userPassword } = userInfo;
   const { emailErrMsg4, pwErrMsg3 } = signErrMsg;
 
   const inputValue = {
@@ -59,16 +57,16 @@ async function signBtnClick() {
     password: signPw.value,
   };
 
-  if (userEmail === inputValue.email && userPassword === inputValue.password) {
-    await signInPost(inputValue);
-  } else {
+  const signInValid = await signInPost(inputValue);
+
+  if (!signInValid) {
     inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg4);
     inputFocusOutClassAdd(signPw, signPwText, pwErrMsg3);
   }
 }
 
 // 이벤트리스너
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", init());
 signBtn.addEventListener("click", signBtnClick);
 signEmail.addEventListener("focusout", signEmailClick);
 signPw.addEventListener("focusout", signPwClick);

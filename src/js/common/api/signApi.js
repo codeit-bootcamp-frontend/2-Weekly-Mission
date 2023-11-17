@@ -1,4 +1,5 @@
 const codeitPath = "https://bootcamp-api.codeit.kr/api";
+import { accessTokenValid } from "../util/storage.js";
 
 /**
  * 로그인 POST
@@ -20,7 +21,8 @@ async function signInPost(inputValue) {
     }
     const { data } = await response.json();
     localStorage.setItem("accessToken", data.accessToken);
-    window.location.href = "/folder.html";
+    accessTokenValid();
+    return response.ok;
   } catch (e) {
     console.log(e);
   }
@@ -72,7 +74,7 @@ async function signUpPost(inputValue) {
 
     const { data } = await response.json();
     localStorage.setItem("accessToken", data.accessToken);
-    window.location.href = "/folder.html";
+    accessTokenValid();
   } catch (e) {
     console.log(e);
   }
