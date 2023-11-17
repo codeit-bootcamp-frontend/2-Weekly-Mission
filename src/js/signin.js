@@ -1,5 +1,5 @@
-import { signErrMsg } from "./common/errMsg.js";
-import { userInfo } from "./common/userInfo.js";
+import { signErrMsg } from "./common/util/errMsg.js";
+import { userInfo } from "./common/util/userInfo.js";
 import {
   domElements,
   inputFocusOutClassAdd,
@@ -7,8 +7,18 @@ import {
   pwToggleClick,
 } from "./common/sign.js";
 
+import { accessTokenValid } from "./common/util/storage.js";
+import { signInPost } from "./common/api/signApi.js";
+
 const { signEmail, signEmailText, signPw, signPwText, pwToggle, signBtn } =
   domElements;
+
+/**
+ * 페이지 Load 시 호출되는 함수
+ */
+function init() {
+  accessTokenValid();
+}
 
 /**
  * 이메일 focusout
@@ -40,12 +50,17 @@ function signPwClick() {
  * 로그인
  *
  */
-function signBtnClick() {
+async function signBtnClick() {
   const { userEmail, userPassword } = userInfo;
   const { emailErrMsg4, pwErrMsg3 } = signErrMsg;
 
-  if (userEmail === signEmail.value && userPassword === signPw.value) {
-    window.location.href = "/faq.html";
+  const inputValue = {
+    email: signEmail.value,
+    password: signPw.value,
+  };
+
+  if (userEmail === inputValue.email && userPassword === inputValue.password) {
+    await signInPost(inputValue);
   } else {
     inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg4);
     inputFocusOutClassAdd(signPw, signPwText, pwErrMsg3);
@@ -53,6 +68,7 @@ function signBtnClick() {
 }
 
 // 이벤트리스너
+document.addEventListener("DOMContentLoaded", init);
 signBtn.addEventListener("click", signBtnClick);
 signEmail.addEventListener("focusout", signEmailClick);
 signPw.addEventListener("focusout", signPwClick);

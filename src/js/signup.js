@@ -1,12 +1,15 @@
-import { signErrMsg } from "./common/errMsg.js";
-import { signRegex } from "./common/regex.js";
+import { signErrMsg } from "./common/util/errMsg.js";
+import { signRegex } from "./common/util/regex.js";
 import {
   domElements,
   inputFocusOutClassAdd,
   inputFocusOutClassRemove,
   pwToggleClick,
 } from "./common/sign.js";
-import { userInfo } from "./common/userInfo.js";
+
+import { accessTokenValid } from "./common/util/storage.js";
+
+import { signUpPost, emailValidkPost } from "./common/api/signApi.js";
 
 const { signEmail, signEmailText, signPw, signPwText, pwToggle, signBtn } =
   domElements;
@@ -16,21 +19,29 @@ const signPwCheckText = document.getElementById("sign-pwCheck-text");
 const pwCheckToggled = document.getElementById("password-check-toggled");
 
 /**
- * (수정)이메일 focusout
+ * 페이지 Load 시 호출되는 함수
  */
-function signEmailClick() {
-  const value = signEmail.value;
-  const { userEmail } = userInfo;
+function init() {
+  accessTokenValid();
+}
+
+/**
+ * 이메일 focusout
+ */
+async function signEmailClick() {
+  const inputValue = { email: signEmail.value };
   const { emailErrMsg1, emailErrMsg2, emailErrMsg3 } = signErrMsg;
   const { emailRegex } = signRegex;
 
-  if (value === "")
+  const emailValid = await emailValidkPost(inputValue);
+
+  if (inputValue.email === "")
     return inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg1);
 
-  if (!emailRegex.test(value))
+  if (!emailRegex.test(inputValue.email))
     return inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg2);
 
-  if (value === userEmail)
+  if (!emailValid)
     return inputFocusOutClassAdd(signEmail, signEmailText, emailErrMsg3);
 
   return inputFocusOutClassRemove(signEmail, signEmailText, "");
@@ -77,18 +88,24 @@ function singPwCheckClick() {
 /**
  * 회원가입 버튼 click
  */
-function signBtnClick() {
+async function signBtnClick() {
   const signUpValues = {
     email: signEmailClick(),
     password: signPwClick(),
     passwordCheck: singPwCheckClick(),
   };
 
+  const inputValue = {
+    email: signEmail.value,
+    password: signPw.value,
+  };
+
   if (signUpValues.email && signUpValues.password && signUpValues.passwordCheck)
-    window.location.href = "/faq.html";
+    await signUpPost(inputValue);
 }
 
 // 이벤트리스너
+document.addEventListener("DOMContentLoaded", init);
 signEmail.addEventListener("focusout", signEmailClick);
 signPw.addEventListener("focusout", signPwClick);
 signPwCheck.addEventListener("focusout", singPwCheckClick);

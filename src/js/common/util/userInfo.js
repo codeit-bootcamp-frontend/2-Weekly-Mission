@@ -1,6 +1,6 @@
 const userInfo = {
   userEmail: "test@codeit.com",
-  userPassword: "codeit101",
+  userPassword: "sprint101",
 };
 
 export { userInfo };
