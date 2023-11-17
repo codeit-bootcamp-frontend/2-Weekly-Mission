@@ -21,7 +21,7 @@ async function signInPost(inputValue) {
     }
     const { data } = await response.json();
     localStorage.setItem("accessToken", data.accessToken);
-    accessTokenValid();
+    window.location.href = "/folder.html";
     return response.ok;
   } catch (e) {
     console.log(e);
@@ -74,7 +74,7 @@ async function signUpPost(inputValue) {
 
     const { data } = await response.json();
     localStorage.setItem("accessToken", data.accessToken);
-    accessTokenValid();
+    window.location.href = "/folder.html";
   } catch (e) {
     console.log(e);
   }
