@@ -1,4 +1,4 @@
-import { EMAIL_REGEX } from '../util/constants';
+// import { EMAIL_REGEX } from '../util/constants';
 
 let emailValid = '';
 let passwordValid = '';
