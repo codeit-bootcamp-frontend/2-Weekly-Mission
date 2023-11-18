@@ -50,6 +50,7 @@ nav {
 
 .cta-short {
   width: 12.8rem;
+  flex-shrink: 0;
 }
 
 .cta-long {

@@ -28,20 +28,20 @@
           <form class="sign-form">
             <div class="sign-form-section">
               <div>
-                <label for="signin-email">
+                <label for="sign-email">
                   이메일
                 </label>
                 <div>
-                  <input id="singin-email" name="email" type="email" autocomplete="off" placeholder="이메일" required>
+                  <input id="sign-email" name="email" type="text" autocomplete="off" placeholder="이메일">
                 </div>
               </div>
               <div>
-                <label for="signin-password">
+                <label for="sign-password">
                   비밀번호
                 </label>
                 <div class="pwd-section">
-                  <input id="signin-password" name="password" type="password" placeholder="비밀번호" required>
-                  <span class="eye">
+                  <input id="sign-password" name="password" type="password" placeholder="비밀번호">
+                  <span class="eye off">
                     <img src="images/sign/eye-off.svg">
                   </span>
                 </div>
@@ -65,5 +65,6 @@
         </div>
       </div>
     </div>
+    <script type="module" src="./js/signin.js"></script>
   </body>
 </html>
