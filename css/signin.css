@@ -25,6 +25,7 @@ header {
   font-weight: 400;
   line-height: 2.4rem;
 }
+
 #join-link,
 #login-link {
   margin-left: 0.8rem;
@@ -90,6 +91,7 @@ input:focus {
 .password-check {
   margin-bottom: 5.3rem;
 }
+
 #login-page-button,
 #join-page-button {
   padding: 1.6rem 2rem;
