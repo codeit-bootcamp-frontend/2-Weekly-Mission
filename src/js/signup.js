@@ -1,3 +1,6 @@
+// week5 요구사항 변경(api를 이용한 이메일 중복)으로 인해
+// isEmailDuplicate와 관련된 모든 함수 미사용
+
 // import { EMAIL_REGEX } from '../util/constants';
 
 const emailRegex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
@@ -12,14 +15,17 @@ const updatelSignUpValid = () => {
   signUpValid = emailValid && passwordValid && confirmPasswordValid;
 };
 
+let inputValue = {
+  email: '',
+};
+
 // 이메일 유효성 검사
 const handleEmailInput = () => {
   const emailInput = document.getElementById('emailInput');
   const emailValue = emailInput.value;
   const emailEmptyMessage = document.getElementById('emailEmptyMessage');
   const emailInvalidMessage = document.getElementById('emailInvalidMessage');
-  const emailDuplicateMessage = document.getElementById('emailDuplicateMessage');
-  // console.log('이메일:', emailValue);
+  // const emailDuplicateMessage = document.getElementById('emailDuplicateMessage');
 
   // 빈칸인지 확인
   if (!emailValue) {
@@ -38,14 +44,14 @@ const handleEmailInput = () => {
   }
 
   // 중복되는 이메일인지 확인
-  if (emailValue && isEmailDuplicate(emailValue) === true) {
-    emailDuplicateMessage.style.display = 'block';
-    emailInput.classList.add('invalid-input');
-  } else {
-    emailDuplicateMessage.style.display = 'none';
-  }
+  // if (emailValue && isEmailDuplicate(emailValue) === true) {
+  //   emailDuplicateMessage.style.display = 'block';
+  //   emailInput.classList.add('invalid-input');
+  // } else {
+  //   emailDuplicateMessage.style.display = 'none';
+  // }
 
-  emailValid = emailValue && emailValidCheck(emailValue) && !isEmailDuplicate(emailValue);
+  emailValid = emailValue && emailValidCheck(emailValue);
   updatelSignUpValid();
 
   // invalid-border 관리
@@ -61,17 +67,16 @@ const emailValidCheck = (email) => {
 };
 
 // 이메일 중복 검사
-const isEmailDuplicate = (email) => {
-  if (email === 'test@codeit.com') return true;
-  else return false;
-};
+// const isEmailDuplicate = (email) => {
+//   if (email === 'test@codeit.com') return true;
+//   else return false;
+// };
 
 // 비밀번호
 const handlePasswordInput = () => {
   const passwordInput = document.getElementById('passwordInput');
   const passwordValue = passwordInput.value;
   const passwordInvalidMessage = document.getElementById('passwordInvalidMessage');
-  // console.log('비밀번호:', passwordValue);
 
   passwordValid = !(passwordValue.length < 8 || passwordValidCheck(passwordValue) === false);
   updatelSignUpValid();
@@ -98,7 +103,6 @@ const handleConfirmPasswordInput = (e) => {
   const passwordInput = document.getElementById('passwordInput');
   const passwordValue = passwordInput.value;
   const passwordMismatchMessage = document.getElementById('passwordMismatchMessage');
-  // console.log('비밀번호 확인:', confirmPasswordValue);
 
   confirmPasswordValid = passwordValue === confirmPasswordValue;
   updatelSignUpValid();
@@ -112,11 +116,32 @@ const handleConfirmPasswordInput = (e) => {
   }
 };
 
+const fetchSignUp = async (email) => {
+  const response = await fetch('https://bootcamp-api.codeit.kr/api/check-email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(email),
+  });
+
+  const result = response.status;
+
+  if (result === 200) {
+    window.location.href = '/folder.html';
+  }
+};
+
 const onClickSignUpButton = (e) => {
   e.preventDefault();
-  console.log(signUpValid);
+
+  const emailInput = document.getElementById('emailInput');
+  const emailValue = emailInput.value;
+
+  inputValue.email = emailValue;
 
   if (signUpValid) {
-    window.location.href = '/folder.html';
+    // window.location.href = '/folder.html';
+    fetchSignUp(inputValue);
   }
 };
