@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 회원가입 핸들러 / 엔터기능구현
   signUpBtn.addEventListener("click", signUpBtnHandler);
   signUpBtn.addEventListener("keyup", (e) => {
-    e.keyCode === 13 && signUpBtnHandler(e);
+    if (e.keyCode === 13) loginBtnHandler(e);
   });
 
   // =================================================================

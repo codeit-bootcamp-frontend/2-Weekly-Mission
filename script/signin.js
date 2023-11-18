@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 로그인 핸들러 / 엔터기능구현
   loginBtn.addEventListener("click", loginBtnHandler);
   loginBtn.addEventListener("keyup", (e) => {
-    e.keyCode === 13 && loginBtnHandler(e);
+    if (e.keyCode === 13) loginBtnHandler(e);
   });
 
   //이메일인풋 에러핸들러
