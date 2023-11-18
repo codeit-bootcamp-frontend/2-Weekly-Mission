@@ -3,6 +3,10 @@
 
 // import { EMAIL_REGEX } from '../util/constants';
 
+if (localStorage.getItem('accessToken')) {
+	window.location.href = '/folder.html';
+}
+
 const emailRegex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
@@ -12,59 +16,59 @@ let confirmPasswordValid = false;
 let signUpValid = emailValid && passwordValid && confirmPasswordValid;
 
 const updatelSignUpValid = () => {
-  signUpValid = emailValid && passwordValid && confirmPasswordValid;
+	signUpValid = emailValid && passwordValid && confirmPasswordValid;
 };
 
 let inputValue = {
-  email: '',
-  password: '',
+	email: '',
+	password: '',
 };
 
 // 이메일 유효성 검사
 const handleEmailInput = () => {
-  const emailInput = document.getElementById('emailInput');
-  const emailValue = emailInput.value;
-  const emailEmptyMessage = document.getElementById('emailEmptyMessage');
-  const emailInvalidMessage = document.getElementById('emailInvalidMessage');
-  // const emailDuplicateMessage = document.getElementById('emailDuplicateMessage');
+	const emailInput = document.getElementById('emailInput');
+	const emailValue = emailInput.value;
+	const emailEmptyMessage = document.getElementById('emailEmptyMessage');
+	const emailInvalidMessage = document.getElementById('emailInvalidMessage');
+	// const emailDuplicateMessage = document.getElementById('emailDuplicateMessage');
 
-  // 빈칸인지 확인
-  if (!emailValue) {
-    emailEmptyMessage.style.display = 'block';
-    emailInput.classList.add('invalid-input');
-  } else {
-    emailEmptyMessage.style.display = 'none';
-  }
+	// 빈칸인지 확인
+	if (!emailValue) {
+		emailEmptyMessage.style.display = 'block';
+		emailInput.classList.add('invalid-input');
+	} else {
+		emailEmptyMessage.style.display = 'none';
+	}
 
-  // 정규식에 부합하는지 확인
-  if (emailValue && emailValidCheck(emailValue) === false) {
-    emailInvalidMessage.style.display = 'block';
-    emailInput.classList.add('invalid-input');
-  } else {
-    emailInvalidMessage.style.display = 'none';
-  }
+	// 정규식에 부합하는지 확인
+	if (emailValue && emailValidCheck(emailValue) === false) {
+		emailInvalidMessage.style.display = 'block';
+		emailInput.classList.add('invalid-input');
+	} else {
+		emailInvalidMessage.style.display = 'none';
+	}
 
-  // 중복되는 이메일인지 확인
-  // if (emailValue && isEmailDuplicate(emailValue) === true) {
-  //   emailDuplicateMessage.style.display = 'block';
-  //   emailInput.classList.add('invalid-input');
-  // } else {
-  //   emailDuplicateMessage.style.display = 'none';
-  // }
+	// 중복되는 이메일인지 확인
+	// if (emailValue && isEmailDuplicate(emailValue) === true) {
+	//   emailDuplicateMessage.style.display = 'block';
+	//   emailInput.classList.add('invalid-input');
+	// } else {
+	//   emailDuplicateMessage.style.display = 'none';
+	// }
 
-  emailValid = emailValue && emailValidCheck(emailValue);
-  updatelSignUpValid();
+	emailValid = emailValue && emailValidCheck(emailValue);
+	updatelSignUpValid();
 
-  // invalid-border 관리
-  if (emailValid) {
-    emailInput.classList.remove('invalid-input');
-  }
+	// invalid-border 관리
+	if (emailValid) {
+		emailInput.classList.remove('invalid-input');
+	}
 };
 
 // 이메일 정규식 - @ 앞 뒤로 문자 존재, .(콤마) 뒤로 문자 또는 숫자
 const emailValidCheck = (email) => {
-  if (emailRegex.test(email) === false) return false;
-  else return true;
+	if (emailRegex.test(email) === false) return false;
+	else return true;
 };
 
 // 이메일 중복 검사
@@ -75,97 +79,97 @@ const emailValidCheck = (email) => {
 
 // 비밀번호
 const handlePasswordInput = () => {
-  const passwordInput = document.getElementById('passwordInput');
-  const passwordValue = passwordInput.value;
-  const passwordInvalidMessage = document.getElementById('passwordInvalidMessage');
+	const passwordInput = document.getElementById('passwordInput');
+	const passwordValue = passwordInput.value;
+	const passwordInvalidMessage = document.getElementById('passwordInvalidMessage');
 
-  passwordValid = !(passwordValue.length < 8 || passwordValidCheck(passwordValue) === false);
-  updatelSignUpValid();
+	passwordValid = !(passwordValue.length < 8 || passwordValidCheck(passwordValue) === false);
+	updatelSignUpValid();
 
-  if (!passwordValid) {
-    passwordInvalidMessage.style.display = 'block';
-    passwordInput.classList.add('invalid-input');
-  } else {
-    passwordInvalidMessage.style.display = 'none';
-    passwordInput.classList.remove('invalid-input');
-  }
+	if (!passwordValid) {
+		passwordInvalidMessage.style.display = 'block';
+		passwordInput.classList.add('invalid-input');
+	} else {
+		passwordInvalidMessage.style.display = 'none';
+		passwordInput.classList.remove('invalid-input');
+	}
 };
 
 // 비밀번호 정규식 - 길이 8자 이상, 숫자와 문자 모두 포함
 const passwordValidCheck = (password) => {
-  if (passwordRegex.test(password) === false) return false;
-  else return true;
+	if (passwordRegex.test(password) === false) return false;
+	else return true;
 };
 
 // 비밀번호 확인
 const handleConfirmPasswordInput = (e) => {
-  const confirmPasswordInput = document.getElementById('confirmPasswordInput');
-  const confirmPasswordValue = confirmPasswordInput.value;
-  const passwordInput = document.getElementById('passwordInput');
-  const passwordValue = passwordInput.value;
-  const passwordMismatchMessage = document.getElementById('passwordMismatchMessage');
+	const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+	const confirmPasswordValue = confirmPasswordInput.value;
+	const passwordInput = document.getElementById('passwordInput');
+	const passwordValue = passwordInput.value;
+	const passwordMismatchMessage = document.getElementById('passwordMismatchMessage');
 
-  confirmPasswordValid = passwordValue === confirmPasswordValue;
-  updatelSignUpValid();
+	confirmPasswordValid = passwordValue === confirmPasswordValue;
+	updatelSignUpValid();
 
-  if (!confirmPasswordValid) {
-    passwordMismatchMessage.style.display = 'block';
-    confirmPasswordInput.classList.add('invalid-input');
-  } else {
-    passwordMismatchMessage.style.display = 'none';
-    confirmPasswordInput.classList.remove('invalid-input');
-  }
+	if (!confirmPasswordValid) {
+		passwordMismatchMessage.style.display = 'block';
+		confirmPasswordInput.classList.add('invalid-input');
+	} else {
+		passwordMismatchMessage.style.display = 'none';
+		confirmPasswordInput.classList.remove('invalid-input');
+	}
 };
 
 const checkEmail = async (email) => {
-  const response = await fetch('https://bootcamp-api.codeit.kr/api/check-email', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(email),
-  });
+	const response = await fetch('https://bootcamp-api.codeit.kr/api/check-email', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(email),
+	});
 
-  if (response.status === 200) {
-    return true;
-  } else {
-    return false;
-  }
+	if (response.status === 200) {
+		return true;
+	} else {
+		return false;
+	}
 };
 
 const fetchSignUp = async (inputValue) => {
-  if (checkEmail) {
-    const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-up', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(inputValue),
-    });
+	if (checkEmail) {
+		const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-up', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(inputValue),
+		});
 
-    const result = await response.json();
-    const data = result.data;
-    const accessToken = data.accessToken;
+		const result = await response.json();
+		const data = result.data;
+		const accessToken = data.accessToken;
 
-    if (response.status === 200) {
-      localStorage.setItem('accessToken', accessToken);
-      window.location.href = '/folder.html';
-    }
-  }
+		if (response.status === 200) {
+			localStorage.setItem('accessToken', accessToken);
+			window.location.href = '/folder.html';
+		}
+	}
 };
 
 const onClickSignUpButton = (e) => {
-  e.preventDefault();
+	e.preventDefault();
 
-  const emailInput = document.getElementById('emailInput');
-  const emailValue = emailInput.value;
-  const passwordInput = document.getElementById('passwordInput');
-  const passwordValue = passwordInput.value;
+	const emailInput = document.getElementById('emailInput');
+	const emailValue = emailInput.value;
+	const passwordInput = document.getElementById('passwordInput');
+	const passwordValue = passwordInput.value;
 
-  inputValue.email = emailValue;
-  inputValue.password = passwordValue;
+	inputValue.email = emailValue;
+	inputValue.password = passwordValue;
 
-  if (signUpValid) {
-    fetchSignUp(inputValue);
-  }
+	if (signUpValid) {
+		fetchSignUp(inputValue);
+	}
 };
