@@ -63,7 +63,7 @@ async function signUpBtnHandler(e) {
   const pwCkd = pwCheckInput.value.trim();
 
   try {
-    const emailcKdResponse = await fetch(
+    const emailCkdResponse = await fetch(
       "https://bootcamp-api.codeit.kr/api/check-email",
       {
         method: "POST",
@@ -72,7 +72,7 @@ async function signUpBtnHandler(e) {
       }
     );
 
-    if (emailcKdResponse.status === 409) {
+    if (emailCkdResponse.status === 409) {
       return;
     }
 
