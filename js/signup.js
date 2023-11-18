@@ -2,7 +2,7 @@ import { checkEmail, checkEmpty, checkPassword } from "./check.js";
 import showError from "./showError.js";
 import deleteError from "./deleteError.js";
 import togglePasswordVisibility from "./togglePasswordVisibility.js";
-import { TEST_EMAIL } from "../constant/constant.js";
+import { API_URL } from "../constant/constant.js";
 
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
@@ -46,19 +46,57 @@ const togglePasswordVisibilityEvent = (e) => {
 
 const testEmail = (e) => {
   if(e.target === emailInput) {
-    if(e.target.value === TEST_EMAIL) {
-      showError(e.target, '이미 사용 중인 이메일입니다.');
-    }
+    checkEmailDuplication(emailInput);
   }
 };
+
+const checkEmailDuplication = async(emailInputElement) => {
+  if(emailInputElement.value === '') return;
+  try{
+    const response = await fetch(`${API_URL}/check-email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: emailInputElement.value,
+      })
+    });
+    if(!response.ok) showError(emailInput, '이미 사용 중인 이메일입니다.');
+  } catch (error) {
+    alert(error);
+  }
+}
+
+const checkSignUp = async(emailInputElement, passwordInputElement) => {
+  try{
+    const response = await fetch(`${API_URL}/sign-up`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: emailInputElement.value,
+        password: passwordInputElement.value
+      })
+    });
+    if(response.ok) window.location.href = './folder.html';
+  } catch(error) {
+    alert(error);
+  }
+}
 
 const testSignUp = (e) => {
   e.preventDefault();
   if(e.target === document.querySelector('.signup--btn')) {
     if(checkEmail(emailInput) && checkPassword(passwordInput) && confirmPassword(passwordInput, passwordCheckInput)){
-      window.location.href = './folder.html';
+      checkEmailDuplication(emailInput);
+      checkSignUp(emailInput, passwordInput);
     } else {
       inputList.forEach( element => checkEmpty(element));
+      checkEmpty(emailInput);
+      checkEmpty(passwordInput);
+      checkEmpty(passwordCheckInput);
       checkEmail(emailInput);
       checkPassword(passwordInput);
       confirmPassword(passwordInput, passwordCheckInput);
