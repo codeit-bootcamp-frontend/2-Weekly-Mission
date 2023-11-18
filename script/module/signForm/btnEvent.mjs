@@ -17,11 +17,10 @@ const loginBtn = document.querySelector("#login_btn");
 const signUpBtn = document.querySelector("#signup_btn");
 
 function loginBtnHandler(e) {
-  e.preventDefault();
-
   if (emailInput.value === "test@codeit.com" && pwInput.value === "codeit101") {
     singInApi();
   } else {
+    e.preventDefault();
     showError(emailErrorMsg, emailInput, "이메일을 확인해주세요.");
     showError(pwErrorMsg, pwInput, "비밀번호를 확인해주세요.");
   }
