@@ -47,12 +47,7 @@ const handlePasswordInput = () => {
   updateSignInValid();
 };
 
-const fetchSignIn = async () => {
-  inputValue = {
-    email: emailInput.value,
-    password: passwordInput.value,
-  };
-
+const fetchSignIn = async (inputValue) => {
   const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
     method: 'POST',
     headers: {
@@ -77,6 +72,7 @@ const onClickSignInButton = async (e) => {
   const passwordEmptyMessage = document.getElementById('passwordEmptyMessage');
 
   const emailInput = document.getElementById('emailInput');
+  const emailValue = emailInput.value;
   const passwordInput = document.getElementById('passwordInput');
   const passwordValue = passwordInput.value;
 
@@ -86,9 +82,14 @@ const onClickSignInButton = async (e) => {
   passwordInput.classList.remove('invalid-input');
   passwordEmptyMessage.style.display = 'none';
 
+  inputValue = {
+    email: emailValue,
+    password: passwordValue,
+  };
+
   if (isPossibleSignIn) {
     try {
-      fetchSignIn();
+      fetchSignIn(inputValue);
     } catch (error) {
       console.log('error:', error);
     }
