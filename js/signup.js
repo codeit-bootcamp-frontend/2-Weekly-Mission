@@ -1,4 +1,4 @@
-import { checkEmail, checkEmpty, checkPassword } from "./check.js";
+import { checkAccessToken, checkEmail, checkEmpty, checkPassword } from "./check.js";
 import showError from "./showError.js";
 import deleteError from "./deleteError.js";
 import togglePasswordVisibility from "./togglePasswordVisibility.js";
@@ -7,7 +7,6 @@ import { API_URL } from "../constant/constant.js";
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
 const passwordCheckInput = document.querySelector('#password-check');
-const inputList = Array.from(document.querySelectorAll('input'));
 const signUpBtn = document.querySelector('.signup--btn');
 
 const confirmPassword = (passwordTag, passwordCheckTag) => {
@@ -80,7 +79,11 @@ const checkSignUp = async(emailInputElement, passwordInputElement) => {
         password: passwordInputElement.value
       })
     });
-    if(response.ok) window.location.href = './folder.html';
+    if(response.ok) {
+      window.location.href = './folder.html';
+      const { data } = await response.json();
+      localStorage.setItem('accessToken', data.accessToken);
+    }
   } catch(error) {
     alert(error);
   }
@@ -93,7 +96,6 @@ const testSignUp = (e) => {
       checkEmailDuplication(emailInput);
       checkSignUp(emailInput, passwordInput);
     } else {
-      inputList.forEach( element => checkEmpty(element));
       checkEmpty(emailInput);
       checkEmpty(passwordInput);
       checkEmpty(passwordCheckInput);
@@ -124,3 +126,4 @@ document.addEventListener('keydown', function (e) {
   }
 });
 document.querySelectorAll('.eye').forEach((eyeIconElement) => eyeIconElement.addEventListener('click', togglePasswordVisibilityEvent));
+document.addEventListener('DOMContentLoaded', checkAccessToken);

@@ -1,5 +1,5 @@
 import { API_URL } from "../constant/constant.js";
-import { checkEmail, checkEmpty } from "./check.js";
+import { checkAccessToken, checkEmail, checkEmpty } from "./check.js";
 import deleteError from "./deleteError.js";
 import showError from "./showError.js";
 import togglePasswordVisibility from "./togglePasswordVisibility.js";
@@ -39,6 +39,8 @@ const checkSignIn = async (emailInput, passwordInput) => {
     });
     if(response.ok) {
       window.location.href = './folder.html';
+      const { data } = await response.json();
+      localStorage.setItem('accessToken', data.accessToken);
     } else {
       showError(emailInput, '이메일/비밀번호를 확인해주세요');
       showError(passwordInput, '이메일/비밀번호를 확인해주세요');
@@ -68,3 +70,4 @@ emailInput.addEventListener('input', checkEmailEvent);
 emailInput.addEventListener('blur', checkEmailEvent);
 signInBtn.addEventListener('click', testSignIn);
 document.querySelector('.eye').addEventListener('click', togglePasswordVisibilityEvent);
+document.addEventListener('DOMContentLoaded', checkAccessToken);

@@ -42,3 +42,11 @@ export const checkPassword = (inputElement) => {
     return false;
   }
 }
+
+export const checkAccessToken = () => {
+  const accessToken = localStorage.getItem('accessToken');
+
+  if (accessToken) {
+    window.location.href = './folder.html';
+  }
+}
