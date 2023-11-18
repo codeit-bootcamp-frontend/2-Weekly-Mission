@@ -1,26 +1,28 @@
+import { TEST_EMAIL, TEST_PASSWORD } from "../constant/constant.js";
 import { checkEmail, checkEmpty } from "./check.js";
 import deleteError from "./deleteError.js";
 import showError from "./showError.js";
-import showPassword from "./showPassword.js";
+import togglePasswordVisibility from "./togglePasswordVisibility.js";
 
 const emailInput = document.querySelector('#email');
+const passwordInput = document.querySelector('#password');
 const signInBtn = document.querySelector('.signin--btn');
-const inputList = Array.from(document.querySelectorAll('input'));
+
 
 const checkEmptyEvent = (e) => {
-  if(inputList.includes(e.target)) checkEmpty(e.target);
+  if(e.target.id === 'email' || e.target.id === 'password') checkEmpty(e.target);
 }
 
 const deleteErrorEvent = (e) => {
-  if(inputList.includes(e.target)) deleteError(e.target);
+  if(e.target.id === 'email' || e.target.id === 'password') deleteError(e.target);
 }
 
 const checkEmailEvent = (e) => {
-  if(e.target === document.querySelector('#email')) checkEmail(e.target);
+  if(e.target === emailInput) checkEmail(e.target);
 }
 
-const showPasswordEvent = (e) => {
-  if(e.target.classList.contains('eye')) showPassword(e.target);
+const togglePasswordVisibilityEvent = (e) => {
+  if(e.target.classList.contains('eye')) togglePasswordVisibility(e.target);
 }
 
 const testSignIn = (e) => {
@@ -29,21 +31,20 @@ const testSignIn = (e) => {
     const emailInput = document.querySelector('#email');
     const passwordInput = document.querySelector('#password');
     
-    if(emailInput.value !== 'test@codeit.com') {
-      showError(emailInput, '이메일을 확인해주세요');
-    }
-    if(passwordInput.value !== 'codeit101') {
-      showError(passwordInput, '비밀번호를 확인해주세요');
-    }
-    if(emailInput.value === 'test@codeit.com' && passwordInput.value === 'codeit101'){
+    if(emailInput.value === TEST_EMAIL && passwordInput.value === TEST_PASSWORD){
       window.location.href = './folder.html';
+    } else {
+      showError(emailInput, '이메일/비밀번호를 확인해주세요');
+      showError(passwordInput, '이메일/비밀번호를 확인해주세요');
     }
   }
 };
 
-inputList.forEach((element) => {element.addEventListener('focusout', checkEmptyEvent)});
-inputList.forEach((element) => {element.addEventListener('focusin', deleteErrorEvent)});
+emailInput.addEventListener('focusout', checkEmptyEvent);
+passwordInput.addEventListener('focusout', checkEmptyEvent);
+emailInput.addEventListener('focusin', deleteErrorEvent);
+passwordInput.addEventListener('focusin', deleteErrorEvent);
 emailInput.addEventListener('input', checkEmailEvent);
 emailInput.addEventListener('blur', checkEmailEvent);
 signInBtn.addEventListener('click', testSignIn);
-document.body.addEventListener('click', showPasswordEvent);
+document.querySelector('.eye').addEventListener('click', togglePasswordVisibilityEvent);

@@ -1,7 +1,8 @@
 import { checkEmail, checkEmpty, checkPassword } from "./check.js";
 import showError from "./showError.js";
 import deleteError from "./deleteError.js";
-import showPassword from "./showPassword.js";
+import togglePasswordVisibility from "./togglePasswordVisibility.js";
+import { TEST_EMAIL } from "../constant/constant.js";
 
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
@@ -20,15 +21,15 @@ const confirmPassword = (passwordTag, passwordCheckTag) => {
 }
 
 const checkEmptyEvent = (e) => {
-  if(inputList.includes(e.target)) checkEmpty(e.target);
+  if(e.target === emailInput || e.target === passwordInput || e.target === passwordCheckInput) checkEmpty(e.target);
 }
 
 const deleteErrorEvent = (e) => {
-  if(inputList.includes(e.target)) deleteError(e.target);
+  if(e.target === emailInput || e.target === passwordInput || e.target === passwordCheckInput) deleteError(e.target);
 }
 
 const checkEmailEvent = (e) => {
-  if(e.target === document.querySelector('#email')) checkEmail(e.target);
+  if(e.target.id === 'email') checkEmail(e.target);
 }
 
 const checkPasswordEvent = (e) => {
@@ -39,13 +40,13 @@ const confirmPasswordEvent = (e) => {
   if(e.target.id === 'password-check') confirmPassword(passwordInput, passwordCheckInput);
 }
 
-const showPasswordEvent = (e) => {
-  if(e.target.classList.contains('eye')) showPassword(e.target);
+const togglePasswordVisibilityEvent = (e) => {
+  if(e.target.classList.contains('eye')) togglePasswordVisibility(e.target);
 }
 
 const testEmail = (e) => {
   if(e.target === emailInput) {
-    if(e.target.value === 'test@codeit.com') {
+    if(e.target.value === TEST_EMAIL) {
       showError(e.target, '이미 사용 중인 이메일입니다.');
     }
   }
@@ -65,19 +66,23 @@ const testSignUp = (e) => {
   }
 }
 
-inputList.forEach((element) => {element.addEventListener('focusout', checkEmptyEvent)});
-inputList.forEach((element) => {element.addEventListener('focusin', deleteErrorEvent)});
+emailInput.addEventListener('focusout', checkEmptyEvent);
+passwordInput.addEventListener('focusout', checkEmptyEvent);
+passwordCheckInput.addEventListener('focusout', checkEmptyEvent);
+emailInput.addEventListener('focusin', deleteErrorEvent);
+passwordInput.addEventListener('focusin', deleteErrorEvent);
+passwordCheckInput.addEventListener('focusin', deleteErrorEvent);
 emailInput.addEventListener('input', checkEmailEvent);
-emailInput.addEventListener('blur', checkEmailEvent);
+emailInput.addEventListener('focusout', checkEmailEvent);
 emailInput.addEventListener('focusout', testEmail);
 emailInput.addEventListener('input', testEmail);
 passwordCheckInput.addEventListener('focusout', confirmPasswordEvent);
 passwordInput.addEventListener('focusout', checkPasswordEvent);
 passwordInput.addEventListener('input', checkPasswordEvent);
-document.body.addEventListener('click', showPasswordEvent);
 signUpBtn.addEventListener('click', testSignUp);
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Enter' || e.keyCode === 13) {
     document.querySelector('.signup--btn').click();
   }
 });
+document.querySelectorAll('.eye').forEach((eyeIconElement) => eyeIconElement.addEventListener('click', togglePasswordVisibilityEvent));
