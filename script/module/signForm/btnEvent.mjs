@@ -11,18 +11,37 @@ import {
   pwErrorMsg,
 } from "./inputErrMsg.mjs";
 
-import { singInApi } from "./test.mjs";
-
 const loginBtn = document.querySelector("#login_btn");
 const signUpBtn = document.querySelector("#signup_btn");
 
-function loginBtnHandler(e) {
-  if (emailInput.value === "test@codeit.com" && pwInput.value === "codeit101") {
-    singInApi();
-  } else {
-    e.preventDefault();
-    showError(emailErrorMsg, emailInput, "이메일을 확인해주세요.");
-    showError(pwErrorMsg, pwInput, "비밀번호를 확인해주세요.");
+async function loginBtnHandler(e) {
+  e.preventDefault();
+
+  const userInfo = {
+    email: emailInput.value.trim(),
+    password: pwInput.value.trim(),
+  };
+
+  try {
+    const response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in", {
+      method: "POST",
+      body: JSON.stringify(userInfo),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const result = response.status;
+    console.log(result);
+
+    if (result === 200) {
+      window.location.href = "/folder";
+      console.log("로그인 성공");
+    } else {
+      showError(emailErrorMsg, emailInput, "이메일을 확인해주세요.");
+      showError(pwErrorMsg, pwInput, "비밀번호를 확인해주세요.");
+      console.log("로그인 실패");
+    }
+  } catch (e) {
+    console.log(e);
   }
 }
 
