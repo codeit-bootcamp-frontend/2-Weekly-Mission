@@ -2,7 +2,12 @@
 // import { TEST_EMAIL, TEST_PASSWORD } from '../util/constants';
 
 const testEmail = 'test@codeit.com';
-const testPassword = 'codeit101';
+const testPassword = 'sprint101';
+
+let inputValue = {
+  email: '',
+  password: '',
+};
 
 let isEmailCorrect = false;
 let isPasswordCorrect = false;
@@ -18,6 +23,7 @@ const handleEmailInput = () => {
 
   if (emailValue === testEmail) {
     isEmailCorrect = true;
+    inputValue.emailValue = emailValue;
   } else {
     isEmailCorrect = false;
   }
@@ -40,6 +46,9 @@ const handlePasswordInput = () => {
 
   if (passwordValue === testPassword) {
     isPasswordCorrect = true;
+    inputValue.passwordValue = passwordValue;
+    // console.log(testPassword);
+    // console.log(passwordValue);
   } else {
     isPasswordCorrect = false;
   }
@@ -47,15 +56,45 @@ const handlePasswordInput = () => {
   updateSignInValid();
 };
 
-const onClickSignInButton = (e) => {
+const onClickSignInButton = async (e) => {
   e.preventDefault();
   // console.log(isPossibleSignIn);
 
   const emailIncorrectMessage = document.getElementById('emailIncorrectMessage');
   const passwordIncorrectMessage = document.getElementById('passwordIncorrectMessage');
 
+  const emailInput = document.getElementById('emailInput');
+  const passwordInput = document.getElementById('passwordInput');
+
+  inputValue = {
+    email: emailInput.value,
+    password: passwordInput.value,
+  };
+  // console.log(inputValue);
+
   if (isPossibleSignIn) {
-    window.location.href = '/folder.html';
+    emailIncorrectMessage.style.display = 'none';
+    emailInput.classList.remove('invalid-input');
+    passwordIncorrectMessage.style.display = 'none';
+    passwordInput.classList.remove('invalid-input');
+    try {
+      const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputValue),
+      });
+      // console.log(response.status);
+
+      const result = response.status;
+
+      if (result === 200) {
+        window.location.href = '/folder.html';
+      }
+    } catch (error) {
+      console.log('error:', error);
+    }
   } else {
     if (!isEmailCorrect) {
       emailIncorrectMessage.style.display = 'block';
@@ -73,3 +112,29 @@ const onClickSignInButton = (e) => {
     }
   }
 };
+
+// const onClickSignInButton = async (e) => {
+//   e.preventDefault();
+
+//   const emailInput = document.getElementById('emailInput');
+//   const passwordInput = document.getElementById('passwordInput');
+
+//   inputValue = {
+//     email: emailInput.value,
+//     password: passwordInput.value,
+//   };
+//   console.log(inputValue);
+
+//   try {
+//     const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(inputValue),
+//     });
+//     console.log(response);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

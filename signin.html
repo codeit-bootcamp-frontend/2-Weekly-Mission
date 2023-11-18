@@ -26,7 +26,7 @@
         <div class="sign-inputs">
           <div class="sign-input-box">
             <label class="sign-input-label">이메일</label>
-            <input id="emailInput" class="sign-input" onblur="handleEmailInput(event)" />
+            <input id="emailInput" class="sign-input" onchange="handleEmailInput(event)" />
             <div id="emailIncorrectMessage" class="error-message">이메일을 확인해주세요.</div>
           </div>
           <div class="sign-input-box sign-password">
@@ -36,7 +36,7 @@
                 id="passwordInput"
                 class="sign-input password-input"
                 type="password"
-                onblur="handlePasswordInput(event)"
+                onchange="handlePasswordInput(event)"
               />
               <button class="eye-button" type="button">
                 <img src="./images/eye-off.svg" />
