@@ -17,6 +17,7 @@ const updatelSignUpValid = () => {
 
 let inputValue = {
   email: '',
+  password: '',
 };
 
 // 이메일 유효성 검사
@@ -116,7 +117,7 @@ const handleConfirmPasswordInput = (e) => {
   }
 };
 
-const fetchSignUp = async (email) => {
+const checkEmail = async (email) => {
   const response = await fetch('https://bootcamp-api.codeit.kr/api/check-email', {
     method: 'POST',
     headers: {
@@ -125,10 +126,31 @@ const fetchSignUp = async (email) => {
     body: JSON.stringify(email),
   });
 
-  const result = response.status;
+  if (response.status === 200) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
-  if (result === 200) {
-    window.location.href = '/folder.html';
+const fetchSignUp = async (inputValue) => {
+  if (checkEmail) {
+    const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-up', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputValue),
+    });
+
+    const result = await response.json();
+    const data = result.data;
+    const accessToken = data.accessToken;
+
+    if (response.status === 200) {
+      localStorage.setItem('accessToken', accessToken);
+      window.location.href = '/folder.html';
+    }
   }
 };
 
@@ -137,11 +159,13 @@ const onClickSignUpButton = (e) => {
 
   const emailInput = document.getElementById('emailInput');
   const emailValue = emailInput.value;
+  const passwordInput = document.getElementById('passwordInput');
+  const passwordValue = passwordInput.value;
 
   inputValue.email = emailValue;
+  inputValue.password = passwordValue;
 
   if (signUpValid) {
-    // window.location.href = '/folder.html';
     fetchSignUp(inputValue);
   }
 };

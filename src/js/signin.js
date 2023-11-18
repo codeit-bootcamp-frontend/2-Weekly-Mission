@@ -52,9 +52,12 @@ const fetchSignIn = async (inputValue) => {
     body: JSON.stringify(inputValue),
   });
 
-  const result = response.status;
+  const result = await response.json();
+  const data = result.data;
+  const accessToken = data.accessToken;
 
-  if (result === 200) {
+  if (response.status === 200) {
+    localStorage.setItem('accessToken', accessToken);
     window.location.href = '/folder.html';
   }
 };
