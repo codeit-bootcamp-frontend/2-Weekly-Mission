@@ -25,10 +25,13 @@ function doneError(errorMsg, input) {
 function emailErrHandler() {
   if (emailInput.value === "") {
     showError(emailErrorMsg, emailInput, "이메일 주소를 입력하세요.");
+    return;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
     showError(emailErrorMsg, emailInput, "올바른 이메일 주소가 아닙니다.");
+    return;
   } else if (emailInput.value === "test@codeit.com") {
     showError(emailErrorMsg, emailInput, "이미 사용 중인 이메일입니다.");
+    return;
   } else {
     doneError(emailErrorMsg, emailInput);
   }
@@ -37,6 +40,7 @@ function emailErrHandler() {
 function pwErrHandler() {
   if (pwInput.value === "") {
     showError(pwErrorMsg, pwInput, "비밀번호를 입력해주세요.");
+    return;
   } else if (
     pwInput.value.length < 8 ||
     /^[a-zA-Z]+$/.test(pwInput.value) ||
@@ -47,6 +51,7 @@ function pwErrHandler() {
       pwInput,
       "비밀번호는 8자 이상이어야 하며, 문자와 숫자를 혼합해야 합니다."
     );
+    return;
   } else {
     doneError(pwErrorMsg, pwInput);
   }
@@ -55,6 +60,7 @@ function pwErrHandler() {
 function pwCkdErrHandler() {
   if (pwInput.value !== pwCheckInput.value) {
     showError(pwCheckErrorMsg, pwCheckInput, "비밀번호가 일치하지 않아요.");
+    return;
   } else {
     doneError(pwCheckErrorMsg, pwCheckInput);
   }

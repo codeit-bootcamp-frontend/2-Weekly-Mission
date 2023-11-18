@@ -9,6 +9,8 @@ import {
   showError,
   emailErrorMsg,
   pwErrorMsg,
+  pwCheckErrorMsg,
+  pwCheckInput,
 } from "./inputErrMsg.mjs";
 
 const loginBtn = document.querySelector("#login_btn");
@@ -45,17 +47,49 @@ async function loginBtnHandler(e) {
   }
 }
 
-function signUpBtnHandler(e) {
-  emailErrHandler();
-  pwErrHandler();
-  pwCkdErrHandler();
+async function signUpBtnHandler(e) {
+  e.preventDefault();
 
-  if (
-    emailErrorMsg.classList.contains("show") ||
-    pwErrorMsg.classList.contains("show") ||
-    pwCheckErrorMsg.classList.contains("show")
-  ) {
-    e.preventDefault();
+  const emailInfo = { email: emailInput.value.trim() };
+  const userInfo = {
+    email: emailInput.value.trim(),
+    password: pwInput.value.trim(),
+  };
+  const pwCkd = pwCheckInput.value.trim();
+
+  try {
+    const emailcKdResponse = await fetch(
+      "https://bootcamp-api.codeit.kr/api/check-email",
+      {
+        method: "POST",
+        body: JSON.stringify(emailInfo),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    if (emailcKdResponse.status === 409) {
+      return;
+    }
+
+    const signUpResponse = await fetch(
+      "https://bootcamp-api.codeit.kr/api/sign-up",
+      {
+        method: "POST",
+        body: JSON.stringify(userInfo),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    if (signUpResponse.status === 200 && userInfo.password === pwCkd) {
+      emailErrHandler();
+      pwErrHandler();
+      pwCkdErrHandler(); // 각 인풋에대한 에러검사
+
+      window.location.href = "/folder";
+      console.log("로그인 성공");
+    }
+  } catch (e) {
+    console.log(e);
   }
 }
 
