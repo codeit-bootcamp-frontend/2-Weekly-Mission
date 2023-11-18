@@ -12,7 +12,6 @@ let isLogin = {
   passwordCheck: false,
 };
 
-
 function validateEmail(inputValue) {
   if (inputValue == "") {
     isLogin.email = false;
@@ -20,23 +19,8 @@ function validateEmail(inputValue) {
   } else if (!emailRegex.test(inputValue)) {
     isLogin.email = false;
     return message.email.invalid;
-  } else if (inputValue === "test@codeit.com") {
-    return message.email.duplicate;
   } else {
     isLogin.email = true;
-    return "";
-  }
-}
-
-function validatePassword(inputValue) {
-  if (inputValue == "") {
-    isLogin.password = false;
-    return message.password.null;
-  } else if (!passwordRegex.test(inputValue)) {
-    isLogin.password = false;
-    return message.password.invalid;
-  } else {
-    isLogin.password = true;
     return "";
   }
 }
@@ -54,6 +38,19 @@ function emailFocus() {
   }
 }
 
+function validatePassword(inputValue) {
+  if (inputValue == "") {
+    isLogin.password = false;
+    return message.password.null;
+  } else if (!passwordRegex.test(inputValue)) {
+    isLogin.password = false;
+    return message.password.invalid;
+  } else {
+    isLogin.password = true;
+    return "";
+  }
+}
+
 function passwordFocus() {
   const errorMessage = validatePassword(inputPassword.value);
   let alert = document.querySelector(".password-alert-text");
@@ -67,11 +64,29 @@ function passwordFocus() {
   }
 }
 
+async function loginCheck(email, password) {
+  try {
+    let response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+    if (response.ok) {
+      window.location.href = "../folder.html";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function login(e) {
   e.preventDefault();
-  if (isLogin.email && isLogin.password && isLogin.passwordCheck) {
-    window.location.href = "../folder.html";
-  }
+  loginCheck(inputEmail.value, inputPassword.value);
   if (!isLogin.email) {
     emailFocus(inputEmail.value);
   }

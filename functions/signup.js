@@ -14,18 +14,52 @@ let isJoin = {
   passwordCheck: false,
 };
 
-function validateEmail(inputValue) {
+async function isDuplicateEmail(email) {
+  try {
+    let response = await fetch("https://bootcamp-api.codeit.kr/api/check-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email }),
+    });
+
+    if (response.status === 409) {
+      return true;
+    } else if (response.status === 400) {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function validateEmail(inputValue) {
   if (inputValue == "") {
     isJoin.email = false;
     return message.email.null;
   } else if (!emailRegex.test(inputValue)) {
     isJoin.email = false;
     return message.email.invalid;
-  } else if (inputValue === "test@codeit.com") {
+  } else if (await isDuplicateEmail(inputValue)) {
+    isJoin.email = false;
     return message.email.duplicate;
   } else {
     isJoin.email = true;
     return "";
+  }
+}
+
+async function emailFocus() {
+  const errorMessage = await validateEmail(inputEmail.value);
+  let alert = document.querySelector(".email-alert-text");
+  if (alert) {
+    alert.remove();
+  }
+  if (errorMessage === "") {
+    removeAlert(alert, inputEmail);
+  } else {
+    updateAlert(inputEmail, email, "email-alert-text", errorMessage);
   }
 }
 
@@ -42,32 +76,6 @@ function validatePassword(inputValue) {
   }
 }
 
-function validatePasswordCheck(inputValue) {
-  if (inputValue == "") {
-    isJoin.passwordCheck = false;
-    return message.password.check;
-  } else if (inputPassword.value != inputValue) {
-    isJoin.passwordCheck = false;
-    return message.password.match;
-  } else {
-    isJoin.passwordCheck = true;
-    return "";
-  }
-}
-
-function emailFocus() {
-  const errorMessage = validateEmail(inputEmail.value);
-  let alert = document.querySelector(".email-alert-text");
-  if (alert) {
-    alert.remove();
-  }
-  if (errorMessage === "") {
-    removeAlert(alert, inputEmail);
-  } else {
-    updateAlert(inputEmail, email, "email-alert-text", errorMessage);
-  }
-}
-
 function passwordFocus() {
   const errorMessage = validatePassword(inputPassword.value);
   let alert = document.querySelector(".password-alert-text");
@@ -78,6 +86,19 @@ function passwordFocus() {
     removeAlert(alert, inputPassword);
   } else {
     updateAlert(inputPassword, password, "password-alert-text", errorMessage);
+  }
+}
+
+function validatePasswordCheck(inputValue) {
+  if (inputValue == "") {
+    isJoin.passwordCheck = false;
+    return message.password.check;
+  } else if (inputPassword.value != inputValue) {
+    isJoin.passwordCheck = false;
+    return message.password.match;
+  } else {
+    isJoin.passwordCheck = true;
+    return "";
   }
 }
 
@@ -96,9 +117,11 @@ function passwordCheckFocus() {
 
 function join(e) {
   e.preventDefault();
+
   if (isJoin.email && isJoin.password && isJoin.passwordCheck) {
     window.location.href = "../folder.html";
   }
+
   if (!isJoin.email) {
     emailFocus(inputEmail.value);
   }
