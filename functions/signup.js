@@ -14,7 +14,7 @@ let isJoin = {
   passwordCheck: false,
 };
 
-//이메일 중복 체크
+//이메일
 async function isDuplicateEmail(email) {
   try {
     let response = await fetch("https://bootcamp-api.codeit.kr/api/check-email", {
@@ -30,7 +30,6 @@ async function isDuplicateEmail(email) {
   }
 }
 
-//이메일 이벤트 핸들러
 async function validateEmail(inputValue) {
   if (inputValue == "") {
     isJoin.email = false;
@@ -58,7 +57,7 @@ async function emailFocus() {
   }
 }
 
-//비밀번호 이벤트 핸들러
+//비밀번호
 function validatePassword(inputValue) {
   if (inputValue == "") {
     isJoin.password = false;
@@ -83,7 +82,7 @@ function passwordFocus() {
   }
 }
 
-//비밀번호 확인 이벤트 핸들러
+//비밀번호 확인
 function validatePasswordCheck(inputValue) {
   if (inputValue == "") {
     isJoin.passwordCheck = false;
@@ -108,7 +107,6 @@ function passwordCheckFocus() {
   }
 }
 
-//비밀번호 활성화
 function passwordActivation(e) {
   let input = e.target.parentElement.querySelector("input");
   if (input.type === "password") {
@@ -120,7 +118,7 @@ function passwordActivation(e) {
   }
 }
 
-//회원가입 요청
+//회원가입
 async function joinCheck(email, password) {
   try {
     let response = await fetch("https://bootcamp-api.codeit.kr/api/sign-up", {
@@ -140,7 +138,6 @@ async function joinCheck(email, password) {
   }
 }
 
-//회원가입 버튼 이벤트 핸들러
 async function join(e) {
   e.preventDefault();
   if (isJoin.email && isJoin.password && isJoin.passwordCheck) {
@@ -157,7 +154,6 @@ async function join(e) {
   }
 }
 
-//이벤트 등록
 inputEmail.addEventListener("focusout", emailFocus);
 inputPassword.addEventListener("focusout", passwordFocus);
 inputPasswordCheck.addEventListener("focusout", passwordCheckFocus);

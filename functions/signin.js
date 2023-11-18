@@ -12,7 +12,7 @@ let isLogin = {
   passwordCheck: false,
 };
 
-//이메일 이벤트 핸들러
+//이메일
 function validateEmail(inputValue) {
   if (inputValue == "") {
     isLogin.email = false;
@@ -37,7 +37,7 @@ function emailFocus() {
   }
 }
 
-//비밀번호 이벤트 핸들러
+//비밀번호
 function validatePassword(inputValue) {
   if (inputValue == "") {
     isLogin.password = false;
@@ -62,7 +62,6 @@ function passwordFocus() {
   }
 }
 
-//비밀번호 활성화
 function passwordActivation(e) {
   let input = e.target.parentElement.querySelector("input");
   if (input.type === "password") {
@@ -74,7 +73,7 @@ function passwordActivation(e) {
   }
 }
 
-//로그인 요청
+//로그인
 async function loginCheck(email, password) {
   try {
     let response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in", {
@@ -92,7 +91,6 @@ async function loginCheck(email, password) {
   }
 }
 
-//로그인 버튼 이벤트 핸들러
 function login(e) {
   e.preventDefault();
   loginCheck(inputEmail.value, inputPassword.value);
@@ -104,7 +102,6 @@ function login(e) {
   }
 }
 
-//이벤트 등록
 inputEmail.addEventListener("focusout", emailFocus);
 inputPassword.addEventListener("focusout", passwordFocus);
 loginButton.addEventListener("click", login);
