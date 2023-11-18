@@ -73,6 +73,7 @@ async function signUpBtnHandler(e) {
     );
 
     if (emailCkdResponse.status === 409) {
+      showError(pwCheckErrorMsg, pwCheckInput, "이미 사용 중인 이메일입니다.");
       return;
     }
 
