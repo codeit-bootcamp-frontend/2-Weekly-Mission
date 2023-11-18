@@ -37,11 +37,7 @@ nav {
 
 /* 슬로건 강조 */
 .slogan-gradient {
-  background-image: linear-gradient(
-    91deg,
-    var(--linkbrary-primary-color, #6d6afe) 17.28%,
-    #ff9f9f 74.98%
-  );
+  background-image: linear-gradient(91deg, var(--linkbrary-primary-color, #6d6afe) 17.28%, #ff9f9f 74.98%);
 }
 
 /* for Mobile */
@@ -90,7 +86,7 @@ nav {
     width: 69.8rem;
     height: 34.3rem;
   }
-  .min-1200px-show-toggle {
+  .min-768px-show-toggle {
     display: block;
   }
   .btn-short {
@@ -125,7 +121,7 @@ nav {
     width: 120rem;
     height: 59rem;
   }
-  .min-1200px-show-toggle {
+  .min-768px-show-toggle {
     display: none;
   }
   .btn-short {

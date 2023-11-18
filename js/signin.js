@@ -1,16 +1,22 @@
-import { submitBtn, emailInput, passwordInput } from "./modules/domSelectors.js";
-import { authEvent } from "./modules/authEventHandler.js";
-import { specifyWarningPosition } from "./modules/authEventHandler.js";
-import { verifyLoginCredentials } from "./modules/authVerifyUser.js";
+import { $submitBtn, $emailInput, $passwordInput } from "./modules/domElements.js";
+import { initializeSignForm as initializeSignInForm } from "./modules/authEventHandler.js";
+import { postSignIn, redirectIfAccessTokenExists } from "./modules/authApiUtils.js";
 
-authEvent();
+// 토큰 존재시 folder로 바로 이동
+redirectIfAccessTokenExists("./folder.html");
 
-const submitSignInHandler = submitBtn.addEventListener("click", (e) => {
-  if (verifyLoginCredentials(emailInput.value, passwordInput.value)) {
-    submitBtn.parentElement.action = "./folder.html";
-  } else {
-    e.preventDefault();
-    specifyWarningPosition(emailInput, "이메일을 확인해주세요");
-    specifyWarningPosition(passwordInput, "비밀번호를 확인해주세요.");
-  }
+// 로그인, 회원가입 공통 이벤트리스너 호출
+initializeSignInForm();
+
+const submitSignInHandler = $submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  // post 할 객체 생성
+  const user = {
+    email: $emailInput.value,
+    password: $passwordInput.value,
+  };
+
+  // 로그인 api 접근 함수에 전달
+  postSignIn(user);
 });

@@ -1,16 +1,16 @@
-import { inputForm, emailInput, passwordInput, passwordVerifyInput } from "./domSelectors.js";
-import { regEmail, regPassword } from "./regexPatterns.js";
-import { CheckEmailExist } from "./authVerifyUser.js";
-import { specifyWarningPosition, toggleWarningborder, deleteWarningText } from "./authDOMHandler.js";
+import { $emailInput, $passwordInput, $passwordVerifyInput } from "./domElements.js";
+import { validateEmail, validatePassword, validatePasswordVerify } from "./validator.js";
+import { triggerInputValidationError, resetInputValidationError } from "./authDOMHandler.js";
 
-const authEvent = () => {
-  const formFocusInHandler = inputForm.addEventListener("focusin", (e) => {
-    toggleWarningborder(e.target);
-    deleteWarningText(e.target);
-  });
+const $inputForm = document.querySelector(".input-container");
 
-  const eyeIconClickHandler = inputForm.addEventListener("click", ({ target }) => {
-    if (target.classList.contains("toggle-show-pwd")) {
+const initializeSignForm = () => {
+  const formFocusInHandler = $inputForm.addEventListener("focusin", resetInputValidationError);
+
+  const eyeIconClickHandler = $inputForm.addEventListener("click", ({ target }) => {
+    if (!target.classList.contains("toggle-show-pwd")) return;
+    // 위 조건으로 인해, 아래 라인에서는 있다고 가정하고 로직 진행
+    else {
       if (target.dataset.show === "true") {
         target.src = "../images/eye-off.svg";
         target.previousElementSibling.type = "password";
@@ -23,49 +23,25 @@ const authEvent = () => {
     }
   });
 
-  const formFocusOutHandler = inputForm.addEventListener("focusout", (e) => {
-    const userActionType = inputForm.childElementCount > 2 ? "signUp" : "signIn";
+  const formFocusOutHandler = $inputForm.addEventListener("focusout", (e) => {
+    const userActionType = $inputForm.childElementCount > 2 ? "signUp" : "signIn";
     switch (e.target) {
-      case emailInput:
-        emailErrorCheck(userActionType);
+      case $emailInput:
+        const emailValidation = validateEmail($emailInput.value, userActionType);
+        if (!emailValidation.result) triggerInputValidationError($emailInput, emailValidation.message);
         break;
-      case passwordInput:
-        pwdErrorCheck();
+      case $passwordInput:
+        const passwordValidation = validatePassword($passwordInput.value);
+        if (!passwordValidation.result) triggerInputValidationError($passwordInput, passwordValidation.message);
         break;
-      case passwordVerifyInput:
-        pwdVerifyErrorCheck();
+      case $passwordVerifyInput:
+        const passwordVerifyValidation = validatePasswordVerify($passwordInput.value, $passwordVerifyInput.value);
+        if (!passwordVerifyValidation.result)
+          triggerInputValidationError($passwordVerifyInput, passwordVerifyValidation.message);
         break;
       default:
     }
   });
 };
 
-const emailErrorCheck = (checkCase) => {
-  if (emailInput.value === "") {
-    specifyWarningPosition(emailInput, "이메일을 입력해주세요.");
-  } else if (!regEmail.test(emailInput.value)) {
-    specifyWarningPosition(emailInput, "올바른 이메일 주소가 아닙니다.");
-  } else if (CheckEmailExist(emailInput.value) && checkCase === "signUp") {
-    specifyWarningPosition(emailInput, "이미 사용 중인 이메일입니다.");
-  }
-};
-
-const pwdErrorCheck = () => {
-  if (passwordInput.value === "") {
-    specifyWarningPosition(passwordInput, "비밀번호를 입력해주세요.");
-  } else if (!regPassword.test(passwordInput.value)) {
-    specifyWarningPosition(passwordInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
-  }
-};
-
-const pwdVerifyErrorCheck = () => {
-  if (passwordVerifyInput.value !== passwordInput.value) {
-    specifyWarningPosition(passwordVerifyInput, "비밀번호가 일치하지 않아요.");
-  } else if (passwordVerifyInput.value === "") {
-    specifyWarningPosition(passwordVerifyInput, "비밀번호를 입력해주세요.");
-  } else if (!regPassword.test(passwordVerifyInput.value)) {
-    specifyWarningPosition(passwordVerifyInput, "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.");
-  }
-};
-
-export { authEvent, specifyWarningPosition, emailErrorCheck, pwdErrorCheck, pwdVerifyErrorCheck };
+export { initializeSignForm };
