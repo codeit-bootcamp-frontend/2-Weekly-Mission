@@ -1,4 +1,4 @@
-import { TEST_EMAIL, TEST_PASSWORD } from "../constant/constant.js";
+import { API_URL } from "../constant/constant.js";
 import { checkEmail, checkEmpty } from "./check.js";
 import deleteError from "./deleteError.js";
 import showError from "./showError.js";
@@ -25,20 +25,40 @@ const togglePasswordVisibilityEvent = (e) => {
   if(e.target.classList.contains('eye')) togglePasswordVisibility(e.target);
 }
 
-const testSignIn = (e) => {
-  e.preventDefault();
-  if(e.target === document.querySelector('.signin--btn')){
-    const emailInput = document.querySelector('#email');
-    const passwordInput = document.querySelector('#password');
-    
-    if(emailInput.value === TEST_EMAIL && passwordInput.value === TEST_PASSWORD){
+const checkSignIn = async (emailInput, passwordInput) => {
+  try {
+    const response = await fetch(`${API_URL}/sign-in`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: emailInput.value, 
+        password: passwordInput.value
+      })
+    });
+    if(response.ok) {
       window.location.href = './folder.html';
     } else {
       showError(emailInput, '이메일/비밀번호를 확인해주세요');
       showError(passwordInput, '이메일/비밀번호를 확인해주세요');
     }
+  } catch (error) {
+    alert(error);
   }
 };
+
+const testSignIn = (e) => {
+  e.preventDefault();
+  if(e.target === document.querySelector('.signin--btn')){
+    const emailInput = document.querySelector('#email');
+    const passwordInput = document.querySelector('#password');
+
+    checkSignIn(emailInput, passwordInput);
+  }
+};
+
+
 
 emailInput.addEventListener('focusout', checkEmptyEvent);
 passwordInput.addEventListener('focusout', checkEmptyEvent);
