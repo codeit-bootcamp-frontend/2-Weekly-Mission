@@ -6,16 +6,19 @@ import {
   emailInput,
   pwInput,
   pwCheckInput,
-} from "./module/signForm/inputErrMsg.mjs";
+} from "./module/signForm/inputValidation.mjs";
 
 import {
   pwIcon,
   pwiconChangeHandler,
   pwCheckedIcon,
   pwCkdIconChangeHandler,
-} from "./module/signForm/iconEvent.mjs";
+} from "./module/signForm/togglePasswordVisiblity.mjs";
 
-import { signUpBtnHandler, signUpBtn } from "./module/signForm/btnEvent.mjs";
+import {
+  signUpBtnHandler,
+  signUpBtn,
+} from "./module/signForm/submitHandlers.mjs";
 document.addEventListener("DOMContentLoaded", function () {
   const accessToken = localStorage.getItem("accessToken");
   if (accessToken) {

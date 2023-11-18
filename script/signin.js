@@ -5,11 +5,17 @@ import {
   pwErrHandler,
   emailInput,
   pwInput,
-} from "./module/signForm/inputErrMsg.mjs";
+} from "./module/signForm/inputValidation.mjs";
 
-import { pwIcon, pwiconChangeHandler } from "./module/signForm/iconEvent.mjs";
+import {
+  pwIcon,
+  pwiconChangeHandler,
+} from "./module/signForm/togglePasswordVisiblity.mjs";
 
-import { loginBtnHandler, loginBtn } from "./module/signForm/btnEvent.mjs";
+import {
+  loginBtnHandler,
+  loginBtn,
+} from "./module/signForm/submitHandlers.mjs";
 
 document.addEventListener("DOMContentLoaded", function () {
   const accessToken = localStorage.getItem("accessToken");

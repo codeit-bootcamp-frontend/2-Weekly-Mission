@@ -6,12 +6,12 @@ import {
   pwCkdErrHandler,
   emailInput,
   pwInput,
-  showError,
+  showErrorMsg,
   emailErrorMsg,
   pwErrorMsg,
   pwCheckErrorMsg,
   pwCheckInput,
-} from "./inputErrMsg.mjs";
+} from "./inputValidation.mjs";
 
 const loginBtn = document.querySelector("#login_btn");
 const signUpBtn = document.querySelector("#signup_btn");
@@ -43,8 +43,8 @@ async function loginBtnHandler(e) {
       window.location.href = "/folder";
       console.log("로그인 성공");
     } else {
-      showError(emailErrorMsg, emailInput, "이메일을 확인해주세요.");
-      showError(pwErrorMsg, pwInput, "비밀번호를 확인해주세요.");
+      showErrorMsg(emailErrorMsg, emailInput, "이메일을 확인해주세요.");
+      showErrorMsg(pwErrorMsg, pwInput, "비밀번호를 확인해주세요.");
       console.log("로그인 실패");
     }
   } catch (e) {
@@ -73,7 +73,7 @@ async function signUpBtnHandler(e) {
     );
 
     if (emailCkdResponse.status === 409) {
-      showError(emailErrorMsg, emailInput, "이미 사용 중인 이메일입니다.");
+      showErrorMsg(emailErrorMsg, emailInput, "이미 사용 중인 이메일입니다.");
       return;
     }
 
