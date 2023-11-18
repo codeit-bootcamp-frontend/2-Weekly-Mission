@@ -23,7 +23,6 @@ const handleEmailInput = () => {
 
   if (emailValue === testEmail) {
     isEmailCorrect = true;
-    inputValue.emailValue = emailValue;
   } else {
     isEmailCorrect = false;
   }
@@ -37,9 +36,6 @@ const handlePasswordInput = () => {
 
   if (passwordValue === testPassword) {
     isPasswordCorrect = true;
-    inputValue.passwordValue = passwordValue;
-    // console.log(testPassword);
-    // console.log(passwordValue);
   } else {
     isPasswordCorrect = false;
   }
@@ -65,7 +61,6 @@ const fetchSignIn = async (inputValue) => {
 
 const onClickSignInButton = async (e) => {
   e.preventDefault();
-  // console.log(isPossibleSignIn);
 
   const emailIncorrectMessage = document.getElementById('emailIncorrectMessage');
   const passwordIncorrectMessage = document.getElementById('passwordIncorrectMessage');
