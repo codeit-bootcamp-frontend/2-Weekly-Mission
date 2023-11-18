@@ -35,6 +35,11 @@ async function loginBtnHandler(e) {
     console.log(result);
 
     if (result === 200) {
+      const data = await response.json(); // Json으로 값 뽑아오기
+      const accessToken = data.data.accessToken; // 엑세스토큰
+      localStorage.setItem("accessToken", accessToken); // key : value
+      console.log(data); // 확인
+      console.log(accessToken); // 엑세스토큰 값 확인(dev tool:애플리케이션-로컬스토리지)
       window.location.href = "/folder";
       console.log("로그인 성공");
     } else {
@@ -84,6 +89,12 @@ async function signUpBtnHandler(e) {
       emailErrHandler();
       pwErrHandler();
       pwCkdErrHandler(); // 각 인풋에대한 에러검사
+
+      const data = await signUpResponse.json(); // Json으로 값 뽑아오기
+      const accessToken = data.data.accessToken; // 엑세스토큰
+      localStorage.setItem("accessToken", accessToken); // key : value
+      console.log(data); // 확인
+      console.log(accessToken); // 엑세스토큰 값 확인(dev tool:애플리케이션-로컬스토리지)
 
       window.location.href = "/folder";
       console.log("로그인 성공");
