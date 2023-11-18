@@ -12,6 +12,10 @@ import { pwIcon, pwiconChangeHandler } from "./module/signForm/iconEvent.mjs";
 import { loginBtnHandler, loginBtn } from "./module/signForm/btnEvent.mjs";
 
 document.addEventListener("DOMContentLoaded", function () {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    window.location.href = "/folder";
+  }
   // =================================================================
 
   // 로그인 핸들러 / 엔터기능구현

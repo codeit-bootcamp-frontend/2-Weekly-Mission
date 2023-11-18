@@ -17,6 +17,10 @@ import {
 
 import { signUpBtnHandler, signUpBtn } from "./module/signForm/btnEvent.mjs";
 document.addEventListener("DOMContentLoaded", function () {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    window.location.href = "/folder";
+  }
   // =================================================================
 
   //이메일인풋 에러핸들러
