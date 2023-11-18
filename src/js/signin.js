@@ -34,15 +34,6 @@ const handleEmailInput = () => {
 const handlePasswordInput = () => {
   const passwordInput = document.getElementById('passwordInput');
   const passwordValue = passwordInput.value;
-  const passwordEmptyMessage = document.getElementById('passwordEmptyMessage');
-
-  if (!passwordValue) {
-    passwordEmptyMessage.style.display = 'block';
-    passwordInput.classList.add('invalid-input');
-  } else {
-    passwordEmptyMessage.style.display = 'none';
-    passwordInput.classList.remove('invalid-input');
-  }
 
   if (passwordValue === testPassword) {
     isPasswordCorrect = true;
@@ -62,9 +53,11 @@ const onClickSignInButton = async (e) => {
 
   const emailIncorrectMessage = document.getElementById('emailIncorrectMessage');
   const passwordIncorrectMessage = document.getElementById('passwordIncorrectMessage');
+  const passwordEmptyMessage = document.getElementById('passwordEmptyMessage');
 
   const emailInput = document.getElementById('emailInput');
   const passwordInput = document.getElementById('passwordInput');
+  const passwordValue = passwordInput.value;
 
   inputValue = {
     email: emailInput.value,
@@ -96,45 +89,25 @@ const onClickSignInButton = async (e) => {
       console.log('error:', error);
     }
   } else {
+    emailIncorrectMessage.style.display = 'none';
+    passwordIncorrectMessage.style.display = 'none';
+    passwordEmptyMessage.style.display = 'none';
+    emailInput.classList.remove('invalid-input');
+    passwordInput.classList.remove('invalid-input');
+
     if (!isEmailCorrect) {
       emailIncorrectMessage.style.display = 'block';
       emailInput.classList.add('invalid-input');
-    } else {
-      emailIncorrectMessage.style.display = 'none';
-      emailInput.classList.remove('invalid-input');
     }
+
     if (!isPasswordCorrect) {
-      passwordIncorrectMessage.style.display = 'block';
-      passwordInput.classList.add('invalid-input');
-    } else {
-      passwordIncorrectMessage.style.display = 'none';
-      passwordInput.classList.remove('invalid-input');
+      if (!passwordValue) {
+        passwordEmptyMessage.style.display = 'block';
+        passwordInput.classList.add('invalid-input');
+      } else {
+        passwordIncorrectMessage.style.display = 'block';
+        passwordInput.classList.add('invalid-input');
+      }
     }
   }
 };
-
-// const onClickSignInButton = async (e) => {
-//   e.preventDefault();
-
-//   const emailInput = document.getElementById('emailInput');
-//   const passwordInput = document.getElementById('passwordInput');
-
-//   inputValue = {
-//     email: emailInput.value,
-//     password: passwordInput.value,
-//   };
-//   console.log(inputValue);
-
-//   try {
-//     const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(inputValue),
-//     });
-//     console.log(response);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
