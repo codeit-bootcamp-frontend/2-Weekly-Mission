@@ -1,8 +1,11 @@
 // import { EMAIL_REGEX } from '../util/constants';
 
-let emailValid = '';
-let passwordValid = '';
-let confirmPasswordValid = '';
+const emailRegex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+let emailValid = false;
+let passwordValid = false;
+let confirmPasswordValid = false;
 let signUpValid = emailValid && passwordValid && confirmPasswordValid;
 
 const updatelSignUpValid = () => {
@@ -53,9 +56,7 @@ const handleEmailInput = () => {
 
 // 이메일 정규식 - @ 앞 뒤로 문자 존재, .(콤마) 뒤로 문자 또는 숫자
 const emailValidCheck = (email) => {
-  const regex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
-
-  if (regex.test(email) === false) return false;
+  if (emailRegex.test(email) === false) return false;
   else return true;
 };
 
@@ -86,9 +87,7 @@ const handlePasswordInput = () => {
 
 // 비밀번호 정규식 - 길이 8자 이상, 숫자와 문자 모두 포함
 const passwordValidCheck = (password) => {
-  const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-  if (regex.test(password) === false) return false;
+  if (passwordRegex.test(password) === false) return false;
   else return true;
 };
 
@@ -101,7 +100,7 @@ const handleConfirmPasswordInput = (e) => {
   const passwordMismatchMessage = document.getElementById('passwordMismatchMessage');
   // console.log('비밀번호 확인:', confirmPasswordValue);
 
-  confirmPasswordValid = !(passwordValue !== confirmPasswordValue);
+  confirmPasswordValid = passwordValue === confirmPasswordValue;
   updatelSignUpValid();
 
   if (!confirmPasswordValid) {

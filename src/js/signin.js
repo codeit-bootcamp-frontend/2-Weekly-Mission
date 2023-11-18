@@ -47,6 +47,27 @@ const handlePasswordInput = () => {
   updateSignInValid();
 };
 
+const fetchSignIn = async () => {
+  inputValue = {
+    email: emailInput.value,
+    password: passwordInput.value,
+  };
+
+  const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(inputValue),
+  });
+
+  const result = response.status;
+
+  if (result === 200) {
+    window.location.href = '/folder.html';
+  }
+};
+
 const onClickSignInButton = async (e) => {
   e.preventDefault();
   // console.log(isPossibleSignIn);
@@ -59,55 +80,32 @@ const onClickSignInButton = async (e) => {
   const passwordInput = document.getElementById('passwordInput');
   const passwordValue = passwordInput.value;
 
-  inputValue = {
-    email: emailInput.value,
-    password: passwordInput.value,
-  };
-  // console.log(inputValue);
+  emailIncorrectMessage.style.display = 'none';
+  emailInput.classList.remove('invalid-input');
+  passwordIncorrectMessage.style.display = 'none';
+  passwordInput.classList.remove('invalid-input');
+  passwordEmptyMessage.style.display = 'none';
 
   if (isPossibleSignIn) {
-    emailIncorrectMessage.style.display = 'none';
-    emailInput.classList.remove('invalid-input');
-    passwordIncorrectMessage.style.display = 'none';
-    passwordInput.classList.remove('invalid-input');
     try {
-      const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(inputValue),
-      });
-      // console.log(response.status);
-
-      const result = response.status;
-
-      if (result === 200) {
-        window.location.href = '/folder.html';
-      }
+      fetchSignIn();
     } catch (error) {
       console.log('error:', error);
     }
-  } else {
-    emailIncorrectMessage.style.display = 'none';
-    passwordIncorrectMessage.style.display = 'none';
-    passwordEmptyMessage.style.display = 'none';
-    emailInput.classList.remove('invalid-input');
-    passwordInput.classList.remove('invalid-input');
+  }
 
-    if (!isEmailCorrect) {
-      emailIncorrectMessage.style.display = 'block';
-      emailInput.classList.add('invalid-input');
-    }
+  if (!isEmailCorrect) {
+    emailIncorrectMessage.style.display = 'block';
+    emailInput.classList.add('invalid-input');
+  }
 
-    if (!isPasswordCorrect) {
-      if (!passwordValue) {
-        passwordEmptyMessage.style.display = 'block';
-        passwordInput.classList.add('invalid-input');
-      } else {
-        passwordIncorrectMessage.style.display = 'block';
-        passwordInput.classList.add('invalid-input');
-      }
+  if (!isPasswordCorrect) {
+    if (!passwordValue) {
+      passwordEmptyMessage.style.display = 'block';
+      passwordInput.classList.add('invalid-input');
+    } else {
+      passwordIncorrectMessage.style.display = 'block';
+      passwordInput.classList.add('invalid-input');
     }
   }
 };
