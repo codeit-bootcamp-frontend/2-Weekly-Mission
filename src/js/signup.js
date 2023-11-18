@@ -53,9 +53,9 @@ const handleEmailInput = () => {
 
 // 이메일 정규식 - @ 앞 뒤로 문자 존재, .(콤마) 뒤로 문자 또는 숫자
 const emailValidCheck = (email) => {
-  // const regex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+  const regex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
-  if (EMAIL_REGEX.test(email) === false) return false;
+  if (regex.test(email) === false) return false;
   else return true;
 };
 
