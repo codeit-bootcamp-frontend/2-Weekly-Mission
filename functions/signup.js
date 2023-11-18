@@ -14,26 +14,23 @@ let isJoin = {
   passwordCheck: false,
 };
 
+//이메일 중복 체크
 async function isDuplicateEmail(email) {
   try {
     let response = await fetch("https://bootcamp-api.codeit.kr/api/check-email", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: email }),
     });
-
     if (response.status === 409) {
       return true;
-    } else if (response.status === 400) {
-      return false;
     }
   } catch (error) {
     console.log(error);
   }
 }
 
+//이메일 이벤트 핸들러
 async function validateEmail(inputValue) {
   if (inputValue == "") {
     isJoin.email = false;
@@ -53,9 +50,7 @@ async function validateEmail(inputValue) {
 async function emailFocus() {
   const errorMessage = await validateEmail(inputEmail.value);
   let alert = document.querySelector(".email-alert-text");
-  if (alert) {
-    alert.remove();
-  }
+  alert?.remove();
   if (errorMessage === "") {
     removeAlert(alert, inputEmail);
   } else {
@@ -63,6 +58,7 @@ async function emailFocus() {
   }
 }
 
+//비밀번호 이벤트 핸들러
 function validatePassword(inputValue) {
   if (inputValue == "") {
     isJoin.password = false;
@@ -79,9 +75,7 @@ function validatePassword(inputValue) {
 function passwordFocus() {
   const errorMessage = validatePassword(inputPassword.value);
   let alert = document.querySelector(".password-alert-text");
-  if (alert) {
-    alert.remove();
-  }
+  alert?.remove();
   if (errorMessage === "") {
     removeAlert(alert, inputPassword);
   } else {
@@ -89,6 +83,7 @@ function passwordFocus() {
   }
 }
 
+//비밀번호 확인 이벤트 핸들러
 function validatePasswordCheck(inputValue) {
   if (inputValue == "") {
     isJoin.passwordCheck = false;
@@ -105,9 +100,7 @@ function validatePasswordCheck(inputValue) {
 function passwordCheckFocus() {
   const errorMessage = validatePasswordCheck(inputPasswordCheck.value);
   let alert = document.querySelector(".check-alert-text");
-  if (alert) {
-    alert.remove();
-  }
+  alert?.remove();
   if (errorMessage === "") {
     removeAlert(alert, inputPasswordCheck);
   } else {
@@ -115,24 +108,7 @@ function passwordCheckFocus() {
   }
 }
 
-function join(e) {
-  e.preventDefault();
-
-  if (isJoin.email && isJoin.password && isJoin.passwordCheck) {
-    window.location.href = "../folder.html";
-  }
-
-  if (!isJoin.email) {
-    emailFocus(inputEmail.value);
-  }
-  if (!isJoin.password) {
-    passwordFocus(inputPassword.value);
-  }
-  if (!isJoin.passwordCheck) {
-    passwordCheckFocus(inputPasswordCheck.value);
-  }
-}
-
+//비밀번호 활성화
 function passwordActivation(e) {
   let input = e.target.parentElement.querySelector("input");
   if (input.type === "password") {
@@ -144,6 +120,44 @@ function passwordActivation(e) {
   }
 }
 
+//회원가입 요청
+async function joinCheck(email, password) {
+  try {
+    let response = await fetch("https://bootcamp-api.codeit.kr/api/sign-up", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    if (response.ok) {
+      let data = await response.json();
+      localStorage.setItem("joinAccessToken", JSON.stringify(data.data.accessToken));
+      window.location.href = "../folder.html";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//회원가입 버튼 이벤트 핸들러
+async function join(e) {
+  e.preventDefault();
+  if (isJoin.email && isJoin.password && isJoin.passwordCheck) {
+    await joinCheck(inputEmail.value, inputPassword.value);
+  }
+  if (!isJoin.email) {
+    emailFocus(inputEmail.value);
+  }
+  if (!isJoin.password) {
+    passwordFocus(inputPassword.value);
+  }
+  if (!isJoin.passwordCheck) {
+    passwordCheckFocus(inputPasswordCheck.value);
+  }
+}
+
+//이벤트 등록
 inputEmail.addEventListener("focusout", emailFocus);
 inputPassword.addEventListener("focusout", passwordFocus);
 inputPasswordCheck.addEventListener("focusout", passwordCheckFocus);

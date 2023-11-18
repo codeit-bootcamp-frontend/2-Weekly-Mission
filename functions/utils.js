@@ -1,6 +1,8 @@
+//유효성 체크
 export let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 export let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+//메세지 업데이트
 export function updateAlert(inputElement, parentElement, className, message) {
   let div = document.createElement("div");
   div.classList.add(className);
@@ -9,11 +11,13 @@ export function updateAlert(inputElement, parentElement, className, message) {
   parentElement.appendChild(div);
 }
 
+//메세지 삭제
 export function removeAlert(alert, inputElement) {
   inputElement.classList.remove("alert-line");
   alert?.remove();
 }
 
+//메세지
 export let message = {
   email: {
     null: "이메일을 입력해주세요",

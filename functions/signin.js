@@ -12,6 +12,7 @@ let isLogin = {
   passwordCheck: false,
 };
 
+//이메일 이벤트 핸들러
 function validateEmail(inputValue) {
   if (inputValue == "") {
     isLogin.email = false;
@@ -28,9 +29,7 @@ function validateEmail(inputValue) {
 function emailFocus() {
   const errorMessage = validateEmail(inputEmail.value);
   let alert = document.querySelector(".email-alert-text");
-  if (alert) {
-    alert.remove();
-  }
+  alert?.remove();
   if (errorMessage === "") {
     removeAlert(alert, inputEmail);
   } else {
@@ -38,6 +37,7 @@ function emailFocus() {
   }
 }
 
+//비밀번호 이벤트 핸들러
 function validatePassword(inputValue) {
   if (inputValue == "") {
     isLogin.password = false;
@@ -54,9 +54,7 @@ function validatePassword(inputValue) {
 function passwordFocus() {
   const errorMessage = validatePassword(inputPassword.value);
   let alert = document.querySelector(".password-alert-text");
-  if (alert) {
-    alert.remove();
-  }
+  alert?.remove();
   if (errorMessage === "") {
     removeAlert(alert, inputPassword);
   } else {
@@ -64,37 +62,7 @@ function passwordFocus() {
   }
 }
 
-async function loginCheck(email, password) {
-  try {
-    let response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
-    if (response.ok) {
-      window.location.href = "../folder.html";
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function login(e) {
-  e.preventDefault();
-  loginCheck(inputEmail.value, inputPassword.value);
-  if (!isLogin.email) {
-    emailFocus(inputEmail.value);
-  }
-  if (!isLogin.password) {
-    passwordFocus(inputPassword.value);
-  }
-}
-
+//비밀번호 활성화
 function passwordActivation(e) {
   let input = e.target.parentElement.querySelector("input");
   if (input.type === "password") {
@@ -106,6 +74,37 @@ function passwordActivation(e) {
   }
 }
 
+//로그인 요청
+async function loginCheck(email, password) {
+  try {
+    let response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    if (response.ok) {
+      let data = await response.json();
+      localStorage.setItem("loginAccessToken", JSON.stringify(data.data.accessToken));
+      window.location.href = "../folder.html";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//로그인 버튼 이벤트 핸들러
+function login(e) {
+  e.preventDefault();
+  loginCheck(inputEmail.value, inputPassword.value);
+  if (!isLogin.email) {
+    emailFocus(inputEmail.value);
+  }
+  if (!isLogin.password) {
+    passwordFocus(inputPassword.value);
+  }
+}
+
+//이벤트 등록
 inputEmail.addEventListener("focusout", emailFocus);
 inputPassword.addEventListener("focusout", passwordFocus);
 loginButton.addEventListener("click", login);
