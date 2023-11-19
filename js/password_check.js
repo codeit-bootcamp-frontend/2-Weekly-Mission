@@ -1,3 +1,7 @@
+import {
+  isValidPassword,
+} from "./utils.js";
+
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(function(button) {
@@ -74,10 +78,3 @@ checkEyeOnButton.addEventListener('click', function() {
   checkEyeOffButton.style.display = 'block';
   checkEyeOnButton.style.display = 'none';
 });
-
-
-function isValidPassword(password) {
-  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-  return passwordPattern.test(password);
-}
-
