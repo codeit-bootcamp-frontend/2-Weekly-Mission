@@ -56,33 +56,34 @@ function noPassword () {
   }
 }
 
-function testLogin (event) {
-  event.preventDefault ();
+// function testLogin (event) {
+//   event.preventDefault ();
 
-  const emailInput = document.querySelector('#email')
-  const passwordInput = document.querySelector('#password');
+//   const emailInput = document.querySelector('#email')
+//   const passwordInput = document.querySelector('#password');
 
-  const emailError = document.querySelector('.email-error');
-  const passwordError = document.querySelector('.passwordError');
+//   const emailError = document.querySelector('.email-error');
+//   const passwordError = document.querySelector('.passwordError');
 
-  const loginTest = 
-  (emailInput.value === 'test@codeit.com')&&(passwordInput.value === "codeit101"); 
+//   const loginTest = 
+//   (emailInput.value === 'test@codeit.com')&&(passwordInput.value === "codeit101"); 
 
-  if(loginTest){
-    window.location.href = "./folder/"
-  }
-  else{
+//   if(loginTest){
+//     window.location.href = "./folder/"
+//   }
+//   else{
     
-    emailError.textContent = '이메일을 확인해주세요.'
-    emailError.classList.add('inputError')
-    emailInput.classList.add('inputErrorBorder')
+//     emailError.textContent = '이메일을 확인해주세요.'
+//     emailError.classList.add('inputError')
+//     emailInput.classList.add('inputErrorBorder')
 
-    passwordError.textContent = '비밀번호를 확인해주세요.'
-    passwordError.classList.add('inputError')
-    passwordInput.classList.add('inputErrorBorder')
-  }
+//     passwordError.textContent = '비밀번호를 확인해주세요.'
+//     passwordError.classList.add('inputError')
+//     passwordInput.classList.add('inputErrorBorder')
+//   }
   
-}
+// }
+// signinning.addEventListener('click', testLogin)
 
 // 로그인 에러메시지
 const emailInput = document.querySelector('#email')
@@ -92,6 +93,6 @@ const eye = document.querySelector('.eye')
 
 emailInput.addEventListener('focusout', validEmail)
 passwordInput.addEventListener('focusout',noPassword)
-signinning.addEventListener('click', testLogin)
+
 eye.addEventListener('click', togglePasswordVisibility)
 
