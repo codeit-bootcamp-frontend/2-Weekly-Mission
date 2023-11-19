@@ -13,10 +13,6 @@ function validateEmailOnFocusout(e){
         renderErrorMSGNode(emailInput, "올바른 이메일 주소가 아닙니다.")
         return
     }    
-    if (email === "test@codeit.com"){
-        renderErrorMSGNode(emailInput, "이미 사용중인 이메일입니다")
-        return
-    }
     removeErrorMSGNode(emailInput)
 };
 
