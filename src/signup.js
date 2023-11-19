@@ -16,24 +16,24 @@ function togglePasswordVisibility(e) {
 
 
 
-function emailDuplicationError (e) {
-  const emailDuplication = document.querySelector('.emailDuplication');
-  const InputTarget = e.target
-  emailDuplication.classList.remove('inputError');
+// function emailDuplicationError (e) {
+//   const emailDuplication = document.querySelector('.emailDuplication');
+//   const InputTarget = e.target
+//   emailDuplication.classList.remove('inputError');
   
 
-  if(InputTarget.value === 'test@codeit.com'){
-    emailDuplication.textContent = '이미 사용 중인 이메일입니다.'
-    emailDuplication.classList.add('inputError')
-    InputTarget.classList.add('inputErrorBorder')
-  }
+//   if(InputTarget.value === 'test@codeit.com'){
+//     emailDuplication.textContent = '이미 사용 중인 이메일입니다.'
+//     emailDuplication.classList.add('inputError')
+//     InputTarget.classList.add('inputErrorBorder')
+//   }
 
-  else{
-    emailDuplication.textContent = ''
-    emailDuplication.classList.remove('inputError')
-    InputTarget.classList.remove('inputErrorBorder')
-  }
-}
+//   else{
+//     emailDuplication.textContent = ''
+//     emailDuplication.classList.remove('inputError')
+//     InputTarget.classList.remove('inputErrorBorder')
+//   }
+// }
 
 function passwordLengthError (e) {
   const lengthRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()_+]{8,}$/
@@ -74,30 +74,33 @@ function passwordSameError (e) {
   }
 }
 
-function canISignup () {
-  const emailDuplication = document.querySelector('.emailDuplication');
-  const passwordLength = document.querySelector('.passwordLength');
-  const passwordSameError = document.querySelector('.passwordSame');
-  const canI =
-    emailDuplication.classList.contains('inputError')
-    ||passwordLength.classList.contains('inputError')
-    ||passwordSameError.classList.contains('inputError');
+// function canISignup () {
+//   const emailDuplication = document.querySelector('.emailDuplication');
+//   const passwordLength = document.querySelector('.passwordLength');
+//   const passwordSameError = document.querySelector('.passwordSame');
+//   const canI =
+//     emailDuplication.classList.contains('inputError')
+//     ||passwordLength.classList.contains('inputError')
+//     ||passwordSameError.classList.contains('inputError');
 
-  if(canI){
-    alert('다시입력해주세요');
-  }
-  else{
-      window.location.href = "./folder/"
-  }
+//   if(canI){
+//     alert('다시입력해주세요');
+//   }
+//   // else{
+//   //     window.location.href = "./folder/"
+//   // }
 
-}
+// }
 
 function Enter (e){
   if (e.key ==='Enter'){
     e.preventDefault ();
-    canISignup ();
+    // canISignup ();
   }
 };
+
+
+
 
 //로그인, 회원가입 불가
 const emailDuplication = document.querySelector('#email');
@@ -105,10 +108,10 @@ const passwordInput = document.querySelector('#password');
 const passwordCheckInput = document.querySelector('#password-check');
 const signUpping = document.querySelector('#signUpping');
 
-emailDuplication.addEventListener('focusout', emailDuplicationError);
+// emailDuplication.addEventListener('focusout', emailDuplicationError);
 passwordInput.addEventListener('focusout', passwordLengthError);
 passwordCheckInput.addEventListener('focusout', passwordSameError);
-signUpping.addEventListener('mousedown',canISignup);
+// signUpping.addEventListener('mousedown',canISignup);
 
 //엔터쳤을때 회원가입
 emailDuplication.addEventListener('keydown',Enter);
@@ -118,6 +121,5 @@ passwordCheckInput.addEventListener('keydown',Enter);
 
 const eye = document.querySelector('.eye');
 const eye2 = document.querySelector('.eye2');
-
 eye.addEventListener('click', togglePasswordVisibility);
 eye2.addEventListener('click', togglePasswordVisibility);
