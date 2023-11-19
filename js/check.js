@@ -5,16 +5,14 @@ export const checkEmpty = (inputElement) => {
   if(inputElement.value === '') {
     if(inputElement.id === 'email'){
       showError(inputElement, '이메일을 입력해주세요.');
-      return false;
     }
     if(inputElement.id === 'password') {
       showError(inputElement, '비밀번호를 입력해주세요.');
-      return false;
     }
     if(inputElement.id === 'password-check') {
       showError(inputElement, '비밀번호를 입력해주세요.');
-      return false;
     }
+    return false;
   }
   return true;
 }

@@ -6,7 +6,6 @@ import togglePasswordVisibility from "./togglePasswordVisibility.js";
 
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
-const signInBtn = document.querySelector('.signin--btn');
 
 
 const checkEmptyEvent = (e) => {
@@ -50,14 +49,16 @@ const checkSignIn = async (emailInput, passwordInput) => {
   }
 };
 
-const testSignIn = (e) => {
-  e.preventDefault();
-  if(e.target === document.querySelector('.signin--btn')){
-    const emailInput = document.querySelector('#email');
-    const passwordInput = document.querySelector('#password');
+const testSignIn = () => {
+  const emailInput = document.querySelector('#email');
+  const passwordInput = document.querySelector('#password');
 
-    checkSignIn(emailInput, passwordInput);
+  if(emailInput.value === '' || passwordInput.value === ''){
+    checkEmpty(emailInput);
+    checkEmpty(passwordInput);
+    return;
   }
+  checkSignIn(emailInput, passwordInput);
 };
 
 
@@ -68,6 +69,9 @@ emailInput.addEventListener('focusin', deleteErrorEvent);
 passwordInput.addEventListener('focusin', deleteErrorEvent);
 emailInput.addEventListener('input', checkEmailEvent);
 emailInput.addEventListener('blur', checkEmailEvent);
-signInBtn.addEventListener('click', testSignIn);
+document.querySelector('form').addEventListener('submit',(event) => {
+  event.preventDefault();
+  testSignIn();
+});
 document.querySelector('.eye').addEventListener('click', togglePasswordVisibilityEvent);
 document.addEventListener('DOMContentLoaded', checkAccessToken);

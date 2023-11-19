@@ -7,16 +7,13 @@ import { API_URL } from "../constant/constant.js";
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
 const passwordCheckInput = document.querySelector('#password-check');
-const signUpBtn = document.querySelector('.signup--btn');
 
 const confirmPassword = (passwordTag, passwordCheckTag) => {
   if(passwordTag.value === passwordCheckTag.value) return true;
-  else {
-    if(passwordCheckTag.value === '') return;
-    if(passwordCheckTag.parentNode.lastChild.className ==='error-message') return;
-    showError(passwordCheckTag, '비밀번호가 일치하지 않아요.');
-    return false;
-  }
+  if(passwordCheckTag.value === '') return false;
+  if(passwordCheckTag.parentNode.querySelector('.error-message')) return false;
+  showError(passwordCheckTag, '비밀번호가 일치하지 않아요.');
+  return false;
 }
 
 // const checkEmptyEvent = (e) => {
@@ -42,12 +39,6 @@ const confirmPassword = (passwordTag, passwordCheckTag) => {
 const togglePasswordVisibilityEvent = (e) => {
   if(e.target.classList.contains('eye')) togglePasswordVisibility(e.target);
 }
-
-// const testEmail = (e) => {
-//   if(e.target === emailInput) {
-//     checkEmailDuplication(emailInput);
-//   }
-// };
 
 const checkEmailDuplication = async(emailInputElement) => {
   if(emailInputElement.value === '') return;
@@ -89,20 +80,17 @@ const checkSignUp = async(emailInputElement, passwordInputElement) => {
   }
 }
 
-const testSignUp = (e) => {
-  e.preventDefault();
-  if(e.target === document.querySelector('.signup--btn')) {
-    if(checkEmail(emailInput) && checkPassword(passwordInput) && confirmPassword(passwordInput, passwordCheckInput)){
-      checkEmailDuplication(emailInput);
-      checkSignUp(emailInput, passwordInput);
-    } else {
-      checkEmpty(emailInput);
-      checkEmpty(passwordInput);
-      checkEmpty(passwordCheckInput);
-      checkEmail(emailInput);
-      checkPassword(passwordInput);
-      confirmPassword(passwordInput, passwordCheckInput);
-    }
+const testSignUp = () => {
+  if(checkEmail(emailInput) && checkPassword(passwordInput) && confirmPassword(passwordInput, passwordCheckInput)){
+    checkEmailDuplication(emailInput);
+    checkSignUp(emailInput, passwordInput);
+  } else {
+    checkEmpty(emailInput);
+    checkEmpty(passwordInput);
+    checkEmpty(passwordCheckInput);
+    checkEmail(emailInput);
+    checkPassword(passwordInput);
+    confirmPassword(passwordInput, passwordCheckInput);
   }
 }
 
@@ -176,7 +164,10 @@ passwordCheckInput.addEventListener('focusin', handlePasswordCheckInputFocusInEv
 // passwordCheckInput.addEventListener('focusout', checkEmptyEvent);
 // passwordCheckInput.addEventListener('focusout', confirmPasswordEvent);
 // passwordCheckInput.addEventListener('focusin', deleteErrorEvent);
-signUpBtn.addEventListener('click', testSignUp);
+document.querySelector('form').addEventListener('submit',(event) => {
+  event.preventDefault();
+  testSignUp();
+});
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Enter' || e.keyCode === 13) {
     document.querySelector('.signup--btn').click();
