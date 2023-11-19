@@ -104,18 +104,16 @@ checkEyeOnButton.addEventListener('click', function() {
   checkEyeOnButton.style.display = 'none';
 });
 
+const signForm = document.querySelector('#form');
 
-// const signForm = document.querySelector("#form");
+signForm.addEventListener('click', function(e) {
+  e.preventDefault();
 
-// signForm.addEventListener("submit", submitForm);
-// function submitForm(e) {
-//   e.preventDefault();
+  const emailSignupValue = emailInput.value;
+  const passwordSignupValue = passwordInput.value;
+  const confirmPasswordSignupValue = confirmPasswordInput.value;
 
-//   const isEmailInputValid = emailInput.value;
-//   const isPasswordInputValid = passwordInput.value;
-//   const isConfirmPasswordValid = confirmPasswordInput.value;
-
-//   if(isEmailInputValid && isPasswordInputValid && isConfirmPasswordValid) {
-//     location.href = "folder.html";
-//   }
-// }
+  if (isValidEmail(emailSignupValue) && isValidPassword(passwordSignupValue) && confirmPasswordSignupValue === passwordSignupValue) {
+    location.href = 'folder.html';
+  }
+});
