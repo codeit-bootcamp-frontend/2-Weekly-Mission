@@ -1,3 +1,5 @@
+import passAuth from "./modules/redirector.js";
+passAuth()
 import {renderErrorMSGNode, removeErrorMSGNode} from "./modules/handleErrorClass.js";
 import validator from "./modules/validateSignForm.js"
 import togglePasswordHidden from "./modules/toggleBtn.js";
@@ -48,12 +50,13 @@ function handleSubmitSignUp(e){
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify(payload),
             });
-            
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const json = await response.json()
-            console.log(json.data)
+            const {accessToken} = json.data
+            localStorage.setItem("accessToken",JSON.stringify(accessToken)); 
             location.assign("./folder.html")
             return json.data
         } catch (error) {
