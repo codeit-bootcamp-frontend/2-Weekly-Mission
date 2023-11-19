@@ -63,7 +63,7 @@ function testLogin (event) {
   const passwordInput = document.querySelector('#password');
 
   const emailError = document.querySelector('.email-error');
-  const passwordError = document.querySelector('.passwordError')
+  const passwordError = document.querySelector('.passwordError');
 
   const loginTest = 
   (emailInput.value === 'test@codeit.com')&&(passwordInput.value === "codeit101"); 
@@ -82,16 +82,16 @@ function testLogin (event) {
     passwordInput.classList.add('inputErrorBorder')
   }
   
-
 }
 
 // 로그인 에러메시지
 const emailInput = document.querySelector('#email')
 const passwordInput = document.querySelector('#password');
 const signinning = document.querySelector('#signinning')
+const eye = document.querySelector('.eye')
 
 emailInput.addEventListener('focusout', validEmail)
 passwordInput.addEventListener('focusout',noPassword)
 signinning.addEventListener('click', testLogin)
-
+eye.addEventListener('click', togglePasswordVisibility)
 
