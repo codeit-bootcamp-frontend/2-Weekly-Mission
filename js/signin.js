@@ -53,15 +53,13 @@ function checkAccount(event) {
     emailValue === rightAccount.email &&
     passwordValue === rightAccount.password
   ) {
-    // alert("로그인하시겠습니까?");
-    // 어째선지 알람을 삭제하면 에러 504가 발생합니다... 이유를 모르겠어요.
-    if (!window.confirm("로그인하시겠습니까?")) {
-      return;
-    }
+    // 로그인 할지 확인하는 알람
+    // if (!window.confirm("로그인하시겠습니까?")) {
+    //   return;
+    // }
     window.location.href = "/folder.html";
     return false;
   } else {
-    // 이동 안하는데도 왜 504가 나는지 모르겠습니다...
     checkEmail.style.display = "block";
     checkPassword.style.display = "block";
     return false;
