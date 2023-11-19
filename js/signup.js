@@ -19,35 +19,35 @@ const confirmPassword = (passwordTag, passwordCheckTag) => {
   }
 }
 
-const checkEmptyEvent = (e) => {
-  if(e.target === emailInput || e.target === passwordInput || e.target === passwordCheckInput) checkEmpty(e.target);
-}
+// const checkEmptyEvent = (e) => {
+//   if(e.target === emailInput || e.target === passwordInput || e.target === passwordCheckInput) checkEmpty(e.target);
+// }
 
-const deleteErrorEvent = (e) => {
-  if(e.target === emailInput || e.target === passwordInput || e.target === passwordCheckInput) deleteError(e.target);
-}
+// const deleteErrorEvent = (e) => {
+//   if(e.target === emailInput || e.target === passwordInput || e.target === passwordCheckInput) deleteError(e.target);
+// }
 
-const checkEmailEvent = (e) => {
-  if(e.target.id === 'email') checkEmail(e.target);
-}
+// const checkEmailEvent = (e) => {
+//   if(e.target.id === 'email') checkEmail(e.target);
+// }
 
-const checkPasswordEvent = (e) => {
-  if(e.target.id === 'password') checkPassword(e.target);
-}
+// const checkPasswordEvent = (e) => {
+//   if(e.target.id === 'password') checkPassword(e.target);
+// }
 
-const confirmPasswordEvent = (e) => {
-  if(e.target.id === 'password-check') confirmPassword(passwordInput, passwordCheckInput);
-}
+// const confirmPasswordEvent = (e) => {
+//   if(e.target.id === 'password-check') confirmPassword(passwordInput, passwordCheckInput);
+// }
 
 const togglePasswordVisibilityEvent = (e) => {
   if(e.target.classList.contains('eye')) togglePasswordVisibility(e.target);
 }
 
-const testEmail = (e) => {
-  if(e.target === emailInput) {
-    checkEmailDuplication(emailInput);
-  }
-};
+// const testEmail = (e) => {
+//   if(e.target === emailInput) {
+//     checkEmailDuplication(emailInput);
+//   }
+// };
 
 const checkEmailDuplication = async(emailInputElement) => {
   if(emailInputElement.value === '') return;
@@ -106,19 +106,76 @@ const testSignUp = (e) => {
   }
 }
 
-emailInput.addEventListener('focusout', checkEmptyEvent);
-passwordInput.addEventListener('focusout', checkEmptyEvent);
-passwordCheckInput.addEventListener('focusout', checkEmptyEvent);
-emailInput.addEventListener('focusin', deleteErrorEvent);
-passwordInput.addEventListener('focusin', deleteErrorEvent);
-passwordCheckInput.addEventListener('focusin', deleteErrorEvent);
-emailInput.addEventListener('input', checkEmailEvent);
-emailInput.addEventListener('focusout', checkEmailEvent);
-emailInput.addEventListener('focusout', testEmail);
-emailInput.addEventListener('input', testEmail);
-passwordCheckInput.addEventListener('focusout', confirmPasswordEvent);
-passwordInput.addEventListener('focusout', checkPasswordEvent);
-passwordInput.addEventListener('input', checkPasswordEvent);
+const handleEmailInputFocusOutEvent = (e) => {
+  if(e.target === emailInput){
+    checkEmpty(emailInput);
+    checkEmail(emailInput);
+    checkEmailDuplication(emailInput);
+  }
+};
+const handleEmailInputFocusInEvent = (e) => {
+  if(e.target === emailInput){
+    deleteError(emailInput);
+  }
+};
+const handleEmailInputInputEvent = (e) => {
+  if(e.target === emailInput){
+    checkEmail(emailInput);
+    checkEmailDuplication(emailInput);
+  }
+};
+const handlePasswordInputFocusOutEvent = (e) => {
+  if(e.target === passwordInput) {
+    checkEmpty(passwordInput);
+    checkPassword(passwordInput);
+  }
+};
+const handlePasswordInputFocusInEvent = (e) => {
+  if(e.target === passwordInput) {
+    deleteError(passwordInput);
+  }
+};
+const handlePasswordInputInputEvent = (e) => {
+  if(e.target === passwordInput) {
+    checkPassword(passwordInput);
+  }
+};
+const handlePasswordCheckInputFocusOutEvent = (e) => {
+  if(e.target === passwordCheckInput) {
+    checkEmpty(passwordCheckInput);
+    confirmPassword(passwordInput, passwordCheckInput);
+  }
+};
+const handlePasswordCheckInputFocusInEvent = (e) => {
+  if(e.target === passwordCheckInput) {
+    deleteError(passwordCheckInput);
+  }
+};
+
+emailInput.addEventListener('focusout', handleEmailInputFocusOutEvent);
+emailInput.addEventListener('focusin', handleEmailInputFocusInEvent);
+emailInput.addEventListener('input', handleEmailInputInputEvent);
+passwordInput.addEventListener('focusout', handlePasswordInputFocusOutEvent);
+passwordInput.addEventListener('focusin', handlePasswordInputFocusInEvent);
+passwordInput.addEventListener('input', handlePasswordInputInputEvent);
+passwordCheckInput.addEventListener('focusout', handlePasswordCheckInputFocusOutEvent);
+passwordCheckInput.addEventListener('focusin', handlePasswordCheckInputFocusInEvent);
+
+
+
+// emailInput.addEventListener('focusout', checkEmptyEvent);
+// emailInput.addEventListener('focusout', checkEmailEvent);
+// emailInput.addEventListener('focusout', testEmail);
+// emailInput.addEventListener('focusin', deleteErrorEvent);
+// emailInput.addEventListener('input', checkEmailEvent);
+// emailInput.addEventListener('input', testEmail);
+// passwordInput.addEventListener('focusout', checkEmptyEvent);
+// passwordInput.addEventListener('focusout', checkPasswordEvent);
+// passwordInput.addEventListener('focusin', deleteErrorEvent);
+// passwordInput.addEventListener('input', checkPasswordEvent);
+// passwordCheckInput.addEventListener('focusout', checkEmptyEvent);
+// passwordCheckInput.addEventListener('focusout', confirmPasswordEvent);
+// passwordCheckInput.addEventListener('focusin', deleteErrorEvent);
 signUpBtn.addEventListener('click', testSignUp);
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Enter' || e.keyCode === 13) {

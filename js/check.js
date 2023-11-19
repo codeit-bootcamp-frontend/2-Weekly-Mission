@@ -20,7 +20,7 @@ export const checkEmpty = (inputElement) => {
 }
 
 export const checkEmail = (inputElement) => {
-  if(inputElement.value === '') return;
+  if(inputElement.value === '') return false;
   const emailValue = inputElement.value.trim();
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   if (emailRegex.test(emailValue)) {
