@@ -1,0 +1,15 @@
+export const eye = document.querySelector('.eye');
+export const pwd = document.querySelector('#pwd');
+export const mail = document.querySelector("#mail");
+export const submit = document.querySelector("#submit");
+export const pwdWarning = eye.nextElementSibling;
+export const mailWarning = mail.nextElementSibling;
+export const email_format = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+export const eye1 = document.querySelector('.eye1');
+export const eye2 = document.querySelector('.eye2');
+export const eyes = document.querySelector('.eye');
+export const pwd1 = document.querySelector('.pwd1');
+export const pwd2 = document.querySelector('.pwd2');
+export const input = document.querySelectorAll("input");
+export const upform = document.querySelectorAll("#signup_form");
+export const pwd_ei = /^[A-Za-z]+$|^\d+$/;
