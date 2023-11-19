@@ -1,6 +1,27 @@
 import {
+  isValidEmail,
   isValidPassword,
 } from "./utils.js";
+
+const emailInput = document.getElementById('email');
+const errorMessage = document.getElementById('error-message');
+
+emailInput.addEventListener('blur', function() {
+  const emailValue = emailInput.value;
+
+  if (!emailValue) {
+    emailInput.classList.add('error');
+    errorMessage.innerText = '이메일을 입력해주세요.';
+    errorMessage.style.display = 'block';
+  } else if (!isValidEmail(emailValue)) {
+    emailInput.classList.add('error');
+    errorMessage.innerText = '올바른 이메일 주소가 아닙니다.';
+    errorMessage.style.display = 'block';
+  } else {
+    emailInput.classList.remove('error');
+    errorMessage.style.display = 'none';
+  }
+});
 
 const buttons = document.querySelectorAll('button');
 
@@ -12,8 +33,6 @@ buttons.forEach(function(button) {
 
 const passwordInput = document.getElementById('password');
 const passwordErrorMessage = document.getElementById('password-error-message');
-const confirmPasswordInput = document.getElementById('confirm-password');
-const confirmPasswordErrorMessage = document.getElementById('confirm-password-error-message');
 
 passwordInput.addEventListener('blur', function() {
   const passwordValue = passwordInput.value;
@@ -25,20 +44,6 @@ passwordInput.addEventListener('blur', function() {
     passwordInput.classList.remove('error');
     passwordErrorMessage.style.display = 'none';
   }
-});
-
-confirmPasswordInput.addEventListener('blur', function () {
-    const passwordValue = passwordInput.value;
-    const confirmPasswordValue = confirmPasswordInput.value;
-
-    if (passwordValue !== confirmPasswordValue) {
-        confirmPasswordInput.classList.add('error');
-        confirmPasswordErrorMessage.innerText = '비밀번호가 일치하지 않아요.';
-        confirmPasswordErrorMessage.style.display = 'block';
-    } else {
-        confirmPasswordInput.classList.remove('error');
-        confirmPasswordErrorMessage.style.display = 'none';
-    }
 });
 
 const eyeOffButton = document.querySelector('.eye-off');
@@ -60,21 +65,7 @@ eyeOnButton.addEventListener('click', function() {
   eyeOnButton.style.display = 'none';
 });
 
-const checkEyeOffButton = document.querySelector('.check-off');
-const checkEyeOnButton = document.querySelector('.check-on');
 
-confirmPasswordInput.setAttribute('type', 'password');
-checkEyeOffButton.style.display = 'block';
-checkEyeOnButton.style.display = 'none';
 
-checkEyeOffButton.addEventListener('click', function() {
-  confirmPasswordInput.setAttribute('type', 'text');
-  checkEyeOffButton.style.display = 'none';
-  checkEyeOnButton.style.display = 'block';
-});
 
-checkEyeOnButton.addEventListener('click', function() {
-  confirmPasswordInput.setAttribute('type', 'password');
-  checkEyeOffButton.style.display = 'block';
-  checkEyeOnButton.style.display = 'none';
-});
+
