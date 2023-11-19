@@ -106,6 +106,7 @@ checkEyeOnButton.addEventListener('click', function() {
 
 
 // const signForm = document.querySelector("#form");
+
 // signForm.addEventListener("submit", submitForm);
 // function submitForm(e) {
 //   e.preventDefault();
