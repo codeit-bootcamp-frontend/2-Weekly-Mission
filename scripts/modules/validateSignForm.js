@@ -25,7 +25,6 @@ function validatePasswordOnFocusout(e){
     const password = e.target.value
     if (password === ""){
         renderErrorMSGNode(passwordInput, "비밀번호를 입력해주세요")
-        console.log("리스너")
         return
     }
     if (!passwordInput.validity.valid){

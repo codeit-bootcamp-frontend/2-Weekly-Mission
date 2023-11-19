@@ -1,6 +1,7 @@
 import {renderErrorMSGNode, removeErrorMSGNode} from "./modules/handleErrorClass.js";
 import validator from "./modules/validateSignForm.js"
 import togglePasswordHidden from "./modules/toggleBtn.js";
+import { postSignIn } from "./fetch/sign.js";
 
 const emailInputNode = document.querySelector(".signForm_input.email")
 const passwordInputNode = document.querySelectorAll(".signForm_input.password")[0]
@@ -11,7 +12,8 @@ function handleSubmitSignIn(e){
     e.preventDefault()
     const email = e.target.email.value
     const password = e.target.password.value
-    if (email === "test@codeit.com" && password ==="codeit101"){
+    const payload = {email, password}
+    if (postSignIn(payload)){
         location.assign("./folder.html")
     }
     else {
