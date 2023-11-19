@@ -65,6 +65,19 @@ eyeOnButton.addEventListener('click', function() {
   eyeOnButton.style.display = 'none';
 });
 
+const login = document.querySelector('.login')
+const emailSigninInput = document.getElementById('email');
+const passwordSigninInput = document.getElementById('password');
+
+login.addEventListener('click', function() {
+  const emailSigninValue = emailSigninInput.value;
+  const passwordSigninValue = passwordSigninInput.value;
+
+  if (emailSigninValue === 'test@codeit.com' && passwordSigninValue === 'codeit101') {
+    location.href = 'folder.html';
+  }
+});
+
 
 
 

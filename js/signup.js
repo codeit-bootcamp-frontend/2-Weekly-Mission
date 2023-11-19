@@ -103,3 +103,18 @@ checkEyeOnButton.addEventListener('click', function() {
   checkEyeOffButton.style.display = 'block';
   checkEyeOnButton.style.display = 'none';
 });
+
+
+// const signForm = document.querySelector("#form");
+// signForm.addEventListener("submit", submitForm);
+// function submitForm(e) {
+//   e.preventDefault();
+
+//   const isEmailInputValid = emailInput.value;
+//   const isPasswordInputValid = passwordInput.value;
+//   const isConfirmPasswordValid = confirmPasswordInput.value;
+
+//   if(isEmailInputValid && isPasswordInputValid && isConfirmPasswordValid) {
+//     location.href = "folder.html";
+//   }
+// }
