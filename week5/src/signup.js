@@ -4,13 +4,12 @@ import {
   isEmailValid,
   isPasswordValid,
   togglePassword,
-  TEST_USER,
 } from "./utils.js";
 
 const emailInput = document.querySelector("#email");
 const emailErrorMessage = document.querySelector("#email-error-message");
 emailInput.addEventListener("focusout", (event) => validateEmailInput(event.target.value));
-function validateEmailInput(email) {
+async function validateEmailInput(email) {
   if (email === "") {
     setInputError({ input: emailInput, errorMessage: emailErrorMessage }, "이메일을 입력해주세요.");
     return false;
@@ -22,15 +21,26 @@ function validateEmailInput(email) {
     );
     return false;
   }
-  if (email === TEST_USER.email) {
-    setInputError(
-      { input: emailInput, errorMessage: emailErrorMessage },
-      "이미 사용 중인 이메일입니다."
-    );
-    return false;
-  }
-  removeInputError({ input: emailInput, errorMessage: emailErrorMessage });
-  return true;
+  await fetch('https://bootcamp-api.codeit.kr/api/check-email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: emailInput.value,
+    }),
+  })
+  .then((response) => {
+    if(!response.ok) {
+      setInputError(
+        { input: emailInput, errorMessage: emailErrorMessage },
+        "이미 사용 중인 이메일입니다."
+      );
+      return false;
+    }
+    removeInputError({ input: emailInput, errorMessage: emailErrorMessage });
+    return true;
+  })
 }
 
 const passwordInput = document.querySelector("#password");
@@ -83,6 +93,8 @@ confirmPasswordToggleButton.addEventListener("click", () =>
   togglePassword(confirmPasswordInput, confirmPasswordToggleButton)
 );
 
+let token = null;
+
 const signForm = document.querySelector("#form");
 signForm.addEventListener("submit", submitForm);
 function submitForm(event) {
@@ -91,8 +103,22 @@ function submitForm(event) {
   const isEmailInputValid = validateEmailInput(emailInput.value);
   const isPasswordInputValid = validatePasswordInput(passwordInput.value);
   const isConfirmPasswordInputValid = validateConfirmPasswordInput(confirmPasswordInput.value);
-
   if (isEmailInputValid && isPasswordInputValid && isConfirmPasswordInputValid) {
-    location.href = "/folder";
+    fetch('https://bootcamp-api.codeit.kr/api/sign-up', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: emailInput.value,
+        password: passwordInput.value,
+      }),
+    })
+    .then((response) => response.json())
+    .then((result) => {
+      token = result.data.accessToken;
+      localStorage.setItem('accessToken', token);
+      location.href = "./folder.html";
+    });
   }
 }

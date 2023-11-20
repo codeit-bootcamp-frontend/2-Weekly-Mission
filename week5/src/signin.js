@@ -6,6 +6,10 @@ import {
   TEST_USER,
 } from "./utils.js";
 
+window.onload = function() {
+  if(localStorage.accessToken) location.href = './folder.html';
+}
+
 const emailInput = document.querySelector("#email");
 const emailErrorMessage = document.querySelector("#email-error-message");
 emailInput.addEventListener("focusout", (event) => validateEmailInput(event.target.value));
@@ -43,18 +47,35 @@ passwordToggleButton.addEventListener("click", () =>
   togglePassword(passwordInput, passwordToggleButton)
 );
 
+let token = null;
+
 const signForm = document.querySelector("#form");
 signForm.addEventListener("submit", submitForm);
 function submitForm(event) {
   event.preventDefault();
 
-  const isTestUser =
-    emailInput.value === TEST_USER.email && passwordInput.value === TEST_USER.password;
-
+  const isTestUser = emailInput.value === TEST_USER.email && passwordInput.value === TEST_USER.password;
+  const user = {
+    email: emailInput.value,
+    password: passwordInput.value,
+  };
+  
   if (isTestUser) {
-    location.href = "/folder";
-    return;
-  }
+    fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        token = result.data.accessToken;
+        localStorage.setItem('accessToken', token);
+        location.href = "./folder.html";
+      });
+      return;
+  };
   setInputError({ input: emailInput, errorMessage: emailErrorMessage }, "이메일을 확인해주세요.");
   setInputError(
     { input: passwordInput, errorMessage: passwordErrorMessage },

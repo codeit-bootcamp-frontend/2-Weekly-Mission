@@ -4,4 +4,14 @@
     <meta charset="utf-8" />
     <title>폴더</title>
   </head>
+  <body>
+    <button>로그아웃</button>
+    <script>
+      const btn = document.querySelector('button');
+      btn.addEventListener('click', (e) => {
+        localStorage.clear();
+        location.href = './';
+      })
+    </script>
+  </body>
 </html>
