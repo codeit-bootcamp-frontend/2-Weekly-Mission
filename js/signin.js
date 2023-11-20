@@ -73,9 +73,24 @@ login.addEventListener('click', function() {
   const emailSigninValue = emailSigninInput.value;
   const passwordSigninValue = passwordSigninInput.value;
 
-  if (emailSigninValue === 'test@codeit.com' && passwordSigninValue === 'codeit101') {
+  // if (emailSigninValue === 'test@codeit.com' && passwordSigninValue === 'codeit101') {
+  //   location.href = 'folder.html';
+  // }
+
+const data =
+  { email: emailInput.value,
+    password: passwordInput.value }
+
+  fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data),
+  })
+  .then((response) => response.json())
+  .then((result) => {
+    localStorage.setItem('test', result.data.accessToken);
     location.href = 'folder.html';
-  }
+  }) 
 });
 
 

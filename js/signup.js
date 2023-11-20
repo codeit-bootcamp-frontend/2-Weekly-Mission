@@ -104,7 +104,7 @@ checkEyeOnButton.addEventListener('click', function() {
   checkEyeOnButton.style.display = 'none';
 });
 
-const signForm = document.querySelector('#form');
+const signForm = document.querySelector('.signup-button');
 
 signForm.addEventListener('click', function(e) {
   e.preventDefault();
@@ -113,7 +113,37 @@ signForm.addEventListener('click', function(e) {
   const passwordSignupValue = passwordInput.value;
   const confirmPasswordSignupValue = confirmPasswordInput.value;
 
-  if (isValidEmail(emailSignupValue) && isValidPassword(passwordSignupValue) && confirmPasswordSignupValue === passwordSignupValue) {
-    location.href = 'folder.html';
-  }
+  // if (isValidEmail(emailSignupValue) && isValidPassword(passwordSignupValue) && confirmPasswordSignupValue === passwordSignupValue) {
+  //   location.href = 'folder.html';
+  // }
+
+  const newMail = { email: emailInput.value, }
+
+  fetch('https://bootcamp-api.codeit.kr/api/check-email', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(newMail),
+  })
+  .then((response) => response.json())
+  .then((result) => {
+    console.log(result.data.isUsableNickname);
+
+    if(result.data.isUsableNickname) {
+      const newMember = {
+        email: emailInput.value,
+        password: passwordInput.value,
+      }
+
+      fetch('https://bootcamp-api.codeit.kr/api/sign-up', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newMember),
+      })
+      .then((response) => response.json())
+      .then((result) => {
+        localStorage.setItem('newMember', result.data.accessToken);
+        location.href = 'folder.html';
+      })
+    }
+  })
 });
