@@ -109,9 +109,9 @@ const signForm = document.querySelector('.signup-button');
 signForm.addEventListener('click', function(e) {
   e.preventDefault();
 
-  const emailSignupValue = emailInput.value;
-  const passwordSignupValue = passwordInput.value;
-  const confirmPasswordSignupValue = confirmPasswordInput.value;
+  // const emailSignupValue = emailInput.value;
+  // const passwordSignupValue = passwordInput.value;
+  // const confirmPasswordSignupValue = confirmPasswordInput.value;
 
   // if (isValidEmail(emailSignupValue) && isValidPassword(passwordSignupValue) && confirmPasswordSignupValue === passwordSignupValue) {
   //   location.href = 'folder.html';
@@ -145,5 +145,8 @@ signForm.addEventListener('click', function(e) {
         location.href = 'folder.html';
       })
     }
+  })
+  .catch((e) => {
+    console.log("다시 확인해주세요!", e.message)
   })
 });

@@ -70,8 +70,8 @@ const emailSigninInput = document.getElementById('email');
 const passwordSigninInput = document.getElementById('password');
 
 login.addEventListener('click', function() {
-  const emailSigninValue = emailSigninInput.value;
-  const passwordSigninValue = passwordSigninInput.value;
+  // const emailSigninValue = emailSigninInput.value;
+  // const passwordSigninValue = passwordSigninInput.value;
 
   // if (emailSigninValue === 'test@codeit.com' && passwordSigninValue === 'codeit101') {
   //   location.href = 'folder.html';
@@ -92,6 +92,8 @@ const data =
     location.href = 'folder.html';
   }) 
 });
+
+
 
 
 
