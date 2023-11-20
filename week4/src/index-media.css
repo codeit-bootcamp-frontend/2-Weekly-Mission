@@ -15,21 +15,21 @@
 
   .tablet-padding {
     display: block;
+    flex: 0 99 20rem;
     min-width: 3.2rem;
-  }
-
-  .tablet-padding-center {
-    min-width: 53.8rem;
   }
   
   nav {
-    display: grid;
-    grid-template: 9.4rem / 1fr 133px 1fr 128px 1fr;
+    display: flex;
     max-width: 192rem;
     height: 9.4rem;
     padding: 0;
   }
   
+  .tablet-padding-center {
+    flex: 10 1 538px;
+  }
+
   .hero-header {
     display: flex;
     flex-direction: column;
@@ -77,21 +77,6 @@
   }
 }
 
-/* tablet nav padding */
-@media screen and (max-width: 862px) {
-  .tablet-padding {
-   width: 3.2rem;
-  }
-
-  .tablet-padding-center {
-    min-width: auto;
-  }
-
-  nav {
-    display: grid;
-    grid-template: 9.4rem / 32px 133px 1fr 128px 32px;
-  }
-}
 
 /* mobile */
 @media screen and (max-width: 767px) {

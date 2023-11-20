@@ -185,5 +185,17 @@ button:hover {
   position: absolute;
   top: 23px;
   right: 15px;
+  height: 16px;
 }
 
+.eye:hover {
+  cursor: pointer;
+}
+
+.error {
+  border: 1px solid var(--linkbrary-red);
+}
+
+.error-message {
+  color: var(--linkbrary-red);
+}
