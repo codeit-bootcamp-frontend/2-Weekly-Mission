@@ -151,21 +151,34 @@ header .userdata img {
 
 .cardBox {
     max-width: 106rem;
-    margin: 0 auto;
+    margin: 0 auto 10rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    padding: 0 3.2rem;
 }
 
 .card {
-    width: 34rem;
+    width: 100%;
+    max-width: 34rem;
     height: 33.4rem;
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
+    margin: 0 auto;
+}
+
+.card:hover {
+    border: 2px solid var(--blue);
+}
+
+.card:hover a .cardImgWrap {
+    transition: all 1s;
+    transform: scale(1.3);
 }
 
 .card .cardImgWrap {
+    width: 100%;
     height: 60%;
     overflow: hidden;
     display: flex;
@@ -175,14 +188,24 @@ header .userdata img {
 
 .card img {
     width: 100%;
+
+}
+
+.card .nullImg {
+    position: absolute;
+    width: 13rem;
+    opacity: 0.5;
 }
 
 .cardText {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 1.5rem 2rem 1rem;
+    padding: 1.5rem 2rem 1rem;
     gap: 1rem;
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
 }
 
 .cardText .ago {
@@ -534,13 +557,12 @@ footer .foot_inner .foot_mid a:first-child {
     margin-right: 3.0rem;
 }
 
-footer .foot_inner .foot_img a {
+footer .foot_inner .foot_link {
+    display: flex;
+    gap: 1.2rem;
     margin-right: 1.2rem;
 }
 
-footer .foot_inner .foot_img a:last-child {
-    margin-right: 0;
-}
 
 footer .codeit_mobile {
     display: none;
@@ -584,6 +606,13 @@ body .sec .mobile_text {
 
     body .sec .mobile_text {
         display: none;
+    }
+
+}
+
+@media all and (max-width:1124px) {
+    .cardBox {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -661,6 +690,10 @@ body .sec .mobile_text {
 
     footer .codeit_mobile {
         display: block;
+    }
+
+    .cardBox {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 

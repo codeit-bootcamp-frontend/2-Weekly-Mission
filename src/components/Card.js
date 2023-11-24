@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
+import nullImg from "../img/nullimg.png";
+import logo from "../img/logo.png";
 
 function Card({ data }) {
   const formattedDate = formatDateString(data.createdAt);
-
+  const [imgNull, setImgNull] = useState("");
   const min = calculateElapsedTime(data.createdAt);
   const [ago, setAgo] = useState("");
+
+  useEffect(() => {
+    if (data.imageSource === undefined) {
+      setImgNull(nullImg);
+    } else {
+      setImgNull(data.imageSource);
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imgNull]);
 
   useEffect(() => {
     if (min < 2) {
@@ -32,9 +42,16 @@ function Card({ data }) {
 
   return (
     <div className={`card card${data.id}`}>
-      <a href={`${data.url}`}>
+      <a href={`${data.url}`} target="_blank" rel="noopener noreferrer">
         <div className="cardImgWrap">
-          <img src={`${data.imageSource}`} alt={`${data.title}`} />
+          {data.imageSource === undefined ? (
+            <>
+              <img src={`${imgNull}`} alt={`${data.title}`} />
+              <img src={logo} alt="logo" className="nullImg" />
+            </>
+          ) : (
+            <img src={`${imgNull}`} alt={`${data.title}`} />
+          )}
         </div>
         <div className="cardText">
           <p className="ago">{`${ago}`}</p>
