@@ -1,0 +1,51 @@
+@import url('./theme.css');
+
+.main {
+  background: var(--linkbrary-bg);
+  width: 100%;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 60px;
+  align-items: center;
+  background: var(--linkbrary-bg);
+  overflow: hidden;
+}
+
+.user--container{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.main-profile-image {
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.main-profile-name {
+  color: var(--text-color-light-mode, #000);
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.bookmark-title {
+  color: #000;
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

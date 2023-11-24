@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import { API_URL } from './constants/constants';
 import { useEffect, useState } from 'react';
+import UserMain from './components/UserMain';
 
 function App() {
   const [user, setUser] = useState({});
@@ -25,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <Nav profile={user}/>
+      <UserMain user={user}></UserMain>
       <Footer/>
     </div>
   );
