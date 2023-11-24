@@ -38,3 +38,26 @@
   font-weight: 600;
   line-height: normal;
 }
+
+.profile--box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-image {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background-color: var(--linkbrary-primary-color, #6D6AFE);
+  border-radius: 50%;
+}
+
+.profile-email {
+  color: var(--linkbrary-gray-100, #373740);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
