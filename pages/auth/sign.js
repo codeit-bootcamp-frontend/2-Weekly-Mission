@@ -1,4 +1,4 @@
-import users from "/data/users.js";
+import { postCheckEmail } from "./api.js";
 import { isEmptyString } from "/scripts/utils.js";
 
 const errorMessage = {
@@ -18,17 +18,33 @@ const errorMessage = {
   },
 };
 
-function handleErrorMessage(element, addOrRemoveHide, errorMessage = "") {
-  const parent = element.parentElement;
-  const errorMessageSpan = parent.querySelector(".input-error__message");
+function handleErrorMessage(target, errorMessage = "") {
+  const parent = target.parentElement;
+  let errorMessageSpan = parent.querySelector(".input-error__message");
+
+  if (isEmptyString(errorMessage) && !errorMessageSpan) {
+    return;
+  }
+
+  if (!errorMessageSpan) {
+    errorMessageSpan = document.createElement("span");
+    errorMessageSpan.classList.add("input-error__message");
+    target.after(errorMessageSpan);
+    errorMessageSpan.textContent = errorMessage;
+    return;
+  }
+
+  if (isEmptyString(errorMessage)) {
+    errorMessageSpan.remove();
+    return;
+  }
 
   errorMessageSpan.textContent = errorMessage;
-  errorMessageSpan.classList[addOrRemoveHide]("hide");
 }
 
 function inputValidationFailed(target, errorMessage, eyeIcon) {
   target.classList.add("input-error");
-  handleErrorMessage(target, "remove", errorMessage);
+  handleErrorMessage(target, errorMessage);
   if (eyeIcon) {
     eyeIcon.classList.add("eye-icon__error");
   }
@@ -36,20 +52,20 @@ function inputValidationFailed(target, errorMessage, eyeIcon) {
 
 function inputValidationSucceeded(target, eyeIcon) {
   target.classList.remove("input-error");
-  handleErrorMessage(target, "add");
+  handleErrorMessage(target);
   if (eyeIcon) {
     eyeIcon.classList.remove("eye-icon__error");
   }
 }
 
-function checkEmailValid(element, checkExist = true) {
+async function checkEmailValid(element, checkExist = true) {
   if (isEmptyString(element.value)) {
     return errorMessage.email.empty;
   }
   if (!isEmailValid(element.value)) {
     return errorMessage.email.valid;
   }
-  if (checkExist && isEmailExist(element.value)) {
+  if (checkExist && (await isEmailExist(element.value))) {
     return errorMessage.email.exist;
   }
   return "";
@@ -82,14 +98,16 @@ function isPasswordValid(password) {
   return password.trim().length >= 8 && regex.test(password);
 }
 
-function isEmailExist(email) {
-  return users.some((user) => user.email === email);
-}
-
-function isMemberExist(member) {
-  return users.some(
-    (user) => user.email === member.email && user.password === member.password
-  );
+async function isEmailExist(email) {
+  let emailExist = true;
+  try {
+    await postCheckEmail(email);
+    emailExist = false;
+  } catch (error) {
+    console.error(`${error.name}: ${error.message}`);
+  } finally {
+    return emailExist;
+  }
 }
 
 function changePasswordVisibility(passwordInput) {
@@ -104,6 +122,10 @@ function changePasswordVisibility(passwordInput) {
   };
 }
 
+function setUserAccessToken({ data }) {
+  localStorage.setItem("accessToken", data.accessToken);
+}
+
 export {
   changePasswordVisibility,
   checkEmailValid,
@@ -112,5 +134,5 @@ export {
   errorMessage,
   inputValidationFailed,
   inputValidationSucceeded,
-  isMemberExist,
+  setUserAccessToken,
 };
