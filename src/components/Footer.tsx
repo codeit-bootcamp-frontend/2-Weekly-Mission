@@ -11,12 +11,11 @@ const Container = styled.div`
   font-size: 1.6rem;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.gray100};
-  max-width: 1232px;
+  padding: 3.2rem 10.4rem 0;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 3.2rem;
 `;
 
 const CopyRight = styled.div``;
