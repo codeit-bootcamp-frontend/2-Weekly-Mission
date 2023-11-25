@@ -18,11 +18,22 @@
   top: 15px;
 }
 
-.link-image {
+.link-image--container {
+  overflow: hidden;
   width: 340px;
   height: 200px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
+}
+
+.link-image {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.link-image:hover {
+  transform: scale(1.3);
 }
 
 .link-detail--container {
@@ -86,4 +97,19 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+@media screen and (min-width: 375px) and (max-width: 767px) {
+  .card {
+    display: block;
+    
+    width: 325px;
+    height: 327px;
+
+    overflow: hidden;
+  }
+  
+  .link-detail--container {
+    width: 325px;
+  }
 }

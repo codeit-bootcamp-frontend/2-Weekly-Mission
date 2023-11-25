@@ -34,15 +34,23 @@
 }
 
 .search-bar {
-  display: flex;
   width: 1060px;
   padding: 15px 16px;
-  justify-content: space-between;
-  align-items: flex-start;
 
   border-radius: 10px;
   background: #F5F5F5;
 
   border: none;
   outline: none;
+}
+
+@media screen and (max-width: 1123px) {
+  .search--section{
+    padding: 0 32px;
+  }
+
+  .search-bar {
+    width: calc(100vw - 96px);
+    min-width: 325px;
+  }
 }
