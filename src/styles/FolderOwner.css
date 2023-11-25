@@ -1,9 +1,9 @@
-.main {
+.owner--section {
   background: var(--linkbrary-bg);
   width: 100%;
 }
 
-.main-content {
+.owner-content {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -14,13 +14,13 @@
   overflow: hidden;
 }
 
-.user--container{
+.owner-info--container{
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.main-profile-image {
+.owner-profile-image {
   width: 60px;
   height: 60px;
   justify-content: center;
@@ -28,7 +28,7 @@
   border-radius: 50%;
 }
 
-.main-profile-name {
+.owner-profile-name {
   color: var(--text-color-light-mode, #000);
 
   font-size: 16px;

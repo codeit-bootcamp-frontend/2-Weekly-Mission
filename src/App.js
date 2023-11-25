@@ -3,8 +3,7 @@ import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import { API_URL } from './constants/constants';
 import { useEffect, useState } from 'react';
-import SubHeader from './components/SubHeader';
-import Card from './components/Card';
+import Folder from './components/Folder';
 
 const INITIAL_USER_VALUE = {
   email:'',
@@ -69,10 +68,7 @@ function App() {
   return (
     <div className="App">
       <Nav profile={user}/>
-      <SubHeader owner={folder.owner} name={folder.name}></SubHeader>
-      <div>
-        {folder.links.map((link) => <Card key={link.id} link={link}></Card>)}
-      </div>
+      <Folder owner={folder.owner} name={folder.name} links={folder.links}></Folder>
       <Footer/>
     </div>
   );
