@@ -36,7 +36,7 @@ const SNS = styled.div`
   justify-content: center;
 `;
 
-const SNSLogoWrapper = styled.div`
+const SNSLogoWrapper = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,16 +59,16 @@ function Footer() {
           <NavLink>FAQ</NavLink>
         </NavLinks>
         <SNS>
-          <SNSLogoWrapper>
+          <SNSLogoWrapper href='https://www.facebook.com/' target='_blank'>
             <img src='/images/facebook-icon.png' alt='facebook-icon' />
           </SNSLogoWrapper>
-          <SNSLogoWrapper>
+          <SNSLogoWrapper href='https://www.twitter.com/' target='_blank'>
             <img src='/images/twitter-icon.png' alt='twitter-icon' />
           </SNSLogoWrapper>
-          <SNSLogoWrapper>
+          <SNSLogoWrapper href='https://www.youtube.com/' target='_blank'>
             <img src='/images/youtube-icon.png' alt='youtube-icon' />
           </SNSLogoWrapper>
-          <SNSLogoWrapper>
+          <SNSLogoWrapper href='https://www.instagram.com/' target='_blank'>
             <img src='/images/instagram-icon.png' alt='instagram-icon' />
           </SNSLogoWrapper>
         </SNS>
