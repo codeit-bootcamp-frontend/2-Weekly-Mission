@@ -1,5 +1,3 @@
-@import url('./theme.css');
-
 .landing--header {
   background: var(--linkbrary-bg);
   position: sticky;
