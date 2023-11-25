@@ -2,6 +2,7 @@ import reset from 'styled-reset';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Shared from './pages/Shared';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   body{
     font-size: 1.4rem;
     font-family: 'Pretendard';
+    box-sizing: border-box;
   }
 
   a {
@@ -28,6 +30,7 @@ function App() {
         <GlobalStyle />
         <Header />
         <Shared />
+        <Footer />
       </ThemeProvider>
     </>
   );
