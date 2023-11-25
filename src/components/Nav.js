@@ -17,8 +17,8 @@ const Nav = ({profile}) => {
         <a href="/" className="landing--logo">
           <img src={logo} alt="logo"/>
         </a>
-        {profile && <UserProfile profile={profile}></UserProfile>}
-        {(profile === null) && <a href="./signin.html" className="login--btn btn">로그인</a>}
+        {/* {profile && <UserProfile profile={profile}></UserProfile>} */}
+        {profile.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={profile}></UserProfile>}
       </div>
     </header>
   )

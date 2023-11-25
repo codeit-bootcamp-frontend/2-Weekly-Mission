@@ -21,15 +21,8 @@ const INITIAL_FOLDER_VALUE = {
 };
 
 function App() {
-  const [user, setUser] = useState({});
-  const [folder, setFolder] = useState({
-    links:[],
-    name:'',
-    owner: {
-      name:'',
-      profileImageSource:''
-    }
-  });
+  const [user, setUser] = useState(INITIAL_USER_VALUE);
+  const [folder, setFolder] = useState(INITIAL_FOLDER_VALUE);
 
   const getUser = async() => {
     try{
@@ -37,7 +30,8 @@ function App() {
       const user = await response.data;
       setUser(user);
     } catch(error) {
-      setUser(null);
+      alert(error)
+      setUser(INITIAL_USER_VALUE);
     }
   }
 
@@ -47,7 +41,8 @@ function App() {
       const { folder } = await response.data;
       setFolder(folder);
     } catch(error) {
-      setFolder(null);
+      alert(error)
+      setFolder(INITIAL_FOLDER_VALUE);
     }
   }
   
