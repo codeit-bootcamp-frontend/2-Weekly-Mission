@@ -17,9 +17,6 @@ header {
   position: absolute;
   text-align: center;
   width: 400px;
-  height: auto;
-  top: 20%;
-  left: 50%;
   transform: translate(-50%, -10%);
 }
 
@@ -30,6 +27,7 @@ main{
   justify-content: center;
   height: 100vh;
   margin-top: 100px;
+
 }
 
 .logo {
