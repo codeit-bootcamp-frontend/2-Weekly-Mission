@@ -9,7 +9,7 @@ const Folder = ({ owner, name, links }) => {
       <FolderOwner owner={owner} name={name}></FolderOwner>
       <SearchBar></SearchBar>
       <section className="card--section">
-        {links.map((link) => <Card link={link}></Card>)}
+        {links.map((link) => <Card key={link.id} link={link}></Card>)}
       </section>
     </main>
   )
