@@ -12,6 +12,11 @@ function App() {
     font-size: 10px;
   }
 
+  body{
+    font-size: 1.4rem;
+    font-family: 'Pretendard';
+  }
+
   a {
     text-decoration: none;
   }

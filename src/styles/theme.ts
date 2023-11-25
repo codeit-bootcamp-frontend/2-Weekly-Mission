@@ -3,11 +3,11 @@ const colors = {
   red: '#FF5B56',
   black: '#111322',
   white: '#fff',
-  gray: '#3E3E43',
-  gray2: '#9FA6B2',
-  gray3: '#CCD5E3',
-  gray4: '#E7EFFB',
-  gray5: '#F0F6FF',
+  gray100: '#3E3E43',
+  gray60: '#9FA6B2',
+  gray20: '#CCD5E3',
+  gray10: '#E7EFFB',
+  skyblue: '#F0F6FF',
 };
 
 const theme = {
