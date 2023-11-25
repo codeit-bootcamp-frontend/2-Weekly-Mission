@@ -46,9 +46,7 @@ function App() {
       const response = await axios.get(`${API_URL}/folder`);
       const { folder } = await response.data;
       setFolder(folder);
-      console.log(folder);
     } catch(error) {
-      console.log(error);
       setFolder(null);
     }
   }
@@ -57,13 +55,6 @@ function App() {
     getUser();
     getData()
   },[])
-
-  useEffect(() => {
-    console.log('user는?');
-    console.log(user);
-    console.log('folder는?');
-    console.log(folder);
-  }, [user, folder])
 
   return (
     <div className="App">
