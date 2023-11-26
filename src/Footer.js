@@ -7,14 +7,14 @@ import instagramLogo from "./img/instagram.svg";
 
 function Footer() {
   return (
-    <footer>
-      <div className="footer-box">
+    <footer className="footer">
+      <div className="footerBox">
         <span className="copyright">@codeit - 2023</span>
-        <div className="footer-links">
-          <a className="footer-link" href="privacy.html">
+        <div className="footerLinks">
+          <a className="footerLink" href="privacy.html">
             Privacy Policy
           </a>
-          <a className="footer-link" href="faq.html">
+          <a className="footerLink" href="faq.html">
             FAQ
           </a>
         </div>

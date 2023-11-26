@@ -1,3 +1,4 @@
+import React from "react";
 import "./style.css";
 import logoImg from "./img/logo.svg";
 import profileImg from "./img/profile_img.png";
