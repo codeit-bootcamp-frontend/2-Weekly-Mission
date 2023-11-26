@@ -1,10 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Footer from "../Footer";
+import Footer from "./Footer";
+import Header from "./Header";
 
 function App() {
   return (
     <div>
+      <Header />
       <Footer />
     </div>
   );

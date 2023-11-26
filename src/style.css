@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Pretendard";
+}
+
+.header {
+  background-color: #f0f6ff;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rem;
+  padding-top: 20px;
+  background-color: #f0f6ff;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.innerHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0px 60px;
+}
+
+.codeitLogo {
+  background-color: #8f00ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
