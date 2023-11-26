@@ -9,32 +9,32 @@ const emailInputNode = document.querySelector(".signForm_input.email")
 const passwordInputNode = document.querySelector(".signForm_input.password")
 const signForm = document.querySelector(".signForm")
 const togglePasswordBtn = document.querySelectorAll(".password_visible")
+const postSignIn = async (payload) => {
+    try {
+        const response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in",{
+            method: "POST",
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify(payload),
+        });
+      
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const json = await response.json()
+        const {accessToken} = json.data
+        localStorage.setItem("accessToken",JSON.stringify(accessToken)); 
+        location.assign("./folder.html")
+        return json.data
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    };
+};
 
 function handleSubmitSignIn(e){
     e.preventDefault()
     const email = e.target.email.value
     const password = e.target.password.value
     const payload = {email, password}
-    const postSignIn = async (payload) => {
-        try {
-            const response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in",{
-                method: "POST",
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify(payload),
-            });
-          
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const json = await response.json()
-            const {accessToken} = json.data
-            localStorage.setItem("accessToken",JSON.stringify(accessToken)); 
-            location.assign("./folder.html")
-            return json.data
-        } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
-        };
-    };
     if (postSignIn(payload)){
         location.assign("./folder.html")
     }
