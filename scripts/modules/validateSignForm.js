@@ -1,6 +1,6 @@
 import { renderErrorMSGNode, removeErrorMSGNode } from "./handleErrorClass.js";
 
-const passwordInputNode = document.querySelectorAll(".signForm_input.password")[0]
+const passwordInputNode = document.querySelector(".signForm_input.password")
 
 function validateEmailOnFocusout(e){
     const emailInput = e.target

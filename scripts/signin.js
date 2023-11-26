@@ -6,7 +6,7 @@ import togglePasswordHidden from "./modules/toggleBtn.js";
 
 
 const emailInputNode = document.querySelector(".signForm_input.email")
-const passwordInputNode = document.querySelectorAll(".signForm_input.password")[0]
+const passwordInputNode = document.querySelector(".signForm_input.password")
 const signForm = document.querySelector(".signForm")
 const togglePasswordBtn = document.querySelectorAll(".password_visible")
 

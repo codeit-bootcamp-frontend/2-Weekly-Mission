@@ -5,8 +5,8 @@ import validator from "./modules/validateSignForm.js"
 import togglePasswordHidden from "./modules/toggleBtn.js";
 
 const emailInputNode = document.querySelector(".signForm_input.email")
-const passwordInputNode = document.querySelectorAll(".signForm_input.password")[0]
-const passwordCheckInputNode = document.querySelectorAll(".signForm_input.password")[1]
+const passwordInputNode = document.querySelector(".signForm_input.password")
+const passwordCheckInputNode = document.querySelector(".signForm_input.password.password-check")
 const signForm = document.querySelector(".signForm")
 const togglePasswordBtn = document.querySelectorAll(".password_visible")
 
