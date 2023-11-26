@@ -8,7 +8,7 @@ import searchImg from "../asset/Search.svg";
 function App() {
   const [userInfo, setUserInfo] = useState();
   const [folderInfo, setFolderInfo] = useState({});
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
 
   const infoLoad = async () => {
     let infoLoadResult;
@@ -44,10 +44,10 @@ function App() {
     FolderInfo();
   }, []);
   //search에대한 다른 요구사항 없음
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    setSearch(e.target["search"].value);
-  };
+  // const handleSearchSubmit = (e) => {
+  //   e.preventDefault();
+  //   setSearch(e.target["search"].value);
+  // };
   console.log(folderInfo);
   console.log(userInfo);
   console.log(folderInfo.links);
@@ -92,7 +92,7 @@ function App() {
         </div>
       </header>
       <main>
-        <form onSubmit={handleSearchSubmit}>
+        <form onSubmit="">
           <img className="searchImg" src={searchImg} alt="돋보기 이미지" />
           <div className="custom-placeholder">
             <input

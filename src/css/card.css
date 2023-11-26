@@ -23,11 +23,26 @@
   height: 201px;
   overflow: hidden;
 }
+.gridFlexbox {
+  display: flex;
+  justify-content: center;
+}
 .gridparent {
+  width: auto;
   display: grid;
-  grid-template: repeat(3, 340px) / repeat(3, 1fr);
+  grid-template: auto / repeat(3, 340px);
   grid-template-areas: "num1 num2 num3" "num4 num5 num6" "num7 num8 num9";
   gap: 25px;
+
+  @media (max-width: 1124px) {
+    grid-template: auto / repeat(2, minmax(150px, 340px));
+    grid-template-areas:
+      "num1 num2"
+      "num3 num4"
+      "num5 num6"
+      "num7 num8"
+      "num9 .";
+  }
 }
 .card.num1 {
   grid-area: num1;
@@ -66,4 +81,11 @@
   text-overflow: ellipsis;
   white-space: normal;
   margin: 10px 0px;
+
+  @media (min-width: 768px) {
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
 }

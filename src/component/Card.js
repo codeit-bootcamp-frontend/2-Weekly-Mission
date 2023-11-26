@@ -54,12 +54,14 @@ function LinkListItem({ link }) {
 
 export function Card({ links }) {
   return (
-    <div className="gridparent">
-      {links.map((link, index) => (
-        <div className={`card num${index + 1}`} key={link.id}>
-          <LinkListItem link={link} />
-        </div>
-      ))}
+    <div className="gridFlexbox">
+      <div className="gridparent">
+        {links.map((link, index) => (
+          <div className={`card num${index + 1}`} key={link.id}>
+            <LinkListItem link={link} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
