@@ -1,5 +1,5 @@
-import passAuth from "./modules/redirector.js";
-passAuth()
+import redirectWithAuth from "./modules/redirector.js";
+redirectWithAuth("./folder.html")
 import {renderErrorMSGNode, removeErrorMSGNode} from "./modules/handleErrorClass.js";
 import validator from "./modules/validateSignForm.js"
 import togglePasswordHidden from "./modules/toggleBtn.js";

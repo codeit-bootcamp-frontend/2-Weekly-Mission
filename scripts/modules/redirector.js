@@ -1,8 +1,8 @@
-function passAuth(){
+function redirectWithAuth(path){
     const existAccessToken = localStorage.getItem("accessToken")
     if(existAccessToken){
-        location.assign("./folder.html")
+        location.assign(path)
     }
 }
 
-export default passAuth
+export default redirectWithAuth
