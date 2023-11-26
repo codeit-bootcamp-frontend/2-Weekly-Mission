@@ -1,7 +1,7 @@
 import reset from 'styled-reset';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
-import Footer from './components/Footer';
+import Footer from './components/layouts/Footer';
 import Shared from './pages/Shared';
 
 function App() {
