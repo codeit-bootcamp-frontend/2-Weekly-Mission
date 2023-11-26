@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import TopBar from '../molecules/TopBar';
+import { User } from '../../utils/interfaces';
 
 const Container = styled.div`
 	width: 100%;
@@ -43,13 +44,6 @@ const FolderName = styled.div`
 	font-weight: 600;
 	text-align: center;
 `;
-
-interface User {
-	id: number;
-	name: string;
-	email: string;
-	profileImageSource: string;
-}
 
 function ProfileSection() {
 	const [user, setUser] = useState<User | null>(null);
