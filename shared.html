@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Linkbrary</title>
+
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="base.css"/>
+    <link rel="stylesheet" href="utility.css"/>
+    <link rel="stylesheet" href="shared.css"/>
+    <link rel="stylesheet" type="text/css" href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css'>
+
+  </head>
+  <body>
+    <nav class="header">
+      <img class="header__logo" src="./image/logo.svg" alt="로고 이미지" />
+      <a class="action-button action-button_nav_signin action-button_grad_blue-sky" href="/signin.html">로그인</a>
+    </nav>
+    <main id="main-root">
+    </main>
+    <footer class="footer">
+      <p class="footer__company-info">©codeit - 2023</p>
+      <div class="footer__policy-faq">
+        <a class="footer__policy" href="/privacy">Privacy Policy</a>
+        <a class="footer__faq" href="/faq">FAQ</a>
+      </div>
+      <div class="footer__sns-icons">
+        <a href="https://www.facebook.com" target="_blank">
+          <img
+            class="footer__sns-icon footer__sns-icon_img-facebook"
+            src="./image/akar-icons_facebook-fill.svg"
+            alt="페이스북 아이콘"
+          />
+        </a>
+        <a href="https://www.twitter.com" target="_blank">
+          <img
+            class="footer__sns-icon footer__sns-icon_img-twitter"
+            src="./image/akar-icons_twitter-fill.svg"
+            alt="트위터 아이콘"
+          />
+        </a>
+        <a href="https://www.youtube.com" target="_blank">
+          <img
+            class="footer__sns-icon footer__sns-icon_img-youtube"
+            src="./image/akar-icons_youtube-fill.svg"
+            alt="유튜브 아이콘"
+          />
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <img
+            class="footer__sns-icon footer__sns-icon_img-instagram"
+            src="./image/ant-design_instagram-filled.svg"
+            alt="인스타그램 아이콘"
+          />
+        </a>
+      </div>
+      <script type="module" src="./script/shared.js"></script>
+      <script type="module" src="./src/components/shared-screen/SharedMainScreen.jsx"></script>
+    </footer>
+  </body>
+</html>

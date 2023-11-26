@@ -1,0 +1,31 @@
+.folder-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.folder-info__profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.folder-info__profile-image {
+  width: 60px;
+  height: 60px;
+
+  border-radius: 100%;
+}
+
+.folder-info__profile-name{
+    color: var(--text-color-light-mode, #000);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.folder-info__title{
+    font-size: 40px;
+    font-weight: 600;
+}
