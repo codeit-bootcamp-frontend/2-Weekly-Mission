@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <title>회원가입</title>
+    <link rel="stylesheet" href="./src/signup.css" />
+    <link rel="stylesheet" href="./src/reset.css" />
+  </head>
+</html>
+<body>
+  <div class="main-margin">
+    <header>
+      <a href="index.html">
+        <img class="logo" alt="로그인페이지 로고" src="./images/logologin.svg">
+      </a>
+      <p class="already">
+        이미 회원이신가요?
+        <a class="linkToLogin" href="signin.html">로그인 하기</a>
+      </p>  
+    </header>
+    <main>
+      <section>
+        <form>
+          <label for="email">이메일</label>
+          <input id="email" name="username">
+          <label class="emailDuplication" for="email"></label>
+
+          <label for="password">비밀번호</label>
+          <div class="password-container">
+            <input id="password" class="pw" name="password" type="password">
+            <i class="eye toggle-password"></i>
+          </div>
+          <label class="passwordLength" for="email"></label>
+
+          <label for="password-check">비밀번호 확인</label>
+          <div class="password-container">
+            <input id="password-check" class="pw" name="password-check" type="password">
+            <i class="eye2 toggle-password"></i>
+          </div>
+          <label class="passwordSame" for="email"></label>
+
+          <button id="signUpping">회원가입</button>
+        </form>
+      </section>
+      <section class="login-social">
+        <div class="login-detail">
+          <p class="login-detailp">소셜 로그인</p>
+          <div class="social-icon">
+            <a href="https://www.google.com/">
+              <img class="icon-google" alt="구글로 로그인" src="./images/login_google.png">
+            </a>
+            <a href="https://www.kakaocorp.com/page/">
+              <img class="icon-kakao" alt="카카오로 로그인" src="./images/kakao.png">
+            </a> 
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="./src/signup.js"></script>
+  <script src="./src/signupping.js"></script>
+</body>
