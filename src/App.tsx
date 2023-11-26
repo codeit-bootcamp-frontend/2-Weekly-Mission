@@ -8,6 +8,10 @@ function App() {
 	const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  *{
+    box-sizing: border-box;
+  }
+
   html{
     font-size: 10px;
   }
@@ -15,7 +19,6 @@ function App() {
   body{
     font-size: 1.4rem;
     font-family: 'Pretendard';
-    box-sizing: border-box;
   }
 
   a {
