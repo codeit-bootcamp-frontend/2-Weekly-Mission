@@ -111,7 +111,7 @@ function Card({ link }: CardProps) {
 	};
 
 	return (
-		<Container>
+		<Container onClick={() => window.open(link.url, '_blank')}>
 			<ImageWrapper>
 				{link.imageSource ? (
 					<img src={link.imageSource} alt='card-img' />
