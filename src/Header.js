@@ -6,7 +6,7 @@ import codeitImg from "./img/Union.png";
 
 function Header() {
   return (
-    <header className="header">
+    <div className="header">
       <div className="nav">
         <img src={logoImg} alt="Logo" />
         <div className="profile">
@@ -20,7 +20,7 @@ function Header() {
         <span>@코드잇</span>
         <h1>⭐ 즐겨찾기</h1>
       </div>
-    </header>
+    </div>
   );
 }
 

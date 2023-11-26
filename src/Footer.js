@@ -7,7 +7,7 @@ import instagramLogo from "./img/instagram.svg";
 
 function Footer() {
   return (
-    <footer className="footer">
+    <div className="footer">
       <div className="footerBox">
         <span className="copyright">@codeit - 2023</span>
         <div className="footerLinks">
@@ -45,7 +45,7 @@ function Footer() {
           </a>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
 
