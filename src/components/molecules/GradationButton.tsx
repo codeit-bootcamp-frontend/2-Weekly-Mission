@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-
-interface GradationButtonProps {
-	children: string;
-	width?: string;
-}
+import { GradationButtonProps } from '../../utils/interfaces';
 
 const Container = styled.div<GradationButtonProps>`
 	display: flex;
