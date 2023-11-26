@@ -24,26 +24,23 @@
       </p>
     </header>
     <div class="sign-box">
-      <form class="sign-form" method="post" action="#" onsubmit="checkAccount(event)">
+      <form id="form" class="sign-form">
         <div class="sign-inputs">
           <div class="sign-input-box">
-            <label class="sign-input-label" for="emailInput">이메일</label>
-            <input class="sign-input" id="emailInput" type="email"/>
-            <p class="error-message" id="noEmail">이메일을 입력해주세요.</p>
-            <p class="error-message" id="wrongEmail">올바른 이메일 주소가 아닙니다.</p>
-            <p class="error-message" id="checkEmail">이메일을 확인해주세요.</p>
+            <label class="sign-input-label">이메일</label>
+            <input id="email" class="sign-input" />
+            <p id="email-error-message" class="error-message"></p>
           </div>
           <div class="sign-input-box sign-password">
-            <label class="sign-input-label" for="passwordInput">비밀번호</label>
-            <input class="sign-input" id="passwordInput" type="password" />
-            <button class="eye-button" type="button">
-              <img src="./images/eye-off.svg" id="eye-off"/>
+            <label class="sign-input-label">비밀번호</label>
+            <input id="password" class="sign-input" type="password" />
+            <p id="password-error-message" class="error-message"></p>
+            <button id="password-toggle" class="eye-button" type="button">
+              <img src="./images/eye-off.svg" />
             </button>
-            <p class="error-message" id="noPassword">비밀번호를 입력해주세요.</p>
-            <p class="error-message" id="checkPassword">비밀번호를 확인해주세요.</p>
           </div>
         </div>
-        <button class="cta" type="submit" id="loginButton">로그인</button>
+        <button class="cta" type="submit">로그인</button>
       </form>
       <div class="sns-box">
         <span class="sns-text">소셜 로그인</span>
@@ -57,6 +54,6 @@
         </div>
       </div>
     </div>
-    <script src="./js/signin.js"></script>
+    <script type="module" src="./src/signin.js"></script>
   </body>
 </html>
