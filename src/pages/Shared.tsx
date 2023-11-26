@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ProfileSection from '../components/ProfileSection';
-import ListSection from '../components/ListSection';
+import ProfileSection from '../components/layouts/ProfileSection';
+import ListSection from '../components/layouts/ListSection';
 
 const Container = styled.div``;
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import TopBar from './TopBar';
+import TopBar from '../molecules/TopBar';
 
 const Container = styled.div`
 	width: 100%;
@@ -71,7 +71,6 @@ function ProfileSection() {
 	}, []);
 	// console.log(user);
 
-	const userId = user?.id;
 	const userName = user?.name;
 	const userEmail = user?.email;
 	const userProfileImg = user?.profileImageSource;
