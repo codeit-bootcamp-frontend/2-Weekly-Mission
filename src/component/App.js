@@ -3,7 +3,6 @@ import "../css/app.css";
 import { useEffect, useState } from "react";
 import { getUserInfo, getFolder } from "../api";
 import { Card } from "./Card";
-import searchImg from "../asset/Search.svg";
 
 function App() {
   const [userInfo, setUserInfo] = useState();
@@ -93,12 +92,11 @@ function App() {
       </header>
       <main>
         <form onSubmit="">
-          <img className="searchImg" src={searchImg} alt="돋보기 이미지" />
           <div className="custom-placeholder">
             <input
               name="search"
               className="searchInput"
-              placeholder="       링크를 검색해보세요"
+              placeholder="링크를 검색해보세요"
             />
           </div>
         </form>

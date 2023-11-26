@@ -43,6 +43,20 @@
       "num7 num8"
       "num9 .";
   }
+
+  @media (max-width: 768px) {
+    grid-template: auto / repeat(1, minmax(150px, 340px));
+    grid-template-areas:
+      "num1"
+      "num2"
+      "num3"
+      "num4"
+      "num5"
+      "num6"
+      "num7"
+      "num8"
+      "num9";
+  }
 }
 .card.num1 {
   grid-area: num1;
@@ -87,5 +101,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
+  }
+  @media (max-width: 768px) {
+    max-height: 39px;
   }
 }
