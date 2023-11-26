@@ -10,6 +10,7 @@ function App() {
 
   *{
     box-sizing: border-box;
+    font-family: 'Pretendard';
   }
 
   html{

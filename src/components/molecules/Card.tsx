@@ -2,18 +2,19 @@ import styled from 'styled-components';
 import { CardProps } from '../../utils/interfaces';
 
 const Container = styled.div`
-	width: 34rem;
+	width: 100%;
 	height: 33.4rem;
 	box-shadow: 0px 5px 25px 0px #00000014;
 	border-radius: 15px;
+	cursor: pointer;
 `;
 
 const ImageWrapper = styled.div`
 	width: 100%;
 	height: 20rem;
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 
 	img {
 		width: 100%;
