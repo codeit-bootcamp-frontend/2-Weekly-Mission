@@ -12,7 +12,6 @@ export default function UserInfo() {
       try {
         const result = await axios.get("https://bootcamp-api.codeit.kr/api/sample/folder");
         const data = result.data.folder;
-        console.log(data);
         setUserFolderName(data.name);
         setUserProfileImg(data.owner.profileImageSource);
         setUserName(data.owner.name);

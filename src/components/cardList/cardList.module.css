@@ -1,0 +1,6 @@
+.cardList {
+  margin-top: 2.5rem;
+  width: 100%;
+  background-color: aquamarine;
+  display: flex;
+}
