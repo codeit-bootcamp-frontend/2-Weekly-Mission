@@ -72,7 +72,7 @@ export default function Cards() {
     <ul className={styles.cardList}>
       {linkList.map((item) => {
         return (
-          <li>
+          <li className={styles.cardWrap}>
             <LinkListItem item={item} />
           </li>
         );
