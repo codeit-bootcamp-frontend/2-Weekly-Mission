@@ -25,12 +25,14 @@
   padding-bottom: 56.26%;
   overflow: hidden;
 }
+
 .cardImg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .text {
