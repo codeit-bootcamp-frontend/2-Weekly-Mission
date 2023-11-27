@@ -1,10 +1,11 @@
 import "./Card.css";
 import kebab from "./images/kebab.svg";
+import sharedImage7 from "./images/shared-image-7.png";
 
 function Card() {
   return (
     <div className="Card">
-      <div className="Card-img" />
+      <img className="Card-img" src={sharedImage7} alt="shardImage7" />
       <div className="Card-contents">
         <div className="Card-info">
           <p>10 minutes ago</p>
