@@ -27,7 +27,6 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* position: fixed; */
   padding: 20px 200px;
   width: 100%;
   background-color: #edf7ff;
@@ -115,6 +114,7 @@ nav {
   grid-template-columns: repeat(3, 1fr);
   gap: 25px 20px;
 }
+
 .CardContainer {
   height: 65%;
   overflow: hidden;
@@ -164,9 +164,6 @@ nav {
   border: 2px solid #6d6afe;
 }
 
-.CreatedAt {
-}
-
 footer {
   display: flex;
   justify-content: center;
@@ -209,4 +206,30 @@ footer {
   column-gap: 1.2rem;
   height: 2rem;
   justify-content: center;
+}
+
+@media(max-width: 1124px) {
+  .CardGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 20px;
+  }
+
+  .MainContainer {
+    max-width: 1060px;
+    margin: 40px 32px;
+  }
+}
+
+@media(max-width: 750px) {
+  .CardGrid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 25px 20px;
+  }
+
+  .MainContainer {
+    max-width: 500px;
+    margin: 40px 32px;
+  }
 }
