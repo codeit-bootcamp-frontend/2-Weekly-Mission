@@ -22,3 +22,17 @@ footer {
   align-items: center;
   gap: 0.75rem;
 }
+
+@media screen and (max-width: 767px) {
+  footer {
+    padding: 2rem;
+    height: 10rem;
+    align-items: start;
+    position: relative;
+  }
+  .copyright {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+  }
+}
