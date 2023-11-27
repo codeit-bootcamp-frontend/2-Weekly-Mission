@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 20rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  max-width: 192rem;
+  height: 9rem;
+  background-color: var(--blue-color-bg);
+}
+
+.logo img {
+  height: 2.4rem;
+}
