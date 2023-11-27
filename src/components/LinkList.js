@@ -1,3 +1,5 @@
+import "./LinkList.css";
+
 // 카드 링크 생성 날짜 표시 함수
 function formatDate(value) {
   const date = new Date(value);
@@ -30,12 +32,14 @@ function elapsedText(value) {
 // 링크 카드 낱개 함수
 function LinkListItem({ item }) {
   return (
-    <div>
-      <img src={item.imageSource} alt={item.title} />
-      <div>
-        <p>{elapsedText(item.createdAt)}</p>
-        <h3>{item.description}</h3>
-        <p>{formatDate(item.createdAt)}</p>
+    <div className="card-container">
+      <div className="card-img-wrap">
+        <img className="card-img" src={item.imageSource} alt={item.title} />
+      </div>
+      <div className="test-wrap">
+        <p className="elapsedText">{elapsedText(item.createdAt)}</p>
+        <h3 className="description">{item.description}</h3>
+        <p className="formatDate">{formatDate(item.createdAt)}</p>
       </div>
     </div>
   );
@@ -44,7 +48,7 @@ function LinkListItem({ item }) {
 // 링크 카드 리스트들 생성 함수
 export function LinkList({ items }) {
   return (
-    <ul>
+    <ul className="card-list">
       {items.map((item) => {
         return (
           <li key={item.id}>
