@@ -11,9 +11,17 @@
 .userProfile {
   gap: 0.75rem;
 }
+.userProfileImg {
+  display: block;
+  background: var(--primary-purple-70, #8f00ff);
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+}
 
 .userName {
   line-height: 1.5rem;
+  text-align: center;
 }
 
 .userFolderName {
