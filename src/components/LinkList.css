@@ -19,11 +19,17 @@
   align-items: center;
   height: 200px;
   overflow: hidden;
+  background-color: #dddfff;
 }
 
 .card-img {
   width: 100%;
   height: 100%;
+}
+
+.card-img.empty {
+  width: 133px;
+  height: 24px;
 }
 
 .elapsedText {

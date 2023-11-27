@@ -1,4 +1,5 @@
 import "./LinkList.css";
+import logo from "../srcImages/logo.svg";
 
 // 카드 링크 생성 날짜 표시 함수
 function formatDate(value) {
@@ -34,7 +35,11 @@ function LinkListItem({ item }) {
   return (
     <div className="card-container">
       <div className="card-img-wrap">
-        <img className="card-img" src={item.imageSource} alt={item.title} />
+        {item.imageSource ? (
+          <img className="card-img" src={item.imageSource} alt={item.title} />
+        ) : (
+          <img className="card-img empty" src={logo} alt={item.title} />
+        )}
       </div>
       <div className="test-wrap">
         <p className="elapsedText">{elapsedText(item.createdAt)}</p>
