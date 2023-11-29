@@ -12,8 +12,8 @@ function Footer() {
           ©codeit - 2023
         </span>
         <div className="footer-info">
-          <a className='privacy' href='/privacy'>Privacy Policy</a>
-          <a className='faq' href='/faq'>FAQ</a>
+          <a className="privacy" href="/privacy">Privacy Policy</a>
+          <a className="faq" href="/faq">FAQ</a>
         </div>
         <div className="footer-sns">
           <a href="https://www.facebook.com/">

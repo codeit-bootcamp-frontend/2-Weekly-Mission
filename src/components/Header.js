@@ -6,14 +6,14 @@ function Header() {
   return (
     <header className="header">
       <Nav />
-      <div className='heading-content'>
+      <div className="heading-content">
         <a href="/folder" className="avatar avatar-direction-column">
-          <div className='avatar-image'>
+          <div className="avatar-image">
             <img src={avatarDefaultImg} alt="프로필 이미지" />
           </div>
-          <span className='avatar-text'>@코드잇</span>
+          <span className="avatar-text">@코드잇</span>
         </a>
-        <h2 className='title'>⭐️ 즐겨찾기</h2>
+        <h2 className="title">⭐️ 즐겨찾기</h2>
       </div>
     </header>
   )
