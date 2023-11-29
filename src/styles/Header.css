@@ -64,22 +64,7 @@
   object-fit: cover;
 }
 
-@media screen and (max-width: 1200px) {
-  .nav {
-    padding: 0 3.2rem; 
-  }
-}
-
 @media screen and (max-width: 768px) {
-  .nav {
-    padding: 0 2rem;
-    height: 6.3rem;
-  }
-
-  .logo img {
-    height: 1.6rem;
-  }
-
   .heading-content {
     padding: 1rem 0 4rem;
     row-gap: 1rem;
