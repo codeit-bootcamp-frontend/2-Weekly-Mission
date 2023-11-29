@@ -42,6 +42,6 @@ export function togglePassword(input, toggleButton) {
 export function redirectToIfAccessTokenExists(destination) {
   const accessToken = localStorage.getItem("accessToken");
   if (accessToken) {
-    location.replace(destination);
+    window.location.replace(destination);
   }
 }
