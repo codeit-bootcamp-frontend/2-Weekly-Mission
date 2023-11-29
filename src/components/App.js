@@ -7,18 +7,7 @@ import '../styles/reset.css'
 import '../styles/global.css'
 import '../styles/App.css'
 import { useEffect, useState } from 'react';
-
-async function getUserProfile() {
-  const response = await fetch('https://bootcamp-api.codeit.kr/api/sample/user');
-  const body = await response.json();
-  return body
-}
-
-async function getFolderProfile() { 
-  const response = await fetch('https://bootcamp-api.codeit.kr/api/sample/folder');
-  const body = await response.json();
-  return body
-}
+import { getUserProfile, getFolderProfile} from '../api.js'
 
 function App() {
   const [userProfile, setUserProfile] = useState({
