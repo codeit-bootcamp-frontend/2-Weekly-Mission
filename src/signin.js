@@ -56,6 +56,7 @@ function noPassword () {
   }
 }
 
+
 // function testLogin (event) {
 //   event.preventDefault ();
 
@@ -83,16 +84,18 @@ function noPassword () {
 //   }
   
 // }
-// signinning.addEventListener('click', testLogin)
+
 
 // 로그인 에러메시지
 const emailInput = document.querySelector('#email')
 const passwordInput = document.querySelector('#password');
 const signinning = document.querySelector('#signinning')
+
 const eye = document.querySelector('.eye')
 
 emailInput.addEventListener('focusout', validEmail)
 passwordInput.addEventListener('focusout',noPassword)
 
 eye.addEventListener('click', togglePasswordVisibility)
+
 

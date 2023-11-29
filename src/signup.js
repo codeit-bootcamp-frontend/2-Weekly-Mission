@@ -46,11 +46,13 @@ function passwordLengthError (e) {
     passwordLength.textContent = '비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.'
     passwordLength.classList.add('inputError')
     InputTarget.classList.add('inputErrorBorder')
+
   }
 
   else{
     passwordLength.textContent = ''
     passwordLength.classList.remove('inputError')
+
     InputTarget.classList.remove('inputErrorBorder')
   }
 }
@@ -113,6 +115,7 @@ passwordInput.addEventListener('focusout', passwordLengthError);
 passwordCheckInput.addEventListener('focusout', passwordSameError);
 // signUpping.addEventListener('mousedown',canISignup);
 
+
 //엔터쳤을때 회원가입
 emailDuplication.addEventListener('keydown',Enter);
 passwordInput.addEventListener('keydown',Enter);
@@ -121,5 +124,6 @@ passwordCheckInput.addEventListener('keydown',Enter);
 
 const eye = document.querySelector('.eye');
 const eye2 = document.querySelector('.eye2');
+
 eye.addEventListener('click', togglePasswordVisibility);
 eye2.addEventListener('click', togglePasswordVisibility);
