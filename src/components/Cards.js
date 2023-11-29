@@ -10,24 +10,26 @@ function Cards({ folderProfile }) {
   const { links } = folderProfile;
 
   return (
-    <div className="cards">
+    <ul className="card-list">
       {links.map((item) => { 
-        return <div className="card" key={item.id}>
-          <a href={item.url} target="_blank">
-            <div className="card-image">
-              {<img src={item.imageSource || cardDefualtImg} alt="썸네일 이미지" />}
-            </div>
-            <div className="card-text">
-              <span className="created">10 minutes ago</span>
-              <button className="button-kebab" type="button"></button>
-              <p className="description">{item.description}</p>
-              <span className="date">{formateDate(item.createdAt)}</span>
-            </div>
-          </a>
-          <button className="button-bookmark filled" type="button"></button>
-        </div>
+        return (
+          <li className="card-item" key={item.id}>
+            <a className="card-link" href={item.url} target="_blank">
+              <div className="card-image">
+                {<img src={item.imageSource || cardDefualtImg} alt="썸네일 이미지" />}
+              </div>
+              <div className="card-text">
+                <span className="created">10 minutes ago</span>
+                <button className="button-kebab" type="button"></button>
+                <p className="description">{item.description}</p>
+                <span className="date">{formateDate(item.createdAt)}</span>
+              </div>
+            </a>
+            <button className="button-bookmark filled" type="button"></button>
+          </li>
+        )
       })}
-    </div>
+    </ul>
   )
 }
 
