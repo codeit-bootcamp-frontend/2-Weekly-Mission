@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.black};
   width: 100%;
   height: 160px;
 `;
 
-const Container = styled.div`
+const Wrapper = styled.div`
   font-family: 'Abel';
   font-size: 1.6rem;
   font-weight: 400;
@@ -51,8 +51,8 @@ const SNSLogoWrapper = styled.a`
 
 function Footer() {
   return (
-    <Wrapper>
-      <Container>
+    <Container>
+      <Wrapper>
         <CopyRight>©codeit - 2023</CopyRight>
         <NavLinks>
           <NavLink>Privacy Policy</NavLink>
@@ -72,8 +72,8 @@ function Footer() {
             <img src='/images/instagram-icon.png' alt='instagram-icon' />
           </SNSLogoWrapper>
         </SNS>
-      </Container>
-    </Wrapper>
+      </Wrapper>
+    </Container>
   );
 }
 

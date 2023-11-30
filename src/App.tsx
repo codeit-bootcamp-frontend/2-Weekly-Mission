@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import reset from 'styled-reset';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
@@ -5,6 +6,12 @@ import Footer from './components/layouts/Footer';
 import { Outlet } from 'react-router-dom';
 
 function App() {
+  const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  `;
+
   const GlobalStyle = createGlobalStyle`
   ${reset}
 
@@ -25,16 +32,22 @@ function App() {
   a {
     text-decoration: none;
   }
-`;
+  `;
+
+  const ContentsWrapper = styled.div`
+    flex: 1;
+  `;
 
   return (
-    <>
+    <Container>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Outlet />
+        <ContentsWrapper>
+          <Outlet />
+        </ContentsWrapper>
         <Footer />
       </ThemeProvider>
-    </>
+    </Container>
   );
 }
 
