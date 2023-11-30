@@ -21,6 +21,7 @@ const SearchWrapper = styled.div`
 `;
 
 const SearchBar = styled.input`
+  width: 100%;
   background-color: #f5f5f5;
   border: none;
   outline: none;
