@@ -2,10 +2,10 @@ import reset from 'styled-reset';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
 import Footer from './components/layouts/Footer';
-import Shared from './pages/Shared';
+import { Outlet } from 'react-router-dom';
 
 function App() {
-	const GlobalStyle = createGlobalStyle`
+  const GlobalStyle = createGlobalStyle`
   ${reset}
 
   *{
@@ -27,15 +27,15 @@ function App() {
   }
 `;
 
-	return (
-		<>
-			<ThemeProvider theme={theme}>
-				<GlobalStyle />
-				<Shared />
-				<Footer />
-			</ThemeProvider>
-		</>
-	);
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Outlet />
+        <Footer />
+      </ThemeProvider>
+    </>
+  );
 }
 
 export default App;
