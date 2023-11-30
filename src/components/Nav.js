@@ -1,5 +1,13 @@
 import logo from '../assets/logo.svg';
 import '../styles/Nav.css'
+import { useUser } from '../hooks/useUser';
+
+const INITIAL_USER_VALUE = {
+  email:'',
+  id:0,
+  name:'',
+  profileImageSource:''
+};
 
 const UserProfile = ({profile}) => {
   return(
@@ -10,15 +18,16 @@ const UserProfile = ({profile}) => {
   )
 };
 
-const Nav = ({profile}) => {
+const Nav = () => {
+  const user = useUser(INITIAL_USER_VALUE);
+  
   return(
     <header className="landing--header">
       <div className="header-bar">
         <a href="/" className="landing--logo">
           <img src={logo} alt="logo"/>
         </a>
-        {/* {profile && <UserProfile profile={profile}></UserProfile>} */}
-        {profile.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={profile}></UserProfile>}
+        {user.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={user}></UserProfile>}
       </div>
     </header>
   )
