@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import Shared from '../pages/Shared';
+import Folder from '../pages/Folder';
 
 const router = createBrowserRouter([
   {
@@ -8,8 +8,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '',
-        element: <Shared />,
+        path: '/folder',
+        element: <Folder />,
       },
     ],
   },
