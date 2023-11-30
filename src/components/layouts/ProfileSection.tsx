@@ -1,22 +1,21 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import TopBar from '../molecules/TopBar';
 import { User } from '../../utils/interfaces';
 
 const Container = styled.div`
   width: 100%;
-  height: 33.7rem;
+  height: 24.4rem;
   background-color: ${({ theme }) => theme.colors.skyblue};
 `;
 
-const ContentsWrapper = styled.div`
+const Wrapper = styled.div`
   width: fit-content;
-  margin: 2rem auto 0;
+  margin: 0 auto;
 `;
 
 const UserWrapper = styled.div`
   text-align: center;
-  margin-bottom: 2rem;
+  padding: 2rem 0;
 `;
 
 const ImgWrapper = styled.div`
@@ -67,8 +66,7 @@ function ProfileSection() {
 
   return (
     <Container>
-      <TopBar email={user?.email} profileImageSource={user?.profileImageSource} />
-      <ContentsWrapper>
+      <Wrapper>
         <UserWrapper>
           <ImgWrapper>
             <UserProfileImg src={user?.profileImageSource} alt='profile-img' />
@@ -76,7 +74,7 @@ function ProfileSection() {
           <UserName>{user?.name}</UserName>
         </UserWrapper>
         <FolderName>⭐️ 즐겨찾기</FolderName>
-      </ContentsWrapper>
+      </Wrapper>
     </Container>
   );
 }
