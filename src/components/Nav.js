@@ -1,6 +1,9 @@
 import logo from '../assets/logo.svg';
 import '../styles/Nav.css'
-import { useUser } from '../hooks/useUser';
+import { useSharedPageUser } from '../hooks/sharedPageHooks';
+import { useLocation, useParams } from 'react-router';
+import { useEffect } from 'react';
+import { useFolderPageUser } from '../hooks/folderPageHooks';
 
 const INITIAL_USER_VALUE = {
   email:'',
@@ -19,7 +22,9 @@ const UserProfile = ({profile}) => {
 };
 
 const Nav = () => {
-  const user = useUser(INITIAL_USER_VALUE);
+  const location = useLocation();
+  const sharedPageUser = useSharedPageUser(INITIAL_USER_VALUE);
+  const folderPageUser = useFolderPageUser();
   
   return(
     <header className="landing--header">
@@ -27,7 +32,9 @@ const Nav = () => {
         <a href="/" className="landing--logo">
           <img src={logo} alt="logo"/>
         </a>
-        {user.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={user}></UserProfile>}
+        {location.pathname === '/shared' && (sharedPageUser.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={sharedPageUser} />)}
+        {location.pathname === '/folder' && (folderPageUser.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={folderPageUser} />)}
+        {(location.pathname !== '/shared' && location.pathname !== '/folder') && (sharedPageUser.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={sharedPageUser} />)}
       </div>
     </header>
   )

@@ -1,8 +1,9 @@
-import Card from "./Card";
-import FolderOwner from "./FolderOwner";
-import SearchBar from "./SearchBar";
-import '../styles/Folder.css';
-import { useSharedPageFolder } from "../hooks/useSharedPageFolder";
+import { useSharedPageFolder } from "../../hooks/sharedPageHooks";
+import Card from "../Card";
+import FolderOwner from "../FolderOwner";
+import SearchBar from "../SearchBar";
+import '../../styles/Folder.css';
+
 
 const INITIAL_FOLDER_VALUE = {
   links:[],
@@ -13,7 +14,7 @@ const INITIAL_FOLDER_VALUE = {
   }
 };
 
-const FolderLayout = () => {
+const SharedPage = () => {
   const folder = useSharedPageFolder(INITIAL_FOLDER_VALUE);
   const { owner, name, links } = folder;
 
@@ -28,4 +29,4 @@ const FolderLayout = () => {
   )
 };
 
-export default FolderLayout
+export default SharedPage
