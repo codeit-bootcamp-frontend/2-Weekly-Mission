@@ -7,13 +7,12 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 80%;
   max-width: 1650px;
   font-family: 'Abel';
   font-size: 1.6rem;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.gray100};
-  /* padding: 3.2rem 10.4rem 0; */
   padding-top: 3.2rem;
   margin: 0 auto;
   display: flex;

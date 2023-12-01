@@ -15,10 +15,9 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 80%;
   max-width: 1520px;
   height: 54px;
-  padding: 0 20rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
