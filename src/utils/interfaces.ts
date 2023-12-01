@@ -10,6 +10,23 @@ export interface GradationButtonProps {
   width?: string;
 }
 
+// SearchBar.tsx
+export interface SearchBarProps {
+  width?: string;
+  height?: string;
+  inputWidth?: string;
+  fontSize?: string;
+  fontColor?: string;
+  borderColor?: string;
+  backgroundColor?: string;
+  placeholder?: string;
+  placeholderColor?: string;
+  iconSrc?: string;
+  iconAlt?: string;
+  iconWidth?: string;
+  iconHeight?: string;
+}
+
 // Card.tsx
 export interface CardProps {
   link: Link;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import SearchBar from '../molecules/SearchBar';
 import Card from '../molecules/Card';
 import { Folder } from '../../utils/interfaces';
 
@@ -8,39 +9,6 @@ const Container = styled.div`
   max-width: 1520px;
   margin: 0 auto;
   padding: 4rem 0;
-`;
-
-const SearchWrapper = styled.div`
-  width: 100%;
-  height: 5.4rem;
-  border-radius: 10px;
-  background-color: #f5f5f5;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 1.5rem 1.6rem;
-`;
-
-const SearchBar = styled.input`
-  width: 100%;
-  background-color: #f5f5f5;
-  border: none;
-  outline: none;
-  font-size: 1.6rem;
-  margin-left: 2.6rem;
-`;
-
-const SearchIcon = styled.div`
-  width: 1.6rem;
-  height: 1.6rem;
-  position: absolute;
-  cursor: pointer;
-
-  img {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-  }
 `;
 
 const CardContainer = styled.div`
@@ -85,12 +53,7 @@ function ListSection() {
 
   return (
     <Container>
-      <SearchWrapper>
-        <SearchBar placeholder='링크를 검색해 보세요' />
-        <SearchIcon>
-          <img src='/images/search-icon.png' alt='search-icon' />
-        </SearchIcon>
-      </SearchWrapper>
+      <SearchBar />
       {links && links.length > 0 ? (
         <CardContainer>
           {links?.map((link) => (
