@@ -5,6 +5,7 @@ import { Folder } from '../../utils/interfaces';
 
 const Container = styled.div`
   width: 80%;
+  max-width: 1520px;
   margin: 0 auto;
   padding: 4rem 0;
 `;
