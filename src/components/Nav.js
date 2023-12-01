@@ -13,10 +13,14 @@ const INITIAL_USER_VALUE = {
 };
 
 const UserProfile = ({profile}) => {
+  const location = useLocation();
+
+  if(!profile) return;
+
   return(
     <div className='profile--box'>
-      <img src={profile.profileImageSource} alt='프로필 아이콘' className='profile-image'/>
-      <p className='profile-email'>{profile.email}</p>
+      <img src={location.pathname === '/shared' ? profile.profileImageSource : profile['image_source']} alt='프로필 아이콘' className='profile-image'/>
+      <p className='profile-email'>{profile?.email}</p>
     </div>
   )
 };
@@ -25,6 +29,11 @@ const Nav = () => {
   const location = useLocation();
   const sharedPageUser = useSharedPageUser(INITIAL_USER_VALUE);
   const folderPageUser = useFolderPageUser();
+
+  useEffect(() => {
+    console.log(sharedPageUser);
+    console.log(folderPageUser);
+  }, [sharedPageUser, folderPageUser]);
   
   return(
     <header className="landing--header">
@@ -32,9 +41,9 @@ const Nav = () => {
         <a href="/" className="landing--logo">
           <img src={logo} alt="logo"/>
         </a>
-        {location.pathname === '/shared' && (sharedPageUser.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={sharedPageUser} />)}
-        {location.pathname === '/folder' && (folderPageUser.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={folderPageUser} />)}
-        {(location.pathname !== '/shared' && location.pathname !== '/folder') && (sharedPageUser.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={sharedPageUser} />)}
+        {location.pathname === '/shared' && (sharedPageUser?.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={sharedPageUser} />)}
+        {location.pathname === '/folder' && (folderPageUser?.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={folderPageUser} />)}
+        {(location.pathname !== '/shared' && location.pathname !== '/folder') && (sharedPageUser?.email === '' ? <a href="./signin.html" className="login--btn btn">로그인</a> : <UserProfile profile={sharedPageUser} />)}
       </div>
     </header>
   )
