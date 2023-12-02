@@ -2,6 +2,7 @@ import shareIcon from '../assets/share.svg';
 import penIcon from '../assets/pen.svg';
 import deleteIcon from '../assets/delete.svg';
 import '../styles/FolderTitle.css';
+import { useEffect } from 'react';
 
 const optionItems = [
   {
@@ -21,6 +22,11 @@ const optionItems = [
   }
 ]
 
+const all = {
+  id: 0,
+  name: '전체'
+}
+
 const Option = ({ icon, name }) => {
   return (
     <button className='option--item'>
@@ -30,13 +36,22 @@ const Option = ({ icon, name }) => {
   )
 };
 
-const FolderTitle = () => {
+const FolderTitle = ({ folders, activeFolder }) => {
+  const selectedFolder = activeFolder === 0 ? all : folders?.find((folder) => folder.id === activeFolder);
+
+  useEffect(() => {
+    console.log('=======================selectedFolder는?==================');
+    console.log(selectedFolder);
+  }, [selectedFolder])
+
   return (
     <div className='folder-title--container'>
-      <p className='folder-title'>유용한 글</p>
-      <div className='option--container'>
-        {optionItems.map((option) => <Option key={option.id} icon={option.icon} name={option.name}/>)}
-      </div>
+      <p className='folder-title'>{selectedFolder?.name}</p>
+      {activeFolder !== 0 &&
+        <div className='option--container'>
+          {optionItems.map((option) => <Option key={option.id} icon={option.icon} name={option.name}/>)}
+        </div>
+      }
     </div>
   )
 };
