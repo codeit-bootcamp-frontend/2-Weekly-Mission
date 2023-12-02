@@ -1,11 +1,16 @@
-import SearchBar from '../components/molecules/SearchBar';
+import styled from 'styled-components';
+import AddLinkSection from '../components/layouts/folder/AddLinkSection';
+import FolderListSection from '../components/layouts/folder/FolderListSection';
+
+const Container = styled.div``;
 
 function Folder() {
-  return (
-    <div style={{ width: '80%', margin: '100px auto' }}>
-      <SearchBar />
-    </div>
-  );
+	return (
+		<Container>
+			<AddLinkSection />
+			<FolderListSection />
+		</Container>
+	);
 }
 
 export default Folder;
