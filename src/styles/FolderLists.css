@@ -20,6 +20,11 @@
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
+  border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
+}
+
+.folder--btn:hover {
+  background: var(--linkbrary-gray-10, #E7EFFB);
 }
 
 .folder-inactive--btn {
@@ -28,7 +33,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
   background: #FFF;
 }
 
@@ -38,6 +42,5 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
   background: var(--linkbrary-primary-color, #6D6AFE);
 }

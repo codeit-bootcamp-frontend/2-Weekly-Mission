@@ -17,7 +17,7 @@ const all = {
 }
 
 const FolderLists = () => {
-  const [activeFolder, setActiveFolder] = useState();
+  const [activeFolder, setActiveFolder] = useState(0);
   const folders =[all, ...useFolderPageFolder()];
 
   if(!folders) return;
