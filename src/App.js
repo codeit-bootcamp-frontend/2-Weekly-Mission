@@ -1,7 +1,7 @@
 import { getFolder } from "./api";
-import logoImg from "./images/logo.svg";
+import NavBar from "./components/NavBar";
 import codeItProfile from "./images/codeit-profile.svg";
-import SocialLink from "./components/SocialLink.js";
+import Footer from "./components/Footer";
 
 console.log(getFolder());
 
@@ -9,10 +9,7 @@ function App() {
   return (
     <>
       <header>
-        <nav>
-          <img src={logoImg} alt="logo" />
-          <span>Codeit@codeit.com</span>
-        </nav>
+        <NavBar />
         <img src={codeItProfile} alt="codeit profile" />
         <div>@코드잇</div>
         <div>⭐️ 즐겨찾기</div>
@@ -21,20 +18,7 @@ function App() {
         <div>(search bar 들어갈 자리)</div>
         <div>(링크 카드들 들어갈 자리)</div>
       </main>
-
-      <footer>
-        <span>@codeit - 2023</span>
-        <div>
-          <a href="#">Privacy Policy</a>
-          <a href="#">FAQ</a>
-        </div>
-        <div>
-          <SocialLink>facebook</SocialLink>
-          <SocialLink>twitter</SocialLink>
-          <SocialLink>youtube</SocialLink>
-          <SocialLink>instagram</SocialLink>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
