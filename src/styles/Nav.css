@@ -5,6 +5,11 @@
   z-index: 1;
 }
 
+.no-fixed {
+  position: static;
+  z-index: 0;
+}
+
 .header-bar {
   padding: 20px 200px;
   display: flex;

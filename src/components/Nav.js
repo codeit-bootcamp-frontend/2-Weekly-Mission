@@ -36,7 +36,7 @@ const Nav = () => {
   }, [sharedPageUser, folderPageUser]);
   
   return(
-    <header className="landing--header">
+    <header className={`landing--header ${location.pathname === '/folder' ? 'no-fixed' : ''}`}>
       <div className="header-bar">
         <a href="/" className="landing--logo">
           <img src={logo} alt="logo"/>

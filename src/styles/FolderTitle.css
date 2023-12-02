@@ -1,0 +1,41 @@
+.option--item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.option--icon {
+  width: 18px;
+  height: 18px;
+}
+
+.option--name {
+  color: var(--linkbrary-gray-60, #9FA6B2);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.folder-title--container {
+  display: flex;
+  width: 1060px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px auto;
+}
+
+.folder-title {
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.2px;
+}
+
+.option--container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
