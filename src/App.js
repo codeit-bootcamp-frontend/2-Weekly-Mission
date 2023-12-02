@@ -1,9 +1,12 @@
+import { getFolder } from "./api";
 import logoImg from "./images/logo.svg";
 import codeItProfile from "./images/codeit-profile.svg";
 import facebookImg from "./images/facebook.svg";
 import twitterImg from "./images/twitter.svg";
 import youtubeImg from "./images/youtube.svg";
 import instagramImg from "./images/instagram.svg";
+
+console.log(getFolder());
 
 function App() {
   return (
