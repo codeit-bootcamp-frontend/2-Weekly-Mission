@@ -1,0 +1,39 @@
+.CardList {
+  display: grid;
+  grid-template-columns: repeat(32.5rem);
+  justify-content: center;
+  width: 100%;
+  max-width: 106rem;
+  row-gap: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(
+      auto-fill,
+      34rem
+    ); /* 갯수는 자동으로 채워주고 너비는 34rem */
+    row-gap: 2.5rem;
+    column-gap: 2rem;
+  }
+}
+
+.titleIconsContainer {
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 3.2rem 0 1.2rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.4rem;
+    margin: 2.4rem 0;
+  }
+}

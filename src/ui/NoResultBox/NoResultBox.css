@@ -1,0 +1,22 @@
+.NoResultBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4.1rem 0 4.2rem;
+  height: 10rem;
+  font-size: 1.4rem;
+  margin-top: 3.2rem;
+  margin-bottom: 30.9rem;
+
+  @media (min-width: 768px) {
+    padding: 4.1rem 0 3.5rem;
+    height: 10rem;
+    font-size: 1.6rem;
+    margin-top: 4rem;
+    margin-bottom: 46.1rem;
+  }
+
+  @media (min-width: 1200px) {
+    margin-bottom: 10rem;
+  }
+}

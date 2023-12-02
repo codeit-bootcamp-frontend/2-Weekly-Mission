@@ -1,0 +1,9 @@
+.NavigationBar {
+  position: fixed;
+  transition: transform 1s;
+  top: 0;
+}
+
+.NavigationBar.up {
+  transform: translate(0, -9.3rem);
+}
