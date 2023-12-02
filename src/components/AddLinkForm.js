@@ -12,5 +12,3 @@ const AddLinkForm = () => {
 };
 
 export default AddLinkForm;
-
-;
