@@ -7,11 +7,13 @@ import { getFolder } from "../api";
 
 function FolderHero() {
   const [profileImgUrl, setProfileImgUrl] = useState();
+  const [ownerName, setOwnerName] = useState();
   const [folderName, setFolderName] = useState();
 
   useEffect(() => {
     getFolder().then((folder) => {
       setProfileImgUrl(folder.owner.profileImageSource);
+      setOwnerName(folder.owner.name);
       setFolderName(folder.name);
     });
   });
@@ -19,7 +21,7 @@ function FolderHero() {
   return (
     <>
       <img src={profileImgUrl} alt="codeit profile" />
-      <div>@코드잇</div>
+      <div>@{ownerName}</div>
       <div>{folderName}</div>
     </>
   );

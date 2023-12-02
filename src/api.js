@@ -15,4 +15,4 @@ export async function getFolder() {
 }
  */
 //아니 근데 굳이 이걸 또 함수화할 필요가 있을까?
-//그냥 getFolder().links 해서 필요한 파일에 변수로 저장해놓으면 될 듯
+//그냥 getFolder().links 해서 필요한 파일에 변수로 저장해놓으면 될 듯 -> 오케이 완료
