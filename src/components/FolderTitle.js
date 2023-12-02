@@ -5,14 +5,17 @@ import '../styles/FolderTitle.css';
 
 const optionItems = [
   {
+    id : 0,
     icon : shareIcon,
     name : '공유'
   },
   {
+    id : 1,
     icon : penIcon,
     name : '이름 변경'
   },
   {
+    id : 2,
     icon : deleteIcon,
     name : '삭제'
   }
@@ -32,7 +35,7 @@ const FolderTitle = () => {
     <div className='folder-title--container'>
       <p className='folder-title'>유용한 글</p>
       <div className='option--container'>
-        {optionItems.map((option) => <Option icon={option.icon} name={option.name}/>)}
+        {optionItems.map((option) => <Option key={option.id} icon={option.icon} name={option.name}/>)}
       </div>
     </div>
   )
