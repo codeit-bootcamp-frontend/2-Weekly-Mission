@@ -2,6 +2,8 @@ import '../styles/Card.css'
 import noImage from '../assets/noImage.svg';
 import star from '../assets/star.svg';
 import kebab from '../assets/kebab.svg';
+import { useState } from 'react';
+import SelectMenu from './SelectMenu';
 
 const dateDiff = (createdDate, nowDate) => {
   const diff = nowDate - createdDate;
@@ -34,9 +36,15 @@ const dateDiff = (createdDate, nowDate) => {
 }
 
 const Card = ({ link }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const createdDate = new Date(link.createdAt || link['created_at']);
   const createdDateString = `${createdDate.getFullYear()}. ${createdDate.getMonth() + 1}. ${createdDate.getDate()}`
   const nowDate = new Date();
+
+  const handleKebobIconClick = (event) => {
+    event.preventDefault();
+    setMenuOpen(!menuOpen);
+  }
 
 
   return(
@@ -48,11 +56,12 @@ const Card = ({ link }) => {
       <div className="link-detail--container">
         <div className='link-created-ago--container'>
           <p className="link-created-ago">{dateDiff(createdDate, nowDate)}</p>
-          <button><img src={kebab} alt='kebab icon' className='kebab--icon' /></button>
+          <button onClick={handleKebobIconClick}><img src={kebab} alt='kebab icon' className='kebab--icon' /></button>
         </div>
         <p className="link-description">{link.description}</p>
         <p className="link-created-at">{createdDateString}</p>
       </div>
+      {menuOpen && <SelectMenu />}
     </a>
   )
 };
