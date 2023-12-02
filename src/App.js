@@ -1,6 +1,6 @@
 import { getFolder } from "./api";
 import NavBar from "./components/NavBar";
-import codeItProfile from "./images/codeit-profile.svg";
+import FolderHero from "./components/FolderHero";
 import Footer from "./components/Footer";
 
 console.log(getFolder());
@@ -10,9 +10,7 @@ function App() {
     <>
       <header>
         <NavBar />
-        <img src={codeItProfile} alt="codeit profile" />
-        <div>@코드잇</div>
-        <div>⭐️ 즐겨찾기</div>
+        <FolderHero />
       </header>
       <main>
         <div>(search bar 들어갈 자리)</div>

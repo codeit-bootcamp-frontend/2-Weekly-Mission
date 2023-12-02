@@ -16,7 +16,7 @@ function SocialLink({ children }) {
   const alt = `${children} 홈페이지로 연결된 ${children} 로고`;
 
   return (
-    <div class="sns">
+    <div>
       <a href={href} target="_blank" rel="noopener noreferrer">
         <img src={src} alt={alt} />
       </a>
