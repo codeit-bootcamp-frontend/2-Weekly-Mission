@@ -34,7 +34,7 @@ const dateDiff = (createdDate, nowDate) => {
 }
 
 const Card = ({ link }) => {
-  const createdDate = new Date(link.createdAt);
+  const createdDate = new Date(link.createdAt || link['created_at']);
   const createdDateString = `${createdDate.getFullYear()}. ${createdDate.getMonth() + 1}. ${createdDate.getDate()}`
   const nowDate = new Date();
 
@@ -43,7 +43,7 @@ const Card = ({ link }) => {
     <a href={link.url} target="_blank" rel='noopener noreferrer' className="card">
       <img src={star} alt='bookmark icon' className='star--icon' />
       <figure className="link-image--container">
-        <img src={link.imageSource || noImage} alt="링크 이미지" className="link-image"/>
+        <img src={(link.imageSource || link['image_source']) || noImage} alt="링크 이미지" className="link-image"/>
       </figure>
       <div className="link-detail--container">
         <div className='link-created-ago--container'>

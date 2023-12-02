@@ -3,9 +3,9 @@ import { useFolderPageFolder } from "../hooks/folderPageHooks";
 import '../styles/FolderLists.css';
 import addIcon from '../assets/add.svg';
 
-const Folder = ({id, name , onClick, active}) => {
+const Folder = ({id, name , onClick, activeFolder}) => {
   return(
-    <button className={`folder--btn ${active === id ? 'folder-active--btn' : 'folder-inactive--btn'}`} onClick={() => onClick(id)}>
+    <button className={`folder--btn ${activeFolder === id ? 'folder-active--btn' : 'folder-inactive--btn'}`} onClick={() => onClick(id)}>
       {name}
     </button>
   )
@@ -16,20 +16,20 @@ const all = {
   name: '전체'
 }
 
-const FolderLists = () => {
-  const [activeFolder, setActiveFolder] = useState(0);
-  const folders =[all, ...useFolderPageFolder()];
+const FolderLists = ({ folders, activeFolder, onClick}) => {
+  // const [activeFolder, setActiveFolder] = useState(0);
+  // const folders =[all, ...useFolderPageFolder()];
 
   if(!folders) return;
 
-  const handleActiveButton = (id) => {
-    setActiveFolder(id);
-  }
+  // const handleActiveButton = (id) => {
+  //   setActiveFolder(id);
+  // }
 
   return(
     <div className="folder-list--container">
       <div className="folder-btn--container">
-        {folders?.map((folder) => <Folder key={folder?.id} name={folder?.name} id={folder?.id} onClick={handleActiveButton} active={activeFolder}></Folder>)}
+        {folders?.map((folder) => <Folder key={folder?.id} name={folder?.name} id={folder?.id} onClick={onClick} activeFolder={activeFolder}></Folder>)}
       </div>
       <button><img src={addIcon} alt="+" className="add--icon"/></button>
     </div>
