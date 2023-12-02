@@ -63,6 +63,7 @@ const FolderPage = () => {
         <>
           <FolderLists folders={folders} activeFolder={activeFolder} onClick={handleActiveButton}/>
           <FolderTitle folders={folders} activeFolder={activeFolder}/>
+          {links.length === 0 && <NoLink />}
           <section className="card--section">
             {links?.map((link) => <Card key={link.id} link={link} />)}
           </section>
