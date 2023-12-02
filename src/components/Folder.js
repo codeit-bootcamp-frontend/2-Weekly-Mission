@@ -1,17 +1,17 @@
 import Header from "./Header";
-import Search from "./Search";
+import AddLink from "./AddLink";
 import Footer from "./Footer";
 import Title from "./Title";
 
-function App() {
+function Folder() {
   return (
     <div>
       <Header />
       <Title />
-      <Search />
+      <AddLink />
       <Footer />
     </div>
   );
 }
 
-export default App;
+export default Folder;

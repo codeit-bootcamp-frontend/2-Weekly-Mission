@@ -1,14 +1,14 @@
 import "./Style.css";
 import { useState, useEffect } from "react";
+import { fetchLinks } from "../api";
 
 function Title() {
 
   const [folderData, setFolderData] = useState();
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch('https://bootcamp-api.codeit.kr/api/sample/folder');
-      const data = await response.json();
-      setFolderData(data);
+      const response = await fetchLinks();
+      setFolderData(response.data);
     } catch (error) {
       console.error('프로필 데이터를 불러오는 중 에러 발생:', error);
     }

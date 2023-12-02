@@ -1,10 +1,11 @@
 import "./Style.css";
 import Card from "./Card";
-import search from '../assets/search.svg'
+import search from "../assets/search.svg";
 import { useState, useEffect } from "react";
 
-function Main() {
+function Search() {
   const [linksData, setLinksData] = useState();
+
   const fetchLinks = async () => {
     try {
       const response = await fetch(
@@ -17,7 +18,7 @@ function Main() {
       console.error("링크 데이터를 불러오는 중 에러 발생:", error);
     }
   };
-  
+
   useEffect(() => {
     fetchLinks();
   }, []);
@@ -25,14 +26,14 @@ function Main() {
   return (
     <main className="MainContainer">
       <div className="Finder">
-        <input className="Link" type="text" value="링크를 검색해보세요."/>
-        <img className="SearchIcon" src={search} alt="돋보기 아이콘"/>
+        <input className="Link" type="text" value="링크를 검색해보세요." />
+        <img className="SearchIcon" src={search} alt="돋보기 아이콘" />
       </div>
       <div className="CardDataContainer">
-      <Card data={linksData} />
+        <Card data={linksData} />
       </div>
     </main>
   );
 }
 
-export default Main;
+export default Search;
