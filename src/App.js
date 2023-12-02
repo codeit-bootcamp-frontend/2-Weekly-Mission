@@ -1,10 +1,7 @@
 import { getFolder } from "./api";
 import logoImg from "./images/logo.svg";
 import codeItProfile from "./images/codeit-profile.svg";
-import facebookImg from "./images/facebook.svg";
-import twitterImg from "./images/twitter.svg";
-import youtubeImg from "./images/youtube.svg";
-import instagramImg from "./images/instagram.svg";
+import SocialLink from "./components/SocialLink.js";
 
 console.log(getFolder());
 
@@ -32,10 +29,10 @@ function App() {
           <a href="#">FAQ</a>
         </div>
         <div>
-          <img src={facebookImg} alt="facebook" />
-          <img src={twitterImg} alt="twitter" />
-          <img src={youtubeImg} alt="youtube" />
-          <img src={instagramImg} alt="instagram" />
+          <SocialLink>facebook</SocialLink>
+          <SocialLink>twitter</SocialLink>
+          <SocialLink>youtube</SocialLink>
+          <SocialLink>instagram</SocialLink>
         </div>
       </footer>
     </>
