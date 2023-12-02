@@ -48,7 +48,7 @@ const Card = ({ link }) => {
       <div className="link-detail--container">
         <div className='link-created-ago--container'>
           <p className="link-created-ago">{dateDiff(createdDate, nowDate)}</p>
-          <img src={kebab} alt='kebab icon' className='kebab--icon' />
+          <button><img src={kebab} alt='kebab icon' className='kebab--icon' /></button>
         </div>
         <p className="link-description">{link.description}</p>
         <p className="link-created-at">{createdDateString}</p>

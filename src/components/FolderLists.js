@@ -21,7 +21,7 @@ const FolderLists = () => {
       <div className="folder-btn--container">
         {folders?.map((folder) => <Folder key={folder?.id} name={folder?.name}></Folder>)}
       </div>
-      <img src={addIcon} alt="+" className="add--icon"/>
+      <button><img src={addIcon} alt="+" className="add--icon"/></button>
     </div>
   )
 

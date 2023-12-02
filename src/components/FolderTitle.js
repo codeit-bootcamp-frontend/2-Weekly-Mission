@@ -20,10 +20,10 @@ const optionItems = [
 
 const Option = ({ icon, name }) => {
   return (
-    <div className='option--item'>
+    <button className='option--item'>
       <img src={icon} alt={`${name} 아이콘`} className='option--icon'/>
       <p className='option--name'>{name}</p>
-    </div>
+    </button>
   )
 };
 
