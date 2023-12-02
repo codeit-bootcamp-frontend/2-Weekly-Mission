@@ -2,10 +2,19 @@ import { getFolder } from "./api";
 import NavBar from "./components/NavBar";
 import FolderHero from "./components/FolderHero";
 import Footer from "./components/Footer";
-
-console.log(getFolder());
+import { useState } from "react";
+import LinkCards from "./components/LinkCards";
+import { useEffect } from "react";
 
 function App() {
+  const [links, setLinks] = useState([]);
+
+  useEffect(() => {
+    getFolder().then((folder) => {
+      setLinks(folder.links);
+    });
+  });
+
   return (
     <>
       <header>
@@ -14,7 +23,9 @@ function App() {
       </header>
       <main>
         <div>(search bar 들어갈 자리)</div>
-        <div>(링크 카드들 들어갈 자리)</div>
+        <div>
+          <LinkCards links={links} />
+        </div>
       </main>
       <Footer />
     </>
