@@ -1,0 +1,69 @@
+.FolderInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0 4rem;
+  box-sizing: border-box;
+  background-color: var(--light-blue);
+  padding: 6rem 3.2rem 9rem;
+  @media (min-width: 768px) {
+    /* padding: 2rem 0 6rem; */
+    padding: 6rem 32rem 9rem;
+  }
+}
+
+.SearchBar {
+  position: relative;
+  width: 100%;
+}
+
+.AddLink-input {
+  width: 100%;
+  /* max-width: 80rem; */
+  height: 6rem;
+  padding: 1.6rem 2rem 1.6rem 5.2rem;
+  border-radius: 1.5rem;
+  color: #025fff;
+  background-color: #ffffff;
+  font-size: 1.6rem;
+  font-family: Pretendard;
+  font-weight: 400;
+  line-height: 24px;
+  border: 1px solid rgba(109, 106, 254, 1);
+  @media (min-width: 768px) {
+    height: 5.4rem;
+    font-size: 1.8rem;
+    line-height: 150%;
+  }
+}
+
+.AddLink-input::placeholder {
+  color: #9fa6b2;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1.6rem;
+}
+
+.AddButton {
+  margin-left: 6rem;
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  width: 8rem;
+  height: 3.7rem;
+  background: linear-gradient(to right, rgb(109, 106, 254), skyblue);
+  z-index: 2;
+  border-radius: 0.8rem;
+  color: #f5f5f5;
+}
+
+.AddButton_ {
+  padding: 1rem 1.6rem;
+  color: #f5f5f5;
+}

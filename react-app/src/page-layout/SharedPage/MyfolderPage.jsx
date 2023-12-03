@@ -1,9 +1,9 @@
 import "./SharedPage.css";
 
-export const MyfolderPage = ({ folderInfo, searchBar, cardList }) => {
+export const MyfolderPage = ({ Header, searchBar, cardList }) => {
   return (
     <div className="SharedPage">
-      {folderInfo}
+      {Header}
       <div className="SharedPage-items">
         {searchBar}
         {cardList}
