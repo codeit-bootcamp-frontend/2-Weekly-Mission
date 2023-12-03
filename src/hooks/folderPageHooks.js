@@ -39,22 +39,3 @@ export function useFolderPageFolder(){
 
   return folder;
 }
-
-export function useFolderPageLink(){
-  const [link, setLink] = useState([]);
-
-  const getLink = async() => {
-    try{
-      const response = await axios.get(`${FOLDER_PAGE_API_URL}/1/links`);
-      setLink(response.data.data);
-    } catch(error){
-      alert(error)
-    }
-  }
-
-  useEffect(() => {
-    getLink();
-  }, [])
-
-  return link;
-}

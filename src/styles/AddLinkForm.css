@@ -44,3 +44,20 @@
   font-weight: 600;
   line-height: normal;
 }
+
+@media screen and (max-width: 1123px) {
+  .add-link--form{
+    padding: 60px 32px 90px;
+  }
+
+  .add-link--input {
+    width: calc(100vw - 96px);
+    min-width: 325px;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 767px) {
+  .add-link--form{
+    padding: 24px 32px 40px;
+  }
+}

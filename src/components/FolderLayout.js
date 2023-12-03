@@ -4,17 +4,11 @@ import SearchBar from "./SearchBar";
 import '../styles/Folder.css';
 import { useSharedPageFolder } from "../hooks/useSharedPageFolder";
 
-const INITIAL_FOLDER_VALUE = {
-  links:[],
-  name:'',
-  owner: {
-    name:'',
-    profileImageSource:''
-  }
-};
-
 const FolderLayout = () => {
-  const folder = useSharedPageFolder(INITIAL_FOLDER_VALUE);
+  const folder = useSharedPageFolder();
+
+  if(!folder) return;
+
   const { owner, name, links } = folder;
 
   return(

@@ -5,28 +5,19 @@ import NoLink from "../NoLink";
 import FolderLists from "../FolderLists";
 import Card from "../Card";
 import FolderTitle from "../FolderTitle";
-import { useFolderPageLink, useFolderPageFolder } from "../../hooks/folderPageHooks";
+import {  useFolderPageFolder } from "../../hooks/folderPageHooks";
 import { useEffect, useState } from "react";
-import { FOLDER_PAGE_API_URL } from "../../constants/constants";
+import { ALL_FOLDER, FOLDER_PAGE_API_URL } from "../../constants/constants";
 import axios from "axios";
 
-const INITIAL_FOLDER_VALUE = {
-  links:[],
-  name:'',
-  owner: {
-    name:'',
-    profileImageSource:''
-  }
-};
-
-const all = {
-  id: 0,
-  name: '전체'
+const linkURL = (forderId) => {
+  if(forderId === 0) return `${FOLDER_PAGE_API_URL}/1/links`;
+  return `${FOLDER_PAGE_API_URL}/1/links?folderId=${forderId}`;
 }
 
 const FolderPage = () => {
   const [activeFolder, setActiveFolder] = useState(0);
-  const folders =[all, ...useFolderPageFolder()];
+  const folders =[ALL_FOLDER, ...useFolderPageFolder()];
   const [links, setLinks] = useState()
 
   const getLinkData = async (URL) => {
@@ -38,11 +29,6 @@ const FolderPage = () => {
     }
   };
   
-  const linkURL = (forderId) => {
-    if(forderId === 0) return `${FOLDER_PAGE_API_URL}/1/links`;
-    return `${FOLDER_PAGE_API_URL}/1/links?folderId=${forderId}`;
-  }
-
   useEffect(() => {
     const url = linkURL(activeFolder);
     getLinkData(url);

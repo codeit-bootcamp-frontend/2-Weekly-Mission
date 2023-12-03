@@ -11,10 +11,9 @@ function App() {
       <Router>
         <Nav />
         <Routes>
+          <Route path="/" element={<Test />} />
           <Route path="/shared" element={<SharedPage/>} />
           <Route path="/folder" element={<FolderPage />} />
-            {/* <FolderLayout /> */}
-          <Route path="/test" element={<Test />} />
         </Routes>
         <Footer />
       </Router>

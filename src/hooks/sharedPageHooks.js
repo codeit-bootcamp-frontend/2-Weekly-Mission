@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { SHARED_PAGE_API_URL } from '../constants/constants';
 
-export function useSharedPageUser(initialValue){
-  const [user, setUser] = useState(initialValue);
+export function useSharedPageUser(){
+  const [user, setUser] = useState();
 
   const getUser = async() => {
     try{
@@ -12,7 +12,6 @@ export function useSharedPageUser(initialValue){
       setUser(user);
     } catch(error) {
       alert(error)
-      setUser(initialValue);
     }
   }
 
@@ -23,8 +22,8 @@ export function useSharedPageUser(initialValue){
   return user;
 }
 
-export function useSharedPageFolder(initialValue){
-  const [folder, setFolder] = useState(initialValue);
+export function useSharedPageFolder(){
+  const [folder, setFolder] = useState();
 
   const getFolder = async() => {
     try{
@@ -33,7 +32,6 @@ export function useSharedPageFolder(initialValue){
       setFolder(folder);
     } catch(error) {
       alert(error)
-      setFolder(initialValue);
     }
   }
 

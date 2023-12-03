@@ -1,25 +1,15 @@
 import logo from '../assets/logo.svg';
 import '../styles/Nav.css'
 import { useSharedPageUser } from '../hooks/sharedPageHooks';
-import { useLocation, useParams } from 'react-router';
-import { useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { useFolderPageUser } from '../hooks/folderPageHooks';
 
-const INITIAL_USER_VALUE = {
-  email:'',
-  id:0,
-  name:'',
-  profileImageSource:''
-};
-
 const UserProfile = ({profile}) => {
-  const location = useLocation();
-
   if(!profile) return;
 
   return(
     <div className='profile--box'>
-      <img src={location.pathname === '/shared' ? profile.profileImageSource : profile['image_source']} alt='프로필 아이콘' className='profile-image'/>
+      <img src={profile.profileImageSource || profile['image_source']} alt='프로필 아이콘' className='profile-image'/>
       <p className='profile-email'>{profile?.email}</p>
     </div>
   )
@@ -27,14 +17,9 @@ const UserProfile = ({profile}) => {
 
 const Nav = () => {
   const location = useLocation();
-  const sharedPageUser = useSharedPageUser(INITIAL_USER_VALUE);
+  const sharedPageUser = useSharedPageUser();
   const folderPageUser = useFolderPageUser();
 
-  useEffect(() => {
-    console.log(sharedPageUser);
-    console.log(folderPageUser);
-  }, [sharedPageUser, folderPageUser]);
-  
   return(
     <header className={`landing--header ${location.pathname === '/folder' ? 'no-fixed' : ''}`}>
       <div className="header-bar">
