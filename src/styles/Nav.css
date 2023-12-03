@@ -17,10 +17,6 @@
   height: 2.4rem;
 }
 
-.button-primary.signin {
-  width: 12.8rem;
-}
-
 @media screen and (max-width: 1200px) {
   .nav {
     padding: 0 3.2rem; 

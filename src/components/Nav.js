@@ -1,9 +1,9 @@
 import '../styles/Nav.css'
+import Avatar from './Avatar.js'
+import SigninButton from './SigninButton.js'
 import logoImg from '../images/logo.svg'
 
-function Nav({ userProfile }) { 
-  const {email, profileImageSource} = userProfile
-
+function Nav({ userProfile, isSignin }) {
   return (
     <nav className="nav">
       <h1 className="logo">
@@ -12,13 +12,7 @@ function Nav({ userProfile }) {
         </a>
       </h1>
       <div className="auth">
-        <a href="/folder" className="avatar avatar-direction-row">
-          <div className="avatar-image">
-            <img src={profileImageSource} alt="프로필 이미지" />
-          </div>
-          <span className="avatar-text sm-hidden">{email}</span>
-        </a>
-        {/* <a href="/signin.html" className="button-primary signin">로그인</a> */}
+        {isSignin ? <Avatar userProfile={userProfile} /> : <SigninButton />}
       </div>
     </nav>
   )
