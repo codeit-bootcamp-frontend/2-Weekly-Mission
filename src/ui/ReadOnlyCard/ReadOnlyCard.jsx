@@ -5,11 +5,11 @@ import { CardImage } from "../CardImage";
 
 export const ReadOnlyCard = ({
   url,
-  imageSource,
+  image_source,
   alt,
-  elapsedTime,
+  elapsedTime, 
   description,
-  createdAt,
+  created_at,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseOver = () => setIsHovered(true);
@@ -18,11 +18,15 @@ export const ReadOnlyCard = ({
   return (
     <a href={url} target="_blank" rel="noopener noreferrer">
       <Card onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
-        <CardImage imageSource={imageSource} alt={alt} isZoomedIn={isHovered} />
+        <CardImage
+          imageSource={image_source}
+          alt={alt}
+          isZoomedIn={isHovered}
+        />
         <CardContent
           elapsedTime={elapsedTime}
           description={description}
-          createdAt={createdAt}
+          createdAt={created_at}
           isHovered={isHovered}
         />
       </Card>
