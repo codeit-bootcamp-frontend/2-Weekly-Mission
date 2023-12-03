@@ -1,4 +1,4 @@
-import { getFolder } from "./api";
+import { getFolder, getUserInfo } from "./api";
 import NavBar from "./components/NavBar";
 import FolderHero from "./components/FolderHero";
 import Footer from "./components/Footer";
@@ -8,17 +8,24 @@ import { useEffect } from "react";
 
 function App() {
   const [links, setLinks] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     getFolder().then((folder) => {
       setLinks(folder.links);
     });
-  });
+  }, []);
+
+  useEffect(() => {
+    getUserInfo().then((response) => {
+      setUserInfo(response);
+    });
+  }, []);
 
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar userInfo={userInfo} />
         <FolderHero />
       </header>
       <main>

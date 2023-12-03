@@ -49,8 +49,6 @@ function getTimePassed(createdAt) {
   }
 }
 
-console.log(getTimePassed("2023-03-12T14:24:08Z"));
-
 function formatDate(value) {
   const date = new Date(value);
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
@@ -82,7 +80,6 @@ function LinkCards({ links }) {
           </>
         );
       })}
-      s
     </div>
   );
 }
