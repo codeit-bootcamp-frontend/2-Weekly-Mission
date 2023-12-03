@@ -52,7 +52,7 @@ function LinkListItem({ link }) {
   );
 }
 
-export function Card({ links }) {
+export function SharedCard({ links }) {
   return (
     <div className="gridFlexbox">
       <div className="gridparent">
