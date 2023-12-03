@@ -2,13 +2,22 @@ import { Layout } from "../feature/Layout/Layout";
 import { SharedPage } from "../page-layout/SharedPage/SharedPage";
 import { SearchBar } from "../ui/SearchBar/SearchBar";
 import { CardList } from "../ui/CardList/CardList";
-import { useGetFolder } from "../data-access/useGetFolder";
+import { getFolderLink } from "../data-access/Api";
 import { ReadOnlyCard } from "../ui/ReadOnlyCard/ReadOnlyCard";
 import { AddBar } from "../ui/AddBar/AddBar";
+import { useEffect, useState } from "react";
 
 export function Folder() {
-  const { data } = useGetFolder();
-  const { links } = data || {};
+  const [links, setLinks] = useState([]);
+
+  const folderLinks = async () => {
+    const data = await getFolderLink();
+    setLinks(data);
+  };
+
+  useEffect(() => {
+    folderLinks();
+  }, []);
 
   return (
     <Layout>
