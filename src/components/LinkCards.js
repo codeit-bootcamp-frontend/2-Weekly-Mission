@@ -60,14 +60,14 @@ function formatDate(value) {
 // TODO 파라미터 destructuring 문법으로 바꾸고 싶은디..
 function LinkCard({ link }) {
   return (
-    <div>
+    <a href={link.url} target="_blank" rel="noopener noreferrer">
       <img src={sampleImg} alt={link.title} />
       <div>
         <p>{getTimePassed(link.createdAt)}</p>
         <p>{link.description}</p>
         <p>{formatDate(link.createdAt)}</p>
       </div>
-    </div>
+    </a>
   );
 }
 
