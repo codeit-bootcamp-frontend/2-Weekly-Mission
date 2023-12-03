@@ -4,6 +4,7 @@ import SigninButton from './SigninButton.js'
 import logoImg from '../images/logo.svg'
 
 function Nav({ userProfile, isSignin }) {
+
   return (
     <nav className="nav">
       <h1 className="logo">

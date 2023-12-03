@@ -10,6 +10,9 @@ import { useEffect, useState } from 'react';
 import { getUserProfile, getFolderProfile} from '../api.js'
 
 function App() {
+  const [profile, setProfile] = useState(null)
+  const isSiginin = profile !== null
+
   const [userProfile, setUserProfile] = useState({
     id: 0,
     name: "",
@@ -32,18 +35,19 @@ function App() {
   const handleLoad = async () => {
     const user = await getUserProfile();
     setUserProfile(user);
+    setProfile(user)
 
     const { folder } = await getFolderProfile();
     setFolderProfile(folder);
   };
 
   useEffect(() => {
-    handleLoad();
+    handleLoad()
   }, []);
 
   return (
     <>
-      <Nav userProfile={userProfile} />
+      <Nav userProfile={userProfile} isSiginin={isSiginin} />
       <Header folderProfile={folderProfile} />
       <main className="main">
         <Search />

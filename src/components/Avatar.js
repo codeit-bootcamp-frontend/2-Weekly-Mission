@@ -1,7 +1,7 @@
 import '../styles/Avatar.css'
 
 function Avatar({ userProfile }) { 
-  const {email, profileImageSource} = userProfile
+  const { email, profileImageSource } = userProfile
   
   return (
     <a href="/folder" className="avatar avatar-direction-row">
