@@ -6,7 +6,7 @@ import "./NavigationBar.css";
 
 export const NavigationBar = ({ profile, onTop }) => {
   return (
-    <nav className={onTop ? "NavigationBar NavigationBarOnTop" : "NavigationBar"}>
+    <nav className={onTop ? "NavigationBarOnTop" : "NavigationBar"}>
       <div className="NavigationBar-items">
         <a href={ROUTE.랜딩}>
           <img className="NavigationBar-logo" src={LOGO_IMAGE} alt="Linkbrary 서비스 로고" />

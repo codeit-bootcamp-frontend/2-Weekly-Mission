@@ -1,5 +1,5 @@
-import { Layout } from "./feature/Layout";
-import { SharedPage } from "./page-layout/SharedPage";
+import { LayoutMyFolder } from "feature/Layout/LayoutOfMyfolder";
+import { MyfolderPage } from "page-layout/SharedPage/MyfolderPage";
 import "./global.css";
 import { FolderInfo } from "./ui/FolderInfo";
 import { SearchBar } from "./ui/SearchBar";
@@ -12,8 +12,8 @@ function Folder() {
   const { profileImage, ownerName, folderName, links } = data || {};
 
   return (
-    <Layout>
-      <SharedPage
+    <LayoutMyFolder>
+      <MyfolderPage
         folderInfo={<FolderInfo profileImage={profileImage} ownerName={ownerName} folderName={folderName} />}
         searchBar={<SearchBar />}
         cardList={
@@ -24,7 +24,7 @@ function Folder() {
           </CardList>
         }
       />
-    </Layout>
+    </LayoutMyFolder>
   );
 }
 

@@ -10,6 +10,12 @@
 
 .NavigationBarOnTop {
   position: relative;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  z-index: var(--z-index-nav);
+  width: 100%;
+  background-color: var(--light-blue);
 }
 
 .NavigationBar-items {
