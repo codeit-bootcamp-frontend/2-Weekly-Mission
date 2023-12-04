@@ -1,0 +1,77 @@
+.AddBar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 8.7rem; /* 2.4 + 6.3(NaviBar가 fixed라서 높이를 더함) */
+  padding-bottom: 4rem;
+  background-color: var(--light-blue);
+
+  @media (min-width: 768px) {
+    padding-top: 15.3rem; /* 6 + 9.3 */
+    padding-bottom: 9rem;
+  }
+}
+
+.AddBar-input-container {
+  position: relative;
+}
+
+.AddBar-input {
+  width: 32.5rem;
+  height: 5.3rem;
+  padding-left: 3.4rem;
+  padding-right: 1rem;
+  border: 0.1rem solid var(--primary);
+  border-radius: 1.5rem;
+  background-color: var(--white);
+  font-size: 1.4rem;
+  color: var(--black);
+
+  @media (min-width: 768px) {
+    width: 70.4rem;
+    height: 6.9rem;
+    padding-left: 5.2rem;
+    padding-right: 2rem;
+    font-size: 1.6rem;
+  }
+
+  @media (min-width: 1200px) {
+    width: 80rem;
+  }
+}
+
+.AddBar-input::placeholder {
+  color: (--gray60);
+}
+
+.AddBar-icon {
+  position: absolute;
+  width: 1.6rem;
+  top: 1.8rem;
+  left: 1rem;
+
+  @media (min-width: 768px) {
+    width: 2rem;
+    left: 2rem;
+    top: 2.4rem;
+  }
+}
+
+.Cta {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  width: 8rem;
+  height: 3.7rem;
+  padding: 1rem 1.6rem;
+  border-radius: 0.8rem;
+  background: linear-gradient(91deg, var(--primary) 0.12%, #6ae3fe 101.84%);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--gray-light);
+
+  @media (min-width: 768px) {
+    top: 1.6rem;
+    right: 2rem;
+  }
+}
