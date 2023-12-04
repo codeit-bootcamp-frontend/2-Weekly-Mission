@@ -12,12 +12,7 @@ export const ReadOnlyCard = ({ url, imageSource, alt, elapsedTime, description, 
     <a href={url} target="_blank" rel="noopener noreferrer">
       <Card onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
         <CardImage imageSource={imageSource} alt={alt} isZoomedIn={isHovered} />
-        <CardContent
-          elapsedTime={elapsedTime}
-          description={description}
-          createdAt={createdAt}
-          isHovered={isHovered}
-        />
+        <CardContent elapsedTime={elapsedTime} description={description} createdAt={createdAt} isHovered={isHovered} />
       </Card>
     </a>
   );

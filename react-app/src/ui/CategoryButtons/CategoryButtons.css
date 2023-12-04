@@ -1,0 +1,10 @@
+.button {
+  color: black;
+  font-size: 1.6rem;
+  font-family: Pretendard;
+  font-weight: 400;
+  background: white;
+  padding: 0.8rem 1.2rem;
+  border: 0.1rem #6d6afe solid;
+  border-radius: 0.5rem;
+}
