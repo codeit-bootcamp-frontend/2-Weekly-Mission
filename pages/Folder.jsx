@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CardList } from "../ui/CardList/CardList";
 import { NavigationBar } from "../feature/NavigationBar/NavigationBar";
 import axios from "axios";
@@ -15,6 +15,9 @@ function Folder() {
   const [links, setLinks] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [scrollY, setScrollY] = useState(0);
+  const [direction, setDiretion] = useState("up");
 
   // user 정보 가져오기
   async function fetchUser() {
@@ -42,14 +45,38 @@ function Folder() {
     }
   }
 
+  /* 스크롤 방향 파악하는 함수 */
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > scrollY) {
+      setDiretion("down");
+    } else if (currentScrollY < scrollY) {
+      setDiretion("up");
+    }
+    setScrollY(currentScrollY);
+  }, [scrollY]);
+
   useEffect(() => {
     fetchUser();
     fetchFolderLinks();
-  }, []);
+
+    /* 스크롤 이벤트 넣어주기 */
+    const scrollEvent = () => handleScroll();
+    window.addEventListener("scroll", scrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", scrollEvent);
+    };
+  }, [handleScroll]);
 
   return (
     <div className="Folder">
-      <NavigationBar userInfo={userInfo} />
+      <NavigationBar
+        userInfo={userInfo}
+        className={`NavigationBar ${direction === "down" ? "up" : ""}`}
+        /* 동작을 안합니다.. */
+      />
       <AddBar />
       <div className="Folder-content">
         <SearchBar />
