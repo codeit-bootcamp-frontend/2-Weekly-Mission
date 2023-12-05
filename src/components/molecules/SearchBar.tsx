@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { SearchBarProps } from '../../utils/interfaces';
 
 const Container = styled.div<SearchBarProps>`
-	width: ${({ width }) => width || '100%'};
-	height: ${({ height }) => height || '5.4rem'};
+	width: ${({ $width }) => $width || '100%'};
+	height: ${({ $height }) => $height || '5.4rem'};
 	border: ${({ $borderColor }) => ($borderColor ? `1px solid ${$borderColor}` : 'none')};
 	border-radius: 10px;
 	background-color: ${({ $backgroundColor }) => $backgroundColor || '#f5f5f5'};
@@ -18,8 +18,8 @@ const Bar = styled.input<SearchBarProps>`
 	background-color: ${({ $backgroundColor }) => $backgroundColor || '#f5f5f5'};
 	border: none;
 	outline: none;
-	font-size: ${({ fontSize }) => fontSize || '1.6rem'};
-	color: ${({ fontColor }) => fontColor};
+	font-size: ${({ $fontSize }) => $fontSize || '1.6rem'};
+	color: ${({ $fontColor }) => $fontColor};
 	margin-left: 2.6rem;
 
 	&::placeholder {
@@ -28,8 +28,8 @@ const Bar = styled.input<SearchBarProps>`
 `;
 
 const SearchIcon = styled.div<SearchBarProps>`
-	width: ${({ iconWidth }) => iconWidth || '1.6rem'};
-	height: ${({ iconHeight }) => iconHeight || '1.6rem'};
+	width: ${({ $iconWidth }) => $iconWidth || '1.6rem'};
+	height: ${({ $iconHeight }) => $iconHeight || '1.6rem'};
 	position: absolute;
 	cursor: pointer;
 
@@ -41,37 +41,37 @@ const SearchIcon = styled.div<SearchBarProps>`
 `;
 
 function SearchBar({
-	width,
-	height,
+	$width,
+	$height,
 	$backgroundColor,
 	$borderColor,
 	$inputWidth,
-	fontSize,
-	fontColor,
-	placeholder,
+	$fontSize,
+	$fontColor,
+	$placeholder,
 	$placeholderColor,
-	iconSrc,
-	iconAlt,
-	iconWidth,
-	iconHeight,
+	$iconSrc,
+	$iconAlt,
+	$iconWidth,
+	$iconHeight,
 }: SearchBarProps) {
 	return (
 		<Container
-			width={width}
-			height={height}
+			$width={$width}
+			$height={$height}
 			$backgroundColor={$backgroundColor}
 			$borderColor={$borderColor}
 		>
 			<Bar
 				$inputWidth={$inputWidth}
 				$backgroundColor={$backgroundColor}
-				fontSize={fontSize}
-				fontColor={fontColor}
-				placeholder={placeholder || '링크를 검색해 보세요'}
+				$fontSize={$fontSize}
+				$fontColor={$fontColor}
+				placeholder={$placeholder || '링크를 검색해 보세요'}
 				$placeholderColor={$placeholderColor}
 			/>
-			<SearchIcon iconWidth={iconWidth} iconHeight={iconHeight}>
-				<img src={iconSrc || '/images/search-icon.png'} alt={iconAlt || 'search-icon'} />
+			<SearchIcon $iconWidth={$iconWidth} $iconHeight={$iconHeight}>
+				<img src={$iconSrc || '/images/search-icon.png'} alt={$iconAlt || 'search-icon'} />
 			</SearchIcon>
 		</Container>
 	);

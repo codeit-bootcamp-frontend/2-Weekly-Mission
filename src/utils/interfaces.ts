@@ -11,19 +11,19 @@ export interface GradationButtonProps {
 
 // SearchBar.tsx
 export interface SearchBarProps {
-	width?: string;
-	height?: string;
+	$width?: string;
+	$height?: string;
 	$inputWidth?: string;
-	fontSize?: string;
-	fontColor?: string;
+	$fontSize?: string;
+	$fontColor?: string;
 	$borderColor?: string;
 	$backgroundColor?: string;
-	placeholder?: string;
+	$placeholder?: string;
 	$placeholderColor?: string;
-	iconSrc?: string;
-	iconAlt?: string;
-	iconWidth?: string;
-	iconHeight?: string;
+	$iconSrc?: string;
+	$iconAlt?: string;
+	$iconWidth?: string;
+	$iconHeight?: string;
 }
 
 // Card.tsx

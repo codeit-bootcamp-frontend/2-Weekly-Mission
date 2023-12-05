@@ -37,10 +37,10 @@ function AddLinkSection() {
 					$inputWidth='75%'
 					$backgroundColor='#fff'
 					$borderColor={theme.colors.purple}
-					placeholder='링크를 추가해 보세요.'
+					$placeholder='링크를 추가해 보세요.'
 					$placeholderColor={theme.colors.gray60}
-					iconSrc='/images/link.png'
-					iconAlt='link-icon'
+					$iconSrc='/images/link.png'
+					$iconAlt='link-icon'
 				/>
 				<StyledGradationButton width='8rem'>추가하기</StyledGradationButton>
 			</SearchBarWrapper>

@@ -13,6 +13,10 @@ const Container = styled.div`
 
 const TagsBar = styled.div`
 	margin: 4rem 0 2.4rem;
+
+	& > *:not(:last-child) {
+		margin-right: 8px;
+	}
 `;
 
 const ListsWrapper = styled.div``;
@@ -39,7 +43,7 @@ function FolderListSection() {
 			setTagData(data.data);
 		});
 	}, []);
-	// console.log(tagData);
+	console.log(tagData);
 
 	return (
 		<Container>
