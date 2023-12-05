@@ -13,13 +13,13 @@ export interface GradationButtonProps {
 export interface SearchBarProps {
 	width?: string;
 	height?: string;
-	inputWidth?: string;
+	$inputWidth?: string;
 	fontSize?: string;
 	fontColor?: string;
-	borderColor?: string;
-	backgroundColor?: string;
+	$borderColor?: string;
+	$backgroundColor?: string;
 	placeholder?: string;
-	placeholderColor?: string;
+	$placeholderColor?: string;
 	iconSrc?: string;
 	iconAlt?: string;
 	iconWidth?: string;
@@ -67,4 +67,12 @@ export interface Folder {
 	links: Link[];
 	name: string;
 	owner: Owner;
+}
+
+export interface Tag {
+	createdAt: string;
+	id: number;
+	link: { count: number };
+	name: string;
+	user_id: number;
 }

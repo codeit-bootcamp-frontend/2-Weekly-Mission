@@ -34,11 +34,11 @@ function AddLinkSection() {
 		<Container>
 			<SearchBarWrapper>
 				<SearchBar
-					inputWidth='75%'
-					backgroundColor='#fff'
-					borderColor={theme.colors.purple}
+					$inputWidth='75%'
+					$backgroundColor='#fff'
+					$borderColor={theme.colors.purple}
 					placeholder='링크를 추가해 보세요.'
-					placeholderColor={theme.colors.gray60}
+					$placeholderColor={theme.colors.gray60}
 					iconSrc='/images/link.png'
 					iconAlt='link-icon'
 				/>
