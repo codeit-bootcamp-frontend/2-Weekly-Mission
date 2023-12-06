@@ -62,9 +62,63 @@ const KebabButton = styled.div`
 
 function FolderCard({ link }: FolderCardProps) {
 	console.log(link);
-	const getCreatedTime = () => {};
+	const getCreatedTime = () => {
+		const splitedCreatedAt = link.created_at.split('-');
 
-	const getCreatedBefore = () => {};
+		const year = Number(splitedCreatedAt[0]);
+		const month = Number(splitedCreatedAt[1]);
+		const day = Number(splitedCreatedAt[2].substring(0, 2));
+
+		const createdTime = year + '. ' + month + '. ' + day;
+		return createdTime;
+	};
+
+	const getCreatedBefore = () => {
+		let createdBeforeMessage = '';
+
+		const splitedCreatedAt = link.created_at.split('T');
+
+		const [createdYear, createdMonth, createdDay] = splitedCreatedAt[0]
+			.split('-')
+			.map((val) => Number(val));
+		const [createdHours, createdMinutes, createdSeconds] = splitedCreatedAt[1]
+			.split(':')
+			.map((val, index) => (index === 2 ? Number(val.substring(0, 2)) : Number(val)));
+
+		const createdDate = new Date(
+			createdYear,
+			createdMonth,
+			createdDay,
+			createdHours,
+			createdMinutes,
+			createdSeconds
+		);
+
+		const now = new Date();
+
+		const diffSecs = Math.floor((now.getTime() - createdDate.getTime()) / 1000);
+		const diffMins = Math.floor(diffSecs / 60);
+		const diffHours = Math.floor(diffMins / 60);
+		const diffDays = Math.floor(diffHours / 24);
+		const diffMonths = Math.floor(diffDays / 30);
+		const diffYears = Math.floor(diffMonths / 12);
+
+		if (diffMins < 2) {
+			createdBeforeMessage = '1 minute ago';
+		} else if (diffMins <= 59) {
+			createdBeforeMessage = `${diffMins} minutes ago`;
+		} else if (diffHours <= 23) {
+			createdBeforeMessage = `${diffHours} hours ago`;
+		} else if (diffDays <= 30) {
+			createdBeforeMessage = `${diffDays} days ago`;
+		} else if (diffMonths <= 11) {
+			createdBeforeMessage = `${diffMonths} months ago`;
+		} else {
+			createdBeforeMessage = `${diffYears} years ago`;
+		}
+
+		return createdBeforeMessage;
+	};
 
 	return (
 		<Container onClick={() => window.open(link.url, '_blank')}>
@@ -77,7 +131,7 @@ function FolderCard({ link }: FolderCardProps) {
 			</ImageWrapper>
 			<BottomWrapper>
 				<CreatedAtContainer>
-					<CreatedBefore>{}</CreatedBefore>
+					<CreatedBefore>{getCreatedBefore()}</CreatedBefore>
 					<KebabButton>
 						<img src='images/kebab.png' alt='kebab-icon' />
 					</KebabButton>
@@ -87,7 +141,7 @@ function FolderCard({ link }: FolderCardProps) {
 				) : (
 					<Description>no description!</Description>
 				)}
-				<CreatedAt>{}</CreatedAt>
+				<CreatedAt>{getCreatedTime()}</CreatedAt>
 			</BottomWrapper>
 		</Container>
 	);
