@@ -31,6 +31,11 @@ export interface CardProps {
 	link: Link;
 }
 
+// FolderCard.tsx
+export interface FolderCardProps {
+	link: FolderLink;
+}
+
 // Header.tsx
 export interface HeaderProps {
 	email: string | undefined;
@@ -52,6 +57,18 @@ export interface Link {
 	id: number;
 	imageSource: string;
 	title: string;
+	url: string;
+}
+
+// FolderListSection.tsx
+export interface FolderLink {
+	created_at: string;
+	description: string | null;
+	folder_id: string | null;
+	id: number;
+	image_source: string | null;
+	title: string | null;
+	updated_at: string | null;
 	url: string;
 }
 
