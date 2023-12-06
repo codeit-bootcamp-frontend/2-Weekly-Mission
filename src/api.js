@@ -1,13 +1,7 @@
-
 const BASIC_URL = "https://bootcamp-api.codeit.kr";
 export async function getUserInfo() {
   const response = await fetch(`${BASIC_URL}/api/sample/user`);
 
-export async function getUserInfo() {
-  const response = await fetch(
-    "https://bootcamp-api.codeit.kr/api/sample/user"
-  );
-
   if (!response.ok) {
     const result = null;
     return result;
@@ -15,16 +9,10 @@ export async function getUserInfo() {
   const body = await response.json();
   return body;
 }
-
 
 export async function getSharedFolder() {
   const response = await fetch(`${BASIC_URL}/api/sample/folder`);
 
-export async function getFolder() {
-  const response = await fetch(
-    "https://bootcamp-api.codeit.kr/api/sample/folder"
-  );
-
   if (!response.ok) {
     const result = null;
     return result;
@@ -32,7 +20,6 @@ export async function getFolder() {
   const body = await response.json();
   return body;
 }
-
 
 export async function getUserFolderList() {
   const response = await fetch(`${BASIC_URL}/api/users/1/folders`);
@@ -62,4 +49,3 @@ export async function getFolder(folderId = "") {
     throw error;
   }
 }
-
