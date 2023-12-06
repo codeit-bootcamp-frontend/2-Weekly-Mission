@@ -29,7 +29,6 @@ export async function getUserFolderList() {
   return body;
 }
 
-// 예시: getFolder 함수
 export async function getFolder(folderId = "") {
   const query = folderId !== "" ? `?folderId=${folderId}` : "";
 
