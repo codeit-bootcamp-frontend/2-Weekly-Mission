@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SearchBar from '../../molecules/SearchBar';
 import Card from '../../molecules/Card';
-import { Folder } from '../../../utils/interfaces';
+import { MyFolder } from '../../../utils/interfaces';
 
 const Container = styled.div`
 	width: 80%;
@@ -29,9 +29,9 @@ const NoLinksMessage = styled.div`
 `;
 
 function SharedListSection() {
-	const [folder, setFolder] = useState<Folder | null>(null);
+	const [myFolder, setMyFolder] = useState<MyFolder | null>(null);
 
-	const getFolderData = async () => {
+	const getMyFolderData = async () => {
 		try {
 			const res = await fetch('https://bootcamp-api.codeit.kr/api/sample/folder');
 			const data = await res.json();
@@ -42,13 +42,13 @@ function SharedListSection() {
 	};
 
 	useEffect(() => {
-		getFolderData().then((data) => {
-			setFolder(data.folder);
+		getMyFolderData().then((data) => {
+			setMyFolder(data.folder);
 		});
 	}, []);
 	// console.log(folder);
 
-	const links = folder?.links;
+	const links = myFolder?.links;
 	// console.log(links);
 
 	return (

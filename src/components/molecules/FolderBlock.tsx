@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TagBlockProps } from '../../utils/interfaces';
+import { FolderBlockProps } from '../../utils/interfaces';
 
 const Container = styled.div`
 	display: inline-block;
@@ -9,8 +9,8 @@ const Container = styled.div`
 	border-radius: 5px;
 `;
 
-function TagBlock({ children }: TagBlockProps) {
+function FolderBlock({ children }: FolderBlockProps) {
 	return <Container>{children}</Container>;
 }
 
-export default TagBlock;
+export default FolderBlock;

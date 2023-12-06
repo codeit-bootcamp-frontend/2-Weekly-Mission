@@ -1,5 +1,5 @@
-// TagBlock.tsx
-export interface TagBlockProps {
+// FolderBlock.tsx
+export interface FolderBlockProps {
 	children: string;
 }
 
@@ -78,7 +78,7 @@ export interface Owner {
 	profileImageSource: string;
 }
 
-export interface Folder {
+export interface MyFolder {
 	count: number;
 	id: number;
 	links: Link[];
