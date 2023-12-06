@@ -1,11 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./components/App";
-import Folder from "./components/Folder";
-
+import SharedPage from "./pages/SharedPage";
+import FolderPage from "./pages/FolderPage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function Main() {
   return (
-      <App />
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/shared" element={<SharedPage />}/>
+        <Route path="/folder" element={<FolderPage />}/>
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 

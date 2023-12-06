@@ -7,8 +7,9 @@ function Title() {
   const [folderData, setFolderData] = useState();
   const fetchUserProfile = async () => {
     try {
-      const response = await fetchLinks();
-      setFolderData(response.data);
+      const response = fetch("https://bootcamp-api.codeit.kr/api/sample/folder");
+      const data = await (await response).json();
+      setFolderData(data);
     } catch (error) {
       console.error('프로필 데이터를 불러오는 중 에러 발생:', error);
     }

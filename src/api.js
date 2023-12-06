@@ -13,3 +13,4 @@ export async function fetchLinks() {
   const result = await response.json();
   return result;
 }
+
