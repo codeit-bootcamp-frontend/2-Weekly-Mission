@@ -1,9 +1,12 @@
 import AddLink from "../components/AddLink";
 import Search from "../components/Search";
-import Title from "../components/Title";
+import Header from "../components/Header-folder";
+
+
 function FolderPage() {
   return (
     <>
+      <Header />
       <AddLink />
       <Search />
     </>
