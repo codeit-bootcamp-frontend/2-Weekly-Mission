@@ -1,7 +1,7 @@
-import AddLink from "../components/AddLink";
-import Search from "../components/Search";
 import Header from "../components/Header-folder";
-
+import AddLink from "../components/AddLink";
+import CardInput from "../components/CardInput";
+import Search from "../components/Search";
 
 function FolderPage() {
   return (
@@ -9,6 +9,7 @@ function FolderPage() {
       <Header />
       <AddLink />
       <Search />
+      <CardInput />
     </>
   );
 }
