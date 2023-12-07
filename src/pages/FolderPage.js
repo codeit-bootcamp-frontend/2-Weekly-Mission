@@ -3,11 +3,13 @@ import AddLink from "../components/AddLink";
 import CardInput from "../components/CardInput-folder";
 import Search from "../components/Search";
 import { useEffect, useState } from "react";
-import { getUser, getUserLink } from "../api";
+import { getUser, getUserLink, getUserFolder } from "../api";
+import FolderList from "../components/FolderList";
 
 function FolderPage() {
   const [userData, setUserData] = useState();
   const [cardData, setCardData] = useState();
+  const [folderList, setFolderList] = useState();
 
   const getProfile = async () => {
     const { data } = await getUser();
@@ -26,9 +28,16 @@ function FolderPage() {
     setCardData(data);
   }
 
+  const getFolderList = async () => {
+    const { data } = await getUserFolder();
+
+    setFolderList(data);
+  }
+
   useEffect(() => {
     getProfile();
     getCardData();
+    getFolderList();
   }, []);
 
   return (
@@ -36,6 +45,7 @@ function FolderPage() {
       <Header profile={userData} />
       <AddLink />
       <Search />
+      <FolderList lists={folderList}/>
       <CardInput linksData={cardData}/>
     </>
   );

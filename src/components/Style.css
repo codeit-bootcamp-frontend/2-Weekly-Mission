@@ -147,6 +147,37 @@ nav {
   transform: translate(0, -50%);
 }
 
+.FolderListContainer {
+  max-width: 1140px;
+  margin: 40px auto;
+}
+
+
+.ListButtonContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.ListButtonContainer li {
+  display: flex;
+}
+
+.ListButton {
+  width: fit-content;
+  padding: 10px 12px;
+  border-radius: 5px;
+  border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
+  background: #FFF;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.ListButton:hover {
+  background: #6D6AFE;
+  color: #FFF;
+}
+
 .Link {
   width: 100%;
   padding: 15px 16px 15px 30px;
@@ -168,14 +199,39 @@ nav {
 .CardContainer {
   height: 65%;
   overflow: hidden;
+  position: relative;
+}
+
+.StarImg {
+  background: url("../assets/star.svg") no-repeat;
+  border: none;
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .CardInfoContainer {
+  position: relative;
   height: 35%;
   padding: 15px 20px;
   display: flex;
   gap: 10px;
   flex-direction: column;
+}
+
+.KebabImg {
+  background: url("../assets/kebab.svg") no-repeat;
+  border: none;
+  width: 25px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  cursor: pointer;
 }
 
 .Card {
