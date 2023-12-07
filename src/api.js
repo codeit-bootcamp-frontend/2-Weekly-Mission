@@ -19,3 +19,9 @@ export async function getFolderList() {
   const folderList = await response.json();
   return folderList;
 }
+
+export async function getFolderPageUsers() {
+  const response = await fetch(`${BASE_URL}api/users/1`);
+  const FolderPageUsers = await response.json();
+  return FolderPageUsers;
+}

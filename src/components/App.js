@@ -11,7 +11,7 @@ import Header from "./Header";
 function App() {
   const [userType, setUserType] = useState(null);
   const [userFolderType, setUserFolderType] = useState(null);
-  const [useFolderList, setUseFolderList] = useState([]);
+
   const [links, setLinks] = useState([]);
 
   const fetchData = async () => {
@@ -37,19 +37,11 @@ function App() {
   //  여기 부분이 좀 많이 어려운것 같습니다. 데이터를 받아오는것, 받은 데이터를 시각화하는것.
   // 잘 이해가 되지 않으니 처음부터 막혀버리네요... 거의 못했습니다.
   // 이런 경우에 뭐가 어떻게 잘못되었는지 확인 해볼수  있는 방법이 뭐가 있을까요??
-  const fetchFolderList = async () => {
-    try {
-      const { data } = await getFolderList();
-      setUseFolderList(data);
-    } catch (error) {
-      console.error("Error fetching data3:", error);
-    }
-  };
 
   useEffect(() => {
     fetchFolder();
     fetchData();
-    fetchFolderList();
+    // fetchFolderList();
   }, []);
 
   if (!userType) {
@@ -74,7 +66,6 @@ function App() {
     <>
       <Nav userType={userType} />
       <Header userFolderType={userFolderType} />
-
       <div className="Main">
         <SearchBar />
         {/* <div>{user_id}</div> */}
