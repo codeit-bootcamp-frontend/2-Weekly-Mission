@@ -12,13 +12,17 @@ export const FolderPage = () => {
 
   return (
     <Layout>
-      <Link to="/shared">sharedPage 가는 링크</Link>
-      <SearchBar />
-      <CardList>
-        {links?.map((link) => (
-          <ReadOnlyCard key={link?.id} {...link} />
-        ))}
-      </CardList>
+      <div className="FolderPage">
+        <div className="FolderPage-items">
+          <Link to="/shared">sharedPage 가는 링크</Link>
+          <SearchBar />
+          <CardList>
+            {links?.map((link) => (
+              <ReadOnlyCard key={link?.id} {...link} />
+            ))}
+          </CardList>
+        </div>
+      </div>
     </Layout>
   );
 };
