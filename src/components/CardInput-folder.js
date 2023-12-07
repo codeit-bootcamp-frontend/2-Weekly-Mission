@@ -1,6 +1,5 @@
 import "./Style.css";
-import Card from "./Card";
-import search from "../assets/search.svg";
+import Card from "./Card-folder";
 
 function CardInput({ linksData }) {
   return (

@@ -1,6 +1,6 @@
 import Header from "../components/Header-shared";
 import Title from "../components/Title";
-import CardInput from "../components/CardInput";
+import CardInput from "../components/CardInput-shared";
 import Search from "../components/Search";
 import { useEffect, useState } from "react";
 import { fetchProfile, fetchLinks } from "../api";
