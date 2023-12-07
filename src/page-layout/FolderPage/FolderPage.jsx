@@ -12,8 +12,7 @@ export const FolderPage = () => {
 
   return (
     <Layout>
-      <h1>폴더 페이지</h1>
-      <Link to="/">sharedPage 가는 링크</Link>
+      <Link to="/shared">sharedPage 가는 링크</Link>
       <SearchBar />
       <CardList>
         {links?.map((link) => (

@@ -21,7 +21,7 @@ export const SharedPage = ({ folderInfo, searchBar, cardList }) => {
           folderName={folderName}
         />
         <div className="SharedPage-items">
-          <Link to="folder">folder가는 링크</Link>
+          <Link to="/folder">folder가는 링크</Link>
           <SearchBar />
           <CardList>
             {links?.map((link) => (

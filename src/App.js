@@ -1,10 +1,10 @@
-import { SharedPage } from "./page-layout/SharedPage";
+import { Outlet } from "react-router-dom";
 import "./global.css";
 
 function App() {
   return (
     <>
-      <SharedPage />
+      <Outlet />
     </>
   );
 }
