@@ -1,6 +1,9 @@
 // FolderBlock.tsx
 export interface FolderBlockProps {
 	children: string;
+	id?: number;
+	$isActive: boolean;
+	onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 // GradationButton.tsx

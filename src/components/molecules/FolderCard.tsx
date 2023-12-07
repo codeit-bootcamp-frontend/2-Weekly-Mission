@@ -61,7 +61,7 @@ const KebabButton = styled.div`
 `;
 
 function FolderCard({ link }: FolderCardProps) {
-	console.log(link);
+	// console.log(link);
 	const getCreatedTime = () => {
 		const splitedCreatedAt = link.created_at.split('-');
 
