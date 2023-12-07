@@ -12,7 +12,7 @@ function Header({profile}) {
         <div>
       {profile ? (
         <div>
-          <p className="Profile"><img className="ProfileImg" src={profile.profileImageSource} alt="프로필 이미지" />{profile.email}</p>
+          <p className="Profile"><img className="ProfileImg" src={profile.image_source} alt="프로필 이미지" />{profile.email}</p>
         </div>
       ) : (
         <a href="/">
