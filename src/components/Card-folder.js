@@ -9,8 +9,7 @@ function formatDate(value) {
 function Card({ data }) {
   return (
     <div className="CardGrid">
-      {data &&
-        data.map((data) => (
+      {data ? (data.map((data) => (
           <div className="Contents">
             <div className="CardContainer">
               <button className="StarImg"></button>
@@ -30,7 +29,10 @@ function Card({ data }) {
               <p className="makeDate">{formatDate(data.created_at)}</p>
             </div>
           </div>
-        ))}
+        ))) : (
+          <p>"저장된 링크가 없습니다"</p>
+        )}
+        
     </div>
   );
 }
