@@ -3,7 +3,17 @@ import trash from "../assets/trash.png"
 import pen from "../assets/pen.png"
 import share from "../assets/share.png"
 import styled from "styled-components"
+import { useEffect, useState } from "react"
 
+
+async function getFetchFolders() {
+  const response = await fetch(
+    "https://bootcamp-api.codeit.kr/api/users/1/folders",
+  );
+  const body = await response.json();
+
+  return body;
+}
 
 const Button = styled.button`
 border-radius: 5px;
@@ -11,21 +21,32 @@ border-radius: 5px;
   background: #FFF;
   padding: 8px 12px`;
 
-function Sort(){
+function Sort({handleClickAll, handleClickButton}){
 
-  const handleClickAll = () =>{
-      console.log('clicked')
-    }
+  const [folders, setFolders] = useState([]);
+
+  const getFolders = async () => {
+    const {data} = await getFetchFolders();
+
+    setFolders(data)
+  }
+
+    useEffect(() => {
+      getFolders();
+    }, []);
 
   return(
     <section>
        <div className="sort-bar">
         <Button onClick={handleClickAll}>전체</Button>
-        <button>⭐️즐겨찾기</button>
-        <button>코딩 팁</button>
-        <button>채용 사이트</button>
-        <button>유용한 글</button>
-        <button>나만의 장소</button>
+        {
+          folders?.map((it) => (
+            <button key={it.id} onClick={
+              () =>handleClickButton(it.id)
+            }>{it.name}</button>
+          ))
+        }
+        
       </div>
       <div className="sort-edit-bar">
       <h1>유용한 글</h1>
