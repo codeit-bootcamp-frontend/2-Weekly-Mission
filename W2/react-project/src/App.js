@@ -1,35 +1,57 @@
-// import logo from "./logo.svg";
-import { useState } from "react";
-import "./styles/App.css";
-import "./styles/Global.css";
+import CardList from "./components/CardList";
 import Search from "./components/Search";
 import Header from "./components/Header";
-import Main from "./components/Main";
 import Footer from "./components/Footer";
-import Bookmark from "./components/Bookmark";
+import "./styles/App.css";
+import "./styles/Global.css";
+import Sort from "./components/Sort"
+import { useEffect, useState } from "react";
+
+
+async function getFetchCards() {
+  const response = await fetch(
+    "https://bootcamp-api.codeit.kr/api/users/1/links",
+  );
+  const body = await response.json();
+
+  return body;
+}
 
 
 function App() {
-  // const [profile, setProfile] = useState(null);
+  const [links, setLinks] = useState([]);
+  
+  const getCards = async () => {
+    const {data} = await getFetchCards();
+    
+    setLinks(data);
+  };
 
-  // async function sendHeader() {
-  //   const { email, profileImageSource } = await GetUser();
+  const handleClickAll = async () => {
+    const {data: links} = await getFetchCards();
 
-  //   setProfile((prevValue) => ({
-  //     ...prevValue,
-  //     email,
-  //     profileImageSource,
-  //   }));
+    setLinks(links)
+  }
 
-  //   return profile
-  // }
+  const handleClickButton = async (id) => {
+    const {data: links} = await getFetchCards();
 
+    const filteredLinks = 
+      links.filter((({folder_id}) => folder_id === id));
+
+    setLinks(filteredLinks)
+  }
+
+  useEffect(() => {
+    getCards();
+  }, []);
+  
   return (
     <div>
       <Header />
-      <Bookmark />
       <Search />
-      <Main />
+      <Sort handleClickButton={handleClickButton} handleClickAll={handleClickAll}/>
+      <CardList links={links}/>
       <Footer />
     </div>
   );
