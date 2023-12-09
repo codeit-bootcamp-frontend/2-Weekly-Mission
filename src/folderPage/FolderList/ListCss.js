@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-//flex-direction: column;
+
 export const ListUl = styled.ul`
   padding: 0;
   display: flex;
@@ -7,16 +7,6 @@ export const ListUl = styled.ul`
   align-items: flex-start;
   gap: 12px;
 `;
-
-// display: flex;
-// flex-direction: column;
-// justify-content: center;
-// align-items: flex-start;
-// gap: 12px;
-
-// display: flex;
-// align-items: flex-start;
-// gap: 8px;
 
 export const List = styled.li`
   list-style: none;
@@ -33,7 +23,7 @@ export const List = styled.li`
     background: var(--linkbrary-primary-color, #6d6afe);
   }
 `;
-// width: 1060px;
+
 export const ListContainer = styled.div`
   display: flex;
 
@@ -42,4 +32,3 @@ export const ListContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-//   flex-direction: column;

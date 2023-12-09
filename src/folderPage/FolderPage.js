@@ -11,16 +11,6 @@ import FolderList from "./FolderList/FolderListMenu";
 import { Footer } from "../footer/footer";
 import FolderAll from "./FolderList/FolderListChange/FolderAll";
 import { Ul } from "./FolderList/FolderListChange/FolderAllCss";
-// import { styled } from "styled-components";
-
-//getFolderList, 쓸일 있으면 위로 올리기.
-
-// const Main = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   gap: 40px;
-// `;
 
 function FolderPage() {
   const [folderPageUsers, setFolderPageUsers] = useState(null);
@@ -87,15 +77,3 @@ function FolderPage() {
 }
 
 export default FolderPage;
-
-//얘네는 확인해보고 컴포넌트 하나 더 만들고 넣기.
-// const [useFolderList, setUseFolderList] = useState([]);
-
-// const fetchFolderList = async () => {
-//   try {
-//     const { data } = await getFolderList();
-//     setUseFolderList(data);
-//   } catch (error) {
-//     console.error("Error fetching data3:", error);
-//   }
-// };

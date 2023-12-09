@@ -74,12 +74,6 @@ export const ButtonImg = styled.button`
   cursor: pointer;
 `;
 
-// .image-button img {
-//   width: 100%;
-//   height: auto;
-//   /* 이미지 크기를 버튼에 맞게 조절 */
-// }
-
 export const Flex = styled.div`
   width: 100%;
   display: flex;
@@ -129,69 +123,3 @@ export const ToggleOption = styled.p`
   gap: 10px;
   align-self: stretch;
 `;
-
-// .card {
-//   border-radius: 0 0 15px 15px;
-//   list-style-type: none;
-//   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
-//   width: 340px;
-// }
-
-// .cardATag {
-//   text-decoration: none;
-//   overflow: hidden;
-// }
-
-// .cardImgtag {
-//   width: 100%;
-//   height: 253.746px;
-//   flex-shrink: 0;
-//   transition: all 0.2s linear;
-// }
-
-// .imgHover {
-//   border-radius: 15px 15px 0 0;
-//   overflow: hidden;
-// }
-
-// .cardImgtag:hover {
-//   transform: scale(1.3);
-// }
-
-// .textLine {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   gap: 10px;
-//   padding: 15px 20px;
-// }
-
-// .cardDescripTag {
-//   height: 49px;
-//   align-self: stretch;
-//   overflow: hidden;
-//   color: #000;
-//   text-overflow: ellipsis;
-//   font-size: 16px;
-//   font-style: normal;
-//   font-weight: 400;
-//   line-height: 24px; /* 150% */
-//   word-wrap: break-word;
-// }
-
-// .cardDateTag {
-//   overflow: hidden;
-//   color: #333;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-//   font-size: 14px;
-//   font-style: normal;
-//   font-weight: 400;
-//   line-height: normal;
-// }
-
-// .cardList {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr;
-//   gap: 20px;
-// }
