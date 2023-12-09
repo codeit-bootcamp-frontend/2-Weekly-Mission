@@ -35,8 +35,6 @@ function productionDate(value) {
 function MainLink({ createdAt, url, imageSource, description, id }) {
   // title 파일도 디스크럭션 가능 에러 자꾸 떠서 일단 삭제.
 
-  // 이렇게 하는게 효율적인가 아니면 함수를 벗기는게 효율적인가 뭔가 밑의 return에는 함수를부르는게 영 어색하고 이상한데
-
   return (
     <li className="card" key={id}>
       <a href={url} target="_blank" className="cardATag" rel="noreferrer">
