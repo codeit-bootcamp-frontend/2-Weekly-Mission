@@ -1,4 +1,4 @@
-import { getFolder, getFolderList } from "../Api";
+import { getFolder } from "../Api";
 import { getProfile } from "../Api";
 import React, { useState, useEffect } from "react";
 import Main from "./Main";
@@ -68,10 +68,6 @@ function App() {
       <Header userFolderType={userFolderType} />
       <div className="Main">
         <SearchBar />
-        {/* <div>{user_id}</div> */}
-        {/* <div>{useFolderList[0].name}</div> */}
-        {/* <FolderList data={useFolderList} /> */}
-        {/* <div>{useFolderList[0].name}</div> */}
         <ul className="cardList">
           <Main links={links} />
         </ul>
