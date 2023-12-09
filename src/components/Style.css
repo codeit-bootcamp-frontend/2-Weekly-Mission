@@ -148,24 +148,22 @@ nav {
 }
 
 .FolderListContainer {
-  max-width: 1140px;
+  max-width: 1070px;
   margin: 40px auto;
+  display: flex;
+  flex-direction: column;
 }
-
 
 .ListButtonContainer {
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
-}
-
-.ListButtonContainer li {
-  display: flex;
 }
 
 .ListButton {
   width: fit-content;
   padding: 10px 12px;
+  margin-left: 10px;
+  margin-bottom: 3px;
   border-radius: 5px;
   border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
   background: #FFF;
@@ -177,6 +175,58 @@ nav {
 .ListButton:hover {
   background: #6D6AFE;
   color: #FFF;
+}
+
+.ToggleListNameContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 0 10px;
+}
+
+.ToggleListName {
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.2px;
+}
+
+.EditButton button {
+  border: none;
+  cursor: pointer;
+  color: var(--linkbrary-gray-60, #9FA6B2);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.EditButton .Share {
+  background: url(../assets/shareimg.svg) no-repeat left;
+  width: 70px;
+}
+
+.EditButton .Edit {
+  background: url(../assets/editimg.svg) no-repeat left;
+  width: 100px;
+}
+
+.EditButton .Delete {
+  background: url(../assets/delete.svg) no-repeat left;
+  width: 70px;
+}
+
+.SelectList {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  padding: 45px 40px 0;
 }
 
 .Link {

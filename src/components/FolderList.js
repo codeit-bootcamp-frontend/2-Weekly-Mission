@@ -1,22 +1,41 @@
+import ListButton from "./ListButton";
 import "./Style.css";
+import { useState } from "react";
 
 function FolderList({ lists }) {
-  console.log(lists);
+  const [toggleList, setToggleList] = useState(0);
+
   return (
     <>
       <div className="FolderListContainer">
-        <ul className="ListButtonContainer">
-          <li>
-            <button className="ListButton">전체</button>
-          </li>
+        <div className="ListButtonContainer">
+          <button className="ListButton" onClick={() => setToggleList(0)}>
+            전체
+          </button>
           {lists?.map((list) => {
             return (
-              <li>
-                <button className="ListButton">{list.name}</button>
-              </li>
+              <ListButton
+                key={list.id}
+                list={list}
+                setToggleList={() => setToggleList(list.name)}
+              />
             );
           })}
-        </ul>
+        </div>
+        <div className="ToggleListNameContainer">
+          {toggleList === 0 ? (
+            ""
+          ) : (
+            <div className="ToggleListName">{toggleList}</div>
+          )}
+          {toggleList !== 0 && (
+            <div className="EditButton">
+              <button className="Share">공유</button>
+              <button className="Edit">이름 변경</button>
+              <button className="Delete">삭제</button>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
