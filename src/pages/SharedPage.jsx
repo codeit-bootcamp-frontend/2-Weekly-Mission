@@ -1,32 +1,32 @@
-import Header from './Header'
-import Nav from './Nav'
-import Search from './Search'
-import Cards from './Cards'
-import Footer from './Footer'
-import '../styles/reset.css'
-import '../styles/global.css'
-import '../styles/App.css'
+import Header from '../components/Header';
+import Nav from '../components/Nav';
+import Search from '../components/Search';
+import Cards from '../components/Cards';
+import Footer from '../components/Footer';
+import '../styles/reset.css';
+import '../styles/global.css';
+import '../styles/App.css';
 import { useEffect, useState } from 'react';
-import { getUserProfile, getFolderProfile} from '../api/api.js'
+import { getUserProfile, getFolderProfile } from '../api/api.js';
 
-function App() {
-  const [profile, setProfile] = useState(null)
-  const isSiginin = profile !== null
+function SharedPage() {
+  const [profile, setProfile] = useState(null);
+  const isSiginin = profile !== null;
 
   const [userProfile, setUserProfile] = useState({
     id: 0,
-    name: "",
-    email: "",
-    profileImageSource: ""
+    name: '',
+    email: '',
+    profileImageSource: '',
   });
 
   const [folderProfile, setFolderProfile] = useState({
     id: 0,
-    name: "",
+    name: '',
     owner: {
       id: 0,
-      name: "",
-      profileImageSource: ""
+      name: '',
+      profileImageSource: '',
     },
     links: [],
     count: 0,
@@ -35,14 +35,14 @@ function App() {
   const handleLoad = async () => {
     const user = await getUserProfile();
     setUserProfile(user);
-    setProfile(user)
+    setProfile(user);
 
     const { folder } = await getFolderProfile();
     setFolderProfile(folder);
   };
 
   useEffect(() => {
-    handleLoad()
+    handleLoad();
   }, []);
 
   return (
@@ -55,7 +55,7 @@ function App() {
       </main>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App;
+export default SharedPage;
