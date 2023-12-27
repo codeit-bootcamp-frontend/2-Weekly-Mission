@@ -1,14 +1,14 @@
 import '../styles/Nav.css'
-import Avatar from './Avatar.js'
-import SigninButton from './SigninButton.js'
-import logoImg from '../images/logo.svg'
+import Avatar from './Avatar'
+import SigninButton from './SigninButton'
+import logoImg from '../assets/logo.svg'
 
 function Nav({ userProfile, isSignin }) {
 
   return (
     <nav className="nav">
       <h1 className="logo">
-        <a className="link-home" href="/">
+        <a className="link-home" href="/" target="_blank" rel="noreferrer">
           <img className="image-logo" src={logoImg} alt="홈으로 연결된 Linkbrary 로고" />
         </a>
       </h1>

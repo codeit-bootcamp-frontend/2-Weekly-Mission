@@ -11,7 +11,7 @@
   left: 1.6rem;
   width: 1.6rem;
   height: 1.6rem;
-  background: url('../images/icon_search.png') no-repeat center/ 1.6rem 1.6rem;
+  background: url('../assets/icon_search.png') no-repeat center/ 1.6rem 1.6rem;
   content: '';
   transform: translateY(-50%);
 }

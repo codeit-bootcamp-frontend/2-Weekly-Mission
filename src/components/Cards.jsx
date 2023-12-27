@@ -1,4 +1,4 @@
-import cardDefualtImg from '../images/card_default.png';
+import cardDefualtImg from '../assets/card_default.png';
 import '../styles/Cards.css'
 
 const MINUTE = 60;
@@ -42,7 +42,7 @@ function Cards({ folderProfile }) {
       {links.map((item) => { 
         return (
           <li className="card-item" key={item.id}>
-            <a className="card-link" href={item.url} target="_blank">
+            <a className="card-link" href={item.url} target="_blank" rel="noreferrer">
               <div className="card-image">
                 {<img src={item.imageSource || cardDefualtImg} alt="썸네일 이미지" />}
               </div>

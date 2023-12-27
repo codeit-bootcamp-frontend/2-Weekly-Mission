@@ -1,13 +1,13 @@
-import Header from './Header.js'
-import Nav from './Nav.js'
-import Search from './Search.js'
-import Cards from './Cards.js'
-import Footer from './Footer.js'
+import Header from './Header'
+import Nav from './Nav'
+import Search from './Search'
+import Cards from './Cards'
+import Footer from './Footer'
 import '../styles/reset.css'
 import '../styles/global.css'
 import '../styles/App.css'
 import { useEffect, useState } from 'react';
-import { getUserProfile, getFolderProfile} from '../api.js'
+import { getUserProfile, getFolderProfile} from '../api/api.js'
 
 function App() {
   const [profile, setProfile] = useState(null)
