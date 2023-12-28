@@ -1,0 +1,17 @@
+.empty-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+}
+
+.empty-view p {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+@media screen and (max-width: 768px) {
+  .empty-view p {
+    font-size: 1.4rem;
+  }
+}
