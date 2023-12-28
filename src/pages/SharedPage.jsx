@@ -1,7 +1,7 @@
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Search from '../components/Search';
-import Cards from '../components/Cards';
+import CardList from '../components/CardList';
 import Footer from '../components/Footer';
 import '../styles/reset.css';
 import '../styles/global.css';
@@ -51,7 +51,7 @@ function SharedPage() {
       <Header folderProfile={folderProfile} />
       <main className="main">
         <Search />
-        <Cards folderProfile={folderProfile} />
+        <CardList folderProfile={folderProfile} />
       </main>
       <Footer />
     </>

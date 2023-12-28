@@ -2,7 +2,7 @@ import cardDefualtImg from '../assets/images/card_default.png';
 import '../styles/Cards.css';
 import { formateDate, sinceCreatedDate } from '../utils/formateDate';
 
-function Cards({ folderProfile }) {
+function CardList({ folderProfile }) {
   const { links } = folderProfile;
 
   return (
@@ -41,4 +41,4 @@ function Cards({ folderProfile }) {
   );
 }
 
-export default Cards;
+export default CardList;
