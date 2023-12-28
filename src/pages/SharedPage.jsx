@@ -5,7 +5,7 @@ import Cards from '../components/Cards';
 import Footer from '../components/Footer';
 import '../styles/reset.css';
 import '../styles/global.css';
-import '../styles/App.css';
+import '../styles/Main.css';
 import { useEffect, useState } from 'react';
 import { getUserProfile, getFolderProfile } from '../api/api.js';
 
