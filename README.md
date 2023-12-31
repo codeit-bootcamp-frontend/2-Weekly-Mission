@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+## 요구사항
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 기본
 
-## Available Scripts
+- [o] 2주차 부터는 Github에 Pull Request를 만들어 주세요.
+- [o] Netlify에 파일 배포가 아닌 포크한 Github 레포지토리와 연결해 주세요.
+- [o] 아래로 스크롤 해도 "Linkbrary"로고와 "로그인" 버튼이 있는 상단 네비게이션 바(Global Navigation Bar)가 최상단에 고정되게 해주세요.
+- (로그인, 회원 가입 페이지 공통)
+- [o] Linkbrary 로고 클릭시 루트 페이지("/")로 이동해야 합니다.
+- [o] 로그인 페이지, 회원가입 페이지 모두 로고 위 상단 여백이 동일해야 합니다.
+- [o] input 요소에 focus in 일 때, 테두리 색상은 파랑색입니다. (pseudo class를 활용해 보세요)
+- [o] input 요소에 focus out 일 때, 테두리 색상은 회색입니다.
+- [o] input 요소에 빨강색 테두리와 아래 빨강색 문구는 무시해 주세요.(추후 만들어갈 예정이에요.)
+- [o] SNS 아이콘들은 클릭시 각각 “https://www.google.com/”, “https://www.kakaocorp.com/page/” 으로 이동합니다.
+- [o] “로그인 하기”는 클릭시 “/signin” 페이지로 이동합니다.
+성
+### 심화
 
-In the project directory, you can run:
+- [] 비밀번호 input 요소 위에 눈모양 아이콘을 추가해 주세요.(추후 클릭으로 비밀번호를 보거나 가릴 수 있도록 기능을 만들어 갈 예정이에요.)
+- [x] palette에 있는 color값들을 css 변수로 등록하고 사용해 주세요.
 
-### `npm start`
+## 주요 변경사항
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Landing Page, SignIn Page, SignUp Page 완성
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 스크린샷
 
-### `npm test`
+![image](/screenshots/스크린샷%202023-11-08%20200037.png)
+![image](/screenshots/스크린샷%202023-11-08%20200259.png)
+![image](/screenshots/스크린샷%202023-11-08%20200322.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 멘토에게
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 늦게 올려드려서 죄송합니다.
+- 3주차 진행사항이 조금 섞여 있습니다. (nav바 고정 등)
+- 셀프 코드 리뷰를 통해 질문 이어가겠습니다.
