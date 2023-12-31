@@ -1,5 +1,5 @@
 import "./SearchBar.css";
-import { SEARCH_IMAGE } from "./constant";
+import { SEARCH_IMAGE, DELETE_IMAGE } from "./constant";
 
 export const SearchBar = ({ value, onChange, onEnterPressed }) => {
   const handleInputChange = (e) => {
@@ -25,7 +25,13 @@ export const SearchBar = ({ value, onChange, onEnterPressed }) => {
       <img
         src={SEARCH_IMAGE}
         alt="검색창인 것을 알려주는 돋보기 아이콘"
-        className="SearchBar-icon"
+        className="SearchBar-SearchIcon"
+      />
+      <img
+        src={DELETE_IMAGE}
+        alt="검색창에 입력된 값을 삭제하는 가위표 아이콘"
+        className="SearchBar-DeleteIcon"
+        style={{ fill: "#666666" }}
       />
     </div>
   );
