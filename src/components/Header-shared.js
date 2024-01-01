@@ -1,26 +1,9 @@
 import logoImg from "../assets/logo.svg";
 import "./Style.css";
-import { useEffect, useState } from "react";
-// import { getProfile } from "../api";
 
-function Header() {
-  const [profile, setProfile] = useState(null);
-  const fetchProfile = async () => {
-    try {
-      const response = await fetch('https://bootcamp-api.codeit.kr/api/sample/user');
-      const data = await response.json();
-      setProfile(data);
-    } catch (error) {
-      console.error('프로필 데이터를 불러오는 중 에러 발생:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchProfile();
-  },[]);
-
+function Header({profile}) {
   return (
-  
+
     <header>
       <nav className="NavBar">
         <a href="/">
