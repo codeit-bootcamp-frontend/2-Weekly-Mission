@@ -1,6 +1,6 @@
 import { useModal } from '../hooks/modalHooks';
 import style from '../styles/SelectMenu.module.css';
-import AddFolderModal from './Modal/AddFolderModal';
+import AddModal from './Modal/AddModal';
 import DeleteLinkModal from './Modal/DeleteLinkModal';
 
 const SelectMenu = () => {
@@ -15,9 +15,14 @@ const SelectMenu = () => {
           deleteToggleModal()}}>
         삭제하기
       </button>
-      <button className={`${style['menu']} ${style['add-menu']}`} onClick={AddToggleModal}>폴더에 추가</button>
+      <button className={`${style['menu']} ${style['add-menu']}`} 
+        onClick={(e) => {
+          e.preventDefault();
+          AddToggleModal()}}>
+        폴더에 추가
+      </button>
       <DeleteLinkModal isOpen={deleteModalOpen} onClick={deleteToggleModal}/>
-      <AddFolderModal isOpen={AddModalOpen} onClick={AddToggleModal} />
+      <AddModal isOpen={AddModalOpen} onClick={AddToggleModal} />
     </div>
   )
 };
