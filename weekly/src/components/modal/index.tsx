@@ -27,10 +27,6 @@ interface TModal {
 }
 
 function Modal({ setModal, modalValue, modalSub, foldData }: TModal) {
-  console.log(setModal);
-  console.log(modalValue);
-  console.log(modalSub);
-  console.log(foldData);
   const [addBoxToggle, setAddBoxToggle] = useState(0);
   const modalClose = () => {
     setModal(false);

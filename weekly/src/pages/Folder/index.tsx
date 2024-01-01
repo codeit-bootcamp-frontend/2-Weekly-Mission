@@ -5,11 +5,13 @@ import renameImg from "../../img/pen.png";
 import deleteImg from "../../img/delete.png";
 import linkImg from "../../img/link.png";
 import Search from "../../components/Search";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { folderData, foldLinks } from "../../api";
 import Choice from "../../components/Choice";
 import Card from "../../components/Card";
 import Modal from "../../components/modal";
+import { useTargetRef } from "../../hooks/useTargetRef";
+import { useFootRef } from "../../hooks/useFootRef";
 
 import { useGetFolderLink, useGetLink, useGetUser } from "../../hooks/useFolder";
 
@@ -22,7 +24,14 @@ function Folder() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [modalValue, setModalValue] = useState<string>("");
   const [modalSub, setModalSub] = useState<string>("");
-  // console.log(foldLink);
+  const [scrollAddUrl, setScrollAddUrl] = useState<boolean>(true);
+  console.log(scrollAddUrl);
+  const targetRef = useRef<HTMLDivElement>(null);
+  const footTargetRef = useRef<HTMLDivElement>(null);
+
+  useTargetRef({ targetRef, setScrollAddUrl });
+  useFootRef({ footTargetRef, setScrollAddUrl });
+
   // 태그 이름 가져오는거
   const folderGetUser = async () => {
     try {
@@ -68,7 +77,7 @@ function Folder() {
   useGetUser(folderGetUser);
 
   return (
-    <>
+    <div>
       <FolderHeaderStyle />
       {modalOpen ? (
         <Modal
@@ -79,13 +88,25 @@ function Folder() {
           // selectList={selectList}
         />
       ) : null}
-      <F.Main>
-        <F.addLink>
-          <img src={linkImg} alt="linkimg" />
-          <F.addInput placeholder="링크를 추가해 보세요" />
-          <F.addButton>추가하기</F.addButton>
-        </F.addLink>
+
+      <F.Main ref={targetRef}>
+        {scrollAddUrl ? (
+          <F.addLink>
+            <img src={linkImg} alt="linkimg" />
+            <F.addInput placeholder="링크를 추가해 보세요" />
+            <F.addButton>추가하기</F.addButton>
+          </F.addLink>
+        ) : null}
       </F.Main>
+      {!scrollAddUrl ? (
+        <F.BotMain>
+          <F.addLink>
+            <img src={linkImg} alt="linkimg" />
+            <F.addInput placeholder="링크를 추가해 보세요" />
+            <F.addButton>추가하기</F.addButton>
+          </F.addLink>
+        </F.BotMain>
+      ) : null}
       <Search />
       <Choice data={foldData} selectList={selectList} clickList={clickList} />
       <F.cardTitle>
@@ -117,7 +138,8 @@ function Folder() {
         <F.noData>저장된 링크가 없습니다.</F.noData>
       )}
       <F.folderFAB>폴더 추가 +</F.folderFAB>
-    </>
+      <div ref={footTargetRef}></div>
+    </div>
   );
 }
 
