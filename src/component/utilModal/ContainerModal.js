@@ -8,7 +8,13 @@ import DeleteFolderModal from "./innerModalFrame.js/DeleteFolderModal";
 import DeleteLinkModal from "./innerModalFrame.js/DeleteLinkModal";
 import AddModal from "./innerModalFrame.js/AddModal";
 
-const ContainerModal = ({ handleModalOpen, selectedModalOption, folderId }) => {
+const ContainerModal = ({
+  handleModalOpen,
+  selectedModalOption,
+  folderId,
+  inputLinkValue,
+  setInputLinkValue,
+}) => {
   const modalBackground = useRef();
 
   const handleCloseModal = () => {
@@ -20,7 +26,12 @@ const ContainerModal = ({ handleModalOpen, selectedModalOption, folderId }) => {
       case "EditModal":
         return <EditModal />;
       case "AddFolderModal":
-        return <AddFolderModal />;
+        return (
+          <AddFolderModal
+            inputLinkValue={inputLinkValue}
+            setInputLinkValue={setInputLinkValue}
+          />
+        );
       case "ShareModal":
         return <ShareModal folderId={folderId} />;
       case "DeleteFolderModal":

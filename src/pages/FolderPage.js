@@ -7,13 +7,18 @@ function FolderPage({ folderInfo, userFolderList }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedModalOption, setSelectedModalOption] = useState("");
   const [folderId, setFolderId] = useState();
-  const handleModalOpen = (boolean, modalOption, folderId) => {
+  const [inputLinkValue, setInputLinkValue] = useState("");
+
+  const handleModalOpen = (boolean, modalOption, inputLinkValue = "") => {
     setModalOpen(boolean);
     setSelectedModalOption(modalOption);
+    setInputLinkValue(inputLinkValue);
   };
   const handleFolderId = (value) => {
     setFolderId(value);
   };
+  console.log(folderInfo, "folderinfo");
+  console.log(userFolderList, "userFolderList");
   return (
     <>
       <FolderHeader handleModalOpen={handleModalOpen} />
@@ -29,6 +34,8 @@ function FolderPage({ folderInfo, userFolderList }) {
             handleModalOpen={handleModalOpen}
             selectedModalOption={selectedModalOption}
             folderId={folderId}
+            inputLinkValue={inputLinkValue}
+            setInputLinkValue={setInputLinkValue}
           />
         </div>
       )}
