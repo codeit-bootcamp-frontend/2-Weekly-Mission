@@ -1,4 +1,3 @@
-// UserInfoLoader.js
 import { useEffect, useState } from "react";
 import {
   getUserInfo,
@@ -12,55 +11,32 @@ const InfoLoader = () => {
   const [folderInfo, setFolderInfo] = useState([]);
   const [userFolderList, setUserFolderList] = useState([]);
   const [sharedFolderInfo, setSharedFolderInfo] = useState({});
-  const infoLoad = async () => {
-    let infoLoadResult;
-    try {
-      infoLoadResult = await getUserInfo();
 
-      setUserInfo(infoLoadResult);
+  const fetchData = async () => {
+    try {
+      const [
+        userInfoResult,
+        sharedFolderResult,
+        folderInfoResult,
+        userFolderListResult,
+      ] = await Promise.all([
+        getUserInfo(),
+        getSharedFolder(),
+        getFolder(),
+        getUserFolderList(),
+      ]);
+
+      setUserInfo(userInfoResult);
+      setSharedFolderInfo(sharedFolderResult.folder);
+      setFolderInfo(folderInfoResult.data);
+      setUserFolderList(userFolderListResult.data);
     } catch (err) {
       console.log(err);
-    } finally {
-    }
-  };
-  const SharedFolder = async () => {
-    let folderInfoResult;
-    try {
-      folderInfoResult = await getSharedFolder();
-      const { folder } = folderInfoResult;
-      setSharedFolderInfo(folder);
-    } catch (err) {
-      console.log(err);
-    } finally {
-    }
-  };
-
-  const FolderInfo = async () => {
-    try {
-      const { data } = await getFolder();
-      setFolderInfo(data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-    }
-  };
-
-  const FolderListLoad = async () => {
-    try {
-      const { data } = await getUserFolderList();
-
-      setUserFolderList(data);
-    } catch (err) {
-      console.log(err);
-    } finally {
     }
   };
 
   useEffect(() => {
-    infoLoad();
-    SharedFolder();
-    FolderInfo();
-    FolderListLoad();
+    fetchData();
   }, []);
 
   return { userInfo, sharedFolderInfo, folderInfo, userFolderList };

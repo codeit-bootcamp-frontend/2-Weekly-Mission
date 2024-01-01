@@ -37,10 +37,12 @@ function LinkListItem({ link }) {
   });
 
   return (
-    <a href={url} target="_blank" rel="noreferrer">
-      <div className="cardImgDiv">
-        <img src={imageSource || defaultImg} alt={title} />
-      </div>
+    <>
+      <a href={url} target="_blank" rel="noreferrer">
+        <div className="cardImgDiv">
+          <img src={imageSource || defaultImg} alt={title} />
+        </div>
+      </a>
       <div className="contentsDiv">
         <p className="timetogo">
           <TimeAgo time={createdDate} />
@@ -48,7 +50,7 @@ function LinkListItem({ link }) {
         <p className="contentsDescriptionDiv">{description}</p>
         <p>{modifyDate}</p>
       </div>
-    </a>
+    </>
   );
 }
 

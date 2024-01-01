@@ -1,4 +1,4 @@
-import "../css/headershared.css";
+import "../../css/headershared.css";
 function SharedHeader({ sharedFolderInfo }) {
   return (
     <header>

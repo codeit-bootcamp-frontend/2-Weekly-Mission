@@ -1,5 +1,5 @@
-import defaultImg from "../asset/defaultImg.jpg";
-import "../css/card.css";
+import defaultImg from "../../asset/defaultImg.jpg";
+import "../../css/card.css";
 function TimeAgo({ time }) {
   const currentDate = new Date();
   const createdDate = new Date(time);

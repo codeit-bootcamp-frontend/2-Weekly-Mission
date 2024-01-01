@@ -1,8 +1,25 @@
-import defaultImg from "../asset/defaultImg.jpg";
-import "../css/card.css";
-import starimg from "../asset/star.svg";
-import kebabImg from "../asset/kebab.svg";
+import defaultImg from "../../asset/defaultImg.jpg";
+import "../../css/card.css";
+import starimg from "../../asset/star.svg";
+import kebabImg from "../../asset/kebab.svg";
 import { useState } from "react";
+
+export function FolderCard({ data, handleModalOpen }) {
+  return (
+    <div className="gridFlexbox">
+      <div className="gridparent">
+        {data.map((datum, index) => (
+          <div className={`card num${index + 1}`} key={datum.id} data={datum}>
+            <div className="starimg">
+              <img src={starimg} alt="starimg" />
+            </div>
+            <LinkListItem datum={datum} handleModalOpen={handleModalOpen} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 function TimeAgo({ time }) {
   const currentDate = new Date();
   const createdDate = new Date(time);
@@ -30,7 +47,7 @@ function TimeAgo({ time }) {
   }
 }
 
-function LinkListItem({ datum }) {
+function LinkListItem({ datum, handleModalOpen }) {
   const { created_at, url, title, description, image_source } = datum;
 
   const createdDate = new Date(created_at);
@@ -46,49 +63,39 @@ function LinkListItem({ datum }) {
     e.preventDefault();
     setMenuOpen(!isMenuOpen);
   };
+  const handleButtonClick = (e) => {
+    const value = e.currentTarget.getAttribute("data-value");
+    handleModalOpen(true, value);
+  };
   return (
     <>
       <a href={url} target="_blank" rel="noreferrer">
         <div className="cardImgDiv">
           <img src={image_source || defaultImg} alt={title} />
         </div>
-
-        <div className="contentsDiv">
-          <div className="kebabTimetogo">
-            <p className="timetogo">
-              <TimeAgo time={createdDate} />
-            </p>
-            <button onClick={handleMenuToggle}>
-              <img src={kebabImg} alt="kebabimg" />
+      </a>
+      <div className="contentsDiv">
+        <div className="kebabTimetogo">
+          <p className="timetogo">
+            <TimeAgo time={createdDate} />
+          </p>
+          <button onClick={handleMenuToggle}>
+            <img src={kebabImg} alt="kebabimg" />
+          </button>
+        </div>
+        <p className="contentsDescriptionDiv">{description}</p>
+        <p>{modifyDate}</p>
+        {isMenuOpen && (
+          <div className="contextMenu">
+            <button data-value="DeleteLinkModal" onClick={handleButtonClick}>
+              삭제하기
+            </button>
+            <button data-value="AddFolederModal" onClick={handleButtonClick}>
+              폴더에 추가
             </button>
           </div>
-          <p className="contentsDescriptionDiv">{description}</p>
-          <p>{modifyDate}</p>
-          {isMenuOpen && (
-            <div className="contextMenu">
-              <button>삭제하기</button>
-              <button>폴더에 추가</button>
-            </div>
-          )}
-        </div>
-      </a>
-    </>
-  );
-}
-
-export function FolderCard({ data }) {
-  return (
-    <div className="gridFlexbox">
-      <div className="gridparent">
-        {data.map((datum, index) => (
-          <div className={`card num${index + 1}`} key={datum.id} data={datum}>
-            <div className="starimg">
-              <img src={starimg} alt="starimg" />
-            </div>
-            <LinkListItem datum={datum} />
-          </div>
-        ))}
+        )}
       </div>
-    </div>
+    </>
   );
 }

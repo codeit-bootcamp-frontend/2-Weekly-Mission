@@ -1,4 +1,5 @@
-import "../css/main.css";
+import "../../css/main.css";
+
 import { SharedCard } from "./SharedCard";
 function SharedMain({ sharedFolderInfo }) {
   return (
