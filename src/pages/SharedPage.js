@@ -4,6 +4,7 @@ import SharedHeader from "../component/shared/SharedHeader";
 import SharedMain from "../component/shared/SharedMain";
 
 function SharedPage({ sharedFolderInfo }) {
+
   // const { links } = sharedFolderInfo;
   return (
     <>

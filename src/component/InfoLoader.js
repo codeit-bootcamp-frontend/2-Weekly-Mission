@@ -11,7 +11,6 @@ const InfoLoader = () => {
   const [folderInfo, setFolderInfo] = useState([]);
   const [userFolderList, setUserFolderList] = useState([]);
   const [sharedFolderInfo, setSharedFolderInfo] = useState({});
-
   const fetchData = async () => {
     try {
       const [
@@ -32,6 +31,7 @@ const InfoLoader = () => {
       setUserFolderList(userFolderListResult.data);
     } catch (err) {
       console.log(err);
+
     }
   };
 
