@@ -20,7 +20,9 @@ header {
 .linkInputDiv {
   display: flex;
   gap: 12px;
+
   width: 80%;
+
 }
 .folderHeaderImg {
   width: 20px;
@@ -29,12 +31,13 @@ header {
 
 .folderInput {
   border: none;
-  width: 100%;
+ width: 100%;
   font-size: 16px;
 }
 .folderInput:focus {
   border: none;
   outline: none;
+
 }
 .folderButton {
   padding: 10px 16px;
@@ -48,4 +51,5 @@ header {
   line-height: normal;
   border: none;
   cursor: pointer;
+
 }
