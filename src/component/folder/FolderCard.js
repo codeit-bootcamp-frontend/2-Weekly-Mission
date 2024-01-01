@@ -90,7 +90,7 @@ function LinkListItem({ datum, handleModalOpen }) {
             <button data-value="DeleteLinkModal" onClick={handleButtonClick}>
               삭제하기
             </button>
-            <button data-value="AddFolederModal" onClick={handleButtonClick}>
+            <button data-value="AddModal" onClick={handleButtonClick}>
               폴더에 추가
             </button>
           </div>

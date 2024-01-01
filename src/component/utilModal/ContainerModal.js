@@ -6,6 +6,7 @@ import AddFolderModal from "./innerModalFrame.js/AddFolderModal";
 import ShareModal from "./innerModalFrame.js/ShareModal";
 import DeleteFolderModal from "./innerModalFrame.js/DeleteFolderModal";
 import DeleteLinkModal from "./innerModalFrame.js/DeleteLinkModal";
+import AddModal from "./innerModalFrame.js/AddModal";
 
 const ContainerModal = ({ handleModalOpen, selectedModalOption, folderId }) => {
   const modalBackground = useRef();
@@ -27,6 +28,7 @@ const ContainerModal = ({ handleModalOpen, selectedModalOption, folderId }) => {
       case "DeleteLinkModal":
         return <DeleteLinkModal />;
       case "AddModal":
+        return <AddModal />;
       default:
         return <EditModal />;
     }
