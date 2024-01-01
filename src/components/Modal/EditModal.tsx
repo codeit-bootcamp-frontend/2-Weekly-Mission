@@ -1,18 +1,18 @@
 import style from '../../styles/Modal/EditModal.module.css';
 import xbutton from '../../assets/x.svg';
 
-const EditModal = () => {
+const EditModal = ({title, button, onClick} : {title:string, button:string, onClick:() => void}) => {
   return(
-    <div className={style.container}>
+    <div className={style.container} onClick={onClick}>
       <div className={style.modal}>
         <div className={style.modalContent}>
-          <p className={style.title}>폴더 이름 변경</p>
-          <form action="" className={style.modalForm}>
+          <p className={style.title}>{title}</p>
+          <form className={style.modalForm} onSubmit={onClick} method='post'>
             <input type="text" className={style.modalInput} placeholder='내용 입력'/>
-            <button className={style.modalButton}>변경하기</button>
+            <button className={style.modalButton} type='submit'>{button}</button>
           </form>
         </div>
-        <button className={style.xButton}><img src={xbutton} alt="x" /></button>
+        <button className={style.xButton} onClick={onClick}><img src={xbutton} alt="x" /></button>
       </div>
     </div>
   )

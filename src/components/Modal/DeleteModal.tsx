@@ -1,18 +1,18 @@
 import style from '../../styles/Modal/DeleteModal.module.css';
 import xbutton from '../../assets/x.svg';
 
-const DeleteModal = () => {
+const DeleteModal = ({ title, description ,button, onClick} : {title:string, description:string, button:string, onClick:() => void}) => {
   return(
-    <div className={style.container}>
+    <div className={style.container} onClick={onClick}>
       <div className={style.modal}>
         <div className={style.modalContent}>
           <div className={style.contentContainer}>
-            <p className={style.title}>폴더 삭제</p>
-            <p className={style.description}>폴더명</p>
+            <p className={style.title}>{title}</p>
+            <p className={style.description}>{description}</p>
           </div>
-          <button className={style.modalButton}>삭제하기</button>
+          <button className={style.modalButton}>{button}</button>
         </div>
-        <button className={style.xButton}><img src={xbutton} alt="x" /></button>
+        <button className={style.xButton} onClick={onClick}><img src={xbutton} alt="x" /></button>
       </div>
     </div>
   )

@@ -78,6 +78,10 @@
   line-height: normal;
 }
 
+.modalButton[type='submit'] {
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6D6AFE 0.12%, #6AE3FE 101.84%));
+}
+
 .xButton {
   width: 24px;
   height: 24px;

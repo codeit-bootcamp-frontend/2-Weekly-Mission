@@ -7,6 +7,7 @@ import FolderPage from "./components/Page/FolderPage";
 import './App.css';
 import EditModal from "./components/Modal/EditModal";
 import DeleteModal from "./components/Modal/DeleteModal";
+import ShareModal from "./components/Modal/ShareModal";
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
           <Route path="/" element={<Test />} />
           <Route path="/shared" element={<SharedPage/>} />
           <Route path="/folder" element={<FolderPage />} />
-          <Route path='/edit' element={<EditModal />} />
+          <Route path='/edit' element={<EditModal title={'test'} button={'test'} onClick={null}/>} />
           <Route path='/delete' element={<DeleteModal />} />
+          <Route path='/share' element={<ShareModal />} />
         </Routes>
         <Footer />
       </Router>
