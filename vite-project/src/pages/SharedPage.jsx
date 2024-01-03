@@ -1,36 +1,22 @@
-import { useEffect, useState } from "react";
-import { apiSettings, getApiInfo } from "../api";
-import SharedHeader from "../components/SharedHeader";
-import SharedMain from "../components/SharedMain";
-import useAsync from "../hooks/useAsync";
+import { endpoints, errorMessages, getApiInfo } from '../api/api';
+import useAsync from '../hooks/useAsync';
+import SharedHeader from '../components/SharedHeader';
+import SharedMain from '../components/SharedMain';
+import Layout from '../components/common/Layout';
 
 function SharedPage() {
-  const [folder, setFolder] = useState({});
-  const [links, setLinks] = useState([]);
-  const [isFolderLoading, FolderError, getFolderAsync] = useAsync(getApiInfo);
-
-  const loadFolder = async () => {
-    const result = await getFolderAsync(
-      apiSettings.endpoints.folder,
-      apiSettings.errorMessages.folder
-    );
-    if (!result) return;
-
-    const { folder } = result;
-    setFolder(folder);
-    setLinks(folder.links);
-  };
-
-  useEffect(() => {
-    loadFolder();
-  }, []);
-  console.log(isFolderLoading);
+  const getFolder = () => getApiInfo(endpoints.folder, errorMessages.folder);
+  const {
+    isLoading: isFolderLoading,
+    data: { folder: folderData },
+  } = useAsync(getFolder);
+  const { links } = folderData || {};
 
   return (
-    <>
-      {!isFolderLoading && <SharedHeader folder={folder} />}
+    <Layout>
+      {!isFolderLoading && <SharedHeader folder={folderData} />}
       <SharedMain links={links} />
-    </>
+    </Layout>
   );
 }
 
