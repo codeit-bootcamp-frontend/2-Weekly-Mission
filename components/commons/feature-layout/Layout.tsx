@@ -1,8 +1,9 @@
-// navbar와 footer 컴포넌트에 데이터를 props로 전달해주는 컴포넌트
-
 import { ReactNode, RefObject } from 'react';
 import styles from './Layout.module.scss';
 import classNames from 'classnames/bind';
+import { useGetUser } from '@/lib/user/useGetUser';
+import { Footer } from '../ui-footer/Footer';
+import { NavigationBar } from '../ui-navigation-bar/NavigationBar';
 
 // 클래스명
 const cx = classNames.bind(styles);
@@ -14,16 +15,21 @@ type LayoutProps = {
   footerRef?: RefObject<HTMLElement>; // ref 타입
 };
 
+// navbar와 footer 컴포넌트에 데이터를 props로 전달해주는 컴포넌트
 export const Layout = ({
   children,
   isSticky = true,
   footerRef,
 }: LayoutProps) => {
+  const { data } = useGetUser();
+  const profile = data
+    ? { email: data.email, imageSource: data.profileImageSource }
+    : null;
   return (
     <div>
-      {/* 네비게이션 바 컴포넌트 */}
+      <NavigationBar profile={profile} isSticky={isSticky} />
       <main className={cx('main')}>{children}</main>
-      {/* 푸터 컴포넌트 */}
+      <Footer ref={footerRef} />
     </div>
   );
 };
