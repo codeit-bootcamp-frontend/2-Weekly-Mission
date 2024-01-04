@@ -1,3 +1,6 @@
+import { CardContent } from '@/src/commons/ui-card-content/CardContent';
+import { CardImage } from '@/src/commons/ui-card-image/CardImage';
+import { Card } from '@/src/commons/ui-card/Card';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -26,11 +29,15 @@ export const ReadOnlyCard = ({
 
   return (
     <Link href={url} target="_blank" rel="noopener noreferrer">
-      {
-        // 카드
-        // 카드 이미지
-        // 카드 컨텐츠
-      }
+      <Card onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+        <CardImage imageSource={imageSource} alt={alt} isZoomedIn={isHovered} />
+        <CardContent
+          elapsedTime={elapsedTime}
+          description={description}
+          createdAt={createdAt}
+          isHovered={isHovered}
+        />
+      </Card>
     </Link>
   );
 };
