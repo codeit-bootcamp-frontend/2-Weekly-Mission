@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 
 // 읽기 전용 카드 프롭 타입 선언
@@ -24,12 +25,12 @@ export const ReadOnlyCard = ({
   const handleMouseLeave = () => setIsHovered(false);
 
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer">
+    <Link href={url} target="_blank" rel="noopener noreferrer">
       {
         // 카드
         // 카드 이미지
         // 카드 컨텐츠
       }
-    </a>
+    </Link>
   );
 };
