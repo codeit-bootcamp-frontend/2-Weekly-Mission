@@ -1,8 +1,8 @@
+import { useState } from "react";
 import styles from "./Input.module.css";
 
 export const Input = ({ label, type }) => {
-  if (type === "password") {
-  }
+  const [eye, setEye] = useState(false);
 
   return (
     <>
@@ -15,20 +15,26 @@ export const Input = ({ label, type }) => {
           id="passwordInput"
           type="text"
         />
-        {type === "password" ?? (
+        {type === "password" ? (
           <button className={`${styles.eyeButton}`} type="button">
-            <img src="./images/eye-off.svg" id="eye-off" alt="eye-off" />
+            {eye ? (
+              <img src="./images/eye-on.svg" id="eye-on" alt="eye-on" />
+            ) : (
+              <img src="./images/eye-off.svg" id="eye-off" alt="eye-off" />
+            )}
           </button>
-        )}
+        ) : null}
         <p className={`${styles.errorMessage}`} id="noValue">
           {label}을 입력해주세요.
         </p>
         <p className={`${styles.errorMessage}`} id="checkValue">
           {label}를 확인해주세요.
         </p>
-        <p className={`${styles.errorMessage}`} id="wrongEmail">
-          올바른 이메일이 아닙니다.
-        </p>
+        {type === "email" ? (
+          <p className={`${styles.errorMessage}`} id="wrongEmail">
+            올바른 이메일이 아닙니다.
+          </p>
+        ) : null}
       </div>
     </>
   );
