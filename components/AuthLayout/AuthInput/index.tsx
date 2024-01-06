@@ -1,77 +1,96 @@
+import React, { useState } from "react";
 import Image from "next/image";
+import styled from "styled-components";
 
-function AuthInput({ label, type }: { label: string; type: string }) {
-  const ispassword = type === "password";
+interface AuthInputProps {
+  label: string;
+  type: "text" | "email" | "password";
+  placeholder?: string;
+  onValid?: () => boolean;
+  errorMessage?: string;
+}
+function AuthInput({ label, type, placeholder, onValid, errorMessage }: AuthInputProps) {
+  const [inputType, setInputType] = useState(type);
+  const [isError, setIsError] = useState(false);
+
+  const togglePasswordVisibility = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setInputType(inputType === "password" ? "text" : "password");
+  };
+
+  const handleBlur = () => {
+    if (onValid) {
+      const error = onValid();
+      setIsError(error);
+    }
+  };
+
   return (
-    <div className={`sign-input-box ${ispassword && "sign-password"}`}>
-      <label className="sign-input-label">{label}</label>
-      <input type={type} className="sign-input" autoComplete="username" />
+    <SignInputBox $isError={isError}>
+      <SignInputLabel>{label}</SignInputLabel>
+      <SignInput
+        type={inputType}
+        className="sign-input"
+        autoComplete="username"
+        placeholder={placeholder}
+        onBlur={handleBlur}
+      />
       {type === "password" && (
-        <button id="password-toggle" className="eye-button" type="button">
-          <Image src="/icons/eye-off.svg" alt="eye-off" width={24} height={24} />
-        </button>
+        <EyeButton onClick={togglePasswordVisibility}>
+          <Image
+            src={inputType === "password" ? "/icons/eye-off.svg" : "/icons/eye-on.svg"}
+            alt="eye-icon"
+            width={24}
+            height={24}
+          />
+        </EyeButton>
       )}
-      <p className="error-message"></p>
-      <style jsx>
-        {`
-          .sign-input-box {
-            display: flex;
-            flex-direction: column;
-            row-gap: 1.2rem;
-          }
-
-          .sign-password {
-            position: relative;
-          }
-
-          .sign-input-label {
-            font-size: 1.4rem;
-            font-weight: 400;
-          }
-
-          .sign-input {
-            padding: 1.8rem 1.5rem;
-            border-radius: 0.8rem;
-            border: 0.1rem solid var(--gray20);
-            font-size: 1.6rem;
-            line-height: 150%;
-          }
-
-          .sign-input:focus {
-            border-color: var(--primary);
-          }
-
-          .sign-input.sign-input-error {
-            border-color: var(--red);
-          }
-
-          .sign-input.sign-input-error:focus {
-            border-color: var(--red);
-          }
-
-          .error-message {
-            display: none;
-            margin-top: -0.4rem;
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: var(--red);
-          }
-
-          .error-message.error-message-on {
-            display: inline-block;
-          }
-
-          .eye-button {
-            position: absolute;
-            top: 5.1rem;
-            right: 1.5rem;
-            width: 1.6rem;
-            height: 1.6rem;
-          }
-        `}
-      </style>
-    </div>
+      {isError && <ErrorMessage>{errorMessage}</ErrorMessage>}
+    </SignInputBox>
   );
 }
 
 export default AuthInput;
+
+const SignInputBox = styled.div<{ $isError: boolean }>`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2rem;
+  position: relative;
+
+  input {
+    padding: 1.8rem 1.5rem;
+    border-radius: 0.8rem;
+    border: 0.1rem solid ${({ $isError, theme }) => ($isError ? theme.red : theme.gray300)};
+    font-size: 1.6rem;
+    line-height: 150%;
+
+    &:focus {
+      border-color: ${({ $isError, theme }) => ($isError ? theme.red : theme.primary)};
+    }
+  }
+`;
+
+const SignInputLabel = styled.label`
+  font-size: 1.4rem;
+  font-weight: 400;
+`;
+
+const SignInput = styled.input``;
+
+const EyeButton = styled.button`
+  position: absolute;
+  top: 5.1rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+const ErrorMessage = styled.p`
+  margin-top: -0.4rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.red};
+  display: inline-block;
+`;
