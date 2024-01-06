@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const SignInPage = () => {
   return (
-    <>
+    <div className="body">
       <header>
         <Link className="logo-link" to="../">
           <img
@@ -81,6 +81,6 @@ export const SignInPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
