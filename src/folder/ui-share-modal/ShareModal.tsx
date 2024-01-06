@@ -5,9 +5,9 @@ import { ModalContentBox } from '@/src/commons/ui-modal-content-box/ModalContent
 import { Modal } from '@/src/commons/ui-modal/Modal';
 import { ModalContentTitle } from '@/src/commons/ui-modal-content-title/ModalContentTitle';
 import { ModalContentDescription } from '@/src/commons/ui-modal-content-description/ModalContentDescription';
-import { ReactComponent as KakaoIcon } from './kakao.svg';
-import { ReactComponent as FacebookIcon } from './facebook.svg';
-import { ReactComponent as LinkIcon } from './link.svg';
+import KakaoIcon from './kakao.svg';
+import FacebookIcon from './facebook.svg';
+import LinkIcon from './link.svg';
 
 const cx = classNames.bind(styles);
 

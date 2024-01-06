@@ -50,7 +50,7 @@ export const useKakaoSdk = () => {
       //   카카오 sdk init
       if (!kakao.isInitialized()) {
         // key 보안을 위해 .env 사용
-        kakao.init(process.env.REACT_APP_KAKAO_SDK_KEY);
+        kakao.init(process.env.NEXT_PUBLIC_KAKAO_SDK_KEY);
       }
 
       //   보낼 형식(카카오 developers sdk 설명 참조)
