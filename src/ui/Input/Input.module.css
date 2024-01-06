@@ -1,0 +1,35 @@
+.input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2rem;
+}
+
+.label {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.signInput {
+  padding: 1.8rem 1.5rem;
+  border-radius: 0.8rem;
+  border: 0.1rem solid var(--gray20);
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+.eyeButton {
+  position: absolute;
+  top: 5.2rem;
+  right: 1.5rem;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.errorMessage {
+  /* display: none; */
+  color: var(--red);
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: normal;
+}

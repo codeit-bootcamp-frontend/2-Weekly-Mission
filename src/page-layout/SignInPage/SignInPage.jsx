@@ -1,5 +1,6 @@
 import "./SignInPage.css";
 import { Link } from "react-router-dom";
+import { Input } from "ui/Input";
 
 export const SignInPage = () => {
   return (
@@ -27,6 +28,9 @@ export const SignInPage = () => {
           onsubmit="checkAccount()"
         >
           <div className="sign-inputs">
+            <p>Input component하는 중</p>
+            <Input label="이메일" type="email" />
+            <Input label="비밀번호" type="password" />
             <div className="sign-input-box">
               <label className="sign-input-label" htmlFor="emailInput">
                 이메일
