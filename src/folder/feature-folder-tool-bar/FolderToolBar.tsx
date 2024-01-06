@@ -43,7 +43,13 @@ export const FolderToolBar = ({
       : folders?.find(({ id }) => id === selectedFolderId)?.name ?? '';
 
   //   공유 링크 저장
-  const shareLink = `localhost:3000/shared?user=1&folder=${selectedFolderId}`;
+  const shareLink = (() => {
+    if (typeof window !== 'undefined') {
+      return `${window.location.origin}/shared?user=1&folder=${selectedFolderId}`;
+    } else {
+      return '';
+    }
+  })();
 
   const closeModal = () => setCurrentModal(null);
 
