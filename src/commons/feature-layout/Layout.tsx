@@ -1,7 +1,7 @@
 import { ReactNode, RefObject } from 'react';
 import styles from './Layout.module.scss';
 import classNames from 'classnames/bind';
-import { useGetUser } from '@/lib/user/useGetUser';
+import { useGetUser } from '@/src/user/useGetUser';
 import { Footer } from '../ui-footer/Footer';
 import { NavigationBar } from '../ui-navigation-bar/NavigationBar';
 
