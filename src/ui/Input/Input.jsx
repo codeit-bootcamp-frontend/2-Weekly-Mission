@@ -3,6 +3,12 @@ import styles from "./Input.module.css";
 
 export const Input = ({ label, type }) => {
   const [eye, setEye] = useState(false);
+  const [inputType, setInputType] = useState(type);
+
+  const handleEyeButton = () => {
+    setEye(!eye);
+    setInputType(inputType === "password" ? "text" : "password");
+  };
 
   return (
     <>
@@ -13,10 +19,14 @@ export const Input = ({ label, type }) => {
         <input
           className={`${styles.signInput}`}
           id="passwordInput"
-          type="text"
+          type={inputType}
         />
         {type === "password" ? (
-          <button className={`${styles.eyeButton}`} type="button">
+          <button
+            className={`${styles.eyeButton}`}
+            type="button"
+            onClick={handleEyeButton}
+          >
             {eye ? (
               <img src="./images/eye-on.svg" id="eye-on" alt="eye-on" />
             ) : (
