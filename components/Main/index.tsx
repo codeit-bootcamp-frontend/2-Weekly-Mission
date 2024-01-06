@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, Suspense, useEffect, useState } from "react";
+import React, { ChangeEvent, ReactNode, useEffect, useState } from "react";
 import { useDebounce } from "usehooks-ts";
 import SearchBar from "../SearchBar";
 import List from "../Card/List";

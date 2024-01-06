@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface SectionType {
-  odd?: boolean;
+  $odd?: boolean;
 }
 
 const StyledSection = styled.section<SectionType>`
@@ -31,16 +31,16 @@ const StyledSection = styled.section<SectionType>`
     "description";
 
   @media (min-width: 768px) {
-    grid-template-columns: ${(props) => (props.odd ? "26.2rem 38.5rem" : "38.5rem 26.2rem")};
+    grid-template-columns: ${(props) => (props.$odd ? "26.2rem 38.5rem" : "38.5rem 26.2rem")};
     grid-template-areas: ${(props) =>
-      props.odd
+      props.$odd
         ? "'. image' 'title image' 'description image' '. image'"
         : "'image .' 'image title' 'image description' 'image .'"};
     padding: 5rem 0;
   }
 
   @media (min-width: 1200px) {
-    grid-template-columns: ${(props) => (props.odd ? "29.1rem 55rem" : "55rem 29.1rem")};
+    grid-template-columns: ${(props) => (props.$odd ? "29.1rem 55rem" : "55rem 29.1rem")};
   }
 `;
 
@@ -56,11 +56,11 @@ const Title = styled.h2`
   }
 `;
 
-const TitleGradient = styled.span<{ gradient: string }>`
+const TitleGradient = styled.span<{ $gradient: string }>`
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: ${({ gradient }) => gradient};
+  background-image: ${({ $gradient }) => $gradient};
 `;
 
 const Description = styled.p`

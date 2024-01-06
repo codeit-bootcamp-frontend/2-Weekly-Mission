@@ -26,3 +26,11 @@ export const CtaShort = styled(Cta)`
     width: 12.8rem;
   }
 `;
+
+export const CtaLong = styled(Cta)`
+  width: 20rem;
+
+  @media (min-width: ${(props) => props.theme.deviceSizes.mobile}) {
+    width: 35rem;
+  }
+`;

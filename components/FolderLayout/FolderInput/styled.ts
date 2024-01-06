@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CtaShort } from "../../Cta/styled";
+import { CtaShort } from "@/components/Common/Cta/styled";
 
 const Wrapper = styled.div`
   position: relative;

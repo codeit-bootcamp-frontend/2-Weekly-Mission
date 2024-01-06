@@ -15,6 +15,7 @@ const sectionData = [
     alt: "링크 이미지",
   },
   {
+    odd: false,
     title: { prev: "링크를 폴더로", gradient: "관리", suff: "하세요" },
     description: "나만의 폴더를 무제한으로 만들고 다양하게 활용할 수 있습니다.",
     gradient: "linear-gradient(304deg, #6fbaff 0%, #ffd88b 100%)",
@@ -30,6 +31,7 @@ const sectionData = [
     alt: "공유 이미지",
   },
   {
+    odd: false,
     title: { prev: "저장한 링크를", gradient: "검색", suff: "해 보세요" },
     description: "중요한 정보들을 검색으로 쉽게 찾아보세요.",
     gradient: "linear-gradient(310deg, #fe578f 0%, #68e8f9 100%)",

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import * as S from "./styled";
+import { CtaLong } from "@/components/Common/Cta/styled";
 
 function LandingHeader() {
   return (
@@ -11,10 +12,12 @@ function LandingHeader() {
             쉽게 저장하고 <br />
             관리해 보세요
           </S.Slogan>
-          <S.Cta>
-            <p>구경 해보기</p>
-          </S.Cta>
-          <S.StyledImage src="/images/main/hero.png" width={1200} height={100} alt="Linkbrary 서비스 소개" />
+          <Link href="/folder">
+            <CtaLong>
+              <p>구경 해보기</p>
+            </CtaLong>
+          </Link>
+          <S.StyledImage src="/images/main/hero.png" width={1200} height={590} alt="Linkbrary 서비스 소개" priority />
         </S.Header>
       </S.Container>
     </>

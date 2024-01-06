@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Main from "@/components/Main";
 import WithFolderInfo from "./FolderInfo";
-import FolderHeader from "./FolderHeader";
+import FolderHeader from "../Layout/Header/Folder";
 import { FolderLinks } from "@/types/folder.type";
 
 interface FolderLayoutProps {

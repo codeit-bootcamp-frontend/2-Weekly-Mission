@@ -1,6 +1,6 @@
 import React from "react";
 import NameTag from "@/components/NameTag";
-import Fab from "@/components/Fab";
+import Fab from "@/components/Common/Fab";
 import { FOLDER_OPTION_NAME } from "@/lib/constents";
 import { useModal } from "@/contexts/ModalContext";
 import * as S from "./styled";

@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import LandingHeader from "./LandingHeader";
+import LandingHeader from "../Layout/Header/Landing";
 import { Article } from "./styled";
 function LandingLayout({ children }: { children: ReactNode }) {
   return (

@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { useFetch } from "usehooks-ts";
-import Cta from "../../Cta";
 import * as S from "./styled";
 import account from "@/public/images/account.png";
+import { CtaShort } from "@/components/Common/Cta/styled";
 
 interface Auth {
   ok: boolean;
@@ -56,7 +56,7 @@ function Header() {
             <S.Email>{users?.email}</S.Email>
           </S.Account>
         ) : (
-          <Cta onClick={onLogin}>로그인</Cta>
+          <CtaShort onClick={onLogin}>로그인</CtaShort>
         )}
       </S.Container>
     </S.Wrapper>

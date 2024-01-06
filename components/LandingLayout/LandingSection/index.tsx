@@ -22,15 +22,21 @@ interface SectionProps extends SectionType {
 
 function LandingSection({ odd, title, description, gradient, src, alt }: SectionProps) {
   return (
-    <S.StyledSection odd={odd}>
+    <S.StyledSection $odd={odd}>
       <S.Title>
         {title.prev && <span>{title.prev}</span>}
-        <S.TitleGradient gradient={gradient}>{title.gradient}</S.TitleGradient>
+        <S.TitleGradient $gradient={gradient}>{title.gradient}</S.TitleGradient>
         {title.suff}
       </S.Title>
       <S.Description>{description}</S.Description>
       <S.ImageContainer>
-        <Image src={src} alt={alt} fill loading="lazy" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+        />
       </S.ImageContainer>
     </S.StyledSection>
   );

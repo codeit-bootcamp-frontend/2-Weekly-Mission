@@ -66,30 +66,6 @@ const fadein = keyframes`
     opacity: 1;
   }
 `;
-const Cta = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3.7rem;
-  cursor: pointer;
-  background-image: linear-gradient(135deg, ${({ theme }) => theme.primary} 0%, #6ae3fe 100%);
-  border-radius: 0.8rem;
-  color: #f5f5f5;
-  font-size: 1.4rem;
-  font-weight: 600;
-
-  @media (min-width: 768px) {
-    height: 5.4rem;
-    border-radius: 0.8rem;
-    font-size: 1.8rem;
-  }
-
-  width: 20rem;
-
-  @media (min-width: 768px) {
-    width: 35rem;
-  }
-`;
 
 const StyledImage = styled(Image)`
   width: 100%;
@@ -105,4 +81,4 @@ const StyledImage = styled(Image)`
   }
 `;
 
-export { Container, Header, Slogan, CutLine, fadein, Cta, StyledImage };
+export { Container, Header, Slogan, CutLine, fadein, StyledImage };
