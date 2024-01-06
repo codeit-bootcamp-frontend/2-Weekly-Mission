@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const SignInPage = () => {
   return (
-    <div className="body">
+    <div className="signIn">
       <header>
         <Link className="logo-link" to="../">
           <img

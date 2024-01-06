@@ -1,5 +1,9 @@
-.body {
+body {
   background-color: var(--background, #f0f6ff);
+
+}
+
+.signIn{
   display: flex;
   flex-direction: column;
   align-items: center;
