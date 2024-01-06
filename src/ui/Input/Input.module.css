@@ -18,6 +18,10 @@
   line-height: 150%;
 }
 
+.signInput:focus {
+  border-color: var(--primary);
+}
+
 .eyeButton {
   position: absolute;
   top: 5.2rem;
