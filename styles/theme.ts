@@ -3,7 +3,6 @@ export interface ITheme {
 }
 
 export const theme = {
-  background: "#f0f6ff",
   primary: "#6d6afe",
   Red: "#ff5b56",
   black: "#111322",

@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import styled from "styled-components";
-import LandingSection from "@/components/LandingLayout/LandingSection";
+import LandingSection from "@/components/LandingLayout/Section";
 import LandingLayout from "@/components/LandingLayout";
 
 const sectionData = [

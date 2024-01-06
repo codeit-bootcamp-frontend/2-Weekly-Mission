@@ -5,6 +5,7 @@ export const Cta = styled.div`
   justify-content: center;
   align-items: center;
   height: 3.7rem;
+  width: 100%;
   cursor: pointer;
   background-image: linear-gradient(135deg, ${(props) => props.theme.primary} 0%, #6ae3fe 100%);
   border-radius: 0.8rem;
