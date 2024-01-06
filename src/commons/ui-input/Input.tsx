@@ -8,7 +8,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-type InputProps = {
+export type InputProps = {
   value: string | number;
   placeholder?: string;
   type?: HTMLInputTypeAttribute;

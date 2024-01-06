@@ -1,4 +1,4 @@
-import { Input } from '../ui-input/Input';
+import { Input, InputProps } from '../ui-input/Input';
 import classNames from 'classnames/bind';
 import styles from './PasswordInput.module.scss';
 import EyeOnIcon from './eye-on.svg';
@@ -8,26 +8,34 @@ import { useState } from 'react';
 const cx = classNames.bind(styles);
 
 /* PasswordInput의 프롭 */
-// 기존 Input - value, onChange, placeholder
-//
-// 에러가 뜰 때 - , 에러 여부, 에러 메세지
+// input의 type은 여기서 정해지니까 뺌
+type PasswordInputProps = Omit<InputProps, 'type'>;
 
-// PasswordInput의 state
-// + type은 text나 password 중 하나 필수
-// 비밀번호 가림 여부 => 타입 바뀌어야됨(password, text)
-
-export default function PasswordInput() {
+// 비밀번호 input 컴포넌트
+export default function PasswordInput({
+  value,
+  onChange,
+  placeholder,
+  hasError = false,
+  errorMessage,
+  onBlur,
+}: PasswordInputProps) {
+  // 비밀번호 가림 여부
   const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  //   visible에 따른 타입 값
+  const inputType = isVisible ? 'text' : 'password';
+
   return (
     <div className={cx('container')}>
       <Input
-        value={'1234'}
-        onChange={() => {}}
-        placeholder=""
-        hasError={true}
-        errorMessage="테스트임"
-        onBlur={() => {}}
-        type="password"
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        hasError={hasError}
+        errorMessage={errorMessage}
+        onBlur={onBlur}
+        type={inputType}
       />
       <button
         type="button"
