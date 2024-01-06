@@ -30,6 +30,8 @@ export const GlobalStyles = createGlobalStyle`
   ul{
     padding: unset;
   }
+
+
 `;
 
 export default GlobalStyles;
