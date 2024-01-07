@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import Image from "next/image";
 
-function Banner({ openModal }: { openModal: (buttonText: string) => void }) {
+function Banner({ openModal }: { openModal: () => void }) {
   return (
     <BannerLayout>
       <BannerBox>

@@ -6,13 +6,7 @@ import ConvertToFormattedDate from "../../utils/convertToFormattedDate";
 import { Link } from "../../types/common";
 import PopOver from "../domains/folder/PopOver";
 
-function Card({
-  link,
-  openModal,
-}: {
-  link: Link;
-  openModal: (buttonText: string) => void;
-}) {
+function Card({ link, openModal }: { link: Link; openModal: () => void }) {
   const elapseTime = CalculateElapsedTime(link?.created_at || "");
   const postedDate = ConvertToFormattedDate(link?.created_at || "");
   const [isPopOver, setIsPopOver] = useState(false);

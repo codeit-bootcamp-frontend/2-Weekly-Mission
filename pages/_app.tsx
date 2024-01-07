@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <LinkDeleteModal closeModal={closeModal} />
       ) : modal.name === "공유" && modal.isOpen ? (
         <FolderSharedModal closeModal={closeModal} />
-      ) : modal.name === "폴더에 추가" && modal.isOpen ? (
+      ) : modal.name === "폴더에 추가하기" && modal.isOpen ? (
         <LinkAddModal closeModal={closeModal} />
       ) : null}
       <Header user={user} />

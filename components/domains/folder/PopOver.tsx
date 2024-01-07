@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import React, { SetStateAction } from "react";
 
 function PopOver({
   openModal,
   setIsPopOver,
 }: {
-  openModal: (buttonText: string) => void;
-  setIsPopOver: (isPopOver: boolean) => void;
+  openModal: () => void;
+  setIsPopOver: React.Dispatch<SetStateAction<boolean>>;
 }) {
   return (
     <PopOverLayout>

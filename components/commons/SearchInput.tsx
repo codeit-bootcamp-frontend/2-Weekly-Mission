@@ -7,7 +7,7 @@ function SearchInput({
   searchResult,
   setSearchResult,
 }: {
-  searchLink: (value: string) => void;
+  searchLink: (keyword: string) => Promise<void>;
   searchResult: string;
   setSearchResult: React.Dispatch<React.SetStateAction<string>>;
 }) {

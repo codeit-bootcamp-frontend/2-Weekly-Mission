@@ -7,7 +7,7 @@ function CardList({
   openModal,
 }: {
   links: Link[];
-  openModal: (buttonText: string) => void;
+  openModal: () => void;
 }) {
   return (
     <CardWrapper>

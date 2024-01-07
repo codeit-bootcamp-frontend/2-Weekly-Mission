@@ -9,7 +9,7 @@ function FoldersTitles({
 }: {
   folderList: Folder[];
   id: number;
-  openModal: (buttonText: string) => void;
+  openModal: () => void;
   searchResult: string;
 }) {
   return (

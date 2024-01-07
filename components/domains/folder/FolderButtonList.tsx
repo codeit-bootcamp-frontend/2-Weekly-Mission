@@ -39,7 +39,7 @@ function FolderButtonList({
   folderList: Folder[];
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
-  openModal: (buttonText: string) => void;
+  openModal: () => void;
 }) {
   return (
     <div>

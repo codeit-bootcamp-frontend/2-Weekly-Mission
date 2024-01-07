@@ -11,23 +11,23 @@ function Category({
   openModal,
 }: {
   category: CategoryInfo;
-  openModal: (buttonText: string) => void;
+  openModal: () => void;
 }) {
   const { title, image } = category;
 
   return (
-    <StyledCategory
+    <CategoryLayout
       onClick={() => {
         openModal(`${title}`);
       }}
     >
-      <Image width={10} height={10} src={image} alt={`${title} 아이콘`} />
+      <Image width={18} height={18} src={image} alt={`${title} 아이콘`} />
       <div>{title}</div>
-    </StyledCategory>
+    </CategoryLayout>
   );
 }
 
-const StyledCategory = styled.div`
+const CategoryLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

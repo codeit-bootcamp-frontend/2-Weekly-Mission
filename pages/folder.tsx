@@ -77,6 +77,8 @@ function FolderPage({ openModal }: { openModal: () => void }) {
           />
           {searchResult !== "" ? (
             <CardList links={searchLinks} openModal={openModal} />
+          ) : searchResult !== "" ? (
+            <CardList links={searchLinks} openModal={openModal} />
           ) : id === 0 ? (
             <CardList openModal={openModal} links={folderList[0]?.links} />
           ) : selectFolderLinks.length !== 0 ? (

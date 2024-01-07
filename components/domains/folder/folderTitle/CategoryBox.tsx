@@ -14,7 +14,7 @@ function CategoryBox({
   searchResult,
 }: {
   folder: Folder;
-  openModal: (buttonText: string) => void;
+  openModal: () => void;
   searchResult: string;
 }) {
   return (
