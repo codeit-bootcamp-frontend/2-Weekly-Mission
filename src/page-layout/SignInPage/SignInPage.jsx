@@ -25,10 +25,9 @@ export const SignInPage = () => {
           className="sign-form"
           method="post"
           action="#"
-          onSubmit="checkAccount()"
+          // onSubmit="checkAccount()"
         >
           <div className="sign-inputs">
-            <p>Input component하는 중</p>
             <EmailInput />
             <PasswordInput />
             {/* <div className="sign-input-box">
