@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Input.module.css";
 
 export const Input = ({ label, type }) => {
   const [eye, setEye] = useState(false);
   const [inputType, setInputType] = useState(type);
+  const [focus, setFocus] = useState(true);
 
   const handleEyeButton = () => {
     setEye(!eye);
     setInputType(inputType === "password" ? "text" : "password");
   };
+
+  const handleFocusIn = () => {
+    setFocus(true);
+  };
+
+  const handleFocusOut = () => {
+    setFocus(false);
+  };
+
+  useEffect(() => {
+    console.log(focus);
+  }, [focus]);
 
   return (
     <>
@@ -20,6 +33,8 @@ export const Input = ({ label, type }) => {
           className={`${styles.signInput}`}
           id="passwordInput"
           type={inputType}
+          onFocus={handleFocusIn}
+          onBlur={handleFocusOut}
         />
         {type === "password" ? (
           <button
