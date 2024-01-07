@@ -21,8 +21,8 @@ const SignUpPage = () => {
             <AuthInputs>
               {/**다음 주차에 React-hook-form으로 교체 예정이기 떄문에 기능 테스트 용으로 에러를 반환함. */}
               <AuthInput label="이메일" type="email" onValid={() => true} errorMessage="이메일 형식이 아닙니다." />
-              <AuthInput label="패스워드" type="password" />
-              <AuthInput label="패스워드 확인" type="password" />
+              <AuthInput label="패스워드" type="password" errorMessage="비밀번호가 올바르지 않습니다." />
+              <AuthInput label="패스워드 확인" type="password" errorMessage="비밀번호가 동일하지 않습니다." />
             </AuthInputs>
             <Cta onClick={() => router.push("signin")}>회원가입</Cta>
           </AuthForm>
