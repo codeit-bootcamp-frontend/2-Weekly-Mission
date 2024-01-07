@@ -1,0 +1,41 @@
+.navbar {
+  background-color: var(--linkbrary-bg);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 78rem;
+  margin: auto;
+  padding: 1.3rem var(--size-mobile-padding);
+}
+
+.logo {
+  width: 10rem;
+  height: 2.4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 3rem var(--size-mobile-padding);
+  }
+
+  .logo {
+    width: 13.3rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 104rem;
+  }
+}
