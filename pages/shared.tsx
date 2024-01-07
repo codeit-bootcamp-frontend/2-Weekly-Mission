@@ -13,7 +13,7 @@ interface CamelKeyLink {
   description: string;
   imageSource: string;
 }
-interface LinkInfo {
+interface Link {
   id?: number;
   url?: string;
   title?: string;
@@ -30,7 +30,7 @@ interface FolderInfo {
     name: string;
     profileImageSource: string;
   };
-  links: LinkInfo[];
+  links: Link[];
 }
 
 function SharedPage() {
@@ -54,13 +54,13 @@ function SharedPage() {
     ],
   });
 
-  function transformKeys(link: CamelKeyLink): LinkInfo {
+  function transformKeys(link: CamelKeyLink): Link {
     const transformedLink = Object.fromEntries(
       Object.entries(link).map(([key, value]) => [
         key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`),
         value,
       ])
-    ) as LinkInfo;
+    ) as Link;
 
     return transformedLink;
   }
