@@ -7,31 +7,16 @@ import FolderButtonList from "../components/domains/folder/FolderButtonList";
 import FolderTitles from "../components/domains/folder/folderTitle/FolderTitles";
 import FloatingButton from "../components/domains/folder/FloatingButton";
 import { getAllLinksData, getFoldersData } from "./api/FolderApi";
-
-interface LinkInfo {
-  id: number;
-  url: string;
-  title: string;
-  description?: string;
-  image_source: string;
-  create_at: string;
-}
-
-interface FolderInfo {
-  id: number;
-  favorite: boolean;
-  name: string;
-  user_id: number;
-  links: LinkInfo[];
-}
+import { Folder } from "../types/folder";
+import { Link } from "../types/commons";
 
 function FolderPage() {
-  const [folderList, setFolderList] = useState<FolderInfo[]>([]);
-  const [selectFolderLinks, setSelectFolderLinks] = useState<LinkInfo[]>([]);
+  const [folderList, setFolderList] = useState<Folder[]>([]);
+  const [selectFolderLinks, setSelectFolderLinks] = useState<Link[]>([]);
   const [id, setId] = useState<number>(0);
 
   const handleFoldersLoad = async () => {
-    const allLinksFolder: FolderInfo = {
+    const allLinksFolder: Folder = {
       id: 0,
       favorite: false,
       name: "전체",

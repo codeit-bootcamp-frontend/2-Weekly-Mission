@@ -1,25 +1,11 @@
 import styled from "styled-components";
 import React from "react";
 import { getSelectData } from "../../../pages/api/FolderApi";
-
-interface Link {
-  id: number;
-  create_at: string;
-  image_source: string;
-  title: string;
-  url: string;
-}
-
-interface FolderProps {
-  id: number;
-  favorite: boolean;
-  name: string;
-  user_id: number;
-  links: Link[];
-}
+import { Folder } from "../../../types/folder";
+import { Link } from "../../../types/commons";
 
 interface FolderButtonListProps {
-  folderList: FolderProps[];
+  folderList: Folder[];
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -29,7 +15,7 @@ function Button({
   setSelectFolderLinks,
   setId,
 }: {
-  folder: FolderProps;
+  folder: Folder;
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
 }) {

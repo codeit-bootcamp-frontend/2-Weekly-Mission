@@ -1,14 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { UserInfo } from "../../types/commons";
 
-interface UserInfoProps {
-  id: number;
-  name: string;
-  email: string;
-  profileImageSource: string;
-}
-
-function Header({ user }: { user: UserInfoProps }) {
+function Header({ user }: { user: UserInfo }) {
   return (
     <HeaderLayout>
       <HeaderBox>

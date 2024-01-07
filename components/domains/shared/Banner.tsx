@@ -1,26 +1,7 @@
 import styled from "styled-components";
+import { Folder } from "../../../types/shared";
 
-interface LinkInfo {
-  id?: number;
-  url?: string;
-  title?: string;
-  description?: string;
-  image_source?: string;
-  created_at?: string;
-}
-
-interface FolderProps {
-  id: number;
-  name: string;
-  owner: {
-    id: number;
-    name: string;
-    profileImageSource: string;
-  };
-  links: LinkInfo[];
-}
-
-function Banner({ folder }: { folder: FolderProps }) {
+function Banner({ folder }: { folder: Folder }) {
   return (
     <BannerLayout>
       <BannerBox>

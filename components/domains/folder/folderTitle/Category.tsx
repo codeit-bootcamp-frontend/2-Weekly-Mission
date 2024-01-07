@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import useModal from "../../../../hook/useModal";
 
-interface CategoryProps {
+interface CategoryInfo {
   title: string;
   image: string;
 }
 
-function Category({ category }: { category: CategoryProps }) {
+function Category({ category }: { category: CategoryInfo }) {
   const { title, image } = category;
   const { openModal } = useModal();
 

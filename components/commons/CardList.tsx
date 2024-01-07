@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import Card from "./Card";
-
-interface Link {
-  id?: number;
-  url?: string;
-  title?: string;
-  description?: string;
-  image_source?: string;
-  created_at?: string;
-}
+import { Link } from "../../types/commons";
 
 function CardList({ links }: { links: Link[] }) {
   return (

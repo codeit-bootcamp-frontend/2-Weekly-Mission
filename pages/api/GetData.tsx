@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_BASE_URL } from "../../constants";
+import API_BASE_URL from "../../constants";
 
 interface SharedFolderLinkInfo {
   id: number;
@@ -29,7 +29,7 @@ const convertToSnakeCase = (data: SharedFolderInfo) => {
     const convertedLink = Object.fromEntries(
       Object.entries(link).map(([key, value]) => [
         key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`),
-        value,
+        key === "createdAt" ? "create_at" : value,
       ])
     );
     return convertedLink;

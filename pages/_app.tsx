@@ -4,15 +4,9 @@ import { getUserData } from "./api/SharedApi";
 import Header from "../components/commons/Header";
 import Footer from "../components/commons/Footer";
 import GlobalStyle from "../styles/GlobalStyles";
+import { UserInfo } from "../types/commons";
 
 export default function App({ Component, pageProps }: AppProps) {
-  interface UserInfo {
-    id: number;
-    name: string;
-    email: string;
-    profileImageSource: string;
-  }
-
   const [user, setUser] = useState<UserInfo>({
     id: 1,
     name: "",

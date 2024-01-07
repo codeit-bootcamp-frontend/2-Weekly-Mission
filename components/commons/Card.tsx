@@ -2,19 +2,11 @@ import styled from "styled-components";
 import Image from "next/image";
 import CalculateElapsedTime from "../../utils/calculateElapsedTime";
 import ConvertToFormattedDate from "../../utils/convertToFormattedDate";
-
-interface Link {
-  id?: number;
-  url?: string;
-  title?: string;
-  description?: string;
-  image_source?: string;
-  created_at?: string;
-}
+import { Link } from "../../types/commons";
 
 function Card({ link }: { link: Link }) {
-  const elapseTime = CalculateElapsedTime(link?.created_at || "");
-  const postedDate = ConvertToFormattedDate(link?.created_at || "");
+  const elapseTime = CalculateElapsedTime(link?.create_at || "");
+  const postedDate = ConvertToFormattedDate(link?.create_at || "");
 
   return (
     <CardLayout>

@@ -4,37 +4,10 @@ import CardList from "../components/commons/CardList";
 import SearchInput from "../components/commons/SearchInput";
 import styles from "../styles/sharedPage.module.css";
 import { getSharedData } from "./api/SharedApi";
-
-interface CamelKeyLink {
-  id: number;
-  createdAt: string;
-  url: string;
-  title: string;
-  description: string;
-  imageSource: string;
-}
-interface Link {
-  id?: number;
-  url?: string;
-  title?: string;
-  description?: string;
-  image_source?: string;
-  created_at?: string;
-}
-
-interface FolderInfo {
-  id: number;
-  name: string;
-  owner: {
-    id: number;
-    name: string;
-    profileImageSource: string;
-  };
-  links: Link[];
-}
+import { Folder } from "../types/shared";
 
 function SharedPage() {
-  const [sharedFolder, setSharedFolder] = useState<FolderInfo>({
+  const [sharedFolder, setSharedFolder] = useState<Folder>({
     id: 1,
     name: "",
     owner: {
@@ -49,31 +22,17 @@ function SharedPage() {
         title: "",
         description: "",
         image_source: "",
-        created_at: "",
+        create_at: "",
       },
     ],
   });
 
-  function transformKeys(link: CamelKeyLink): Link {
-    const transformedLink = Object.fromEntries(
-      Object.entries(link).map(([key, value]) => [
-        key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`),
-        value,
-      ])
-    ) as Link;
-
-    return transformedLink;
-  }
-
-  const transLinkKey = (links: []) => links.map(transformKeys);
-
   const handleFolderLoad = async () => {
     const { folder } = await getSharedData();
-    const transformedFolder = {
+    setSharedFolder({
       ...folder,
-      links: transLinkKey(folder.links),
-    };
-    setSharedFolder(transformedFolder);
+      links: folder.links,
+    });
   };
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Category from "./Category";
 
-interface LinkProps {
+interface Link {
   id: number;
   create_at: string;
   image_source: string;
@@ -9,12 +9,12 @@ interface LinkProps {
   url: string;
 }
 
-interface FolderProps {
+interface FolderInfo {
   id: number;
   favorite: boolean;
   name: string;
   user_id: number;
-  links: LinkProps[];
+  links: Link[];
 }
 
 const categoryList = [
@@ -23,7 +23,7 @@ const categoryList = [
   { title: "삭제", image: "/images/delete.png" },
 ];
 
-function CategoryBox({ folder }: { folder: FolderProps }) {
+function CategoryBox({ folder }: { folder: FolderInfo }) {
   return (
     <StyledCategoryBox>
       <h1>{folder.name}</h1>
