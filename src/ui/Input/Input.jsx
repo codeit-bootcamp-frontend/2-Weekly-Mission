@@ -9,6 +9,7 @@ export const EmailInput = () => {
   // focus 유무 감지
   const handleFocusIn = () => {
     setFocus(true);
+    setValueError(null);
   };
   const handleFocusOut = (e) => {
     setFocus(false);
@@ -76,6 +77,7 @@ export const PasswordInput = () => {
   // focus 유무 감지
   const handleFocusIn = () => {
     setFocus(true);
+    setValueError(null);
   };
   const handleFocusOut = (e) => {
     setFocus(false);
@@ -153,6 +155,7 @@ export const PasswordCheckInput = ({ check }) => {
   // focus 유무 감지
   const handleFocusIn = () => {
     setFocus(true);
+    setValueError(null);
   };
   const handleFocusOut = (e) => {
     setFocus(false);
