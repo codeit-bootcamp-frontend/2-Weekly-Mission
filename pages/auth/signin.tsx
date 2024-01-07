@@ -20,7 +20,7 @@ const SignInPage = () => {
           <AuthForm>
             <AuthInputs>
               <AuthInput label="이메일" type="email" placeholder="이메일을 입력해주세요." />
-              <AuthInput label="패스워드" type="password" />
+              <AuthInput label="패스워드" type="password" placeholder="비밀번호를 입력해주세요." />
             </AuthInputs>
             <Cta onClick={() => router.push("/folder")}>로그인</Cta>
           </AuthForm>
