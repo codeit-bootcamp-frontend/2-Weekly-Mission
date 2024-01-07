@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Input.module.css";
 
 export const EmailInput = () => {
@@ -38,8 +38,9 @@ export const EmailInput = () => {
               : `${styles.signInput}`
           }
           id="emailInput"
+          name="email"
           type="email"
-          placeholder="이메일"
+          placeholder="이메일 입력"
           onFocus={handleFocusIn}
           onBlur={handleFocusOut}
         />
@@ -56,9 +57,9 @@ export const EmailInput = () => {
                 올바른 이메일 주소가 아닙니다.
               </p>
             ) : null}
-            <p className={`${styles.errorMessage}`} id="checkValue">
+            {/* <p className={`${styles.errorMessage}`} id="checkValue">
               이메일을 확인해주세요.
-            </p>
+            </p> */}
           </>
         )}
       </div>
@@ -108,7 +109,8 @@ export const PasswordInput = () => {
           }
           id="passwordInput"
           type={inputType}
-          placeholder="비밀번호"
+          name="password"
+          placeholder="비밀번호 입력"
           onFocus={handleFocusIn}
           onBlur={handleFocusOut}
         />
@@ -131,9 +133,9 @@ export const PasswordInput = () => {
                 비밀번호를 입력해주세요.
               </p>
             ) : null}
-            <p className={`${styles.errorMessage}`} id="checkValue">
+            {/* <p className={`${styles.errorMessage}`} id="checkValue">
               비밀번호를 확인해주세요.
-            </p>
+            </p> */}
           </>
         )}
       </div>
@@ -141,11 +143,12 @@ export const PasswordInput = () => {
   );
 };
 
-export const PasswordCheckInput = () => {
+export const PasswordCheckInput = ({ check }) => {
   const [eye, setEye] = useState(false);
   const [inputType, setInputType] = useState("password");
   const [focus, setFocus] = useState(true);
   const [valueError, setValueError] = useState(null);
+  const [checkRequired, setcheckRequired] = useState(check);
 
   // focus 유무 감지
   const handleFocusIn = () => {
@@ -153,7 +156,14 @@ export const PasswordCheckInput = () => {
   };
   const handleFocusOut = (e) => {
     setFocus(false);
-    console.log("Input value:", e.target.value);
+    const inputValue = e.target.value;
+
+    if (!inputValue) {
+      // 값이 없으면
+      setValueError("noValue");
+    } else {
+      setValueError(null);
+    }
   };
 
   // 눈 버튼 클릭으로 변환 (비밀번호만 해당)
@@ -162,7 +172,9 @@ export const PasswordCheckInput = () => {
     setInputType(inputType === "password" ? "text" : "password");
   };
 
-  // useEffect(() => {}, [focus]);
+  useEffect(() => {
+    setcheckRequired(check);
+  }, [check]);
 
   return (
     <>
@@ -171,10 +183,15 @@ export const PasswordCheckInput = () => {
           비밀번호
         </label>
         <input
-          className={`${styles.signInput}`}
-          id="passwordInput"
+          className={
+            valueError
+              ? `${styles.signInput} ${styles.errorInput}`
+              : `${styles.signInput}`
+          }
+          id="passwordCheckInput"
           type={inputType}
-          placeholder="비밀번호"
+          name="passwordCheck"
+          placeholder="비밀번호 재입력"
           onFocus={handleFocusIn}
           onBlur={handleFocusOut}
         />
@@ -192,12 +209,16 @@ export const PasswordCheckInput = () => {
 
         {focus ? null : (
           <>
-            <p className={`${styles.errorMessage}`} id="noValue">
-              비밀번호를 입력해주세요.
-            </p>
-            <p className={`${styles.errorMessage}`} id="checkValue">
-              비밀번호를 확인해주세요.
-            </p>
+            {valueError === "noValue" ? (
+              <p className={`${styles.errorMessage}`} id="noValue">
+                비밀번호를 입력해주세요.
+              </p>
+            ) : null}
+            {checkRequired ? (
+              <p className={`${styles.errorMessage}`} id="wrongPassword">
+                비밀번호가 다릅니다.
+              </p>
+            ) : null}
           </>
         )}
       </div>

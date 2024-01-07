@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 import { EmailInput, PasswordInput } from "ui/Input";
 
 export const SignInPage = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // 폼 기본 동작 방지
+
+    // 여기에서 제출된 데이터를 콘솔에 출력
+    const formData = new FormData(e.target);
+    console.log("Submitted Data:", Object.fromEntries(formData));
+  };
+
   return (
     <div className="signIn">
       <header>
@@ -25,45 +34,11 @@ export const SignInPage = () => {
           className="sign-form"
           method="post"
           action="#"
-          // onSubmit="checkAccount()"
+          onSubmit={handleSubmit}
         >
           <div className="sign-inputs">
             <EmailInput />
             <PasswordInput />
-            {/* <div className="sign-input-box">
-              <label className="sign-input-label" htmlFor="emailInput">
-                이메일
-              </label>
-              <input className="sign-input" id="emailInput" type="email" />
-              <p className="error-message" id="noEmail">
-                이메일을 입력해주세요.
-              </p>
-              <p className="error-message" id="wrongEmail">
-                올바른 이메일 주소가 아닙니다.
-              </p>
-              <p className="error-message" id="checkEmail">
-                이메일을 확인해주세요.
-              </p>
-            </div>
-            <div className="sign-input-box sign-password">
-              <label className="sign-input-label" htmlFor="passwordInput">
-                비밀번호
-              </label>
-              <input
-                className="sign-input"
-                id="passwordInput"
-                type="password"
-              />
-              <button className="eye-button" type="button">
-                <img src="./images/eye-off.svg" id="eye-off" alt="eye-off" />
-              </button>
-              <p className="error-message" id="noPassword">
-                비밀번호를 입력해주세요.
-              </p>
-              <p className="error-message" id="checkPassword">
-                비밀번호를 확인해주세요.
-              </p>
-            </div> */}
           </div>
           <button className="cta" type="submit" id="loginButton">
             로그인
