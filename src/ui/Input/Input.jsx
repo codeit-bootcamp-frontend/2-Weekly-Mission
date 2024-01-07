@@ -32,7 +32,11 @@ export const EmailInput = () => {
           이메일
         </label>
         <input
-          className={`${styles.signInput}`}
+          className={
+            valueError
+              ? `${styles.signInput} ${styles.errorInput}`
+              : `${styles.signInput}`
+          }
           id="emailInput"
           type="email"
           placeholder="이메일"
@@ -97,7 +101,11 @@ export const PasswordInput = () => {
           비밀번호
         </label>
         <input
-          className={`${styles.signInput}`}
+          className={
+            valueError
+              ? `${styles.signInput} ${styles.errorInput}`
+              : `${styles.signInput}`
+          }
           id="passwordInput"
           type={inputType}
           placeholder="비밀번호"
