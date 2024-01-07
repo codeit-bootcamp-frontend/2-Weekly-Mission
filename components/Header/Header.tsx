@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
+
 import Cta from '@/components/Cta/Cta';
 import Profile from '@/components/Profile/Profile';
+
 import styles from './Header.module.css';
+
 import { ROUTE } from '../../util/constant';
 import { LOGO_IMAGE, TEXT } from './constant';
 
