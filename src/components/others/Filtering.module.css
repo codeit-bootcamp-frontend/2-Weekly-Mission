@@ -1,0 +1,41 @@
+.Sorting {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100vw;
+}
+
+.folderNav {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.addFolderButton {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+
+  color: #6d6afe;
+  text-align: center;
+  font-family: Abel;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+}
+
+.folderAddText {
+  text-wrap: nowrap;
+  color: #6d6afe;
+}
+
+.addFolderIcon {
+  width: 16px;
+  height: 16px;
+}
