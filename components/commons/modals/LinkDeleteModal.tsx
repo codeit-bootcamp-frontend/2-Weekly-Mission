@@ -1,14 +1,16 @@
 import CloseButton from "./CloseButton";
-import { DeleteModalModalBox, ModalLayout } from "./styledModal";
+import { DeleteModalModalBox, ModalLayout, RedButton } from "./styledModal";
 
-function LinkDeleteModal() {
+function LinkDeleteModal({ closeModal }: { closeModal: () => void }) {
   return (
     <ModalLayout>
       <DeleteModalModalBox>
-        <CloseButton />
+        <CloseButton closeModal={closeModal} />
         <h3>링크 삭제</h3>
         <p>링크url</p>
-        <button type="button">삭제하기</button>
+        <RedButton onClick={closeModal} type="button">
+          삭제하기
+        </RedButton>
       </DeleteModalModalBox>
     </ModalLayout>
   );

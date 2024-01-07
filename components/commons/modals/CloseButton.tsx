@@ -13,9 +13,9 @@ const Button = styled.div`
   right: 1.6rem;
 `;
 
-function CloseButton() {
+function CloseButton({ closeModal }: { closeModal: () => void }) {
   return (
-    <Button>
+    <Button onClick={closeModal}>
       <img src="/images/closeIcon.png" alt="닫기 아이콘" />
     </Button>
   );

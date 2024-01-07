@@ -19,15 +19,19 @@ interface FolderInfo {
 function FoldersTitles({
   folderList,
   id,
+  openModal,
 }: {
   folderList: FolderInfo[];
   id: number;
+  openModal: (buttonText: string) => void;
 }) {
   return (
     folderList?.length > 0 &&
     folderList.map((folder) => {
       if (folder.id === id) {
-        return <CategoryBox key={folder.id} folder={folder} />;
+        return (
+          <CategoryBox key={folder.id} folder={folder} openModal={openModal} />
+        );
       }
       return null;
     })

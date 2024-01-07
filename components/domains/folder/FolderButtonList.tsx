@@ -2,13 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import { getSelectData } from "../../../pages/api/FolderApi";
 import { Folder } from "../../../types/folder";
-import { Link } from "../../../types/commons";
-
-interface FolderButtonListProps {
-  folderList: Folder[];
-  setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
-  setId: React.Dispatch<React.SetStateAction<number>>;
-}
+import { Link } from "../../../types/common";
 
 function Button({
   folder,
@@ -40,7 +34,13 @@ function FolderButtonList({
   folderList,
   setSelectFolderLinks,
   setId,
-}: FolderButtonListProps) {
+  openModal,
+}: {
+  folderList: Folder[];
+  setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
+  setId: React.Dispatch<React.SetStateAction<number>>;
+  openModal: (buttonText: string) => void;
+}) {
   return (
     <div>
       <StyledButtonBox>
@@ -54,7 +54,13 @@ function FolderButtonList({
             />
           ))}
         </StyledButtons>
-        <StyledAddLink>+</StyledAddLink>
+        <StyledAddLink
+          onClick={() => {
+            openModal("폴더추가");
+          }}
+        >
+          +
+        </StyledAddLink>
       </StyledButtonBox>
     </div>
   );

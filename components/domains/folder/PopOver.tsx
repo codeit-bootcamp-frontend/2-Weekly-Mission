@@ -1,10 +1,30 @@
 import styled from "styled-components";
 
-function PopOver() {
+function PopOver({
+  openModal,
+  setIsPopOver,
+}: {
+  openModal: (buttonText: string) => void;
+  setIsPopOver: (isPopOver: boolean) => void;
+}) {
   return (
     <PopOverLayout>
-      <PopOverButton>삭제하기</PopOverButton>
-      <PopOverButton>폴더에 추가</PopOverButton>
+      <PopOverButton
+        onClick={() => {
+          openModal("링크삭제");
+          setIsPopOver(false);
+        }}
+      >
+        삭제하기
+      </PopOverButton>
+      <PopOverButton
+        onClick={() => {
+          openModal("폴더에 추가");
+          setIsPopOver(false);
+        }}
+      >
+        폴더에 추가
+      </PopOverButton>
     </PopOverLayout>
   );
 }

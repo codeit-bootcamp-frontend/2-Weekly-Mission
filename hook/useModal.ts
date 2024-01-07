@@ -1,24 +1,23 @@
-import { useCallback, useState } from "react";
+import { useState, useCallback } from "react";
 
-function useModal() {
-  const [modals, setModals] = useState({
-    folderAdd: false,
-    folderName: false,
-    folderDelete: false,
-    linkDelete: false,
-    folderShare: false,
-    linkAdd: false,
+const useModal = () => {
+  const [modal, setModal] = useState({
+    name: "",
+    isOpen: false,
   });
 
-  const openModal = useCallback((modalName: string) => {
-    setModals((prev) => ({ ...prev, [modalName]: true }));
+  const openModal = useCallback((buttonText: string) => {
+    setModal({ ...modal, name: buttonText, isOpen: true });
+  }, []);
+  const closeModal = useCallback(() => {
+    setModal({ ...modal, isOpen: false });
   }, []);
 
-  const closeModal = useCallback((modalName: string) => {
-    setModals((prev) => ({ ...prev, [modalName]: false }));
-  }, []);
-
-  return { modals, openModal, closeModal };
-}
+  return {
+    modal,
+    openModal,
+    closeModal,
+  };
+};
 
 export default useModal;

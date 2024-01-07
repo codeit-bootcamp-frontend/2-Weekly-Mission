@@ -1,12 +1,21 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { useState } from "react";
 import CalculateElapsedTime from "../../utils/calculateElapsedTime";
 import ConvertToFormattedDate from "../../utils/convertToFormattedDate";
-import { Link } from "../../types/commons";
+import { Link } from "../../types/common";
+import PopOver from "../domains/folder/PopOver";
 
-function Card({ link }: { link: Link }) {
+function Card({
+  link,
+  openModal,
+}: {
+  link: Link;
+  openModal: (buttonText: string) => void;
+}) {
   const elapseTime = CalculateElapsedTime(link?.create_at || "");
   const postedDate = ConvertToFormattedDate(link?.create_at || "");
+  const [isPopOver, setIsPopOver] = useState(false);
 
   return (
     <CardLayout>
@@ -24,7 +33,13 @@ function Card({ link }: { link: Link }) {
       <CardDescriptionBox>
         <TimeBox>
           <div>{elapseTime}</div>
+          {isPopOver ? (
+            <PopOver setIsPopOver={setIsPopOver} openModal={openModal} />
+          ) : null}
           <Image
+            onClick={() => {
+              setIsPopOver(true);
+            }}
             src="/images/meatball.png"
             alt="팝오버 메뉴아이콘"
             width={21}
@@ -104,11 +119,6 @@ const TimeBox = styled.div`
     font-size: 1.3rem;
     color: rgba(102, 102, 102, 1);
     margin-bottom: 1rem;
-  }
-
-  & img {
-    width: 2.1rem;
-    height: 1.7rem;
   }
 `;
 

@@ -1,9 +1,19 @@
+import React from "react";
 import styled from "styled-components";
 
-function SearchInput() {
+function SearchInput({
+  setInputValue,
+}: {
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+}) {
   return (
     <SearchBox>
-      <input placeholder="링크를 검색해주세요" />
+      <input
+        onChange={(e) => {
+          setInputValue(e.target.value);
+        }}
+        placeholder="링크를 검색해주세요"
+      />
       <img src="/images/search.png" alt="검색 아이콘" />
     </SearchBox>
   );

@@ -23,14 +23,24 @@ const categoryList = [
   { title: "삭제", image: "/images/delete.png" },
 ];
 
-function CategoryBox({ folder }: { folder: FolderInfo }) {
+function CategoryBox({
+  folder,
+  openModal,
+}: {
+  folder: FolderInfo;
+  openModal: (buttonText: string) => void;
+}) {
   return (
     <StyledCategoryBox>
       <h1>{folder.name}</h1>
       {folder.name !== "전체" ? (
         <CategoryList>
           {categoryList.map((category) => (
-            <Category key={folder.id} category={category} />
+            <Category
+              key={folder.id}
+              category={category}
+              openModal={openModal}
+            />
           ))}
         </CategoryList>
       ) : null}

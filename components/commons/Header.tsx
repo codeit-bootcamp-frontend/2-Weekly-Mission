@@ -1,17 +1,28 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { UserInfo } from "../../types/commons";
+import Image from "next/image";
+import { UserInfo } from "../../types/common";
 
 function Header({ user }: { user: UserInfo }) {
   return (
     <HeaderLayout>
       <HeaderBox>
         <Link href="/shared">
-          <img src="/images/logo.png" alt="로고이미지" />
+          <Image
+            width={133}
+            height={24}
+            src="/images/logo.png"
+            alt="로고이미지"
+          />
         </Link>
         {user ? (
           <HeaderProfileBox>
-            <img src={user?.profileImageSource} alt="프로필 아이콘" />
+            <Image
+              width={28}
+              height={28}
+              src={user?.profileImageSource}
+              alt="프로필 아이콘"
+            />
             <div>{user?.email}</div>
           </HeaderProfileBox>
         ) : (
@@ -56,8 +67,6 @@ const HeaderProfileBox = styled.div`
   align-items: center;
 
   & img {
-    width: 2.8rem;
-    height: 2.8rem;
     border-radius: 50%;
     margin-right: 0.5rem;
   }

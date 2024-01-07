@@ -1,25 +1,23 @@
 import styled from "styled-components";
-import useModal from "../../../../hook/useModal";
 
 interface CategoryInfo {
   title: string;
   image: string;
 }
 
-function Category({ category }: { category: CategoryInfo }) {
+function Category({
+  category,
+  openModal,
+}: {
+  category: CategoryInfo;
+  openModal: (buttonText: string) => void;
+}) {
   const { title, image } = category;
-  const { openModal } = useModal();
-
-  const handleCategoryClick = (categoryTitle: string) => {
-    if (categoryTitle === "삭제") {
-      openModal("folderDelete");
-    }
-  };
 
   return (
     <StyledCategory
       onClick={() => {
-        handleCategoryClick(title);
+        openModal(`${title}`);
       }}
     >
       <img src={image} alt={`${title} 아이콘`} />

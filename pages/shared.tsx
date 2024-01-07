@@ -26,12 +26,27 @@ function SharedPage() {
       },
     ],
   });
+  const [inputValue, setInputValue] = useState<string>();
 
   const handleFolderLoad = async () => {
     const { folder } = await getSharedData();
     setSharedFolder({
       ...folder,
       links: folder.links,
+    });
+  };
+
+  const searchLink = async () => {
+    const filteredLinks = sharedFolder.links.filter(
+      (link) =>
+        inputValue === link.url ||
+        inputValue === link.title ||
+        inputValue === link.description
+    );
+    const { folder } = await getSharedData();
+    setSharedFolder({
+      ...folder,
+      links: filteredLinks,
     });
   };
 
@@ -44,7 +59,7 @@ function SharedPage() {
       <Banner folder={sharedFolder} />
       <section className={styles.contentFlax}>
         <div className={styles.contentBox}>
-          <SearchInput />
+          <SearchInput searchLink={searchLink} setInputValue={setInputValue} />
           <CardList links={sharedFolder?.links} />;
         </div>
       </section>

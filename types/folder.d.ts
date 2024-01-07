@@ -1,4 +1,4 @@
-import { Link } from "./commons";
+import { Link } from "./common";
 
 export interface Folder {
   id: number;
