@@ -12,7 +12,7 @@ function LandingHeader() {
             쉽게 저장하고 <br />
             관리해 보세요
           </S.Slogan>
-          <Link href="/folder">
+          <Link href="/auth/signin">
             <CtaLong>
               <p>구경 해보기</p>
             </CtaLong>

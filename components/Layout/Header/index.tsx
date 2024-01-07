@@ -30,7 +30,8 @@ function Header() {
 
   //현재 로그인 기능이 존재하지 않기 때문에 toggle로써의 기능만 가짐.
   const onLogin = () => {
-    setIsLogin((prev) => !prev);
+    // setIsLogin((prev) => !prev);
+    router.push("/auth/signin");
   };
 
   return (
