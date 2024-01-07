@@ -1,6 +1,6 @@
 import "./SignInPage.css";
 import { Link } from "react-router-dom";
-import { Input } from "ui/Input";
+import { EmailInput, PasswordInput } from "ui/Input";
 
 export const SignInPage = () => {
   return (
@@ -25,13 +25,13 @@ export const SignInPage = () => {
           className="sign-form"
           method="post"
           action="#"
-          onsubmit="checkAccount()"
+          onSubmit="checkAccount()"
         >
           <div className="sign-inputs">
             <p>Input component하는 중</p>
-            <Input label="이메일" type="email" />
-            <Input label="비밀번호" type="password" />
-            <div className="sign-input-box">
+            <EmailInput />
+            <PasswordInput />
+            {/* <div className="sign-input-box">
               <label className="sign-input-label" htmlFor="emailInput">
                 이메일
               </label>
@@ -64,7 +64,7 @@ export const SignInPage = () => {
               <p className="error-message" id="checkPassword">
                 비밀번호를 확인해주세요.
               </p>
-            </div>
+            </div> */}
           </div>
           <button className="cta" type="submit" id="loginButton">
             로그인
