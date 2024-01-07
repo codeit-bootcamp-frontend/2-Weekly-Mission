@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import Image from "next/image";
 import { Folder } from "../../../types/shared";
 
 function Banner({ folder }: { folder: Folder }) {
   return (
     <BannerLayout>
       <BannerBox>
-        <BannerImage
+        <Image
+          width={60}
+          height={60}
           src={folder.owner.profileImageSource}
           alt="배너 프로필 이미지"
         />
@@ -29,9 +32,7 @@ const BannerBox = styled.section`
   gap: 2rem;
   margin: 0 auto;
 `;
-const BannerImage = styled.img`
-  width: 6rem;
-`;
+
 const BannerText = styled.div`
   font-size: 1.6rem;
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 function Footer() {
   return (
@@ -10,16 +11,36 @@ function Footer() {
       </FooterLinkBox>
       <FooterSnsBox>
         <a href="https://www.facebook.com" target="facebook">
-          <img src="images/facebook.png" alt="페이스북 아이콘" />
+          <Image
+            width={20}
+            height={16}
+            src="/images/facebook.png"
+            alt="페이스북 아이콘"
+          />
         </a>
         <a href="https://twitter.com/?lang=ko" target="twitter">
-          <img src="/images/twitter.png" alt="트위터 아이콘" />
+          <Image
+            width={20}
+            height={16}
+            src="/images/twitter.png"
+            alt="트위터 아이콘"
+          />
         </a>
         <a href="https://www.youtube.com" target="youtube">
-          <img src="/images/youtube.png" alt="유튜브 아이콘" />
+          <Image
+            width={20}
+            height={16}
+            src="/images/youtube.png"
+            alt="유튜브 아이콘"
+          />
         </a>
         <a href="https://www.instagram.com" target="instagram">
-          <img src="/images/instagram.png" alt="인스타 아이콘" />
+          <Image
+            width={20}
+            height={16}
+            src="/images/instagram.png"
+            alt="인스타 아이콘"
+          />
         </a>
       </FooterSnsBox>
     </FooterLayout>
@@ -65,10 +86,6 @@ const FooterSnsBox = styled.div`
   display: flex;
   align-items: center;
   gap: 1.2rem;
-
-  &a img {
-    width: 2rem;
-  }
 `;
 
 export default Footer;

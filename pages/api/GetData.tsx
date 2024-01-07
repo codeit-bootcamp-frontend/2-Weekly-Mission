@@ -29,7 +29,7 @@ const convertToSnakeCase = (data: SharedFolderInfo) => {
     const convertedLink = Object.fromEntries(
       Object.entries(link).map(([key, value]) => [
         key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`),
-        key === "createdAt" ? "create_at" : value,
+        value,
       ])
     );
     return convertedLink;

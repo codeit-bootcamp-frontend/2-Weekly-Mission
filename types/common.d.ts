@@ -4,7 +4,7 @@ export interface Link {
   title: string;
   description?: string;
   image_source: string;
-  create_at: string;
+  created_at: string;
 }
 
 export interface UserInfo {

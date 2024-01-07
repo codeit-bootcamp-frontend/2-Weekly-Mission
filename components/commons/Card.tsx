@@ -13,8 +13,8 @@ function Card({
   link: Link;
   openModal: (buttonText: string) => void;
 }) {
-  const elapseTime = CalculateElapsedTime(link?.create_at || "");
-  const postedDate = ConvertToFormattedDate(link?.create_at || "");
+  const elapseTime = CalculateElapsedTime(link?.created_at || "");
+  const postedDate = ConvertToFormattedDate(link?.created_at || "");
   const [isPopOver, setIsPopOver] = useState(false);
 
   return (
@@ -87,6 +87,7 @@ const CardNoImage = styled(Image)`
   object-fit: cover;
   width: 100%;
 `;
+
 const CardDescriptionBox = styled.div`
   width: 100%;
   height: 100%;

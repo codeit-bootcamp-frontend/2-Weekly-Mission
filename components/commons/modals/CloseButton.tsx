@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 const Button = styled.div`
   width: 2.4rem;
@@ -16,7 +17,12 @@ const Button = styled.div`
 function CloseButton({ closeModal }: { closeModal: () => void }) {
   return (
     <Button onClick={closeModal}>
-      <img src="/images/closeIcon.png" alt="닫기 아이콘" />
+      <Image
+        width={24}
+        height={24}
+        src="/images/modal-close.png"
+        alt="닫기 아이콘"
+      />
     </Button>
   );
 }

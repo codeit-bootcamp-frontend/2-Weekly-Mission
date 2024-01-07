@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 interface CategoryInfo {
   title: string;
@@ -20,7 +21,7 @@ function Category({
         openModal(`${title}`);
       }}
     >
-      <img src={image} alt={`${title} 아이콘`} />
+      <Image width={10} height={10} src={image} alt={`${title} 아이콘`} />
       <div>{title}</div>
     </StyledCategory>
   );

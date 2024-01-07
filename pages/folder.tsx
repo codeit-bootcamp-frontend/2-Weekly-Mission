@@ -14,6 +14,8 @@ function FolderPage({ openModal }: { openModal: () => void }) {
   const [folderList, setFolderList] = useState<Folder[]>([]);
   const [selectFolderLinks, setSelectFolderLinks] = useState<Link[]>([]);
   const [id, setId] = useState<number>(0);
+  const [searchLinks, setSearchLinks] = useState<Link[]>([]);
+  const [searchResult, setSearchResult] = useState<string>("");
 
   const handleFoldersLoad = async () => {
     const allLinksFolder: Folder = {
@@ -27,7 +29,7 @@ function FolderPage({ openModal }: { openModal: () => void }) {
           url: "",
           title: "",
           image_source: "",
-          create_at: "",
+          created_at: "",
         },
       ],
     };
@@ -35,6 +37,16 @@ function FolderPage({ openModal }: { openModal: () => void }) {
     const { data } = await getFoldersData();
     allLinksFolder.links = allData.data;
     setFolderList([allLinksFolder, ...data]);
+  };
+
+  const searchLink = async (keyword: string) => {
+    const filteredLinks = folderList[0].links?.filter(
+      (link: Link) =>
+        link.url?.includes(keyword) ||
+        link.title?.includes(keyword) ||
+        link.description?.includes(keyword)
+    );
+    setSearchLinks(filteredLinks);
   };
 
   useEffect(() => {
@@ -46,22 +58,33 @@ function FolderPage({ openModal }: { openModal: () => void }) {
       <Banner openModal={openModal} />
       <section className={styles.contentFlax}>
         <div className={styles.contentBox}>
-          <SearchInput />
+          <SearchInput
+            searchResult={searchResult}
+            setSearchResult={setSearchResult}
+            searchLink={searchLink}
+          />
           <FolderButtonList
             folderList={folderList}
             setSelectFolderLinks={setSelectFolderLinks}
             setId={setId}
             openModal={openModal}
           />
-          <FolderTitles openModal={openModal} folderList={folderList} id={id} />
-          {id === 0 ? (
+          <FolderTitles
+            searchResult={searchResult}
+            openModal={openModal}
+            folderList={folderList}
+            id={id}
+          />
+          {searchResult !== "" ? (
+            <CardList links={searchLinks} openModal={openModal} />
+          ) : id === 0 ? (
             <CardList openModal={openModal} links={folderList[0]?.links} />
-          ) : selectFolderLinks.length === 0 ? (
+          ) : selectFolderLinks.length !== 0 ? (
+            <CardList links={selectFolderLinks} openModal={openModal} />
+          ) : (
             <div className={styles.linksNull}>
               <div>저장된 링크가 없습니다.</div>
             </div>
-          ) : (
-            <CardList links={selectFolderLinks} openModal={openModal} />
           )}
         </div>
       </section>

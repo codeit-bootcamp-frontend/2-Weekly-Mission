@@ -1,36 +1,28 @@
 import CategoryBox from "./CategoryBox";
-
-interface Link {
-  id: number;
-  create_at: string;
-  image_source: string;
-  title: string;
-  url: string;
-}
-
-interface FolderInfo {
-  id: number;
-  favorite: boolean;
-  name: string;
-  user_id: number;
-  links: Link[];
-}
+import { Folder } from "../../../../types/folder";
 
 function FoldersTitles({
   folderList,
   id,
   openModal,
+  searchResult,
 }: {
-  folderList: FolderInfo[];
+  folderList: Folder[];
   id: number;
   openModal: (buttonText: string) => void;
+  searchResult: string;
 }) {
   return (
     folderList?.length > 0 &&
     folderList.map((folder) => {
       if (folder.id === id) {
         return (
-          <CategoryBox key={folder.id} folder={folder} openModal={openModal} />
+          <CategoryBox
+            searchResult={searchResult}
+            key={folder.id}
+            folder={folder}
+            openModal={openModal}
+          />
         );
       }
       return null;

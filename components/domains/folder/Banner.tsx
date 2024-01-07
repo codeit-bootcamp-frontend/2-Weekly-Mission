@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import React from "react";
+import Image from "next/image";
 
 function Banner({ openModal }: { openModal: (buttonText: string) => void }) {
   return (
     <BannerLayout>
       <BannerBox>
         <input placeholder="링크를 추가해 보세요" />
-        <img src="/images/linkIcon.png" alt="링크 아이콘" />
+        <Image
+          width={20}
+          height={20}
+          src="/images/linkIcon.png"
+          alt="링크 아이콘"
+        />
         <button
           onClick={() => {
             openModal("폴더에 추가");

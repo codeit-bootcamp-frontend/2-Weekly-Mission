@@ -1,21 +1,52 @@
 import React from "react";
+import Image from "next/image";
 import styled from "styled-components";
 
 function SearchInput({
-  setInputValue,
+  searchLink,
+  searchResult,
+  setSearchResult,
 }: {
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  searchLink: (value: string) => void;
+  searchResult: string;
+  setSearchResult: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
-    <SearchBox>
-      <input
-        onChange={(e) => {
-          setInputValue(e.target.value);
-        }}
-        placeholder="링크를 검색해주세요"
-      />
-      <img src="/images/search.png" alt="검색 아이콘" />
-    </SearchBox>
+    <>
+      <SearchBox>
+        <input
+          onChange={(e) => {
+            searchLink(e.target.value);
+            setSearchResult(e.target.value);
+          }}
+          placeholder="링크를 검색해주세요"
+        />
+        <Image
+          width={16}
+          height={16}
+          src="/images/search.png"
+          alt="검색 아이콘"
+        />
+        <DeleteButton
+          onClick={() => {
+            searchLink("");
+            setSearchResult("");
+          }}
+        >
+          <Image
+            width={24}
+            height={24}
+            src="/images/search-close.png"
+            alt="검색어 삭제 아이콘"
+          />
+        </DeleteButton>
+      </SearchBox>
+      {searchResult !== "" ? (
+        <SearchResult>
+          <span>{searchResult}</span>로 검색한 결과입니다.
+        </SearchResult>
+      ) : null}
+    </>
   );
 }
 
@@ -30,13 +61,30 @@ const SearchBox = styled.div`
     border: none;
     border-radius: 1rem;
     background-color: rgb(245, 245, 245, 1);
-    position: relative;
   }
 
   & img {
     position: absolute;
     left: 1.8rem;
     top: 32.5%;
+  }
+`;
+
+const DeleteButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 4.8rem;
+  top: 23%;
+`;
+
+const SearchResult = styled.div`
+  font-size: 3.2rem;
+  margin-bottom: 4rem;
+  color: rgba(159, 166, 178, 1);
+  & span {
+    color: rgba(55, 55, 64, 1);
   }
 `;
 
