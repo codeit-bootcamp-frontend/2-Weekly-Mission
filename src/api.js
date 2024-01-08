@@ -12,10 +12,20 @@ export async function getProfile() {
   return userType;
 }
 
-//이 부분에는 이상없고
-
 export async function getFolderList() {
   const response = await fetch(`${BASE_URL}api/users/1/folders`);
   const folderList = await response.json();
   return folderList;
+}
+
+export async function getFolderPageUsers() {
+  const response = await fetch(`${BASE_URL}api/users/1`);
+  const FolderPageUsers = await response.json();
+  return FolderPageUsers;
+}
+
+export async function getFolderListAllMenu() {
+  const response = await fetch(`${BASE_URL}api/users/1/links`);
+  const FolderListAllMenu = await response.json();
+  return FolderListAllMenu;
 }
