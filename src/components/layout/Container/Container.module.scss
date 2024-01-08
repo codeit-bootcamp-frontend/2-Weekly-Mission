@@ -1,0 +1,12 @@
+$lg-header-height: 9.3rem;
+$lg-footer-height: 16.4rem;
+$sm-header-height: 6.3rem;
+$sm-footer-height: 16rem;
+
+.container {
+  min-height: calc(100vh - ($lg-header-height + $lg-footer-height));
+
+  @include responsive(M) {
+    min-height: calc(100vh - ($sm-header-height + $sm-footer-height));
+  }
+}
