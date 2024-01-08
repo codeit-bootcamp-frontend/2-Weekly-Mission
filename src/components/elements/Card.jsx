@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import emptyLogo from "../../images/card-logo.svg";
-import kebab from "../../images/kebab.svg";
+
 import { formatDate, timeAgo } from "../../utils/formatDate";
 import COLOR_TOKEN from "../../styles/colors";
+import star from "../../images/star.svg";
+import emptyLogo from "../../images/card-logo.svg";
+import kebab from "../../images/kebab.svg";
 
 function Card({ link, handleCardClick }) {
   const { createdAt, url, description, imageSource } = link;
@@ -10,6 +12,7 @@ function Card({ link, handleCardClick }) {
 
   return (
     <Container>
+      <Star src={star} alt="즐겨찾기" />
       <ImageSection onClick={onClick}>
         {imageSource ? (
           <CardImage src={imageSource} alt="카드 이미지" />
@@ -56,6 +59,21 @@ const InfoSection = styled.div`
   height: 13.4rem;
 `;
 
+const Star = styled.img`
+  display: none;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  width: 3.4rem;
+  height: 3.4rem;
+  flex-shrink: 0;
+  z-index: 1;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const Kebab = styled.img`
   display: none;
   width: 2.1rem;
@@ -67,6 +85,7 @@ const Kebab = styled.img`
 `;
 
 const Container = styled.div`
+  position: relative;
   width: 32.5rem;
   height: 32.7rem;
   border-radius: 1.5rem;
@@ -88,6 +107,10 @@ const Container = styled.div`
     }
 
     ${Kebab} {
+      display: block;
+    }
+
+    ${Star} {
       display: block;
     }
   }
