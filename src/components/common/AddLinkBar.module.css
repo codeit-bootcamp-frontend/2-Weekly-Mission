@@ -1,0 +1,57 @@
+.AddLinkBar__container {
+  background-color: var(--linkbrary-bg, #f0f6ff);
+  padding-top: 60px;
+  padding-bottom: 90px;
+  margin-inline: -32px;
+  display: flex;
+  justify-content: center;
+
+  z-index: 2;
+}
+
+.AddLinkBar {
+  border-radius: 15px;
+  border: 1px solid var(--linkbrary-primary-color, #6d6afe);
+  background: var(--linkbrary-white, #fff);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 800px;
+  padding: 16px 20px;
+  margin: 0 auto;
+
+  @media (max-width: 1200px) {
+    margin: 0 32px;
+    width: 100vw;
+  }
+}
+
+.AddLinkBar__input {
+  background: var(--linkbrary-white, #fff);
+  margin-left: 12px;
+  flex-grow: 1;
+  border: none;
+}
+
+.AddLinkBar__container_forSticked {
+  background-color: var(--linkbrary-bg, #f0f6ff);
+  padding: 24px;
+  margin-inline: -32px;
+  display: flex;
+  justify-content: center;
+
+  z-index: 2;
+}
+
+.StickToBottom {
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hide {
+  display: none;
+}
