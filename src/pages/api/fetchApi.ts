@@ -1,9 +1,22 @@
 import API from 'constants/api';
-// 공유한 폴더의 정보
+import { SampleUserFolder, UserLinkItem, linkItem } from 'constants/type';
+
+const convertToSnakeCase = (links: UserLinkItem[]): linkItem[] => {
+  const convertedLinks = links.map((link) => {
+    return Object.fromEntries(
+      Object.entries(link).map(([key, value]) => [key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`), value])
+    ) as linkItem;
+  });
+  return convertedLinks;
+};
+
 export async function getSampleUserFolder() {
   const result = await fetch(API.SAMPLE_FOLDER);
-  const body = await result.json();
-  return body;
+  const { folder } = await result.json();
+  const { links } = folder;
+  folder.links = convertToSnakeCase(links);
+
+  return folder as SampleUserFolder;
 }
 
 export async function getFolder() {

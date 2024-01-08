@@ -48,5 +48,5 @@ export interface SampleUserFolder {
     name: string;
     profileImageSource: string;
   };
-  links: UserLinkItem[];
+  links: linkItem[];
 }
