@@ -2,9 +2,16 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { END_POINT } from "@/lib/constents";
 import { LinkData } from "@/types/folder.type";
 import { Links } from "@/types/global.type";
+import dbConnect from "@/db/dbConnect";
+import mongoose from "mongoose";
+import FolderModel from "@/db/models/FolderModel";
 
 async function hanlder(req: NextApiRequest, res: NextApiResponse) {
   let url = `${END_POINT}/users/${1}/links`;
+
+  await dbConnect();
+  console.log(mongoose.connection.readyState);
+  console.log(FolderModel);
 
   const { data: links } = await fetch(url)
     .then((res) => res.json())

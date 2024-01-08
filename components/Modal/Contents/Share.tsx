@@ -6,6 +6,8 @@ import * as S from "./styled";
 import kakao from "@/public/icons/modal/kakao.png";
 import facebook from "@/public/icons/modal/facebook.png";
 import copyLink from "@/public/icons/modal/copyLink.png";
+import Head from "next/head";
+import Script from "next/script";
 
 declare global {
   interface Window {
@@ -20,7 +22,6 @@ function Share() {
   const shareUrl = `https://${host}/shared?user=${userId}&folder=${folderId}`;
 
   const shareToKaKao = () => {
-    //key가 존재하지 않아 의도적으로 막아둠.
     if (!window.Kakao || !window.Kakao.isInitialized()) {
       console.error("Kakao SDK not initialized");
       return;
@@ -55,14 +56,19 @@ function Share() {
     navigator.clipboard.writeText(shareUrl).then(() => alert("링크가 복사되었습니다."));
   };
 
-  useEffect(() => {
-    if (window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init(process.env.REACT_APP_ACCESS_KEY);
-    }
-  }, []);
-
   return (
     <>
+      <Script
+        src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
+        integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8"
+        crossOrigin="anonymous"
+        onLoad={() => {
+          if (window.Kakao && !window.Kakao.isInitialized()) {
+            0;
+            window.Kakao.init(process.env.NEXT_PUBLIC_ACCESS_KEY);
+          }
+        }}
+      ></Script>
       <S.TitleWrapper>
         <S.Title>폴더 공유</S.Title>
         <S.SubTitle>폴더 명</S.SubTitle>
