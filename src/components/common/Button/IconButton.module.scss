@@ -1,0 +1,118 @@
+// [IconButton]
+%ic-btn-base {
+  @include inline-flexbox;
+
+  text-align: center;
+  cursor: pointer;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}
+
+.ic-btn {
+  @extend %ic-btn-base;
+
+  &-default {
+    display: block;
+  }
+
+  &-lg {
+    display: block;
+
+    @include responsive('M') {
+      display: none;
+    }
+  }
+
+  &-sm {
+    display: none;
+
+    @include responsive('M') {
+      display: block;
+    }
+  }
+
+  &-icon {
+    &-white {
+      fill: $white;
+    }
+  }
+}
+
+// [MixButton]아이콘+텍스트 | 텍스트+아이콘
+.mx-btn {
+  @include inline-flexbox;
+
+  gap: 0.4rem;
+
+  img {
+    vertical-align: bottom;
+  }
+
+  &-text {
+    margin: 0 0.4rem;
+
+    &-14 {
+      @include text-style(14);
+    }
+
+    &-16 {
+      @include text-style(16);
+    }
+
+    &-20 {
+      @include text-style(20);
+    }
+
+    &-24 {
+      @include text-style(24);
+    }
+  }
+
+  &-fill {
+    padding: 0.8rem 2.4rem;
+    border: 0.1rem solid #fff;
+    border-radius: 2rem;
+    background-color: $primary;
+
+    &:focus {
+      padding: 0.8rem 2.4rem;
+    }
+  }
+
+  &-default {
+    display: block;
+  }
+
+  &-lg {
+    opacity: 1;
+    visibility: visible;
+
+    @include responsive('M') {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &-sm {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    bottom: 10.1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: $fix-button-level;
+    transition: all ease-in-out 0.2s;
+
+    @include responsive('M') {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

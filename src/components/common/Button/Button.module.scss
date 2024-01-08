@@ -1,0 +1,52 @@
+%btn-base {
+  @include inline-flexbox;
+  @include text-style(16, $gray-20);
+
+  text-align: center;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  padding: 1.6rem 0;
+  cursor: pointer;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus {
+    padding: 1.6rem 0;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}
+
+.btn-primary {
+  @extend %btn-base;
+
+  background: $gradation;
+}
+
+.btn-delete {
+  @extend %btn-base;
+
+  background: $red;
+}
+
+.btn-sm {
+  padding: 1rem 0;
+  width: 8rem;
+
+  &:focus {
+    padding: 1rem 0;
+  }
+}
+
+.btn-md {
+  width: 12.8rem;
+}
+
+.btn-lg {
+  width: 100%;
+}
