@@ -1,3 +1,5 @@
+import Navbar from '@/components/Navbar/Navbar';
+
 export default function index() {
-  return <div>즐겨찾기 페이지</div>;
+  return <Navbar userId='1' className='sticky' />;
 }
