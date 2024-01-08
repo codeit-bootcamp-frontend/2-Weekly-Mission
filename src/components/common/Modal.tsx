@@ -1,4 +1,3 @@
-import closeIcon from 'assets/close.svg';
 import clsx from 'clsx';
 import { MouseEventHandler, ReactNode, forwardRef } from 'react';
 
@@ -34,7 +33,7 @@ const Modal = forwardRef<HTMLDialogElement | null, ModalProps>(
               onCloseModal(e);
             }}
           >
-            <img className={styles.modalCloseButton} src={closeIcon} alt="" />
+            <img className={styles.modalCloseButton} src="/assets/close.svg" alt="" />
           </button>
           <div className={styles.modalTitle}>{title}</div>
           <div className={styles.modalSubTitle}>{subTitle}</div>

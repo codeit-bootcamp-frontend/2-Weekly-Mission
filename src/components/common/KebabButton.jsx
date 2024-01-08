@@ -1,5 +1,3 @@
-import checkedIcon from 'assets/checked.svg';
-import kebapImg from 'assets/kebab.png';
 import clsx from 'clsx';
 import Modal from 'components/common/Modal';
 import stylesForModal from 'components/common/Modal.module.css';
@@ -32,7 +30,7 @@ export default function KebabButtons({ link }) {
   return (
     <div ref={selectorRef}>
       <button className={styles.kebabButton} onClick={handlePreventDefault}>
-        <img className={styles.moreInfoCebap} src={kebapImg}></img>
+        <img className={styles.moreInfoCebap} src="/assets/kebab.png"></img>
       </button>
       {isOpened && (
         <Selector openLinkDeleteModal={openLinkDeleteModal} openLinkAddToFolderModal={openLinkAddToFolderModal} />
@@ -63,7 +61,7 @@ export default function KebabButtons({ link }) {
                   <div className={stylesForModal.folderItemName}>{folderInfo.name}</div>
                   <div className={stylesForModal.folderItemLinkCount}>{folderInfo.link.count}개 링크</div>
                 </div>
-                {selectedFolderId === folderInfo.id && <img src={checkedIcon}></img>}
+                {selectedFolderId === folderInfo.id && <img src="/assets/checked.svg"></img>}
               </button>
             );
           })}

@@ -1,4 +1,3 @@
-import addIcon from 'assets/add.png';
 import { useMediaQuery } from 'react-responsive';
 import useModal from 'hooks/useModal';
 import Modal from 'components/common/Modal';
@@ -16,7 +15,7 @@ export default function FloatingActionButton() {
         <div className={styles.FloatingActionButtonContainer}>
           <button className={styles.FloatingActionButton} onClick={openAddFolderModal}>
             <div>폴더추가</div>
-            {/* <img className={styles.FloatingActionButtonIcon} src={addIcon}></img> */}
+            <img className={styles.FloatingActionButtonIcon} src="/assets/add.png"></img>
           </button>
         </div>
       )}

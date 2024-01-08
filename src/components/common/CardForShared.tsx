@@ -1,7 +1,6 @@
-import emptyCard from 'assets/emptyCard.jpeg';
 import styles from 'components/common/Card.module.css';
 import Stars from 'components/common/Stars';
-import { UserLinkItem, linkItem } from 'constants/type';
+import { linkItem } from 'constants/type';
 import { getShortDescription, getYYYYMMYY, timeAgo } from 'utils/formatting';
 
 function CardItemForShared({ link }: { link: linkItem }) {
@@ -9,7 +8,7 @@ function CardItemForShared({ link }: { link: linkItem }) {
     <div className={styles.CardItem}>
       <a className={styles.contentBox} href={link.url} target="_blank" rel="noreferrer">
         <div className={styles.imgContainer}>
-          <img className={styles.contentImage} src={link.image_source ?? emptyCard}></img>
+          <img className={styles.contentImage} src={link.image_source ?? '/assets/emptyCard.jpeg'}></img>
           <Stars />
         </div>
         <section className={styles.contentText}>

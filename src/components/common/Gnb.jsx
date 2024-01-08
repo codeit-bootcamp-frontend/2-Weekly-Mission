@@ -1,4 +1,3 @@
-import logoImg from 'assets/logo.svg';
 import LoginButton from 'components/common/LoginButton';
 import Profile from 'components/others/Profile';
 import { getUser } from 'pages/api/fetchApi';
@@ -30,7 +29,7 @@ function Gnb() {
     <nav className={styles.navContainer}>
       <div className={styles.nav}>
         <a href="index.html">
-          <img src={logoImg} className="logo-img" alt="홈으로 연결된 Linkbrary 로고" />
+          <img src="/assets/logo.svg" className="logo-img" alt="홈으로 연결된 Linkbrary 로고" />
         </a>
         {didLogin ? <Profile profile={profile} /> : <LoginButton />}
       </div>

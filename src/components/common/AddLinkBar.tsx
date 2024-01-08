@@ -1,4 +1,3 @@
-import linkIcon from 'assets/link.svg';
 import CTA from 'components/common/CTA';
 
 import styles from './AddLinkBar.module.css';
@@ -8,7 +7,7 @@ export default function AddLinkBar() {
   return (
     <div className={styles.AddLinkBar__container}>
       <div className={styles.AddLinkBar}>
-        <img src={linkIcon}></img>
+        <img src="/assets/link.svg"></img>
         <input className={styles.AddLinkBar__input} placeholder="링크를 추가해보세요" />
         <CTA />
       </div>

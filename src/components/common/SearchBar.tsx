@@ -1,5 +1,3 @@
-import closeIcon from 'assets/_close.png';
-import searchIcon from 'assets/Search.svg';
 import { linkItem } from 'constants/type';
 import { useSearchContext } from 'context/SearchContext';
 import { useEffect } from 'react';
@@ -26,7 +24,7 @@ export default function SearchBar({ filterLinks, setFilteredLinks }: SearchBarPr
   return (
     <div className={styles.SearchBarContainer}>
       <div className={styles.SearchBar}>
-        <img className={styles.SearchBarIcon} src={searchIcon}></img>
+        <img className={styles.SearchBarIcon} src="/assets/Search.svg"></img>
         <input
           onChange={handleChangeSearchValue}
           value={searchValue}
@@ -38,7 +36,7 @@ export default function SearchBar({ filterLinks, setFilteredLinks }: SearchBarPr
             setSearchValue('');
           }}
         >
-          <img className={styles.SearchBarResetIcon} src={closeIcon} alt="닫기 버튼 아이콘" />
+          <img className={styles.SearchBarResetIcon} src="/assets/_close.png" alt="닫기 버튼 아이콘" />
         </button>
       </div>
     </div>

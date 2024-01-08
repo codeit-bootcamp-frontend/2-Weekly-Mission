@@ -1,5 +1,3 @@
-import starIcon from 'assets/star_empty.svg';
-import fullStarIcon from 'assets/star-full.svg';
 import useToggle from 'hooks/useToggle';
 
 import styles from './Stars.module.css';
@@ -11,7 +9,7 @@ export default function Stars() {
   };
   return (
     <button className={styles.starToggle} onClick={handlePreventDefault}>
-      <img src={isFullStar ? fullStarIcon : starIcon} onClick={setIsFullStar}></img>
+      <img src={isFullStar ? '/assets/star-full.svg' : '/assets/star_empty.svg'} onClick={setIsFullStar}></img>
     </button>
   );
 }

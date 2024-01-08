@@ -1,4 +1,3 @@
-import addFolderIcon from 'assets/add-purple.png';
 import FolderButton from 'components/common/FolderButton';
 import Modal from 'components/common/Modal';
 import stylesForModal from 'components/common/Modal.module.css';
@@ -41,7 +40,7 @@ export default function Filtering({ chosenFolderId, folder }: FilteringProps) {
           <button onClick={openAddFolderModal} className={styles.folderAddText}>
             폴더 추가
           </button>
-          <img className={styles.addFolderIcon} src={addFolderIcon}></img>
+          <img className={styles.addFolderIcon} src="/assets/add-purple.png"></img>
         </div>
       )}
 

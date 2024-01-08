@@ -1,4 +1,4 @@
-import 'assets/reset.css';
+import '/public/assets/reset.css';
 import Footer from 'components/common/Footer';
 import Gnb from 'components/common/Gnb';
 
