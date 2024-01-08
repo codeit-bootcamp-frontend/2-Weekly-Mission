@@ -1,0 +1,128 @@
+%tab-base {
+  @include inline-flexbox;
+
+  font-weight: 400;
+  border-radius: 5px;
+}
+
+.filter {
+  @include flexbox(between, center);
+
+  &-list {
+    @include flexbox(start, center);
+
+    &-item:not(:last-child) {
+      margin-right: 8px;
+
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  &-outlined {
+    @extend %tab-base;
+    @include text-style(16);
+
+    color: $black;
+    border: 1px solid $primary;
+    transition: background-color 200ms ease-in-out;
+
+    &:not(:disabled):hover {
+      background-color: $blue-gray-40;
+    }
+
+    &.is-active {
+      color: $white;
+      background-color: $primary;
+
+      &:not(:disabled):hover {
+        background-color: #504cff;
+      }
+    }
+
+    @include responsive(M) {
+      &:not(:disabled):hover {
+        background-color: $white;
+      }
+
+      &.is-active {
+        &:not(:disabled):hover {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+
+  &-lg {
+    &-name {
+      padding: 8px 12px;
+    }
+  }
+
+  &-sm {
+    &-name {
+      padding: 6px 14px;
+    }
+  }
+
+  .add-filter-sm {
+    position: fixed;
+    bottom: 10.1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: $fix-button-level;
+    opacity: 0;
+    visibility: none;
+    transition: all ease-in-out 0.2s;
+
+    &.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @include responsive(T) {
+    position: relative;
+
+    &-list {
+      flex-wrap: wrap;
+
+      &-item {
+        padding-bottom: 1.2rem;
+      }
+    }
+
+    .add-filter-lg {
+      position: absolute;
+      top: 1.5rem;
+      right: 0;
+    }
+  }
+
+  @include responsive(M) {
+    &-list {
+      flex-wrap: wrap;
+
+      &-item {
+        padding-bottom: 1.2rem;
+      }
+    }
+
+    .add-filter-lg {
+      display: none;
+    }
+
+    .add-filter-sm {
+      @include flexbox;
+
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.modal-content {
+  width: 100%;
+  margin-bottom: 2.4rem;
+}

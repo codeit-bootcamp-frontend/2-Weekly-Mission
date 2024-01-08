@@ -1,0 +1,28 @@
+.filter-content {
+  margin-top: 4rem;
+
+  &-header {
+    @include flexbox(between, center);
+
+    height: 2.9rem;
+    margin: 2.4rem 0;
+
+    &-title {
+      @include text-style(24);
+    }
+  }
+
+  @include responsive(M) {
+    &-header {
+      display: block;
+      height: auto;
+      margin: 1.6rem 0 2rem;
+
+      &-title {
+        @include text-style(20);
+
+        line-height: 1.1;
+      }
+    }
+  }
+}
