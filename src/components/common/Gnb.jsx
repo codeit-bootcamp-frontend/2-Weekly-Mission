@@ -17,7 +17,7 @@ function Gnb() {
   });
 
   async function handleLoadProfile() {
-    const { data } = await getUser();
+    const data = await getUser();
     setProfile(data[0]);
   }
 

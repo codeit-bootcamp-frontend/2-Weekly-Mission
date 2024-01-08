@@ -1,5 +1,6 @@
 import API from 'constants/api';
-import { SampleUserFolder, UserLinkItem, linkItem } from 'constants/type';
+import { SampleUser, SampleUserFolder, UserLinkItem, folderItem, linkItem } from 'constants/type';
+import { UserInfo } from 'os';
 
 const convertToSnakeCase = (links: UserLinkItem[]): linkItem[] => {
   const convertedLinks = links.map((link) => {
@@ -21,19 +22,19 @@ export async function getSampleUserFolder() {
 
 export async function getFolder() {
   const result = await fetch(API.USER_FOLDER);
-  const body = await result.json();
-  return body;
+  const { data } = await result.json();
+  return data as folderItem[];
 }
 
 export async function getLinks(folderId: number) {
   const query = +folderId === 0 ? '' : `?folderId=${folderId}`; // 쿼리 없는 경우 전체 링크 불러오기
   const result = await fetch(`${API.USER_LINKS}${query}`);
-  const body = await result.json();
-  return body;
+  const { data } = await result.json();
+  return data as linkItem[];
 }
 
 export async function getUser() {
   const result = await fetch(API.USER_INFO);
-  const body = await result.json();
-  return body;
+  const { data } = await result.json();
+  return data as SampleUser[];
 }

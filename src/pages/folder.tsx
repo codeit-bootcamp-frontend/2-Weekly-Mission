@@ -34,12 +34,12 @@ function FolderLayout() {
   }
 
   async function loadFolder() {
-    const { data } = await getFolder();
+    const data = await getFolder();
     setFolderList(data);
   }
 
   async function loadLinks() {
-    const { data } = await getLinks(selectedFolder.id);
+    const data = await getLinks(selectedFolder.id);
     setLinkList(data);
     setFilteredLinks(data);
   }
