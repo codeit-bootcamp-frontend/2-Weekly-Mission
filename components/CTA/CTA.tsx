@@ -2,7 +2,7 @@ import styles from './CTA.module.css';
 
 interface Props {
   text: string;
-  className: 'fixedWidth' | 'variableWidth';
+  className: 'fixedWidth' | 'variableWidth' | 'delete';
   handleButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 

@@ -8,7 +8,7 @@ import styles from './AddToFolderModal.module.css';
 
 interface Props {
   url: string;
-  setUrl: React.Dispatch<React.SetStateAction<string>>;
+  setUrl?: React.Dispatch<React.SetStateAction<string>>;
   setAddToFolderModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

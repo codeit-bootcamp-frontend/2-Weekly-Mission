@@ -1,7 +1,7 @@
 import axios from '@/lib/axios.js';
 import { useEffect, useState } from 'react';
 
-export default function useGetData(url: string, dependency: string = ''): [boolean, string, Array<object>] {
+export default function useGetData(url: string, dependency?: any): [boolean, string, Array<object>] {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [data, setData] = useState<object[]>([]);
