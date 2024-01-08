@@ -7,20 +7,20 @@ import CardReadOnly from '../../components/CardReadOnly/CardReadOnly';
 import BASE_PATH from '../api/codeit';
 
 export async function getStaticProps() {
-  const { data } = await BASE_PATH.get(`users/1/links`);
-
-  const res = await BASE_PATH.get(`sample/folder`);
-  const folder = res.data;
+  const { data: links } = await BASE_PATH.get(`users/1/links`);
+  const { data: folder } = await BASE_PATH.get(`sample/folder`);
 
   return {
     props: {
-      ...data,
+      links: links.data,
       ...folder,
     },
   };
 }
 
-export default function SharedPage({ data, folder }: any) {
+export default function SharedPage({ links, folder }: any) {
+  console.log(links);
+
   return (
     <Shared
       folderInfo={
@@ -33,8 +33,8 @@ export default function SharedPage({ data, folder }: any) {
       searchBar={<SearchBar />}
       cardList={
         <CardList>
-          {data?.map((data: any) => (
-            <CardReadOnly key={data?.id} {...data} />
+          {links?.map((link: any) => (
+            <CardReadOnly key={link?.id} {...link} />
           ))}
         </CardList>
       }
