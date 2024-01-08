@@ -1,26 +1,25 @@
 import type { AppProps } from 'next/app';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
 import '@/styles/global.css';
-
-// 헤더 profile 추가
-const profile = '';
-// export const Layout = ({ children }) => {
-// const [profile, setProfile] = useState('');
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const { data } = await getCodeItInfo(`users/1`);
-//       const { email, image_source } = data[0] || {};
-//       const profile = data ? { email, image_source } : null;
-//       setProfile(profile);
-//     };
-//     fetchData();
-//   }, []);
+import BASE_PATH from './api/codeit';
 
 export default function App({ Component, pageProps }: AppProps) {
+  // 유저 로그인(임시)
+  const [profile, setProfile] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await BASE_PATH.get(`users/1`);
+      setProfile(data.data[0]);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <Head>

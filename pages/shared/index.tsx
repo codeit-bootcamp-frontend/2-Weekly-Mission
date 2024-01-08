@@ -19,8 +19,6 @@ export async function getStaticProps() {
 }
 
 export default function SharedPage({ links, folder }: any) {
-  console.log(links);
-
   return (
     <Shared
       folderInfo={
