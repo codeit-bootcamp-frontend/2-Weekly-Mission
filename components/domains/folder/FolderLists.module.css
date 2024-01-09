@@ -1,0 +1,31 @@
+.folders {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.foldersTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.folderButtons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.folderName {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.nameAndOption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 1.2rem;
+}

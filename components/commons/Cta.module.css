@@ -1,0 +1,24 @@
+.shortButton {
+  background-image: var(--gradient-purpleblue-skyblue);
+  font-size: 1.8rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--white-color);
+  font-weight: 600;
+  border-radius: 0.8rem;
+  border: none;
+  padding: 1.6rem 2rem;
+  cursor: pointer;
+  width: 12.8rem;
+}
+
+.longButton {
+  background-image: linear-gradient(90deg, #6d6afe, #6ae3fe);
+  font-size: 1.8rem;
+  text-align: center;
+  color: var(--white-color, #ffffff);
+  font-weight: 600;
+  border-radius: 0.8rem;
+  padding: 1.6rem 2rem;
+  width: 40rem;
+}
