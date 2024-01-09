@@ -5,8 +5,8 @@ import section4 from 'assets/images/img-landing-04.png';
 import emptyThumbnail from 'assets/images/empty-card-img.jpg';
 
 import logo from 'assets/svgs/logo.svg';
-import eyeShowIcon from 'assets/svgs/eye-on.svg';
-import eyeHideIcon from 'assets/svgs/eye-off.svg';
+import IconEyeOn from 'assets/svgs/eye-on.svg';
+import IconEyeOff from 'assets/svgs/eye-off.svg';
 import emptyAvatar from 'assets/svgs/codeit.svg';
 import favoriteDefault from 'assets/svgs/star-default.svg';
 import favoriteActive from 'assets/svgs/star-active.svg';
@@ -54,12 +54,12 @@ export const ICON = {
     alt: 'linkbrary 로고 이미지',
   },
   eye: {
-    default: {
-      url: eyeHideIcon,
+    off: {
+      url: IconEyeOff,
       alt: '비밀번호 숨기기',
     },
-    active: {
-      url: eyeShowIcon,
+    on: {
+      url: IconEyeOn,
       alt: '비밀번호 보기',
     },
   },
