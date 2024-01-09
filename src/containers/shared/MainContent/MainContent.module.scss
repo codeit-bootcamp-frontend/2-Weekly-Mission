@@ -1,0 +1,22 @@
+.main-content {
+  width: 100%;
+  background-color: $white;
+
+  .container {
+    max-width: 106rem;
+    margin: 0 auto;
+    padding: 4rem 0 10rem;
+
+    @include responsive(T) {
+      width: 100%;
+    }
+
+    @include responsive(M) {
+      padding: 2rem 0 6rem;
+    }
+  }
+
+  @include responsive(T) {
+    padding: 0 3.2rem;
+  }
+}
