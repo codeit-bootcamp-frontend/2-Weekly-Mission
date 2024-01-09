@@ -8,9 +8,9 @@ import { PASSWORD_SHOW_MODE } from 'stores/auth';
 
 const cx = classNames.bind(styles);
 
-const Input = ({ error = false, type = 'text', ...props }) => {
+const Input = ({ error = false, type = 'text', ...inputProps }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const { iconEye, inputType, passwordShowMode } = isVisible
+  const { iconEye, inputType, showMode } = isVisible
     ? PASSWORD_SHOW_MODE.on
     : PASSWORD_SHOW_MODE.off;
 
@@ -24,7 +24,7 @@ const Input = ({ error = false, type = 'text', ...props }) => {
         <input
           name={type}
           type={inputType}
-          {...props}
+          {...inputProps}
           className={cx('input', { error: error })}
         />
 
@@ -33,8 +33,8 @@ const Input = ({ error = false, type = 'text', ...props }) => {
             svg={iconEye}
             alt={iconEye}
             iconSize={16}
-            aria-label={passwordShowMode}
             role='switch'
+            aria-label={showMode}
             aria-checked={isVisible}
             onClick={handlePasswordToggleClick}
             className={cx('btn-password-toggle')}

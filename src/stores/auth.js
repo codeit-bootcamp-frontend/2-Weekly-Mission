@@ -45,11 +45,11 @@ export const PASSWORD_SHOW_MODE = {
   on: {
     iconEye: IconEyeOn,
     inputType: 'email',
-    label: '비밀번호 보기',
+    showMode: '비밀번호 보기',
   },
   off: {
     iconEye: IconEyeOff,
     inputType: 'password',
-    label: '비밀번호 숨기기',
+    showMode: '비밀번호 숨기기',
   },
 };

@@ -12,29 +12,37 @@ const Signin = () => {
             <main style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
               <h1>TextField</h1>
               <TextField
-                type='email'
+                inputProps={{
+                  type: 'email',
+                  placeholder: 'placeholder',
+                }}
                 label='이메일'
-                placeholder='placeholder'
                 error={false}
               />
               <TextField
-                type='email'
+                inputProps={{
+                  type: 'email',
+                  placeholder: 'placeholder',
+                }}
                 label='이메일'
                 message='이메일을 입력해주세요.'
-                placeholder='placeholder'
                 error={true}
               />
               <TextField
-                type='password'
+                inputProps={{
+                  type: 'password',
+                  placeholder: 'placeholder',
+                }}
                 label='비밀번호'
-                placeholder='placeholder'
                 error={false}
               />
               <TextField
-                type='password'
+                inputProps={{
+                  type: 'password',
+                  placeholder: 'placeholder',
+                }}
                 label='비밀번호'
                 message='비밀번호를 입력해주세요.'
-                placeholder='placeholder'
                 error={true}
               />
             </main>
@@ -44,4 +52,5 @@ const Signin = () => {
     </div>
   );
 };
+
 export default Signin;
