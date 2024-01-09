@@ -1,0 +1,18 @@
+.filter-options {
+  button {
+    display: inline;
+  }
+
+  button:not(:last-child) {
+    margin-right: 0.8rem;
+  }
+
+  @include responsive(M) {
+    margin: 1.2rem 0 0;
+  }
+}
+
+.modal-content {
+  width: 100%;
+  margin-bottom: 2.4rem;
+}
