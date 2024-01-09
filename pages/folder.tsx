@@ -11,8 +11,20 @@ import { FolderLayout } from '@/components/page-layout/FolderLayout';
 import { Layout } from '@/components/sharing/feature-layout';
 import { useIntersectionObserver } from '@/components/sharing/util';
 import { useState } from 'react';
+import { GetServerSidePropsContext } from 'next/types';
 
-export default function Folder() {
+type FolderProps = {
+  host: string | undefined;
+};
+
+export const getServerSideProps = (context: GetServerSidePropsContext) => {
+  const { req } = context;
+  return {
+    props: { host: req?.headers?.host },
+  };
+};
+
+export default function Folder({ host }: FolderProps) {
   const { data: folders } = useGetFolders();
   const [selectedFolderId, setSelectedFolderId] =
     useState<SelectedFolderId>(ALL_LINKS_ID);
@@ -37,6 +49,7 @@ export default function Folder() {
             folders={folders}
             selectedFolderId={selectedFolderId}
             onFolderClick={setSelectedFolderId}
+            host={host ?? ''}
           />
         }
         cardList={loading ? null : <CardList links={result} />}

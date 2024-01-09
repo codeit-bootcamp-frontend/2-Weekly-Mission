@@ -24,12 +24,14 @@ type FolderToolBarProps = {
   folders: Folder[];
   selectedFolderId: SelectedFolderId;
   onFolderClick: (folderId: SelectedFolderId) => void;
+  host: string;
 };
 
 export const FolderToolBar = ({
   folders,
   selectedFolderId,
   onFolderClick,
+  host,
 }: FolderToolBarProps) => {
   const { shareKakao } = useKakaoSdk();
   const [currentModal, setCurrentModal] = useState<string | null>(null);
@@ -39,7 +41,7 @@ export const FolderToolBar = ({
     ALL_LINKS_ID === selectedFolderId
       ? ALL_LINKS_TEXT
       : folders?.find(({ id }) => id === selectedFolderId)?.name ?? '';
-  const shareLink = `${window.location.origin}/shared?user=1&folder=${selectedFolderId}`;
+  const shareLink = `${host}/shared?user=1&folder=${selectedFolderId}`;
 
   const closeModal = () => setCurrentModal(null);
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
