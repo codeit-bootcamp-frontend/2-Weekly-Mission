@@ -26,8 +26,9 @@
 .input::placeholder {
   color: $color-text-content-gray;
 }
+
 .input:focus {
-  outline: none;
+  outline: 1px solid var(--Linkbrary-primary-color, #6d6afe);
 }
 
 .search-icon {

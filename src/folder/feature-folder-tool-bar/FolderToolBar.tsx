@@ -27,7 +27,8 @@ export const FolderToolBar = ({ folders, selectedFolderId, onFolderClick }: Fold
 
   const folderName =
     ALL_LINKS_ID === selectedFolderId ? ALL_LINKS_TEXT : folders?.find(({ id }) => id === selectedFolderId)?.name ?? "";
-  const shareLink = `${window.location.origin}/shared?user=1&folder=${selectedFolderId}`;
+  const shareLink =
+    typeof window !== "undefined" ? `${window.location.origin}/shared?user=1&folder=${selectedFolderId}` : "";
 
   const closeModal = () => setCurrentModal(null);
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {

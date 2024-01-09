@@ -12,13 +12,5 @@ type InputProps = {
 };
 
 export const Input = ({ type = "text", value, onChange, placeholder }: InputProps) => {
-  return (
-    <input
-      type={type}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      className={cx("input")}
-    />
-  );
+  return <input type={type} value={value} onChange={onChange} placeholder={placeholder} className={cx("input")} />;
 };
