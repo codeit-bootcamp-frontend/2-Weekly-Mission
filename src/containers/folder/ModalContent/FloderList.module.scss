@@ -1,0 +1,38 @@
+.add-folder-list {
+  width: 100%;
+  margin-bottom: 2.4rem;
+
+  &-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: $white;
+    cursor: pointer;
+
+    p {
+      font-size: 16px;
+      line-height: 24px;
+      color: $blue-gray-100;
+    }
+
+    span {
+      font-size: 14px;
+      color: $blue-gray-80;
+      margin-left: 8px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+
+    &:hover {
+      background-color: $light-blue;
+    }
+
+    &:hover p {
+      color: $primary;
+    }
+  }
+}
