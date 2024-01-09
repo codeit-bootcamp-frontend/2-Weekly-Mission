@@ -1,13 +1,14 @@
-import styles from "./Modal.module.scss";
-import classNames from "classnames/bind";
+import styles from './Modal.module.scss';
+import classNames from 'classnames/bind';
+
+import { Portal } from '@/components/sharing/ui-portal';
 import {
   KeyboardEvent,
   KeyboardEventHandler,
   MouseEvent,
   MouseEventHandler,
   ReactNode,
-} from "react";
-import { Portal } from "sharing/ui-portal";
+} from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -51,7 +52,7 @@ export const Modal = ({
   return (
     <Portal>
       <div
-        className={cx("container", { backdrop: !hideBackdrop })}
+        className={cx('container', { backdrop: !hideBackdrop })}
         onClick={handleBackdropClick}
         onKeyDown={handleKeyDown}
         tabIndex={0}

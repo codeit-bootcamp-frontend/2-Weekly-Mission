@@ -1,1 +1,1 @@
-export * from "./AddLinkModal";
+export * from './AddLinkModal';

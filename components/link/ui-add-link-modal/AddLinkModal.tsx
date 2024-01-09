@@ -1,13 +1,14 @@
-import styles from "./AddLinkModal.module.scss";
-import classNames from "classnames/bind";
-import { Folder } from "folder/type";
-import { FolderItem } from "folder/ui-folder-item";
-import { Dispatch, KeyboardEventHandler, SetStateAction } from "react";
-import { Modal } from "sharing/ui-modal";
-import { ModalContentBox } from "sharing/ui-modal-content-box";
-import { ModalContentButton } from "sharing/ui-modal-content-button";
-import { ModalContentDescription } from "sharing/ui-modal-content-description";
-import { ModalContentTitle } from "sharing/ui-modal-content-title";
+import styles from './AddLinkModal.module.scss';
+import classNames from 'classnames/bind';
+
+import { Folder } from '@/components/folder/type';
+import { FolderItem } from '@/components/folder/ui-folder-item';
+import { ModalContentBox } from '@/components/sharing/ui-modal-content-box';
+import { ModalContentButton } from '@/components/sharing/ui-modal-content-button';
+import { ModalContentDescription } from '@/components/sharing/ui-modal-content-description';
+import { ModalContentTitle } from '@/components/sharing/ui-modal-content-title';
+import { Modal } from '@/components/sharing/ui-modal';
+import { Dispatch, SetStateAction, KeyboardEventHandler } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -36,14 +37,14 @@ export const AddLinkModal = ({
     <Modal isOpen={isOpen} onBackdropClick={onCloseClick} onKeyDown={onKeyDown}>
       <ModalContentBox
         header={
-          <div className={cx("modal-header")}>
+          <div className={cx('modal-header')}>
             <ModalContentTitle>폴더에 추가</ModalContentTitle>
             <ModalContentDescription>{description}</ModalContentDescription>
           </div>
         }
         content={
-          <div className={cx("modal-content")}>
-            <div className={cx("folder-list")}>
+          <div className={cx('modal-content')}>
+            <div className={cx('folder-list')}>
               {folders?.map(({ id, name, linkCount }) => (
                 <FolderItem
                   key={id}
@@ -54,7 +55,9 @@ export const AddLinkModal = ({
                 />
               ))}
             </div>
-            <ModalContentButton onClick={onAddClick}>추가하기</ModalContentButton>
+            <ModalContentButton onClick={onAddClick}>
+              추가하기
+            </ModalContentButton>
           </div>
         }
         onCloseClick={onCloseClick}

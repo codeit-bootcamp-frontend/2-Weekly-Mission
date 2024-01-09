@@ -1,1 +1,1 @@
-export * from "./FolderInfo";
+export * from './FolderInfo';

@@ -1,1 +1,1 @@
-export * from "./ReadOnlyCard";
+export * from './ReadOnlyCard';

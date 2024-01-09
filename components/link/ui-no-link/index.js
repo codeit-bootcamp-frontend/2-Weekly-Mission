@@ -1,1 +1,1 @@
-export * from "./NoLink";
+export * from './NoLink';

@@ -1,6 +1,6 @@
-import { mapLinksData } from "link/util-map";
-import { DEFAULT_FOLDER_DATA } from "./constant";
-import { SampleFolderRawData } from "folder/type";
+import { SampleFolderRawData } from '@/components/folder/type';
+import { mapLinksData } from '@/components/link/util-map';
+import { DEFAULT_FOLDER_DATA } from './constant';
 
 export const mapFolderData = (folder?: SampleFolderRawData) => {
   if (!folder) return DEFAULT_FOLDER_DATA;
@@ -8,9 +8,9 @@ export const mapFolderData = (folder?: SampleFolderRawData) => {
   const { name, owner, links } = folder;
 
   return {
-    profileImage: owner?.profileImageSource ?? "",
-    ownerName: owner?.name ?? "",
-    folderName: name ?? "",
+    profileImage: owner?.profileImageSource ?? '',
+    ownerName: owner?.name ?? '',
+    folderName: name ?? '',
     links: links?.map(mapLinksData) ?? [],
   };
 };

@@ -1,4 +1,4 @@
-import { Folder, FolderRawData } from "folder/type";
+import { FolderRawData, Folder } from '@/components/folder/type';
 
 export const mapFoldersData = (folders?: FolderRawData[]): Folder[] => {
   if (!folders) return [];

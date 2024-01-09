@@ -1,1 +1,1 @@
-export * from "./FolderToolBar";
+export * from './FolderToolBar';

@@ -1,4 +1,4 @@
-import { useEffectOnce } from "./useEffectOnce";
+import { useEffectOnce } from './useEffectOnce';
 
 type ShareKakaoParams = {
   url: string;
@@ -13,7 +13,7 @@ declare const window: Window & {
     isInitialized: () => boolean;
     Link: {
       sendDefault: (params: {
-        objectType: "feed";
+        objectType: 'feed';
         content: {
           title: string;
           description: string;
@@ -36,7 +36,12 @@ declare const window: Window & {
 };
 
 export const useKakaoSdk = () => {
-  const shareKakao = ({ url, title, description, imageUrl }: ShareKakaoParams) => {
+  const shareKakao = ({
+    url,
+    title,
+    description,
+    imageUrl,
+  }: ShareKakaoParams) => {
     if (window.Kakao) {
       const kakao = window.Kakao;
       if (!kakao.isInitialized()) {
@@ -44,7 +49,7 @@ export const useKakaoSdk = () => {
       }
 
       kakao.Link.sendDefault({
-        objectType: "feed",
+        objectType: 'feed',
         content: {
           title: title,
           description: description,
@@ -68,8 +73,8 @@ export const useKakaoSdk = () => {
   };
 
   useEffectOnce(() => {
-    const script = document.createElement("script");
-    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    const script = document.createElement('script');
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
     script.async = true;
     document.body.appendChild(script);
     return () => {

@@ -1,4 +1,4 @@
-@import "sharing/styles/global.scss";
+@import 'sharing/styles/global.scss';
 
 .container {
   display: flex;
@@ -17,9 +17,9 @@
   display: grid;
   justify-content: space-between;
   grid-template:
-    "footer-links sns"
-    ". ." 1fr
-    "copyright .";
+    'footer-links sns'
+    '. .' 1fr
+    'copyright .';
   width: 100%;
   padding: 3.2rem;
   color: $color-text-gray;
@@ -27,7 +27,7 @@
   font-family: Arial;
 
   @include tablet {
-    grid-template: "copyright footer-links sns";
+    grid-template: 'copyright footer-links sns';
     height: fit-content;
     max-width: 192rem;
     padding: 3.2rem 10.4rem 0;

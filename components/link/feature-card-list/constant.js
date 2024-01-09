@@ -1,4 +1,4 @@
 export const MODALS_ID = {
-  deleteLink: "deleteLink",
-  addToFolder: "addToFolder",
+  deleteLink: 'deleteLink',
+  addToFolder: 'addToFolder',
 };

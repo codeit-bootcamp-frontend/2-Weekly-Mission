@@ -1,6 +1,7 @@
-import { ReactNode } from "react";
-import styles from "./FolderLayout.module.scss";
-import classNames from "classnames/bind";
+import styles from './FolderLayout.module.scss';
+import classNames from 'classnames/bind';
+
+import { ReactNode } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -18,11 +19,11 @@ export const FolderLayout = ({
   cardList,
 }: FolderLayoutProps) => {
   return (
-    <div className={cx("container")}>
+    <div className={cx('container')}>
       {linkForm}
-      <div className={cx("items")}>
+      <div className={cx('items')}>
         {searchBar}
-        <div className={cx("folder-box")}>
+        <div className={cx('folder-box')}>
           {folderToolBar}
           {cardList}
         </div>

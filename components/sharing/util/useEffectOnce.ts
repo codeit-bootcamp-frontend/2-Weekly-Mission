@@ -1,4 +1,4 @@
-import { EffectCallback, useEffect } from "react";
+import { EffectCallback, useEffect } from 'react';
 
 export const useEffectOnce = (callback: EffectCallback) => {
   useEffect(() => {

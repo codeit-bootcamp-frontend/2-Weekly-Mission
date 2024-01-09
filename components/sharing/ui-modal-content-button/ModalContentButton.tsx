@@ -1,22 +1,23 @@
-import { MouseEventHandler, ReactNode } from "react";
-import styles from "./ModalContentButton.module.scss";
-import classNames from "classnames/bind";
+import styles from './ModalContentButton.module.scss';
+import classNames from 'classnames/bind';
+
+import { MouseEventHandler, ReactNode } from 'react';
 
 const cx = classNames.bind(styles);
 
 type ModalContentButtonProps = {
   children: ReactNode;
   onClick: MouseEventHandler<HTMLButtonElement>;
-  themeColor?: "blue" | "red";
+  themeColor?: 'blue' | 'red';
 };
 
 export const ModalContentButton = ({
   children,
   onClick,
-  themeColor = "blue",
+  themeColor = 'blue',
 }: ModalContentButtonProps) => {
   return (
-    <button className={cx("button", themeColor)} onClick={onClick}>
+    <button className={cx('button', themeColor)} onClick={onClick}>
       {children}
     </button>
   );

@@ -1,8 +1,8 @@
 export const ROUTE = {
-  랜딩: "/",
-  로그인: "/signin",
-  개인정보처리방침: "/privacy",
-  FAQ: "/faq",
+  랜딩: '/',
+  로그인: '/signin',
+  개인정보처리방침: '/privacy',
+  FAQ: '/faq',
 };
 
 const second = 1000;
@@ -21,4 +21,4 @@ export const TIME_IN_MILLISECONDS = {
   year,
 };
 
-export const ROOT_ID = "root";
+export const ROOT_ID = 'root';

@@ -1,4 +1,4 @@
-@import "sharing/styles/global.scss";
+@import 'sharing/styles/global.scss';
 
 .container {
   display: flex;
@@ -9,8 +9,8 @@
   @include tablet {
     display: grid;
     grid-template-areas:
-      "folders folders add-button"
-      "folder-name buttons buttons";
+      'folders folders add-button'
+      'folder-name buttons buttons';
     justify-content: space-between;
     align-items: center;
     row-gap: 2.4rem;

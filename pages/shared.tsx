@@ -1,25 +1,34 @@
-import { useGetFolder } from "folder/data-access-folder";
-import { Layout } from "sharing/feature-layout";
-import { SharedLayout } from "page-layout/SharedLayout";
-import { CardList } from "link/ui-card-list";
-import { FolderInfo } from "folder/ui-folder-info";
-import { ReadOnlyCard } from "link/ui-read-only-card";
-import { SearchBar } from "link/ui-search-bar";
-import { useSearchLink } from "link/util-search-link/useSearchLink";
+import { useGetFolder } from '@/components/folder/data-access-folder';
+import { FolderInfo } from '@/components/folder/ui-folder-info';
+import { CardList } from '@/components/link/feature-card-list';
+import { ReadOnlyCard } from '@/components/link/ui-read-only-card';
+import { SearchBar } from '@/components/link/ui-search-bar';
+import { useSearchLink } from '@/components/link/util-search-link/useSearchLink';
+import { SharedLayout } from '@/components/page-layout/SharedLayout';
+import { Layout } from '@/components/sharing/feature-layout';
 
-export const SharedPage = () => {
+export default function Shared() {
   const { data } = useGetFolder();
   const { profileImage, ownerName, folderName, links } = data || {};
-  const { searchValue, handleChange, handleCloseClick, result } = useSearchLink(links);
+  const { searchValue, handleChange, handleCloseClick, result } =
+    useSearchLink(links);
 
   return (
     <Layout>
       <SharedLayout
         folderInfo={
-          <FolderInfo profileImage={profileImage} ownerName={ownerName} folderName={folderName} />
+          <FolderInfo
+            profileImage={profileImage}
+            ownerName={ownerName}
+            folderName={folderName}
+          />
         }
         searchBar={
-          <SearchBar value={searchValue} onChange={handleChange} onCloseClick={handleCloseClick} />
+          <SearchBar
+            value={searchValue}
+            onChange={handleChange}
+            onCloseClick={handleCloseClick}
+          />
         }
         cardList={
           <CardList>
@@ -31,4 +40,4 @@ export const SharedPage = () => {
       />
     </Layout>
   );
-};
+}

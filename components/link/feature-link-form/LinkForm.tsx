@@ -1,10 +1,11 @@
-import styles from "./LinkForm.module.scss";
-import classNames from "classnames/bind";
-import { useGetFolders } from "folder/data-access-folder";
-import { AddLinkModal } from "link/ui-add-link-modal";
-import { LinkForm as UiLinkForm } from "link/ui-link-form";
-import { ChangeEvent, KeyboardEventHandler, useState } from "react";
-import { useIntersectionObserver } from "sharing/util/useIntersectionObserver";
+import styles from './LinkForm.module.scss';
+import classNames from 'classnames/bind';
+
+import { useGetFolders } from '@/components/folder/data-access-folder';
+import { AddLinkModal } from '@/components/link/ui-add-link-modal';
+import { useIntersectionObserver } from '@/components/sharing/util';
+import { useState, ChangeEvent, KeyboardEventHandler } from 'react';
+import { LinkForm as UiLinkForm } from '@/components/link/ui-link-form';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +17,7 @@ export const LinkForm = ({ hideFixedLinkForm = false }: LinkFormProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: folders } = useGetFolders();
   const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
-  const [linkUrl, setLinkUrl] = useState<string>("");
+  const [linkUrl, setLinkUrl] = useState<string>('');
   const { ref, isIntersecting } = useIntersectionObserver<HTMLFormElement>();
   const showFixedLinkForm = !hideFixedLinkForm && !isIntersecting;
 
@@ -29,13 +30,13 @@ export const LinkForm = ({ hideFixedLinkForm = false }: LinkFormProps) => {
     setIsModalOpen(false);
   };
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
-    if (event.key === "Escape") {
+    if (event.key === 'Escape') {
       closeModal();
     }
   };
 
   return (
-    <div className={cx("container")}>
+    <div className={cx('container')}>
       <UiLinkForm
         ref={ref}
         onSubmit={() => setIsModalOpen(true)}
@@ -54,7 +55,7 @@ export const LinkForm = ({ hideFixedLinkForm = false }: LinkFormProps) => {
       />
 
       {showFixedLinkForm && (
-        <div className={cx("container", "fixed")}>
+        <div className={cx('container', 'fixed')}>
           <UiLinkForm
             onSubmit={() => setIsModalOpen(true)}
             value={linkUrl}

@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useEffectOnce } from "./useEffectOnce";
-import { AxiosResponse } from "axios";
+import { useState } from 'react';
+import { useEffectOnce } from './useEffectOnce';
+import { AxiosResponse } from 'axios';
 
 export const useAsync = <T>(asyncFunction: () => Promise<AxiosResponse<T>>) => {
   const [loading, setLoading] = useState(false);

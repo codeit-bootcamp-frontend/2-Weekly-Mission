@@ -1,1 +1,1 @@
-export * from "./ModalContentTitle";
+export * from './ModalContentTitle';
