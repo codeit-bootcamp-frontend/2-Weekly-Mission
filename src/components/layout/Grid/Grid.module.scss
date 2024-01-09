@@ -1,0 +1,19 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  row-gap: 2.5rem;
+  margin-top: 4rem;
+
+  @include responsive(TC) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive(M) {
+    grid-template-columns: 1fr;
+
+    &.share-link {
+      margin-top: 3.2rem;
+    }
+  }
+}
