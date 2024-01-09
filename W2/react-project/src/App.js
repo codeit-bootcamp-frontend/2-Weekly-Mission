@@ -1,12 +1,12 @@
-import CardPage from './pages/CardPage'
+import CardPage from './pages/CardPage';
 import Modals from './components/Modals';
+import Input from './components/Input';
 
 function App() {
-  
   return (
     <div>
-      <CardPage/>
-
+      <CardPage />
+      <Input />
     </div>
   );
 }
