@@ -1,0 +1,34 @@
+.gnb {
+  background-color: $light-blue;
+
+  &-container {
+    @include flexbox(between);
+
+    max-width: 192rem;
+    margin: 0 auto;
+    height: 9.3rem;
+    padding: 0 20rem;
+
+    @include responsive(T) {
+      max-width: 79.9rem;
+      padding: 0 3.2rem;
+    }
+
+    @include responsive(M) {
+      height: 6.3rem;
+    }
+  }
+}
+
+@include responsive(M) {
+  .gnb-logo-link-image {
+    width: 8rem;
+  }
+
+  .btn-login {
+    @include text-style(14);
+
+    width: 8rem;
+    padding: 1rem 0;
+  }
+}
