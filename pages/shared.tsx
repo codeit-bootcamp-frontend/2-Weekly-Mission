@@ -1,6 +1,6 @@
 import { useGetFolder } from '@/components/folder/data-access-folder';
 import { FolderInfo } from '@/components/folder/ui-folder-info';
-import { CardList } from '@/components/link/feature-card-list';
+import { CardList } from '@/components/link/ui-card-list';
 import { ReadOnlyCard } from '@/components/link/ui-read-only-card';
 import { SearchBar } from '@/components/link/ui-search-bar';
 import { useSearchLink } from '@/components/link/util-search-link/useSearchLink';

@@ -1,18 +1,22 @@
 import styles from './FolderToolBar.module.scss';
 import classNames from 'classnames/bind';
 
+import {
+  ALL_LINKS_TEXT,
+  BUTTONS,
+  KAKAO_SHARE_DATA,
+  MODALS_ID,
+} from './constant';
 import { Folder, SelectedFolderId } from '@/components/folder/type';
 import { AddFolderButton } from '@/components/folder/ui-add-folder-button';
 import { FolderButton } from '@/components/folder/ui-folder-button';
 import { ShareModal } from '@/components/folder/ui-share-modal';
 import { ALL_LINKS_ID } from '@/components/link/data-access-link/constant';
-import { MODALS_ID } from '@/components/link/feature-card-list/constant';
 import { AlertModal } from '@/components/sharing/ui-alert-modal';
 import { IconAndTextButton } from '@/components/sharing/ui-icon-and-text-button';
 import { InputModal } from '@/components/sharing/ui-input-modal';
 import { copyToClipboard, useKakaoSdk } from '@/components/sharing/util';
 import { useState, KeyboardEvent } from 'react';
-import { ALL_LINKS_TEXT, BUTTONS, KAKAO_SHARE_DATA } from './constant';
 
 const cx = classNames.bind(styles);
 
