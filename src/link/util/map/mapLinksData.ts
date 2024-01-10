@@ -17,7 +17,7 @@ export const mapLinksData = (link: {
     title,
     url,
     imageSource,
-    alt: `${title ?? url}의 대표 이미지`,
+    alt: `${title || url}의 대표 이미지`,
     elapsedTime: getElapsedTime(createdAt), // 데이터 요구사항 형식대로 반환
     description,
     createdAt: format(new Date(createdAt), 'yyyy. MM. dd'),
