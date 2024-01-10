@@ -1,7 +1,7 @@
-import { useModal } from '../hooks/modalHooks';
-import style from '../styles/SelectMenu.module.css';
-import AddModal from './Modal/AddModal';
-import DeleteLinkModal from './Modal/DeleteLinkModal';
+import { useModal } from '@/src/modal/hooks/modalHooks';
+import style from './SelectMenu.module.css';
+import AddModal from '@/src/modal/Components/AddModal';
+import DeleteLinkModal from '@/src/modal/Components/DeleteLinkModal';
 
 const SelectMenu = () => {
   const {isOpen:deleteModalOpen, toggleModal:deleteToggleModal} = useModal();

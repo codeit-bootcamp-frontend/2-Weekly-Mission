@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
-import style from '../../styles/Modal/AddModal.module.css';
-import { useFolderPageFolder } from '../../hooks/folderPageHooks';
+import style from './AddModal.module.css';
+import { useFolderPageFolder } from '@/src/folder/hooks/folderPageHooks';
 import xbutton from '../../assets/x.svg';
 
 const AddModal = ({isOpen, onClick}) => {
@@ -21,7 +21,7 @@ const AddLinkModal = ({onClick, description}) => {
             <p className={style.description}>{description}</p>
           </div>
           <div className={style.addContainer}>
-            {folders.map((folder) => <LinkButton name={folder.name} count={folder.links?.length || 0} />)}
+            {folders.map((folder) => <LinkButton key={folder.name} name={folder.name} count={folder.links?.length || 0} />)}
           </div>
           <button className={style.modalButton}>추가하기</button>
         </div>

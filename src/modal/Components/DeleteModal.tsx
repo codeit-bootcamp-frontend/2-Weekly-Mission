@@ -1,5 +1,5 @@
-import style from '../../styles/Modal/DeleteModal.module.css';
-import xbutton from '../../assets/x.svg';
+import style from './DeleteModal.module.css';
+import xbutton from '@/src/assets/x.svg';
 
 const DeleteModal = ({ title, description ,button, onClick} : {title:string, description:string, button:string, onClick:() => void}) => {
   return(

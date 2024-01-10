@@ -1,14 +1,15 @@
-import style from '../styles/Card.module.css';
-import noImage from '../assets/noImage.svg';
-import star from '../assets/star.svg';
-import kebab from '../assets/kebab.svg';
+import style from './LinkCard.module.css';
+import noImage from '@/src/assets/noImage.svg';
+import star from '@/src/assets/star.svg';
+import kebab from '@/src/assets/kebab.svg';
 import { MouseEvent, useState } from 'react';
 import SelectMenu from './SelectMenu';
-import { dateDiff } from './util/dateDiff';
-import { Link } from 'react-router-dom';
-import { LinkType } from '../constants/type';
+import { dateDiff } from '@/lib/util/dateDiff';
+import { LinkType } from '@/types/type';
+import Image from 'next/image';
+import Link from 'next/link';
 
-const Card = ({ link } : { link:LinkType }) => {
+const LinkCard = ({ link } : { link:LinkType }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const createdAt = link.createdAt || link['created_at'];
   const createdDate = new Date(createdAt);
@@ -22,15 +23,19 @@ const Card = ({ link } : { link:LinkType }) => {
   }
 
   return(
-    <Link to={link.url} target="_blank" rel='noopener noreferrer' className={`${style.card}`}>
-      <img src={star} alt='bookmark icon' className={`${style['star--icon']}`} />
+    <Link href={link.url} target="_blank" rel='noopener noreferrer' className={`${style.card}`}>
+      <div className={style['star--icon']}>
+        <Image src={star} alt='bookmark icon' fill />
+      </div>
       <figure className={`${style['link-image--container']}`}>
-        <img src={imgSource || noImage} alt="링크 이미지" className={`${style["link-image"]}`}/>
+        <img src={imgSource || noImage} alt="링크 이미지" className={style['link-image']}/>
       </figure>
       <div className={`${style["link-detail--container"]}`}>
         <div className={`${style['link-created-ago--container']}`}>
           <p className={`${style['link-created-ago']}`}>{dateDiff(createdDate, nowDate)}</p>
-          <button onClick={handleKebobIconClick} className={`${style.btn}`}><img src={kebab} alt='kebab icon' className={`${style['kebab--icon']}`} /></button>
+          <button onClick={handleKebobIconClick} className={style.btn}>
+            <Image src={kebab} alt='kebab icon' fill />
+          </button>
         </div>
         <p className={`${style['link-description']}`}>{link.description}</p>
         <p className={`${style['link-createdat']}`}>{createdDateString}</p>
@@ -40,4 +45,4 @@ const Card = ({ link } : { link:LinkType }) => {
   )
 };
 
-export default Card;
+export default LinkCard;

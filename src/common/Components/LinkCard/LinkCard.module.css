@@ -16,6 +16,8 @@
   position: absolute;
   right: 15px;
   top: 15px;
+  width: 34px;
+  height: 34px;
 }
 
 .link-image--container {
@@ -103,6 +105,9 @@
 .btn {
   background-color: transparent;
   border: none;
+  width: 21px;
+  height: 17px;
+  position: relative;
 }
 
 @media screen and (min-width: 375px) and (max-width: 767px) {
