@@ -1,0 +1,30 @@
+@import '../../../styles/global.scss';
+.suggestion {
+  color: $color-gray100;
+
+  /* Linkbrary/body2-regular */
+  font-family: Pretendard;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.container {
+  padding: 1.2rem 2.4rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 0.8rem;
+  border: 1px solid $color-gray20;
+  background: $color-gray10;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+}
