@@ -4,6 +4,8 @@ import Input from 'components/common/Input';
 import { isUsableEmail, signup } from './api/auth';
 import router from 'next/router';
 import styles from 'styles/signup.module.css';
+import { useEffect } from 'react';
+import { redirectToIfAccessTokenExists } from 'utils/redirect';
 
 const VALIDATE_REGEX = {
   email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
@@ -44,7 +46,9 @@ export default function Signup() {
     },
   });
 
-  // redirectToIfAccessTokenExists('./folder');
+  useEffect(() => {
+    redirectToIfAccessTokenExists('./folder');
+  }, []);
 
   const onSubmit = async (data: SignupFormData) => {
     const userInfo = {

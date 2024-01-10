@@ -2,9 +2,10 @@ import styles from 'styles/signup.module.css';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import Input from 'components/common/Input';
-import { isUsableEmail, signin, signup } from './api/auth';
+import { signin } from './api/auth';
 import router from 'next/router';
 import { redirectToIfAccessTokenExists } from 'utils/redirect';
+import { useEffect } from 'react';
 
 const VALIDATE_REGEX = {
   email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
@@ -41,7 +42,9 @@ export default function Signin() {
     },
   });
 
-  // redirectToIfAccessTokenExists('./folder');
+  useEffect(() => {
+    redirectToIfAccessTokenExists('./folder');
+  }, []);
 
   const onSubmit = async (data: SigninFormData) => {
     const userInfo = {
