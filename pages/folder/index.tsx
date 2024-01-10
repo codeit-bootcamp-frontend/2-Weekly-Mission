@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import CardList from '../../components/CardList/CardList';
-import SearchBar from '../../components/SearchBar/SearchBar.xsx';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import Folder from '../../components/Folder/Folder';
 import CardReadOnly from '../../components/CardReadOnly/CardReadOnly';
 import LinkAddBar from '../../components/LinkAddBar/LinkAddBar';
@@ -34,24 +34,26 @@ export default function FolderPage({ folderNav }: any) {
   };
 
   return (
-    <Folder
-      linkAddBar={<LinkAddBar />}
-      searchBar={<SearchBar />}
-      folderFeature={<FolderFeature name={'TEST'} />}
-      folderNavList={
-        <FolderNavList>
-          {folderNav?.map((data: any) => (
-            <FolderNavClick key={data.id} {...data} onFolderClick={onFolderClick} />
-          ))}
-        </FolderNavList>
-      }
-      cardList={
-        <CardList>
-          {navData?.map((data: any) => (
-            <CardReadOnly key={data?.id} {...data} />
-          ))}
-        </CardList>
-      }
-    />
+    <>
+      <Folder
+        linkAddBar={<LinkAddBar />}
+        searchBar={<SearchBar />}
+        folderFeature={<FolderFeature name={'TEST'} />}
+        folderNavList={
+          <FolderNavList>
+            {folderNav?.map((data: any) => (
+              <FolderNavClick key={data.id} {...data} onFolderClick={onFolderClick} />
+            ))}
+          </FolderNavList>
+        }
+        cardList={
+          <CardList>
+            {navData?.map((data: any) => (
+              <CardReadOnly key={data?.id} {...data} />
+            ))}
+          </CardList>
+        }
+      />
+    </>
   );
 }
