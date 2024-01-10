@@ -1,5 +1,6 @@
 import styles from "@/styles/SignIn.module.css";
 import Link from "next/link";
+import { EmailInput, PasswordInput } from "@/components/Input";
 
 export default function SignIn() {
   const handleSubmit = (e) => {
@@ -31,8 +32,8 @@ export default function SignIn() {
           onSubmit={handleSubmit}
         >
           <div className={styles.signInputs}>
-            <h1>EmailInput</h1>
-            <h1>PasswordInput</h1>
+            <EmailInput />
+            <PasswordInput />
           </div>
           <button className={styles.cta} type="submit" id="loginButton">
             로그인

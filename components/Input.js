@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Input.module.css";
 
-export const EmailInput = () => {
+export function EmailInput() {
   const [focus, setFocus] = useState(true);
   const [valueError, setValueError] = useState(null);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -66,9 +66,9 @@ export const EmailInput = () => {
       </div>
     </>
   );
-};
+}
 
-export const PasswordInput = () => {
+export function PasswordInput() {
   const [eye, setEye] = useState(false);
   const [inputType, setInputType] = useState("password");
   const [focus, setFocus] = useState(true);
@@ -143,9 +143,9 @@ export const PasswordInput = () => {
       </div>
     </>
   );
-};
+}
 
-export const PasswordCheckInput = ({ check }) => {
+export function PasswordCheckInput({ check }) {
   const [eye, setEye] = useState(false);
   const [inputType, setInputType] = useState("password");
   const [focus, setFocus] = useState(true);
