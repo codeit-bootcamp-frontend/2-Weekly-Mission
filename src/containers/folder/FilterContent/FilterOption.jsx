@@ -88,7 +88,7 @@ const FilterOptions = ({ currentFolder, currentFolderId }) => {
           subTitle={currentFolder}
           onClose={handleModalClose}
         >
-          <MyButton text=' 삭제하기' varient='delete' size='lg' />
+          <MyButton text=' 삭제하기' variant='delete' size='lg' />
         </Dialog>
       )}
     </>

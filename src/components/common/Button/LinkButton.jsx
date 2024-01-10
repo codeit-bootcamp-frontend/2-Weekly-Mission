@@ -5,10 +5,10 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const LinkButton = ({ path, text, size, varient = 'primary', type = 'button' }) => {
+const LinkButton = ({ path, text, size, variant = 'primary', type = 'button' }) => {
   return (
     <Link href={path}>
-      <button type={type} className={cx(`btn-${varient}`, `btn-${size}`)}>
+      <button type={type} className={cx(`btn-${variant}`, `btn-${size}`)}>
         {text}
       </button>
     </Link>

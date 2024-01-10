@@ -111,7 +111,7 @@ const CardItem = ({ url, image_source, created_at, description, filterData }) =>
       {modalType === 'remove' && (
         <Dialog onClose={handleModalClose} modalTitle='링크 삭제' subTitle={url}>
           <div className={cx('modal-content')}>
-            <MyButton text='삭제하기' varient='delete' size='lg' />
+            <MyButton text='삭제하기' variant='delete' size='lg' />
           </div>
         </Dialog>
       )}
