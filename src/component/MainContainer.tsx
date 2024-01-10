@@ -1,6 +1,11 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
 
-function MainContainer({ children }) {
+interface Props {
+  children: ReactNode;
+}
+
+function MainContainer({ children }: Props) {
   return <StyledMainContainer>{children}</StyledMainContainer>;
 }
 

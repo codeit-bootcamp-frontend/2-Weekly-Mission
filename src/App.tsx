@@ -13,6 +13,7 @@ import { getUserPersonalLinkData } from "./api/getUserPersoanlLinkData";
 import CardList from "./component/CardList";
 import { transformLinkData } from "./api/dataTransform";
 import NotFoundPage from "./component/NotFoundPage";
+import { IPFolderData, IPLinkdata, ITransformData } from "./utils/type";
 
 function App() {
   const [userData, setUserData] = useState({}); // 로딩을위한 전역사용
@@ -20,13 +21,13 @@ function App() {
   const [personalLinkData, setPersonalLinkData] = useState([]); // folder 페이지의 링크데이터
   const [loding, setLoding] = useState(false);
   const [selectPersonalLinkData, setSelectPersonalLinkData] = useState([]); // 선택한 버튼의 폴더 데이터
-  const [folderId, setFolderId] = useState(); // 전역사용 O
-  const [folderName, setFolderName] = useState(); // 전역사용 O
-  const [searchLinkValue, setSearchLinkValue] = useState(""); // 링크검색데이터\
-  const footerRef = useRef();
+  const [folderId, setFolderId] = useState<number>(); // 전역사용 O
+  const [folderName, setFolderName] = useState<any>(""); // 전역사용 O
+  const [searchLinkValue, setSearchLinkValue] = useState(""); // 링크검색데이터
+  const footerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  const handleData = (data) => {
+  const handleData = (data: IPFolderData) => {
     setFolderId(data.id); // 폴더 아이디는 링크의 루트뒤의 id 를 뜻함
     setFolderName(data.name); // 폴더 네임은 폴더페이지의 제목을 뜻함
   };
@@ -53,14 +54,14 @@ function App() {
         setPersonalFolderData(result.data);
       })
       .catch(() => alert("폴더 정보를 불러오는중 에러가 발생하였습니다."));
-  }, [personalFolderData]);
+  }, []);
 
-  // folder 링크데이터
+  // folder 카드데이터
   useEffect(() => {
     getUserPersonalLinkData()
       .then((result) => {
         if (searchLinkValue !== "") {
-          const filteredData = result.data.filter((link) => {
+          const filteredData = result.data.filter((link: IPLinkdata) => {
             return (
               link.url?.includes(searchLinkValue) ||
               link.title?.includes(searchLinkValue) ||
@@ -75,15 +76,15 @@ function App() {
       .catch((e) => console.log(e));
   }, [searchLinkValue]);
 
-  // 필터된 folder 링크데이터
+  // 필터된 folder 카드데이터
   useEffect(() => {
     getUserPersonalLinkData()
       .then((result) => {
         const transformedData = transformLinkData(result.data);
-        const filteredData = transformedData.filter((item) => item.folderId === folderId);
+        const filteredData = transformedData.filter((item: ITransformData) => item.folderId === folderId);
 
         if (searchLinkValue !== "") {
-          const filteredSearchData = filteredData.filter((link) => {
+          const filteredSearchData = filteredData.filter((link: ITransformData) => {
             return (
               link.url?.includes(searchLinkValue) ||
               link.title?.includes(searchLinkValue) ||

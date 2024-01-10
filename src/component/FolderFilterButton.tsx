@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { IPFolderData } from "../utils/type";
 
-function FolderFilterButton({ data, handleData, handleSideBtn, numPath }) {
+interface Props {
+  data: IPFolderData;
+  handleData: (value: IPFolderData) => void;
+  handleSideBtn: (value: boolean) => void;
+  numPath: number;
+}
+
+function FolderFilterButton({ data, handleData, handleSideBtn, numPath }: Props) {
   return (
     <Link to={`/folder/${data.id}`}>
       <StyledFolderFilterButton
@@ -17,7 +25,7 @@ function FolderFilterButton({ data, handleData, handleSideBtn, numPath }) {
   );
 }
 
-const StyledFolderFilterButton = styled.button`
+const StyledFolderFilterButton = styled.button<{ $isMatching: boolean }>`
   border-radius: 5px;
   border: 1px solid #6d6afe;
   background: ${({ $isMatching }) => ($isMatching ? "#6d6afe" : "#fff")};

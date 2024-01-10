@@ -1,5 +1,5 @@
-export function transformLinkData(data) {
-  return data.map((data) => ({
+export function transformLinkData(data: any) {
+  return data.map((data: any) => ({
     id: data.id,
     createdAt: data.created_at,
     url: data.url,
@@ -10,8 +10,8 @@ export function transformLinkData(data) {
   }));
 }
 
-export function transformShareCardData(data) {
-  return data.map((data) => ({
+export function transformShareCardData(data: any) {
+  return data.map((data: any) => ({
     id: data.id,
     createdAt: data.createdAt || data.created_at,
     url: data.url,

@@ -1,15 +1,22 @@
 import styled from "styled-components";
+import { IModalData } from "../utils/type";
 
-function Modal({ $isModalOn, $isLender, modalData, location }) {
+interface Props {
+  $setIsModalOn: (value: boolean) => void;
+  $isModalOn: boolean;
+  modalData: IModalData;
+}
+
+function Modal({ $setIsModalOn, $isModalOn, modalData }: Props) {
   return (
     <>
       <StyledModalBackground
         onClick={() => {
-          $isModalOn(false);
+          $setIsModalOn(false);
         }}
-        $isLender={$isLender}
+        $isModalOn={$isModalOn}
       />
-      <StyledModalItem $isLender={$isLender} location={location}>
+      <StyledModalItem $isModalOn={$isModalOn}>
         {modalData.title}
         {modalData.sideTitle}
         {modalData.input}
@@ -21,7 +28,7 @@ function Modal({ $isModalOn, $isLender, modalData, location }) {
   );
 }
 
-const StyledModalBackground = styled.div`
+const StyledModalBackground = styled.div<{ $isModalOn: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -30,14 +37,14 @@ const StyledModalBackground = styled.div`
   background-color: #000000;
   opacity: 0.4;
   z-index: 98;
-  display: ${({ $isLender }) => ($isLender ? `block` : `none`)};
+  display: ${({ $isModalOn }) => ($isModalOn ? `block` : `none`)};
 `;
-const StyledModalItem = styled.form`
+const StyledModalItem = styled.form<{ $isModalOn: boolean }>`
   padding: 3.2rem 4rem;
   background-color: #fff;
   border-radius: 15px;
 
-  display: ${({ $isLender }) => ($isLender ? `flex` : `none`)};
+  display: ${({ $isModalOn }) => ($isModalOn ? `flex` : `none`)};
   flex-direction: column;
   justify-content: center;
   align-items: center;

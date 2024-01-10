@@ -1,8 +1,18 @@
 import styled from "styled-components";
 import { deleteLink, addLink } from "../utils/modalItemData";
+import { IModalData, IPFolderData, IPLinkdata } from "../utils/type";
 
-function CardPopOver({ $Lender, setIsModalOn, setModalData, linkUrl, psFolderData, linkData }) {
-  function handleClick(data) {
+interface Props {
+  $Lender: boolean;
+  setIsModalOn: (value: boolean) => void;
+  setModalData: (value: IModalData) => void;
+  linkUrl: string;
+  psFolderData: IPFolderData[];
+  linkData: IPLinkdata[];
+}
+
+function CardPopOver({ $Lender, setIsModalOn, setModalData, linkUrl, psFolderData, linkData }: Props) {
+  function handleClick(data: any) {
     setIsModalOn(true);
     setModalData(data);
   }
@@ -31,7 +41,7 @@ function CardPopOver({ $Lender, setIsModalOn, setModalData, linkUrl, psFolderDat
   );
 }
 
-const StyledCardPopOverContainer = styled.div`
+const StyledCardPopOverContainer = styled.div<{ $Lender: boolean }>`
   display: ${({ $Lender }) => ($Lender ? `flex` : `none`)};
   flex-direction: column;
   position: absolute;

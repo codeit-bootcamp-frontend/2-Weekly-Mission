@@ -4,7 +4,7 @@ import twitterIcon from "../img/akar-icons_twitter-fill.svg";
 import youtubeIcon from "../img/akar-icons_youtube-fill.svg";
 import instagramIcon from "../img/ant-design_instagram-filled.svg";
 
-function Footer({ setRef }) {
+function Footer({ setRef }: any) {
   return (
     <StyledFooterContainer ref={setRef}>
       <StyledFooterItemContainer>
@@ -45,6 +45,7 @@ const StyledFooterContainer = styled.footer`
     margin-top: 4rem;
   }
 `;
+
 const StyledFooterItemContainer = styled.div`
   background-color: #111322;
   max-width: 192rem;

@@ -1,4 +1,4 @@
-const handleLinkCopyClipBoard = async (link) => {
+const handleLinkCopyClipBoard = async (link: string) => {
   console.log("test!");
   try {
     await navigator.clipboard.writeText(link);

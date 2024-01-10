@@ -1,5 +1,5 @@
 // 날짜변환 ex 0000.00.00
-export function formatDate(dateString) {
+export function formatDate(dateString: Date) {
   const date = new Date(dateString); // 날짜 Date 객체로 변환
   const year = date.getFullYear(); //년도 불러오기
   // 월 불러오기 (0부터시작 주의 // +1 붙여서 해결)
@@ -10,34 +10,28 @@ export function formatDate(dateString) {
   return `${year}.${month}.${day}`;
 }
 
-export function getTimeDifference(createdAt) {
-  const currentDate = new Date();
-  const createdDate = new Date(createdAt);
-  const timeDifference = Math.floor((currentDate - createdDate) / (1000 * 60)); // Difference in minutes
+export function getTimeDifference(createdAt: Date) {
+  const currentDate: Date = new Date();
+  const createdDate: Date = new Date(createdAt);
+  const timeDifference: number = Math.floor((currentDate.getTime() - createdDate.getTime()) / (1000 * 60)); // 분 단위의 차이 계산
 
   return timeDifference < 2
     ? "1 minute ago"
     : timeDifference <= 59
     ? `${timeDifference} minutes ago`
     : timeDifference < 60 * 24
-    ? ((hoursDifference) =>
-        hoursDifference === 1 ? "1 hour ago" : `${hoursDifference} hours ago`)(
+    ? ((hoursDifference) => (hoursDifference === 1 ? "1 hour ago" : `${hoursDifference} hours ago`))(
         Math.floor(timeDifference / 60)
       )
     : timeDifference < 60 * 24 * 30
-    ? ((daysDifference) =>
-        daysDifference === 1 ? "1 day ago" : `${daysDifference} days ago`)(
+    ? ((daysDifference) => (daysDifference === 1 ? "1 day ago" : `${daysDifference} days ago`))(
         Math.floor(timeDifference / (60 * 24))
       )
     : timeDifference < 60 * 24 * 30 * 12
-    ? ((monthsDifference) =>
-        monthsDifference === 1
-          ? "1 month ago"
-          : `${monthsDifference} months ago`)(
+    ? ((monthsDifference) => (monthsDifference === 1 ? "1 month ago" : `${monthsDifference} months ago`))(
         Math.floor(timeDifference / (60 * 24 * 30))
       )
-    : ((yearsDifference) =>
-        yearsDifference === 1 ? "1 year ago" : `${yearsDifference} years ago`)(
+    : ((yearsDifference) => (yearsDifference === 1 ? "1 year ago" : `${yearsDifference} years ago`))(
         Math.floor(timeDifference / (60 * 24 * 30 * 12))
       );
 }

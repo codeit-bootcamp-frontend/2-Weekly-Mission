@@ -1,15 +1,22 @@
 import Card from "./Card";
 import styled from "styled-components";
 import LinkNotFound from "./LinkNotFound";
+import { IPFolderData, IPLinkdata, ITransformData } from "../utils/type";
 
-function CardList({ cardData, psFolderData, linkData }) {
+interface Props {
+  cardData: ITransformData[];
+  psFolderData?: IPFolderData[];
+  linkData?: IPLinkdata[];
+}
+
+function CardList({ cardData, psFolderData, linkData }: Props) {
   return (
     <>
       {cardData.length === 0 ? (
         <LinkNotFound />
       ) : (
         <StyledCardListContainer>
-          {cardData.map((data) => (
+          {cardData.map((data: any) => (
             <Card key={data.id} data={data} psFolderData={psFolderData} linkData={linkData} />
           ))}
         </StyledCardListContainer>

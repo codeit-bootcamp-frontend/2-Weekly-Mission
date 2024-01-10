@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { IUserFolderData } from "../utils/type";
 
-function HeaderFoloderSection({ folderData }) {
+interface Props {
+  folderData: IUserFolderData;
+}
+
+function HeaderFoloderSection({ folderData }: Props) {
   const folderName = folderData.name;
   const ownerName = folderData.owner?.name;
   const ownerImg = folderData.owner?.profileImageSource;

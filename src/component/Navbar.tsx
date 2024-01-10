@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logoIcon from "../img/logo.png";
+import { UserData } from "../utils/type";
 
-function Navbar({ userData, location }) {
+interface Props {
+  userData: UserData;
+  location: {
+    pathname: string;
+  };
+}
+
+function Navbar({ userData, location }: Props) {
   const { email, image_source } = userData;
 
   const isSharedPath = location.pathname === "/shared";
@@ -29,7 +37,7 @@ function Navbar({ userData, location }) {
   );
 }
 
-const StyledNavbarContainer = styled.nav`
+const StyledNavbarContainer = styled.nav<{ $isActiveFixed: boolean }>`
   background-color: #f0f6ff;
   margin: 0 auto;
   position: ${({ $isActiveFixed }) => ($isActiveFixed ? "fixed" : "static")};

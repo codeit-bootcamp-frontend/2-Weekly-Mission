@@ -192,11 +192,10 @@ export const shareFolder = (folderName, url) => ({
           페이스북
         </StyledShareOption>
       </StyledShareIconContainer>
-      <StyledShareIconContainer>
+      <StyledShareIconContainer onClick={() => handleLinkCopyClipBoard(`${url}`)}>
         <StyledShareIcon src={copyIcon} alt="" />
         <StyledShareOption
           onClick={(e) => {
-            handleLinkCopyClipBoard(`${url}`);
             e.preventDefault();
           }}
         >

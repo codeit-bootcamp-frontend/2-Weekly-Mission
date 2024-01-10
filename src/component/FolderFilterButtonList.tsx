@@ -5,8 +5,25 @@ import styled from "styled-components";
 import Modal from "./Modal";
 import { useState } from "react";
 import { addFolder } from "../utils/modalItemData";
+import { IPFolderData } from "../utils/type";
 
-function FolderFilterButtonList({ psFolderData, handleData, handleSideBtn, folderName, sideBtnLender, location }) {
+interface Props {
+  psFolderData: IPFolderData[];
+  handleData: (value: IPFolderData) => void;
+  handleSideBtn: (value: boolean) => void;
+  folderName: string;
+  sideBtnLender: boolean;
+  location: string;
+}
+
+function FolderFilterButtonList({
+  psFolderData,
+  handleData,
+  handleSideBtn,
+  folderName,
+  sideBtnLender,
+  location,
+}: Props) {
   const path = useParams();
   const numPath = Number(path.folderId);
 
@@ -15,14 +32,14 @@ function FolderFilterButtonList({ psFolderData, handleData, handleSideBtn, folde
 
   return (
     <>
-      <Modal $isModalOn={setIsModalOn} $isLender={isModalOn} modalData={modalData} location={location} />
+      <Modal $setIsModalOn={setIsModalOn} $isModalOn={isModalOn} modalData={modalData} />
       <StyledFolderFilterBtnContainer>
         <StyledFolderFilterBtnItemContainer>
           <Link to="/folder">
             <StyledFolderFilterBtn
               $isMatching={numPath}
               onClick={() => {
-                handleData("");
+                handleData({});
                 handleSideBtn(false);
               }}
             >
@@ -53,7 +70,7 @@ function FolderFilterButtonList({ psFolderData, handleData, handleSideBtn, folde
       <FolderSidebar
         folderName={folderName}
         sideBtnLender={sideBtnLender}
-        $isModalOn={setIsModalOn}
+        $setIsModalOn={setIsModalOn}
         setModalData={setModalData}
         location={location}
       />
@@ -61,7 +78,7 @@ function FolderFilterButtonList({ psFolderData, handleData, handleSideBtn, folde
   );
 }
 
-const StyledFolderFilterBtn = styled.button`
+const StyledFolderFilterBtn = styled.button<{ $isMatching: number }>`
   border-radius: 5px;
   border: 1px solid #6d6afe;
   background: ${({ $isMatching }) => (!$isMatching ? "#6d6afe" : "#fff")};

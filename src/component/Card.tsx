@@ -3,22 +3,28 @@ import starIcon from "../img/star.svg";
 import menuIcon from "../img/kebab.svg";
 import { formatDate, getTimeDifference } from "../utils/date";
 import CardPopOver from "./CardPopOver";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import Modal from "./Modal";
+import { IPFolderData, IPLinkdata, ITransformData } from "../utils/type";
 
-function Card({ data, psFolderData, linkData }) {
+interface Props {
+  data: ITransformData;
+  psFolderData: IPFolderData[];
+  linkData: IPLinkdata[];
+}
+function Card({ data, psFolderData, linkData }: Props) {
   const [isPopOverOn, setIsPopOverOn] = useState(false);
   const [isModalOn, setIsModalOn] = useState(false);
   const [modalData, setModalData] = useState({});
 
-  function handleMenuIconClick(e) {
+  function handleMenuIconClick(e: MouseEvent<HTMLImageElement>) {
     e.preventDefault();
     setIsPopOverOn((ipo) => !ipo);
   }
 
   return (
     <>
-      <Modal $isModalOn={setIsModalOn} $isLender={isModalOn} modalData={modalData} />
+      <Modal $setIsModalOn={setIsModalOn} $isModalOn={isModalOn} modalData={modalData} />
       <StyledA href={data.url}>
         <StyledCardContiner>
           <StyledCardImgContiner>

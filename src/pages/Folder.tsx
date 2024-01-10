@@ -5,30 +5,32 @@ import FolderFilterButtonList from "../component/FolderFilterButtonList";
 import LinkSearchInput from "../component/LinkSearchInput";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { IPFolderData } from "../utils/type";
 
-function Folder({ psFolderData, handleData, folderName, setSearchLinkValue, searchLinkValue, footerRef }) {
+interface Props {
+  psFolderData: IPFolderData[];
+  handleData: (value: IPFolderData) => void;
+  folderName: string;
+  setSearchLinkValue: (value: string) => void;
+  searchLinkValue: string;
+  footerRef: any;
+}
+
+function Folder({ psFolderData, handleData, folderName, setSearchLinkValue, searchLinkValue, footerRef }: Props) {
   const [sideBtnLender, setSideBtnLender] = useState(false);
   const location = useLocation();
-  const headerLinkAddInput = useRef();
-  const linkSearchInput = useRef();
+  const [linkSearchInputOb, setLinkSearchInputOb] = useState<boolean>(false);
+  const [footerOb, setFooterOb] = useState<boolean>(false);
+  const headerLinkAddInput = useRef<HTMLDivElement>(null);
+  const linkSearchInput = useRef<any>(null);
 
   useEffect(() => {
     const observerLinkSearchInput = new IntersectionObserver((e) => {
-      e.forEach((e) => {
-        if (!e.isIntersecting) {
-          headerLinkAddInput.current.style.position = "fixed";
-          headerLinkAddInput.current.style.zIndex = "99";
-          headerLinkAddInput.current.style.paddingTop = "2.4rem";
-          headerLinkAddInput.current.style.paddingBottom = "2.4rem";
-          headerLinkAddInput.current.style.bottom = "0";
-          headerLinkAddInput.current.style.width = "100%";
-        } else {
-          headerLinkAddInput.current.style.position = "";
-          headerLinkAddInput.current.style.zIndex = "";
-          headerLinkAddInput.current.style.paddingTop = "";
-          headerLinkAddInput.current.style.paddingBottom = "";
-          headerLinkAddInput.current.style.bottom = "";
-          headerLinkAddInput.current.style.width = "";
+      e.forEach((element) => {
+        if (!element.isIntersecting) {
+          setLinkSearchInputOb(true);
+        } else if (element.isIntersecting) {
+          setLinkSearchInputOb(false);
         }
       });
     });
@@ -36,15 +38,16 @@ function Folder({ psFolderData, handleData, folderName, setSearchLinkValue, sear
     const observerFooter = new IntersectionObserver((e) => {
       e.forEach((e) => {
         if (e.isIntersecting) {
-          headerLinkAddInput.current.style.display = "none";
-        } else {
-          headerLinkAddInput.current.style.display = "block";
+          setFooterOb(true);
+        } else if (headerLinkAddInput) {
+          setFooterOb(false);
         }
       });
     });
 
     observerLinkSearchInput.observe(linkSearchInput.current);
     observerFooter.observe(footerRef.current);
+
     return () => {
       observerLinkSearchInput.disconnect();
       observerFooter.disconnect();
@@ -53,7 +56,7 @@ function Folder({ psFolderData, handleData, folderName, setSearchLinkValue, sear
 
   return (
     <>
-      <HeaderSearchSection setRef={headerLinkAddInput} />
+      <HeaderSearchSection setRef={headerLinkAddInput} linkSearchInputOb={linkSearchInputOb} footerOb={footerOb} />
       <MainContainer>
         <LinkSearchInput setSearchLinkValue={setSearchLinkValue} value={searchLinkValue} setRef={linkSearchInput} />
         <FolderFilterButtonList

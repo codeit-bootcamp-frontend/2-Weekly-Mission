@@ -4,7 +4,15 @@ import penIcon from "../img/pen.svg";
 import deleteIcon from "../img/delete.svg";
 import { folderNameChange, shareFolder, deleteFolder } from "../utils/modalItemData";
 
-function FolderSidebar({ folderName, sideBtnLender, $isModalOn, setModalData, location }) {
+interface Props {
+  folderName: string;
+  sideBtnLender: boolean;
+  $setIsModalOn: (value: boolean) => void;
+  setModalData: any;
+  location: string;
+}
+
+function FolderSidebar({ folderName, sideBtnLender, $setIsModalOn, setModalData, location }: Props) {
   const url = "http://localhost:3000" + location;
 
   return (
@@ -14,7 +22,7 @@ function FolderSidebar({ folderName, sideBtnLender, $isModalOn, setModalData, lo
         <StyledSideBtnContainer>
           <StyledSideBtn
             onClick={() => {
-              $isModalOn(true);
+              $setIsModalOn(true);
               setModalData(shareFolder(folderName, url));
             }}
           >
@@ -23,7 +31,7 @@ function FolderSidebar({ folderName, sideBtnLender, $isModalOn, setModalData, lo
           </StyledSideBtn>
           <StyledSideBtn
             onClick={() => {
-              $isModalOn(true);
+              $setIsModalOn(true);
               setModalData(folderNameChange);
             }}
           >
@@ -32,7 +40,7 @@ function FolderSidebar({ folderName, sideBtnLender, $isModalOn, setModalData, lo
           </StyledSideBtn>
           <StyledSideBtn
             onClick={() => {
-              $isModalOn(true);
+              $setIsModalOn(true);
               setModalData(deleteFolder(url));
             }}
           >

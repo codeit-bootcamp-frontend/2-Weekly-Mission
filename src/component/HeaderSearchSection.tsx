@@ -1,9 +1,20 @@
 import styled from "styled-components";
 import linkIcon from "../img/link.svg";
 
-function HeaderSearchSection({ setRef }) {
+interface Props {
+  setRef: any;
+  linkSearchInputOb: boolean;
+  footerOb: boolean;
+}
+
+/**
+ * @param setRef // ref 설정
+ * @param linkSearchInputOb HeaderSearchSection조정을 위한 LinkSearchInputOb의 옵저버
+ * @param footerOb //HeaderSearchSection조정을 위한 footerOb의 옵저버
+ **/
+function HeaderSearchSection({ setRef, linkSearchInputOb, footerOb }: Props) {
   return (
-    <StyledHeaderSectionContainer ref={setRef}>
+    <StyledHeaderSectionContainer ref={setRef} $linkSearchOb={linkSearchInputOb} $footerOb={footerOb}>
       <StyledHeaderSectionForm>
         <StyledHeaderSectionInput type="text" placeholder="링크를 추가해 보세요" />
         <StyledHeaderSectionButton type="submit">추가하기</StyledHeaderSectionButton>
@@ -12,12 +23,17 @@ function HeaderSearchSection({ setRef }) {
   );
 }
 
-const StyledHeaderSectionContainer = styled.section`
-  padding: 6rem 32rem 9rem;
+const StyledHeaderSectionContainer = styled.section<{ $linkSearchOb: boolean; $footerOb: boolean }>`
+  width: 100%;
   background-color: #f0f6ff;
   text-align: center;
-  display: flex;
+  display: ${({ $footerOb: $ob }) => ($ob ? "none" : "flex")};
   justify-content: center;
+
+  position: ${({ $linkSearchOb: $ob }) => ($ob ? "fixed" : "none")};
+  bottom: ${({ $linkSearchOb: $ob }) => ($ob ? 0 : "none")};
+  z-index: ${({ $linkSearchOb: $ob }) => ($ob ? 99 : 1)};
+  padding: ${({ $linkSearchOb: $ob }) => ($ob ? "2.4rem 0 2.4rem 0" : "6rem 32rem 9rem")};
 
   @media all and (max-width: 1124px) {
     padding: 6rem 3.2rem 9rem;
