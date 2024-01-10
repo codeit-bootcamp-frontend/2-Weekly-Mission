@@ -4,7 +4,7 @@
   width: 100%;
   height: 16rem;
   margin-top: 4rem;
-  background-color: var(--black);
+  background-color: var(--color-black);
 
   @media (min-width: 768px) {
     margin-top: 6rem;
@@ -20,7 +20,7 @@
     'copyright .';
   width: 100%;
   padding: 3.2rem;
-  color: var(--text-gray);
+  color: var(--color-text-gray);
   font-size: 1.6rem;
   font-family: Arial;
 

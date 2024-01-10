@@ -19,15 +19,11 @@ export async function getStaticProps() {
 }
 
 export default function SharedPage({ links, folder }: any) {
+  const { profileImageSource, name: ownerName } = folder.owner;
+  const { name: folderName } = folder;
   return (
     <Shared
-      folderInfo={
-        <FolderInfo
-          profileImage={folder.owner.profileImageSource}
-          ownerName={folder.owner.name}
-          folderName={folder.name}
-        />
-      }
+      folderInfo={<FolderInfo profileImage={profileImageSource} ownerName={ownerName} folderName={folderName} />}
       searchBar={<SearchBar />}
       cardList={
         <CardList>

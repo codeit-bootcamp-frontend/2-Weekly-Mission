@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import CardList from '../../components/CardList/CardList';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import SearchBar from '../../components/SearchBar/SearchBar.xsx';
 import Folder from '../../components/Folder/Folder';
 import CardReadOnly from '../../components/CardReadOnly/CardReadOnly';
 import LinkAddBar from '../../components/LinkAddBar/LinkAddBar';

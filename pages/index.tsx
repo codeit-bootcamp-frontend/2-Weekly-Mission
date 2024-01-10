@@ -10,6 +10,12 @@ export default function Home() {
       <Link href='/folder'>
         <h1>folder</h1>
       </Link>
+      <Link href='/signIn'>
+        <h1>signIn</h1>
+      </Link>
+      <Link href='/signUp'>
+        <h1>signUp</h1>
+      </Link>
     </div>
   );
 }

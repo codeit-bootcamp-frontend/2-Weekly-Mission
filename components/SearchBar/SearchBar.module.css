@@ -10,7 +10,7 @@
   padding-left: 3.8rem;
   padding-right: 1.6rem;
   border-radius: 1rem;
-  background-color: var(--gray-light);
+  background-color: var(--color-gray-light);
   font-size: 1.4rem;
 
   @media (min-width: 768px) {
@@ -21,7 +21,7 @@
   }
 }
 .SearchBarInput::placeholder {
-  color: var(--text-content-gray);
+  color: var(--color-text-content-gray);
 }
 
 .SearchBarIcon {

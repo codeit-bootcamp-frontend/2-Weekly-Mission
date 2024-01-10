@@ -10,7 +10,7 @@
 
 .CardContentElapsedTime {
   font-size: 1.3rem;
-  color: var(--text-content-gray);
+  color: var(--color-text-content-gray);
 }
 
 .CardContentDescription {
@@ -27,9 +27,9 @@
 
 .CardContentCreatedAt {
   font-size: 1.4rem;
-  color: var(--text-content-black);
+  color: var(--color-text-content-black);
 }
 
 .CardContent.CardContentHovered {
-  background-color: var(--light-blue);
+  background-color: var(--color-light-blue);
 }
