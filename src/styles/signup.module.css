@@ -1,0 +1,14 @@
+.signupPageWrapper {
+  background: var(--Linkbrary-bg, #f0f6ff);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 24px;
+}

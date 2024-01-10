@@ -11,8 +11,9 @@
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "react-responsive": "^9.0.2",
-    "next": "14.0.4"
+    "next": "14.0.4",
+    "react-hook-form": "^7.49.3",
+    "react-responsive": "^9.0.2"
   },
   "devDependencies": {
     "clsx": "^2.0.0",
