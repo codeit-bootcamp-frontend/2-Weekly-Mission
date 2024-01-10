@@ -9,6 +9,7 @@ interface SearchFormProps {
 export default function SearchForm({ className, path }: SearchFormProps) {
   const [value, setValue] = useState('');
   const router = useRouter();
+  const { folderId } = router.query;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -21,7 +22,12 @@ export default function SearchForm({ className, path }: SearchFormProps) {
       return router.push('/');
     }
 
-    router.push(`${path}?q=${value}`);
+    const searchPath = path === '/shared' ? `${path}/${folderId}` : path;
+
+    router.push({
+      pathname: searchPath,
+      query: { q: value },
+    });
   };
 
   return (
