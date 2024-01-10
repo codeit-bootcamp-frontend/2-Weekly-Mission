@@ -1,5 +1,7 @@
 import ButtonLink from '@/components/ButtonLink';
+import SearchForm from '@/components/SearchForm';
 import buttonLinkStyles from '@/components/ButtonLink.module.scss';
+import searchFormStyles from '@/components/SearchForm.module.scss';
 
 export default function Home() {
   return (
@@ -10,6 +12,8 @@ export default function Home() {
       >
         로그인
       </ButtonLink>
+      <SearchForm path="/folder" className={searchFormStyles['search-form']} />
+      <SearchForm path="/shared" className={searchFormStyles['search-form']} />
     </>
   );
 }
