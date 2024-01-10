@@ -1,0 +1,18 @@
+.form-all {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding: 238px 0 253px 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f0f6ff;
+  padding-top: 23.8rem;
+  padding-bottom: 25.3rem;
+  margin: 0;
+}
+.form-inputs {
+  gap: 2.4rem;
+  display: flex;
+  flex-direction: column;
+}
