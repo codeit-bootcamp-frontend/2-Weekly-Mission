@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // 화면 위치에 대한 정보를 얻기 위한 커스텀 훅
 export const useIntersectionObserver = <T extends HTMLElement>(
@@ -8,7 +8,7 @@ export const useIntersectionObserver = <T extends HTMLElement>(
   const ref = useRef<T>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       setIsIntersecting(entry.isIntersecting);
       if (once && entry.isIntersecting) {
