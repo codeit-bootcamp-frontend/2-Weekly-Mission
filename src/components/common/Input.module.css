@@ -1,6 +1,7 @@
 .label {
   color: var(--black, #000);
   margin-bottom: 12px;
+  max-width: 400px;
 
   font-size: 14px;
   font-style: normal;
@@ -11,6 +12,8 @@
 .inputWrapper {
   position: relative;
   display: inline-block;
+  max-width: 400px;
+  width: 100%;
 }
 
 .input {
@@ -23,7 +26,7 @@
   line-height: 24px;
 
   display: flex;
-  width: 100vw;
+  width: 100%;
   max-width: 400px;
   padding: 18px 15px;
   justify-content: center;
@@ -41,7 +44,7 @@
 .inputToggleButton {
   position: absolute;
   right: 15px;
-  top: 18px;
+  top: 22px;
 }
 
 .errorMessage {

@@ -10,26 +10,27 @@ interface InputProps {
   type: InputType;
 }
 
-const Input = forwardRef<InputProps, any>(({ label, errors, type, ...props }, ref) => {
+const Input = forwardRef<InputProps, any>(({ label, errors, type, className, ...props }, ref) => {
   const { name: inputName } = props;
 
   let hasToBeToggled = false;
   if (type === 'password') hasToBeToggled = true;
   const hasError = !!errors?.[inputName]?.message;
 
-  const [inputType, setInputType] = useState(type);
+  const [inputType, setInputType] = useState<'password' | 'text'>(type);
 
   const handleClickToggle = () => {
     if (inputType === 'text') setInputType('password');
     if (inputType === 'password') setInputType('text');
   };
 
-  // const IMG_PATH ={
-  //   text: '/assets/'
-  // }
+  const IMG_PATH = {
+    password: '/assets/eye-off.svg',
+    text: '/assets/eye-on.svg',
+  };
 
   return (
-    <>
+    <div className={className}>
       <h1 className={styles.label}>{label}</h1>
       <div className={styles.inputWrapper}>
         <input
@@ -40,12 +41,12 @@ const Input = forwardRef<InputProps, any>(({ label, errors, type, ...props }, re
         ></input>
         {hasToBeToggled && (
           <button className={styles.inputToggleButton} type="button" onClick={handleClickToggle}>
-            <img alt="비밀번호 토글 버튼 아이콘" />
+            <img src={IMG_PATH[inputType]} alt="비밀번호 토글 버튼 아이콘" />
           </button>
         )}
       </div>
       <p className={styles.errorMessage}>{errors?.[inputName]?.message}</p>
-    </>
+    </div>
   );
 });
 

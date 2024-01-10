@@ -31,7 +31,6 @@ export default function Filtering({ chosenFolderId, folder }: FilteringProps) {
       <div className={styles.Sorting}>
         {allFolderList.map((folderInfo) => {
           const isFolderChosen = +chosenFolderId === folderInfo.id; // 선택된 폴더인지 확인
-          console.log(folderInfo.id, isFolderChosen);
           return <FolderButton isFolderChosen={isFolderChosen} key={folderInfo.id} folderInfo={folderInfo} />;
         })}
       </div>
