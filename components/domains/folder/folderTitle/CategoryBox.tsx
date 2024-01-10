@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { useContext } from "react";
 import Category from "./Category";
 import { Folder } from "../../../../types/folder";
+import LocaleContext from "../../../../contexts/LocaleContext";
 
 const categoryList = [
   { title: "공유", image: "/images/share.png " },
@@ -9,22 +11,21 @@ const categoryList = [
 ];
 
 function CategoryBox({
-  folder,
   openModal,
   searchResult,
 }: {
-  folder: Folder;
   openModal: () => void;
   searchResult: string;
 }) {
+  const locale = useContext<Folder>(LocaleContext);
   return (
     <StyledCategoryBox>
-      {searchResult === "" ? <h1>{folder.name}</h1> : <h1>전체</h1>}
-      {folder.name !== "전체" ? (
+      {searchResult === "" ? <h1>{locale.name}</h1> : <h1>전체</h1>}
+      {locale.name !== "전체" ? (
         <CategoryList>
           {categoryList.map((category) => (
             <Category
-              key={folder.id}
+              key={locale.id}
               category={category}
               openModal={openModal}
             />

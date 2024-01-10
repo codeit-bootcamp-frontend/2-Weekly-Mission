@@ -1,33 +1,29 @@
+import { useContext } from "react";
 import CategoryBox from "./CategoryBox";
 import { Folder } from "../../../../types/folder";
+import LocaleContext from "../../../../contexts/LocaleContext";
 
 function FoldersTitles({
-  folderList,
   id,
   openModal,
   searchResult,
 }: {
-  folderList: Folder[];
   id: number;
   openModal: () => void;
   searchResult: string;
 }) {
-  return (
-    folderList?.length > 0 &&
-    folderList.map((folder) => {
-      if (folder.id === id) {
-        return (
-          <CategoryBox
-            searchResult={searchResult}
-            key={folder.id}
-            folder={folder}
-            openModal={openModal}
-          />
-        );
-      }
-      return null;
-    })
-  );
+  const locale = useContext<Folder[]>(LocaleContext);
+
+  return locale
+    .filter((folder) => folder.id === id)
+    .map((filteredFolder) => (
+      <CategoryBox
+        searchResult={searchResult}
+        key={filteredFolder.id}
+        folder={filteredFolder}
+        openModal={openModal}
+      />
+    ));
 }
 
 export default FoldersTitles;

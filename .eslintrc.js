@@ -23,7 +23,7 @@ module.exports = {
     sourceType: "module",
   },
 
-  plugins: ["react", "@typescript-eslint", "import"],
+  plugins: ["react", "prettier", "@typescript-eslint", "import"],
   rules: {
     "no-nested-ternary": "off",
     "react/jsx-props-no-spreading": "off",
@@ -41,7 +41,7 @@ module.exports = {
   settings: {
     "import/resolver": {
       node: {
-        paths: ["src"],
+        extensions: [".ts", ".tsx", ".svg"],
       },
     },
   },

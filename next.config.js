@@ -42,12 +42,6 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "testing-library.com",
-        port: "",
-        pathname: "/img/**",
-      },
-      {
-        protocol: "https",
         hostname: "static.cdninstagram.com",
         port: "",
         pathname: "/rsrc.php/v3/yt/r/**",
@@ -81,6 +75,12 @@ const nextConfig = {
         hostname: "codeit-images.codeit.com",
         port: "",
         pathname: "/badges/**",
+      },
+      {
+        protocol: "https",
+        hostname: "testing-library.com",
+        port: "",
+        pathname: "/img/**",
       },
     ],
   },

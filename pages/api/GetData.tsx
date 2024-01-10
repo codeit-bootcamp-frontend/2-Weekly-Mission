@@ -1,7 +1,7 @@
 import axios from "axios";
 import API_BASE_URL from "../../constants";
 
-interface SharedFolderLinkInfo {
+interface SharedFolderLink {
   id: number;
   createdAt: string;
   url: string;
@@ -10,7 +10,7 @@ interface SharedFolderLinkInfo {
   imageSource: string;
 }
 
-interface SharedFolderInfo {
+interface SharedFolder {
   folder: {
     id: number;
     name: string;
@@ -19,11 +19,11 @@ interface SharedFolderInfo {
       name: string;
       profileImageSource: string;
     };
-    links: SharedFolderLinkInfo[];
+    links: SharedFolderLink[];
   };
 }
 
-const convertToSnakeCase = (data: SharedFolderInfo) => {
+const convertToSnakeCase = (data: SharedFolder) => {
   const { links } = data.folder;
   const convertedLinks = links.map((link) => {
     const convertedLink = Object.fromEntries(

@@ -19,6 +19,6 @@
     "incremental": true,
     "types": ["node", "react"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../blog-project/global.d copy.ts"],
   "exclude": ["node_modules", ".next"]
 }

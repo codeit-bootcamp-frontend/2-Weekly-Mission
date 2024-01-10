@@ -9,6 +9,7 @@ import FloatingButton from "../components/domains/folder/FloatingButton";
 import { getAllLinksData, getFoldersData } from "./api/FolderApi";
 import { Folder } from "../types/folder";
 import { Link } from "../types/common";
+import LocaleContext from "../contexts/LocaleContext";
 
 function FolderPage({ openModal }: { openModal: () => void }) {
   const [folderList, setFolderList] = useState<Folder[]>([]);
@@ -54,9 +55,9 @@ function FolderPage({ openModal }: { openModal: () => void }) {
   }, [id]);
 
   return (
-    <>
+    <LocaleContext.Provider value={folderList}>
       <Banner openModal={openModal} />
-      <section className={styles.contentFlax}>
+      <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
           <SearchInput
             searchResult={searchResult}
@@ -64,7 +65,6 @@ function FolderPage({ openModal }: { openModal: () => void }) {
             searchLink={searchLink}
           />
           <FolderButtonList
-            folderList={folderList}
             setSelectFolderLinks={setSelectFolderLinks}
             setId={setId}
             openModal={openModal}
@@ -72,7 +72,6 @@ function FolderPage({ openModal }: { openModal: () => void }) {
           <FolderTitles
             searchResult={searchResult}
             openModal={openModal}
-            folderList={folderList}
             id={id}
           />
           {searchResult !== "" ? (
@@ -91,7 +90,7 @@ function FolderPage({ openModal }: { openModal: () => void }) {
         </div>
       </section>
       <FloatingButton />
-    </>
+    </LocaleContext.Provider>
   );
 }
 
