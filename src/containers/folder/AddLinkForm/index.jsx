@@ -11,7 +11,7 @@ import MyButton from 'components/common/Button/MyButton';
 import FolderList from 'containers/folder/ModalContent/FolderList';
 import Dialog from 'components/common/Modal';
 
-import { INITIAL_FILTER_DATA } from 'stores/dataType';
+import { INITIAL_FILTER_DATA } from 'stores/initialData';
 import { ICON } from 'stores/importImg';
 
 const cx = classNames.bind(styles);

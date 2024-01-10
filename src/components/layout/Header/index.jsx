@@ -10,7 +10,7 @@ import { useAsync } from 'hooks/useAsync';
 import Profile from 'components/common/Profile';
 import LinkButton from 'components/common/Button/LinkButton';
 
-import { INITIAL_PROFILE_DATA } from 'stores/dataType';
+import { INITIAL_PROFILE_DATA } from 'stores/initialData';
 import { ICON } from 'stores/importImg';
 
 const cx = classNames.bind(styles);

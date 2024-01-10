@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './Footer.module.scss';
 import classNames from 'classnames/bind';
 
-import { FOOTER_SOCIAL_LIST } from '@/stores/listOption';
+import { FOOTER_SOCIAL_LIST } from 'stores/listOption';
 
 const cx = classNames.bind(styles);
 

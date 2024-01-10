@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from 'react';
 import api from 'apis/api';
 import { useAsync } from 'hooks/useAsync';
 
-import { INITIAL_FOLDER_DATA } from 'stores/dataType';
+import { INITIAL_FOLDER_DATA } from 'stores/initialData';
 
 export const FolderContext = createContext();
 

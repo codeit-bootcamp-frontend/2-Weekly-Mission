@@ -14,9 +14,7 @@ const Input = ({ error = false, type = 'text', ...inputProps }) => {
     ? PASSWORD_SHOW_MODE.on
     : PASSWORD_SHOW_MODE.off;
 
-  const handlePasswordToggleClick = () => {
-    setIsVisible((prev) => !prev);
-  };
+  const handlePasswordToggleClick = () => setIsVisible((prev) => !prev);
 
   return (
     <div>

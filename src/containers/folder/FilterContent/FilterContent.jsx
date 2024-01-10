@@ -15,7 +15,7 @@ import EmptyContent from 'components/layout/EmptyContent';
 import GridLayout from 'components/layout/Grid';
 import CardItem from 'containers/folder/CardItem';
 
-import { INITIAL_FILTER_DATA } from 'stores/dataType';
+import { INITIAL_FILTER_DATA } from 'stores/initialData';
 
 const cx = classNames.bind(styles);
 const foundKeyArr = ['url', 'title', 'description'];
