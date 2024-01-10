@@ -2,16 +2,20 @@ import React from "react";
 import Card from "./Card";
 import styled from "styled-components";
 
-function CardList({ folderLinks }) {
+function CardList({ location, folderLinks }) {
   function handleCardClick(url) {
     window.open(url, "_blank");
   }
 
   return (
     <Container>
-      {folderLinks.map((link) => (
+      {folderLinks?.map((link) => (
         <li key={link.id}>
-          <Card link={link} handleCardClick={handleCardClick} />
+          <Card
+            location={location}
+            link={link}
+            handleCardClick={handleCardClick}
+          />
         </li>
       ))}
     </Container>

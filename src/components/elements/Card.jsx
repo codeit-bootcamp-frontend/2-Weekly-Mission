@@ -6,13 +6,13 @@ import star from "../../images/star.svg";
 import emptyLogo from "../../images/card-logo.svg";
 import kebab from "../../images/kebab.svg";
 
-function Card({ link, handleCardClick }) {
+function Card({ location, link, handleCardClick }) {
   const { createdAt, url, description, imageSource } = link;
   const onClick = () => handleCardClick(url);
 
   return (
     <Container>
-      <Star src={star} alt="즐겨찾기" />
+      {location === "folder" ? <Star src={star} alt="즐겨찾기" /> : null}
       <ImageSection onClick={onClick}>
         {imageSource ? (
           <CardImage src={imageSource} alt="카드 이미지" />
@@ -23,7 +23,9 @@ function Card({ link, handleCardClick }) {
       <InfoSection>
         <TimeAgoSection>
           <span>{timeAgo(createdAt)}</span>
-          <Kebab src={kebab} alt="더보기 메뉴" />
+          {location === "folder" ? (
+            <Kebab src={kebab} alt="더보기 메뉴" />
+          ) : null}
         </TimeAgoSection>
         <Description>{description}</Description>
         <span>{formatDate(createdAt)}</span>
@@ -55,7 +57,7 @@ const InfoSection = styled.div`
   align-items: flex-start;
   gap: 1rem;
   border-radius: 0rem 0rem 1.5rem 1.5rem;
-  background: #fff;
+  background: ${COLOR_TOKEN.white};
   height: 13.4rem;
 `;
 
@@ -141,7 +143,7 @@ const Description = styled.span`
   height: 4.9rem;
   align-self: stretch;
   overflow: hidden;
-  color: #000;
+  color: ${COLOR_TOKEN.black};
   font-family: Pretendard;
   font-size: 1.6rem;
   font-style: normal;

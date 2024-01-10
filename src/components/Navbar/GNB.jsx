@@ -4,9 +4,9 @@ import Account from "./Account";
 import Logo from "./Logo";
 import SigninBtn from "./SigninBtn";
 
-function GNB({ isSignin, userName, userProfileImgSrc }) {
+function GNB({ location, isSignin, userName, userProfileImgSrc }) {
   return (
-    <Nav>
+    <Nav $location={location}>
       <Container>
         <Logo />
         {isSignin ? (
@@ -22,10 +22,12 @@ function GNB({ isSignin, userName, userProfileImgSrc }) {
 const Nav = styled.nav`
   display: flex;
   justify-content: center;
-  position: fixed;
+  position: ${({ $location }) =>
+    $location === "folder" ? "relative" : "fixed"};
   top: 0;
   width: 100%;
   background-color: #edf7ff;
+  z-index: 2;
 `;
 
 const Container = styled.div`

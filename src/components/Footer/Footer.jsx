@@ -25,7 +25,7 @@ function Footer() {
         </FooterLinkContainer>
         <SNSContainer>
           {snsArray.map((sns) => (
-            <SNS imageSrc={sns.imageSrc} alt={sns.alt} />
+            <SNS key={sns.alt} imageSrc={sns.imageSrc} alt={sns.alt} />
           ))}
         </SNSContainer>
       </FooterBox>
@@ -39,6 +39,7 @@ const FooterContainer = styled.footer`
   width: 100%;
   height: 16rem;
   background-color: ${COLOR_TOKEN.black};
+  margin-top: 6rem;
 `;
 
 const FooterBox = styled.div`

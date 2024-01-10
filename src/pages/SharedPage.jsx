@@ -37,22 +37,24 @@ function SharedPage() {
 
   return (
     <PageContainer>
-      <GNB
-        isSignin={isSignin}
-        userName={userData.name}
-        userProfileImgSrc={userData.profileImageSource}
-      />
-      <Header
-        userFolderName={folderData.name}
-        folderOwnerName={folderData.owner.name}
-        userFolderProfileImgSrc={folderData.owner.profileImageSource}
-      />
-      <ContentContainer>
-        <Search />
-        <CardContainer>
-          <CardList folderLinks={folderData.links} />
-        </CardContainer>
-      </ContentContainer>
+      <Top>
+        <GNB
+          isSignin={isSignin}
+          userName={userData.name}
+          userProfileImgSrc={userData.profileImageSource}
+        />
+        <Header
+          userFolderName={folderData.name}
+          folderOwnerName={folderData.owner.name}
+          userFolderProfileImgSrc={folderData.owner.profileImageSource}
+        />
+        <ContentContainer>
+          <Search />
+          <CardContainer>
+            <CardList folderLinks={folderData.links} />
+          </CardContainer>
+        </ContentContainer>
+      </Top>
       <Footer />
     </PageContainer>
   );
@@ -61,14 +63,24 @@ function SharedPage() {
 const PageContainer = styled.div`
   display: flex;
   width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+`;
+
+const Top = styled.div`
+  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3.2rem;
+  gap: 2rem;
 `;
 
 const ContentContainer = styled.div`
   display: flex;
-  width: calc(100% - 3.2rem);
+  width: calc(100% - 6.4rem);
   flex-direction: column;
   align-items: center;
   gap: 4rem;

@@ -9,7 +9,7 @@ function Search() {
     <Wrapper>
       <Container>
         <SearchIcon src={searchIcon} alt="돋보기 아이콘" />
-        <Input className="search" placeholder="링크를 검색해 보세요." />
+        <Input placeholder="링크를 검색해 보세요." />
       </Container>
       <SearchErase src={close} alt="검색창 비우기 버튼" />
     </Wrapper>
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   border-radius: 1rem;
-  background: #f5f5f5;
+  background: ${COLOR_TOKEN.grayLight};
 
   @media (min-width: 768px) {
     padding: 1.5rem 1.6rem;
@@ -44,7 +44,7 @@ const SearchIcon = styled.img`
 
 const Input = styled.input`
   width: 100%;
-  background: #f5f5f5;
+  background: ${COLOR_TOKEN.grayLight};
   border: none;
   color: ${COLOR_TOKEN.text};
   text-align: left;

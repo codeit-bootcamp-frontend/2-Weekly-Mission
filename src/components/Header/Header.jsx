@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import COLOR_TOKEN from "../../styles/colors";
 import UserProfile from "./UserProfile";
+import AddLink from "../folder/AddLink";
 
 function Header({
   userFolderProfileImgSrc = "/",
@@ -8,19 +9,27 @@ function Header({
   userFolderName = "",
 }) {
   return (
-    <Wrapper>
-      <Container>
-        <UserProfile
-          userFolderProfileImgSrc={userFolderProfileImgSrc}
-          folderOwnerName={folderOwnerName}
-        />
-        <FolderName>{userFolderName}</FolderName>
-      </Container>
-    </Wrapper>
+    <>
+      {userFolderName !== "" ? (
+        <UserProfileWrapper>
+          <userProfileContainer>
+            <UserProfile
+              userFolderProfileImgSrc={userFolderProfileImgSrc}
+              folderOwnerName={folderOwnerName}
+            />
+            <FolderName>{userFolderName}</FolderName>
+          </userProfileContainer>
+        </UserProfileWrapper>
+      ) : (
+        <AddLinkWrapper>
+          <AddLink />
+        </AddLinkWrapper>
+      )}
+    </>
   );
 }
 
-const Wrapper = styled.div`
+const UserProfileWrapper = styled.div`
   display: flex;
   width: 100%;
   margin-top: 6.3rem;
@@ -39,15 +48,26 @@ const Wrapper = styled.div`
   }
 `;
 
-const Container = styled.div`
+const userProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
 `;
 
+const AddLinkWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 2.4rem 3.2rem 4rem 3.2rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  align-self: stretch;
+  background: ${COLOR_TOKEN.background};
+`;
+
 const FolderName = styled.div`
-  color: #000;
+  color: ${COLOR_TOKEN.black};
   text-align: center;
   font-size: 3.2rem;
   font-style: normal;

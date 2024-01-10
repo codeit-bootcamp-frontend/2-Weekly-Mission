@@ -11,6 +11,11 @@ const resetStyle = css`
   html,
   body {
     font-size: 62.5%;
+    height: 100vh;
+  }
+
+  main {
+    height: 100vh;
   }
 
   a {

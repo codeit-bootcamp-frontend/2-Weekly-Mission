@@ -1,23 +1,30 @@
 import styled from "styled-components";
+import COLOR_TOKEN from "../../styles/colors";
+import { useNavigate } from "react-router-dom";
 
 function SigninBtn() {
+  const navigate = useNavigate();
+  const onClick = () => navigate("/signin");
   return (
-    <SigninCta href="/Signin">
+    <SigninCta onClick={onClick}>
       <span>로그인</span>
     </SigninCta>
   );
 }
 
-const SigninCta = styled.a`
+const SigninCta = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 8rem;
   height: 3.7rem;
-  cursor: pointer;
-  background-image: linear-gradient(135deg, var(--primary) 0%, #6ae3fe 100%);
+  background-image: linear-gradient(
+    135deg,
+    ${COLOR_TOKEN.primary} 0%,
+    #6ae3fe 100%
+  );
   border-radius: 0.8rem;
-  color: #f5f5f5;
+  color: ${COLOR_TOKEN.grayLight};
   font-size: 1.4rem;
   font-weight: 600;
 
