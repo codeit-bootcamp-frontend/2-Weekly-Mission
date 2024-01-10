@@ -1,3 +1,4 @@
+import { ProfileType } from '../type';
 import styles from './Profile.module.scss';
 import classNames from 'classnames/bind';
 
@@ -5,10 +6,7 @@ const cx = classNames.bind(styles);
 
 // 프로필 컴포넌트 타입 선언
 type ProfileProps = {
-  profile: {
-    imageSource: string;
-    email: string;
-  };
+  profile: ProfileType;
 };
 
 // 네비게이션 바 프로필 컴포넌트

@@ -5,15 +5,12 @@ import { ROUTE } from '../util/constant';
 import { Cta } from '../ui-cta/Cta';
 import { Profile } from '../ui-profile/Profile';
 import { LOGO_IMAGE, TEXT } from './constant';
-import { useEffect } from 'react';
+import { ProfileType } from '../type';
 
 const cx = classNames.bind(styles);
 
 type NavigationBarProps = {
-  profile: {
-    imageSource: string;
-    email: string;
-  } | null;
+  profile: ProfileType | null;
   isSticky: boolean;
 };
 
