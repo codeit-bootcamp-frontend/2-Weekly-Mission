@@ -1,0 +1,78 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  word-break: keep-all;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  border: 0;
+  background-color: transparent;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* Global CSS */
+:root {
+  --primary-color: #6d6afe;
+  --red-color: #ff5b56;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --gray-color-100: #373740;
+  --gray-color-60: #9fa6b2;
+  --gray-color-20: #ccd5e3;
+  --gray-color-10: #e7effb;
+  --gray-color-bg: #f0f6ff;
+  --blue-color-bg: #edf7ff;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 192rem;
+}
+
+/* Responsive Global CSS */
+@media screen and (max-width: 768px) {
+  .sm-hidden {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .md-hidden {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .lg-hidden {
+    display: none;
+  }
+}
