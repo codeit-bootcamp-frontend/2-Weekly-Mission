@@ -26,7 +26,8 @@
   line-height: normal;
 }
 .header-all {
-  padding-top: 6rem;
+  padding-top: 6;
+  margin-bottom: 30px;
 }
 .header {
   text-align: center;
