@@ -1,0 +1,43 @@
+.nav {
+  background-color: var(--gray-bg-color);
+  padding: 2rem 20rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    padding: 2rem 0;
+  }
+
+  @media (min-width: 375px) and (max-width: 767px) {
+    padding: 2rem 3.2rem;
+  }
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 192rem;
+  margin: 0 auto;
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    max-width: 80rem;
+  }
+}
+
+.gnb {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.gnbImg {
+  border-radius: 9999px;
+}
+
+.email {
+  font-size: 1.4rem;
+}

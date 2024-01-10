@@ -1,0 +1,17 @@
+.option {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.optionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.optionText {
+  display: flex;
+  font-size: 1.4rem;
+  color: var(--gray-60-color);
+  align-items: center;
+}

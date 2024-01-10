@@ -1,0 +1,13 @@
+.folderButton {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  background: var(--white-color);
+  height: 4rem;
+}
+
+.folderButton:hover,
+.folderButton:focus {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
