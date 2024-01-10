@@ -1,5 +1,6 @@
 import styles from "@/styles/SignIn.module.css";
 import Link from "next/link";
+import Image from "next/image";
 import { EmailInput, PasswordInput } from "@/components/Input";
 
 export default function SignIn() {
@@ -14,8 +15,13 @@ export default function SignIn() {
   return (
     <div className={styles.signIn}>
       <header className={styles.header}>
-        <Link className={styles.logoLink} href={"https://www.google.com/"}>
-          image
+        <Link className={styles.logoLink} href={"/"}>
+          <Image
+            src="/images/logo.svg"
+            width={133}
+            height={24}
+            alt="Linkbrary"
+          />
         </Link>
         <p className={styles.headerMessage}>
           회원이 아니신가요?
@@ -46,13 +52,23 @@ export default function SignIn() {
               className={`${styles.snsLink} ${styles.googleLink}`}
               href={"https://www.google.com/"}
             >
-              to Google
+              <Image
+                src="/images/google.png"
+                width={24}
+                height={24}
+                alt="Google Login"
+              />
             </Link>
             <Link
               className={`${styles.snsLink} ${styles.kakaoLink}`}
               href={"https://www.google.com/"}
             >
-              to Kakao
+              <Image
+                src="/images/kakao.svg"
+                width={24}
+                height={24}
+                alt="Kakao Login"
+              />
             </Link>
           </div>
         </div>
