@@ -1,0 +1,22 @@
+.main-banenr {
+  width: 100%;
+  padding: 6rem 0 9rem;
+  background-color: $light-blue;
+
+  .container {
+    max-width: 80rem;
+    margin: 0 auto;
+
+    @include responsive(T) {
+      width: 100%;
+    }
+  }
+
+  @include responsive(T) {
+    padding: 6rem 3.2rem 9rem;
+  }
+
+  @include responsive(M) {
+    padding: 2.4rem 3.2rem 4rem;
+  }
+}

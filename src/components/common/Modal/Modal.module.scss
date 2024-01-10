@@ -1,0 +1,61 @@
+.modal {
+  @include column-flexbox;
+
+  position: relative;
+  width: 36rem;
+  padding: 3.2rem 4rem;
+  border: 0.1rem solid #dee2e6;
+  border-radius: 1.5rem;
+  background-color: $white;
+  animation: show-modal ease-in-out 0.3s;
+
+  &-btn-close {
+    @include flexbox;
+
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background-color: $blue-gray-40;
+    cursor: pointer;
+
+    i {
+      font-size: 1.6rem;
+    }
+  }
+
+  &-header {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 2.4rem;
+
+    &-title {
+      @include text-style(20, $blue-gray-100);
+    }
+
+    &-sub-title {
+      @include text-style(14, $blue-gray-80);
+
+      margin-top: 0.8rem;
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+}
+
+@keyframes show-modal {
+  0% {
+    transform: translateY(2rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

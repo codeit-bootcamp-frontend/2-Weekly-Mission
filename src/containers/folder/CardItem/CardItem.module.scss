@@ -1,0 +1,143 @@
+.card-item {
+  position: relative;
+  height: 33.4rem;
+  border-radius: 1.5rem;
+  box-shadow: $drop-shadow;
+
+  .btn-favorite {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: $fix-button-level;
+  }
+
+  &-imgbox {
+    position: relative;
+    display: block;
+    height: 20rem;
+    border-radius: 1.5rem 1.5rem 0 0;
+    background-image: url('../../../assets/images/empty-card-img.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform ease-in-out 0.4s;
+
+      &:hover {
+        transform: scale(1.3);
+      }
+
+      @include responsive(M) {
+        &:hover {
+          transform: scale(1);
+        }
+      }
+    }
+
+    @include responsive(M) {
+      height: 19.2rem;
+    }
+  }
+
+  &-textBox {
+    @include column-flexbox(between, start);
+
+    position: relative;
+    padding: 1.5rem 2rem;
+    height: 13.5rem;
+    transition: background ease-in-out 0.3s;
+
+    &:hover {
+      background-color: $light-blue;
+    }
+
+    &-header {
+      @include flexbox(between);
+
+      width: 100%;
+
+      &-date {
+        @include text-style(13, $gray-80);
+      }
+
+      .btn-more {
+        position: relative;
+
+        .select-menu {
+          position: absolute;
+          top: 1.6rem;
+          left: 0;
+          z-index: $fix-button-level;
+          background-color: $white;
+          box-shadow: $select-menu-shadow;
+
+          &-item {
+            width: 100%;
+            margin-bottom: 0.2rem;
+            background-color: $white;
+
+            button {
+              @include text-style(14);
+
+              width: 100px;
+              padding: 7px 0;
+              color: $gray-90;
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            &:hover {
+              background-color: $light-blue;
+
+              button {
+                color: $primary;
+              }
+            }
+          }
+
+          @include responsive(T) {
+            left: -8rem;
+          }
+        }
+      }
+    }
+
+    &-desc {
+      @include text-style(16);
+
+      display: -webkit-box;
+      word-wrap: break-word;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 1rem 0;
+      height: 4.9rem;
+    }
+
+    &-date {
+      @include text-style(14, $gray-90);
+    }
+
+    @include responsive(M) {
+      &:hover {
+        background-color: $white;
+      }
+    }
+  }
+
+  @include responsive(M) {
+    height: 327px;
+  }
+}
+
+.modal-content {
+  width: 100%;
+}
