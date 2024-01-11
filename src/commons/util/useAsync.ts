@@ -3,7 +3,10 @@ import { useEffectOnce } from './useEffectOnce';
 import { AxiosResponse } from 'axios';
 
 // 비동기 처리 커스텀 훅
-export const useAsync = <T>(asyncFunction: () => Promise<AxiosResponse<T>>) => {
+export const useAsync = <T>(
+  asyncFunction: () => Promise<AxiosResponse<T>>,
+  initFirst: boolean = false
+) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | any>(null);
   const [data, setData] = useState<null | T>(null);
@@ -25,7 +28,9 @@ export const useAsync = <T>(asyncFunction: () => Promise<AxiosResponse<T>>) => {
   };
 
   useEffectOnce(() => {
-    execute();
+    if (!initFirst) {
+      execute();
+    }
   });
 
   //   로딩, 에러, 데이터 반환
