@@ -8,12 +8,19 @@ import SelectedCardList from '@/components/SelectedCardList/SelectedCardList';
 import Footer from '@/components/Footer/Footer';
 import styles from '@/styles/folder.module.css';
 
+type Current = HTMLDivElement[];
+
+type ref = {
+  current: Current;
+};
+
 export default function Folder() {
   const [searchValue, setSearchValue] = useState('');
   const [selectedFolder, setSelectedFolder] = useState({ id: '', name: '전체' });
 
   const [sideAddLinkbar, setSideAddLinkbar] = useState(false);
-  const targets = useRef([]);
+  const targets = useRef<ref>();
+  console.log(targets);
 
   // next.js에서는 IntersectionObserver를 useEffect 내부에 넣어야만 실행된다고 하는데..
   // 내려갈 때는 작동하는데, 올라올 때는 작동하지 않는 이유는? -> target이 바뀔 때마다 콜백을 실행해야할 것 같은데 dependency에 target을 어떻게 지정하지?
