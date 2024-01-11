@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AddLinkbar from '@/components/AddLinkbar/AddLinkbar';
 import HeaderLayout from '@/components/HeaderLayout/HeaderLayout';
 import Navbar from '@/components/Navbar/Navbar';
