@@ -21,8 +21,24 @@ export default function SignUpForm() {
           control={control}
           name="email"
           defaultValue=""
-          render={({ field }) => (
-            <Input placeholder="이메일을 입력해 주세요." />
+          rules={{
+            required: '이메일을 입력해 주세요.',
+            pattern: {
+              value: /\S@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: '올바른 이메일 주소가 아닙니다',
+            },
+          }}
+          render={({ field, fieldState }) => (
+            <Input
+              {...field}
+              onBlur={() => {
+                field.onBlur();
+                // 중복 체크 해야됨
+              }}
+              placeholder="이메일을 입력해 주세요."
+              hasError={Boolean(fieldState.error)}
+              errorMessage={fieldState.error?.message}
+            />
           )}
         />
       </div>
@@ -30,10 +46,22 @@ export default function SignUpForm() {
         <label className={cx('label')}>비밀번호</label>
         <Controller
           control={control}
-          name="email"
+          name="password"
           defaultValue=""
-          render={({ field }) => (
-            <PasswordInput placeholder="영문, 숫자를 조합해 8자 이상 입력해 주세요." />
+          rules={{
+            required: '비밀번호를 입력해 주세요',
+            pattern: {
+              value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
+              message: '비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.',
+            },
+          }}
+          render={({ field, fieldState }) => (
+            <PasswordInput
+              {...field}
+              placeholder="영문, 숫자를 조합해 8자 이상 입력해 주세요."
+              hasError={Boolean(fieldState.error)}
+              errorMessage={fieldState.error?.message}
+            />
           )}
         />
       </div>
@@ -41,10 +69,21 @@ export default function SignUpForm() {
         <label className={cx('label')}>비밀번호 확인</label>
         <Controller
           control={control}
-          name="email"
+          name="passwordRepeat"
           defaultValue=""
-          render={({ field }) => (
-            <PasswordInput placeholder="비밀번호와 일치하는 값을 입력해 주세요." />
+          rules={{
+            validate: (value) =>
+              value === watch('password')
+                ? true
+                : '비밀번호가 일치하지 않아요.',
+          }}
+          render={({ field, fieldState }) => (
+            <PasswordInput
+              {...field}
+              placeholder="비밀번호와 일치하는 값을 입력해 주세요."
+              hasError={Boolean(fieldState.error)}
+              errorMessage={fieldState.error?.message}
+            />
           )}
         />
       </div>
