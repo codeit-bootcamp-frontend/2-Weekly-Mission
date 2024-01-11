@@ -5,10 +5,18 @@ import { GOOGLE_ICON, KAKAO_ICON, TEXT } from './constant';
 
 const cx = classNames.bind(styles);
 
-export default function SocialToolbar() {
+type SocialToolbarProps = {
+  isSignUp: boolean;
+};
+
+export default function SocialToolbar({
+  isSignUp = false,
+}: SocialToolbarProps) {
   return (
     <div className={cx('container')}>
-      <span className={cx('suggestion')}>{TEXT.signin}</span>
+      <span className={cx('suggestion')}>
+        {isSignUp ? TEXT.signup : TEXT.signin}
+      </span>
       <div className={cx('buttonContainer')}>
         <Link
           href="https://www.google.com"

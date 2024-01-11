@@ -26,8 +26,10 @@ export default function SigninForm() {
   );
 
   // 이미 로그인 되어있으면 리다이렉트
-  if (window.localStorage.getItem('accessToken')) {
-    router.push('/folder');
+  if (typeof window !== 'undefined') {
+    if (window.localStorage.getItem('accessToken')) {
+      router.push('/folder');
+    }
   }
 
   // data 들어오면 로컬 스토리지 저장후 페이지 이동
