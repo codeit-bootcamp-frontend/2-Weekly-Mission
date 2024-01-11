@@ -6,23 +6,52 @@ import PasswordInput from '@/src/commons/ui-password-input/PasswordInput';
 import { useForm, Controller } from 'react-hook-form';
 import { useSignIn } from '../utils/useSignIn';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const cx = classNames.bind(styles);
 
 export default function SigninForm() {
-  const { watch, control } = useForm({
+  const router = useRouter();
+
+  // react-hook-form 커스텀 훅
+  const { watch, control, setError } = useForm({
     defaultValues: { email: '', password: '' },
     mode: 'onBlur',
   });
+
+  // 로그인 커스텀 훅
   const { execute, error, loading, data } = useSignIn(
     watch('email'),
     watch('password')
   );
 
+  // 이미 로그인 되어있으면 리다이렉트
+  if (window.localStorage.getItem('accessToken')) {
+    router.push('/folder');
+  }
+
+  // data 들어오면 로컬 스토리지 저장후 페이지 이동
+  if (data) {
+    const accessToken = data?.data?.accessToken;
+    window.localStorage.setItem('accessToken', accessToken);
+
+    if (window.localStorage.getItem('accessToken')) {
+      router.push('/folder');
+    }
+  }
+
   useEffect(() => {
-    console.log(error);
-    console.log(data);
-  }, [error, data]);
+    if (error) {
+      setError('email', {
+        type: 'invalid',
+        message: '이메일을 확인해 주세요.',
+      });
+      setError('password', {
+        type: 'invalid',
+        message: '비밀번호를 확인해 주세요.',
+      });
+    }
+  }, [error, setError]);
 
   return (
     <form className={cx('form')}>
