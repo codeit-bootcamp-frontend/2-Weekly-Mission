@@ -36,7 +36,8 @@ export default function Footer() {
   );
 }
 
-function SNS({ link, imageSrc, altMessage }) {
+// todo: 여기서 타입 지정하는 방법은?
+function SNS({ link, imageSrc, altMessage }: { link: string; imageSrc: any; altMessage: string }) {
   return (
     <Link href={link} target='_blank' rel='noreferrer noopener'>
       <Image className={styles.snsIcon} src={imageSrc} alt={altMessage} width={20} height={20} />
@@ -44,7 +45,14 @@ function SNS({ link, imageSrc, altMessage }) {
   );
 }
 
-const SNSList = [
+type SNS = {
+  title: string;
+  link: string;
+  imageSrc: any;
+  altMessage: string;
+};
+
+const SNSList: SNS[] = [
   {
     title: 'facebook',
     link: 'https://www.facebook.com/',
