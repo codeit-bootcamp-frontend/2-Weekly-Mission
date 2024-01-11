@@ -14,7 +14,7 @@ export default function SelectedCardList({ selectedFolder, searchValue }: Props)
   const { id: folderId, name: folderName } = selectedFolder;
   const query = folderId ? `?folderId=${folderId}` : '';
 
-  const [loading, error, links] = useGetData(`users/1/links${query}`, selectedFolder);
+  const [loading, error, links] = useGetData(`/users/1/links${query}`, selectedFolder);
 
   if (loading) return;
   if (error) return;
