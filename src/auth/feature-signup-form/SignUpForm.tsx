@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import { Cta } from '@/src/commons/ui-cta/Cta';
 import PasswordInput from '@/src/commons/ui-password-input/PasswordInput';
 import { Controller, useForm } from 'react-hook-form';
+import { useCheckEmail } from '../utils/useCheckEmail';
 
 const cx = classNames.bind(styles);
 
@@ -12,6 +13,8 @@ export default function SignUpForm() {
     defaultValues: { email: '', password: '', passwordRepeat: '' },
     mode: 'onBlur',
   });
+
+  const checkEmail = useCheckEmail(watch('email'));
 
   return (
     <form className={cx('form')}>
@@ -27,14 +30,15 @@ export default function SignUpForm() {
               value: /\S@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
               message: '올바른 이메일 주소가 아닙니다',
             },
+            validate: () => {
+              checkEmail.execute();
+
+              return checkEmail?.error ? '이미 존재하는 이메일입니다.' : true;
+            },
           }}
           render={({ field, fieldState }) => (
             <Input
               {...field}
-              onBlur={() => {
-                field.onBlur();
-                // 중복 체크 해야됨
-              }}
               placeholder="이메일을 입력해 주세요."
               hasError={Boolean(fieldState.error)}
               errorMessage={fieldState.error?.message}
