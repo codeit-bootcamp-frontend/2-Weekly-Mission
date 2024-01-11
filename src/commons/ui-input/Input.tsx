@@ -2,10 +2,11 @@ import {
   ChangeEventHandler,
   FocusEventHandler,
   HTMLInputTypeAttribute,
+  forwardRef,
 } from 'react';
 import styles from './Input.module.scss';
 import classNames from 'classnames/bind';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form';
 
 const cx = classNames.bind(styles);
 

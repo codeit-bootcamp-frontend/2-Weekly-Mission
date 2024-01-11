@@ -8,10 +8,10 @@ import { useForm, Controller } from 'react-hook-form';
 const cx = classNames.bind(styles);
 
 export default function SigninForm() {
-  const { watch, control } = useForm();
-
-  console.log(watch('email'));
-  console.log(watch('password'));
+  const { control } = useForm({
+    defaultValues: { email: '', password: '' },
+    mode: 'onBlur',
+  });
 
   return (
     <form className={cx('form')}>
@@ -21,11 +21,19 @@ export default function SigninForm() {
           control={control}
           name="email"
           defaultValue=""
-          render={({ field }) => (
+          rules={{
+            required: '이메일을 입력해 주세요',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: '올바른 이메일 주소가 아닙니다',
+            },
+          }}
+          render={({ field, fieldState }) => (
             <Input
               {...field}
               placeholder="이메일을 입력해주세요."
-              type="email"
+              hasError={Boolean(fieldState.error)}
+              errorMessage={fieldState.error?.message}
             />
           )}
         />
@@ -36,20 +44,25 @@ export default function SigninForm() {
           control={control}
           name="password"
           defaultValue=""
-          render={({ field }) => (
-            <PasswordInput {...field} placeholder="비밀번호를 입력해주세요." />
+          rules={{
+            required: '비밀번호를 입력해 주세요.',
+          }}
+          render={({ field, fieldState }) => (
+            <PasswordInput
+              {...field}
+              placeholder="비밀번호를 입력해주세요."
+              hasError={Boolean(fieldState.error)}
+              errorMessage={fieldState.error?.message}
+            />
           )}
         />
       </div>
-      <Cta className={cx('cta')}>
-        <button
-          className={cx('button')}
-          onClick={(e) => {
-            e.preventDefault();
-            console.log(watch('email'));
-          }}>
-          로그인
-        </button>
+      <Cta
+        className={cx('cta')}
+        onClick={(e) => {
+          e.preventDefault();
+        }}>
+        <button className={cx('button')}>로그인</button>
       </Cta>
     </form>
   );
