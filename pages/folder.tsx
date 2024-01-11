@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Banner from "../components/domains/folder/Banner";
 import CardList from "../components/commons/CardList";
 import SearchInput from "../components/commons/SearchInput";
@@ -9,9 +9,9 @@ import FloatingButton from "../components/domains/folder/FloatingButton";
 import { getAllLinksData, getFoldersData } from "./api/FolderApi";
 import { Folder } from "../types/folder";
 import { Link } from "../types/common";
-import LocaleContext from "../contexts/LocaleContext";
+import { LocaleContext } from "../contexts/LocaleContext";
 
-function FolderPage({ openModal }: { openModal: () => void }) {
+function FolderPage() {
   const [folderList, setFolderList] = useState<Folder[]>([]);
   const [selectFolderLinks, setSelectFolderLinks] = useState<Link[]>([]);
   const [id, setId] = useState<number>(0);
@@ -56,7 +56,7 @@ function FolderPage({ openModal }: { openModal: () => void }) {
 
   return (
     <LocaleContext.Provider value={folderList}>
-      <Banner openModal={openModal} />
+      <Banner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
           <SearchInput
@@ -67,21 +67,16 @@ function FolderPage({ openModal }: { openModal: () => void }) {
           <FolderButtonList
             setSelectFolderLinks={setSelectFolderLinks}
             setId={setId}
-            openModal={openModal}
           />
-          <FolderTitles
-            searchResult={searchResult}
-            openModal={openModal}
-            id={id}
-          />
+          <FolderTitles searchResult={searchResult} id={id} />
           {searchResult !== "" ? (
-            <CardList links={searchLinks} openModal={openModal} />
+            <CardList links={searchLinks} />
           ) : searchResult !== "" ? (
-            <CardList links={searchLinks} openModal={openModal} />
+            <CardList links={searchLinks} />
           ) : id === 0 ? (
-            <CardList openModal={openModal} links={folderList[0]?.links} />
+            <CardList links={folderList[0]?.links} />
           ) : selectFolderLinks.length !== 0 ? (
-            <CardList links={selectFolderLinks} openModal={openModal} />
+            <CardList links={selectFolderLinks} />
           ) : (
             <div className={styles.linksNull}>
               <div>저장된 링크가 없습니다.</div>

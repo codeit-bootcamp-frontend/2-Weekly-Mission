@@ -1,5 +1,5 @@
 import { createContext } from "react";
+import { OpenModal } from "../types/common";
 
-const LocaleContext = createContext();
-
-export default LocaleContext;
+export const LocaleContext = createContext();
+export const ModalContext = createContext<OpenModal>();

@@ -2,8 +2,8 @@ import styled from "styled-components";
 import React, { useContext } from "react";
 import { getSelectData } from "../../../pages/api/FolderApi";
 import { Folder } from "../../../types/folder";
-import { Link } from "../../../types/common";
-import LocaleContext from "../../../contexts/LocaleContext";
+import { Link, OpenModal } from "../../../types/common";
+import { ModalContext, LocaleContext } from "../../../contexts/LocaleContext";
 
 function Button({
   folder,
@@ -34,13 +34,12 @@ function Button({
 function FolderButtonList({
   setSelectFolderLinks,
   setId,
-  openModal,
 }: {
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
-  openModal: () => void;
 }) {
   const locale = useContext<Folder[]>(LocaleContext);
+  const { openModal } = useContext<OpenModal>(ModalContext);
   return (
     <div>
       <StyledButtonBox>

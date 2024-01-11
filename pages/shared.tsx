@@ -6,9 +6,9 @@ import styles from "../styles/sharedPage.module.css";
 import { getSharedData } from "./api/SharedApi";
 import { Folder } from "../types/shared";
 import { Link } from "../types/common";
-import LocaleContext from "../contexts/LocaleContext";
+import { LocaleContext } from "../contexts/LocaleContext";
 
-function SharedPage({ openModal }: { openModal: () => void }) {
+function SharedPage() {
   const [searchResult, setSearchResult] = useState<string>("");
   const [sharedFolder, setSharedFolder] = useState<Folder>({
     id: 1,
@@ -67,7 +67,7 @@ function SharedPage({ openModal }: { openModal: () => void }) {
             setSearchResult={setSearchResult}
             searchLink={searchLink}
           />
-          <CardList openModal={openModal} links={sharedFolder?.links} />
+          <CardList links={sharedFolder?.links} />
         </div>
       </section>
     </LocaleContext.Provider>

@@ -13,3 +13,12 @@ export interface UserInfo {
   email: string;
   profileImageSource: string;
 }
+
+export interface Modal {
+  name: string;
+  isOpen: boolean;
+}
+
+export interface OpenModal {
+  openModal: (text: string) => void;
+}

@@ -6,7 +6,7 @@ import ConvertToFormattedDate from "../../utils/convertToFormattedDate";
 import { Link } from "../../types/common";
 import PopOver from "../domains/folder/PopOver";
 
-function Card({ link, openModal }: { link: Link; openModal: () => void }) {
+function Card({ link }: { link: Link }) {
   const elapseTime = CalculateElapsedTime(link?.created_at || "");
   const postedDate = ConvertToFormattedDate(link?.created_at || "");
   const [isPopOver, setIsPopOver] = useState(false);
@@ -27,9 +27,7 @@ function Card({ link, openModal }: { link: Link; openModal: () => void }) {
       <CardDescriptionBox>
         <TimeBox>
           <div>{elapseTime}</div>
-          {isPopOver ? (
-            <PopOver setIsPopOver={setIsPopOver} openModal={openModal} />
-          ) : null}
+          {isPopOver ? <PopOver setIsPopOver={setIsPopOver} /> : null}
           <Image
             onClick={() => {
               setIsPopOver(true);

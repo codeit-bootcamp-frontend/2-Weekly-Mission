@@ -1,20 +1,17 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { useContext } from "react";
+import { ModalContext } from "../../../../contexts/LocaleContext";
+import { OpenModal } from "../../../../types/common";
 
 interface CategoryInfo {
   title: string;
   image: string;
 }
 
-function Category({
-  category,
-  openModal,
-}: {
-  category: CategoryInfo;
-  openModal: () => void;
-}) {
+function Category({ category }: { category: CategoryInfo }) {
   const { title, image } = category;
-
+  const { openModal } = useContext<OpenModal>(ModalContext);
   return (
     <CategoryLayout
       onClick={() => {

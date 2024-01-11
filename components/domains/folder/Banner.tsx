@@ -1,8 +1,12 @@
 import styled from "styled-components";
-import React from "react";
 import Image from "next/image";
+import { useContext } from "react";
+import { ModalContext } from "../../../contexts/LocaleContext";
+import { OpenModal } from "../../../types/common";
 
-function Banner({ openModal }: { openModal: () => void }) {
+function Banner() {
+  const { openModal } = useContext<OpenModal>(ModalContext);
+
   return (
     <BannerLayout>
       <BannerBox>

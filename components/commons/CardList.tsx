@@ -2,18 +2,10 @@ import styled from "styled-components";
 import Card from "./Card";
 import { Link } from "../../types/common";
 
-function CardList({
-  links,
-  openModal,
-}: {
-  links: Link[];
-  openModal: () => void;
-}) {
+function CardList({ links }: { links: Link[] }) {
   return (
     <CardWrapper>
-      {links?.map((link) => (
-        <Card key={link.id} link={link} openModal={openModal} />
-      ))}
+      {links?.map((link) => <Card key={link.id} link={link} />)}
     </CardWrapper>
   );
 }

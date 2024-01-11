@@ -1,13 +1,14 @@
 import { useState, useCallback } from "react";
+import { Modal } from "../types/common";
 
 const useModal = () => {
-  const [modal, setModal] = useState({
+  const [modal, setModal] = useState<Modal>({
     name: "",
     isOpen: false,
   });
 
-  const openModal = useCallback((buttonText: string) => {
-    setModal({ ...modal, name: buttonText, isOpen: true });
+  const openModal = useCallback((text: string) => {
+    setModal({ ...modal, name: text, isOpen: true });
   }, []);
   const closeModal = useCallback(() => {
     setModal({ ...modal, isOpen: false });
