@@ -1,0 +1,43 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--linkbrary-bg);
+}
+
+.propfileImage {
+  width: 4rem;
+  height: 4rem;
+}
+
+.userName {
+  font-size: 1.4rem;
+}
+
+.folderName {
+  padding-top: 0.4rem;
+  font-size: 3.2rem;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+  .profile {
+    gap: 1.2rem;
+  }
+
+  .profileImage {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .userName {
+    font-size: 1.6rem;
+    line-height: 150%;
+  }
+
+  .folderName {
+    padding-top: 0.8rem;
+    font-size: 4rem;
+  }
+}
