@@ -1,0 +1,28 @@
+/* SignHeader */
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.linkToMain {
+  width: 21rem;
+  height: 3.8rem;
+}
+
+.ask {
+  display: flex;
+  gap: 0.8rem;
+  color: var(--color-black);
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+.linkToSign {
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-position: under;
+}

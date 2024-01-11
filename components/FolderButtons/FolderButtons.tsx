@@ -13,15 +13,26 @@ interface Props {
   setSelectedFolder: React.Dispatch<React.SetStateAction<{ id: string; name: string }>>;
 }
 
+type List = {
+  id: string;
+  created_at: string;
+  name: string;
+  user_id: number;
+  favorite: boolean;
+  link: { count: number };
+};
+
+type FolderList = List[];
+
 export default function FolderButtons({ userId = '', folderId, setSelectedFolder }: Props) {
   const [folderName, setFolderName] = useState('');
   const [addFolderModalOpen, setAddFolderModalOpen] = useState(false);
-  const [loading, error, folderList] = useGetData(`/users/${userId}/folders`);
+  const [loading, error, folderList] = useGetData<FolderList>(`/users/${userId}/folders`);
 
   if (loading) return;
   if (error) return;
 
-  const list = folderList.map(({ id, name }) => (
+  const list = folderList?.map(({ id, name }) => (
     <li key={id}>
       <button
         className={`${styles.button} ${folderId === id ? styles.activeButton : ''}`}

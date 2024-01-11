@@ -15,12 +15,24 @@ interface Props {
   className?: 'sticky' | '';
 }
 
+type UserData = {
+  id: string;
+  created_at: string;
+  name: string;
+  image_source: string;
+  email: string;
+  auth_id: string;
+};
+
+type DataList = UserData[];
+
 export default function Navbar({ userId, className = '' }: Props) {
-  const [loading, error, profileData] = useGetData(`/users/${userId}`);
+  const [loading, error, profileData] = useGetData<DataList>(`/users/${userId}`);
 
   if (loading) return;
   if (error) return;
 
+  // todo: 위에 if(!profileData) return; 이런 식으로 하면 오류가 사라지기는 하는데.. 그럼 이 return문에 navbar전체를 한번 더 써줘야하는건가?
   const { name, email, image_source: imageSource } = profileData[0];
 
   return (
@@ -36,7 +48,7 @@ export default function Navbar({ userId, className = '' }: Props) {
             priority={true}
           />
         </Link>
-        {userId ? (
+        {profileData ? (
           <Profile name={name} email={email} imageSource={imageSource} />
         ) : (
           <Link href='/'>

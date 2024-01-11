@@ -17,6 +17,7 @@ export default function SharedHeader({ userId, folderId }: Props) {
   if (folderLoading) return;
   if (folderError) return;
 
+  // navBar와 비슷한 고민?
   const { name: userName, image_source: imageSource } = userData[0];
   const { name: folderName } = folderData[0];
 

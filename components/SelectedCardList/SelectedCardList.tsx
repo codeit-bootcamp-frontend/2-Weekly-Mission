@@ -10,17 +10,30 @@ interface Props {
   searchValue: string;
 }
 
+type List = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  url: string;
+  title: string;
+  description: string;
+  image_source: string;
+  folder_id: string;
+};
+
+export type LinkListType = List[];
+
 export default function SelectedCardList({ selectedFolder, searchValue }: Props) {
   const { id: folderId, name: folderName } = selectedFolder;
   const query = folderId ? `?folderId=${folderId}` : '';
 
-  const [loading, error, links] = useGetData(`/users/1/links${query}`, selectedFolder);
+  const [loading, error, links] = useGetData<LinkListType>(`/users/1/links${query}`, selectedFolder);
 
   if (loading) return;
   if (error) return;
 
   const selectedLinks = searchValue
-    ? links.filter(({ url, title, description }) =>
+    ? links?.filter(({ url, title, description }) =>
         [url, title, description].some((key) => key?.toUpperCase().includes(searchValue.toUpperCase()))
       ) ?? []
     : links;
@@ -31,7 +44,7 @@ export default function SelectedCardList({ selectedFolder, searchValue }: Props)
         <h2 className={styles.name}>{folderName}</h2>
         {folderId && <EditFeatures folderId={folderId} folderName={folderName} />}
       </div>
-      {selectedLinks.length === 0 ? <EmptyCardList /> : <CardList links={selectedLinks} />}
+      {selectedLinks?.length === 0 ? <EmptyCardList /> : <CardList links={selectedLinks} />}
     </div>
   );
 }

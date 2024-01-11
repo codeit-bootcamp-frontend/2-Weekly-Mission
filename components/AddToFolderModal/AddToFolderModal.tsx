@@ -12,14 +12,25 @@ interface Props {
   setAddToFolderModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+type List = {
+  id: string;
+  created_at: string;
+  name: string;
+  user_id: number;
+  favorite: boolean;
+  link: { count: number };
+};
+
+type FolderList = List[];
+
 export default function AddToFolderModal({ url, setUrl, setAddToFolderModalOpen }: Props) {
   const [selectedFolderId, setSelectedFolderId] = useState('');
-  const [loading, error, folderList] = useGetData('/users/1/folders');
+  const [loading, error, folderList] = useGetData<FolderList>('/users/1/folders');
 
   if (loading) return;
   if (error) return;
 
-  const list = folderList.map(({ id, name, link: { count } }) => (
+  const list = folderList?.map(({ id, name, link: { count } }) => (
     <li key={id} className={`${styles.folderContainer} ${selectedFolderId === id ? styles.selected : ''}`}>
       <button
         className={styles.folder}
@@ -37,7 +48,7 @@ export default function AddToFolderModal({ url, setUrl, setAddToFolderModalOpen 
     </li>
   ));
 
-  const handleAddToFolder = async (e) => {
+  const handleAddToFolder = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     await axios.post('/links', { url: url, folderId: selectedFolderId });
     setAddToFolderModalOpen(false);
