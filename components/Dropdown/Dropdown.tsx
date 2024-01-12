@@ -18,8 +18,8 @@ export default function Dropdown({ className, setViewDropBox, url, id }: Props) 
   const dropBoxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleDropBoxClose = (e) => {
-      if (dropBoxRef.current && !dropBoxRef.current.contains(e.target)) {
+    const handleDropBoxClose = (e: MouseEvent) => {
+      if (e.target instanceof Node && dropBoxRef.current && !dropBoxRef.current.contains(e.target)) {
         setViewDropBox(false);
       }
     };
@@ -31,7 +31,7 @@ export default function Dropdown({ className, setViewDropBox, url, id }: Props) 
     };
   }, []);
 
-  const handleDeleteLink = async (e) => {
+  const handleDeleteLink = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     await axios.delete(`/links/${id}`);
     setDeleteLinkModalOpen(false);
