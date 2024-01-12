@@ -38,10 +38,9 @@ export default function Input({ label, id, type, placeholder, validation }: Inpu
     register,
     formState: { errors },
   } = useFormContext<FormValues>();
-  const [togglePasswordType, setTogglePasswordType] = useState<boolean>(false);
-  const [togglePasswordIcon, setTogglePasswordIcon] = useState<boolean>(false);
+  const [togglePassword, setTogglePassword] = useState<boolean>(false);
 
-  const source = togglePasswordIcon ? EyeOn : EyeOff;
+  const source = togglePassword ? EyeOn : EyeOff;
 
   return (
     <div className={styles.inputContainer}>
@@ -52,7 +51,7 @@ export default function Input({ label, id, type, placeholder, validation }: Inpu
         <input
           className={styles.inputValue}
           id={id}
-          type={togglePasswordType ? 'text' : type}
+          type={togglePassword ? 'text' : type}
           placeholder={placeholder}
           {...register(id, validation)}
         />
@@ -60,8 +59,7 @@ export default function Input({ label, id, type, placeholder, validation }: Inpu
           <button
             type='button'
             onClick={() => {
-              setTogglePasswordType((prev) => !prev);
-              setTogglePasswordIcon((prev) => !prev);
+              setTogglePassword((prev) => !prev);
             }}
           >
             <Image className={styles.togglePassword} src={source} alt='비밀번호 숨김 표시' width={16} height={14} />
