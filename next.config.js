@@ -13,15 +13,6 @@ const nextConfig = {
     ],
     deviceSizes: [360, 450, 828, 1080, 1200, 1920],
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/signin',
-        permanent: true,
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;
