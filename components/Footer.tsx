@@ -1,8 +1,4 @@
 import styled from "styled-components";
-import facebookIcon from "../img/akar-icons_facebook-fill.svg";
-import twitterIcon from "../img/akar-icons_twitter-fill.svg";
-import youtubeIcon from "../img/akar-icons_youtube-fill.svg";
-import instagramIcon from "../img/ant-design_instagram-filled.svg";
 
 function Footer({ setRef }: any) {
   return (
@@ -19,16 +15,16 @@ function Footer({ setRef }: any) {
 
         <StyledFooterIconContainer>
           <a href="https://www.facebook.com" rel="noopener noreferrer">
-            <img src={facebookIcon} alt="facebook_icon" />
+            <img src="svg/facebookIcon.svg" alt="facebook_icon" />
           </a>
           <a href="https://www.twitter.com" rel="noopener noreferrer">
-            <img src={twitterIcon} alt="twitter_icon" />
+            <img src="svg/twitterIcon.svg" alt="twitter_icon" />
           </a>
           <a href="https://www.youtube.com" rel="noopener noreferrer">
-            <img src={youtubeIcon} alt="youtube_icon" />
+            <img src="svg/youtubeIcon.svg" alt="youtube_icon" />
           </a>
           <a href="https://www.instagram.com" rel="noopener noreferrer">
-            <img src={instagramIcon} alt="instagram_icon" />
+            <img src="svg/instagramIcon.svg" alt="instagram_icon" />
           </a>
         </StyledFooterIconContainer>
       </StyledFooterItemContainer>
