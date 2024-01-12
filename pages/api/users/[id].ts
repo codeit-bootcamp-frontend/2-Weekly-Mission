@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { END_POINT } from "@/lib/constents";
+import { userServices } from "../address";
 
 async function hanlder(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { id },
   } = req;
-  const { data: users } = await fetch(`${END_POINT}/users/${id}`)
+  const userid = id as string;
+  const { data: users } = await fetch(userServices.getUserProfile(userid))
     .then((res) => res.json())
     .catch((e) => {
       throw Error(`잘못된 요청 ${e}`);

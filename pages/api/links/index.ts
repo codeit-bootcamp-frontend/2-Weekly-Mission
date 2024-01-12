@@ -1,19 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { END_POINT } from "@/lib/constents";
+import { folderServices } from "../address";
 import { LinkData } from "@/types/folder.type";
 import { Links } from "@/types/global.type";
-import dbConnect from "@/db/dbConnect";
-import mongoose from "mongoose";
-import FolderModel from "@/db/models/FolderModel";
 
 async function hanlder(req: NextApiRequest, res: NextApiResponse) {
-  let url = `${END_POINT}/users/${1}/links`;
-
-  await dbConnect();
-  console.log(mongoose.connection.readyState);
-  console.log(FolderModel);
-
-  const { data: links } = await fetch(url)
+  const { data: links } = await fetch(folderServices.getUserLinks("1"))
     .then((res) => res.json())
     .catch((e) => {
       throw Error(`잘못된 요청 ${e}`);

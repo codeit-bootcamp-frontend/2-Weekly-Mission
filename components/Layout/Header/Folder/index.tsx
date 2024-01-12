@@ -18,7 +18,7 @@ function FolderHeader({ data, selected, onClick }: FolderNameProps) {
   return (
     <>
       <S.Sorts>
-        <NameTag datas={data?.folder} selected={selected} onClick={onClick} />
+        <NameTag tags={data?.folder} selected={selected} onClick={onClick} />
         <Fab />
       </S.Sorts>
       <S.Header>

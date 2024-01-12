@@ -23,4 +23,5 @@ function LandingHeader() {
     </>
   );
 }
+
 export default LandingHeader;
