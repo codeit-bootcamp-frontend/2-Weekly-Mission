@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 
 export default function SignUpForm() {
   const router = useRouter();
-  const [isValid, setIsInvalid] = useState<boolean>(false);
+  const [isValid, setIsValid] = useState<boolean>(false);
 
   const { watch, control, trigger, getFieldState } = useForm({
     defaultValues: { email: '', password: '', passwordRepeat: '' },
@@ -34,9 +34,9 @@ export default function SignUpForm() {
         getFieldState('password').error ||
         getFieldState('passwordRepeat').error
       ) {
-        setIsInvalid(false);
+        setIsValid(false);
       } else {
-        setIsInvalid(true);
+        setIsValid(true);
       }
     });
   };
