@@ -1,7 +1,12 @@
-import React, { ReactNode } from "react";
+import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import * as S from "./styled";
-function Cta({ children, onClick }: { children: ReactNode; onClick?: () => void }) {
-  return <S.Cta onClick={onClick}>{children}</S.Cta>;
+
+interface CtaProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+}
+
+function Cta({ children, ...props }: CtaProps) {
+  return <S.Cta {...props}>{children}</S.Cta>;
 }
 
 export default Cta;

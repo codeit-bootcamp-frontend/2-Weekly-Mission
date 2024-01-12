@@ -1,96 +1,78 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import styled from "styled-components";
+import { Controller, RegisterOptions, useFormContext } from "react-hook-form";
+import * as S from "./styled";
+import { userServices } from "@/pages/api/address";
 
 interface AuthInputProps {
+  labelName: string;
   label: string;
   type: "text" | "email" | "password";
-  placeholder?: string;
-  onValid?: () => boolean;
+  placeholder: string;
   errorMessage?: string;
+  validationRules: RegisterOptions;
 }
-function AuthInput({ label, type, placeholder, onValid, errorMessage }: AuthInputProps) {
-  const [inputType, setInputType] = useState(type);
-  const [isError, setIsError] = useState(false);
+function AuthInput({ labelName, label, type, placeholder, validationRules }: AuthInputProps) {
+  const {
+    control,
+    formState: { errors },
+    trigger,
+    getValues,
+    setError,
+  } = useFormContext();
 
-  const togglePasswordVisibility = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const [inputType, setInputType] = useState(type);
+
+  const togglePasswordVisibility = () => {
     setInputType(inputType === "password" ? "text" : "password");
   };
 
-  const handleBlur = () => {
-    if (onValid) {
-      const error = onValid();
-      setIsError(error);
-    }
+  const triggerValidationOnBlur = async () => {
+    await trigger(labelName);
   };
 
+  const preventMouseEvent = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+  };
+
+  const errorMessage = errors[labelName]?.message;
+  const errorText = typeof errorMessage === "string" ? errorMessage : "";
+  const eyeImage = inputType === "password" ? "/icons/eye-off.svg" : "/icons/eye-on.svg";
+
   return (
-    <SignInputBox $isError={isError}>
-      <SignInputLabel>{label}</SignInputLabel>
-      <SignInput
-        type={inputType}
-        className="sign-input"
-        autoComplete="username"
-        placeholder={placeholder}
-        onBlur={handleBlur}
-      />
-      {type === "password" && (
-        <EyeButton onClick={togglePasswordVisibility}>
-          <Image
-            src={inputType === "password" ? "/icons/eye-off.svg" : "/icons/eye-on.svg"}
-            alt="eye-icon"
-            width={24}
-            height={24}
-          />
-        </EyeButton>
-      )}
-      {isError && <ErrorMessage>{errorMessage}</ErrorMessage>}
-    </SignInputBox>
+    <S.SignInputBox>
+      <S.SignInputLabel htmlFor={labelName}>{label}</S.SignInputLabel>
+      <S.InputWrapper $isError={!!errorText}>
+        <Controller
+          name={labelName}
+          control={control}
+          rules={validationRules}
+          defaultValue=""
+          render={({ field }) => {
+            return (
+              <input
+                type={inputType}
+                placeholder={placeholder}
+                {...field}
+                autoComplete="on"
+                onBlur={async () => {
+                  field.onBlur();
+                  await triggerValidationOnBlur();
+                }}
+              />
+            );
+          }}
+        />
+
+        {type === "password" && (
+          <S.EyeButton type="button" onMouseDown={preventMouseEvent} onClick={togglePasswordVisibility}>
+            <Image src={eyeImage} alt="eye-icon" width={24} height={24} />
+          </S.EyeButton>
+        )}
+      </S.InputWrapper>
+      {errorText && <S.ErrorMessage>{errorText}</S.ErrorMessage>}
+    </S.SignInputBox>
   );
 }
 
 export default AuthInput;
-
-const SignInputBox = styled.div<{ $isError: boolean }>`
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.2rem;
-  position: relative;
-
-  input {
-    padding: 1.8rem 1.5rem;
-    border-radius: 0.8rem;
-    border: 0.1rem solid ${({ $isError, theme }) => ($isError ? theme.red : theme.gray300)};
-    font-size: 1.6rem;
-    line-height: 150%;
-
-    &:focus {
-      border-color: ${({ $isError, theme }) => ($isError ? theme.red : theme.primary)};
-    }
-  }
-`;
-
-const SignInputLabel = styled.label`
-  font-size: 1.4rem;
-  font-weight: 400;
-`;
-
-const SignInput = styled.input``;
-
-const EyeButton = styled.button`
-  position: absolute;
-  top: 5.1rem;
-  right: 1.5rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-`;
-
-const ErrorMessage = styled.p`
-  margin-top: -0.4rem;
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.red};
-  display: inline-block;
-`;

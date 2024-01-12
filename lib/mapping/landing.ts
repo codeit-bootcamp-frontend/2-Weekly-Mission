@@ -1,4 +1,4 @@
-export const sectionData = [
+export const sectionMapping = [
   {
     odd: true,
     title: { prev: "", gradient: "원하는 링크", suff: "를 저장하세요" },

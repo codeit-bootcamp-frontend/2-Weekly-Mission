@@ -15,9 +15,8 @@ function FolderPage() {
   const { data: linksData } = useFetch<Folder>(url);
 
   const onClick = (name: string, linksId?: number) => {
-    const url = linksId ? `${linksUrl}/${linksId}` : linksUrl;
     setSelected(name);
-    setUrl(url);
+    setUrl(linksId ? `${linksUrl}/${linksId}` : linksUrl);
   };
 
   return (

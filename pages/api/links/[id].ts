@@ -8,11 +8,9 @@ async function hanlder(req: NextApiRequest, res: NextApiResponse) {
     query: { id },
   } = req;
 
-  const userId = id as string;
+  const folderId = id as string;
 
-  const url = userId ? folderServices.getUserLinks("1", userId) : folderServices.getUserLinks("1");
-
-  const { data: links } = await fetch(url)
+  const { data: links } = await fetch(folderServices.getUserLinks("1", folderId))
     .then((res) => res.json())
     .catch((e) => {
       throw Error(`잘못된 요청 ${e}`);

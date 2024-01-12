@@ -1,8 +1,21 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
+import AuthSection from "./Section";
+import AuthHeader from "./Header";
 
-function AuthLayout({ children }: { children: ReactNode }) {
-  return <Article>{children}</Article>;
+interface AuthLayoutProps {
+  buttonText: string;
+  type: "signIn" | "signUp";
+  children: ReactNode;
+}
+
+function AuthLayout({ buttonText, type, children }: AuthLayoutProps) {
+  return (
+    <Article>
+      <AuthHeader type={type} />
+      <AuthSection buttonText={buttonText}>{children}</AuthSection>
+    </Article>
+  );
 }
 
 export default AuthLayout;

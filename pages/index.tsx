@@ -1,7 +1,7 @@
 import Head from "next/head";
 import LandingSection from "@/components/LandingLayout/Section";
 import LandingLayout from "@/components/LandingLayout";
-import { sectionData } from "@/lib/data/landing";
+import { sectionMapping } from "@/lib/mapping/landing";
 
 function HomePage() {
   return (
@@ -11,7 +11,7 @@ function HomePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <LandingLayout>
-        {sectionData.map((section, index) => (
+        {sectionMapping.map((section, index) => (
           <LandingSection
             key={index}
             odd={section.odd}

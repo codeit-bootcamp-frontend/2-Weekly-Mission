@@ -2,30 +2,21 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import { authMapping } from "@/lib/mapping/auth";
 
-type AuthType = "signIn" | "signUp";
+interface AuthHeader {
+  type: "signIn" | "signUp";
+}
 
-const rendingText: Record<AuthType, { message: string; linkText: string; href: string }> = {
-  signIn: {
-    message: "회원이 아니신가요?",
-    linkText: "회원가입 하기",
-    href: "signup",
-  },
-  signUp: {
-    message: "이미 회원이신가요?",
-    linkText: "로그인 하기",
-    href: "signin",
-  },
-};
-function AuthHeader({ type }: { type: AuthType }) {
+function AuthHeader({ type }: AuthHeader) {
   return (
     <Container>
       <LogoLink href="/">
         <Image src="/logo.svg" width={210} height={38} alt="홈으로 연결된 Linkbrary 로고" priority />
       </LogoLink>
       <HeaderMessage>
-        {rendingText[type].message}
-        <HeaderLink href={rendingText[type].href}>{rendingText[type].linkText}</HeaderLink>
+        {authMapping[type].message}
+        <HeaderLink href={authMapping[type].href}>{authMapping[type].linkText}</HeaderLink>
       </HeaderMessage>
     </Container>
   );

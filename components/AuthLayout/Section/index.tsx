@@ -1,33 +1,29 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import AuthInput from "../AuthInput";
 import AuthFooter from "../Footer";
 import { CtaShort } from "@/components/Common/Cta/styled";
 
-function AuthSection() {
+interface AuthSectionProps {
+  buttonText: string;
+  children: ReactNode;
+}
+
+function AuthSection({ buttonText, children }: AuthSectionProps) {
   return (
-    <SignBox>
+    <Section>
       <form id="form" className="sign-form">
-        <div className="sign-inputs">
-          <AuthInput label="이메일" type="email" />
-          <AuthInput label="패스워드" type="password" />
-        </div>
-        <CtaShort>로그인</CtaShort>
+        <div></div>
+        <CtaShort>{buttonText}</CtaShort>
       </form>
       <AuthFooter />
-    </SignBox>
+    </Section>
   );
 }
 
 export default AuthSection;
 
-const Header = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.6rem;
-`;
-
-const SignBox = styled.div`
+const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
