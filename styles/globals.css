@@ -70,6 +70,15 @@
     --callout-border-rgb: 108, 108, 108;
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
+    --linkbrary-primary-color:#6D6AFE;
+    --linkbrary-red: #FF5B56;
+    --the-julge-black: #111322;
+    --linkbrary-white: #FFF;
+    --linkbrary-gray-100: #373740;
+    --linkbrary-gray-60: #9FA6B2;
+    --linkbrary-gray-20: #CCD5E3;
+    --linkbrary-gray-10: #E7EFFB;
+    --linkbrary-bg: #F0F6FF;
   }
 }
 
@@ -85,23 +94,12 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
