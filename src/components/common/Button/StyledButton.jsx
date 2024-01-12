@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const MyButton = ({ text, size, variant = 'primary', type = 'button', ...props }) => {
+const StyledButton = ({ text, size, variant = 'primary', type = 'button', ...props }) => {
   return (
     <button type={type} className={cx(`btn-${variant}`, `btn-${size}`)} {...props}>
       {text}
@@ -11,4 +11,4 @@ const MyButton = ({ text, size, variant = 'primary', type = 'button', ...props }
   );
 };
 
-export default MyButton;
+export default StyledButton;
