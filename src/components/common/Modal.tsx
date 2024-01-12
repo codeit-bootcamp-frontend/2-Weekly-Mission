@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { MouseEventHandler, ReactNode, forwardRef } from 'react';
+import { MouseEventHandler, ReactNode, forwardRef, useEffect, useState } from 'react';
 
 import styles from './Modal.module.css';
+import ReactDOM from 'react-dom';
 const WARNING_ACTION = { delete: '삭제' };
 
 interface ModalProps {
@@ -16,15 +17,22 @@ interface ModalProps {
 const Modal = forwardRef<HTMLDialogElement | null, ModalProps>(
   ({ onCloseModal, onClickActionButton, isButtonActivated = true, title, subTitle, children, ...props }, ref) => {
     const handleModalClick: MouseEventHandler<HTMLDialogElement> = (e) => {
-      e.stopPropagation();
-      e.preventDefault();
       if ((e.target as HTMLDialogElement).nodeName === 'DIALOG') onCloseModal(e);
     };
 
     // 모달이 '삭제'와 같은 되돌릴 수 없는 액션을 쿠셔닝 하는 목적일때 버튼을 붉은색으로 바꿈
     const isWarningButton = title.includes(WARNING_ACTION.delete);
 
-    return (
+    const [isCSR, setIsCSR] = useState<boolean>(false);
+
+    useEffect(() => {
+      setIsCSR(true);
+    }, []);
+
+    if (typeof window === 'undefined') return <></>;
+    if (!isCSR) return <></>;
+
+    return ReactDOM.createPortal(
       <dialog ref={ref} {...props} className={styles.modal} onClick={handleModalClick}>
         <div className={styles.modalContentWrapper}>
           <button
@@ -49,7 +57,8 @@ const Modal = forwardRef<HTMLDialogElement | null, ModalProps>(
             </button>
           )}
         </div>
-      </dialog>
+      </dialog>,
+      document.body
     );
   }
 );
