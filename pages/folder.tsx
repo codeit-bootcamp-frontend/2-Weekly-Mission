@@ -18,8 +18,7 @@ export default function Folder() {
   const [sideAddLinkbar, setSideAddLinkbar] = useState(false);
   const targets = useRef<Targets>([]);
 
-  // next.js에서는 IntersectionObserver를 useEffect 내부에 넣어야만 실행된다고 하는데..
-  // 내려갈 때는 작동하는데, 올라올 때는 작동하지 않는 이유는? -> target이 바뀔 때마다 콜백을 실행해야할 것 같은데 dependency에 target을 어떻게 지정하지?
+  // todo: 두 요소 모두 isIntersecting이 false일 때 setSideAddLinkbar를 true 변경하는 법
   useEffect(() => {
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
