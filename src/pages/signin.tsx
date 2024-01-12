@@ -2,7 +2,7 @@ import styles from 'styles/signup.module.css';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import Input from 'components/common/Input';
-import { signin } from './api/auth';
+import { signin } from '../utils/api/authApi';
 import router from 'next/router';
 import { redirectToIfAccessTokenExists } from 'utils/redirect';
 import { useEffect } from 'react';

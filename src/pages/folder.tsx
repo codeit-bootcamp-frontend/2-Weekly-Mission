@@ -10,7 +10,7 @@ import FolderEditButtons from 'components/others/FolderEditButtons';
 import { linkItem } from 'constants/type';
 import { useSearchContext } from 'context/SearchContext';
 import { SearchContextProvider } from 'context/SearchContext';
-import { getFolder, getLinks } from 'pages/api/fetchApi';
+import { getFolder, getLinks } from 'utils/api/fetchApi';
 import { useEffect, useState } from 'react';
 import styles from 'styles/folder.module.css';
 

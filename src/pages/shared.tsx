@@ -5,7 +5,7 @@ import FolderBanner from 'components/others/FolderBanner';
 import { linkItem } from 'constants/type';
 import { SearchContextProvider } from 'context/SearchContext';
 import { useSearchContext } from 'context/SearchContext';
-import { getSampleUserFolder } from 'pages/api/fetchApi';
+import { getSampleUserFolder } from 'utils/api/fetchApi';
 import { useEffect, useState } from 'react';
 import { SampleUserFolder } from 'constants/type';
 import styles from 'styles/folder.module.css';

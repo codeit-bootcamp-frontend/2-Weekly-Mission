@@ -1,6 +1,6 @@
 import LoginButton from 'components/common/LoginButton';
 import Profile from 'components/others/Profile';
-import { getUser } from 'pages/api/fetchApi';
+import { getUser } from 'utils/api/fetchApi';
 import { useEffect, useState } from 'react';
 
 import styles from './Gnb.module.css';

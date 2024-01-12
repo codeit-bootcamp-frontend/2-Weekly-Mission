@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import Input from 'components/common/Input';
-import { isUsableEmail, signup } from './api/auth';
+import { isUsableEmail, signup } from '../utils/api/authApi';
 import router from 'next/router';
 import styles from 'styles/signup.module.css';
 import { useEffect } from 'react';
