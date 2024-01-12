@@ -11,6 +11,7 @@ import { SampleUserFolder } from 'constants/type';
 import styles from 'styles/folder.module.css';
 import Gnb from 'components/common/Gnb';
 import Footer from 'components/common/Footer';
+import filterLinks from 'utils/filtering';
 
 export default function SharedPage() {
   return (
@@ -37,17 +38,9 @@ function SharedLayout() {
     links: [],
   });
 
-  function filterLinks(searchKeyword: string): linkItem[] {
-    return sampleUserFolder.links.filter((link) =>
-      Object.values(link).some(
-        (value) => typeof value === 'string' && value.toLowerCase().includes(searchKeyword.toLowerCase())
-      )
-    );
-  }
-
   async function loadSampleFolder() {
     const sampleUserFolder = await getSampleUserFolder();
-    setSampleUserFolder({ ...sampleUserFolder });
+    setSampleUserFolder(sampleUserFolder);
     setFilteredLinks(sampleUserFolder.links);
   }
 
@@ -55,17 +48,21 @@ function SharedLayout() {
     loadSampleFolder();
   }, []);
 
+  useEffect(() => {
+    setFilteredLinks(filterLinks(searchValue, sampleUserFolder.links));
+  }, [searchValue]);
+
   return (
     <ContentLayout>
       <FolderBanner folder={sampleUserFolder} />
-      <SearchBar filterLinks={filterLinks} setFilteredLinks={setFilteredLinks} />
+      <SearchBar />
       {searchValue && (
         <div className={styles.searchResult}>
           <span className={styles.searchKeyword}>{searchValue}</span>로 검색한 결과입니다.
         </div>
       )}
       {sampleUserFolder.links.length ? (
-        filterLinks(searchValue).length ? (
+        filterLinks(searchValue, sampleUserFolder.links).length ? (
           <CardForShared links={filteredLinks} />
         ) : (
           <div className={styles.noLinks}> 검색결과가 없습니다.</div>

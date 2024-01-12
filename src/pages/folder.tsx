@@ -13,6 +13,7 @@ import { SearchContextProvider } from 'context/SearchContext';
 import { getFolder, getLinks } from 'utils/api/fetchApi';
 import { useEffect, useState } from 'react';
 import styles from 'styles/folder.module.css';
+import filterLinks from 'utils/filtering';
 
 export default function FolderPage() {
   return (
@@ -28,14 +29,6 @@ function FolderLayout() {
   const { searchValue, selectedFolder, folderList, setFolderList, linkList, setLinkList } = useSearchContext();
 
   const [filteredLinks, setFilteredLinks] = useState<linkItem[]>([]);
-
-  function filterLinks(searchKeyword: string): linkItem[] {
-    return linkList.filter((link: linkItem) =>
-      Object.values(link).some(
-        (value) => typeof value === 'string' && value.toLowerCase().includes(searchKeyword.toLowerCase())
-      )
-    );
-  }
 
   async function loadFolder() {
     const data = await getFolder();
@@ -57,7 +50,7 @@ function FolderLayout() {
   }, [selectedFolder.id, selectedFolder.name]);
 
   useEffect(() => {
-    setFilteredLinks(filterLinks(searchValue));
+    setFilteredLinks(filterLinks(searchValue, linkList));
   }, [searchValue]);
 
   return (
