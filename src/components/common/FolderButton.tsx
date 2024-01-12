@@ -22,7 +22,7 @@ export default function FolderButton({ isFolderChosen, folderInfo }: FolderButto
       data-key={folderInfo.id}
       data-name={folderInfo.name}
       onClick={handleSetFolder}
-      className={clsx(styles.FolderButton, isFolderChosen ? styles.chosenFolderButton : '')}
+      className={clsx(styles.folderButton, isFolderChosen ? styles.chosenFolderButton : '')}
     >
       {folderInfo.name}
     </button>
