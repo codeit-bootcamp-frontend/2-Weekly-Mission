@@ -3,13 +3,13 @@ import { useState } from 'react';
 import styles from './FilterOption.module.scss';
 import classNames from 'classnames/bind';
 
-import MyButton from 'components/common/Button/MyButton';
+import StyledButton from 'components/common/Button/StyledButton';
 import MixButton from 'components/common/Button/MixButton';
 import Dialog from 'components/common/Modal';
 import Input from 'components/common/Input';
 import SharedLink from 'containers/folder/ModalContent/SharedLink';
 
-import { ICON } from 'stores/importImg';
+import { ICON } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 const {
@@ -78,7 +78,7 @@ const FilterOptions = ({ currentFolder, currentFolderId }) => {
           <div className={cx('modal-content')}>
             <Input placeholder='내용 입력' />
           </div>
-          <MyButton text='변경하기' size='lg' />
+          <StyledButton text='변경하기' size='lg' />
         </Dialog>
       )}
 
@@ -88,7 +88,7 @@ const FilterOptions = ({ currentFolder, currentFolderId }) => {
           subTitle={currentFolder}
           onClose={handleModalClose}
         >
-          <MyButton text=' 삭제하기' variant='delete' size='lg' />
+          <StyledButton text=' 삭제하기' variant='delete' size='lg' />
         </Dialog>
       )}
     </>

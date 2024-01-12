@@ -5,17 +5,15 @@ import Link from 'next/link';
 import styles from './CardItem.module.scss';
 import classNames from 'classnames/bind';
 
-import MyButton from 'components/common/Button/MyButton';
+import StyledButton from 'components/common/Button/StyledButton';
 import IconButton from 'components/common/Button/IconButton';
 import Dialog from 'components/common/Modal';
 import FolderList from 'containers/folder/ModalContent/FolderList';
 
-import { getDateDiff } from 'utils/getDateDiff';
-import { getFormatDate } from 'utils/getFormatDate';
-import { handleOutsideClick } from 'utils/handleOutsideClick';
+import { getDateDiff, getFormatDate, handleOutsideClick } from 'utils';
 
-import { IMAGE_URL, ICON } from 'stores/importImg';
-import { SELECT_MENU } from 'stores/listOption';
+import { IMAGE_URL, ICON } from 'constants/importImg';
+import { SELECT_MENU } from 'constants/listOption';
 
 const cx = classNames.bind(styles);
 const { empty } = IMAGE_URL;
@@ -111,7 +109,7 @@ const CardItem = ({ url, image_source, created_at, description, filterData }) =>
       {modalType === 'remove' && (
         <Dialog onClose={handleModalClose} modalTitle='링크 삭제' subTitle={url}>
           <div className={cx('modal-content')}>
-            <MyButton text='삭제하기' variant='delete' size='lg' />
+            <StyledButton text='삭제하기' variant='delete' size='lg' />
           </div>
         </Dialog>
       )}
@@ -120,7 +118,7 @@ const CardItem = ({ url, image_source, created_at, description, filterData }) =>
         <Dialog onClose={handleModalClose} modalTitle='폴더에 추가' subTitle={url}>
           <div className={cx('modal-content')}>
             <FolderList folderList={filterData} />
-            <MyButton text='추가하기' size='lg' />
+            <StyledButton text='추가하기' size='lg' />
           </div>
         </Dialog>
       )}

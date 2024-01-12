@@ -3,10 +3,9 @@ import Image from 'next/image';
 import styles from './CardItem.module.scss';
 import classNames from 'classnames/bind';
 
-import { getDateDiff } from 'utils/getDateDiff';
-import { getFormatDate } from 'utils/getFormatDate';
+import { getDateDiff, getFormatDate } from 'utils';
 
-import { IMAGE_URL } from 'stores/importImg';
+import { IMAGE_URL } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 const { empty } = IMAGE_URL;

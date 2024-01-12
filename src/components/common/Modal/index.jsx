@@ -5,8 +5,8 @@ import styles from './Modal.module.scss';
 import classNames from 'classnames/bind';
 
 import { Overlay } from 'components/common/Overlay';
-import { handleOutsideClick } from 'utils/handleOutsideClick';
-import { ICON } from 'stores/importImg';
+import { handleOutsideClick } from 'utils';
+import { ICON } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 const { close } = ICON;

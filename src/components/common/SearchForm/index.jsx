@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './SearchForm.module.scss';
 import classNames from 'classnames/bind';
 
-import { ICON } from 'stores/importImg';
+import { ICON } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 const { search } = ICON;

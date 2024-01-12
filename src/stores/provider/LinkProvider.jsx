@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from 'react';
 import api from 'apis/api';
 import { useAsync } from 'hooks/useAsync';
 
-import { INITIAL_LINK_DATA } from 'stores/initialData';
+import { INITIAL_LINK_DATA } from 'constants/initialData';
 
 export const LinkContext = createContext();
 

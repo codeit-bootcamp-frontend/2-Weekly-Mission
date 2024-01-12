@@ -6,13 +6,13 @@ import classNames from 'classnames/bind';
 import { FolderContext } from 'stores/provider/FolderProvider';
 import { useSetStoredData } from 'hooks/useStoredData';
 
-import MyButton from 'components/common/Button/MyButton';
+import StyledButton from 'components/common/Button/StyledButton';
 import IconButton from 'components/common/Button/IconButton';
 import MixButton from 'components/common/Button/MixButton';
 import Dialog from 'components/common/Modal';
 import Input from 'components/common/Input';
 
-import { ICON } from 'stores/importImg';
+import { ICON } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 const { Addfilter } = ICON;
@@ -92,7 +92,7 @@ const Filter = ({ filterData, setTitle }) => {
           <div className={cx('modal-content')}>
             <Input placeholder='내용 입력' />
           </div>
-          <MyButton text='추가하기' size='lg' />
+          <StyledButton text='추가하기' size='lg' />
         </Dialog>
       )}
     </>

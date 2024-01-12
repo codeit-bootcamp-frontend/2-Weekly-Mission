@@ -1,7 +1,7 @@
 import AuthLayout from 'components/layout/AuthLayout';
-import AuthForm from 'containers/auth/signin/AuthForm';
+import AuthForm from 'containers/auth/signup/AuthForm';
 
-const SigninPage = () => {
+const SignupPage = () => {
   return (
     <AuthLayout>
       <AuthForm />
@@ -9,4 +9,4 @@ const SigninPage = () => {
   );
 };
 
-export default SigninPage;
+export default SignupPage;

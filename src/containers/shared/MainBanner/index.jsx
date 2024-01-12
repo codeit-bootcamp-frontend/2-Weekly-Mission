@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 
 import { LinkContext } from 'stores/provider/LinkProvider';
 import { useStoredData } from 'hooks/useStoredData';
-import { ICON } from 'stores/importImg';
+import { ICON } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 const { avatar } = ICON;

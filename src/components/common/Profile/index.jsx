@@ -2,7 +2,7 @@ import styles from './Profile.module.scss';
 import classNames from 'classnames/bind';
 
 import Image from 'next/image';
-import { ICON } from 'stores/importImg';
+import { ICON } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 const { avatar } = ICON;

@@ -10,8 +10,8 @@ import { useAsync } from 'hooks/useAsync';
 import Profile from 'components/common/Profile';
 import LinkButton from 'components/common/Button/LinkButton';
 
-import { INITIAL_PROFILE_DATA } from 'stores/initialData';
-import { ICON } from 'stores/importImg';
+import { INITIAL_PROFILE_DATA } from 'constants/initialData';
+import { ICON } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 const { logo } = ICON;
