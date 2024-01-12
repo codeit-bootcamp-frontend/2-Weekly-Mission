@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { folderItem } from 'constants/type';
+import { FolderItem } from 'constants/type';
 import { useSearchContext } from 'context/SearchContext';
 import React from 'react';
 
@@ -7,7 +7,7 @@ import styles from './FolderButton.module.css';
 
 interface FolderButtonProps {
   isFolderChosen: boolean;
-  folderInfo: folderItem;
+  folderInfo: FolderItem;
 }
 
 export default function FolderButton({ isFolderChosen, folderInfo }: FolderButtonProps) {

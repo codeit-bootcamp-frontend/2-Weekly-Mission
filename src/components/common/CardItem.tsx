@@ -1,12 +1,12 @@
 import styles from 'components/common/Card.module.css';
-import Stars from 'components/common/Stars';
-import { linkItem } from 'constants/type';
+import Stars from 'components/common/BookmarkButton';
+import { LinkItem } from 'constants/type';
 import { getShortDescription, getYYYYMMYY, timeAgo } from 'utils/formatting';
 
 import KebabButtons from './KebabButton';
 
 interface CardItemProps {
-  link: linkItem;
+  link: LinkItem;
 }
 
 export default function CardItem({ link }: CardItemProps) {

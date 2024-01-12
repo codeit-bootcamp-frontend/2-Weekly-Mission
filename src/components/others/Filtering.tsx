@@ -4,11 +4,11 @@ import stylesForModal from 'components/common/Modal.module.css';
 import useModal from 'hooks/useModal';
 import { useMediaQuery } from 'react-responsive';
 import styles from './Filtering.module.css';
-import { folderItem } from 'constants/type';
+import { FolderItem } from 'constants/type';
 
 interface FilteringProps {
   chosenFolderId: number;
-  folder: folderItem[];
+  folder: FolderItem[];
 }
 
 export default function Filtering({ chosenFolderId, folder }: FilteringProps) {

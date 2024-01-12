@@ -8,9 +8,9 @@ import useModal from 'hooks/useModal';
 import { MouseEventHandler, ReactNode, useRef, useState } from 'react';
 
 import styles from './KebabButton.module.css';
-import { folderItem, linkItem } from 'constants/type';
+import { FolderItem, LinkItem } from 'constants/type';
 
-export default function KebabButtons({ link }: { link: linkItem }) {
+export default function KebabButtons({ link }: { link: LinkItem }) {
   const { folderList } = useSearchContext();
   const [linkDeletemModalRef, openLinkDeleteModal, closeLinkDeleteModal] = useModal();
   const [linkAddToFolderModalRef, openLinkAddToFolderModal, closeLinkAddToFolderModal] = useModal();
@@ -47,7 +47,7 @@ export default function KebabButtons({ link }: { link: linkItem }) {
         onCloseModal={closeLinkAddToFolderModal}
       >
         <div className={stylesForModal.folderList}>
-          {folderList.map((folderInfo: folderItem) => {
+          {folderList.map((folderInfo: FolderItem) => {
             return (
               <button
                 key={folderInfo.id}

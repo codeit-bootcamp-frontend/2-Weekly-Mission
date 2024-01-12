@@ -1,4 +1,4 @@
-export interface folderItem {
+export interface FolderItem {
   id: number;
   name: string;
   created_at?: string;
@@ -9,7 +9,7 @@ export interface folderItem {
   };
 }
 
-export interface linkItem {
+export interface LinkItem {
   id: number;
   created_at: string;
   updated_at: null | string;
@@ -40,7 +40,7 @@ export interface UserInfo {
   auth_id: string;
 }
 
-export interface SampleUser {
+export interface SampleUserInfo {
   id: number;
   createdAt: string;
   url: string;
@@ -57,5 +57,5 @@ export interface SampleUserFolder {
     name: string;
     profileImageSource: string;
   };
-  links: linkItem[];
+  links: LinkItem[];
 }

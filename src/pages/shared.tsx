@@ -2,7 +2,7 @@ import { CardForShared } from 'components/common/CardForShared';
 import SearchBar from 'components/common/SearchBar';
 import ContentLayout from 'components/others/ContentLayout';
 import FolderBanner from 'components/others/FolderBanner';
-import { linkItem } from 'constants/type';
+import { LinkItem } from 'constants/type';
 import { SearchContextProvider } from 'context/SearchContext';
 import { useSearchContext } from 'context/SearchContext';
 import { getSampleUserFolder } from 'utils/api/fetchApi';
@@ -26,7 +26,7 @@ export default function SharedPage() {
 function SharedLayout() {
   const { searchValue } = useSearchContext();
 
-  const [filteredLinks, setFilteredLinks] = useState<linkItem[]>([]);
+  const [filteredLinks, setFilteredLinks] = useState<LinkItem[]>([]);
   const [sampleUserFolder, setSampleUserFolder] = useState<SampleUserFolder>({
     id: 0,
     name: '',

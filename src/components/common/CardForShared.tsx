@@ -1,9 +1,9 @@
 import styles from 'components/common/Card.module.css';
-import Stars from 'components/common/Stars';
-import { linkItem } from 'constants/type';
+import Stars from 'components/common/BookmarkButton';
+import { LinkItem } from 'constants/type';
 import { getShortDescription, getYYYYMMYY, timeAgo } from 'utils/formatting';
 
-export function CardForShared({ links }: { links: linkItem[] }) {
+export function CardForShared({ links }: { links: LinkItem[] }) {
   return (
     <div className={styles.Cards}>
       {links.map((link) => (
@@ -13,7 +13,7 @@ export function CardForShared({ links }: { links: linkItem[] }) {
   );
 }
 
-function CardItemForShared({ link }: { link: linkItem }) {
+function CardItemForShared({ link }: { link: LinkItem }) {
   return (
     <div className={styles.CardItem}>
       <a className={styles.contentBox} href={link.url} target="_blank" rel="noreferrer">

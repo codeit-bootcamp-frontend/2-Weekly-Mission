@@ -7,7 +7,7 @@ import SearchBar from 'components/common/SearchBar';
 import ContentLayout from 'components/others/ContentLayout';
 import Filtering from 'components/others/Filtering';
 import FolderEditButtons from 'components/others/FolderEditButtons';
-import { linkItem } from 'constants/type';
+import { LinkItem } from 'constants/type';
 import { useSearchContext } from 'context/SearchContext';
 import { SearchContextProvider } from 'context/SearchContext';
 import { getFolder, getLinks } from 'utils/api/fetchApi';
@@ -28,7 +28,7 @@ export default function FolderPage() {
 function FolderLayout() {
   const { searchValue, selectedFolder, folderList, setFolderList, linkList, setLinkList } = useSearchContext();
 
-  const [filteredLinks, setFilteredLinks] = useState<linkItem[]>([]);
+  const [filteredLinks, setFilteredLinks] = useState<LinkItem[]>([]);
 
   async function loadFolder() {
     const data = await getFolder();

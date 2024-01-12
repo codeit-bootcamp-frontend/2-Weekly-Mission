@@ -1,4 +1,4 @@
-import { folderItem, linkItem } from 'constants/type';
+import { FolderItem, LinkItem } from 'constants/type';
 import { createContext, useContext, useState } from 'react';
 import React from 'react';
 
@@ -12,10 +12,10 @@ interface SearchContextValue {
   setSearchValue: (value: string) => void;
   selectedFolder: folderInfo;
   setSelectedFolder: (value: folderInfo) => void;
-  folderList: folderItem[];
-  setFolderList: (value: folderItem[]) => void;
-  linkList: linkItem[];
-  setLinkList: (value: linkItem[]) => void;
+  folderList: FolderItem[];
+  setFolderList: (value: FolderItem[]) => void;
+  linkList: LinkItem[];
+  setLinkList: (value: LinkItem[]) => void;
 }
 
 const initialValues = {
@@ -34,8 +34,8 @@ const SearchContext = createContext<SearchContextValue>(initialValues);
 const SearchContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [searchValue, setSearchValue] = useState<string>(initialValues.searchValue);
   const [selectedFolder, setSelectedFolder] = useState<folderInfo>(initialValues.selectedFolder);
-  const [folderList, setFolderList] = useState<folderItem[]>(initialValues.folderList);
-  const [linkList, setLinkList] = useState<linkItem[]>(initialValues.linkList);
+  const [folderList, setFolderList] = useState<FolderItem[]>(initialValues.folderList);
+  const [linkList, setLinkList] = useState<LinkItem[]>(initialValues.linkList);
 
   const contextValue: SearchContextValue = {
     searchValue,
