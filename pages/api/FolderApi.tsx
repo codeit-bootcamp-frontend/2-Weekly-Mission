@@ -1,15 +1,17 @@
 import requestApi from "./GetData";
 
-export async function getFolderUserData() {
-  return requestApi("/users/1");
+const DEFAULT_USER_ID = 1;
+
+export async function getUserData(DEFAULT_USER_ID = 1) {
+  return requestApi(`/users/${DEFAULT_USER_ID}`);
 }
 
-export async function getFoldersData() {
-  return requestApi("/users/1/folders");
+export async function getUserFoldersData(DEFAULT_USER_ID = 1) {
+  return requestApi(`/users/${DEFAULT_USER_ID}/folders`);
 }
 
-export async function getAllLinksData() {
-  return requestApi("/users/1/links");
+export async function getAllLinksData(DEFAULT_USER_ID = 1) {
+  return requestApi(`/users/${DEFAULT_USER_ID}/links`);
 }
 
 export async function getSelectData(id: number) {

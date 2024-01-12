@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import CategoryBox from "./CategoryBox";
 import { FolderPageData } from "../../../../types/common";
-import { LocaleContext } from "../../../../contexts/LocaleContext";
+import { LocaleContextType, LocaleContext } from "../../../../contexts/LocaleContext";
 
-function FoldersTitles({ id, searchResult }: { id: number; searchResult: string }) {
-  const folderList = useContext<FolderPageData[]>(LocaleContext);
+function FoldersTitles({ id, searchKeyword }: { id: number; searchKeyword: string }) {
+  const folderList = useContext<LocaleContextType>(LocaleContext) as FolderPageData[];
 
   return folderList
     .filter((folder) => folder.id === id)
     .map((filteredFolder) => (
-      <CategoryBox searchResult={searchResult} key={filteredFolder.id} folder={filteredFolder} />
+      <CategoryBox searchResult={searchKeyword} key={filteredFolder.id} folder={filteredFolder} />
     ));
 }
 

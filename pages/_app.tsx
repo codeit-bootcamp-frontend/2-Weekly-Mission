@@ -35,26 +35,22 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyle />
-      <ModalContext.Provider value={{ openModal }}>
+      <ModalContext.Provider value={{ openModal, closeModal }}>
         {modal.name === "폴더추가" && modal.isOpen ? (
-          <FolderAddInputModal closeModal={closeModal} />
+          <FolderAddInputModal onConfirm={closeModal} />
         ) : modal.name === "이름 변경" && modal.isOpen ? (
-          <FolderNameChangeModal closeModal={closeModal} />
+          <FolderNameChangeModal onConfirm={closeModal} />
         ) : modal.name === "삭제" && modal.isOpen ? (
-          <FolderDeleteModal closeModal={closeModal} />
+          <FolderDeleteModal onConfirm={closeModal} />
         ) : modal.name === "링크삭제" && modal.isOpen ? (
-          <LinkDeleteModal closeModal={closeModal} />
+          <LinkDeleteModal onConfirm={closeModal} />
         ) : modal.name === "공유" && modal.isOpen ? (
-          <FolderSharedModal closeModal={closeModal} />
+          <FolderSharedModal onConfirm={closeModal} />
         ) : modal.name === "폴더에 추가" && modal.isOpen ? (
-          <LinkAddModal closeModal={closeModal} />
+          <LinkAddModal onConfirm={closeModal} />
         ) : null}
         <Header user={user} />
-        <Component
-          openModal={openModal}
-          closeModal={closeModal}
-          {...pageProps}
-        />
+        <Component closeModal={closeModal} {...pageProps} />
         <Footer />
       </ModalContext.Provider>
     </>

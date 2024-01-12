@@ -9,7 +9,7 @@ import { Link } from "../types/common";
 import { LocaleContext } from "../contexts/LocaleContext";
 
 function SharedPage() {
-  const [searchResult, setSearchResult] = useState<string>("");
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [sharedFolder, setSharedFolder] = useState<SharedPageData>({
     id: 1,
     name: "",
@@ -32,10 +32,7 @@ function SharedPage() {
 
   const handleFolderLoad = async () => {
     const { folder } = await getSharedData();
-    setSharedFolder({
-      ...folder,
-      links: folder.links,
-    });
+    setSharedFolder(folder);
   };
 
   const searchLink = async (keyword: string) => {
@@ -60,7 +57,7 @@ function SharedPage() {
       <Banner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
-          <SearchInput searchResult={searchResult} setSearchResult={setSearchResult} searchLink={searchLink} />
+          <SearchInput searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} onSearch={searchLink} />
           <CardList links={sharedFolder?.links} />
         </div>
       </section>

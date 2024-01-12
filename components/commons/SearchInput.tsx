@@ -3,47 +3,38 @@ import Image from "next/image";
 import styled from "styled-components";
 
 function SearchInput({
-  searchLink,
-  searchResult,
-  setSearchResult,
+  onSearch,
+  searchKeyword,
+  setSearchKeyword,
 }: {
-  searchLink: (keyword: string) => Promise<void>;
-  searchResult: string;
-  setSearchResult: React.Dispatch<React.SetStateAction<string>>;
+  onSearch: (keyword: string) => Promise<void>;
+  searchKeyword: string;
+  setSearchKeyword: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
     <>
       <SearchBox>
         <input
+          value={searchKeyword}
           onChange={(e) => {
-            searchLink(e.target.value);
-            setSearchResult(e.target.value);
+            onSearch(e.target.value);
+            setSearchKeyword(e.target.value);
           }}
           placeholder="링크를 검색해주세요"
         />
-        <Image
-          width={16}
-          height={16}
-          src="/images/search.png"
-          alt="검색 아이콘"
-        />
+        <Image width={16} height={16} src="/images/search.png" alt="검색 아이콘" />
         <DeleteButton
           onClick={() => {
-            searchLink("");
-            setSearchResult("");
+            onSearch("");
+            setSearchKeyword("");
           }}
         >
-          <Image
-            width={24}
-            height={24}
-            src="/images/search-close.png"
-            alt="검색어 삭제 아이콘"
-          />
+          <Image width={24} height={24} src="/images/search-close.png" alt="검색어 삭제 아이콘" />
         </DeleteButton>
       </SearchBox>
-      {searchResult !== "" ? (
+      {searchKeyword !== "" ? (
         <SearchResult>
-          <span>{searchResult}</span>로 검색한 결과입니다.
+          <span>{searchKeyword}</span>로 검색한 결과입니다.
         </SearchResult>
       ) : null}
     </>

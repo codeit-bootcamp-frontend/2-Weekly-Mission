@@ -22,6 +22,9 @@ export interface Modal {
 export interface OpenModal {
   openModal: (text: string) => void;
 }
+export interface CloseModal {
+  closeModal: () => void;
+}
 
 export interface FolderPageData {
   id: number;
