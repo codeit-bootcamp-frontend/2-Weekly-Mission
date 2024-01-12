@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Category from "./Category";
-import { Folder } from "../../../../types/folder";
+import { FolderPageData } from "../../../../types/common";
 
 const categoryList = [
   { title: "공유", image: "/images/share.png " },
@@ -8,13 +8,7 @@ const categoryList = [
   { title: "삭제", image: "/images/delete.png" },
 ];
 
-function CategoryBox({
-  searchResult,
-  folder,
-}: {
-  searchResult: string;
-  folder: Folder;
-}) {
+function CategoryBox({ searchResult, folder }: { searchResult: string; folder: FolderPageData }) {
   return (
     <StyledCategoryBox>
       {searchResult === "" ? <h1>{folder.name}</h1> : <h1>전체</h1>}

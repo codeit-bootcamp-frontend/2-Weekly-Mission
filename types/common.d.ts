@@ -22,3 +22,22 @@ export interface Modal {
 export interface OpenModal {
   openModal: (text: string) => void;
 }
+
+export interface FolderPageData {
+  id: number;
+  favorite: boolean;
+  name: string;
+  user_id: number;
+  links: Link[];
+}
+
+export interface SharedPageData {
+  id: number;
+  name: string;
+  owner: {
+    id: number;
+    name: string;
+    profileImageSource: string;
+  };
+  links: Link[];
+}

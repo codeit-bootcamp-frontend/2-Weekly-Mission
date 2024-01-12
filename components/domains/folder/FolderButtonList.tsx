@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
 import { getSelectData } from "../../../pages/api/FolderApi";
-import { Folder } from "../../../types/folder";
+import { FolderPageData } from "../../../types/common";
 import { Link, OpenModal } from "../../../types/common";
 import { ModalContext, LocaleContext } from "../../../contexts/LocaleContext";
+import { LocaleContextType } from "../../../contexts/LocaleContext";
 
 function Button({
   folder,
   setSelectFolderLinks,
   setId,
 }: {
-  folder: Folder;
+  folder: FolderPageData;
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
 }) {
@@ -38,19 +39,14 @@ function FolderButtonList({
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const locale = useContext<Folder[]>(LocaleContext);
+  const locale = useContext<LocaleContextType>(LocaleContext) as FolderPageData[];
   const { openModal } = useContext<OpenModal>(ModalContext);
   return (
     <div>
       <StyledButtonBox>
         <StyledButtons>
           {locale?.map((folder) => (
-            <Button
-              folder={folder}
-              key={folder.id}
-              setSelectFolderLinks={setSelectFolderLinks}
-              setId={setId}
-            />
+            <Button folder={folder} key={folder.id} setSelectFolderLinks={setSelectFolderLinks} setId={setId} />
           ))}
         </StyledButtons>
         <StyledAddLink

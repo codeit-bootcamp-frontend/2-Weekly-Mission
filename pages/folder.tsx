@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../components/domains/folder/Banner";
 import CardList from "../components/commons/CardList";
 import SearchInput from "../components/commons/SearchInput";
@@ -7,19 +7,19 @@ import FolderButtonList from "../components/domains/folder/FolderButtonList";
 import FolderTitles from "../components/domains/folder/folderTitle/FolderTitles";
 import FloatingButton from "../components/domains/folder/FloatingButton";
 import { getAllLinksData, getFoldersData } from "./api/FolderApi";
-import { Folder } from "../types/folder";
+import { FolderPageData } from "../types/common";
 import { Link } from "../types/common";
 import { LocaleContext } from "../contexts/LocaleContext";
 
 function FolderPage() {
-  const [folderList, setFolderList] = useState<Folder[]>([]);
+  const [folderList, setFolderList] = useState<FolderPageData[]>([]);
   const [selectFolderLinks, setSelectFolderLinks] = useState<Link[]>([]);
   const [id, setId] = useState<number>(0);
   const [searchLinks, setSearchLinks] = useState<Link[]>([]);
   const [searchResult, setSearchResult] = useState<string>("");
 
   const handleFoldersLoad = async () => {
-    const allLinksFolder: Folder = {
+    const allLinksFolder: FolderPageData = {
       id: 0,
       favorite: false,
       name: "전체",
@@ -43,9 +43,7 @@ function FolderPage() {
   const searchLink = async (keyword: string) => {
     const filteredLinks = folderList[0].links?.filter(
       (link: Link) =>
-        link.url?.includes(keyword) ||
-        link.title?.includes(keyword) ||
-        link.description?.includes(keyword)
+        link.url?.includes(keyword) || link.title?.includes(keyword) || link.description?.includes(keyword)
     );
     setSearchLinks(filteredLinks);
   };
@@ -59,15 +57,8 @@ function FolderPage() {
       <Banner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
-          <SearchInput
-            searchResult={searchResult}
-            setSearchResult={setSearchResult}
-            searchLink={searchLink}
-          />
-          <FolderButtonList
-            setSelectFolderLinks={setSelectFolderLinks}
-            setId={setId}
-          />
+          <SearchInput searchResult={searchResult} setSearchResult={setSearchResult} searchLink={searchLink} />
+          <FolderButtonList setSelectFolderLinks={setSelectFolderLinks} setId={setId} />
           <FolderTitles searchResult={searchResult} id={id} />
           {searchResult !== "" ? (
             <CardList links={searchLinks} />
