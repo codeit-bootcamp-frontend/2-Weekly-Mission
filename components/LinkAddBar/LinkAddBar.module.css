@@ -1,0 +1,35 @@
+.folderWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0 4rem;
+  box-sizing: border-box;
+  background-color: var(--color-light-blue);
+  padding-top: 6rem;
+  padding-bottom: 9rem;
+}
+
+.linkBarOuterWrap {
+  padding: 1.6rem 2rem;
+  width: 80rem;
+  border: 0.1rem solid red;
+  border-radius: 1.5rem;
+}
+
+.linkBarInnerWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linkAddImage {
+  width: 2rem;
+  height: 2rem;
+}
+
+.linkAddWrap {
+  display: flex;
+  align-items: center;
+  column-gap: 1.2rem;
+}

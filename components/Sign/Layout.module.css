@@ -1,0 +1,107 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 23.8rem;
+  padding-bottom: 25.2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.6rem;
+  margin-bottom: 3rem;
+}
+.headerSignTextForm {
+  display: flex;
+  column-gap: 0.8rem;
+  font-size: 1.6rem;
+}
+.headerSignText {
+  color: var(--Black-normal-1);
+  font-weight: 400;
+  line-height: 2.4rem;
+}
+.headerLoginLink {
+  color: var(--Purple-light-1);
+  font-weight: 600;
+}
+.headerLoginHr {
+  border: 0.1rem solid var(--Purple-light-1);
+}
+.headerLogo {
+  width: 21rem;
+  height: 3.8rem;
+}
+
+/* section */
+.sectionInputWrap {
+  margin-bottom: 2.4rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+}
+
+.sectionInputCheckText {
+  color: var(--Red-normal-1);
+}
+.sectionInput {
+  position: relative;
+}
+
+/* social */
+.socialForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e7effb;
+  padding: 1.2rem 2.4rem;
+  border-radius: 0.8rem;
+}
+
+.socialSnsText {
+  color: #373740;
+}
+
+.socialLinkForm {
+  display: flex;
+  column-gap: 1.6rem;
+}
+
+.socialLinkBackground {
+  background-repeat: no-repeat;
+  width: 4.2rem;
+  height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.snsBg1 {
+  background-image: url('/images/googlebg.svg');
+}
+.snsBg2 {
+  background-image: url('/images/kakaobg.svg');
+}
+
+/* tablet */
+@media (max-width: 1199px) {
+  .body {
+    padding-top: 20rem;
+    padding-bottom: 29rem;
+  }
+}
+/* mobile */
+@media (max-width: 767px) {
+  .body {
+    padding: 12rem 3.2rem 23.2rem 3.3rem;
+  }
+  .socialForm {
+    margin-top: 0.2rem;
+  }
+}
