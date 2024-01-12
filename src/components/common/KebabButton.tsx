@@ -5,19 +5,21 @@ import Selector from 'components/common/Selector';
 import { useSearchContext } from 'context/SearchContext';
 import useOutsideClick from 'hooks/useClickOutside';
 import useModal from 'hooks/useModal';
-import { useRef, useState } from 'react';
+import { MouseEventHandler, ReactNode, useRef, useState } from 'react';
 
 import styles from './KebabButton.module.css';
+import { folderItem, linkItem } from 'constants/type';
 
-export default function KebabButtons({ link }) {
+export default function KebabButtons({ link }: { link: linkItem }) {
+  const { folderList } = useSearchContext();
   const [linkDeletemModalRef, openLinkDeleteModal, closeLinkDeleteModal] = useModal();
   const [linkAddToFolderModalRef, openLinkAddToFolderModal, closeLinkAddToFolderModal] = useModal();
-  const { folderList } = useSearchContext();
 
-  const [isOpened, setIsOpened] = useState(false);
-  const [selectedFolderId, setSelectedFolderId] = useState(undefined);
-  const selectorRef = useRef();
-  const handlePreventDefault = (e) => {
+  const [isOpened, setIsOpened] = useState<boolean>(false);
+  const [selectedFolderId, setSelectedFolderId] = useState<number>(0);
+  const selectorRef = useRef<HTMLDivElement>(null);
+
+  const handlePreventDefault: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsOpened((prev) => !prev);
@@ -45,7 +47,7 @@ export default function KebabButtons({ link }) {
         onCloseModal={closeLinkAddToFolderModal}
       >
         <div className={stylesForModal.folderList}>
-          {folderList.map((folderInfo) => {
+          {folderList.map((folderInfo: folderItem) => {
             return (
               <button
                 key={folderInfo.id}
@@ -59,7 +61,7 @@ export default function KebabButtons({ link }) {
               >
                 <div className={stylesForModal.folderItemInfoWrapper}>
                   <div className={stylesForModal.folderItemName}>{folderInfo.name}</div>
-                  <div className={stylesForModal.folderItemLinkCount}>{folderInfo.link.count}개 링크</div>
+                  <div className={stylesForModal.folderItemLinkCount}>{folderInfo.link?.count}개 링크</div>
                 </div>
                 {selectedFolderId === folderInfo.id && <img src="/assets/checked.svg"></img>}
               </button>

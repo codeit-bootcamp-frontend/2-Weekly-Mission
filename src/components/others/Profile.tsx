@@ -1,8 +1,9 @@
 import { useMediaQuery } from 'react-responsive';
 
 import styles from './Profile.module.css';
+import { UserInfo } from 'constants/type';
 
-export default function Profile({ profile }) {
+export default function Profile({ profile }: { profile: UserInfo }) {
   const isMobile = useMediaQuery({
     query: '(max-width :767px)',
   });

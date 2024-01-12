@@ -1,12 +1,18 @@
+import { MouseEventHandler } from 'react';
 import styles from './Selector.module.css';
 
-export default function Selector({ openLinkDeleteModal, openLinkAddToFolderModal }) {
+interface SelectorProps {
+  openLinkDeleteModal: MouseEventHandler<HTMLButtonElement>;
+  openLinkAddToFolderModal: MouseEventHandler<HTMLButtonElement>;
+}
+
+export default function Selector({ openLinkDeleteModal, openLinkAddToFolderModal }: SelectorProps) {
   return (
     <div className={styles.Selector}>
       <button
         onClick={(e) => {
           e.preventDefault();
-          openLinkDeleteModal();
+          openLinkDeleteModal(e);
         }}
         className={styles.Sector__option}
       >
@@ -15,7 +21,7 @@ export default function Selector({ openLinkDeleteModal, openLinkAddToFolderModal
       <button
         onClick={(e) => {
           e.preventDefault();
-          openLinkAddToFolderModal();
+          openLinkAddToFolderModal(e);
         }}
         className={styles.Sector__option}
       >

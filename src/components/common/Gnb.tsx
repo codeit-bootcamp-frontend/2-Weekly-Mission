@@ -4,9 +4,10 @@ import { getUser } from 'pages/api/fetchApi';
 import { useEffect, useState } from 'react';
 
 import styles from './Gnb.module.css';
+import { UserInfo } from 'constants/type';
 
 function Gnb() {
-  const [profile, setProfile] = useState({
+  const [profile, setProfile] = useState<UserInfo>({
     id: 0,
     created_at: '',
     name: '',

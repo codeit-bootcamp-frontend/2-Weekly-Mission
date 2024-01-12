@@ -1,10 +1,11 @@
 import useToggle from 'hooks/useToggle';
 
 import styles from './Stars.module.css';
+import { MouseEventHandler } from 'react';
 
 export default function Stars() {
   const [isFullStar, setIsFullStar] = useToggle();
-  const handlePreventDefault = (e) => {
+  const handlePreventDefault: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
   };
   return (
