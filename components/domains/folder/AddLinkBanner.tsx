@@ -4,19 +4,14 @@ import { useContext } from "react";
 import { ModalContext } from "../../../contexts/LocaleContext";
 import { OpenModal } from "../../../types/common";
 
-function Banner() {
+function AddLinkBanner() {
   const { openModal } = useContext<OpenModal>(ModalContext);
 
   return (
     <BannerLayout>
       <BannerBox>
         <input placeholder="링크를 추가해 보세요" />
-        <Image
-          width={20}
-          height={20}
-          src="/images/linkIcon.png"
-          alt="링크 아이콘"
-        />
+        <Image width={20} height={20} src="/images/linkIcon.png" alt="링크 아이콘" />
         <button
           onClick={() => {
             openModal("폴더에 추가");
@@ -58,11 +53,7 @@ const BannerBox = styled.div`
   & button {
     position: absolute;
     padding: 1rem 1.5rem;
-    background-image: linear-gradient(
-      90deg,
-      rgba(109, 106, 254, 1),
-      rgba(106, 227, 254, 1)
-    );
+    background-image: linear-gradient(90deg, rgba(109, 106, 254, 1), rgba(106, 227, 254, 1));
     border: none;
     border-radius: 0.8rem;
     color: var(--white-color);
@@ -75,4 +66,4 @@ const BannerBox = styled.div`
   }
 `;
 
-export default Banner;
+export default AddLinkBanner;
