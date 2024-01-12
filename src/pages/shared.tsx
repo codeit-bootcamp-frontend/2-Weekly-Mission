@@ -9,11 +9,15 @@ import { getSampleUserFolder } from 'pages/api/fetchApi';
 import { useEffect, useState } from 'react';
 import { SampleUserFolder } from 'constants/type';
 import styles from 'styles/folder.module.css';
+import Gnb from 'components/common/Gnb';
+import Footer from 'components/common/Footer';
 
 export default function SharedPage() {
   return (
     <SearchContextProvider>
+      <Gnb />
       <SharedLayout />
+      <Footer />
     </SearchContextProvider>
   );
 }

@@ -1,6 +1,8 @@
 import AddLinkBar from 'components/common/AddLinkBar';
 import { Cards } from 'components/common/Cards';
 import FloatingActionButton from 'components/common/FloatingActionButton';
+import Footer from 'components/common/Footer';
+import Gnb from 'components/common/Gnb';
 import SearchBar from 'components/common/SearchBar';
 import ContentLayout from 'components/others/ContentLayout';
 import Filtering from 'components/others/Filtering';
@@ -15,7 +17,9 @@ import styles from 'styles/folder.module.css';
 export default function FolderPage() {
   return (
     <SearchContextProvider>
+      <Gnb />
       <FolderLayout />
+      <Footer />
     </SearchContextProvider>
   );
 }

@@ -1,6 +1,5 @@
 import API from 'constants/api';
-import { SampleUser, SampleUserFolder, UserLinkItem, folderItem, linkItem } from 'constants/type';
-import { UserInfo } from 'os';
+import { UserInfo, SampleUserFolder, UserLinkItem, folderItem, linkItem } from 'constants/type';
 
 const convertToSnakeCase = (links: UserLinkItem[]): linkItem[] => {
   const convertedLinks = links.map((link) => {
@@ -36,5 +35,5 @@ export async function getLinks(folderId: number) {
 export async function getUser() {
   const result = await fetch(API.USER_INFO);
   const { data } = await result.json();
-  return data as SampleUser[];
+  return data as UserInfo[];
 }

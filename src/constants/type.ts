@@ -31,6 +31,15 @@ export interface UserLinkItem {
   folderId: null | undefined | number;
 }
 
+export interface UserInfo {
+  id: number;
+  created_at: string;
+  name: string;
+  image_source: string;
+  email: string;
+  auth_id: string;
+}
+
 export interface SampleUser {
   id: number;
   createdAt: string;
