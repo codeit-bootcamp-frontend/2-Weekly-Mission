@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactNode, useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import CloseImg from '@/public/images/close.svg';
 import styles from './ModalLayout.module.css';
@@ -13,10 +13,9 @@ interface Props {
 export default function ModalLayout({ setModalOpen, modalTitle, details, children }: Props) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // todo: 여기서 이벤트 타입은 ?
   useEffect(() => {
-    const handleModalClose = (e) => {
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
+    const handleModalClose = (e: MouseEvent) => {
+      if (e.target instanceof Node && modalRef.current && !modalRef.current.contains(e.target)) {
         setModalOpen(false);
       }
     };
