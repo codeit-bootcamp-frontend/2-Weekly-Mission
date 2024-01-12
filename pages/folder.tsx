@@ -8,24 +8,20 @@ import SelectedCardList from '@/components/SelectedCardList/SelectedCardList';
 import Footer from '@/components/Footer/Footer';
 import styles from '@/styles/folder.module.css';
 
-type Current = HTMLDivElement[];
-
-type ref = {
-  current: Current;
-};
+type Target = HTMLDivElement;
+type Targets = Target[];
 
 export default function Folder() {
   const [searchValue, setSearchValue] = useState('');
   const [selectedFolder, setSelectedFolder] = useState({ id: '', name: '전체' });
 
   const [sideAddLinkbar, setSideAddLinkbar] = useState(false);
-  const targets = useRef<ref>();
-  console.log(targets);
+  const targets = useRef<Targets>([]);
 
   // next.js에서는 IntersectionObserver를 useEffect 내부에 넣어야만 실행된다고 하는데..
   // 내려갈 때는 작동하는데, 올라올 때는 작동하지 않는 이유는? -> target이 바뀔 때마다 콜백을 실행해야할 것 같은데 dependency에 target을 어떻게 지정하지?
   useEffect(() => {
-    const observerCallback = (entries) => {
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.target === targets.current[0] && !entry.isIntersecting) {
           setSideAddLinkbar(true);
@@ -40,13 +36,13 @@ export default function Folder() {
     };
 
     const observer = new IntersectionObserver(observerCallback);
-    targets.current.forEach((target: Element) => observer.observe(target));
-  }, [targets]);
+    targets.current.forEach((target) => observer.observe(target));
+  }, [sideAddLinkbar]);
 
   return (
     <>
       <Navbar userId='1' />
-      <div ref={(el) => (targets.current[0] = el)}>
+      <div ref={(el: Target) => (targets.current[0] = el)}>
         <HeaderLayout>
           <AddLinkbar />
         </HeaderLayout>
@@ -54,7 +50,7 @@ export default function Folder() {
       <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
       <FolderButtons userId='1' folderId={selectedFolder.id} setSelectedFolder={setSelectedFolder} />
       <SelectedCardList selectedFolder={selectedFolder} searchValue={searchValue} />
-      <div ref={(el) => (targets.current[1] = el)}>
+      <div ref={(el: Target) => (targets.current[1] = el)}>
         <Footer />
       </div>
       {sideAddLinkbar && (
