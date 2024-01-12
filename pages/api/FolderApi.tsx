@@ -1,17 +1,17 @@
-import getDate from "./GetData";
+import requestApi from "./GetData";
 
 export async function getFolderUserData() {
-  return getDate("/users/1");
+  return requestApi("/users/1");
 }
 
 export async function getFoldersData() {
-  return getDate("/users/1/folders");
+  return requestApi("/users/1/folders");
 }
 
 export async function getAllLinksData() {
-  return getDate("/users/1/links");
+  return requestApi("/users/1/links");
 }
 
 export async function getSelectData(id: number) {
-  return getDate(`/users/1/links?folderId=${id}`);
+  return requestApi(`/users/1/links?folderId=${id}`);
 }
