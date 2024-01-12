@@ -19,10 +19,8 @@ export interface Modal {
   isOpen: boolean;
 }
 
-export interface OpenModal {
+export interface ModalControl {
   openModal: (text: string) => void;
-}
-export interface CloseModal {
   closeModal: () => void;
 }
 

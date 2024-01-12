@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
 import { getSelectData } from "../../../pages/api/FolderApi";
-import { FolderPageData } from "../../../types/common";
-import { Link, OpenModal } from "../../../types/common";
+import { FolderPageData, Link, ModalControl } from "../../../types/common";
 import { ModalContext, LocaleContext } from "../../../contexts/LocaleContext";
 import { LocaleContextType } from "../../../contexts/LocaleContext";
 
@@ -40,7 +39,7 @@ function FolderButtonList({
   setId: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const locale = useContext<LocaleContextType>(LocaleContext) as FolderPageData[];
-  const { openModal } = useContext<OpenModal>(ModalContext);
+  const { openModal } = useContext<ModalControl>(ModalContext);
   return (
     <div>
       <StyledButtonBox>

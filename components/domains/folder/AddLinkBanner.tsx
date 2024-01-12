@@ -2,10 +2,10 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useContext } from "react";
 import { ModalContext } from "../../../contexts/LocaleContext";
-import { OpenModal } from "../../../types/common";
+import { ModalControl } from "../../../types/common";
 
 function AddLinkBanner() {
-  const { openModal } = useContext<OpenModal>(ModalContext);
+  const { openModal } = useContext<ModalControl>(ModalContext);
 
   return (
     <BannerLayout>

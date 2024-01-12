@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import React, { SetStateAction, useContext } from "react";
 import { ModalContext } from "../../../contexts/LocaleContext";
-import { OpenModal } from "../../../types/common";
+import { ModalControl } from "../../../types/common";
 
-function PopOver({
-  setIsPopOver,
-}: {
-  setIsPopOver: React.Dispatch<SetStateAction<boolean>>;
-}) {
-  const { openModal } = useContext<OpenModal>(ModalContext);
+function PopOver({ setIsPopOver }: { setIsPopOver: React.Dispatch<SetStateAction<boolean>> }) {
+  const { openModal } = useContext<ModalControl>(ModalContext);
   return (
     <PopOverLayout>
       <PopOverButton
