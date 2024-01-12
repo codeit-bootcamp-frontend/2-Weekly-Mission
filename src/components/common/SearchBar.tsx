@@ -1,25 +1,14 @@
-import { linkItem } from 'constants/type';
 import { useSearchContext } from 'context/SearchContext';
-import { useEffect } from 'react';
 import React from 'react';
 
 import styles from './SearchBar.module.css';
 
-interface SearchBarProps {
-  filterLinks: (searchValue: string) => linkItem[];
-  setFilteredLinks: (filteredLinks: linkItem[]) => void;
-}
-
-export default function SearchBar({ filterLinks, setFilteredLinks }: SearchBarProps) {
+export default function SearchBar() {
   const { searchValue, setSearchValue } = useSearchContext();
 
   const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
-
-  useEffect(() => {
-    setFilteredLinks(filterLinks(searchValue));
-  }, [searchValue]);
 
   return (
     <div className={styles.SearchBarContainer}>

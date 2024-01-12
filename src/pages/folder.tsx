@@ -56,10 +56,14 @@ function FolderLayout() {
     loadLinks();
   }, [selectedFolder.id, selectedFolder.name]);
 
+  useEffect(() => {
+    setFilteredLinks(filterLinks(searchValue));
+  }, [searchValue]);
+
   return (
     <ContentLayout>
       <AddLinkBar />
-      <SearchBar filterLinks={filterLinks} setFilteredLinks={setFilteredLinks} />
+      <SearchBar />
       {searchValue && (
         <div className={styles.searchResult}>
           <span className={styles.searchKeyword}>{searchValue}</span>로 검색한 결과입니다.
@@ -71,7 +75,7 @@ function FolderLayout() {
         {!!selectedFolder.id && <FolderEditButtons />}
       </div>
       {linkList.length ? (
-        filterLinks(searchValue).length ? (
+        filteredLinks.length ? (
           <Cards links={filteredLinks} />
         ) : (
           <div className={styles.noLinks}> 검색결과가 없습니다.</div>
