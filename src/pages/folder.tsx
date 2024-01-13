@@ -7,29 +7,48 @@ import SearchBar from 'components/common/SearchBar';
 import ContentLayout from 'components/others/ContentLayout';
 import Filtering from 'components/others/Filtering';
 import FolderEditButtons from 'components/others/FolderEditButtons';
-import { LinkItem } from 'constants/type';
+import { FolderItem, LinkItem } from 'constants/type';
 import { useSearchContext } from 'context/SearchContext';
 import { SearchContextProvider } from 'context/SearchContext';
 import { getFolder, getLinks } from 'utils/api/fetchApi';
 import { useEffect, useState } from 'react';
 import styles from 'styles/folder.module.css';
 import filterLinks from 'utils/filtering';
+import { PageContextProvider, usePageContext } from 'context/PageContext';
 
-export default function FolderPage() {
+export async function getStaticProps() {
+  const folderList = await getFolder();
+  const linkList = await getLinks(0); // 전체 링크 리스트 불러오기
+  return {
+    props: {
+      folderList,
+      linkList,
+    },
+  };
+}
+
+interface StaticProps {
+  folderList: FolderItem[];
+  linkList: LinkItem[];
+}
+
+export default function FolderPage({ folderList, linkList }: StaticProps) {
   return (
     <SearchContextProvider>
-      <Gnb />
-      <FolderLayout />
-      <Footer />
+      <PageContextProvider initialFolderList={folderList} initialLinkList={linkList}>
+        <Gnb />
+        <FolderLayout />
+        <Footer />
+      </PageContextProvider>
     </SearchContextProvider>
   );
 }
 
 function FolderLayout() {
-  const { searchValue, selectedFolder, folderList, setFolderList, linkList, setLinkList } = useSearchContext();
+  const { searchValue, selectedFolder } = useSearchContext();
+  const { folderList, setFolderList, linkList, setLinkList } = usePageContext();
 
-  const [filteredLinks, setFilteredLinks] = useState<LinkItem[]>([]);
-
+  const filteredLinks = filterLinks(searchValue, linkList);
   async function loadFolder() {
     const data = await getFolder();
     setFolderList(data);
@@ -38,7 +57,6 @@ function FolderLayout() {
   async function loadLinks() {
     const data = await getLinks(selectedFolder.id);
     setLinkList(data);
-    setFilteredLinks(data);
   }
 
   useEffect(() => {
@@ -48,10 +66,6 @@ function FolderLayout() {
   useEffect(() => {
     loadLinks();
   }, [selectedFolder.id, selectedFolder.name]);
-
-  useEffect(() => {
-    setFilteredLinks(filterLinks(searchValue, linkList));
-  }, [searchValue]);
 
   return (
     <ContentLayout>

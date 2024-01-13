@@ -2,16 +2,16 @@ import clsx from 'clsx';
 import Modal from 'components/common/Modal';
 import stylesForModal from 'components/common/Modal.module.css';
 import Selector from 'components/common/Selector';
-import { useSearchContext } from 'context/SearchContext';
 import useOutsideClick from 'hooks/useClickOutside';
 import useModal from 'hooks/useModal';
 import { MouseEventHandler, ReactNode, useRef, useState } from 'react';
 
 import styles from './KebabButton.module.css';
 import { FolderItem, LinkItem } from 'constants/type';
+import { usePageContext } from 'context/PageContext';
 
 export default function KebabButtons({ link }: { link: LinkItem }) {
-  const { folderList } = useSearchContext();
+  const { folderList } = usePageContext();
   const [linkDeletemModalRef, openLinkDeleteModal, closeLinkDeleteModal] = useModal();
   const [linkAddToFolderModalRef, openLinkAddToFolderModal, closeLinkAddToFolderModal] = useModal();
 
