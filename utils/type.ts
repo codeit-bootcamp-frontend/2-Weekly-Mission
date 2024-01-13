@@ -5,9 +5,8 @@ export interface IPersonalData {
 }
 
 /** PersonalLinkData의 정보를 다루는 interface */
-export interface IPLinkdata extends IPersonalData {
+export interface IPCardData extends IPersonalData {
   // PersonalLinkData
-  updated_at?: null | Date;
   url?: string;
   title?: string;
   description?: string;
@@ -26,19 +25,19 @@ export interface IPFolderData extends IPersonalData {
   };
 }
 
-/** Filter 된 Card의 핸들링을 위해 Transfrom 된 Card정보를 다루는 interface */
-export interface ITransformData {
+/** Transfrom 된 Card정보를 다루는 interface */
+export interface ITransformCardData {
   id: number;
   createdAt: Date;
   url: string;
   title: string;
   description: string;
-  img: string;
+  img?: string;
   folderId?: number;
 }
 
 /** UserData */
-export interface UserData extends IPersonalData {
+export interface IUserData extends IPersonalData {
   name?: string;
   image_source?: string;
   email?: string;
@@ -47,9 +46,9 @@ export interface UserData extends IPersonalData {
 
 /** UserFolderData */
 export interface IUserFolderData {
-  id?: number;
-  name?: string;
-  owner?: {
+  id: number;
+  name: string;
+  owner: {
     id: number;
     name: string;
     profileImageSource: string;
@@ -64,4 +63,14 @@ export interface IModalData {
   addLinkList?: any;
   button?: HTMLButtonElement;
   img?: HTMLImageElement;
+}
+
+/** Shared page CardData */
+export interface ISharedPageCardData {
+  id: string;
+  createdAt: Date;
+  url: string;
+  title: string;
+  description: string;
+  imageSource: string;
 }

@@ -3,15 +3,15 @@ import { MouseEvent, useState } from "react";
 import CardPopOver from "./CardPopOver";
 import Modal from "./Modal";
 import { formatDate, getTimeDifference } from "@/utils/formatDate";
-import { IPFolderData, IPLinkdata, ITransformData } from "@/utils/type";
+import { IPFolderData, IPCardData, ITransformCardData } from "@/utils/type";
 
 interface Props {
-  data: ITransformData;
+  data: ITransformCardData;
   folderListData?: IPFolderData[];
-  linkData?: IPLinkdata[];
+  linkData?: IPCardData[];
 }
 
-function Card({ data, folderListData, linkData }: Props) {
+export default function Card({ data, folderListData, linkData }: Props) {
   const [isPopOverOn, setIsPopOverOn] = useState(false);
   const [isModalOn, setIsModalOn] = useState(false);
   const [modalData, setModalData] = useState({});
@@ -104,6 +104,8 @@ const StyledCardInfoContainer = styled.div`
   flex-direction: column;
   gap: 1rem;
   height: 40%;
+  justify-content: space-between;
+
   ${StyledCardContiner}:hover & {
     background-color: #f0f6ff;
   }
@@ -144,5 +146,3 @@ const StyledUpdataAndMenuIconContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-
-export default Card;

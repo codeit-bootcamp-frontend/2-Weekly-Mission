@@ -1,5 +1,7 @@
-export function transformLinkData(data: any) {
-  return data.map((data: any) => ({
+import { IPCardData, ISharedPageCardData } from "./type";
+
+export function transformFolderCardData(data: IPCardData[]) {
+  return data.map((data) => ({
     id: data.id,
     createdAt: data.created_at,
     url: data.url,
@@ -10,10 +12,10 @@ export function transformLinkData(data: any) {
   }));
 }
 
-export function transformShareCardData(data: any) {
-  return data.map((data: any) => ({
+export function transformShareCardData(data: ISharedPageCardData[]) {
+  return data.map((data) => ({
     id: data.id,
-    createdAt: data.createdAt || data.created_at,
+    createdAt: data.createdAt,
     url: data.url,
     title: data.title,
     description: data.description,

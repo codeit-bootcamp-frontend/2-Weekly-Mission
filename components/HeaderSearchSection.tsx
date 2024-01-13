@@ -1,16 +1,11 @@
 import styled from "styled-components";
 
 interface Props {
-  setRef: any;
+  setRef: React.RefObject<HTMLDivElement>;
   linkSearchInputOb: boolean;
   footerOb: boolean;
 }
 
-/**
- * @param setRef // ref 설정
- * @param linkSearchInputOb HeaderSearchSection조정을 위한 LinkSearchInputOb의 옵저버
- * @param footerOb //HeaderSearchSection조정을 위한 footerOb의 옵저버
- **/
 function HeaderSearchSection({ setRef, linkSearchInputOb, footerOb }: Props) {
   return (
     <Container>

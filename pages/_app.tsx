@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { useRef } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const footerRef = useRef<any>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   return (
     <>

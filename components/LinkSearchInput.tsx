@@ -4,7 +4,7 @@ import styled from "styled-components";
 interface Props {
   setSearchValue: (value: string) => void;
   value?: string;
-  setRef?: any;
+  setRef?: React.RefObject<HTMLFormElement>;
 }
 
 function LinkSearchInput({ setSearchValue, value, setRef }: Props) {

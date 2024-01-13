@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-function Footer({ setRef }: any) {
+function Footer({ setRef }: { setRef: React.RefObject<HTMLDivElement> }) {
   return (
     <StyledFooterContainer ref={setRef}>
       <StyledFooterItemContainer>

@@ -10,7 +10,7 @@ interface Props {
   setModalData: any;
 }
 
-export default function FolderSidebar({ folderName, $setIsModalOn, setModalData }: any) {
+export default function FolderSidebar({ folderName, $setIsModalOn, setModalData }: Props) {
   const router = useRouter();
   const url = `${baseUrl}` + `${router.asPath}`;
 

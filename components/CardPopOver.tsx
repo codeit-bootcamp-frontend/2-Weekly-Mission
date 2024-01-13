@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { deleteLink, addLink } from "../utils/modalItemData";
-import { IModalData, IPFolderData, IPLinkdata } from "../utils/type";
+import { IModalData, IPFolderData, IPCardData } from "../utils/type";
 
 interface Props {
   $Lender: boolean;
@@ -8,7 +8,7 @@ interface Props {
   setModalData: (value: IModalData) => void;
   linkUrl: string;
   folderListData?: IPFolderData[];
-  linkData?: IPLinkdata[];
+  linkData?: IPCardData[];
 }
 
 export default function CardPopOver({ $Lender, setIsModalOn, setModalData, linkUrl, folderListData, linkData }: Props) {

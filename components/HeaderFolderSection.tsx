@@ -9,7 +9,7 @@ interface Props {
 function HeaderFoloderSection({ folderData }: Props) {
   const folderName = folderData.name;
   const ownerName = folderData.owner?.name;
-  const ownerImg: any = folderData.owner?.profileImageSource;
+  const ownerImg = folderData.owner.profileImageSource;
 
   return (
     <StyledHeaderOwnerContainer>
