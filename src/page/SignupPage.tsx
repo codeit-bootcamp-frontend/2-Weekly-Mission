@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet';
 import UserInput from '../components/UserInput';
-import SignButton from '../components/SignButton';
 import JoinSns from '../components/JoinSns';
 import JoinLink from '../components/JoinLink';
 import styled from 'styled-components';
@@ -17,17 +16,16 @@ const Wrap = styled.div`
   width: 40rem;
 `;
 
-function SigninPage() {
+function SignupPage() {
   return (
     <>
       <Helmet>
-        <title>로그인</title>
+        <title>회원가입</title>
       </Helmet>
       <Container>
         <Wrap>
           <JoinLink />
           <UserInput />
-          <SignButton />
           <JoinSns />
         </Wrap>
       </Container>
@@ -35,4 +33,4 @@ function SigninPage() {
   );
 }
 
-export default SigninPage;
+export default SignupPage;

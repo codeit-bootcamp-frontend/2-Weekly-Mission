@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import UserInput from '../components/UserInput';
-import SignButton from '../components/SignButton';
 import JoinSns from '../components/JoinSns';
 import JoinLink from '../components/JoinLink';
 import styled from 'styled-components';
+import UserInput from '../components/UserInput';
 
 const Container = styled.div`
   display: flex;
@@ -18,23 +16,16 @@ const Wrap = styled.div`
   width: 40rem;
 `;
 
-function SignupPage() {
-  const [signup, setSignup] = useState('');
-
-  useEffect(() => {
-    setSignup('signup');
-  }, []);
-
+function SigninPage() {
   return (
     <>
       <Helmet>
-        <title>회원가입</title>
+        <title>로그인</title>
       </Helmet>
       <Container>
         <Wrap>
-          <JoinLink signup={signup} />
-          <UserInput signup={signup} />
-          <SignButton signup={signup} />
+          <JoinLink />
+          <UserInput />
           <JoinSns />
         </Wrap>
       </Container>
@@ -42,4 +33,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default SigninPage;

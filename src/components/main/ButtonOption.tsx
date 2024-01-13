@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import share from '../assets/btn-share.png';
-import pen from '../assets/btn-pen.png';
-import del from '../assets/btn-delete.png';
-import Modal from './Modal';
-import { useState } from 'react';
+import share from '../../assets/btn-share.png';
+import pen from '../../assets/btn-pen.png';
+import del from '../../assets/btn-delete.png';
+import { useContext } from 'react';
+import mainContext from './mainContext';
+import modalContext from '../modal/modalContext';
 
 const ButtonOptionContainer = styled.div`
   position: relative;
@@ -18,10 +19,10 @@ const Title = styled.h2`
   letter-spacing: -0.02rem;
 `;
 
-const Option = styled.div`
+const Option = styled.div<{ $buttonOption: boolean, $selectedMenu: string }>`
   position: relative;
-  display: ${({ $btnOption, $menuActive }) =>
-    $btnOption === true && $menuActive !== 'all' ? 'block' : 'none'};
+  display: ${({ $buttonOption, $selectedMenu }) =>
+    $buttonOption === true && $selectedMenu !== 'all' ? 'block' : 'none'};
   position: absolute;
   top: 0;
   right: 0;
@@ -57,16 +58,9 @@ const Button = styled.button`
   }
 `;
 
-function ButtonOption({ title, menuActive, btnOption, menu }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [mode, setMode] = useState(null);
-
-  const handleClickOpen = (buttonId) => {
-    setIsOpen(true);
-    setMode(buttonId);
-  };
-
-  const handleClickClose = () => setIsOpen(false);
+const ButtonOption = () => {
+  const { title, buttonOption, selectedMenu } = useContext(mainContext);
+  const { handleClickModalOpen } = useContext(modalContext);
 
   const BUTTON = [
     {
@@ -87,28 +81,18 @@ function ButtonOption({ title, menuActive, btnOption, menu }) {
     <>
       <ButtonOptionContainer>
         <Title>{title}</Title>
-        <Option $menuActive={menuActive} $btnOption={btnOption}>
+        <Option $selectedMenu={selectedMenu} $buttonOption={buttonOption}>
           {BUTTON.map((button) => (
             <Button
               key={button.id}
               type="button"
-              onClick={() => handleClickOpen(button.id)}
+              onClick={() => handleClickModalOpen(button.id)}
             >
               {button.name}
             </Button>
           ))}
         </Option>
       </ButtonOptionContainer>
-      <Modal
-        $isOpen={isOpen}
-        onClick={handleClickClose}
-        edit={mode === 'edit'}
-        share={mode === 'share'}
-        $folderRemove={mode === 'folderRemove'}
-        title={title}
-        menu={menu}
-        menuActive={menuActive}
-      />
     </>
   );
 }

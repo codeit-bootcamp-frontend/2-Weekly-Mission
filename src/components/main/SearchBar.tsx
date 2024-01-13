@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import search from '../assets/ico-search.png';
-import searchRemove from '../assets/ico-search-remove.svg';
+import search from '../../assets/ico-search.png';
+import searchRemove from '../../assets/ico-search-remove.svg';
+import mainContext from './mainContext';
+import { useContext } from 'react';
 
 const SearchBarContainer = styled.div`
   position: relative;
-  margin: 0 0 4rem 0;
+  margin: 4rem 0;
 
   &::before {
     content: '';
@@ -43,8 +45,8 @@ const Input = styled.input`
   }
 `;
 
-const Text = styled.p`
-  display: ${({ value }) => (value ? 'block' : 'none')};
+const Text = styled.p<{ $searchKeyword: string }>`
+  display: ${({ $searchKeyword }) => ($searchKeyword ? 'block' : 'none')};
   margin: 4rem 0 0;
   font-size: 3.2rem;
   font-weight: 600;
@@ -57,16 +59,18 @@ const Text = styled.p`
   }
 `;
 
-function SearchBar({ handleChangeValue, value }) {
+function SearchBar() {
+  const { handleChangeSearch, searchKeyword } = useContext(mainContext);
   return (
     <SearchBarContainer>
       <Input
         type="search"
         placeholder="링크를 검색해 보세요."
-        onChange={(e) => handleChangeValue(e)}
+        value={searchKeyword}
+        onChange={(e) => handleChangeSearch(e)}
       />
-      <Text value={value}>
-        <span>{value}</span>로 검색한 결과입니다.
+      <Text $searchKeyword={searchKeyword}>
+        <span>{searchKeyword}</span>로 검색한 결과입니다.
       </Text>
     </SearchBarContainer>
   );

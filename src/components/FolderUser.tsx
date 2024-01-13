@@ -45,9 +45,9 @@ const FolderName = styled.p`
 `;
 
 function FolderUser() {
-  const [folderUserProfile, setFolderUserProfile] = useState(null);
-  const [folderUserName, setFolderUserName] = useState('');
-  const [folderName, setFolderName] = useState('');
+  const [folderUserProfile, setFolderUserProfile] = useState<string | null>(null);
+  const [folderUserName, setFolderUserName] = useState<string>('');
+  const [folderName, setFolderName] = useState<string>('');
   const [getFolderSample] = useAsync('/sample/folder', '', '', '');
 
   const handleLoadFolder = async () => {
@@ -63,7 +63,7 @@ function FolderUser() {
 
   return (
     <FolderUserContainer>
-      <UserProfileImg src={folderUserProfile} alt="폴더 사용자 프로필 이미지" />
+      <UserProfileImg src={folderUserProfile !== null ? folderUserProfile : ''} alt="폴더 사용자 프로필 이미지" />
       <UserName>{folderUserName}</UserName>
       <FolderName>{folderName}</FolderName>
     </FolderUserContainer>

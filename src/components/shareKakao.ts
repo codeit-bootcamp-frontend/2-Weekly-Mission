@@ -1,6 +1,7 @@
-export const shareKakao = ({ title }) => {
-  if (window.Kakao) {
-    const kakao = window.Kakao;
+export const shareKakao = ({ title }: {title: string}, currentUrl: string) => {
+  if ((window as any).Kakao) {
+    const kakao: any = (window as any).Kakao;
+    
     if (!kakao.isInitialized()) {
       kakao.init('abbd86379133e623416676a637862b22');
     }
@@ -13,16 +14,16 @@ export const shareKakao = ({ title }) => {
         imageUrl:
           "https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png",
         link: {
-          mobileWebUrl: "https://www.naver.com",
-          webUrl: "https://www.google.com",
+          mobileWebUrl: `${currentUrl}`,
+          webUrl: `${currentUrl}`,
         },
       },
       buttons: [
         {
           title: "자세히 보러 가기",
           link: {
-            mobileWebUrl: "https://www.naver.com",
-            webUrl: "https://www.google.com",
+            mobileWebUrl: `${currentUrl}`,
+            webUrl: `${currentUrl}`,
           },
         },
       ],

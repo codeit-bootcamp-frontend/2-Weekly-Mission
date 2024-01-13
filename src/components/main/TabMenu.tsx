@@ -1,7 +1,9 @@
+import { useContext } from 'react';
+import mainContext from './mainContext';
 import styled from 'styled-components';
-import add from '../assets/btn-add.svg';
-import Modal from './Modal';
-import { useState } from 'react';
+import add from '../../assets/btn-add.svg';
+import modalContext from '../modal/modalContext';
+import { Folder } from './mainContext'
 
 const TabMenuContainer = styled.div`
   position: relative;
@@ -57,50 +59,62 @@ const Button = styled.button`
     display: none;
   }
 `;
+interface All {
+  id: string;
+  name: string;
+}
 
-function TabMenuFunction({ menu, menuActive, handleClick }) {
-  const All = {
+interface TabMenuListProps {
+  folderList: Folder[];
+  $selectedMenu: string;
+  handleClickMenu: (folder: Folder) => void;
+}
+
+function TabMenuList({
+  folderList,
+  $selectedMenu,
+  handleClickMenu,
+}: TabMenuListProps) {
+  const All: All = {
     id: 'all',
     name: '전체',
   };
-  const folderNameArr = [...menu];
-  folderNameArr.unshift(All);
+  const folderListArr = [...folderList];
+  folderListArr.unshift(All);
 
-  const folderName = folderNameArr.map((item) => (
-    <li key={item.id}>
+  const item = folderListArr.map((folder) => (
+    <li key={folder.id}>
       <button
         type="button"
-        className={menuActive === item.id ? 'active' : ''}
-        onClick={() => handleClick(item)}
+        className={$selectedMenu === folder.id ? 'active' : ''}
+        onClick={() => handleClickMenu(folder)}
       >
-        {item.name}
+        {folder.name}
       </button>
     </li>
   ));
-  return folderName;
+  return item;
 }
 
-function TabMenu({ menu, menuActive, handleClick, btnOption }) {
-  const [isOpen, setIsOpen] = useState(false);
-  
-  const handleClickOpen = () => setIsOpen(true);
-
-  const handleClickClose = () => setIsOpen(false);
+function TabMenu() {
+  const { folderList, selectedMenu, handleClickMenu } = useContext(mainContext);
+  const { handleClickModalOpen } = useContext(modalContext);
 
   return (
     <>
       <TabMenuContainer>
         <ul>
-          <TabMenuFunction
-            menu={menu}
-            handleClick={handleClick}
-            menuActive={menuActive}
-            btnOption={btnOption}
+          <TabMenuList
+            folderList={folderList}
+            handleClickMenu={handleClickMenu}
+            $selectedMenu={selectedMenu}
           />
         </ul>
-        <Button type="button" onClick={handleClickOpen}></Button>
+        <Button
+          type="button"
+          onClick={() => handleClickModalOpen('folderListAdd')}
+        ></Button>
       </TabMenuContainer>
-      <Modal $isOpen={isOpen} onClick={handleClickClose} add={add} menu={menu} menuActive={menuActive}/>
     </>
   );
 }
