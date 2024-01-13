@@ -5,8 +5,10 @@ import Image from "next/image";
 import { CtaLong } from "@/components/commons/Cta";
 import { useRouter } from "next/router";
 import AuthInput from "@/components/domains/auth/AuthInput";
+import { useForm } from "react-hook-form";
 
 export default function Signin() {
+  const { register, handleSubmit } = useForm();
   const router = useRouter();
 
   const onLogin = () => {
@@ -22,33 +24,47 @@ export default function Signin() {
           </Link>
           <div className={styles.sign}>
             <div>이미 회원이신가요?</div>
-            <a href="/auth/signin">로그인 하기</a>
+            <Link href="/auth/signin">로그인 하기</Link>
           </div>
         </div>
 
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
           <AuthInput
             label="이메일"
             type="email"
-            onValid={() => true}
             placeholder="이메일을 입력해 주세요."
-            errorMessage="이메일 형식이 아닙니다."
+            onValid={(email: string) => {
+              if (!email) {
+                return false;
+              }
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+              return emailRegex.test(email);
+            }}
+            errorMessage="올바른 이메일 주소가 아닙니다."
+            {...register("email")}
           />
           <AuthInput
             label="비밀번호"
             type="password"
             placeholder="비밀번호를 입력해 주세요."
+            onValid={(password: string) => {
+              return password !== "";
+            }}
             errorMessage="비밀번호가 올바르지 않습니다."
           />
           <AuthInput
             label="비밀번호 확인"
             type="password"
             placeholder="비밀번호를 입력해 주세요."
+            onValid={(password: string) => {
+              return password !== "";
+            }}
             errorMessage="비밀번호 동일하지 않습니다"
           />
         </form>
 
-        <CtaLong onClick={onLogin}>회원가입</CtaLong>
+        <CtaLong onClick={handleSubmit(onLogin)}>회원가입</CtaLong>
 
         <div className={styles.sns}>
           <div className={styles.snsTitle}>다른 방식으로 가입하기</div>

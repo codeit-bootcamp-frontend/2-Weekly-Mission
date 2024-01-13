@@ -6,11 +6,11 @@ interface AuthInputProps {
   label: string;
   type: "text" | "email" | "password";
   placeholder?: string;
-  onValid?: () => boolean;
+  onValid?: (value: string) => boolean;
   errorMessage?: string;
 }
 
-function AuthInput({ label, type, placeholder, onValid, errorMessage }: AuthInputProps) {
+function AuthInput({ label, type, placeholder, onValid, errorMessage, ...rest }: AuthInputProps) {
   const [inputType, setInputType] = useState(type);
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -18,10 +18,17 @@ function AuthInput({ label, type, placeholder, onValid, errorMessage }: AuthInpu
     e.preventDefault();
     setInputType(inputType === "password" ? "text" : "password");
   };
-
-  const handleBlur = () => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (onValid) {
-      const error = onValid();
+      const inputValue = e.target.value;
+      let error = false;
+
+      if (type === "email") {
+        error = !onValid(inputValue);
+      } else if (type === "password") {
+        error = inputValue === "";
+      }
+
       setIsError(error);
     }
   };
@@ -37,7 +44,7 @@ function AuthInput({ label, type, placeholder, onValid, errorMessage }: AuthInpu
         onBlur={handleBlur}
       />
       {type === "password" && (
-        <button className={styles.eyeButton} onClick={togglePasswordVisibility}>
+        <button className={styles.eyeButton} onClick={togglePasswordVisibility} type="button">
           <Image
             src={inputType === "password" ? "/images/auth/eye-off.svg" : "/images/auth/eye-on.svg"}
             alt="eye-icon"
