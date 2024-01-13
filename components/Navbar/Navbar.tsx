@@ -24,10 +24,10 @@ type UserData = {
   auth_id: string;
 };
 
-type DataList = UserData[];
+type UserDataList = UserData[];
 
 export default function Navbar({ userId, className = '' }: Props) {
-  const [loading, error, profileData] = useGetData<DataList>(`/users/${userId}`);
+  const [loading, error, profileData] = useGetData<UserDataList>(`/users/${userId}`);
 
   if (loading) return;
   if (error) return;

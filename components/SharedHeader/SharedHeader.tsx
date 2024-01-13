@@ -8,9 +8,30 @@ interface Props {
   folderId: string | string[] | undefined;
 }
 
+type UserData = {
+  id: string;
+  created_at: string;
+  name: string;
+  image_source: string;
+  email: string;
+  auth_id: string;
+};
+
+type FolderData = {
+  id: string;
+  created_at: string;
+  name: string;
+  user_id: string;
+  favorite: boolean;
+};
+
+type UserDataList = UserData[];
+
+type FolderDataList = FolderData[];
+
 export default function SharedHeader({ userId, folderId }: Props) {
-  const [userLoading, userError, userData] = useGetData(`/user/${userId}`, userId);
-  const [folderLoading, folderError, folderData] = useGetData(`/folders/${folderId}`, folderId);
+  const [userLoading, userError, userData] = useGetData<UserDataList>(`/user/${userId}`, userId);
+  const [folderLoading, folderError, folderData] = useGetData<FolderDataList>(`/folders/${folderId}`, folderId);
 
   if (userLoading) return;
   if (userError) return;

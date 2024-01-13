@@ -5,10 +5,10 @@ interface Response<T> {
   data: T;
 }
 
-export default function useGetData<T>(url: string, dependency?: any) {
+export default function useGetData<T>(url: string, dependency?: any): [boolean, string, T] {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [data, setData] = useState<T | null>(null);
+  const [data, setData] = useState<T>([] as T);
 
   const getData = async () => {
     try {
@@ -26,5 +26,5 @@ export default function useGetData<T>(url: string, dependency?: any) {
     getData();
   }, [dependency]);
 
-  return [loading, error, data] as const;
+  return [loading, error, data];
 }
