@@ -2,6 +2,7 @@ import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import * as S from "./styled";
 
 interface CtaProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  $type?: string;
   children: ReactNode;
 }
 

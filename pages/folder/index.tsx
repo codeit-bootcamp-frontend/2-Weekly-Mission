@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import Head from "next/head";
 import { useFetch } from "usehooks-ts";
-import { FolderLayout } from "@/components/FolderLayout";
 import { Folder } from "@/types/folder.type";
+import { FolderLayout } from "@/layouts/folder";
 
 function FolderPage() {
   //임시 상수
@@ -20,7 +21,12 @@ function FolderPage() {
   };
 
   return (
-    <FolderLayout links={linksData?.links || []} folderData={folderNameData} selected={selected} onClick={onClick} />
+    <>
+      <Head>
+        <title>Linkbrary | Folder</title>
+      </Head>
+      <FolderLayout links={linksData?.links || []} folderData={folderNameData} selected={selected} onClick={onClick} />
+    </>
   );
 }
 
