@@ -5,6 +5,7 @@ import useModal from 'hooks/useModal';
 import { useMediaQuery } from 'react-responsive';
 import styles from './Filtering.module.css';
 import { FolderItem } from 'constants/type';
+import { useEffect, useState } from 'react';
 
 interface FilteringProps {
   chosenFolderId: number;
@@ -13,10 +14,23 @@ interface FilteringProps {
 
 export default function Filtering({ chosenFolderId, folder }: FilteringProps) {
   const [addFoldermodalRef, openAddFolderModal, closeAddFoldereModal] = useModal();
+  const [notMobile, setNotMobile] = useState<boolean>(true); //hydration fail 방지를 위해 파생된 뷰포트 관련 state를 제작
 
   const isNotMobile = useMediaQuery({
     query: '(min-width :768px)',
   });
+
+  const checkResize = () => {
+    if (isNotMobile) {
+      setNotMobile(true);
+    } else {
+      setNotMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    checkResize();
+  }, [isNotMobile]);
 
   const allInfo = {
     id: 0,
@@ -34,7 +48,7 @@ export default function Filtering({ chosenFolderId, folder }: FilteringProps) {
           return <FolderButton isFolderChosen={isFolderChosen} key={folderInfo.id} folderInfo={folderInfo} />;
         })}
       </div>
-      {isNotMobile && (
+      {notMobile && (
         <div className={styles.addFolderButton}>
           <button onClick={openAddFolderModal} className={styles.folderAddText}>
             폴더 추가
