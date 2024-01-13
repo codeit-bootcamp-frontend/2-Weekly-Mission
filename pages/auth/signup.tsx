@@ -3,17 +3,11 @@ import Head from "next/head";
 import { FormProvider, useForm } from "react-hook-form";
 import AuthLayout from "@/layouts/auth";
 import InputField from "@/components/common/InputField";
-import { userServices } from "../api/address";
+import { userServices } from "@/pages/api/address";
 
 interface AuthForm {
   email: string;
   password: string;
-}
-
-interface Response {
-  data: {
-    accessToken: string;
-  };
 }
 
 const SignUpPage = () => {

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { useFetch } from "usehooks-ts";
+import Cta from "@/components/common/Cta";
 import * as S from "./styled";
 import account from "@/public/images/account.png";
-import Cta from "@/components/common/Cta";
 
 interface Auth {
   ok: boolean;
@@ -23,16 +23,29 @@ interface Auth {
 
 function Header() {
   const [isLogin, setIsLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  //14주차 미션 진행 시 수정 예정
   const userId = 1;
   const { data } = useFetch<Auth>(`/api/users/${userId}`);
   const [users] = data?.users || [];
 
-  //현재 로그인 기능이 존재하지 않기 때문에 toggle로써의 기능만 가짐.
   const onLogin = () => {
-    // setIsLogin((prev) => !prev);
     router.push("/auth/signin");
   };
+
+  useEffect(() => {
+    if (data) {
+      setIsLoading(false);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    const getAccesstoken = localStorage.getItem("accessToken");
+    if (getAccesstoken) setIsLogin(true);
+  }, []);
+
+  if (isLogin === null) return null;
 
   return (
     <S.Wrapper $location={router.pathname}>
@@ -51,19 +64,20 @@ function Header() {
           </S.LogoContainer>
         </Link>
 
-        {isLogin ? (
-          <S.Account>
-            <Image src={users?.image_source || account} width={24} height={24} alt="account" unoptimized />
-            <S.Email>{users?.email}</S.Email>
-          </S.Account>
-        ) : (
-          <Cta $type="short" onClick={onLogin}>
-            로그인
-          </Cta>
-        )}
+        <S.AccountContainer $isLogin={isLogin}>
+          {isLogin && !isLoading ? (
+            <S.Account>
+              <Image src={users?.image_source || account} width={24} height={24} alt="account" unoptimized />
+              <S.Email>{users?.email}</S.Email>
+            </S.Account>
+          ) : (
+            <Cta $type="short" onClick={onLogin}>
+              로그인
+            </Cta>
+          )}
+        </S.AccountContainer>
       </S.Container>
     </S.Wrapper>
   );
 }
-
 export default Header;

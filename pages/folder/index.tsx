@@ -7,6 +7,7 @@ import { FolderLayout } from "@/layouts/folder";
 function FolderPage() {
   //임시 상수
   const linksUrl = "/api/links";
+  // 14주차 미션 때 교체 예정.
   const folderId = 1;
 
   const [selected, setSelected] = useState<string>("전체");

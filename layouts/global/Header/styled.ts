@@ -19,12 +19,12 @@ const Container = styled.div`
   height: 6.3rem;
   padding: 0 3.2rem;
 
-  @media (min-width: ${(props) => props.theme.deviceSizes?.mobile ?? "767px"}) {
+  @media (min-width: ${(props) => props.theme.deviceSizes.mobile}) {
     height: 9.4rem;
     max-width: 86.3rem;
   }
 
-  @media (min-width: ${(props) => props.theme.deviceSizes?.desktop ?? "1200px"}) {
+  @media (min-width: ${(props) => props.theme.deviceSizes.desktop}) {
     height: 9.4rem;
     max-width: 192rem;
     padding: 0 20rem;
@@ -36,9 +36,13 @@ const LogoContainer = styled.div`
   width: 13rem;
   height: 1.6rem;
 
-  @media (min-width: ${(props) => props.theme.deviceSizes?.mobile ?? "767px"}) {
+  @media (min-width: ${(props) => props.theme.deviceSizes.mobile}) {
     height: 2.4rem;
   }
+`;
+
+const AccountContainer = styled.div<{ $isLogin: boolean }>`
+  display: ${({ $isLogin }) => ($isLogin ? "" : "none")};
 `;
 
 const Account = styled.div`
@@ -62,4 +66,4 @@ const Email = styled.span`
   line-height: normal;
 `;
 
-export { Wrapper, Container, LogoContainer, Account, AccountIcon, Email };
+export { Wrapper, Container, LogoContainer, AccountContainer, Account, AccountIcon, Email };
