@@ -41,8 +41,8 @@ const LogoContainer = styled.div`
   }
 `;
 
-const AccountContainer = styled.div<{ $isLogin: boolean }>`
-  display: ${({ $isLogin }) => ($isLogin ? "" : "none")};
+const AccountContainer = styled.div<{ $isLoading: boolean }>`
+  display: ${({ $isLoading }) => ($isLoading ? "none" : "block")};
 `;
 
 const Account = styled.div`

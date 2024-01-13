@@ -45,8 +45,6 @@ function Header() {
     if (getAccesstoken) setIsLogin(true);
   }, []);
 
-  if (isLogin === null) return null;
-
   return (
     <S.Wrapper $location={router.pathname}>
       <S.Container>
@@ -64,8 +62,8 @@ function Header() {
           </S.LogoContainer>
         </Link>
 
-        <S.AccountContainer $isLogin={isLogin}>
-          {isLogin && !isLoading ? (
+        <S.AccountContainer $isLoading={isLoading}>
+          {isLogin ? (
             <S.Account>
               <Image src={users?.image_source || account} width={24} height={24} alt="account" unoptimized />
               <S.Email>{users?.email}</S.Email>
