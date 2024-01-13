@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 interface Props {
   setSearchValue: (value: string) => void;
-  value: string;
-  setRef: any;
+  value?: string;
+  setRef?: any;
 }
 
 function LinkSearchInput({ setSearchValue, value, setRef }: Props) {

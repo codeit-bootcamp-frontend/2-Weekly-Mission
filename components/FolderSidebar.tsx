@@ -2,6 +2,7 @@ import { baseUrl } from "@/lib/constant";
 import { folderNameChange, shareFolder, deleteFolder } from "../utils/modalItemData";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 interface Props {
   folderName: string;
@@ -24,7 +25,7 @@ export default function FolderSidebar({ folderName, $setIsModalOn, setModalData 
               setModalData(shareFolder(folderName, url));
             }}
           >
-            <StyledSideBtnImg src="/svg/share.svg" alt="share" />
+            <Image src="/svg/share.svg" alt="share" width={18} height={18} />
             공유
           </StyledSideBtn>
           <StyledSideBtn
@@ -33,7 +34,7 @@ export default function FolderSidebar({ folderName, $setIsModalOn, setModalData 
               setModalData(folderNameChange);
             }}
           >
-            <StyledSideBtnImg src={"/svg/pen.svg"} alt="changeName" />
+            <Image src="/svg/pen.svg" alt="changeName" width={18} height={18} />
             이름 변경
           </StyledSideBtn>
           <StyledSideBtn
@@ -42,7 +43,7 @@ export default function FolderSidebar({ folderName, $setIsModalOn, setModalData 
               setModalData(deleteFolder(url));
             }}
           >
-            <StyledSideBtnImg src={"/svg/delete.svg"} alt="delete" />
+            <Image src="/svg/delete.svg" alt="delete" width={18} height={18} />
             삭제
           </StyledSideBtn>
         </StyledSideBtnContainer>
@@ -77,5 +78,3 @@ const StyledSideBtn = styled.span`
   gap: 0.4rem;
   cursor: pointer;
 `;
-
-const StyledSideBtnImg = styled.img``;

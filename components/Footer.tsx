@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 function Footer({ setRef }: any) {
@@ -15,16 +16,16 @@ function Footer({ setRef }: any) {
 
         <StyledFooterIconContainer>
           <a href="https://www.facebook.com" rel="noopener noreferrer">
-            <img src="/svg/facebookIcon.svg" alt="facebook_icon" />
+            <Image width={18} height={18} src="/svg/facebookIcon.svg" alt="facebook_icon" />
           </a>
           <a href="https://www.twitter.com" rel="noopener noreferrer">
-            <img src="/svg/twitterIcon.svg" alt="twitter_icon" />
+            <Image width={18} height={18} src="/svg/twitterIcon.svg" alt="twitter_icon" />
           </a>
           <a href="https://www.youtube.com" rel="noopener noreferrer">
-            <img src="/svg/youtubeIcon.svg" alt="youtube_icon" />
+            <Image width={18} height={18} src="/svg/youtubeIcon.svg" alt="youtube_icon" />
           </a>
           <a href="https://www.instagram.com" rel="noopener noreferrer">
-            <img src="/svg/instagramIcon.svg" alt="instagram_icon" />
+            <Image width={18} height={18} src="/svg/instagramIcon.svg" alt="instagram_icon" />
           </a>
         </StyledFooterIconContainer>
       </StyledFooterItemContainer>

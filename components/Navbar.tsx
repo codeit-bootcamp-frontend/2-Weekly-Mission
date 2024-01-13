@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface IUserData {
   id: number;
@@ -33,12 +34,12 @@ export default function Navbar() {
       <StyledNavbarContainer $isActiveFixed={isSharedPath}>
         <StyledNavItem>
           <Link href="/">
-            <StyledNavLogo src="/png/logo.png" alt="logo" />
+            <Image width={130} height={24} src="/png/logo.png" alt="logo" />
           </Link>
 
           {userData?.id ? (
             <StyledNavProfile>
-              <StyledNavProfileImg src={userData.image_source} alt="profile-img" />
+              <StyledNavProfileImg width={28} height={28} src={userData.image_source} alt="profile-img" />
               <StyledNavProfileEmail>{userData.email}</StyledNavProfileEmail>
             </StyledNavProfile>
           ) : (
@@ -79,18 +80,13 @@ const StyledNavItem = styled.div`
   }
 `;
 
-const StyledNavLogo = styled.img`
-  width: 13rem;
-`;
-
 const StyledNavProfile = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
 `;
 
-const StyledNavProfileImg = styled.img`
-  width: 2.8rem;
+const StyledNavProfileImg = styled(Image)`
   border-radius: 50%;
 `;
 

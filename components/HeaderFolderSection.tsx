@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { IUserFolderData } from "../utils/type";
+import Image from "next/image";
 
 interface Props {
   folderData: IUserFolderData;
@@ -8,11 +9,11 @@ interface Props {
 function HeaderFoloderSection({ folderData }: Props) {
   const folderName = folderData.name;
   const ownerName = folderData.owner?.name;
-  const ownerImg = folderData.owner?.profileImageSource;
+  const ownerImg: any = folderData.owner?.profileImageSource;
 
   return (
     <StyledHeaderOwnerContainer>
-      <StyledOwnerImg src={ownerImg} alt="folderImg" />
+      <StyledOwnerImg src={ownerImg} width={50} height={50} alt="folderImg" />
       <StyledOwnerName>{ownerName}</StyledOwnerName>
       <StyledSelectFolderName>{folderName}</StyledSelectFolderName>
     </StyledHeaderOwnerContainer>
@@ -32,9 +33,8 @@ const StyledHeaderOwnerContainer = styled.section`
     margin: 6.4rem 0 0;
   }
 `;
-const StyledOwnerImg = styled.img`
+const StyledOwnerImg = styled(Image)`
   border-radius: 50%;
-  width: 6rem;
   background-color: #dddddd;
   margin-bottom: 1.2rem;
 `;

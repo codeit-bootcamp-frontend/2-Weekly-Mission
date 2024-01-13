@@ -4,6 +4,7 @@ import kakaoIcon from "@/public/png/colorKaKaoIcon.png";
 import copyIcon from "@/public/svg/link.svg";
 import checked from "@/public/svg/check.svg";
 import handleLinkCopyClipBoard from "./copyClipBoard";
+import Image from "next/image";
 
 const StyledModalTitle = styled.h2`
   font-size: 2rem;
@@ -61,11 +62,9 @@ const StyledShareIconContainer = styled.div`
   align-items: center;
   cursor: pointer;
 `;
-const StyledShareIcon = styled.img`
+const StyledShareIcon = styled(Image)`
   border-radius: 50%;
   padding: 12px;
-  width: 6rem;
-  height: 6rem;
   pointer-events: none;
 `;
 const StyledShareOption = styled.button`
@@ -173,7 +172,7 @@ export const shareFolder = (folderName, url) => ({
   img: (
     <StyledShareIconMainContainer>
       <StyledShareIconContainer>
-        <StyledShareIcon src={kakaoIcon} alt="" />
+        <StyledShareIcon width={60} height={60} src={kakaoIcon} alt="" />
         <StyledShareOption
           onClick={(e) => {
             e.preventDefault();
@@ -183,7 +182,7 @@ export const shareFolder = (folderName, url) => ({
         </StyledShareOption>
       </StyledShareIconContainer>
       <StyledShareIconContainer>
-        <StyledShareIcon src={facebookIcon} alt="" />
+        <StyledShareIcon width={60} height={60} src={facebookIcon} alt="" />
         <StyledShareOption
           onClick={(e) => {
             e.preventDefault();
@@ -193,7 +192,7 @@ export const shareFolder = (folderName, url) => ({
         </StyledShareOption>
       </StyledShareIconContainer>
       <StyledShareIconContainer onClick={() => handleLinkCopyClipBoard(`${url}`)}>
-        <StyledShareIcon src={copyIcon} alt="" />
+        <StyledShareIcon width={60} height={60} src={copyIcon} alt="" />
         <StyledShareOption
           onClick={(e) => {
             e.preventDefault();
