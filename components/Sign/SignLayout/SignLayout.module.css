@@ -1,0 +1,18 @@
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--linkbrary-bg);
+  height: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 16rem;
+  margin-bottom: 4rem;
+  width: 40rem;
+}
