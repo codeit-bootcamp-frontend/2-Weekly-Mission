@@ -9,6 +9,7 @@ import axios from "@/lib/axios";
 import { useRef, useState, useEffect } from "react";
 import { IPFolderData, ITransformCardData } from "@/utils/type";
 import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
 
 interface Props {
   folderListData: IPFolderData[];
@@ -96,6 +97,9 @@ export default function folderId({ folderListData, filterData, folderId, folderN
 
   return (
     <>
+      <Head>
+        <title>{folderName}</title>
+      </Head>
       <HeaderSearchSection setRef={headerLinkAddInput} linkSearchInputOb={linkSearchInputOb} footerOb={footerOb} />
       <MainContainer>
         <LinkSearchInput setRef={linkSearchInput} value={searchValue} setSearchValue={setSearchValue} />

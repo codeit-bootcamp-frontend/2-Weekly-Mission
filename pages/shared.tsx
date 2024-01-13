@@ -6,6 +6,7 @@ import { transformShareCardData } from "@/utils/TransformData";
 import axios from "@/lib/axios";
 import { useState, useEffect } from "react";
 import { ITransformCardData, IUserFolderData } from "@/utils/type";
+import Head from "next/head";
 
 interface Props {
   folderData: IUserFolderData;
@@ -49,6 +50,9 @@ export default function Shared({ folderData, cardData }: Props) {
 
   return (
     <>
+      <Head>
+        <title>shared</title>
+      </Head>
       <HeaderFoloderSection folderData={folderData} />
       <MainContainer>
         <LinkSearchInput setSearchValue={setSearchValue} />

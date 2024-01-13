@@ -1,6 +1,6 @@
 /** PersonalData의 공통된 부분 */
 export interface IPersonalData {
-  id?: number;
+  id: number;
   created_at?: Date;
 }
 
@@ -37,11 +37,13 @@ export interface ITransformCardData {
 }
 
 /** UserData */
-export interface IUserData extends IPersonalData {
-  name?: string;
-  image_source?: string;
-  email?: string;
-  auth_id?: string;
+export interface IUserData {
+  id: number;
+  created_at: Date;
+  name: string;
+  image_source: string;
+  email: string;
+  auth_id: string;
 }
 
 /** UserFolderData */

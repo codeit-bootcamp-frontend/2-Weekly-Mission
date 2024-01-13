@@ -4,17 +4,12 @@ import styled from "styled-components";
 import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
-interface IUserData {
-  id: number;
-  image_source: string;
-  email: string;
-}
+import { IUserData } from "@/utils/type";
 
 export default function Navbar() {
   const router = useRouter();
   const isSharedPath = router.pathname === "/shared";
-  const [userData, setUserData] = useState<IUserData>();
+  const [userData, setUserData] = useState<IUserData | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
