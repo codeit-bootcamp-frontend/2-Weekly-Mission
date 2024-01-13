@@ -1,0 +1,109 @@
+.signupPageWrapper {
+  padding-top: 238px;
+  min-height: 100vh;
+  background: var(--Linkbrary-bg, #f0f6ff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -100px;
+}
+
+.signupContainer {
+  padding-inline: 32px;
+}
+
+.headerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__logo {
+  margin-bottom: 16px;
+  height: 36px;
+  width: auto;
+}
+
+.header__content {
+  display: flex;
+  gap: 6px;
+}
+
+.header__text {
+  display: flex;
+}
+
+.header__link {
+  color: var(--Linkbrary-primary-color, #6d6afe);
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.signupForm {
+  margin-inline: auto;
+  width: 400px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.inputItem {
+  flex-shrink: 0;
+  margin-bottom: 24px;
+}
+
+.signupButton {
+  width: 100%;
+  padding: 16px 20px;
+
+  color: var(--Grey-Light, #f5f5f5);
+  font-size: 18px;
+  border-radius: 8px;
+  background: var(--gra-purpleblue-to-skyblue, linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%));
+}
+
+.snsSignBox {
+  margin-top: 32px;
+  padding: 12px 24px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 8px;
+  border: 1px solid var(--Linkbrary-gray20, #ccd5e3);
+  background: var(--Linkbrary-gray10, #e7effb);
+}
+
+.snsSignBox__text {
+  color: var(--Linkbrary-gray100, #373740);
+}
+
+.snsSignBox__logo {
+  display: flex;
+  gap: 16px;
+}
+
+.snsSignBox__logoItem {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+
+.snsSignBox__logoItem:nth-child(1) {
+  background-color: white;
+  padding: 9px 10px 10px 9px;
+  border: 1px solid #d3d4dc;
+}
+
+.snsSignBox__logoItem:nth-child(2) {
+  padding: 10px;
+  background-color: #f5e14b;
+}
+
+.snsSignBox__logoImg {
+  width: 22px;
+  height: 22px;
+}

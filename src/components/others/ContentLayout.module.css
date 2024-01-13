@@ -1,0 +1,6 @@
+.layout {
+  padding-inline: 32px;
+  margin: 0 auto;
+  min-height: calc(100vh - 260px - 90px);
+  /* 뷰포트 - 푸터 - 헤더 */
+}

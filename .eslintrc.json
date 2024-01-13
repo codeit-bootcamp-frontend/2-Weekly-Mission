@@ -1,3 +1,43 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true, // ESLint가 프로젝트의 상위 디렉토리에서 설정 파일을 찾지 않도록 하는 옵션
+  "env": {
+    //프로젝트에서 사용되는 환경을 정의합니다. 여기서는 브라우저, ECMAScript 2020, 그리고 Node.js 환경에서 코드를 실행하는 것으로 설정
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "extends": [
+    //다양한 ESLint 규칙 세트를 확장하는데 사용
+    "next/core-web-vitals",
+    "eslint:recommended", //ESLint에서 기본으로 권장하는 규칙들을 포함,
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
+  "parserOptions": {
+    //코드를 파싱하는 데 사용되는 옵션을 설정
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "18.2"
+    }
+  },
+  // ESLint에서 무시할 파일 또는 디렉토리 패턴을 지정합니다.
+  // 여기서는 .next 디렉토리를 무시하도록 설정
+  "ignorePatterns": [".next"],
+
+  "plugins": ["react-refresh", "simple-import-sort", "@typescript-eslint"],
+  "rules": {
+    //코드 검사 규칙을 지정
+    "no-unused-vars": "off",
+    "react-refresh/only-export-components": [
+      "warn", //아래 규칙에 위배되었을 때 경고를 출력
+      {
+        "allowConstantExport": true
+      }
+    ],
+    "simple-import-sort/imports": "error", //import 구문을 알파벳순으로 정렬하도록 하는 규칙
+    "simple-import-sort/exports": "error", //export 구문을 알파벳순으로 정렬하도록 하는 규칙,
+    "@typescript-eslint/no-unused-vars": "error"
+  }
 }
