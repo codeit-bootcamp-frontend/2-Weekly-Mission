@@ -4,7 +4,7 @@ import stylesForModal from 'components/common/Modal.module.css';
 import Selector from 'components/common/Selector';
 import useOutsideClick from 'hooks/useClickOutside';
 import useModal from 'hooks/useModal';
-import { MouseEventHandler, ReactNode, useRef, useState } from 'react';
+import { MouseEventHandler, useRef, useState } from 'react';
 
 import styles from './KebabButton.module.css';
 import { FolderItem, LinkItem } from 'constants/type';
