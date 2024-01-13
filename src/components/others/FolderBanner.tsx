@@ -1,6 +1,7 @@
+import { SampleUserFolder } from 'constants/type';
 import styles from './FolderBanner.module.css';
 
-export default function FolderBanner({ folder }) {
+export default function FolderBanner({ folder }: { folder: SampleUserFolder }) {
   const { name } = folder;
   const { owner } = folder;
   return (

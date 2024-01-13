@@ -15,7 +15,10 @@ export default function FolderButton({ isFolderChosen, folderInfo }: FolderButto
 
   function handleSetFolder(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget } = e;
-    setSelectedFolder({ id: currentTarget.dataset.key, name: currentTarget.dataset.name });
+
+    const id = +(currentTarget.dataset.key ?? 0);
+    const name = currentTarget.dataset.name ?? '';
+    setSelectedFolder({ id, name });
   }
   return (
     <button
