@@ -15,16 +15,16 @@ function Footer({ setRef }: any) {
 
         <StyledFooterIconContainer>
           <a href="https://www.facebook.com" rel="noopener noreferrer">
-            <img src="svg/facebookIcon.svg" alt="facebook_icon" />
+            <img src="/svg/facebookIcon.svg" alt="facebook_icon" />
           </a>
           <a href="https://www.twitter.com" rel="noopener noreferrer">
-            <img src="svg/twitterIcon.svg" alt="twitter_icon" />
+            <img src="/svg/twitterIcon.svg" alt="twitter_icon" />
           </a>
           <a href="https://www.youtube.com" rel="noopener noreferrer">
-            <img src="svg/youtubeIcon.svg" alt="youtube_icon" />
+            <img src="/svg/youtubeIcon.svg" alt="youtube_icon" />
           </a>
           <a href="https://www.instagram.com" rel="noopener noreferrer">
-            <img src="svg/instagramIcon.svg" alt="instagram_icon" />
+            <img src="/svg/instagramIcon.svg" alt="instagram_icon" />
           </a>
         </StyledFooterIconContainer>
       </StyledFooterItemContainer>

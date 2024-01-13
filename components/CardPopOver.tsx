@@ -7,11 +7,11 @@ interface Props {
   setIsModalOn: (value: boolean) => void;
   setModalData: (value: IModalData) => void;
   linkUrl: string;
-  psFolderData?: IPFolderData[];
+  folderListData?: IPFolderData[];
   linkData?: IPLinkdata[];
 }
 
-function CardPopOver({ $Lender, setIsModalOn, setModalData, linkUrl, psFolderData, linkData }: Props) {
+export default function CardPopOver({ $Lender, setIsModalOn, setModalData, linkUrl, folderListData, linkData }: Props) {
   function handleClick(data: any) {
     setIsModalOn(true);
     setModalData(data);
@@ -30,7 +30,7 @@ function CardPopOver({ $Lender, setIsModalOn, setModalData, linkUrl, psFolderDat
         </StyledCardPopOverBtn>
         <StyledCardPopOverBtn
           onClick={(e) => {
-            handleClick(addLink(linkUrl, psFolderData, linkData));
+            handleClick(addLink(linkUrl, folderListData, linkData));
             e.preventDefault();
           }}
         >
@@ -62,5 +62,3 @@ const StyledCardPopOverBtn = styled.button`
     background-color: #e7effb;
   }
 `;
-
-export default CardPopOver;

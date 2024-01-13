@@ -2,18 +2,18 @@ import { ChangeEvent } from "react";
 import styled from "styled-components";
 
 interface Props {
-  setSearchLinkValue?: (value: string) => void;
-  value?: string;
-  setRef?: any;
+  setSearchValue: (value: string) => void;
+  value: string;
+  setRef: any;
 }
 
-function LinkSearchInput({ setSearchLinkValue, value, setRef }: Props) {
+function LinkSearchInput({ setSearchValue, value, setRef }: Props) {
   const handleSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchLinkValue && setSearchLinkValue(e.target.value);
+    setSearchValue && setSearchValue(e.target.value);
   };
 
   const clearSearchValue = () => {
-    setSearchLinkValue && setSearchLinkValue(""); // input 값을 빈 문자열로 설정
+    setSearchValue && setSearchValue("");
   };
 
   return (

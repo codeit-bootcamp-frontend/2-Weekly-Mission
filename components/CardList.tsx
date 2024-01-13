@@ -5,11 +5,11 @@ import { IPFolderData, IPLinkdata, ITransformData } from "../utils/type";
 
 interface Props {
   cardData: ITransformData[];
-  psFolderData?: IPFolderData[];
+  folderListData?: IPFolderData[];
   linkData?: IPLinkdata[];
 }
 
-function CardList({ cardData, psFolderData, linkData }: Props) {
+export default function CardList({ cardData, folderListData, linkData }: Props) {
   return (
     <>
       {cardData.length === 0 ? (
@@ -17,7 +17,7 @@ function CardList({ cardData, psFolderData, linkData }: Props) {
       ) : (
         <StyledCardListContainer>
           {cardData.map((data: ITransformData) => (
-            <Card key={data.id} data={data} psFolderData={psFolderData} linkData={linkData} />
+            <Card key={data.id} data={data} folderListData={folderListData} linkData={linkData} />
           ))}
         </StyledCardListContainer>
       )}
@@ -46,5 +46,3 @@ const StyledCardListContainer = styled.div`
     justify-items: stretch;
   }
 `;
-
-export default CardList;

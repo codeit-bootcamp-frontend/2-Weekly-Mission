@@ -1,24 +1,22 @@
-import styled from "styled-components";
-import shareIcon from "../img/share.svg";
-import penIcon from "../img/pen.svg";
-import deleteIcon from "../img/delete.svg";
+import { baseUrl } from "@/lib/constant";
 import { folderNameChange, shareFolder, deleteFolder } from "../utils/modalItemData";
+import styled from "styled-components";
+import { useRouter } from "next/router";
 
 interface Props {
   folderName: string;
-  sideBtnLender: boolean;
   $setIsModalOn: (value: boolean) => void;
   setModalData: any;
-  location: string;
 }
 
-function FolderSidebar({ folderName, sideBtnLender, $setIsModalOn, setModalData, location }: Props) {
-  const url = "http://localhost:3000" + location;
+export default function FolderSidebar({ folderName, $setIsModalOn, setModalData }: any) {
+  const router = useRouter();
+  const url = `${baseUrl}` + `${router.asPath}`;
 
   return (
     <StyledSideBarMainContainer>
       <StyledSelectFolderName>{folderName || "전체"}</StyledSelectFolderName>
-      {sideBtnLender === true ? (
+      {folderName ? (
         <StyledSideBtnContainer>
           <StyledSideBtn
             onClick={() => {
@@ -26,7 +24,7 @@ function FolderSidebar({ folderName, sideBtnLender, $setIsModalOn, setModalData,
               setModalData(shareFolder(folderName, url));
             }}
           >
-            <StyledSideBtnImg src={shareIcon} alt="share" />
+            <StyledSideBtnImg src="/svg/share.svg" alt="share" />
             공유
           </StyledSideBtn>
           <StyledSideBtn
@@ -35,7 +33,7 @@ function FolderSidebar({ folderName, sideBtnLender, $setIsModalOn, setModalData,
               setModalData(folderNameChange);
             }}
           >
-            <StyledSideBtnImg src={penIcon} alt="changeName" />
+            <StyledSideBtnImg src={"/svg/pen.svg"} alt="changeName" />
             이름 변경
           </StyledSideBtn>
           <StyledSideBtn
@@ -44,7 +42,7 @@ function FolderSidebar({ folderName, sideBtnLender, $setIsModalOn, setModalData,
               setModalData(deleteFolder(url));
             }}
           >
-            <StyledSideBtnImg src={deleteIcon} alt="delete" />
+            <StyledSideBtnImg src={"/svg/delete.svg"} alt="delete" />
             삭제
           </StyledSideBtn>
         </StyledSideBtnContainer>
@@ -81,5 +79,3 @@ const StyledSideBtn = styled.span`
 `;
 
 const StyledSideBtnImg = styled.img``;
-
-export default FolderSidebar;

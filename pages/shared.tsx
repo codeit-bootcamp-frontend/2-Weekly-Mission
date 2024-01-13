@@ -2,8 +2,8 @@ import CardList from "../components/CardList";
 import HeaderFoloderSection from "../components/HeaderFolderSection";
 import LinkSearchInput from "../components/LinkSearchInput";
 import MainContainer from "../components/MainContainer";
-import axios from "@/lib/axios";
 import { transformShareCardData } from "@/utils/TransformData";
+import axios from "@/lib/axios";
 
 export async function getStaticProps() {
   const res = await axios.get("/sample/folder");

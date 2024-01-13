@@ -7,11 +7,11 @@ import { IPFolderData, IPLinkdata, ITransformData } from "@/utils/type";
 
 interface Props {
   data: ITransformData;
-  psFolderData?: IPFolderData[];
+  folderListData?: IPFolderData[];
   linkData?: IPLinkdata[];
 }
 
-function Card({ data, psFolderData, linkData }: Props) {
+function Card({ data, folderListData, linkData }: Props) {
   const [isPopOverOn, setIsPopOverOn] = useState(false);
   const [isModalOn, setIsModalOn] = useState(false);
   const [modalData, setModalData] = useState({});
@@ -49,7 +49,7 @@ function Card({ data, psFolderData, linkData }: Props) {
           setModalData={setModalData}
           setIsModalOn={setIsModalOn}
           linkUrl={data.url}
-          psFolderData={psFolderData}
+          folderListData={folderListData}
           linkData={linkData}
         />
       </StyledA>

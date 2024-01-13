@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import linkIcon from "../img/link.svg";
 
 interface Props {
   setRef: any;
@@ -36,13 +35,13 @@ const StyledHeaderSectionContainer = styled.section<{ $linkSearchOb: boolean; $f
   width: 100%;
   background-color: #f0f6ff;
   text-align: center;
-  display: ${({ $footerOb: $ob }) => ($ob ? "none" : "flex")};
+  display: ${({ $footerOb, $linkSearchOb }) => ($footerOb && !$linkSearchOb ? "none" : "flex")};
   justify-content: center;
 
-  position: ${({ $linkSearchOb: $ob }) => ($ob ? "fixed" : "static")};
-  bottom: ${({ $linkSearchOb: $ob }) => ($ob ? 0 : 0)};
-  z-index: ${({ $linkSearchOb: $ob }) => ($ob ? 99 : 1)};
-  padding: ${({ $linkSearchOb: $ob }) => ($ob ? "2.4rem 0 2.4rem 0" : "6rem 32rem 9rem")};
+  position: ${({ $linkSearchOb: $ob }) => ($ob ? "static" : "fixed")};
+  bottom: 0;
+  z-index: ${({ $linkSearchOb: $ob }) => ($ob ? 1 : 99)};
+  padding: ${({ $linkSearchOb: $ob }) => ($ob ? "6rem 32rem 9rem" : "2.4rem 0 2.4rem 0")};
 
   @media all and (max-width: 1124px) {
     padding: 6rem 3.2rem 9rem;
@@ -65,7 +64,7 @@ const StyledHeaderSectionInput = styled.input`
   min-width: 80rem;
 
   &::placeholder {
-    background-image: url(${linkIcon});
+    background-image: url(/svg/link.svg);
     background-size: contain;
     background-position: 0.1rem center;
     background-repeat: no-repeat;
