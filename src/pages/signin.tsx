@@ -23,7 +23,7 @@ const INPUT_SETTING = {
   },
 };
 
-type SigninFormData = {
+export type SigninFormData = {
   email: string;
   password: string;
 };
