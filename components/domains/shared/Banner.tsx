@@ -2,16 +2,24 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useContext } from "react";
 import { SharedPageData } from "../../../types/common";
-import { LocaleContext } from "../../../contexts/LocaleContext";
+import {
+  LocaleContext,
+  LocaleContextType,
+} from "../../../contexts/LocaleContext";
 
 function Banner() {
-  const locale = useContext<SharedPageData>(LocaleContext);
+  const folder = useContext<LocaleContextType>(LocaleContext) as SharedPageData;
   return (
     <BannerLayout>
       <BannerBox>
-        <Image width={60} height={60} src={locale.owner.profileImageSource} alt="배너 프로필 이미지" />
-        <BannerText>{locale.owner.name}</BannerText>
-        <BannerTitle>{locale.name}</BannerTitle>
+        <Image
+          width={60}
+          height={60}
+          src={folder.owner.profileImageSource}
+          alt="배너 프로필 이미지"
+        />
+        <BannerText>{folder.owner.name}</BannerText>
+        <BannerTitle>{folder.name}</BannerTitle>
       </BannerBox>
     </BannerLayout>
   );

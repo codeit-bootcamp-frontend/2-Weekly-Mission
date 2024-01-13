@@ -31,9 +31,25 @@ const Form = () => {
           alt="비밀번호 비활성화"
         /> */}
       </PasswordInputBox>
-      <LoginButton>로그인</LoginButton>
+      <PasswordCheckInputBox>
+        <label>비밀번호 확인</label>
+        <input placeholder="" />
+        <PasswordOn
+          src={"/images/eye-off.png"}
+          width={16}
+          height={13.82}
+          alt="비밀번호 비활성화"
+        />
+        {/* <PasswordOff
+          src={"/images/eye-on.png"}
+          width={16}
+          height={10.91}
+          alt="비밀번호 비활성화"
+        /> */}
+      </PasswordCheckInputBox>
+      <LoginButton>회원가입</LoginButton>
       <SnsLoginBox>
-        <p>소셜 로그인</p>
+        <p>다른 방식으로 가입하기</p>
         <SnsIconBox>
           <Link href={"https://www.google.com/"}>
             <GoogleIcon
@@ -67,7 +83,9 @@ const EmailInputBox = styled(InputBox)``;
 const PasswordInputBox = styled(InputBox)`
   position: relative;
 `;
-
+const PasswordCheckInputBox = styled(InputBox)`
+  position: relative;
+`;
 const PasswordOn = styled(PasswordToggleIcon)``;
 const PasswordOff = styled(PasswordToggleIcon)``;
 const LoginButton = styled(GradientButton)``;

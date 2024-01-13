@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Category from "./Category";
-import { FolderPageData } from "../../../../types/common";
 
 const categoryList = [
   { title: "공유", image: "/images/share.png " },
@@ -8,22 +7,28 @@ const categoryList = [
   { title: "삭제", image: "/images/delete.png" },
 ];
 
-function CategoryBox({ searchResult, folder }: { searchResult: string; folder: FolderPageData }) {
+function CategoryList({
+  searchKeyword,
+  folderName,
+}: {
+  searchKeyword: string;
+  folderName: string | undefined;
+}) {
   return (
-    <StyledCategoryBox>
-      {searchResult === "" ? <h1>{folder.name}</h1> : <h1>전체</h1>}
-      {folder.name !== "전체" ? (
-        <CategoryList>
+    <CategoryListBox>
+      {searchKeyword === "" ? <h1>{folderName}</h1> : <h1>전체</h1>}
+      {folderName !== "전체" ? (
+        <Categories>
           {categoryList.map((category) => (
-            <Category key={folder.id} category={category} />
+            <Category key={folderName} category={category} />
           ))}
-        </CategoryList>
+        </Categories>
       ) : null}
-    </StyledCategoryBox>
+    </CategoryListBox>
   );
 }
 
-const StyledCategoryBox = styled.div`
+const CategoryListBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,11 +41,11 @@ const StyledCategoryBox = styled.div`
   }
 `;
 
-const CategoryList = styled.div`
+const Categories = styled.div`
   display: flex;
   justify-content: center;
   font-size: 1.4rem;
   gap: 1.2rem;
 `;
 
-export default CategoryBox;
+export default CategoryList;

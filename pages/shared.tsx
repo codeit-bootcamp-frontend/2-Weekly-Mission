@@ -3,7 +3,7 @@ import Banner from "../components/domains/shared/Banner";
 import CardList from "../components/commons/CardList";
 import SearchInput from "../components/commons/SearchInput";
 import styles from "../styles/sharedPage.module.css";
-import { getSharedData } from "./api/SharedApi";
+import { getSharedFolder } from "./api/SharedApi";
 import { SharedPageData } from "../types/common";
 import { Link } from "../types/common";
 import { LocaleContext } from "../contexts/LocaleContext";
@@ -31,15 +31,17 @@ function SharedPage() {
   });
 
   const handleFolderLoad = async () => {
-    const { folder } = await getSharedData();
+    const { folder } = await getSharedFolder();
     setSharedFolder(folder);
   };
 
   const searchLink = async (keyword: string) => {
-    const { folder } = await getSharedData();
+    const { folder } = await getSharedFolder();
     const filteredLinks = folder.links.filter(
       (link: Link) =>
-        link.url?.includes(keyword) || link.title?.includes(keyword) || link.description?.includes(keyword)
+        link.url?.includes(keyword) ||
+        link.title?.includes(keyword) ||
+        link.description?.includes(keyword)
     );
 
     setSharedFolder({
@@ -57,7 +59,11 @@ function SharedPage() {
       <Banner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
-          <SearchInput searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} onSearch={searchLink} />
+          <SearchInput
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}
+            onSearch={searchLink}
+          />
           <CardList links={sharedFolder?.links} />
         </div>
       </section>

@@ -21,13 +21,13 @@ function Button({
   };
 
   return (
-    <StyledButton
+    <FolderBadge
       onClick={() => {
         handleChangeID();
       }}
     >
       {folder && folder.name}
-    </StyledButton>
+    </FolderBadge>
   );
 }
 
@@ -38,29 +38,36 @@ function FolderButtonList({
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const locale = useContext<LocaleContextType>(LocaleContext) as FolderPageData[];
+  const locale = useContext<LocaleContextType>(
+    LocaleContext
+  ) as FolderPageData[];
   const { openModal } = useContext<ModalControl>(ModalContext);
   return (
     <div>
-      <StyledButtonBox>
-        <StyledButtons>
+      <ButtonBox>
+        <Buttons>
           {locale?.map((folder) => (
-            <Button folder={folder} key={folder.id} setSelectFolderLinks={setSelectFolderLinks} setId={setId} />
+            <Button
+              folder={folder}
+              key={folder.id}
+              setSelectFolderLinks={setSelectFolderLinks}
+              setId={setId}
+            />
           ))}
-        </StyledButtons>
-        <StyledAddLink
+        </Buttons>
+        <AddLink
           onClick={() => {
             openModal("폴더추가");
           }}
         >
           +
-        </StyledAddLink>
-      </StyledButtonBox>
+        </AddLink>
+      </ButtonBox>
     </div>
   );
 }
 
-const StyledButton = styled.button`
+const FolderBadge = styled.button`
   background-color: #ffffff;
   border: 1px solid var(--primary-color);
   font-size: 1.6rem;
@@ -79,20 +86,20 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledButtonBox = styled.div`
+const ButtonBox = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 2.4rem;
 `;
 
-const StyledButtons = styled.div`
+const Buttons = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 1.2rem;
   flex-wrap: wrap;
 `;
 
-const StyledAddLink = styled.div`
+const AddLink = styled.div`
   color: var(--primary-color);
   border: none;
   font-size: 3rem;

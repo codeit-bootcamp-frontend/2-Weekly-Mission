@@ -8,8 +8,6 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/recommended",
-    "airbnb",
-    "airbnb/hooks",
     "prettier",
     "next",
     "next/core-web-vitals",

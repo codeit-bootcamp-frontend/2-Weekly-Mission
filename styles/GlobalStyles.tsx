@@ -43,6 +43,10 @@ const GlobalStyle = createGlobalStyle`
   li{
     list-style: none;
   }
+
+input{
+  border: 0.1rem solid black;
+}
 `;
 
 export default GlobalStyle;

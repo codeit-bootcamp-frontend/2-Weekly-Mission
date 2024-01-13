@@ -16,8 +16,8 @@ const Header = () => {
       </Link>
       <SignUpBox>
         <div>
-          이미 회원이신가요?
-          <Link href={"/signup"}>로그인 하기</Link>
+          회원이 아니신가요?
+          <Link href={"/signup"}>회원 가입하기</Link>
         </div>
       </SignUpBox>
     </HeaderBox>
