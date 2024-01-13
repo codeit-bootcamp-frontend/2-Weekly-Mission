@@ -26,7 +26,6 @@ export default function SharedPage() {
 function SharedLayout() {
   const { searchValue } = useSearchContext();
 
-  const [filteredLinks, setFilteredLinks] = useState<LinkItem[]>([]);
   const [sampleUserFolder, setSampleUserFolder] = useState<SampleUserFolder>({
     id: 0,
     name: '',
@@ -38,19 +37,16 @@ function SharedLayout() {
     links: [],
   });
 
+  const filteredLinks = filterLinks(searchValue, sampleUserFolder.links);
+
   async function loadSampleFolder() {
     const sampleUserFolder = await getSampleUserFolder();
     setSampleUserFolder(sampleUserFolder);
-    setFilteredLinks(sampleUserFolder.links);
   }
 
   useEffect(() => {
     loadSampleFolder();
   }, []);
-
-  useEffect(() => {
-    setFilteredLinks(filterLinks(searchValue, sampleUserFolder.links));
-  }, [searchValue]);
 
   return (
     <ContentLayout>

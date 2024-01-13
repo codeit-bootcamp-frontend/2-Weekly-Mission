@@ -49,6 +49,7 @@ function FolderLayout() {
   const { folderList, setFolderList, linkList, setLinkList } = usePageContext();
 
   const filteredLinks = filterLinks(searchValue, linkList);
+
   async function loadFolder() {
     const data = await getFolder();
     setFolderList(data);
