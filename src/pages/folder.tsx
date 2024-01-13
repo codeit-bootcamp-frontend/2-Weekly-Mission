@@ -7,11 +7,11 @@ import SearchBar from 'components/common/SearchBar';
 import ContentLayout from 'components/others/ContentLayout';
 import Filtering from 'components/others/Filtering';
 import FolderEditButtons from 'components/others/FolderEditButtons';
-import { FolderItem, LinkItem } from 'constants/type';
+import { FolderItem, LinkItem, UserInfo } from 'constants/type';
 import { useSearchContext } from 'context/SearchContext';
 import { SearchContextProvider } from 'context/SearchContext';
-import { getFolder, getLinks } from 'utils/api/fetchApi';
-import { useEffect, useState } from 'react';
+import { getFolder, getLinks, getUser } from 'utils/api/fetchApi';
+import { useEffect } from 'react';
 import styles from 'styles/folder.module.css';
 import filterLinks from 'utils/filtering';
 import { PageContextProvider, usePageContext } from 'context/PageContext';
@@ -19,10 +19,14 @@ import { PageContextProvider, usePageContext } from 'context/PageContext';
 export async function getStaticProps() {
   const folderList = await getFolder();
   const linkList = await getLinks(0); // 전체 링크 리스트 불러오기
+
+  const userData = await getUser();
+
   return {
     props: {
       folderList,
       linkList,
+      userData: userData[0],
     },
   };
 }
@@ -30,13 +34,14 @@ export async function getStaticProps() {
 interface StaticProps {
   folderList: FolderItem[];
   linkList: LinkItem[];
+  userData: UserInfo;
 }
 
-export default function FolderPage({ folderList, linkList }: StaticProps) {
+export default function FolderPage({ folderList, linkList, userData }: StaticProps) {
   return (
     <SearchContextProvider>
       <PageContextProvider initialFolderList={folderList} initialLinkList={linkList}>
-        <Gnb />
+        <Gnb userData={userData} />
         <FolderLayout />
         <Footer />
       </PageContextProvider>
