@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useFormContext } from 'react-hook-form';
-import { FormValues, validation } from '@/lib/types';
+import { FormValues, validation } from '@/lib/formTypes';
 import EyeOn from '@/public/images/eye-on.svg';
 import EyeOff from '@/public/images/eye-off.svg';
 import styles from './Input.module.css';

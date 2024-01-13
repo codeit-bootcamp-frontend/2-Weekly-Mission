@@ -3,6 +3,7 @@ import EditFeatures from '../EditFeatures/EditFeatures';
 import EmptyCardList from '../EmptyCardList/EmptyCardList';
 import CardList from '../CardList/CardList';
 import useGetData from '@/lib/useGetData';
+import { LinkList } from '@/lib/apiTypes';
 import styles from './SelectedCardList.module.css';
 
 interface Props {
@@ -10,24 +11,11 @@ interface Props {
   searchValue: string;
 }
 
-type List = {
-  id: string;
-  created_at: string;
-  updated_at: string;
-  url: string;
-  title: string;
-  description: string;
-  image_source: string;
-  folder_id: string;
-};
-
-export type LinkListType = List[];
-
 export default function SelectedCardList({ selectedFolder, searchValue }: Props) {
   const { id: folderId, name: folderName } = selectedFolder;
   const query = folderId ? `?folderId=${folderId}` : '';
 
-  const [loading, error, links] = useGetData<LinkListType>(`/users/1/links${query}`, selectedFolder);
+  const [loading, error, links] = useGetData<LinkList>(`/users/1/links${query}`, selectedFolder);
 
   if (loading) return;
   if (error) return;

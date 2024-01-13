@@ -1,28 +1,18 @@
 import React, { FormEvent, useState } from 'react';
 import Image from 'next/image';
+import axios from 'axios';
 import useGetData from '@/lib/useGetData';
-import AddIcon from '@/public/images/add.svg';
-import styles from './FolderButtons.module.css';
+import { FolderList } from '@/lib/apiTypes';
 import ModalLayout from '../ModalLayout/ModalLayout';
 import CTA from '../CTA/CTA';
-import axios from 'axios';
+import AddIcon from '@/public/images/add.svg';
+import styles from './FolderButtons.module.css';
 
 interface Props {
   userId: string;
   folderId: string;
   setSelectedFolder: React.Dispatch<React.SetStateAction<{ id: string; name: string }>>;
 }
-
-type List = {
-  id: string;
-  created_at: string;
-  name: string;
-  user_id: number;
-  favorite: boolean;
-  link: { count: number };
-};
-
-type FolderList = List[];
 
 export default function FolderButtons({ userId = '', folderId, setSelectedFolder }: Props) {
   const [folderName, setFolderName] = useState('');

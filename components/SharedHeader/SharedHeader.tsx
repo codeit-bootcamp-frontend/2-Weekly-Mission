@@ -1,37 +1,17 @@
 import Image from 'next/image';
 import React from 'react';
-import styles from './SharedHeader.module.css';
 import useGetData from '@/lib/useGetData';
+import { FolderList, UserData } from '@/lib/apiTypes';
+import styles from './SharedHeader.module.css';
 
 interface Props {
   userId: string | undefined;
   folderId: string | string[] | undefined;
 }
 
-type UserData = {
-  id: string;
-  created_at: string;
-  name: string;
-  image_source: string;
-  email: string;
-  auth_id: string;
-};
-
-type FolderData = {
-  id: string;
-  created_at: string;
-  name: string;
-  user_id: string;
-  favorite: boolean;
-};
-
-type UserDataList = UserData[];
-
-type FolderDataList = FolderData[];
-
 export default function SharedHeader({ userId, folderId }: Props) {
-  const [userLoading, userError, userData] = useGetData<UserDataList>(`/user/${userId}`, userId);
-  const [folderLoading, folderError, folderData] = useGetData<FolderDataList>(`/folders/${folderId}`, folderId);
+  const [userLoading, userError, userData] = useGetData<UserData>(`/user/${userId}`, userId);
+  const [folderLoading, folderError, folderData] = useGetData<FolderList>(`/folders/${folderId}`, folderId);
 
   if (userLoading) return;
   if (userError) return;

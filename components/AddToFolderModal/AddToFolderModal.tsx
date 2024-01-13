@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import axios from 'axios';
 import useGetData from '@/lib/useGetData';
+import { FolderList } from '@/lib/apiTypes';
 import CTA from '@/components/CTA/CTA';
 import CheckImg from '@/public/images/check.svg';
 import styles from './AddToFolderModal.module.css';
@@ -11,17 +12,6 @@ interface Props {
   setUrl?: React.Dispatch<React.SetStateAction<string>>;
   setAddToFolderModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-type List = {
-  id: string;
-  created_at: string;
-  name: string;
-  user_id: number;
-  favorite: boolean;
-  link: { count: number };
-};
-
-type FolderList = List[];
 
 export default function AddToFolderModal({ url, setUrl, setAddToFolderModalOpen }: Props) {
   const [selectedFolderId, setSelectedFolderId] = useState('');

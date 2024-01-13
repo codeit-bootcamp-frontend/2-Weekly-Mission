@@ -5,7 +5,7 @@ import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import Input from '@/components/Sign/Input/Input';
 import CTA from '@/components/CTA/CTA';
 
-import { FormValues, validation } from '@/lib/types';
+import { FormValues, validation } from '@/lib/formTypes';
 import { regExp } from '@/lib/constants.js';
 import axios from '@/lib/axios.js';
 

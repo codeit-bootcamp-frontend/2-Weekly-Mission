@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import useGetData from '@/lib/useGetData';
+import { UserData } from '@/lib/apiTypes';
 
 import CTA from '../CTA/CTA';
 import Profile from '../Profile/Profile';
@@ -15,19 +16,8 @@ interface Props {
   className?: 'sticky' | '';
 }
 
-type UserData = {
-  id: string;
-  created_at: string;
-  name: string;
-  image_source: string;
-  email: string;
-  auth_id: string;
-};
-
-type UserDataList = UserData[];
-
 export default function Navbar({ userId, className = '' }: Props) {
-  const [loading, error, profileData] = useGetData<UserDataList>(`/users/${userId}`);
+  const [loading, error, profileData] = useGetData<UserData>(`/users/${userId}`);
 
   if (loading) return;
   if (error) return;
