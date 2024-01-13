@@ -15,10 +15,11 @@ export default function SignUpForm() {
   const router = useRouter();
   const [isValid, setIsValid] = useState<boolean>(false);
 
-  const { watch, control, trigger, getFieldState } = useForm({
-    defaultValues: { email: '', password: '', passwordRepeat: '' },
-    mode: 'onBlur',
-  });
+  const { watch, control, trigger, getFieldState, setError, clearErrors } =
+    useForm({
+      defaultValues: { email: '', password: '', passwordRepeat: '' },
+      mode: 'onBlur',
+    });
 
   const checkEmail = useCheckEmail(watch('email'));
   const signUp = useSignUp(watch('email'), watch('password'));
@@ -64,11 +65,21 @@ export default function SignUpForm() {
       signUp.execute();
     }
 
+    if (checkEmail.error) {
+      setError('email', {
+        type: 'invalid',
+        message: '이미 존재하는 이메일입니다.',
+      });
+    }
+    if (checkEmail.data) {
+      clearErrors('email');
+    }
+
     // 값이 올바른데도 오류가 나면 서버 문제로 가정
     if (signUp.error) {
       alert('요청하신 서버에 오류가 있습니다.');
     }
-  }, [isValid]);
+  }, [isValid, checkEmail.error, checkEmail.data]);
 
   return (
     <form className={cx('form')}>
