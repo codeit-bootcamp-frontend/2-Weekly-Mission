@@ -1,5 +1,5 @@
-import * as H from "./styled";
 import Link from "next/link";
+import * as H from "./styled";
 
 interface UserData {
   auth_id: string;
@@ -32,9 +32,9 @@ function Header({ userData }: THeader) {
             {userData.email}
           </H.userdata>
         ) : (
-          <H.login>
-            <Link href="/signin/1">로그인</Link>
-          </H.login>
+          <Link href="/signin">
+            <H.login>로그인</H.login>
+          </Link>
         )}
       </H.header_inner>
     </H.header>
