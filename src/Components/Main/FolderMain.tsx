@@ -8,9 +8,9 @@ import Add from '../Modal/Add';
 
 export default function FolderMain() {
   const [selectedValue, setSelectedValue] = useState('전체');
-  const [dataId, setDataId] = useState(null);
+  const [dataId, setDataId] = useState<null | number>(null);
 
-  const handleSelectValue = (name, id) => {
+  const handleSelectValue = (name: string, id: number) => {
     setSelectedValue(name);
     setDataId(id);
   };
@@ -20,8 +20,6 @@ export default function FolderMain() {
       <MainSearchBar />
       <FolderButtons onSelectValue={handleSelectValue} />
       <FolderCardContainer dataId={dataId} selectedValue={selectedValue} />
-      <Share/>
-      <Add/>
     </div>
   );
 }
