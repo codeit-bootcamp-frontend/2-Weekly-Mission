@@ -48,10 +48,20 @@
 .add--icon {
   border: none;
   background-color: transparent;
+  position: relative;
+  width: 16px;
+  height: 16px;
 }
 
 .mobile-add--btn {
   display: none;
+}
+
+.mobile-add--icon {
+  display: none;
+  width: 16px;
+  height: 16px;
+  position: relative;
 }
 
 @media screen and (max-width: 1123px) {
@@ -64,6 +74,10 @@
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .add--icon {
     display: none;
+  }
+
+  .mobile-add--icon {
+    display: block;
   }
 
   .mobile-add--btn {

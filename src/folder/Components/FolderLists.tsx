@@ -1,9 +1,10 @@
 import style from './FolderLists.module.css';
-import addIcon from '@/src/assets/add.svg';
+import addIcon from '../../assets/add.svg';
 import whiteAddIcon from '@/src/assets/whiteAdd.svg';
 import { FolderType } from '@/types/type';
 import { useModal } from '@/src/modal/hooks/modalHooks';
 import AddFolderModal from '@/src/modal/Components/AddFolderModal';
+import Image from 'next/image';
 
 const Folder = ({id, name , onClick, activeFolder} : { id:number, name:string, activeFolder:number, onClick:(id:number) => void}) => {
   return(
@@ -21,8 +22,8 @@ const FolderLists = ({ folders, activeFolder, onClick} : { folders:FolderType[],
       <div className={style['folder-btn--container']}>
         {folders?.map((folder:FolderType) => <Folder key={folder?.id} name={folder?.name} id={folder?.id} onClick={onClick} activeFolder={activeFolder}></Folder>)}
       </div>
-      <button className={style['add--icon']} onClick={toggleModal}><img src={addIcon} alt="+" /></button>
-      <button className={style['mobile-add--btn']}><p>폴더 추가</p><img src={whiteAddIcon} alt="+" className="mobile-add--icon"/></button>
+      <button className={style['add--icon']} onClick={toggleModal}><Image src={addIcon} alt="+" fill/></button>
+      <button className={style['mobile-add--btn']}><p>폴더 추가</p><div className={style['mobile-add--icon']}><Image src={whiteAddIcon} alt="+" fill/></div></button>
       <AddFolderModal isOpen={isOpen} onClick={toggleModal}/>
     </div>
   )
