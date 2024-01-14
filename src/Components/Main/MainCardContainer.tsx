@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { LoginProfile } from "../../api";
-import NullImg from "../../images/logo.svg";
-import "../../CSS/Landing.css";
+import React, { useEffect, useState } from 'react';
+import { LoginProfile } from '../../api';
+import NullImg from '../../images/logo.svg';
+import '../../CSS/Landing.css';
+import { UserFolderT } from '../../apiType';
 
-function timeAgo(timestamp) {
-  const now : Date = new Date();
-  const seconds = Math.floor(((+now) - (+timestamp)) / 1000);
+function timeAgo(timestamp: number | Date) {
+  const now: Date = new Date();
+  const seconds = Math.floor((+now - +timestamp) / 1000);
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
@@ -14,27 +15,27 @@ function timeAgo(timestamp) {
 
   switch (true) {
     case seconds < 120:
-      return "1 minute ago";
+      return '1 minute ago';
     case minutes < 60:
       return `${minutes} minutes ago`;
     case hours < 24:
-      return "1 hour ago";
+      return '1 hour ago';
     case days < 30:
       return `${days} days ago`;
     case months < 12:
       return `${months} months ago`;
     case years === 1:
-      return "1 year ago";
+      return '1 year ago';
     case years > 1:
       const roundedYears = Math.floor(years);
       return `${roundedYears} years ago`;
     default:
-      return "Just now";
+      return 'Just now';
   }
 }
 
 export default function MainCardContainer() {
-  const [folderData, setFolderData] = useState(null);
+  const [folderData, setFolderData] = useState<UserFolderT | null>(null);
 
   const fetchData = async () => {
     try {
@@ -52,9 +53,9 @@ export default function MainCardContainer() {
   return (
     <div className="CardBoxContainer">
       {folderData && folderData.links && folderData.links.length > 0
-        ? folderData.links.map((item, index) => (
-            <div key={index} className="CardBox">
-              <a href={item.url} alt="targetUrl">
+        ? folderData.links.map((item) => (
+            <div key={item.id} className="CardBox">
+              <a href={item.url}>
                 <img
                   src={item.imageSource || NullImg}
                   alt="이미지"
@@ -65,7 +66,7 @@ export default function MainCardContainer() {
                     {timeAgo(new Date(item.createdAt))}
                   </p>
                   <p className="CardTextDescription">{item.description}</p>
-                  <p className="CardTextYears">{item.createdAt.slice(0,10)}</p>
+                  <p className="CardTextYears">{item.createdAt.slice(0, 10)}</p>
                 </div>
               </a>
             </div>
