@@ -5,7 +5,7 @@ import styles from './AddLinkFrom.module.scss';
 import classNames from 'classnames/bind';
 
 import { useAsync } from 'hooks/useAsync';
-import api from 'apis/api';
+import Api from 'apis/apiCall';
 
 import StyledButton from 'components/common/Button/StyledButton';
 import FolderList from 'containers/folder/ModalContent/FolderList';
@@ -23,7 +23,7 @@ const AddLinkForm = () => {
 
   const {
     data: { data: filterData },
-  } = useAsync(() => api.get('/api/users/1/folders'), INITIAL_FILTER_DATA);
+  } = useAsync(() => Api.getFolderList(), INITIAL_FILTER_DATA);
 
   const handleValueChange = (e) => setInputValue(e.target.value);
   const handleAddButtonClick = () => setIsModalOpen(true);

@@ -4,7 +4,7 @@ import styles from './FilterContent.module.scss';
 import classNames from 'classnames/bind';
 
 import { useAsync } from 'hooks/useAsync';
-import api from 'apis/api';
+import Api from 'apis/apiCall';
 
 import { useStoredData } from 'hooks/useStoredData';
 import { FolderContext } from 'stores/provider/FolderProvider';
@@ -26,7 +26,7 @@ const FilterContent = ({ keyword }) => {
 
   const {
     data: { data: filterData },
-  } = useAsync(() => api.get('/api/users/1/folders'), INITIAL_FILTER_DATA);
+  } = useAsync(() => Api.getFolderList(), INITIAL_FILTER_DATA);
 
   const searchCardList = useMemo(() => {
     if (!keyword?.length) return filteredCardList;

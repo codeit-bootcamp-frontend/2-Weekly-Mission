@@ -1,4 +1,4 @@
-import api from 'apis/api';
+import Api from 'apis/apiCall';
 
 import { handleAuthenticationError } from './auth';
 import LocalStorage from './localstorage';
@@ -19,7 +19,7 @@ export const signin = async (data, setError) => {
       data: {
         data: { accessToken, refreshToken },
       },
-    } = await api.post('/api/sign-in', { email, password });
+    } = await Api.signin(email, password);
 
     LocalStorage.setItem(ACCESS_TOKEN, accessToken);
     LocalStorage.setItem(REFRESH_TOKEN, refreshToken);
@@ -36,7 +36,7 @@ export const signin = async (data, setError) => {
 export const emailConflictCheck = async (data, setError) => {
   try {
     const { email } = data;
-    const res = await api.post('/api/check-email', { email });
+    const res = await Api.emailCheck(email);
     const { CONFLICT } = STATUS_CODE;
 
     // [409]이메일 중복
@@ -63,7 +63,7 @@ export const signup = async (data) => {
       data: {
         data: { accessToken, refreshToken },
       },
-    } = await api.post('/api/sign-up', { email, password });
+    } = await Api.signup(email, password);
 
     LocalStorage.setItem(ACCESS_TOKEN, accessToken);
     LocalStorage.setItem(REFRESH_TOKEN, refreshToken);

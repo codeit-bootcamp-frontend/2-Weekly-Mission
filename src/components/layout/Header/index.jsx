@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 
-import api from 'apis/api';
+import Api from 'apis/apiCall';
 import { useAsync } from 'hooks/useAsync';
 
 import Profile from 'components/common/Profile';
@@ -17,12 +17,12 @@ const cx = classNames.bind(styles);
 const { logo } = ICON;
 
 const Header = () => {
-  const { data: profileData } = useAsync(
-    () => api.get('/api/sample/user'),
-    INITIAL_PROFILE_DATA
-  );
+  const {
+    data: { data: userData },
+  } = useAsync(() => Api.getUserData(), INITIAL_PROFILE_DATA);
 
-  const isLoggedIn = !!profileData.email;
+  const profileData = userData?.[0];
+  const isLoggedIn = !!profileData?.email;
 
   return (
     <header className={cx('gnb')}>

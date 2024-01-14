@@ -12,7 +12,11 @@ export const useAsync = (asyncFunction, initialData, initialExecution = true) =>
 
     try {
       const res = await asyncFunction();
-      setData(res.data);
+      if (res && res.data) {
+        setData(res.data);
+      } else {
+        throw new Error('Invalid response format');
+      }
     } catch (e) {
       setIsError(true);
       setError(e);
