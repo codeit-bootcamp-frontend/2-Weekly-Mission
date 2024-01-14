@@ -3,13 +3,13 @@ import AddLinkBanner from "../components/domains/folder/AddLinkBanner";
 import CardList from "../components/commons/CardList";
 import SearchInput from "../components/commons/SearchInput";
 import styles from "../styles/folderPage.module.css";
-import FolderButtonList from "../components/domains/folder/FolderButtonList";
+import FolderButtonList from "../components/domains/folder/FolderBadgeList";
 import FolderTitles from "../components/domains/folder/folderTitle/FolderTitles";
 import FloatingButton from "../components/domains/folder/FloatingButton";
 import { getAllLinksData, getUserFoldersData } from "./api/FolderApi";
 import { FolderPageData } from "../types/common";
 import { Link } from "../types/common";
-import { LocaleContext } from "../contexts/LocaleContext";
+import { DataContext } from "../contexts/LocaleContext";
 
 function FolderPage() {
   const [folderList, setFolderList] = useState<FolderPageData[]>([]);
@@ -43,7 +43,9 @@ function FolderPage() {
   const searchLink = async (keyword: string) => {
     const filteredLinks = folderList[0].links?.filter(
       (link: Link) =>
-        link.url?.includes(keyword) || link.title?.includes(keyword) || link.description?.includes(keyword)
+        link.url?.includes(keyword) ||
+        link.title?.includes(keyword) ||
+        link.description?.includes(keyword)
     );
     setSearchLinks(filteredLinks);
   };
@@ -53,12 +55,19 @@ function FolderPage() {
   }, [id]);
 
   return (
-    <LocaleContext.Provider value={folderList}>
+    <DataContext.Provider value={folderList}>
       <AddLinkBanner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
-          <SearchInput searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} onSearch={searchLink} />
-          <FolderButtonList setSelectFolderLinks={setSelectFolderLinks} setId={setId} />
+          <SearchInput
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}
+            onSearch={searchLink}
+          />
+          <FolderButtonList
+            setSelectFolderLinks={setSelectFolderLinks}
+            setId={setId}
+          />
           <FolderTitles searchKeyword={searchKeyword} id={id} />
           {searchKeyword !== "" ? (
             <CardList links={searchLinks} />
@@ -76,7 +85,7 @@ function FolderPage() {
         </div>
       </section>
       <FloatingButton />
-    </LocaleContext.Provider>
+    </DataContext.Provider>
   );
 }
 

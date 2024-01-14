@@ -2,8 +2,8 @@ import { useContext } from "react";
 import CategoryList from "./CategoryList";
 import { FolderPageData } from "../../../../types/common";
 import {
-  LocaleContextType,
-  LocaleContext,
+  DataContextType,
+  DataContext,
 } from "../../../../contexts/LocaleContext";
 
 function FoldersTitles({
@@ -13,8 +13,8 @@ function FoldersTitles({
   id: number;
   searchKeyword: string;
 }) {
-  const folderList = useContext<LocaleContextType>(
-    LocaleContext
+  const folderList = useContext<DataContextType>(
+    DataContext
   ) as FolderPageData[];
 
   const folder = folderList.find((folder) => folder.id === id);

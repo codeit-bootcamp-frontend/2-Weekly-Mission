@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/domains/signUp/Header";
-import Form from "../components/domains/signUp/Form";
+import Header from "../components/domains/auth/signup/Header";
+import Form from "../components/domains/auth/signup/Form";
 
 const SignUpPage = () => {
   return (

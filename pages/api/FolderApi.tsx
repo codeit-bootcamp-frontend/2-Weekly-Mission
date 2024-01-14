@@ -1,4 +1,4 @@
-import requestApi from "./GetData";
+import requestApi from "./RequestApi";
 
 const DEFAULT_USER_ID = 1;
 

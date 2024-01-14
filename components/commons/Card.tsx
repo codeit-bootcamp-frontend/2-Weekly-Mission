@@ -59,16 +59,16 @@ const CardLayout = styled.div`
 const CardImageWrapper = styled.div`
   width: 34rem;
   height: 33.4rem;
-  position: relative;
+
   @media (max-width: 1200px) {
     width: 100%;
   }
 `;
 
 const CardImage = styled(Image)`
-  width: 34rem;
-  height: 33.4rem;
   object-fit: cover;
+
+  top: -15% !important;
 
   &:hover {
     transform: scale(1.3);
@@ -77,7 +77,8 @@ const CardImage = styled(Image)`
 
 const CardNoImage = styled(Image)`
   object-fit: cover;
-  width: 100%;
+
+  top: -15% !important;
 `;
 
 const CardDescriptionBox = styled.div`

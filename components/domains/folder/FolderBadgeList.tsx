@@ -1,60 +1,32 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
-import { getSelectData } from "../../../pages/api/FolderApi";
+import FolderBadge from "../folder/folderTitle/FolderBadge";
 import { FolderPageData, Link, ModalControl } from "../../../types/common";
-import { ModalContext, LocaleContext } from "../../../contexts/LocaleContext";
-import { LocaleContextType } from "../../../contexts/LocaleContext";
+import { ModalContext, DataContext } from "../../../contexts/LocaleContext";
+import { DataContextType } from "../../../contexts/LocaleContext";
 
-function Button({
-  folder,
-  setSelectFolderLinks,
-  setId,
-}: {
-  folder: FolderPageData;
-  setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
-  setId: React.Dispatch<React.SetStateAction<number>>;
-}) {
-  const handleChangeID = async () => {
-    const { data } = await getSelectData(folder.id);
-    setSelectFolderLinks(data);
-    setId(folder.id);
-  };
-
-  return (
-    <FolderBadge
-      onClick={() => {
-        handleChangeID();
-      }}
-    >
-      {folder && folder.name}
-    </FolderBadge>
-  );
-}
-
-function FolderButtonList({
+function FolderBadgeList({
   setSelectFolderLinks,
   setId,
 }: {
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const locale = useContext<LocaleContextType>(
-    LocaleContext
-  ) as FolderPageData[];
+  const locale = useContext<DataContextType>(DataContext) as FolderPageData[];
   const { openModal } = useContext<ModalControl>(ModalContext);
   return (
     <div>
-      <ButtonBox>
-        <Buttons>
+      <FolderBadgeListBox>
+        <FolderBadges>
           {locale?.map((folder) => (
-            <Button
+            <FolderBadge
               folder={folder}
               key={folder.id}
               setSelectFolderLinks={setSelectFolderLinks}
               setId={setId}
             />
           ))}
-        </Buttons>
+        </FolderBadges>
         <AddLink
           onClick={() => {
             openModal("폴더추가");
@@ -62,12 +34,12 @@ function FolderButtonList({
         >
           +
         </AddLink>
-      </ButtonBox>
+      </FolderBadgeListBox>
     </div>
   );
 }
 
-const FolderBadge = styled.button`
+const Button = styled.button`
   background-color: #ffffff;
   border: 1px solid var(--primary-color);
   font-size: 1.6rem;
@@ -86,13 +58,13 @@ const FolderBadge = styled.button`
   }
 `;
 
-const ButtonBox = styled.div`
+const FolderBadgeListBox = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 2.4rem;
 `;
 
-const Buttons = styled.div`
+const FolderBadges = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 1.2rem;
@@ -110,4 +82,4 @@ const AddLink = styled.div`
   }
 `;
 
-export default FolderButtonList;
+export default FolderBadgeList;

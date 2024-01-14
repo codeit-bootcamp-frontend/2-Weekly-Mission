@@ -2,13 +2,10 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useContext } from "react";
 import { SharedPageData } from "../../../types/common";
-import {
-  LocaleContext,
-  LocaleContextType,
-} from "../../../contexts/LocaleContext";
+import { DataContext, DataContextType } from "../../../contexts/LocaleContext";
 
 function Banner() {
-  const folder = useContext<LocaleContextType>(LocaleContext) as SharedPageData;
+  const folder = useContext<DataContextType>(DataContext) as SharedPageData;
   return (
     <BannerLayout>
       <BannerBox>

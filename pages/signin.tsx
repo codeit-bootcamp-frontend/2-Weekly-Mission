@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/domains/signIn/Header";
-import Form from "../components/domains/signIn/Form";
+import Header from "../components/domains/auth/signin/Header";
+import Form from "../components/domains/auth/signin/Form";
 
 const SignInPage = () => {
   return (

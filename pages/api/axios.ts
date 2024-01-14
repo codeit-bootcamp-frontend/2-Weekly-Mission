@@ -28,7 +28,10 @@ const convertToSnakeCase = (data: SharedFolder) => {
   const { links } = data.folder;
   const convertedLinks = links.map((link) => {
     const convertedLink = Object.fromEntries(
-      Object.entries(link).map(([key, value]) => [key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`), value])
+      Object.entries(link).map(([key, value]) => [
+        key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`),
+        value,
+      ])
     );
     return convertedLink;
   });
@@ -36,7 +39,7 @@ const convertToSnakeCase = (data: SharedFolder) => {
 };
 
 axiosInstance.interceptors.response.use((response) => {
-  if (response.data && response.data.folder) {
+  if (response?.data.folder) {
     response.data.folder.links = convertToSnakeCase(response.data);
   }
   return response;

@@ -40,6 +40,7 @@ const PopOverBox = styled.div`
   right: 1.5rem;
   top: 3rem;
 `;
+
 const Button = styled.button`
   width: 10rem;
   height: 3.1rem;

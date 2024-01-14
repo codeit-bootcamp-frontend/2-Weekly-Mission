@@ -3,10 +3,10 @@ import Banner from "../components/domains/shared/Banner";
 import CardList from "../components/commons/CardList";
 import SearchInput from "../components/commons/SearchInput";
 import styles from "../styles/sharedPage.module.css";
-import { getSharedFolder } from "./api/SharedApi";
+import { getSharedFolderData } from "./api/SharedApi";
 import { SharedPageData } from "../types/common";
 import { Link } from "../types/common";
-import { LocaleContext } from "../contexts/LocaleContext";
+import { DataContext } from "../contexts/LocaleContext";
 
 function SharedPage() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -31,12 +31,12 @@ function SharedPage() {
   });
 
   const handleFolderLoad = async () => {
-    const { folder } = await getSharedFolder();
+    const { folder } = await getSharedFolderData();
     setSharedFolder(folder);
   };
 
   const searchLink = async (keyword: string) => {
-    const { folder } = await getSharedFolder();
+    const { folder } = await getSharedFolderData();
     const filteredLinks = folder.links.filter(
       (link: Link) =>
         link.url?.includes(keyword) ||
@@ -55,7 +55,7 @@ function SharedPage() {
   }, []);
 
   return (
-    <LocaleContext.Provider value={sharedFolder}>
+    <DataContext.Provider value={sharedFolder}>
       <Banner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
@@ -67,7 +67,7 @@ function SharedPage() {
           <CardList links={sharedFolder?.links} />
         </div>
       </section>
-    </LocaleContext.Provider>
+    </DataContext.Provider>
   );
 }
 
