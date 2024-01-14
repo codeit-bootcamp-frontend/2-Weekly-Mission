@@ -1,4 +1,15 @@
 // LinkProvider
+export const INITIAL_SHARED_DATA = {
+  folder: {
+    name: '',
+    owner: {
+      name: '',
+      profileImageSource: '',
+    },
+    links: [],
+  },
+};
+
 export const INITIAL_LINK_DATA = {
   name: '',
   owner: {
@@ -22,10 +33,13 @@ export const INITIAL_FOLDER_DATA = [
 ];
 
 // Profile
-export const INITIAL_PROFILE_DATA = {
-  email: '',
-  image_source: '',
-};
+export const INITIAL_PROFILE_DATA = [
+  {
+    id: null,
+    email: '',
+    image_source: '',
+  },
+];
 
 // Filter
 export const INITIAL_FILTER_DATA = [
