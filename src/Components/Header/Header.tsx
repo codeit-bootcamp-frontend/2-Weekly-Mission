@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { LoginProfile } from "../../api";
-import "../../CSS/Landing.css";
+import React, { useEffect, useState } from 'react';
+import { LoginProfile } from '../../api';
+import '../../CSS/Landing.css';
+import { UserFolderT } from '../../apiType';
+
+
 
 export default function Header() {
-  const [folderData, setFolderData] = useState(null);
+  const [folderData, setFolderData] = useState<UserFolderT | null>(null);
 
   const fetchData = async () => {
     try {

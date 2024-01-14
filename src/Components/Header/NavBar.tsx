@@ -3,11 +3,14 @@ import LogoImg from "../../images/logo.svg";
 import { HeaderApi } from "../../api";
 import { useEffect, useState } from "react";
 import "../../CSS/Landing.css";
+import { UserHeaderT } from "../../apiType";
+
+
 
 export default function NavBar() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserHeaderT>();
 
-  const fetchData = async () => {
+  const fetchData = async () : Promise<void> => {
     try {
       const userResponse = await HeaderApi();
       setUserData(userResponse);
