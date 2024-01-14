@@ -1,20 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { FolderButtonApi } from "../../api";
-import ShareIcon from "../../images/share.svg";
-import PenIcon from "../../images/pen.svg";
-import DeleteIcon from "../../images/Group 36.svg";
-import PlusIcon from "../../images/add.svg";
+import React, { useEffect, useState } from 'react';
+import { FolderButtonApi } from '../../api';
+import ShareIcon from '../../images/share.svg';
+import PenIcon from '../../images/pen.svg';
+import DeleteIcon from '../../images/Group 36.svg';
+import PlusIcon from '../../images/add.svg';
 
-export default function FolderButtons({ onSelectValue }) {
-  const [folderData, setFolderData] = useState([]);
-  const [value, setValue] = useState("전체");
+type SelectType = {
+  onSelectValue: (name: string, id: number) => void;
+};
 
-  const handleClickButton = (e, id) => {
-    const { name } = e.target;
+type FolderDataTypes = {
+  name: string;
+  id: number;
+};
+
+export default function FolderButtons({ onSelectValue }: SelectType) {
+  const [folderData, setFolderData] = useState<FolderDataTypes[]>([]);
+  const [value, setValue] = useState<string>('전체');
+
+  const handleClickButton = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    id: number
+  ): void => {
+    const { name } = e.target as HTMLButtonElement;
     setValue(name);
     onSelectValue(name, id);
   };
-  const fetchData = async () => {
+
+  const handleAllButtonClick = (): void => {
+    setValue('전체');
+    onSelectValue('전체', 0);
+  };
+
+  const fetchData = async (): Promise<void> => {
     try {
       const { data } = await FolderButtonApi();
       setFolderData(data);
@@ -31,19 +49,23 @@ export default function FolderButtons({ onSelectValue }) {
     <>
       <div className="BtnContainer">
         <div className="BtnBox">
-          <button onClick={handleClickButton} name="전체" className="FolderBtn">
+          <button
+            onClick={handleAllButtonClick}
+            name="전체"
+            className="FolderBtn"
+          >
             전체
           </button>
           {folderData ? (
-            folderData?.map((data) => (
-              <div key={data.id}>
+            folderData?.map((item) => (
+              <div key={item.id}>
                 <button
-                  key={data.id}
-                  onClick={(e) => handleClickButton(e, data.id)}
-                  name={data.name}
+                  key={item.id}
+                  onClick={(e) => handleClickButton(e, item.id)}
+                  name={item.name}
                   className="FolderBtn"
                 >
-                  {data.name}
+                  {item.name}
                 </button>
               </div>
             ))
