@@ -23,22 +23,22 @@ const LinkCard = ({ link } : { link:LinkType }) => {
   }
 
   return(
-    <Link href={link.url} target="_blank" rel='noopener noreferrer' className={`${style.card}`}>
+    <Link href={link.url} target="_blank" rel='noopener noreferrer' className={style.card}>
       <div className={style['star--icon']}>
         <Image src={star} alt='bookmark icon' fill />
       </div>
-      <figure className={`${style['link-image--container']}`}>
+      <figure className={style['link-image--container']}>
         <img src={imgSource || noImage} alt="링크 이미지" className={style['link-image']}/>
       </figure>
-      <div className={`${style["link-detail--container"]}`}>
-        <div className={`${style['link-created-ago--container']}`}>
-          <p className={`${style['link-created-ago']}`}>{dateDiff(createdDate, nowDate)}</p>
+      <div className={style["link-detail--container"]}>
+        <div className={style['link-created-ago--container']}>
+          <p className={style['link-created-ago']}>{dateDiff(createdDate, nowDate)}</p>
           <button onClick={handleKebobIconClick} className={style.btn}>
             <Image src={kebab} alt='kebab icon' fill />
           </button>
         </div>
-        <p className={`${style['link-description']}`}>{link.description}</p>
-        <p className={`${style['link-createdat']}`}>{createdDateString}</p>
+        <p className={style['link-description']}>{link.description}</p>
+        <p className={style['link-createdat']}>{createdDateString}</p>
       </div>
       {menuOpen && <SelectMenu />}
     </Link>

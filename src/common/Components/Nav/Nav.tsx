@@ -15,7 +15,7 @@ const UserProfile = ({profile} : {profile:UserType | undefined}) => {
       <div className={style['profile-image']}>
         <Image src={profile.profileImageSource || profile['image_source']} alt='프로필 아이콘' fill/>
       </div>
-      <p className={`${style['profile-email']}`}>{profile?.email}</p>
+      <p className={style['profile-email']}>{profile?.email}</p>
     </div>
   )
 };
@@ -27,13 +27,13 @@ const Nav = () => {
 
   return(
     <header className={`${style['landing--header']} ${router.pathname === '/folder' ? style['no-fixed'] : ''}`}>
-      <div className={`${style['header-bar']}`}>
+      <div className={style['header-bar']}>
         <Link href="/" className={style['landing--logo']}>
           <Image src={logo} alt="logo" fill/>
         </Link>
-        {router.pathname === '/shared' && (sharedPageUser?.email === '' ? <Link href="./signin.html" className={`${style['login--btn']}`}>로그인</Link> : <UserProfile profile={sharedPageUser} />)}
-        {router.pathname === '/folder' && (folderPageUser?.email === '' ? <Link href="./signin.html" className={`${style['login--btn']}`}>로그인</Link> : <UserProfile profile={folderPageUser} />)}
-        {(router.pathname !== '/shared' && router.pathname !== '/folder') && (sharedPageUser?.email === '' ? <Link href="./signin.html" className={`${style['login--btn']}`}>로그인</Link> : <UserProfile profile={sharedPageUser} />)}
+        {router.pathname === '/shared' && (sharedPageUser?.email === '' ? <Link href="./signin.html" className={style['login--btn']}>로그인</Link> : <UserProfile profile={sharedPageUser} />)}
+        {router.pathname === '/folder' && (folderPageUser?.email === '' ? <Link href="./signin.html" className={style['login--btn']}>로그인</Link> : <UserProfile profile={folderPageUser} />)}
+        {(router.pathname !== '/shared' && router.pathname !== '/folder') && (sharedPageUser?.email === '' ? <Link href="./signin.html" className={style['login--btn']}>로그인</Link> : <UserProfile profile={sharedPageUser} />)}
       </div>
     </header>
   )

@@ -39,14 +39,14 @@ const Icon = ({name, iconImg, link} :{ name:string, iconImg:string, link:string}
 
 const Footer = () => {
   return(
-    <footer className={`${style['footer']}`}>
-      <div className={`${style['info']}`}>
-        <p className={`${style['copyright']}`}>©codeit - 2023</p>
-        <div className={`${style['privacy-faq']}`}>
-          <a href="./privacy.html" className={`${style['privacy']}`}>Privacy Policy</a>
-          <a href="./faq.html" className={`${style['faq']}`}>FAQ</a>
+    <footer className={style['footer']}>
+      <div className={style['info']}>
+        <p className={style['copyright']}>©codeit - 2023</p>
+        <div className={style['privacy-faq']}>
+          <a href="./privacy.html" className={style['privacy']}>Privacy Policy</a>
+          <a href="./faq.html" className={style['faq']}>FAQ</a>
         </div>
-        <div className={`${style['sns-reference-links']}`}>
+        <div className={style['sns-reference-links']}>
           {snsReferenceLinks.map((reference) => <Icon key={reference.name} name={reference.name} iconImg={reference.iconImg} link={reference.link}></Icon>)}
         </div>
       </div>

@@ -1,8 +1,8 @@
-import style from '../../styles/Modal/ShareModal.module.css';
-import xbutton from '../../assets/x.svg';
-import facebook from '../../assets/facebook.svg';
-import kakao from '../../assets/Kakao.svg';
-import link from '../../assets/link.svg';
+import style from './ShareModal.module.css';
+import xbutton from '@/src/assets/x.svg';
+import facebook from '@/src/assets/facebook.svg';
+import kakao from '@/src/assets/Kakao.svg';
+import link from '@/src/assets/link.svg';
 
 const ShareModal = ({description, onClick} : {description:string, onClick:() => void}) => {
   return(

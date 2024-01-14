@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import style from './AddModal.module.css';
 import { useFolderPageFolder } from '@/src/folder/hooks/folderPageHooks';
-import xbutton from '../../assets/x.svg';
+import xbutton from '@/src/assets/x.svg';
 
 const AddModal = ({isOpen, onClick}) => {
   return(

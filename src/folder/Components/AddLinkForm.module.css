@@ -22,7 +22,7 @@
   border-radius: 15px;
   border: 1px solid var(--linkbrary-primary-color, #6D6AFE);
   background: var(--linkbrary-white, #FFF);
-  background-image: url('../assets/link.svg');
+  background-image: url('../../assets//link.svg');
   background-repeat: no-repeat;
   background-position: 20px 16px;
   text-indent: 32px;
