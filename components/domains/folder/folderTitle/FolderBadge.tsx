@@ -28,7 +28,6 @@ function FolderBadge({
     </Button>
   );
 }
-
 const Button = styled.button`
   background-color: #ffffff;
   border: 1px solid var(--primary-color);

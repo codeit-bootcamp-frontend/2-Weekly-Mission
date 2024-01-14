@@ -3,7 +3,7 @@ import AddLinkBanner from "../components/domains/folder/AddLinkBanner";
 import CardList from "../components/commons/CardList";
 import SearchInput from "../components/commons/SearchInput";
 import styles from "../styles/folderPage.module.css";
-import FolderButtonList from "../components/domains/folder/FolderBadgeList";
+import FolderBadgeList from "../components/domains/folder/FolderBadgeList";
 import FolderTitles from "../components/domains/folder/folderTitle/FolderTitles";
 import FloatingButton from "../components/domains/folder/FloatingButton";
 import { getAllLinksData, getUserFoldersData } from "./api/FolderApi";
@@ -64,7 +64,7 @@ function FolderPage() {
             setSearchKeyword={setSearchKeyword}
             onSearch={searchLink}
           />
-          <FolderButtonList
+          <FolderBadgeList
             setSelectFolderLinks={setSelectFolderLinks}
             setId={setId}
           />

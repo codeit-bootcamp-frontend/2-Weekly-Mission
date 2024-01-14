@@ -12,13 +12,15 @@ function FolderBadgeList({
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const locale = useContext<DataContextType>(DataContext) as FolderPageData[];
+  const folderList = useContext<DataContextType>(
+    DataContext
+  ) as FolderPageData[];
   const { openModal } = useContext<ModalControl>(ModalContext);
   return (
     <div>
       <FolderBadgeListBox>
         <FolderBadges>
-          {locale?.map((folder) => (
+          {folderList?.map((folder) => (
             <FolderBadge
               folder={folder}
               key={folder.id}
