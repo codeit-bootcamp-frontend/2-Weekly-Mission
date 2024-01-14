@@ -7,7 +7,7 @@ interface Props {
   setRef?: React.RefObject<HTMLFormElement>;
 }
 
-function LinkSearchInput({ setSearchValue, value, setRef }: Props) {
+export default function LinkSearchInput({ setSearchValue, value, setRef }: Props) {
   const handleSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue && setSearchValue(e.target.value);
   };
@@ -71,5 +71,3 @@ const StyledBtn = styled.button`
   align-items: center;
   cursor: pointer;
 `;
-
-export default LinkSearchInput;

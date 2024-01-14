@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-function Footer({ setRef }: { setRef: React.RefObject<HTMLDivElement> }) {
+export default function Footer({ setRef }: { setRef: React.RefObject<HTMLDivElement> }) {
   return (
     <StyledFooterContainer ref={setRef}>
       <StyledFooterItemContainer>
@@ -91,5 +91,3 @@ const StyledFooterIconContainer = styled.div`
     justify-content: space-between;
   }
 `;
-
-export default Footer;

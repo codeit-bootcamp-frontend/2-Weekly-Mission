@@ -5,7 +5,7 @@ interface Props {
   children: ReactNode;
 }
 
-function MainContainer({ children }: Props) {
+export default function MainContainer({ children }: Props) {
   return <StyledMainContainer>{children}</StyledMainContainer>;
 }
 
@@ -17,5 +17,3 @@ const StyledMainContainer = styled.div`
     margin: 4rem 3.2rem;
   }
 `;
-
-export default MainContainer;

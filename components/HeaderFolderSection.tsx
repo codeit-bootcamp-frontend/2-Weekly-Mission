@@ -6,7 +6,7 @@ interface Props {
   folderData: IUserFolderData;
 }
 
-function HeaderFoloderSection({ folderData }: Props) {
+export default function HeaderFoloderSection({ folderData }: Props) {
   const folderName = folderData.name;
   const ownerName = folderData.owner?.name;
   const ownerImg = folderData.owner.profileImageSource;
@@ -46,5 +46,3 @@ const StyledSelectFolderName = styled.h2`
   font-size: 4rem;
   font-weight: 600;
 `;
-
-export default HeaderFoloderSection;

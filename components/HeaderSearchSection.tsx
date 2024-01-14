@@ -6,7 +6,7 @@ interface Props {
   footerOb: boolean;
 }
 
-function HeaderSearchSection({ setRef, linkSearchInputOb, footerOb }: Props) {
+export default function HeaderSearchSection({ setRef, linkSearchInputOb, footerOb }: Props) {
   return (
     <Container>
       <StyledHeaderSectionContainer ref={setRef} $linkSearchOb={linkSearchInputOb} $footerOb={footerOb}>
@@ -91,5 +91,3 @@ const StyledHeaderSectionButton = styled.button`
   transform: translate(0, -50%);
   cursor: pointer;
 `;
-
-export default HeaderSearchSection;
