@@ -1,13 +1,21 @@
 import Image from "next/image";
+import { useState } from "react";
 import styled from "styled-components";
 
-export default function Input({ label, type, id, setType, isType }) {
+export default function Input({ label, type, id, setType, isType, placeholder }) {
+  const [value, setValue] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+
+  function handleInputValue(e) {
+    setValue(e.target.value);
+  }
+
   return (
     <>
       <InputContainer>
         <Label for={id}>{label}</Label>
         <PositionContainer>
-          <LoginInput type={type} id={id}></LoginInput>
+          <LoginInput type={type} id={id} placeholder={placeholder} onChange={handleInputValue} />
           {id === "password" ? (
             <EyeIcon
               src={isType ? "/svg/eye-off.svg" : "/svg/eye-on.svg"}
@@ -20,6 +28,7 @@ export default function Input({ label, type, id, setType, isType }) {
           ) : (
             ""
           )}
+          {errMsg ? <StyledErrMsg>`${errMsg}`</StyledErrMsg> : ""}
         </PositionContainer>
       </InputContainer>
     </>
@@ -61,4 +70,9 @@ const EyeIcon = styled(Image)`
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+`;
+
+const StyledErrMsg = styled.p`
+  color: #ff5b56;
+  font-size: 14px;
 `;
