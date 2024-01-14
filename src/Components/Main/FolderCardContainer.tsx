@@ -6,41 +6,30 @@ import NullImg from '../../images/logo.svg';
 import '../../CSS/Folder.css';
 import KebobMenu from './KebobMenu';
 
-function timeAgo(timestamp : number) {
-  const now: Date |number = new Date();
-  const seconds = Math.floor(((+now) - (+timestamp)) / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  const months = Math.floor(days / 30);
-  const years = Math.floor(months / 12);
-
-  switch (true) {
-    case seconds < 120:
-      return '1 minute ago';
-    case minutes < 60:
-      return `${minutes} minutes ago`;
-    case hours < 24:
-      return '1 hour ago';
-    case days < 30:
-      return `${days} days ago`;
-    case months < 12:
-      return `${months} months ago`;
-    case years === 1:
-      return '1 year ago';
-    case years > 1:
-      const roundedYears = Math.floor(years);
-      return `${roundedYears} years ago`;
-    default:
-      return 'Just now';
-  }
+interface FolderCardContainerProps {
+  selectedValue: number | string;
+  dataId: number | null;
 }
 
-export default function FolderCardContainer({ selectedValue, dataId }) {
-  const [folderData, setFolderData] = useState([]);
-  const [kebobBtnStates, setKebobBtnStates] = useState([]);
+interface FolderDataTypes {
+  id: number;
+  created_at: string;
+  updated_at: string | null;
+  url: string;
+  title: string | null;
+  description: string | null;
+  image_source: string | null;
+  folder_id: number | null;
+}
 
-  const fetchData = async () => {
+export default function FolderCardContainer({
+  selectedValue,
+  dataId,
+}: FolderCardContainerProps) {
+  const [folderData, setFolderData] = useState<FolderDataTypes[]>([]);
+  const [kebobBtnStates, setKebobBtnStates] = useState<boolean[]>([]);
+
+  const fetchData = async (): Promise<void> => {
     try {
       const { data } = await FolderLoginProfile();
       setFolderData(data);
@@ -54,11 +43,41 @@ export default function FolderCardContainer({ selectedValue, dataId }) {
     fetchData();
   }, []);
 
+  const timeAgo = (timestamp: number | Date) => {
+    const now: Date | number = new Date();
+    const seconds = Math.floor((+now - +timestamp) / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(months / 12);
+
+    switch (true) {
+      case seconds < 120:
+        return '1 minute ago';
+      case minutes < 60:
+        return `${minutes} minutes ago`;
+      case hours < 24:
+        return '1 hour ago';
+      case days < 30:
+        return `${days} days ago`;
+      case months < 12:
+        return `${months} months ago`;
+      case years === 1:
+        return '1 year ago';
+      case years > 1:
+        const roundedYears = Math.floor(years);
+        return `${roundedYears} years ago`;
+      default:
+        return 'Just now';
+    }
+  };
+
   const filteredData = folderData.filter(
-    (link) => selectedValue === '전체' || link.folder_id === dataId
+    (item) => selectedValue === '전체' || item.folder_id === dataId
   );
 
-  const selectHandler = (index) => {
+  const selectHandler = (index: number) => {
     setKebobBtnStates((prevStates) => {
       const newStates = [...prevStates];
       newStates[index] = !newStates[index];
@@ -69,11 +88,11 @@ export default function FolderCardContainer({ selectedValue, dataId }) {
   return (
     <div className="FolderCardBoxContainer">
       {filteredData.length > 0 ? (
-        filteredData.map((link, i) => (
-          <div key={i} className="FolderCardBox">
-            <a href={link.url} alt="targetUrl">
+        filteredData.map((item) => (
+          <div key={item.id} className="FolderCardBox">
+            <a href={item.url}>
               <img
-                src={link.image_source || NullImg}
+                src={item.image_source || NullImg}
                 alt="이미지"
                 className="FolderCardImg"
               />
@@ -83,20 +102,20 @@ export default function FolderCardContainer({ selectedValue, dataId }) {
             </button>
             <div className="FolderCardTextBox">
               <p className="FolderCardUpLoadTime">
-                {timeAgo(new Date(link.created_at))}
+                {timeAgo(new Date(item.created_at))}
                 <button
                   className="KebabBtn"
                   onClick={() => {
-                    selectHandler(i);
+                    selectHandler(item.id);
                   }}
                 >
                   <img src={KebabIcon} alt="Kebab" />
-                  {kebobBtnStates[i] ? <KebobMenu /> : null}
+                  {kebobBtnStates[item.id] ? <KebobMenu /> : null}
                 </button>
               </p>
-              <p className="FolderCardTextDescription">{link.description}</p>
+              <p className="FolderCardTextDescription">{item.description}</p>
               <p className="FolderCardTextYears">
-                {link.created_at.slice(0, 10)}
+                {item.created_at.slice(0, 10)}
               </p>
             </div>
           </div>
