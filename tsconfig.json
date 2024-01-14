@@ -3,18 +3,10 @@
     "target": "es5",
     "module": "commonjs",
     "jsx": "react",
-    "include": [
-      "next-env.d.ts",
-      "**/*.ts",
-      "**/*.tsx",
-      "next.config.js",
-      "custom.d.ts",
-      "styles",
-      "pages",
-      "public"
-    ],
     "esModuleInterop": true,
     "noImplicitAny": true,
-    "strictNullChecks": true
-  }
+    "strictNullChecks": true,
+    "moduleDetection": "force",
+  },
+  "include": ["src","custom.d.ts"],
 }
