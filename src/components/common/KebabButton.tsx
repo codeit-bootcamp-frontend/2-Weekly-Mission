@@ -1,5 +1,6 @@
+import dynamic from 'next/dynamic';
 import clsx from 'clsx';
-import Modal from 'components/common/Modal';
+const Modal = dynamic(() => import('components/common/Modal'), { ssr: false });
 import stylesForModal from 'components/common/Modal.module.css';
 import Selector from 'components/common/Selector';
 import useOutsideClick from 'hooks/useClickOutside';

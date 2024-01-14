@@ -1,34 +1,19 @@
+import dynamic from 'next/dynamic';
 import { useMediaQuery } from 'react-responsive';
 import useModal from 'hooks/useModal';
-import Modal from 'components/common/Modal';
 import styles from './FloatingActionButton.module.css';
 import stylesForModal from 'components/common/Modal.module.css';
-import { useEffect, useState } from 'react';
+const Modal = dynamic(() => import('components/common/Modal'), { ssr: false });
 
 export default function FloatingActionButton() {
   const [addFoldermodalRef, openAddFolderModal, closeAddFoldereModal] = useModal();
 
-  const [mobile, setMobile] = useState<boolean>(true); //hydration fail 방지를 위해 파생된 뷰포트 관련 state를 제작
-
   const isMobile = useMediaQuery({
     query: '(max-width :767px)',
   });
-
-  const checkResize = () => {
-    if (isMobile) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
-  };
-
-  useEffect(() => {
-    checkResize();
-  }, [isMobile]);
-
   return (
     <>
-      {mobile && (
+      {isMobile && (
         <div className={styles.FloatingActionButtonContainer}>
           <button className={styles.FloatingActionButton} onClick={openAddFolderModal}>
             <div>폴더추가</div>

@@ -1,8 +1,9 @@
+import dynamic from 'next/dynamic';
 import LoginButton from 'components/common/LoginButton';
-import Profile from 'components/others/Profile';
+import { UserInfo } from 'constants/type';
+const Profile = dynamic(() => import('components/others/Profile'), { ssr: false });
 
 import styles from './Gnb.module.css';
-import { UserInfo } from 'constants/type';
 
 function Gnb({ userData }: { userData: UserInfo }) {
   const userProfile = userData;

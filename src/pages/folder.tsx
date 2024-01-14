@@ -1,11 +1,12 @@
 import AddLinkBar from 'components/common/AddLinkBar';
 import { Cards } from 'components/common/Cards';
-import FloatingActionButton from 'components/common/FloatingActionButton';
+const FloatingActionButton = dynamic(() => import('components/common/FloatingActionButton'), { ssr: false });
+const Filtering = dynamic(() => import('components/others/Filtering'), { ssr: false });
+
 import Footer from 'components/common/Footer';
 import Gnb from 'components/common/Gnb';
 import SearchBar from 'components/common/SearchBar';
 import ContentLayout from 'components/others/ContentLayout';
-import Filtering from 'components/others/Filtering';
 import FolderEditButtons from 'components/others/FolderEditButtons';
 import { FolderItem, LinkItem, UserInfo } from 'constants/type';
 import { useSearchContext } from 'context/SearchContext';
@@ -15,6 +16,7 @@ import { useEffect } from 'react';
 import styles from 'styles/folder.module.css';
 import filterLinks from 'utils/filtering';
 import { PageContextProvider, usePageContext } from 'context/PageContext';
+import dynamic from 'next/dynamic';
 
 export async function getStaticProps() {
   const folderList = await getFolder();

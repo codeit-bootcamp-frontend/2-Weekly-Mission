@@ -1,8 +1,9 @@
+import dynamic from 'next/dynamic';
 import clsx from 'clsx';
-import Modal from 'components/common/Modal';
 import stylesForModal from 'components/common/Modal.module.css';
 import { useSearchContext } from 'context/SearchContext';
 import useModal from 'hooks/useModal';
+const Modal = dynamic(() => import('components/common/Modal'), { ssr: false });
 
 import styles from './FolderEditButtons.module.css';
 
