@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useContext } from "react";
 import { getSelectData } from "../../../pages/api/FolderApi";
-import { Folder } from "../../../types/folder";
+import { FolderPageData } from "../../../types/common";
 import { Link } from "../../../types/common";
+import { ModalContext } from "../../../contexts/LocaleContext";
 
 function Button({
   folder,
   setSelectFolderLinks,
   setId,
 }: {
-  folder: Folder;
+  folder: FolderPageData;
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
 }) {
@@ -34,13 +35,13 @@ function FolderButtonList({
   folderList,
   setSelectFolderLinks,
   setId,
-  openModal,
 }: {
-  folderList: Folder[];
+  folderList: FolderPageData[];
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
-  openModal: () => void;
 }) {
+  const { openModal } = useContext(ModalContext);
+
   return (
     <div>
       <StyledButtonBox>

@@ -50,10 +50,10 @@ export async function signIn(email: string, password: string, setError: any) {
     }
   } catch (error) {
     setError("password", {
-      message: "비밀번호를 확인해주세요",
+      message: "비밀번호를 확인해주세요.",
     });
     setError("email", {
-      message: "이메일을 확인해주세요",
+      message: "이메일을 확인해주세요.",
     });
   }
 }

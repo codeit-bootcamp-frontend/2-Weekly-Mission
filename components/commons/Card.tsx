@@ -98,6 +98,7 @@ const CardDescriptionBox = styled.div`
     -webkit-box-orient: vertical;
     margin-bottom: 1rem;
   }
+
   & div {
     font-size: 1.4rem;
   }

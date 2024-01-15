@@ -12,6 +12,7 @@ interface CategoryInfo {
 function Category({ category }: { category: CategoryInfo }) {
   const { title, image } = category;
   const { openModal } = useContext<ModalControl>(ModalContext);
+
   return (
     <CategoryBox
       onClick={() => {

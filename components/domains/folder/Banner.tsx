@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
+import { ModalContext } from "../../../contexts/LocaleContext";
 
-function Banner({ openModal }: { openModal: () => void }) {
+function Banner() {
+  const { openModal } = useContext(ModalContext);
   return (
     <BannerLayout>
       <BannerBox>
@@ -33,6 +35,7 @@ const BannerLayout = styled.section`
   justify-content: center;
   align-items: center;
 `;
+
 const BannerBox = styled.div`
   width: 80rem;
   position: relative;
@@ -59,6 +62,7 @@ const BannerBox = styled.div`
       rgba(109, 106, 254, 1),
       rgba(106, 227, 254, 1)
     );
+
     border: none;
     border-radius: 0.8rem;
     color: var(--white-color);

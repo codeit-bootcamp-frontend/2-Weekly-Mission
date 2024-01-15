@@ -22,6 +22,7 @@ const SignUpPageLayout = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const SignUpPageBox = styled.div`
   width: 40rem;
 `;

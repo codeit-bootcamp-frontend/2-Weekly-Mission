@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Category from "./Category";
-import { Folder } from "../../../../types/folder";
+import { FolderPageData } from "../../../../types/common";
 
 const categoryList = [
   { title: "공유", image: "/images/share.png " },
@@ -13,7 +13,7 @@ function CategoryBox({
   openModal,
   searchResult,
 }: {
-  folder: Folder;
+  folder: FolderPageData;
   openModal: () => void;
   searchResult: string;
 }) {
@@ -23,11 +23,7 @@ function CategoryBox({
       {folder.name !== "전체" ? (
         <CategoryList>
           {categoryList.map((category) => (
-            <Category
-              key={folder.id}
-              category={category}
-              openModal={openModal}
-            />
+            <Category key={folder.id} category={category} />
           ))}
         </CategoryList>
       ) : null}

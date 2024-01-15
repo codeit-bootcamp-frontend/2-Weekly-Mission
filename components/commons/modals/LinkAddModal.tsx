@@ -32,6 +32,7 @@ const FolderList = styled.ul`
   padding: 0;
   margin-bottom: 2.4rem;
 `;
+
 const Folder = styled.li`
   padding: 0.8rem;
   display: flex;
@@ -42,6 +43,7 @@ const Folder = styled.li`
     font-size: 1.6rem;
     color: rgba(55, 55, 64, 1);
   }
+
   & div {
     font-size: 1.4rem;
     color: rgba(159, 166, 178, 1);

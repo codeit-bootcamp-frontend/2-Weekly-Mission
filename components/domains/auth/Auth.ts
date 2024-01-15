@@ -21,6 +21,7 @@ export const InputBox = styled.div<IsError>`
   position: relative;
   display: flex;
   align-items: center;
+
   & input {
     width: 100%;
     padding: 1.8rem 1.5rem;
@@ -77,6 +78,7 @@ export const LogoImage = styled(Image)`
 
 export const LinkBox = styled.div`
   font-size: 1.6rem;
+
   & div {
     font-weight: 400;
     line-height: 2.4rem;

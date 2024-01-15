@@ -22,6 +22,7 @@ const SignInPageLayout = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const SignInPageBox = styled.div`
   width: 40rem;
 `;

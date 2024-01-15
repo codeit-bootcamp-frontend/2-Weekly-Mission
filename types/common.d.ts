@@ -21,7 +21,7 @@ export interface Modal {
 
 export interface ModalControl {
   openModal: (text: string) => void;
-  closeModal: () => void;
+  closeModal?: () => void;
 }
 
 export interface FolderPageData {

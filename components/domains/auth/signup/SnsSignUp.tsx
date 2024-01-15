@@ -6,7 +6,7 @@ import Image from "next/image";
 const SnsSignUp = () => {
   return (
     <SnsSignUpBox>
-      <p>소셜 로그인</p>
+      <p>다른 방식으로 가입하기</p>
       <SnsIconBox>
         <Link href={"https://www.google.com/"}>
           <GoogleIcon
