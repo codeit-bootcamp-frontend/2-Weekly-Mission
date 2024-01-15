@@ -13,15 +13,30 @@ function FolderSharedModal({ onConfirm }: { onConfirm: () => void }) {
         <p>폴더명</p>
         <SnsListBox>
           <SnsBox>
-            <Image src="/images/modal-kakao.png" width={42} height={42} alt="카카오 아이콘" />
+            <Image
+              src="/images/modal-kakao.png"
+              width={42}
+              height={42}
+              alt="카카오 아이콘"
+            />
             <div>카카오톡</div>
           </SnsBox>
           <SnsBox>
-            <Image src="/images/modal-facebook.png" width={42} height={42} alt="페이스북 아이콘" />
+            <Image
+              src="/images/modal-facebook.png"
+              width={42}
+              height={42}
+              alt="페이스북 아이콘"
+            />
             <div>페이스북</div>
           </SnsBox>
           <SnsBox>
-            <Image src="/images/modal-link.png" width={42} height={42} alt="링크 아이콘" />
+            <Image
+              src="/images/modal-link.png"
+              width={42}
+              height={42}
+              alt="링크 아이콘"
+            />
             <div>링크복사</div>
           </SnsBox>
         </SnsListBox>

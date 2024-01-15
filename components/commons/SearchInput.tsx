@@ -22,14 +22,24 @@ function SearchInput({
           }}
           placeholder="링크를 검색해주세요"
         />
-        <Image width={16} height={16} src="/images/search.png" alt="검색 아이콘" />
+        <Image
+          width={16}
+          height={16}
+          src="/images/search.png"
+          alt="검색 아이콘"
+        />
         <DeleteButton
           onClick={() => {
             onSearch("");
             setSearchKeyword("");
           }}
         >
-          <Image width={24} height={24} src="/images/search-close.png" alt="검색어 삭제 아이콘" />
+          <Image
+            width={24}
+            height={24}
+            src="/images/search-close.png"
+            alt="검색어 삭제 아이콘"
+          />
         </DeleteButton>
       </SearchBox>
       {searchKeyword !== "" ? (

@@ -1,9 +1,9 @@
-import getDate from "./RequestApi";
+import requestApi from "./RequestApi";
 
 export async function getUserData() {
-  return getDate("/sample/user");
+  return requestApi("/sample/user");
 }
 
 export async function getSharedFolderData() {
-  return getDate("/sample/folder");
+  return requestApi("/sample/folder");
 }

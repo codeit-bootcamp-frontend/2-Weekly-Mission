@@ -67,7 +67,6 @@ const CardImageWrapper = styled.div`
 
 const CardImage = styled(Image)`
   object-fit: cover;
-
   top: -15% !important;
 
   &:hover {
@@ -77,7 +76,6 @@ const CardImage = styled(Image)`
 
 const CardNoImage = styled(Image)`
   object-fit: cover;
-
   top: -15% !important;
 `;
 
