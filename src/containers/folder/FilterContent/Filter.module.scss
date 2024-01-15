@@ -11,9 +11,10 @@
   &-list {
     @include flexbox(start, center);
 
-    &-item:not(:last-child) {
-      margin-right: 8px;
+    flex-wrap: wrap;
+    gap: 0.8rem;
 
+    &-item:not(:last-child) {
       span {
         white-space: nowrap;
       }
@@ -85,14 +86,6 @@
   @include responsive(T) {
     position: relative;
 
-    &-list {
-      flex-wrap: wrap;
-
-      &-item {
-        padding-bottom: 1.2rem;
-      }
-    }
-
     .add-filter-lg {
       position: absolute;
       top: 1.5rem;
@@ -101,14 +94,6 @@
   }
 
   @include responsive(M) {
-    &-list {
-      flex-wrap: wrap;
-
-      &-item {
-        padding-bottom: 1.2rem;
-      }
-    }
-
     .add-filter-lg {
       display: none;
     }
