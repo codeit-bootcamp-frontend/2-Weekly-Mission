@@ -84,11 +84,11 @@ const Form = () => {
         <PasswordConfirmBox isError={!!errors.passwordConfirm}>
           <input
             type="password"
-            placeholder="비밀번호와 일치하는 값을 입력해 주세요."
+            placeholder="비밀번호와 일치하는 값을 입력해 주세요"
             {...register("passwordConfirm", {
-              required: "비밀번호와 일치하는 값을 입력해 주세요",
+              required: "비밀번호와 일치하는 값을 입력해 주세요.",
               validate: (value) =>
-                watch("password") === value || "비밀번호가 일치하지 않습니다",
+                watch("password") === value || "비밀번호가 일치하지 않습니다.",
             })}
           />
           <PasswordOn
