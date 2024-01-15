@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 import SignLayout from '@/components/Sign/SignLayout/SignLayout';
 import SignHeader from '@/components/Sign/SignHeader/SignHeader';
@@ -8,6 +9,14 @@ import EmailInput from '@/components/Sign/EmailInput/EmailInput';
 import PasswordInput from '@/components/Sign/PasswordInput/PasswordInput';
 
 export default function Signin() {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (localStorage.getItem('accessToken')) {
+      router.push('/folder');
+    }
+  }, []);
+
   return (
     <SignLayout>
       <SignHeader question='회원이 아니신가요?' href='/signup' linkText='회원 가입하기' />
