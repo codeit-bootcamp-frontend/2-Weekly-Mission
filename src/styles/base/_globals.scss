@@ -39,15 +39,3 @@
     }
   }
 }
-
-.sm-only {
-  @media screen and (min-width: $sm-breakpoint + 1) {
-    display: none;
-  }
-}
-
-.sm-hidden {
-  @media screen and (max-width: $sm-breakpoint) {
-    display: none;
-  }
-}

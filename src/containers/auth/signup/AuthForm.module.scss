@@ -1,0 +1,62 @@
+.auth-form {
+  width: 40rem;
+  padding: 23.8rem 0;
+  margin: 0 auto;
+
+  &-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3rem;
+
+    &-info {
+      @include text-style(16);
+
+      margin-top: 1.6rem;
+    }
+
+    &-signin {
+      margin-left: 0.8rem;
+      border-bottom: 0.1rem solid;
+      color: $primary;
+      line-height: 2rem;
+      font-weight: 600;
+    }
+  }
+
+  &-login {
+    @include column-flexbox;
+
+    width: 100%;
+    gap: 3rem;
+  }
+
+  &-social {
+    @include flexbox(between);
+
+    width: 100%;
+    padding: 1.2rem 2.4rem;
+    margin-top: 3.2rem;
+    border: 0.1rem solid $blue-gray-60;
+    border-radius: 0.8rem;
+    background-color: $blue-gray-40;
+
+    &-title {
+      @include text-style(14, $blue-gray-100);
+    }
+
+    &-list {
+      @include flexbox;
+
+      gap: 1.6rem;
+    }
+  }
+
+  @include responsive('T') {
+    padding: 20rem 0;
+  }
+
+  @include responsive('M') {
+    width: 100%;
+    padding: 12rem 3.2rem;
+  }
+}

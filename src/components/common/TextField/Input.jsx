@@ -2,14 +2,15 @@ import { useState } from 'react';
 
 import styles from './Input.module.scss';
 import classNames from 'classnames/bind';
-import IconButton from 'components/common/Button/IconButton';
 
-import { PASSWORD_SHOW_MODE } from 'stores/auth';
+import IconButton from 'components/common/Button/IconButton';
+import { PASSWORD_SHOW_MODE, AUTHENTICATION } from 'constants/auth';
 
 const cx = classNames.bind(styles);
 
-const Input = ({ error = false, type = 'text', ...inputProps }) => {
+const Input = ({ register, name, error = false, type = 'text', ...inputProps }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const { regex, errorMessage } = AUTHENTICATION[name];
   const { iconEye, inputType, showMode } = isVisible
     ? PASSWORD_SHOW_MODE.on
     : PASSWORD_SHOW_MODE.off;
@@ -20,10 +21,16 @@ const Input = ({ error = false, type = 'text', ...inputProps }) => {
     <div>
       <div className={cx('input-group')}>
         <input
-          name={type}
-          type={inputType}
-          {...inputProps}
+          {...register(name, {
+            required: errorMessage.empty,
+            pattern: {
+              value: regex,
+              message: errorMessage.invalid,
+            },
+          })}
+          type={type === 'password' ? inputType : type}
           className={cx('input', { error: error })}
+          {...inputProps}
         />
 
         {type === 'password' && (
@@ -42,4 +49,5 @@ const Input = ({ error = false, type = 'text', ...inputProps }) => {
     </div>
   );
 };
+
 export default Input;

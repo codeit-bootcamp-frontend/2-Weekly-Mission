@@ -1,11 +1,14 @@
 import axios from 'axios';
+
 import {
   ACCESS_TOKEN,
   REFRESH_TOKEN,
   AUTHORIZATION,
   REFRESH_TOKEN_URL,
   STATUS_CODE,
-} from 'stores/auth';
+} from 'constants/auth';
+
+import LocalStorage from 'services/localstorage';
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -17,7 +20,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+    const accessToken = LocalStorage.getItem(ACCESS_TOKEN);
 
     if (!accessToken) {
       return config;
@@ -48,14 +51,14 @@ instance.interceptors.response.use(
       const response = await postRefreshToken();
 
       if (response) {
-        localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-        localStorage.setItem(REFRESH_TOKEN, response.refreshToken);
+        LocalStorage.setItem(ACCESS_TOKEN, response.accessToken);
+        LocalStorage.setItem(REFRESH_TOKEN, response.refreshToken);
         error.config.headers[AUTHORIZATION] = `Bearer ${response.accessToken}`;
 
         const originalResponse = await axios.request(error.config);
         return originalResponse;
       } else {
-        localStorage.clear();
+        LocalStorage.clear();
         redirectToPage();
       }
     }
@@ -66,7 +69,7 @@ instance.interceptors.response.use(
 async function postRefreshToken() {
   try {
     // 리프레시 토큰으로 엑세스 토큰 갱신
-    const refreshToken = localStorage.getItem(REFRESH_TOKEN);
+    const refreshToken = LocalStorage.getItem(REFRESH_TOKEN);
 
     const headers = {
       'Content-Type': 'application/json',

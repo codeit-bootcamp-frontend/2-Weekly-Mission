@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import styles from './SharedLink.module.scss';
 import classNames from 'classnames/bind';
 
-import { shareKakaoLink } from 'utils/shareKaKaoLink';
+import { shareKakaoLink } from 'utils';
 import IconButton from 'components/common/Button/IconButton';
 
-import { ICON } from 'stores/importImg';
+import { ICON } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 

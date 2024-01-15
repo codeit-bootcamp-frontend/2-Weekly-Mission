@@ -5,14 +5,14 @@ import styles from './AddLinkFrom.module.scss';
 import classNames from 'classnames/bind';
 
 import { useAsync } from 'hooks/useAsync';
-import api from 'apis/api';
+import Api from 'apis/apiCall';
 
-import MyButton from 'components/common/Button/MyButton';
+import StyledButton from 'components/common/Button/StyledButton';
 import FolderList from 'containers/folder/ModalContent/FolderList';
 import Dialog from 'components/common/Modal';
 
-import { INITIAL_FILTER_DATA } from 'stores/initialData';
-import { ICON } from 'stores/importImg';
+import { INITIAL_FILTER_DATA } from 'constants/initialData';
+import { ICON } from 'constants/importImg';
 
 const cx = classNames.bind(styles);
 const { liked } = ICON;
@@ -23,7 +23,7 @@ const AddLinkForm = () => {
 
   const {
     data: { data: filterData },
-  } = useAsync(() => api.get('/api/users/1/folders'), INITIAL_FILTER_DATA);
+  } = useAsync(() => Api.getFolderList(), INITIAL_FILTER_DATA);
 
   const handleValueChange = (e) => setInputValue(e.target.value);
   const handleAddButtonClick = () => setIsModalOpen(true);
@@ -48,14 +48,14 @@ const AddLinkForm = () => {
             className={cx('link-input')}
           />
         </div>
-        <MyButton text='추가하기' size='sm' onClick={handleAddButtonClick} />
+        <StyledButton text='추가하기' size='sm' onClick={handleAddButtonClick} />
       </form>
 
       {isModalOpen && (
         <Dialog onClose={handleModalClose} modalTitle='폴더에 추가' subTitle={inputValue}>
           <div className={cx('modal-content')}>
             <FolderList folderList={filterData} />
-            <MyButton text='추가하기' size='lg' />
+            <StyledButton text='추가하기' size='lg' />
           </div>
         </Dialog>
       )}

@@ -1,0 +1,145 @@
+.feature-content {
+  width: 100%;
+
+  &-save {
+    .textbox-sub-title {
+      span {
+        @include gradient-text;
+
+        background-image: $gradient-sub-title-1;
+      }
+    }
+  }
+
+  &-manage {
+    .textbox {
+      order: 2;
+    }
+
+    .textbox-sub-title {
+      span {
+        @include gradient-text;
+
+        background-image: $gradient-sub-title-2;
+      }
+    }
+  }
+
+  &-share {
+    .textbox-sub-title {
+      span {
+        @include gradient-text;
+
+        background-image: $gradient-sub-title-3;
+      }
+    }
+  }
+
+  &-search {
+    .textbox {
+      order: 2;
+    }
+
+    .textbox-sub-title {
+      span {
+        @include gradient-text;
+
+        background-image: $gradient-sub-title-4;
+      }
+    }
+  }
+
+  .container {
+    max-width: 99.8rem;
+    margin: 0 auto;
+
+    .feature-wrapper {
+      @include flexbox(between);
+
+      padding: 5rem 10.1rem;
+
+      .textbox {
+        width: 29.1rem;
+
+        &-sub-title {
+          @include text-style(48, $black);
+
+          margin-bottom: 1rem;
+        }
+
+        &-desc {
+          @include text-style(16, $gray-60);
+
+          word-break: keep-all;
+        }
+
+        @include responsive(M) {
+          width: 100%;
+          padding: 4rem 0 2.4rem;
+
+          &-sub-title {
+            @include text-style(24);
+          }
+        }
+      }
+
+      .imgbox {
+        width: 55rem;
+        height: 45rem;
+        border-radius: 1.5rem;
+        background-color: $light-blue;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      @include responsive(T) {
+        padding: 5rem 0;
+
+        .textbox {
+          width: 26.2rem;
+        }
+
+        .imgbox {
+          width: 38.5rem;
+          height: 31.5rem;
+        }
+      }
+
+      @include responsive(M) {
+        display: block;
+        padding: 0 0 4rem;
+
+        .imgbox {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .sm-only {
+      .textbox-sub-title {
+        margin: 4rem 0 2rem;
+      }
+
+      .textbox-desc {
+        @include text-style(15);
+
+        margin-top: 1.6rem;
+      }
+    }
+
+    @include responsive(T) {
+      max-width: 69.8rem;
+    }
+
+    @include responsive(M) {
+      width: 100%;
+      padding: 0 3.2rem;
+    }
+  }
+}

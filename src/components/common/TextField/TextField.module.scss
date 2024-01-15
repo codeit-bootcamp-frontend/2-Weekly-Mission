@@ -1,4 +1,7 @@
 .text-field {
+  position: relative;
+  width: 100%;
+
   &-label {
     @include text-style(14, $black);
   }
@@ -10,7 +13,9 @@
   &-message {
     @include text-style(14, $red);
 
+    position: absolute;
     display: none;
+    width: 100%;
 
     &.error {
       display: block;

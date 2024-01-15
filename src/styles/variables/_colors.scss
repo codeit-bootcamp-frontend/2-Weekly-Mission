@@ -2,8 +2,6 @@ $primary: #6d6afe;
 $red: #ff5b56;
 $dark-blue: #111322;
 $light-blue: #f0f6ff;
-$loading-back: #eff0f6;
-$loading-box: #e2e4f0;
 $blue-gray-100: #373740;
 $blue-gray-80: #9fa6b2;
 $blue-gray-60: #ccd5e3;
@@ -16,4 +14,13 @@ $gray-70: #676767;
 $gray-60: #6b6b6b;
 $gray-40: #cfcfcf;
 $gray-20: #f5f5f5;
-$gradation: linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%);
+$gradient-blue: linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%);
+$gradient-main-title: linear-gradient(91deg, #6d6afe 17.28%, #ff9f9f 74.98%);
+$gradient-sub-title-1: linear-gradient(96deg, #fe8a8a 1.72%, #a4ceff 74.97%);
+$gradient-sub-title-2: linear-gradient(277deg, #6fbaff 59.22%, #ffd88b 93.66%);
+$gradient-sub-title-3: linear-gradient(
+  99deg,
+  #6d7ccd 19.76%,
+  rgba(82 136 133/ 22%) 52.69%
+);
+$gradient-sub-title-4: linear-gradient(271deg, #fe578f -9.84%, #68e8f9 107.18%);

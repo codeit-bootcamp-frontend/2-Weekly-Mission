@@ -4,7 +4,7 @@ import styles from './FilterContent.module.scss';
 import classNames from 'classnames/bind';
 
 import { useAsync } from 'hooks/useAsync';
-import api from 'apis/api';
+import Api from 'apis/apiCall';
 
 import { useStoredData } from 'hooks/useStoredData';
 import { FolderContext } from 'stores/provider/FolderProvider';
@@ -15,7 +15,7 @@ import EmptyContent from 'components/layout/EmptyContent';
 import GridLayout from 'components/layout/Grid';
 import CardItem from 'containers/folder/CardItem';
 
-import { INITIAL_FILTER_DATA } from 'stores/initialData';
+import { INITIAL_FILTER_DATA } from 'constants/initialData';
 
 const cx = classNames.bind(styles);
 const foundKeyArr = ['url', 'title', 'description'];
@@ -26,7 +26,7 @@ const FilterContent = ({ keyword }) => {
 
   const {
     data: { data: filterData },
-  } = useAsync(() => api.get('/api/users/1/folders'), INITIAL_FILTER_DATA);
+  } = useAsync(() => Api.getFolderList(), INITIAL_FILTER_DATA);
 
   const searchCardList = useMemo(() => {
     if (!keyword?.length) return filteredCardList;
