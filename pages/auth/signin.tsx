@@ -15,6 +15,12 @@ export default function Signin() {
     router.push("/folder");
   };
 
+  const handleOnKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onLogin();
+    }
+  };
+
   return (
     <div className={styles.body}>
       <main className={styles.main}>
@@ -52,13 +58,13 @@ export default function Signin() {
               return password !== "";
             }}
             errorMessage="비밀번호를 입력해 주세요."
+            onKeyPress={handleOnKeyPress}
             {...register("password")}
           />
+          <CtaLong onClick={handleSubmit(onLogin)} type="submit">
+            로그인
+          </CtaLong>
         </form>
-
-        <CtaLong onClick={handleSubmit(onLogin)} type="submit">
-          로그인
-        </CtaLong>
 
         <div className={styles.sns}>
           <div className={styles.snsTitle}>소셜 로그인</div>

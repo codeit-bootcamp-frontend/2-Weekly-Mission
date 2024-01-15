@@ -15,6 +15,12 @@ export default function Signin() {
     router.push("/auth/signin");
   };
 
+  const handleOnKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onLogin();
+    }
+  };
+
   return (
     <div className={styles.body}>
       <main className={styles.main}>
@@ -61,10 +67,10 @@ export default function Signin() {
               return password !== "";
             }}
             errorMessage="비밀번호 동일하지 않습니다"
+            onKeyPress={handleOnKeyPress}
           />
+          <CtaLong onClick={handleSubmit(onLogin)}>회원가입</CtaLong>
         </form>
-
-        <CtaLong onClick={handleSubmit(onLogin)}>회원가입</CtaLong>
 
         <div className={styles.sns}>
           <div className={styles.snsTitle}>다른 방식으로 가입하기</div>

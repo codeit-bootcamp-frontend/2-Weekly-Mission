@@ -8,6 +8,7 @@ interface AuthInputProps {
   placeholder?: string;
   onValid?: (value: string) => boolean;
   errorMessage?: string;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 function AuthInput({ label, type, placeholder, onValid, errorMessage, ...rest }: AuthInputProps) {

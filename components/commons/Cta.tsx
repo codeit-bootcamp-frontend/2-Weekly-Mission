@@ -5,7 +5,6 @@ interface CtaProps {
   children: ReactNode;
   onClick?: () => void;
   type?: "submit" | undefined;
-  onKeyDown?: () => void;
 }
 
 export function CtaShort({ children, onClick }: CtaProps) {
@@ -16,9 +15,9 @@ export function CtaShort({ children, onClick }: CtaProps) {
   );
 }
 
-export function CtaLong({ children, onClick, type, onKeyDown }: CtaProps) {
+export function CtaLong({ children, onClick, type }: CtaProps) {
   return (
-    <button className={styles.longButton} onClick={onClick} type={type} onKeyDown={onKeyDown}>
+    <button className={styles.longButton} onClick={onClick} type={type}>
       {children}
     </button>
   );
