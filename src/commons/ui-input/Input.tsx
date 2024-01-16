@@ -2,9 +2,11 @@ import {
   ChangeEventHandler,
   FocusEventHandler,
   HTMLInputTypeAttribute,
+  forwardRef,
 } from 'react';
 import styles from './Input.module.scss';
 import classNames from 'classnames/bind';
+import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form';
 
 const cx = classNames.bind(styles);
 
@@ -16,6 +18,7 @@ export type InputProps = {
   hasError?: boolean;
   errorMessage?: string;
   onBlur?: FocusEventHandler<HTMLInputElement>;
+  name?: string;
 };
 
 export const Input = ({
@@ -26,10 +29,12 @@ export const Input = ({
   hasError = false,
   errorMessage,
   onBlur,
+  name,
 }: InputProps) => {
   return (
     <div className={cx('container')}>
       <input
+        name={name}
         type={type}
         value={value}
         onChange={onChange}

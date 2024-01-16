@@ -1,0 +1,38 @@
+@import '../../../styles/global.scss';
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.logo {
+  width: 21rem;
+  height: 3.8rem;
+}
+
+.textContainer {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.suggestion {
+  color: var(--black, #000);
+
+  /* Linkbrary/body1-regular */
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.4rem; /* 150% */
+}
+
+.link {
+  color: $color-primary;
+
+  /* Linkbrary/body 1-semibold */
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem; /* 150% */
+  text-decoration: underline;
+}

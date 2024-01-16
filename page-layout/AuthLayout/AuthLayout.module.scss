@@ -1,0 +1,23 @@
+@import '../../styles/global.scss';
+
+.container {
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3.2rem;
+  background: $color-light-blue;
+  min-height: 100vh;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
