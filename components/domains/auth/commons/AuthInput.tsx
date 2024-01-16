@@ -25,7 +25,7 @@ const AuthInput = ({ label, type, error, placeholder, onKeyPress, onChangeType, 
         {...registerConfig}
       />
       {(type === "password" || type === "text") && (
-        <button className={styles.eyeButton} onClick={onChangeType} type="button">
+        <button className={styles.eyeButton} onClick={onChangeType} type="button" tabIndex={-1}>
           <Image
             src={`/images/auth/eye-${type === "password" ? "off" : "on"}.svg`}
             alt="eye-icon"
