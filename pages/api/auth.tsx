@@ -16,15 +16,16 @@ export async function signUp(email: string, password: string) {
   }
 }
 
-export async function checkDuplicateEmail(email: string) {
+export async function checkDuplicateEmail(email: string, setError: any) {
   try {
     const res = await axios.post(`${API_ENDPOINT}/check-email`, { email });
     if (res?.status === 200) {
       return true;
     }
   } catch (error) {
-    console.error(error);
-    return "이미 사용중인 이메일입니다.";
+    setError("email", {
+      message: "이미 사용중인 이메일입니다.",
+    });
   }
 }
 

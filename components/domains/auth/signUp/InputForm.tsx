@@ -3,9 +3,9 @@ import styles from "@/components/domains/auth/InputForm.module.css";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { CtaLong } from "@/components/commons/Cta";
-import { signIn } from "@/pages/api/auth";
+import { checkDuplicateEmail, signUp } from "@/pages/api/auth";
 
-interface ISignInForm {
+interface ISignUpForm {
   email: string;
   password: string;
   passwordConfirm?: string;
@@ -18,21 +18,28 @@ export default function InputForm() {
     watch,
     setError,
     formState: { errors },
-  } = useForm<ISignInForm>({ mode: "onBlur" });
-  const [inputType, setInputType] = useState<string>("password");
+  } = useForm<ISignUpForm>({ mode: "onBlur" });
+  const [passwordInputType, setPasswordInputType] = useState<string>("password");
+  const [passwordConfirmInputType, setPasswordConfirmInputType] = useState<string>("password");
 
   const togglePasswordVisibility = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setInputType((prev) => (prev === "password" ? "text" : "password"));
+    setPasswordInputType((prev) => (prev === "password" ? "text" : "password"));
+  };
+
+  const togglePasswordConfirmVisibility = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setPasswordConfirmInputType((prev) => (prev === "password" ? "text" : "password"));
   };
 
   const onSubmit = async () => {
-    await signIn(watch("email"), watch("password"), setError);
+    await signUp(watch("email"), watch("password"));
+    await checkDuplicateEmail(watch("email"), setError);
   };
 
   const handleOnKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      if (!errors.email && !errors.password) {
+      if (!errors.email && !errors.password && !errors.passwordConfirm) {
         onSubmit();
       }
     }
@@ -62,16 +69,20 @@ export default function InputForm() {
       <div className={styles.passwordInput}>
         <input
           className={`${styles.input} ${errors.password ? styles.error : ""}`}
-          type={inputType}
+          type={passwordInputType}
           placeholder="비밀번호를 입력해 주세요."
           onKeyPress={handleOnKeyPress}
           {...register("password", {
             required: "비밀번호를 입력해 주세요.",
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+              message: "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요.",
+            },
           })}
         />
         <button className={styles.eyeButton} onClick={togglePasswordVisibility} type="button">
           <Image
-            src={inputType === "password" ? "/images/auth/eye-off.svg" : "/images/auth/eye-on.svg"}
+            src={passwordInputType === "password" ? "/images/auth/eye-off.svg" : "/images/auth/eye-on.svg"}
             alt="eye-icon"
             width={16}
             height={16}
@@ -79,8 +90,33 @@ export default function InputForm() {
         </button>
       </div>
       <p className={styles.errorMessage}>{errors.password?.message}</p>
+
+      <label className={styles.label} htmlFor="passwordConfirm">
+        비밀번호 확인
+      </label>
+      <div className={styles.passwordInput}>
+        <input
+          className={`${styles.input} ${errors.passwordConfirm ? styles.error : ""}`}
+          type={passwordConfirmInputType}
+          placeholder="비밀번호를 입력해 주세요."
+          onKeyPress={handleOnKeyPress}
+          {...register("passwordConfirm", {
+            required: "비밀번호를 입력해 주세요.",
+            validate: (value) => watch("password") === value || "비밀번호가 일치하지 않습니다.",
+          })}
+        />
+        <button className={styles.eyeButton} onClick={togglePasswordConfirmVisibility} type="button">
+          <Image
+            src={passwordConfirmInputType === "password" ? "/images/auth/eye-off.svg" : "/images/auth/eye-on.svg"}
+            alt="eye-icon"
+            width={16}
+            height={16}
+          />
+        </button>
+      </div>
+      <p className={styles.errorMessage}>{errors.passwordConfirm?.message}</p>
       <CtaLong onClick={handleSubmit(onSubmit)} type="submit">
-        로그인
+        회원가입
       </CtaLong>
     </form>
   );
