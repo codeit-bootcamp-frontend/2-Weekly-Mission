@@ -1,19 +1,24 @@
-import ButtonLink from '@/components/ButtonLink';
-import SearchForm from '@/components/SearchForm';
-import buttonLinkStyles from '@/components/ButtonLink.module.scss';
-import searchFormStyles from '@/components/SearchForm.module.scss';
+import Button from '@/components/Button';
+import styles from '@/styles/Home.module.scss';
 
 export default function Home() {
   return (
     <>
-      <ButtonLink
-        href={'/signin'}
-        className={buttonLinkStyles['button-primary']}
+      <Button
+        className={styles.button}
+        variant={'primary'}
+        size={'large'}
+        onClick={() => alert('버튼 클릭')}
       >
         로그인
-      </ButtonLink>
-      <SearchForm path="/folder" className={searchFormStyles['search-form']} />
-      <SearchForm path="/shared" className={searchFormStyles['search-form']} />
+      </Button>
+      <Button
+        variant={'primary'}
+        size={'small'}
+        onClick={() => alert('버튼 클릭')}
+      >
+        로그인
+      </Button>
     </>
   );
 }
