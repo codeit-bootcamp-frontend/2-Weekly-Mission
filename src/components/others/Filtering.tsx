@@ -1,6 +1,5 @@
-import dynamic from 'next/dynamic';
 import FolderButton from 'components/common/FolderButton';
-const Modal = dynamic(() => import('components/common/Modal'), { ssr: false });
+import Modal from 'components/common/Modal';
 import stylesForModal from 'components/common/Modal.module.css';
 import useModal from 'hooks/useModal';
 import { useMediaQuery } from 'react-responsive';

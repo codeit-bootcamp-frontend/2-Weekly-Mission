@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { MouseEventHandler, ReactNode, forwardRef } from 'react';
+import { MouseEventHandler, ReactNode, forwardRef, useEffect, useState } from 'react';
 
 import styles from './Modal.module.css';
 import ReactDOM from 'react-dom';
@@ -22,6 +22,18 @@ const Modal = forwardRef<HTMLDialogElement | null, ModalProps>(
 
     // 모달이 '삭제'와 같은 되돌릴 수 없는 액션을 쿠셔닝 하는 목적일때 버튼을 붉은색으로 바꿈
     const isWarningButton = title.includes(WARNING_ACTION.delete);
+
+    const [isCSR, setIsCSR] = useState<boolean>(false);
+
+    useEffect(() => {
+      setIsCSR(true);
+    }, []);
+
+    // 사전렌더링에서의 참조에러를 방지함
+    if (typeof document === 'undefined') return <></>;
+
+    // hydration fail을 방지함
+    if (!isCSR) return <></>;
 
     return ReactDOM.createPortal(
       <dialog ref={ref} {...props} className={styles.modal} onClick={handleModalClick}>
