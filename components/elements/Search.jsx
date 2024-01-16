@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import SearchIcon from "../../public/search.svg";
+import Image from "next/image";
 
 function Search() {
   return (
     <Container>
-      <Link type="text" placeholder="링크를 검색해보세요." />
+      <LinkSearch type="text" placeholder="링크를 검색해보세요." />
+      <ImgContainer>
+        <Image fill src="/search.svg" alt="돋보기 아이콘" />
+      </ImgContainer>
     </Container>
   );
 }
@@ -14,20 +17,22 @@ export default Search;
 const Container = styled.div`
   max-width: 106rem;
   margin: 4rem auto;
+  position: relative;
 `;
 
-const Link = styled.input`
+const LinkSearch = styled.input`
   width: 100%;
-  padding: 1.5rem 1.6rem 1.5rem 3rem;
+  padding: 1.5rem 1.6rem 1.5rem 4rem;
   border-radius: 1rem;
   background: #f5f5f5;
   border: none;
+`;
 
-  &::placeholder {
-    background-image: url(${SearchIcon});
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 1.5rem;
-    padding-left: 2.5rem;
-  }
+const ImgContainer = styled.div`
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
 `;

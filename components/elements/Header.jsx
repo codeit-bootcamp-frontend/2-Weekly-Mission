@@ -7,17 +7,22 @@ function Header({ profile }) {
     <HeaderContainer>
       <NavBar>
         <Link href="/">
-          <ImgContainer>
-            <Image fill src="/logo.svg" alt="홈으로 연결된 Linkbrary 로고" />
-          </ImgContainer>
+          <Image
+            src="/logo.svg"
+            alt="홈으로 연결된 Linkbrary 로고"
+            width={133}
+            height={24}
+          />
         </Link>
         <div>
           {profile ? (
             <div>
               <Profile>
-                <ProfileImg
+                <Image
                   src={profile.profileImageSource}
                   alt="프로필 이미지"
+                  width={20}
+                  height={20}
                 />
                 {profile.email}
               </Profile>
@@ -58,16 +63,4 @@ const Profile = styled.p`
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
-`;
-
-const ProfileImg = styled.img`
-  width: 2rem;
-  height: 2rem;
-  border-radius: 1rem;
-`;
-
-const ImgContainer = styled.div`
-  position: relative;
-  width: 13.3rem;
-  height: 2.4rem;
 `;

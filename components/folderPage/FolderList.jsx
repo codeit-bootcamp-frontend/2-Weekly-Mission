@@ -1,10 +1,8 @@
 import { useState } from "react";
+import Image from "next/image";
 import styled from "styled-components";
 import FolderListButton from "./FolderListButton";
 import AddList from "../../public/addList.svg";
-import ShareImg from "../../public/share.svg";
-import EditImg from "../../public/edit.svg";
-import DeleteImg from "../../public/delete.svg";
 
 function FolderList({ lists }) {
   const [toggleList, setToggleList] = useState(0);
@@ -36,11 +34,41 @@ function FolderList({ lists }) {
             <ToggleListName>{toggleList}</ToggleListName>
           )}
           {toggleList !== 0 && (
-            <EditButton>
-              <button className="Share">공유</button>
-              <button className="Edit">이름 변경</button>
-              <button className="Delete">삭제</button>
-            </EditButton>
+            <ButtonWrapper>
+              <UtilButton>
+                <FlexContainer>
+                  <Image
+                    src="/share.svg"
+                    alt="공유 이미지"
+                    width={18}
+                    height={18}
+                  />
+                  <span>공유</span>
+                </FlexContainer>
+              </UtilButton>
+              <UtilButton>
+                <FlexContainer>
+                  <Image
+                    src="/edit.svg"
+                    alt="변경 이미지"
+                    width={18}
+                    height={18}
+                  />
+                  <span>이름변경</span>
+                </FlexContainer>
+              </UtilButton>
+              <UtilButton>
+                <FlexContainer>
+                  <Image
+                    src="/delete.svg"
+                    alt="삭제 이미지"
+                    width={15}
+                    height={15.8}
+                  />
+                  <span>삭제</span>
+                </FlexContainer>
+              </UtilButton>
+            </ButtonWrapper>
           )}
         </ToggleListNameContainer>
       </FolderListContainer>
@@ -100,38 +128,24 @@ const ToggleListNameContainer = styled.div`
 const ToggleListName = styled.div`
   color: #000;
   font-size: 2.4rem;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
   letter-spacing: -0.02rem;
 `;
 
-const EditButton = styled.button`
+const UtilButton = styled.button`
   border: none;
   color: #9fa6b2;
   font-size: 1.4rem;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
+`;
 
-  & .Share {
-    background-image: url(${ShareImg});
-    background-repeat: no-repeat;
-    background-position: left;
-    width: 7rem;
-  }
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 1.2rem;
+`;
 
-  & .Edit {
-    background-image: url(${EditImg});
-    background-repeat: no-repeat;
-    background-position: left;
-    width: 10rem;
-  }
-
-  & .Delete {
-    background-image: url(${DeleteImg});
-    background-repeat: no-repeat;
-    background-position: left;
-    width: 7rem;
-  }
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;
