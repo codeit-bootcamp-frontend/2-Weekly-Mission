@@ -9,8 +9,6 @@ import { useRouter } from "next/router";
 export default function App({ Component, pageProps }: AppProps) {
   const { Modal } = useModal();
   const router = useRouter();
-
-  // Check if the current route starts with '/auth'
   const isAuthRoute = router.pathname.startsWith("/auth");
 
   return (
