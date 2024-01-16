@@ -67,7 +67,9 @@ export default function Signin() {
     <div className={styles.signupPageWrapper}>
       <div className={styles.signupContainer}>
         <header className={styles.headerWrapper}>
-          <img className={styles.header__logo} alt="홈으로 가는 링크브러리 로고" src="/assets/linkbrary-logo.svg"></img>
+          <Link href="/">
+            <img className={styles.header__logo} alt="홈으로 가는 링크브러리 로고" src="/assets/linkbrary-logo.svg" />
+          </Link>
           <div className={styles.header__content}>
             <p className={styles.header__text}>회원이 아니신가요? </p>
             <Link className={styles.header__link} href="/signup">
