@@ -5,6 +5,11 @@ import Image from "next/image";
 import { EmailInput, PasswordInput } from "@/components/Input";
 
 export default function SignIn() {
+  // const { data } = useGetUser();
+  // const profile = data
+  //   ? { email: data.email, imageSource: data.profileImageSource }
+  //   : null;
+
   const handleSubmit = (e) => {
     e.preventDefault(); // 폼 기본 동작 방지
 
