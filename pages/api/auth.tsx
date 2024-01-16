@@ -8,7 +8,7 @@ export async function signUp(email: string, password: string) {
     if (res.status === 200) {
       const accessToken = res.config.data;
       localStorage.setItem("signUpAccessToken", accessToken);
-      window.location.href = "/signin";
+      window.location.href = "/auth/signin";
     }
   } catch (error) {
     console.error(error);
