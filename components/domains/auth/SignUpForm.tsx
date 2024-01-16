@@ -5,6 +5,7 @@ import AuthInput from "./commons/AuthInput";
 import { CtaLong } from "@/components/commons/Cta";
 import { checkDuplicateEmail, signUp } from "@/pages/api/auth";
 import { SignForm } from "@/lib/utils/type";
+import { regEmail, regPassword } from "@/lib/utils/regPatterns";
 
 export default function SignUpForm() {
   const {
@@ -50,7 +51,7 @@ export default function SignUpForm() {
         registerConfig={register("email", {
           required: "이메일을 입력해 주세요.",
           pattern: {
-            value: /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+            value: regEmail,
             message: "올바른 이메일 주소가 아닙니다.",
           },
         })}
@@ -64,7 +65,7 @@ export default function SignUpForm() {
         registerConfig={register("password", {
           required: "비밀번호를 입력해 주세요.",
           pattern: {
-            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+            value: regPassword,
             message: "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요.",
           },
         })}
@@ -79,7 +80,7 @@ export default function SignUpForm() {
         registerConfig={register("passwordConfirm", {
           required: "비밀번호를 입력해 주세요.",
           pattern: {
-            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+            value: regPassword,
             message: "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요.",
           },
           validate: (value) => watch("password") === value || "비밀번호가 일치하지 않습니다.",
