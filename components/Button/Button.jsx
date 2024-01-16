@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-export const Button = ({ children, type = "button", ...props }) => {
+export const Button = ({ children, type = "submit", ...props }) => {
   const className = styles.button;
   const buttonProps = { type, ...props };
 
