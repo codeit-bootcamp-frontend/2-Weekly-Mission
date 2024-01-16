@@ -1,9 +1,9 @@
-import SignIn from "@/src/sign/signin/SignIn";
+import SignInForm from "@/src/sign/signin/SignInForm";
 
-const Home = () => {
+const SignIn = () => {
   return(
-    <SignIn />
+    <SignInForm />
   )
 };
 
-export default Home;
+export default SignIn;

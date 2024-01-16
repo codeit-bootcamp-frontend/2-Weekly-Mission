@@ -3,9 +3,9 @@ import PasswordInput from '../common/PasswordInput';
 import SignButton from '../common/SignButton';
 import SignTitle from '../common/SignTitle';
 import Social from '../common/Social';
-import style from './SignIn.module.css';
+import style from './SignInForm.module.css';
 
-const SignIn = () => {
+const SignInForm = () => {
   return(
     <main className={style.main}>
     <div className={style.container}>
@@ -23,4 +23,4 @@ const SignIn = () => {
   )
 };
 
-export default SignIn;
+export default SignInForm;
