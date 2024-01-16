@@ -41,10 +41,6 @@ function FolderLists() {
   };
 
   useEffect(() => {
-    console.log("useEffect is being called");
-    console.log("Search:", search);
-    console.log("Selected Links:", selected.link);
-
     const lowerCasedValue = search.toLowerCase();
     if (search) {
       const filtered = (selected.link ?? []).filter((link) => {

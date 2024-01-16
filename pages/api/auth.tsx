@@ -1,5 +1,4 @@
 import axios from "axios";
-import { access } from "fs";
 
 const API_ENDPOINT = "https://bootcamp-api.codeit.kr/api";
 
