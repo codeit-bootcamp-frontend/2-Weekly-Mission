@@ -83,11 +83,6 @@
   width: 35rem;
 }
 
-.heroImage {
-  width: 120rem;
-  height: 59rem;
-}
-
 .subTitle {
   font-size: 4.8rem;
   text-align: left;
@@ -114,6 +109,10 @@
   column-gap: 15.7rem;
   row-gap: 1rem;
   width: 100%;
+
+  @media (min-width: 375px) and (max-width: 767px) {
+    padding: 4rem 3.2rem;
+  }
 }
 
 .content:nth-of-type(odd) {
@@ -122,6 +121,13 @@
     "title image"
     "description image"
     ". image" /291px 55rem;
+
+  @media (min-width: 375px) and (max-width: 767px) {
+    grid-template:
+      "title"
+      "image"
+      "description";
+  }
 }
 
 .content:nth-of-type(even) {
@@ -130,4 +136,11 @@
     "image title"
     "image description"
     "image ." /550px 29.1rem;
+
+  @media (min-width: 375px) and (max-width: 767px) {
+    grid-template:
+      "title"
+      "image"
+      "description";
+  }
 }
