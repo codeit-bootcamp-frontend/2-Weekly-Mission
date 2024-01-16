@@ -1,3 +1,9 @@
+export interface SignForm {
+  email: string;
+  password: string;
+  passwordConfirm?: string;
+}
+
 export interface LinkData {
   id: number;
   created_at: number;

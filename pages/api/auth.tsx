@@ -9,7 +9,7 @@ export async function signUp(email: string, password: string) {
     if (res.status === 200) {
       const data = res.data;
       localStorage.setItem("signUpAccessToken", JSON.stringify(data.accessToken));
-      window.location.href = "/folder";
+      window.location.href = "/signin";
     }
   } catch (error) {
     console.error(error);
