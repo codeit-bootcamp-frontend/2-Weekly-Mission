@@ -2,7 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 
-function Input({ label, type, placeholder, error, ...rest }) {
+function Input({ label, type, placeholder, ...rest }) {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -18,7 +18,6 @@ function Input({ label, type, placeholder, error, ...rest }) {
           type={isVisible ? "text" : type}
           id={type}
           placeholder={placeholder}
-          error={error}
         />
         {type === "password" && (
           <ImgWrapper>

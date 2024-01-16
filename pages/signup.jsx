@@ -1,18 +1,26 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { errorMessages, emailRegex, passwordRegex } from "../utils/regexp";
+import { signUp, checkEmail } from "../lib/loginApi";
 import Image from "next/image";
 import styles from "../styles/Sign.module.css";
 import LogoTitle from "../components/signPage/LogoTitle";
 import SubmitButton from "../components/elements/SubmitButton";
+import SnsLogin from "../components/elements/snsLogin";
 
 function Signup() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordValidVisible, setIsPasswordValidVisible] = useState(false);
 
-  const { register, setError, formState, handleSubmit } = useForm();
+  const { register, watch, setError, formState, handleSubmit } = useForm();
 
   const errors = formState.errors;
+
+  const onSubmit = async () => {
+    await signUp(watch("email"), watch("password"));
+    await checkEmail(watch("email"), setError);
+  };
+
   const onValid = (data) => {
     if (data.password !== data.passwordValid) {
       setError(
@@ -20,6 +28,8 @@ function Signup() {
         { message: errorMessages.passwordNotCorrect },
         { shouldFocus: true }
       );
+    } else {
+      onSubmit();
     }
   };
 
@@ -146,6 +156,7 @@ function Signup() {
         <div className={styles.subBtn}>
           <SubmitButton text={"로그인"} />
         </div>
+        <SnsLogin />
       </form>
     </>
   );
