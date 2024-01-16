@@ -3,12 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { EmailInput, PasswordInput } from "@/components/Input";
+import { useGetUser } from "@/src/user/data-access-user";
 
 export default function SignIn() {
-  // const { data } = useGetUser();
-  // const profile = data
-  //   ? { email: data.email, imageSource: data.profileImageSource }
-  //   : null;
+  const { data } = useGetUser();
+  const { id, name, email, profileImageSource } = data || {};
 
   const handleSubmit = (e) => {
     e.preventDefault(); // 폼 기본 동작 방지
@@ -16,6 +15,11 @@ export default function SignIn() {
     // 여기에서 제출된 데이터를 콘솔에 출력
     const formData = new FormData(e.target);
     console.log("Submitted Data:", Object.fromEntries(formData));
+    if (data) {
+      console.log(data);
+    } else {
+      console.log("Profile not available");
+    }
   };
 
   return (
