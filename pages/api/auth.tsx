@@ -1,14 +1,14 @@
 import axios from "axios";
+import { access } from "fs";
 
 const API_ENDPOINT = "https://bootcamp-api.codeit.kr/api";
 
 export async function signUp(email: string, password: string) {
   try {
     const res = await axios.post(`${API_ENDPOINT}/sign-up`, { email, password });
-
     if (res.status === 200) {
-      const data = res.data;
-      localStorage.setItem("signUpAccessToken", JSON.stringify(data.accessToken));
+      const accessToken = res.config.data;
+      localStorage.setItem("signUpAccessToken", accessToken);
       window.location.href = "/signin";
     }
   } catch (error) {
@@ -33,7 +33,8 @@ export async function signIn(email: string, password: string, setError: any) {
   try {
     const res = await axios.post(`${API_ENDPOINT}/sign-in`, { email, password });
     if (res.status === 200) {
-      localStorage.setItem("signInAccessToken", JSON.stringify(res.data.accessToken));
+      const accessToken = res.config.data;
+      localStorage.setItem("signInAccessToken", accessToken);
       window.location.href = "/folder";
     }
   } catch (error) {
