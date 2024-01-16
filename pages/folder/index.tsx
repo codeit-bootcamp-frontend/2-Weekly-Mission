@@ -10,6 +10,7 @@ import FolderNavClick from '../../components/FolderNavClick/FolderNavClick';
 import FolderFeature from '../../components/FolderFeature/FolderFeature';
 
 import BASE_PATH from '../api/codeit';
+import Layout from '@/components/Layout/Layout';
 
 export async function getStaticProps() {
   const { data: folderNav } = await BASE_PATH.get(`users/1/folders`);
@@ -35,25 +36,27 @@ export default function FolderPage({ folderNav }: any) {
 
   return (
     <>
-      <Folder
-        linkAddBar={<LinkAddBar />}
-        searchBar={<SearchBar />}
-        folderFeature={<FolderFeature name={'TEST'} />}
-        folderNavList={
-          <FolderNavList>
-            {folderNav?.map((data: any) => (
-              <FolderNavClick key={data.id} {...data} onFolderClick={onFolderClick} />
-            ))}
-          </FolderNavList>
-        }
-        cardList={
-          <CardList>
-            {navData?.map((data: any) => (
-              <CardReadOnly key={data?.id} {...data} />
-            ))}
-          </CardList>
-        }
-      />
+      <Layout>
+        <Folder
+          linkAddBar={<LinkAddBar />}
+          searchBar={<SearchBar />}
+          folderFeature={<FolderFeature name={'TEST'} />}
+          folderNavList={
+            <FolderNavList>
+              {folderNav?.map((data: any) => (
+                <FolderNavClick key={data.id} {...data} onFolderClick={onFolderClick} />
+              ))}
+            </FolderNavList>
+          }
+          cardList={
+            <CardList>
+              {navData?.map((data: any) => (
+                <CardReadOnly key={data?.id} {...data} />
+              ))}
+            </CardList>
+          }
+        />
+      </Layout>
     </>
   );
 }
