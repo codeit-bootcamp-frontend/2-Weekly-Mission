@@ -17,7 +17,7 @@ const SignInPage = () => {
       <Head>
         <title>로그인</title>
       </Head>
-      <AuthLayout buttonText="로그인" type="signIn">
+      <AuthLayout type="signIn">
         <InputField
           label="이메일"
           labelName="email"

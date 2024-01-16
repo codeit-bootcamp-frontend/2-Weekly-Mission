@@ -6,9 +6,9 @@ import AuthFooter from "../Footer";
 import Cta from "@/components/common/Cta";
 
 import * as S from "./styled";
+import { authMapping } from "@/lib/mapping/auth";
 
 interface AuthSectionProps {
-  buttonText: string;
   type: "signIn" | "signUp";
   children: ReactNode;
 }
@@ -24,7 +24,7 @@ interface Response {
   };
 }
 
-function AuthSection({ buttonText, type, children }: AuthSectionProps) {
+function AuthSection({ type, children }: AuthSectionProps) {
   const router = useRouter();
   const { handleSubmit } = useFormContext<AuthForm>();
 
@@ -51,7 +51,7 @@ function AuthSection({ buttonText, type, children }: AuthSectionProps) {
     <S.Section>
       <S.AuthForm onSubmit={handleSubmit(onSubmit)} noValidate>
         <S.TextFieldContainer>{children}</S.TextFieldContainer>
-        <Cta type="submit">{buttonText}</Cta>
+        <Cta type="submit">{authMapping[type].button}</Cta>
       </S.AuthForm>
       <AuthFooter />
     </S.Section>

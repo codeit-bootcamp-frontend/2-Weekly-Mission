@@ -32,7 +32,7 @@ const SignUpPage = () => {
       <Head>
         <title>회원 가입</title>
       </Head>
-      <AuthLayout buttonText="회원가입" type="signUp">
+      <AuthLayout type="signUp">
         <InputField
           label="이메일"
           labelName="email"
