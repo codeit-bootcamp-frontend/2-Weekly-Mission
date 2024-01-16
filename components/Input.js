@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./Input.module.css";
 
-export function EmailInput() {
-  const [focus, setFocus] = useState(true);
+export const EmailInput = () => {
+  const [isFocus, setIsFocus] = useState(true);
   const [valueError, setValueError] = useState(null);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // focus 유무 감지
+  // isFocus 유무 감지
   const handleFocusIn = () => {
-    setFocus(true);
+    setIsFocus(true);
     setValueError(null);
   };
   const handleFocusOut = (e) => {
-    setFocus(false);
+    setIsFocus(false);
     const inputValue = e.target.value;
 
     if (!inputValue) {
@@ -46,18 +46,18 @@ export function EmailInput() {
           onBlur={handleFocusOut}
         />
 
-        {focus ? null : (
+        {!isFocus && (
           <>
-            {valueError === "noValue" ? (
+            {valueError === "noValue" && (
               <p className={`${styles.errorMessage}`} id="noValue">
                 이메일을 입력해주세요.
               </p>
-            ) : null}
-            {valueError === "notEmail" ? (
+            )}
+            {valueError === "notEmail" && (
               <p className={`${styles.errorMessage}`} id="wrongEmail">
                 올바른 이메일 주소가 아닙니다.
               </p>
-            ) : null}
+            )}
             {/* <p className={`${styles.errorMessage}`} id="checkValue">
               이메일을 확인해주세요.
             </p> */}
@@ -66,21 +66,20 @@ export function EmailInput() {
       </div>
     </>
   );
-}
+};
 
-export function PasswordInput() {
-  const [eye, setEye] = useState(false);
+export const PasswordInput = () => {
   const [inputType, setInputType] = useState("password");
-  const [focus, setFocus] = useState(true);
+  const [isFocus, setIsFocus] = useState(true);
   const [valueError, setValueError] = useState(null);
 
-  // focus 유무 감지
+  // isFocus 유무 감지
   const handleFocusIn = () => {
-    setFocus(true);
+    setIsFocus(true);
     setValueError(null);
   };
   const handleFocusOut = (e) => {
-    setFocus(false);
+    setIsFocus(false);
     const inputValue = e.target.value;
 
     if (!inputValue) {
@@ -93,7 +92,6 @@ export function PasswordInput() {
 
   // 눈 버튼 클릭으로 변환 (비밀번호만 해당)
   const handleEyeButton = () => {
-    setEye(!eye);
     setInputType(inputType === "password" ? "text" : "password");
   };
 
@@ -121,20 +119,20 @@ export function PasswordInput() {
           type="button"
           onClick={handleEyeButton}
         >
-          {eye ? (
+          {inputType === "text" ? (
             <img src="./images/eye-on.svg" id="eye-on" alt="eye-on" />
           ) : (
             <img src="./images/eye-off.svg" id="eye-off" alt="eye-off" />
           )}
         </button>
 
-        {focus ? null : (
+        {!isFocus && (
           <>
-            {valueError === "noValue" ? (
+            {valueError === "noValue" && (
               <p className={`${styles.errorMessage}`} id="noValue">
                 비밀번호를 입력해주세요.
               </p>
-            ) : null}
+            )}
             {/* <p className={`${styles.errorMessage}`} id="checkValue">
               비밀번호를 확인해주세요.
             </p> */}
@@ -143,22 +141,20 @@ export function PasswordInput() {
       </div>
     </>
   );
-}
+};
 
-export function PasswordCheckInput({ check }) {
-  const [eye, setEye] = useState(false);
+export const PasswordCheckInput = ({ check }) => {
   const [inputType, setInputType] = useState("password");
-  const [focus, setFocus] = useState(true);
+  const [isFocus, setIsFocus] = useState(true);
   const [valueError, setValueError] = useState(null);
-  const [checkRequired, setcheckRequired] = useState(check);
 
-  // focus 유무 감지
+  // isFocus 유무 감지
   const handleFocusIn = () => {
-    setFocus(true);
+    setIsFocus(true);
     setValueError(null);
   };
   const handleFocusOut = (e) => {
-    setFocus(false);
+    setIsFocus(false);
     const inputValue = e.target.value;
 
     if (!inputValue) {
@@ -171,13 +167,8 @@ export function PasswordCheckInput({ check }) {
 
   // 눈 버튼 클릭으로 변환 (비밀번호만 해당)
   const handleEyeButton = () => {
-    setEye(!eye);
     setInputType(inputType === "password" ? "text" : "password");
   };
-
-  useEffect(() => {
-    setcheckRequired(check);
-  }, [check]);
 
   return (
     <>
@@ -203,25 +194,25 @@ export function PasswordCheckInput({ check }) {
           type="button"
           onClick={handleEyeButton}
         >
-          {eye ? (
+          {inputType === "text" ? (
             <img src="./images/eye-on.svg" id="eye-on" alt="eye-on" />
           ) : (
             <img src="./images/eye-off.svg" id="eye-off" alt="eye-off" />
           )}
         </button>
 
-        {focus ? null : (
+        {!isFocus && (
           <>
-            {valueError === "noValue" ? (
+            {valueError === "noValue" && (
               <p className={`${styles.errorMessage}`} id="noValue">
                 비밀번호를 입력해주세요.
               </p>
-            ) : null}
-            {checkRequired ? (
+            )}
+            {check && (
               <p className={`${styles.errorMessage}`} id="wrongPassword">
                 비밀번호가 다릅니다.
               </p>
-            ) : null}
+            )}
           </>
         )}
       </div>

@@ -40,10 +40,7 @@ export default function SignIn() {
           </Link>
           <p className={styles.headerMessage}>
             회원이 아니신가요?
-            <Link
-              className={styles.headerLink}
-              href={"https://www.google.com/"}
-            >
+            <Link className={styles.headerLink} href={"/signup"}>
               회원 가입하기
             </Link>
           </p>
