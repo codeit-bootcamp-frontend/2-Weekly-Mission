@@ -1,6 +1,15 @@
-.MarginWrapper {
-  margin-bottom: 2.4rem;
+.Container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding: 23.8rem 0rem 25.3rem 0rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f6ff;
 }
+
+/* Input  */
 
 .GapWrapper {
   display: flex;
@@ -26,10 +35,16 @@
   justify-content: center;
   align-items: center;
   border-radius: 0.8rem;
+  border: 0.1rem solid #ccd5e3;
+  outline: none;
+}
+
+.TextInput.error {
+  border: 0.1rem solid #ff5b56;
 }
 
 .TextInput:focus {
-  outline: 0.1rem solid #6d6afe;
+  border-color: #6d6afe;
 }
 
 .ImgWrapper {
@@ -47,4 +62,8 @@
 
 .ErrorMessage {
   color: #ff5b56;
+}
+
+.subBtn {
+  margin: 3rem 0 3.2rem 0;
 }
