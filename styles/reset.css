@@ -5,11 +5,13 @@
   margin: 0;
   font-family: "Pretendard";
   word-break: keep-all;
+
 }
 
 html,
 body {
   font-size: 62.5%;
+  background-color: var(--background, #f0f6ff);
 }
 
 a {
