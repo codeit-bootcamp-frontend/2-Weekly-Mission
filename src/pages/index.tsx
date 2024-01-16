@@ -20,7 +20,7 @@ export default function Home() {
         <meta property="twitter:image" content="https://images.pexels.com/photos/1222551/pexels-photo-1222551.jpeg" />
       </Head>
       <div>
-        <nav className="nav-container">
+        <nav className={styles['nav-container']}>
           <div className={styles.nav}>
             <a href="/">
               <img src="/assets/logo.svg" className={styles['logo-img']} alt="홈으로 연결된 Linkbrary 로고" />
