@@ -1,0 +1,45 @@
+.signContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.label {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.passwordInput {
+  position: relative;
+}
+
+.input {
+  padding: 1.8rem 1.5rem;
+  border-radius: 0.8rem;
+  border: 0.1rem solid var(--gray-20-color);
+  width: 100%;
+  font-size: 1.6rem;
+}
+
+.input:focus {
+  outline: 0.1rem solid var(--primary-color);
+}
+
+.error {
+  outline: 0.1rem solid var(--red-color);
+}
+
+.eyeButton {
+  position: absolute;
+  background-color: var(--white-color);
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.errorMessage {
+  color: var(--red-color);
+  font-size: 1.6rem;
+}

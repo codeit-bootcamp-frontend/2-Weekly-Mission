@@ -8,7 +8,7 @@ import AuthInput from "@/components/domains/auth/AuthInput";
 import { useForm } from "react-hook-form";
 
 export default function Signin() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch, setError } = useForm();
   const router = useRouter();
 
   const onLogin = () => {
@@ -19,6 +19,11 @@ export default function Signin() {
     if (e.key === "Enter") {
       onLogin();
     }
+  };
+
+  const password = watch("password");
+  const validatePassword = (value: string) => {
+    return value === password;
   };
 
   return (
@@ -54,20 +59,22 @@ export default function Signin() {
             label="비밀번호"
             type="password"
             placeholder="비밀번호를 입력해 주세요."
+            maxLength="8"
             onValid={(password: string) => {
               return password !== "";
             }}
             errorMessage="비밀번호가 올바르지 않습니다."
+            {...register("password")}
           />
           <AuthInput
             label="비밀번호 확인"
             type="password"
             placeholder="비밀번호를 입력해 주세요."
-            onValid={(password: string) => {
-              return password !== "";
-            }}
+            maxLength="8"
+            onValid={validatePassword}
             errorMessage="비밀번호 동일하지 않습니다"
             onKeyPress={handleOnKeyPress}
+            {...register("passwordCheck")}
           />
           <CtaLong onClick={handleSubmit(onLogin)}>회원가입</CtaLong>
         </form>

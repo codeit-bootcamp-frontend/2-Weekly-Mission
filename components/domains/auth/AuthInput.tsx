@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./AuthInput.module.css";
+import { RegisterOptions } from "react-hook-form";
 
 interface AuthInputProps {
   label: string;
@@ -9,6 +10,7 @@ interface AuthInputProps {
   onValid?: (value: string) => boolean;
   errorMessage?: string;
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  validateRules?: RegisterOptions;
 }
 
 function AuthInput({ label, type, placeholder, onValid, errorMessage, ...rest }: AuthInputProps) {
@@ -38,6 +40,7 @@ function AuthInput({ label, type, placeholder, onValid, errorMessage, ...rest }:
     <div className={`${styles.signInputBox}`}>
       <label className={styles.signInputLabel}>{label}</label>
       <input
+        {...rest}
         className={`${styles.input} ${isError ? styles.isError : ""}`}
         type={inputType}
         autoComplete="username"
