@@ -1,13 +1,9 @@
-import EmailInput from "@/src/sign/common/EmailInput";
-import PasswordInput from "@/src/sign/common/PasswordInput";
+import SignIn from "@/src/sign/signin/SignIn";
 
-const SignIn = () => {
+const Home = () => {
   return(
-    <>
-      <EmailInput />
-      <PasswordInput />
-    </>
+    <SignIn />
   )
 };
 
-export default SignIn;
+export default Home;
