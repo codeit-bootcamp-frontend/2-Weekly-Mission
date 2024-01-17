@@ -5,7 +5,7 @@ const PasswordInput = () => {
   return(
     <div className={style.box}>
       <label htmlFor="password" className={style.label}>비밀번호</label>
-      <input type="password" id="password" className={style.input}/>
+      <input type="password" id="password" className={style.input} placeholder='비밀번호를 입력해주세요'/>
       <EyeButton />
     </div>
   )
