@@ -25,7 +25,7 @@ export default function Shared() {
     useSearchLink(links);
 
   return (
-    <Layout user={user}>
+    <Layout>
       <SharedLayout
         folderInfo={
           <FolderInfo
