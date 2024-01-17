@@ -1,0 +1,42 @@
+.mainList {
+  margin-top: 40px;
+  margin-bottom: 24px;
+}
+.mainList ul {
+  display: flex;
+}
+.mainList ul li {
+  padding: 8px 12px;
+  margin-right: 8px;
+  border-radius: 5px;
+  border: 1px solid #6d6afe;
+}
+/* 클릭했을때 css */
+li.click {
+  background-color: #6d6afe;
+  color: #fff;
+}
+.listTitle {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+@media (max-width: 1124px) {
+}
+@media (max-width: 390px) {
+  .mainList {
+    margin-top: 40px;
+    margin-bottom: 16px;
+  }
+  .mainList ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .mainList ul li {
+    padding: 8px 12px;
+    margin-right: 8px;
+    border-radius: 5px;
+    border: 1px solid #6d6afe;
+    margin-bottom: 12px;
+  }
+}
