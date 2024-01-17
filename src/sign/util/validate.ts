@@ -18,6 +18,12 @@ export const isPassword = (password:string) => {
   return false;
 }
 
+export const isConformablePassword = (password:string, confirmPassword:string) => {
+  if(password === confirmPassword) return true;
+  if(!confirmPassword) return true;
+  return false;
+}
+
 export const checkAccessToken = () => {
   const accessToken = localStorage.getItem('accessToken');
 
