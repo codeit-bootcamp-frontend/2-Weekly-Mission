@@ -44,7 +44,7 @@ export default function SignUpPage() {
   }
 
   return (
-    <Container page={'signup'}>
+    <Container page={'users'}>
       <header className={cx('header')}>
         <h1 className={cx('visually-hidden')}>회원가입 페이지</h1>
         <Link className={cx('logo')} href={'/'}>
