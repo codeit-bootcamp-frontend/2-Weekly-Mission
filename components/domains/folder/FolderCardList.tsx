@@ -8,10 +8,6 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./FolderCardList.module.css";
 
-// interface StyledCardProps {
-//   href: string;
-// }
-
 interface FolderCardProps {
   card: LinkData;
 }

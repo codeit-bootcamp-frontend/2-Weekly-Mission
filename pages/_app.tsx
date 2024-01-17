@@ -4,18 +4,22 @@ import type { AppProps } from "next/app";
 import Footer from "@/components/commons/Footer";
 import ModalPortal from "@/lib/Portal";
 import useModal from "@/lib/useModal";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
   const { Modal } = useModal();
+  const router = useRouter();
+  const isAuthRoute = router.pathname.startsWith("/auth");
+
   return (
     <>
       <div id="modal-root">
         <ModalPortal>
           <Modal />
         </ModalPortal>
-        <Gnb />
+        {!isAuthRoute && <Gnb />}
         <Component {...pageProps} />
-        <Footer />
+        {!isAuthRoute && <Footer />}
       </div>
     </>
   );

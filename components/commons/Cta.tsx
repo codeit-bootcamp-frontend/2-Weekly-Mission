@@ -4,6 +4,7 @@ import styles from "./Cta.module.css";
 interface CtaProps {
   children: ReactNode;
   onClick?: () => void;
+  type?: "submit" | undefined;
 }
 
 export function CtaShort({ children, onClick }: CtaProps) {
@@ -14,9 +15,9 @@ export function CtaShort({ children, onClick }: CtaProps) {
   );
 }
 
-export function CtaLong({ children, onClick }: CtaProps) {
+export function CtaLong({ children, onClick, type }: CtaProps) {
   return (
-    <button className={styles.longButton} onClick={onClick}>
+    <button className={styles.longButton} onClick={onClick} type={type}>
       {children}
     </button>
   );
