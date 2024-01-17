@@ -1,7 +1,5 @@
 import requestApi from "./RequestApi";
 
-const DEFAULT_USER_ID = 1;
-
 export async function getUserData(DEFAULT_USER_ID = 1) {
   return requestApi(`/users/${DEFAULT_USER_ID}`);
 }

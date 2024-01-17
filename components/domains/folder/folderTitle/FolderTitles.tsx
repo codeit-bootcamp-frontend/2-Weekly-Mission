@@ -3,12 +3,12 @@ import CategoryList from "./CategoryList";
 import { FolderPageData } from "../../../../types/common";
 import {
   DataContextType,
-  DataContext,
+  DataContext
 } from "../../../../contexts/LocaleContext";
 
 function FoldersTitles({
   id,
-  searchKeyword,
+  searchKeyword
 }: {
   id: number;
   searchKeyword: string;

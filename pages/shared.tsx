@@ -16,7 +16,7 @@ function SharedPage() {
     owner: {
       id: 2,
       name: "",
-      profileImageSource: "",
+      profileImageSource: ""
     },
     links: [
       {
@@ -25,9 +25,9 @@ function SharedPage() {
         title: "",
         description: "",
         image_source: "",
-        created_at: "",
-      },
-    ],
+        created_at: ""
+      }
+    ]
   });
 
   const handleFolderLoad = async () => {
@@ -46,7 +46,7 @@ function SharedPage() {
 
     setSharedFolder({
       ...folder,
-      links: filteredLinks,
+      links: filteredLinks
     });
   };
 

@@ -63,7 +63,7 @@ export const GradientButton = styled.button`
   cursor: pointer;
 `;
 
-export const CommonHeaderBox = styled.div`
+export const HeaderBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

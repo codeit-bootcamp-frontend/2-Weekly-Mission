@@ -5,11 +5,11 @@ import {
   InputBox,
   PasswordToggleIcon,
   AlertMessage,
-  InputLayout,
+  InputLayout
 } from "../Auth";
-import { useForm } from "react-hook-form";
 import { signIn } from "../../../../pages/api/AuthApi";
 import SnsSingIn from "./SnsSignIn";
+import { useForm } from "react-hook-form";
 
 const Form = () => {
   const {
@@ -17,25 +17,30 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
     watch,
-    setError,
+    setError
   } = useForm({
+    mode: "onBlur",
     defaultValues: {
       email: "",
       password: "",
-      passwordConfirm: "",
-      mode: "onBurl",
-    },
+      passwordConfirm: ""
+    }
   });
 
   const onSubmit = async () => {
     if (!errors.email?.message && !errors.password?.message) {
-      await signIn(watch("email"), watch("password"), setError);
+      await signIn(
+        watch("email"),
+        watch("password"),
+        (inputName, { message }) =>
+          setError(inputName as "email" | "password", { message })
+      );
     }
   };
 
   return (
     <FormBox onSubmit={handleSubmit(onSubmit)}>
-      <EmailBox isError={!!errors.email}>
+      <EmailBox isError={!!errors?.email}>
         <label>이메일</label>
         <input
           placeholder="이메일을 입력해 주세요"
@@ -43,15 +48,15 @@ const Form = () => {
             required: "이메일을 입력해주세요.",
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "올바른 이메일 주소가 아닙니다.",
-            },
+              message: "올바른 이메일 주소가 아닙니다."
+            }
           })}
         />
-        <Message>{errors.email?.message}</Message>
+        <AlertMessage>{errors.email?.message}</AlertMessage>
       </EmailBox>
-      <PasswordLayout>
+      <InputLayout>
         <label>비밀번호</label>
-        <PasswordBox isError={!!errors.password}>
+        <InputBox isError={!!errors.password}>
           <input
             type="password"
             placeholder="비밀번호를 입력해주세요"
@@ -59,19 +64,19 @@ const Form = () => {
               required: "비밀번호를 입력해주세요.",
               pattern: {
                 value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                message: "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요.",
-              },
+                message: "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요."
+              }
             })}
           />
-          <PasswordOff
+          <PasswordToggleIcon
             src={"/images/eye-off.png"}
             width={16}
             height={13.82}
             alt="비밀번호 비활성화 아이콘"
           />
-        </PasswordBox>
-        <Message>{errors.password?.message}</Message>
-      </PasswordLayout>
+        </InputBox>
+        <AlertMessage>{errors.password?.message}</AlertMessage>
+      </InputLayout>
       <SignInButton />
       <SnsSingIn />
     </FormBox>
@@ -109,11 +114,5 @@ const EmailBox = styled.div<IsError>`
     outline: none;
   }
 `;
-
-const PasswordLayout = styled(InputLayout)``;
-const PasswordBox = styled(InputBox)``;
-const PasswordOn = styled(PasswordToggleIcon)``;
-const PasswordOff = styled(PasswordToggleIcon)``;
-const Message = styled(AlertMessage)``;
 
 export default Form;

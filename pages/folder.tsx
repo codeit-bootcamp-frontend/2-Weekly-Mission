@@ -30,9 +30,9 @@ function FolderPage() {
           url: "",
           title: "",
           image_source: "",
-          created_at: "",
-        },
-      ],
+          created_at: ""
+        }
+      ]
     };
     const allData = await getAllLinksData();
     const { data } = await getUserFoldersData();

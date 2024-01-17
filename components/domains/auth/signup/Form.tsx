@@ -5,7 +5,7 @@ import {
   InputBox,
   PasswordToggleIcon,
   AlertMessage,
-  InputLayout,
+  InputLayout
 } from "../Auth";
 import { useForm } from "react-hook-form";
 import SignUpButton from "./SignUpButton";
@@ -17,14 +17,14 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
+    watch
   } = useForm({
+    mode: "onBlur",
     defaultValues: {
       email: "",
       password: "",
-      passwordConfirm: "",
-      mode: "onBurl",
-    },
+      passwordConfirm: ""
+    }
   });
 
   const onSubmit = async () => {
@@ -47,18 +47,18 @@ const Form = () => {
             required: "이메일을 입력해주세요.",
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "올바른 이메일 주소가 아닙니다.",
+              message: "올바른 이메일 주소가 아닙니다."
             },
             validate: {
-              duplicateEmail: async (value) => await isDuplicateEmail(value),
-            },
+              duplicateEmail: async (value) => await isDuplicateEmail(value)
+            }
           })}
         />
-        <Message>{errors.email?.message}</Message>
+        <AlertMessage>{errors.email?.message}</AlertMessage>
       </EmailBox>
-      <PasswordLayout>
+      <InputLayout>
         <label>비밀번호</label>
-        <PasswordBox isError={!!errors.password}>
+        <InputBox isError={!!errors.password}>
           <input
             type="password"
             placeholder="비밀번호를 입력해주세요"
@@ -66,40 +66,40 @@ const Form = () => {
               required: "비밀번호를 입력해주세요.",
               pattern: {
                 value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                message: "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요.",
-              },
+                message: "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요."
+              }
             })}
           />
-          <PasswordOff
+          <PasswordToggleIcon
             src={"/images/eye-off.png"}
             width={16}
             height={13.82}
             alt="비밀번호 비활성화 아이콘"
           />
-        </PasswordBox>
-        <Message>{errors.password?.message}</Message>
-      </PasswordLayout>
-      <PasswordConfirmLayout>
+        </InputBox>
+        <AlertMessage>{errors.password?.message}</AlertMessage>
+      </InputLayout>
+      <InputLayout>
         <label>비밀번호 확인</label>
-        <PasswordConfirmBox isError={!!errors.passwordConfirm}>
+        <InputBox isError={!!errors.passwordConfirm}>
           <input
             type="password"
             placeholder="비밀번호와 일치하는 값을 입력해 주세요"
             {...register("passwordConfirm", {
               required: "비밀번호와 일치하는 값을 입력해 주세요.",
               validate: (value) =>
-                watch("password") === value || "비밀번호가 일치하지 않습니다.",
+                watch("password") === value || "비밀번호가 일치하지 않습니다."
             })}
           />
-          <PasswordOn
+          <PasswordToggleIcon
             src={"/images/eye-off.png"}
             width={16}
             height={13.82}
             alt="비밀번호 비활성화"
           />
-        </PasswordConfirmBox>
-        <Message>{errors.passwordConfirm?.message}</Message>
-      </PasswordConfirmLayout>
+        </InputBox>
+        <AlertMessage>{errors.passwordConfirm?.message}</AlertMessage>
+      </InputLayout>
       <SignUpButton />
       <SnsSignUp />
     </FormBox>
@@ -137,13 +137,5 @@ const EmailBox = styled.div<IsError>`
     outline: none;
   }
 `;
-
-const PasswordLayout = styled(InputLayout)``;
-const PasswordBox = styled(InputBox)``;
-const PasswordConfirmLayout = styled(InputLayout)``;
-const PasswordConfirmBox = styled(InputBox)``;
-const PasswordOn = styled(PasswordToggleIcon)``;
-const PasswordOff = styled(PasswordToggleIcon)``;
-const Message = styled(AlertMessage)``;
 
 export default Form;

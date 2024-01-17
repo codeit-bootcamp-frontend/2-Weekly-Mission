@@ -30,7 +30,7 @@ const convertToSnakeCase = (data: SharedFolder) => {
     const convertedLink = Object.fromEntries(
       Object.entries(link).map(([key, value]) => [
         key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`),
-        value,
+        value
       ])
     );
     return convertedLink;

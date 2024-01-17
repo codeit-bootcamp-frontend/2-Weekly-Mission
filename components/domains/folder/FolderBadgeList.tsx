@@ -7,7 +7,7 @@ import { DataContextType } from "../../../contexts/LocaleContext";
 
 function FolderBadgeList({
   setSelectFolderLinks,
-  setId,
+  setId
 }: {
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
@@ -40,25 +40,6 @@ function FolderBadgeList({
     </div>
   );
 }
-
-const Button = styled.button`
-  background-color: #ffffff;
-  border: 1px solid var(--primary-color);
-  font-size: 1.6rem;
-  border-radius: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--primary-color);
-    color: #ffffff;
-  }
-
-  /* Mobile*/
-  @media (max-width: 390px) {
-    padding: 0.6rem 1.2rem;
-  }
-`;
 
 const FolderBadgeListBox = styled.div`
   display: flex;

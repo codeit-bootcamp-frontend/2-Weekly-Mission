@@ -9,6 +9,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "next",
     "next/core-web-vitals",
+    "prettier",
   ],
 
   parser: "@typescript-eslint/parser",
@@ -21,6 +22,7 @@ module.exports = {
 
   plugins: ["react", "prettier", "@typescript-eslint", "import"],
   rules: {
+    "prettier/prettier": ["error", { endOfLine: "auto", useTabs: false }],
     "no-nested-ternary": "off",
     "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
