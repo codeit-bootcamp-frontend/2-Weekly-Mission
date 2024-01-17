@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../../CSS/select.css'
+import '../../CSS/select.css';
 
 export default function KebobMenu() {
-  const selectList:[string,string] = ['삭제하기', '폴더에 추가'];
+  const selectList: [string, string] = ['삭제하기', '폴더에 추가'];
   const [Selected, setSelected] = useState<string>('');
 
   const handleSelect = () => {
@@ -10,12 +10,17 @@ export default function KebobMenu() {
   };
 
   return (
-      <div   className='kebob-menu'>
-        {selectList.map((item) => (
-          <button onChange={handleSelect} value={item} key={item} className='option-style'>
-            {item}
-          </button>
-        ))}
-      </div>
+    <div className="kebob-menu">
+      {selectList.map((item) => (
+        <button
+          onChange={handleSelect}
+          value={item}
+          key={item}
+          className="option-style"
+        >
+          {item}
+        </button>
+      ))}
+    </div>
   );
 }
