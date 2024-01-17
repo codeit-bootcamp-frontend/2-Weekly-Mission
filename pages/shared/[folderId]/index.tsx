@@ -7,6 +7,7 @@ import { useGetFolder } from '@/src/folder/util/useGetFolder';
 import { CardList } from '@/src/link/ui-card-list/CardList';
 import { ReadOnlyCard } from '@/src/link/ui-read-only-card/ReadOnlyCard';
 import { SearchBar } from '@/src/link/ui-search-bar/SearchBar';
+import { useGetLinks } from '@/src/link/util/useGetLinks';
 import { useSearchLink } from '@/src/link/util/useSearchLink';
 import { useGetUser } from '@/src/user/useGetUser';
 import { useRouter } from 'next/router';
@@ -16,12 +17,12 @@ export default function Shared() {
   const { folderId } = router.query;
   const { data: folder } = useGetFolder(folderId as string); // 샘플 폴더 데이터
   const { data: user } = useGetUser(folder.userId as number);
+  const { data: links } = useGetLinks(Number(folderId), folder.userId);
 
   // return;
 
-  // const { searchValue, handleChange, handleCloseClick, result } = useSearchLink(
-  //   links
-  // );
+  const { searchValue, handleChange, handleCloseClick, result } =
+    useSearchLink(links);
 
   return (
     <Layout user={user}>
@@ -34,20 +35,18 @@ export default function Shared() {
           />
         }
         searchBar={
-          <div></div>
-          // <SearchBar
-          //   value={searchValue}
-          //   onChange={handleChange}
-          //   onCloseClick={handleCloseClick}
-          // />
+          <SearchBar
+            value={searchValue}
+            onChange={handleChange}
+            onCloseClick={handleCloseClick}
+          />
         }
         cardList={
-          <div></div>
-          // <CardList>
-          //   {result?.map((link) => (
-          //     <ReadOnlyCard key={link?.id} {...link} />
-          //   ))}
-          // </CardList>
+          <CardList>
+            {result?.map((link) => (
+              <ReadOnlyCard key={link?.id} {...link} />
+            ))}
+          </CardList>
         }
       />
     </Layout>
