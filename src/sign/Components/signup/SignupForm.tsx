@@ -9,12 +9,12 @@ const SignUpForm = () => {
   return(
     <main className={style.main}>
     <div className={style.container}>
-      <SignTitle />
+      <SignTitle link='signin' linkButton='로그인 하기'>이미 회원이신가요?</SignTitle>
       <form action="" className={style.form} id="signInForm">
         <div className={style.content}>
           <EmailInput />
-          <PasswordInput />
-          <PasswordInput />
+          <PasswordInput placeholder='영문, 숫자를 조합해 8자 이상 입력해 주세요. '>비밀번호</PasswordInput>
+          <PasswordInput placeholder='비밀번호와 일치하는 값을 입력해 주세요.'>비밀번호 확인</PasswordInput>
         </div>
         <SignButton>회원가입</SignButton>
       </form>
