@@ -1,8 +1,8 @@
-import React from "react";
-import { HeaderBox, LogoImage, LinkBox } from "../Auth";
+import React, { ReactNode } from "react";
+import { HeaderBox } from "./Auth";
+import { LogoImage, LinkBox } from "./Auth";
 import Link from "next/link";
-
-const Header = () => {
+const Header = ({ children }: { children: ReactNode }) => {
   return (
     <HeaderBox>
       <Link href={"/"}>
@@ -12,13 +12,8 @@ const Header = () => {
           height={38}
           alt="로고 이미지"
         />
+        <LinkBox>{children}</LinkBox>
       </Link>
-      <LinkBox>
-        <div>
-          이미 회원이신가요?
-          <Link href={"/signin"}>로그인 하기</Link>
-        </div>
-      </LinkBox>
     </HeaderBox>
   );
 };

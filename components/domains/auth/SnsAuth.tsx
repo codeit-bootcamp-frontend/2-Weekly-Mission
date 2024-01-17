@@ -1,12 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 
-const SnsSignIn = () => {
+const SnsAuth = ({ children }: { children: ReactNode }) => {
   return (
-    <SnsSignInBox>
-      <p>소셜 로그인</p>
+    <SnsInBox>
+      <p>{children}</p>
       <SnsIconBox>
         <Link href={"https://www.google.com/"}>
           <GoogleIcon
@@ -25,11 +25,11 @@ const SnsSignIn = () => {
           />
         </Link>
       </SnsIconBox>
-    </SnsSignInBox>
+    </SnsInBox>
   );
 };
 
-const SnsSignInBox = styled.div`
+const SnsInBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,4 +51,4 @@ const GoogleIcon = styled(Image)`
 `;
 const KakaoIcon = styled(Image)``;
 
-export default SnsSignIn;
+export default SnsAuth;

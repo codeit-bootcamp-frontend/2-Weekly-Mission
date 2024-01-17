@@ -29,8 +29,6 @@ export const InputBox = styled.div<IsError>`
     border: 1px solid var(--gray-lighter);
     border-color: ${(props) =>
       props.isError ? "var(--focus-alert)" : "var(--gray-lighter)"};
-    padding-left: 1.5rem;
-    padding-right: 4rem;
     outline: none;
 
     &::placeholder {
@@ -59,8 +57,8 @@ export const GradientButton = styled.button`
   font-weight: 600;
   line-height: 2.16rem;
   width: 100%;
-  margin-bottom: 3.2rem;
   cursor: pointer;
+  margin-bottom: 0.8rem;
 `;
 
 export const HeaderBox = styled.div`

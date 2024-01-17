@@ -1,13 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/domains/auth/signup/Header";
-import Form from "../components/domains/auth/signup/Form";
+import Header from "../components/domains/auth/Header";
+import Form from "../components/domains/auth/SignupForm";
+import Link from "next/link";
 
 const SignUpPage = () => {
   return (
     <SignUpPageLayout>
       <SignUpPageBox>
-        <Header />
+        <Header>
+          <div>
+            이미 회원이신가요?
+            <Link href={"/signin"}>로그인 하기</Link>
+          </div>
+        </Header>
         <Form />
       </SignUpPageBox>
     </SignUpPageLayout>

@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import SignInButton from "./SignInButton";
+import SubmitButton from "./SubmitButton";
 import {
   InputBox,
   PasswordToggleIcon,
   AlertMessage,
   InputLayout
-} from "../Auth";
-import { signIn } from "../../../../pages/api/AuthApi";
-import SnsSingIn from "./SnsSignIn";
+} from "./Auth";
+import { signIn } from "../../../pages/api/AuthApi";
+import SnsAuth from "./SnsAuth";
 import { useForm } from "react-hook-form";
 
 const Form = () => {
@@ -77,8 +77,8 @@ const Form = () => {
         </InputBox>
         <AlertMessage>{errors.password?.message}</AlertMessage>
       </InputLayout>
-      <SignInButton />
-      <SnsSingIn />
+      <SubmitButton>로그인</SubmitButton>
+      <SnsAuth>소셜 로그인</SnsAuth>
     </FormBox>
   );
 };

@@ -16,14 +16,16 @@ export default function App({ Component, pageProps }: AppProps) {
     id: 1,
     name: "",
     email: "",
-    profileImageSource: "",
+    profileImageSource: ""
   });
+  const [isClient, setIsClient] = useState(false);
 
   const router: NextRouter = useRouter();
   const pathname = router.pathname;
   const Modal = modals.get(modal.name);
 
   useEffect(() => {
+    setIsClient(true);
     getUserData().then(setUser);
   }, []);
 

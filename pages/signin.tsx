@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import Header from "../components/domains/auth/signin/Header";
-import Form from "../components/domains/auth/signin/Form";
+import Header from "../components/domains/auth/Header";
+import Form from "../components/domains/auth/SigninForm";
+
+import Link from "next/link";
 
 const SignInPage = () => {
   return (
     <SignInPageLayout>
       <SignInPageBox>
-        <Header />
+        <Header>
+          <div>
+            회원이 아니신가요?
+            <Link href={"/signup"}>회원가입 하기</Link>
+          </div>
+        </Header>
         <Form />
       </SignInPageBox>
     </SignInPageLayout>

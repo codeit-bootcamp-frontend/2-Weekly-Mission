@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+
+  styledComponents: true,
+
   pageExtensions: ["ts", "tsx"],
   images: {
     remotePatterns: [
@@ -8,10 +11,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "**",
         port: "",
-        pathname: "**",
-      },
-    ],
-  },
+        pathname: "**"
+      }
+    ]
+  }
 };
 
 module.exports = nextConfig;

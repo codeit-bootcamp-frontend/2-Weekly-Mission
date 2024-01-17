@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { signUp } from "../../../../pages/api/AuthApi";
+import { signUp } from "../../../pages/api/AuthApi";
 import {
   InputBox,
   PasswordToggleIcon,
   AlertMessage,
   InputLayout
-} from "../Auth";
+} from "./Auth";
 import { useForm } from "react-hook-form";
-import SignUpButton from "./SignUpButton";
-import { isDuplicateEmail } from "../../../../pages/api/AuthApi";
-import SnsSignUp from "./SnsSignUp";
+import SubmitButton from "./SubmitButton";
+import { isDuplicateEmail } from "../../../pages/api/AuthApi";
+import SnsAuth from "./SnsAuth";
 
 const Form = () => {
   const {
@@ -100,8 +100,8 @@ const Form = () => {
         </InputBox>
         <AlertMessage>{errors.passwordConfirm?.message}</AlertMessage>
       </InputLayout>
-      <SignUpButton />
-      <SnsSignUp />
+      <SubmitButton>회원가입</SubmitButton>
+      <SnsAuth>다른 방식으로 가입하기</SnsAuth>
     </FormBox>
   );
 };
