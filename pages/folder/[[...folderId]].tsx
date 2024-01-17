@@ -12,9 +12,11 @@ import { SearchBar } from '@/src/link/ui-search-bar/SearchBar';
 import { ALL_LINKS_ID } from '@/src/link/util/constant';
 import { useGetLinks } from '@/src/link/util/useGetLinks';
 import { useSearchLink } from '@/src/link/util/useSearchLink';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 export default function Folder() {
+  const router = useRouter();
   const { data: folders } = useGetFolders();
   const [selectedFolderId, setSelectedFolderId] =
     useState<SelectedFolderId>(ALL_LINKS_ID);
@@ -22,6 +24,13 @@ export default function Folder() {
   const { searchValue, handleChange, handleCloseClick, result } =
     useSearchLink(links);
   const { ref, isIntersecting } = useIntersectionObserver<HTMLDivElement>();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+      router.replace('/signin');
+    }
+  }, []);
 
   return (
     <Layout isSticky={false} footerRef={ref}>
