@@ -1,20 +1,25 @@
 import Image from "next/image";
 import style from './EyeButton.module.css';
-import { useState } from "react";
 import eyeOn from '@/src/assets/eye-on.svg';
 import eyeOff from '@/src/assets/eye-off.svg';
+import { MouseEvent, Dispatch, SetStateAction } from "react";
 
-const EyeButton = () => {
-  const [isOn, setIsOn] = useState(true);
+interface PropType {
+  isVisible:boolean;
+  onClick: Dispatch<SetStateAction<boolean>>
+}
 
-  const handleEyeButton = () => {
-    setIsOn(!isOn);
+const EyeButton = ({isVisible, onClick} : PropType) => {
+
+  const handleEyeButtonClick = (e:MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    onClick(!isVisible);
   };
 
   return(
-    <button onClick={handleEyeButton}>
-      {isOn && <div className={style.eye}><Image src={eyeOn} alt="보이기" fill/></div>}
-      {!isOn && <div className={style.eye}><Image src={eyeOff} alt="숨기기" fill/></div>}
+    <button onClick={handleEyeButtonClick}>
+      {isVisible && <div className={style.eye}><Image src={eyeOn} alt="보이기" fill/></div>}
+      {!isVisible && <div className={style.eye}><Image src={eyeOff} alt="숨기기" fill/></div>}
     </button>
   )
 };
