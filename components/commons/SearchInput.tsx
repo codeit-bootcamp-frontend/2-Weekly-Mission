@@ -5,7 +5,7 @@ import styled from "styled-components";
 function SearchInput({
   onSearch,
   searchKeyword,
-  setSearchKeyword,
+  setSearchKeyword
 }: {
   onSearch: (keyword: string) => Promise<void>;
   searchKeyword: string;

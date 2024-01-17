@@ -6,7 +6,7 @@ import { FolderPageData, Link } from "../../../../types/common";
 function FolderBadge({
   folder,
   setSelectFolderLinks,
-  setId,
+  setId
 }: {
   folder: FolderPageData;
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;

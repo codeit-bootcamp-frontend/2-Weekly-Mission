@@ -4,7 +4,7 @@ import { Modal } from "../types/common";
 const useModal = () => {
   const [modal, setModal] = useState<Modal>({
     name: "",
-    isOpen: false,
+    isOpen: false
   });
 
   const openModal = useCallback((text: string) => {
@@ -17,7 +17,7 @@ const useModal = () => {
   return {
     modal,
     openModal,
-    closeModal,
+    closeModal
   };
 };
 

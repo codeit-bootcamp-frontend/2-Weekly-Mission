@@ -11,5 +11,5 @@ export const modals = new Map([
   ["삭제", FolderDeleteModal],
   ["링크삭제", LinkDeleteModal],
   ["공유", FolderSharedModal],
-  ["폴더에 추가", LinkAddModal],
+  ["폴더에 추가", LinkAddModal]
 ]);

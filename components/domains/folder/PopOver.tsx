@@ -4,7 +4,7 @@ import { ModalContext } from "../../../contexts/LocaleContext";
 import { ModalControl } from "../../../types/common";
 
 function PopOver({
-  setIsPopOver,
+  setIsPopOver
 }: {
   setIsPopOver: React.Dispatch<SetStateAction<boolean>>;
 }) {

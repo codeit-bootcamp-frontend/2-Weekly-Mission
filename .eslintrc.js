@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
   extends: [
     "plugin:@typescript-eslint/recommended",
@@ -9,7 +9,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "next",
     "next/core-web-vitals",
-    "prettier",
+    "prettier"
   ],
 
   parser: "@typescript-eslint/parser",
@@ -17,7 +17,7 @@ module.exports = {
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
-    sourceType: "module",
+    sourceType: "module"
   },
 
   plugins: ["react", "prettier", "@typescript-eslint", "import"],
@@ -32,15 +32,15 @@ module.exports = {
       "ignorePackages",
       {
         ts: "never",
-        tsx: "never",
-      },
-    ],
+        tsx: "never"
+      }
+    ]
   },
   settings: {
     "import/resolver": {
       node: {
-        extensions: [".ts", ".tsx", ".svg"],
-      },
-    },
-  },
+        extensions: [".ts", ".tsx", ".svg"]
+      }
+    }
+  }
 };

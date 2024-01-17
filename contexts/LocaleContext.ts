@@ -9,5 +9,5 @@ export type DataContextType =
 export const DataContext = createContext<DataContextType>([]);
 export const ModalContext = createContext<ModalControl>({
   openModal: () => {},
-  closeModal: () => {},
+  closeModal: () => {}
 });

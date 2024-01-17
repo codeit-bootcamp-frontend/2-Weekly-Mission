@@ -4,12 +4,12 @@ import Category from "./Category";
 const categoryList = [
   { title: "공유", image: "/images/share.png " },
   { title: "이름 변경", image: "/images/pen.png" },
-  { title: "삭제", image: "/images/delete.png" },
+  { title: "삭제", image: "/images/delete.png" }
 ];
 
 function CategoryList({
   searchKeyword,
-  folderName,
+  folderName
 }: {
   searchKeyword: string;
   folderName: string | undefined;
