@@ -9,7 +9,10 @@ export const useSignIn = (email: string, password: string) => {
       password,
     });
 
-  const { execute, loading, error, data } = useAsync(signIn, true);
+  const { execute, loading, error, data } = useAsync({
+    asyncFunction: signIn,
+    initLater: true,
+  });
 
   return {
     execute,

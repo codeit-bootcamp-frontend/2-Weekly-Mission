@@ -9,7 +9,10 @@ export const useSignUp = (email: string, password: string) => {
       password,
     });
 
-  const { execute, loading, error, data } = useAsync(signUp, true);
+  const { execute, loading, error, data } = useAsync({
+    asyncFunction: signUp,
+    initLater: true,
+  });
 
   return {
     execute,

@@ -11,7 +11,10 @@ export const useCheckEmail = (email: string) => {
       email: email,
     });
 
-  const { execute, loading, error, data } = useAsync(checkEmail, true);
+  const { execute, loading, error, data } = useAsync({
+    asyncFunction: checkEmail,
+    initLater: true,
+  });
 
   return {
     execute,

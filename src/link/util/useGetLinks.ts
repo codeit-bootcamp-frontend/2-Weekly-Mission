@@ -14,7 +14,9 @@ export const useGetLinks = (folderId: SelectedFolderId = ALL_LINKS_ID) => {
       axiosInstance.get<{ data: LinkRawData[] }>(`users/1/links${queryString}`),
     [queryString]
   );
-  const { execute, loading, error, data } = useAsync(getLinks);
+  const { execute, loading, error, data } = useAsync({
+    asyncFunction: getLinks,
+  });
 
   useEffect(() => {
     execute();

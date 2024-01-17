@@ -1,7 +1,6 @@
 import { FolderRawData } from '../type';
 import { useAsync } from '@/src/commons/util/useAsync';
 import { axiosInstance } from '@/src/commons/util/axiosInstance';
-import { mapFolderData } from './map/mapFolderData';
 
 // 샘플 폴더 데이터를 가져오는 커스텀 훅
 export const useGetFolder = (folderId: string) => {

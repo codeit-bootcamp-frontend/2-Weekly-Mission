@@ -3,14 +3,14 @@ import { AxiosResponse } from 'axios';
 
 type UseAsyncParams<T> = {
   asyncFunction: () => Promise<AxiosResponse<T>>;
-  initFirst?: boolean;
+  initLater?: boolean;
   reload?: boolean; // 새로고침용
 };
 
 // 비동기 처리 커스텀 훅
 export const useAsync = <T>({
   asyncFunction,
-  initFirst = false,
+  initLater = false,
   reload = true,
 }: UseAsyncParams<T>) => {
   const [loading, setLoading] = useState(false);
@@ -34,10 +34,10 @@ export const useAsync = <T>({
   };
 
   useEffect(() => {
-    if (reload && !initFirst) {
+    if (reload && !initLater) {
       execute();
     }
-  }, [reload, initFirst]);
+  }, [reload, initLater]);
 
   //   로딩, 에러, 데이터 반환
   return { execute, loading, error, data };
