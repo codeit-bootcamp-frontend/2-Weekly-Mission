@@ -7,38 +7,20 @@ import CTA from '@/components/CTA/CTA';
 import { FormValues } from '@/lib/formTypes';
 import axios from '@/lib/axios.js';
 
-import styles from './SignForm.module.css';
+import styles from './SignInForm.module.css';
 
 interface Props {
-  url: '/sign-in' | '/sign-up';
-  cta: '로그인' | '회원가입';
+  url: '/sign-in';
+  cta: '로그인';
   children: ReactNode;
 }
 
-export default function SignForm({ url, cta, children }: Props) {
+export default function SignInForm({ url, cta, children }: Props) {
   const methods = useForm<FormValues>({ mode: 'onBlur' });
 
   const router = useRouter();
-  const pathname = router.pathname;
-  const isSignInPage = pathname === '/signup' ? true : false;
-
-  const checkEmail = async () => {
-    const email = { email: methods.getValues('email') };
-    let isUsable = false;
-    try {
-      const { data } = await axios.post('/check-email', email);
-      isUsable = data.data.isUsableNickname;
-    } catch (error) {
-      methods.setError('email', { message: '이미 사용 중인 이메일입니다.' });
-    }
-    return isUsable;
-  };
 
   const onSubmit: SubmitHandler<FormValues> = async () => {
-    const isUsableEmail = isSignInPage ? await checkEmail() : true;
-
-    if (!isUsableEmail) return;
-
     const userData = { email: methods.getValues('email'), password: methods.getValues('password') };
 
     try {
