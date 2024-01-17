@@ -29,7 +29,7 @@ export const Footer = forwardRef<HTMLElement>((_, ref) => {
                 target="_blank"
                 rel="noopener noreferrer">
                 <img
-                  src={`images/${sns}.svg`}
+                  src={`../../images/${sns}.svg`}
                   alt={`${sns} 홈페이지로 연결된 ${sns} 로고`}
                 />
               </Link>
