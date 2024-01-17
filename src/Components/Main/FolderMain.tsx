@@ -3,8 +3,6 @@ import MainSearchBar from './MainSearchBar';
 import FolderButtons from './FolderButtons';
 import FolderCardContainer from './FolderCardContainer';
 import '../../CSS/Folder.css';
-import Share from '../Modal/Share';
-import Add from '../Modal/Add';
 
 export default function FolderMain() {
   const [selectedValue, setSelectedValue] = useState('전체');
