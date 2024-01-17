@@ -1,11 +1,14 @@
 import styled from "styled-components";
-import Link from '../../public/link.svg';
+import Image from "next/image";
 
 function AddLink() {
   return (
     <AddLinkContainer>
       <InputContainer>
         <AddLinkInput placeholder="링크를 추가해 보세요" />
+        <ImgContainer>
+          <Image fill src="/link.svg" alt="링크 아이콘" />
+        </ImgContainer>
         <AddLinkButton>추가하기</AddLinkButton>
       </InputContainer>
     </AddLinkContainer>
@@ -32,23 +35,25 @@ const InputContainer = styled.div`
 
 const AddLinkInput = styled.input`
   width: 80rem;
-  padding: 1.6rem 2rem;
+  padding: 1.6rem 2rem 1.6rem 4rem;
   border-radius: 1.5rem;
   border: 0.1rem solid #6d6afe;
   background: #fff;
 
   &::placeholder {
-    background-image: url(${Link});
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 2rem;
-    padding-left: 2.5rem;
     color: #9fa6b2;
     font-size: 1.6rem;
     font-style: normal;
     font-weight: 400;
     line-height: 2.4rem;
   }
+`;
+
+const ImgContainer = styled.div`
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  left: 1.2rem;
 `;
 
 const AddLinkButton = styled.button`

@@ -26,7 +26,6 @@ function FolderPage() {
     const res = await axios.get("/users/1/folders");
     const folder = res.data;
     setFolderData(folder);
-    console.log(folder);
   }
 
   async function getUserLinkApi() {

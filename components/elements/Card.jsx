@@ -1,13 +1,9 @@
-import Link from "next/link";
-import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { timeAgo, formatDate } from "../../utils/time";
+import Link from "next/link";
 import Image from "next/image";
-import noneImg from "../../public/none.svg";
-import StarImg from "../../public/star.svg";
-import KebabImg from "../../public/kebab.svg";
+import styled from "styled-components";
+import { timeAgo, formatDate } from "../../utils/time";
 import Kebab from "./Kebab";
-
 
 function Card({ cardData }) {
   const [selectedKebab, setSelectedKebab] = useState(new Set());
@@ -42,24 +38,38 @@ function Card({ cardData }) {
             <CardContents key={data.id}>
               <Link href={data.url}>
                 <CardContainer>
-                  <StarButton />
+                  <StarButton>
+                    <Image
+                      src="/star.svg"
+                      alt="별 이미지"
+                      width={34}
+                      height={34}
+                    />
+                  </StarButton>
                   <CardImg
-                    src={data.imageSource || data.image_source || noneImg}
+                    src={data.imageSource || data.image_source || "/none.svg"}
                     key={data.id}
                     alt="이미지 미리보기"
+                    width={100}
+                    height={100}
                   />
                 </CardContainer>
               </Link>
               <CardInfoContainer>
-                <KebabButton
-                  onClick={() => handleKebabClick(data.id)}
-                ></KebabButton>
+                <KebabButton onClick={() => handleKebabClick(data.id)}>
+                  <Image
+                    src="/kebab.svg"
+                    alt="케밥 이미지"
+                    width={21}
+                    height={17}
+                  />
+                </KebabButton>
                 {selectedKebab.has(data.id) && <Kebab />}
-                <CreatedAt>{timeAgo(data.createdAt)}</CreatedAt>
+                <CreatedAt>{timeAgo(data.createdAt ? data.createdAt : data.created_at)}</CreatedAt>
                 <Description>
                   {data.description || "no description"}
                 </Description>
-                <MakeDate>{formatDate(data.createdAt)}</MakeDate>
+                <MakeDate>{formatDate(data.createdAt ? data.createdAt : data.created_at)}</MakeDate>
               </CardInfoContainer>
             </CardContents>
           ))}
@@ -101,19 +111,14 @@ const CardContainer = styled.div`
   position: relative;
 `;
 
-const StarButton = styled.button`
-  background-image: url(${StarImg});
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 2.7rem;
-  height: 2.7rem;
+const StarButton = styled.div`
   position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 1;
 `;
 
-const CardImg = styled.img`
+const CardImg = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -134,11 +139,6 @@ const CardInfoContainer = styled.div`
 `;
 
 const KebabButton = styled.button`
-  background-image: url(${KebabImg});
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 2.5rem;
-  height: 2rem;
   position: absolute;
   top: 1rem;
   right: 0.8rem;
@@ -147,9 +147,7 @@ const KebabButton = styled.button`
 const CreatedAt = styled.p`
   color: #666;
   font-size: 1.3rem;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 `;
 
 const Description = styled.p`
@@ -158,9 +156,7 @@ const Description = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: normal;
   font-size: 1.6rem;
-  font-style: normal;
   font-weight: 400;
   line-height: 2.4rem;
 `;
@@ -171,7 +167,5 @@ const MakeDate = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 1.4rem;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 `;

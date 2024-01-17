@@ -2,18 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-function LogoTitle() {
+function LogoTitle({ signin }) {
   return (
     <Wrapper>
       <LogoContainer>
         <Link href="/">
-          <Image fill src="/logo.svg" alt="홈으로 연결된 Linkbrary 로고" />
+          <Image fill src="/logo.svg" alt="홈으로 연결된 Linkbrary 로고" priority={true} />
         </Link>
       </LogoContainer>
       <TextContainer>
-        회원이 아니신가요?
+        {signin ? "회원이 아니신가요?" : "이미 회원이신가요?"}
         <LinkContainer>
-          <Link href="/signup">회원가입하기</Link>
+          <Link href={signin ? "/signup" : "/signin"}>
+            {signin ? "회원 가입하기" : "로그인 하기"}
+          </Link>
         </LinkContainer>
       </TextContainer>
     </Wrapper>

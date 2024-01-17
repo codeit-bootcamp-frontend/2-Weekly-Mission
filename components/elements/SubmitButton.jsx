@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
-function SubmitButton() {
+function SubmitButton({ text, disabled }) {
   return (
     <>
-      <SubBtn type="submit">로그인</SubBtn>
+      <SubBtn type="submit" disabled={disabled}>
+        {text}
+      </SubBtn>
     </>
   );
 }
@@ -21,5 +23,4 @@ const SubBtn = styled.button`
   color: #f5f5f5;
   font-size: 1.8rem;
   font-weight: 600;
-  margin: 3rem 0;
 `;
