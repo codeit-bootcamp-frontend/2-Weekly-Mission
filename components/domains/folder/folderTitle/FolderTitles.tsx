@@ -1,32 +1,30 @@
-import CategoryBox from "./CategoryBox";
-import { Folder } from "../../../../types/folder";
+import { useContext } from "react";
+import CategoryList from "./CategoryList";
+import { FolderPageData } from "../../../../types/common";
+import {
+  DataContextType,
+  DataContext
+} from "../../../../contexts/LocaleContext";
 
 function FoldersTitles({
-  folderList,
   id,
-  openModal,
-  searchResult,
+  searchKeyword
 }: {
-  folderList: Folder[];
   id: number;
-  openModal: () => void;
-  searchResult: string;
+  searchKeyword: string;
 }) {
+  const folderList = useContext<DataContextType>(
+    DataContext
+  ) as FolderPageData[];
+
+  const folder = folderList.find((folder) => folder.id === id);
+
   return (
-    folderList?.length > 0 &&
-    folderList.map((folder) => {
-      if (folder.id === id) {
-        return (
-          <CategoryBox
-            searchResult={searchResult}
-            key={folder.id}
-            folder={folder}
-            openModal={openModal}
-          />
-        );
-      }
-      return null;
-    })
+    <CategoryList
+      searchKeyword={searchKeyword}
+      key={folder?.id}
+      folderName={folder?.name}
+    />
   );
 }
 

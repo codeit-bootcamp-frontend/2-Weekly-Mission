@@ -6,7 +6,7 @@ import ConvertToFormattedDate from "../../utils/convertToFormattedDate";
 import { Link } from "../../types/common";
 import PopOver from "../domains/folder/PopOver";
 
-function Card({ link, openModal }: { link: Link; openModal: () => void }) {
+function Card({ link }: { link: Link }) {
   const elapseTime = CalculateElapsedTime(link?.created_at || "");
   const postedDate = ConvertToFormattedDate(link?.created_at || "");
   const [isPopOver, setIsPopOver] = useState(false);
@@ -27,9 +27,7 @@ function Card({ link, openModal }: { link: Link; openModal: () => void }) {
       <CardDescriptionBox>
         <TimeBox>
           <div>{elapseTime}</div>
-          {isPopOver ? (
-            <PopOver setIsPopOver={setIsPopOver} openModal={openModal} />
-          ) : null}
+          {isPopOver ? <PopOver setIsPopOver={setIsPopOver} /> : null}
           <Image
             onClick={() => {
               setIsPopOver(true);
@@ -61,16 +59,15 @@ const CardLayout = styled.div`
 const CardImageWrapper = styled.div`
   width: 34rem;
   height: 33.4rem;
-  position: relative;
+
   @media (max-width: 1200px) {
     width: 100%;
   }
 `;
 
 const CardImage = styled(Image)`
-  width: 34rem;
-  height: 33.4rem;
   object-fit: cover;
+  top: -15% !important;
 
   &:hover {
     transform: scale(1.3);
@@ -79,7 +76,7 @@ const CardImage = styled(Image)`
 
 const CardNoImage = styled(Image)`
   object-fit: cover;
-  width: 100%;
+  top: -15% !important;
 `;
 
 const CardDescriptionBox = styled.div`
@@ -101,6 +98,7 @@ const CardDescriptionBox = styled.div`
     -webkit-box-orient: vertical;
     margin-bottom: 1rem;
   }
+
   & div {
     font-size: 1.4rem;
   }

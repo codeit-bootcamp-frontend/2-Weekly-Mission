@@ -1,36 +1,37 @@
 import styled from "styled-components";
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useContext } from "react";
+import { ModalContext } from "../../../contexts/LocaleContext";
+import { ModalControl } from "../../../types/common";
 
 function PopOver({
-  openModal,
-  setIsPopOver,
+  setIsPopOver
 }: {
-  openModal: () => void;
   setIsPopOver: React.Dispatch<SetStateAction<boolean>>;
 }) {
+  const { openModal } = useContext<ModalControl>(ModalContext);
   return (
-    <PopOverLayout>
-      <PopOverButton
+    <PopOverBox>
+      <Button
         onClick={() => {
           openModal("링크삭제");
           setIsPopOver(false);
         }}
       >
         삭제하기
-      </PopOverButton>
-      <PopOverButton
+      </Button>
+      <Button
         onClick={() => {
           openModal("폴더에 추가");
           setIsPopOver(false);
         }}
       >
         폴더에 추가
-      </PopOverButton>
-    </PopOverLayout>
+      </Button>
+    </PopOverBox>
   );
 }
 
-const PopOverLayout = styled.div`
+const PopOverBox = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -39,7 +40,8 @@ const PopOverLayout = styled.div`
   right: 1.5rem;
   top: 3rem;
 `;
-const PopOverButton = styled.button`
+
+const Button = styled.button`
   width: 10rem;
   height: 3.1rem;
   font-size: 1.4rem;

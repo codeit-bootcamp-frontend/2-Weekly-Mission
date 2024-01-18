@@ -1,18 +1,15 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/recommended",
-    "airbnb",
-    "airbnb/hooks",
-    "prettier",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
     "next",
     "next/core-web-vitals",
+    "prettier"
   ],
 
   parser: "@typescript-eslint/parser",
@@ -20,11 +17,12 @@ module.exports = {
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
-    sourceType: "module",
+    sourceType: "module"
   },
 
-  plugins: ["react", "@typescript-eslint", "import"],
+  plugins: ["react", "prettier", "@typescript-eslint", "import"],
   rules: {
+    "prettier/prettier": ["error", { endOfLine: "auto", useTabs: false }],
     "no-nested-ternary": "off",
     "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
@@ -34,15 +32,15 @@ module.exports = {
       "ignorePackages",
       {
         ts: "never",
-        tsx: "never",
-      },
-    ],
+        tsx: "never"
+      }
+    ]
   },
   settings: {
     "import/resolver": {
       node: {
-        paths: ["src"],
-      },
-    },
-  },
+        extensions: [".ts", ".tsx", ".svg"]
+      }
+    }
+  }
 };

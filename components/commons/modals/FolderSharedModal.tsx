@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import { ModalLayout, FolderSharedModalBox } from "./styledModal";
+import { ModalLayout, FolderSharedModalBox } from "./Modal";
 import CloseButton from "./CloseButton";
 
-function FolderSharedModal({ closeModal }: { closeModal: () => void }) {
+function FolderSharedModal({ onConfirm }: { onConfirm: () => void }) {
   return (
     <ModalLayout>
       <FolderSharedModalBox>
-        <CloseButton closeModal={closeModal} />
+        <CloseButton onClick={onConfirm} />
         <h3>폴더 공유</h3>
         <p>폴더명</p>
         <SnsListBox>

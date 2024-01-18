@@ -3,19 +3,20 @@ import Banner from "../components/domains/shared/Banner";
 import CardList from "../components/commons/CardList";
 import SearchInput from "../components/commons/SearchInput";
 import styles from "../styles/sharedPage.module.css";
-import { getSharedData } from "./api/SharedApi";
-import { Folder } from "../types/shared";
+import { getSharedFolderData } from "./api/SharedApi";
+import { SharedPageData } from "../types/common";
 import { Link } from "../types/common";
+import { DataContext } from "../contexts/LocaleContext";
 
-function SharedPage({ openModal }: { openModal: () => void }) {
-  const [searchResult, setSearchResult] = useState<string>("");
-  const [sharedFolder, setSharedFolder] = useState<Folder>({
+function SharedPage() {
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const [sharedFolder, setSharedFolder] = useState<SharedPageData>({
     id: 1,
     name: "",
     owner: {
       id: 2,
       name: "",
-      profileImageSource: "",
+      profileImageSource: ""
     },
     links: [
       {
@@ -24,21 +25,18 @@ function SharedPage({ openModal }: { openModal: () => void }) {
         title: "",
         description: "",
         image_source: "",
-        created_at: "",
-      },
-    ],
+        created_at: ""
+      }
+    ]
   });
 
   const handleFolderLoad = async () => {
-    const { folder } = await getSharedData();
-    setSharedFolder({
-      ...folder,
-      links: folder.links,
-    });
+    const { folder } = await getSharedFolderData();
+    setSharedFolder(folder);
   };
 
   const searchLink = async (keyword: string) => {
-    const { folder } = await getSharedData();
+    const { folder } = await getSharedFolderData();
     const filteredLinks = folder.links.filter(
       (link: Link) =>
         link.url?.includes(keyword) ||
@@ -48,7 +46,7 @@ function SharedPage({ openModal }: { openModal: () => void }) {
 
     setSharedFolder({
       ...folder,
-      links: filteredLinks,
+      links: filteredLinks
     });
   };
 
@@ -57,19 +55,19 @@ function SharedPage({ openModal }: { openModal: () => void }) {
   }, []);
 
   return (
-    <>
-      <Banner folder={sharedFolder} />
-      <section className={styles.contentFlax}>
+    <DataContext.Provider value={sharedFolder}>
+      <Banner />
+      <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
           <SearchInput
-            searchResult={searchResult}
-            setSearchResult={setSearchResult}
-            searchLink={searchLink}
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}
+            onSearch={searchLink}
           />
-          <CardList openModal={openModal} links={sharedFolder?.links} />
+          <CardList links={sharedFolder?.links} />
         </div>
       </section>
-    </>
+    </DataContext.Provider>
   );
 }
 

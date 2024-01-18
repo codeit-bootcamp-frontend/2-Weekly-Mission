@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 function FloatingButton() {
-  return <StyledButton>폴더추가 +</StyledButton>;
+  return <Button>폴더추가 +</Button>;
 }
 
-const StyledButton = styled.button`
+const Button = styled.button`
   background-color: var(--primary-color);
   color: #ffffff;
   border-radius: 2rem;

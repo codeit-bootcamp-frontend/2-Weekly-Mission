@@ -13,3 +13,32 @@ export interface UserInfo {
   email: string;
   profileImageSource: string;
 }
+
+export interface Modal {
+  name: string;
+  isOpen: boolean;
+}
+
+export interface ModalControl {
+  openModal: (text: string) => void;
+  closeModal?: () => void;
+}
+
+export interface FolderPageData {
+  id: number;
+  favorite: boolean;
+  name: string;
+  user_id: number;
+  links: Link[];
+}
+
+export interface SharedPageData {
+  id: number;
+  name: string;
+  owner: {
+    id: number;
+    name: string;
+    profileImageSource: string;
+  };
+  links: Link[];
+}

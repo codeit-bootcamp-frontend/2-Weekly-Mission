@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import React, { useContext } from "react";
 import Image from "next/image";
+import { useContext } from "react";
 import { ModalContext } from "../../../contexts/LocaleContext";
+import { ModalControl } from "../../../types/common";
 
-function Banner() {
-  const { openModal } = useContext(ModalContext);
+function AddLinkBanner() {
+  const { openModal } = useContext<ModalControl>(ModalContext);
+
   return (
     <BannerLayout>
       <BannerBox>
@@ -62,7 +64,6 @@ const BannerBox = styled.div`
       rgba(109, 106, 254, 1),
       rgba(106, 227, 254, 1)
     );
-
     border: none;
     border-radius: 0.8rem;
     color: var(--white-color);
@@ -75,4 +76,4 @@ const BannerBox = styled.div`
   }
 `;
 
-export default Banner;
+export default AddLinkBanner;

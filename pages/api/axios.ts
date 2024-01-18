@@ -1,7 +1,8 @@
 import axios from "axios";
-import API_BASE_URL from "../../constants";
 
-interface SharedFolderLinkInfo {
+const axiosInstance = axios.create();
+
+interface SharedFolderLink {
   id: number;
   createdAt: string;
   url: string;
@@ -10,7 +11,7 @@ interface SharedFolderLinkInfo {
   imageSource: string;
 }
 
-interface SharedFolderInfo {
+interface SharedFolder {
   folder: {
     id: number;
     name: string;
@@ -19,17 +20,17 @@ interface SharedFolderInfo {
       name: string;
       profileImageSource: string;
     };
-    links: SharedFolderLinkInfo[];
+    links: SharedFolderLink[];
   };
 }
 
-const convertToSnakeCase = (data: SharedFolderInfo) => {
+const convertToSnakeCase = (data: SharedFolder) => {
   const { links } = data.folder;
   const convertedLinks = links.map((link) => {
     const convertedLink = Object.fromEntries(
       Object.entries(link).map(([key, value]) => [
         key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`),
-        value,
+        value
       ])
     );
     return convertedLink;
@@ -37,28 +38,11 @@ const convertToSnakeCase = (data: SharedFolderInfo) => {
   return convertedLinks;
 };
 
-const axiosInstance = axios.create();
-
 axiosInstance.interceptors.response.use((response) => {
-  if (response.data && response.data.folder) {
+  if (response?.data.folder) {
     response.data.folder.links = convertToSnakeCase(response.data);
   }
   return response;
 });
 
-const getData = async (url: string) => {
-  try {
-    const response = await axiosInstance.get(`${API_BASE_URL}${url}`);
-
-    if (!(response.status === 200)) {
-      throw new Error();
-    }
-
-    return response.data;
-  } catch (error) {
-    console.log("An error occurred:", error);
-    throw error;
-  }
-};
-
-export default getData;
+export default axiosInstance;

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { ModalLayout, DeleteModalModalBox, RedButton } from "./styledModal";
+import { ModalLayout, DeleteModalModalBox, RedButton } from "./Modal";
 import CloseButton from "./CloseButton";
 
-function LinkAddModal({ closeModal }: { closeModal: () => void }) {
+function LinkAddModal({ onConfirm }: { onConfirm: () => void }) {
   return (
     <ModalLayout>
       <DeleteModalModalBox>
-        <CloseButton closeModal={closeModal} />
+        <CloseButton onClick={onConfirm} />
         <h3>폴더에 추가</h3>
         <p>링크 주소</p>
         <FolderList>
@@ -20,7 +20,7 @@ function LinkAddModal({ closeModal }: { closeModal: () => void }) {
             <div>7개의 링크</div>
           </Folder>
         </FolderList>
-        <RedButton onClick={closeModal} type="button">
+        <RedButton onClick={onConfirm} type="button">
           추가하기
         </RedButton>
       </DeleteModalModalBox>
@@ -32,6 +32,7 @@ const FolderList = styled.ul`
   padding: 0;
   margin-bottom: 2.4rem;
 `;
+
 const Folder = styled.li`
   padding: 0.8rem;
   display: flex;
@@ -42,6 +43,7 @@ const Folder = styled.li`
     font-size: 1.6rem;
     color: rgba(55, 55, 64, 1);
   }
+
   & div {
     font-size: 1.4rem;
     color: rgba(159, 166, 178, 1);

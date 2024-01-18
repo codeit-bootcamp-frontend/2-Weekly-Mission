@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
-import Banner from "../components/domains/folder/Banner";
+import AddLinkBanner from "../components/domains/folder/AddLinkBanner";
 import CardList from "../components/commons/CardList";
 import SearchInput from "../components/commons/SearchInput";
 import styles from "../styles/folderPage.module.css";
-import FolderButtonList from "../components/domains/folder/FolderButtonList";
+import FolderBadgeList from "../components/domains/folder/FolderBadgeList";
 import FolderTitles from "../components/domains/folder/folderTitle/FolderTitles";
 import FloatingButton from "../components/domains/folder/FloatingButton";
-import { getAllLinksData, getFoldersData } from "./api/FolderApi";
-import { Folder } from "../types/folder";
+import { getAllLinksData, getUserFoldersData } from "./api/FolderApi";
+import { FolderPageData } from "../types/common";
 import { Link } from "../types/common";
+import { DataContext } from "../contexts/LocaleContext";
 
-function FolderPage({ openModal }: { openModal: () => void }) {
-  const [folderList, setFolderList] = useState<Folder[]>([]);
+function FolderPage() {
+  const [folderList, setFolderList] = useState<FolderPageData[]>([]);
   const [selectFolderLinks, setSelectFolderLinks] = useState<Link[]>([]);
   const [id, setId] = useState<number>(0);
   const [searchLinks, setSearchLinks] = useState<Link[]>([]);
-  const [searchResult, setSearchResult] = useState<string>("");
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
 
   const handleFoldersLoad = async () => {
-    const allLinksFolder: Folder = {
+    const allLinksFolder: FolderPageData = {
       id: 0,
       favorite: false,
       name: "전체",
@@ -29,12 +30,12 @@ function FolderPage({ openModal }: { openModal: () => void }) {
           url: "",
           title: "",
           image_source: "",
-          created_at: "",
-        },
-      ],
+          created_at: ""
+        }
+      ]
     };
     const allData = await getAllLinksData();
-    const { data } = await getFoldersData();
+    const { data } = await getUserFoldersData();
     allLinksFolder.links = allData.data;
     setFolderList([allLinksFolder, ...data]);
   };
@@ -54,35 +55,28 @@ function FolderPage({ openModal }: { openModal: () => void }) {
   }, [id]);
 
   return (
-    <>
-      <Banner openModal={openModal} />
-      <section className={styles.contentFlax}>
+    <DataContext.Provider value={folderList}>
+      <AddLinkBanner />
+      <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
           <SearchInput
-            searchResult={searchResult}
-            setSearchResult={setSearchResult}
-            searchLink={searchLink}
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}
+            onSearch={searchLink}
           />
-          <FolderButtonList
-            folderList={folderList}
+          <FolderBadgeList
             setSelectFolderLinks={setSelectFolderLinks}
             setId={setId}
-            openModal={openModal}
           />
-          <FolderTitles
-            searchResult={searchResult}
-            openModal={openModal}
-            folderList={folderList}
-            id={id}
-          />
-          {searchResult !== "" ? (
-            <CardList links={searchLinks} openModal={openModal} />
-          ) : searchResult !== "" ? (
-            <CardList links={searchLinks} openModal={openModal} />
+          <FolderTitles searchKeyword={searchKeyword} id={id} />
+          {searchKeyword !== "" ? (
+            <CardList links={searchLinks} />
+          ) : searchKeyword !== "" ? (
+            <CardList links={searchLinks} />
           ) : id === 0 ? (
-            <CardList openModal={openModal} links={folderList[0]?.links} />
+            <CardList links={folderList[0]?.links} />
           ) : selectFolderLinks.length !== 0 ? (
-            <CardList links={selectFolderLinks} openModal={openModal} />
+            <CardList links={selectFolderLinks} />
           ) : (
             <div className={styles.linksNull}>
               <div>저장된 링크가 없습니다.</div>
@@ -91,7 +85,7 @@ function FolderPage({ openModal }: { openModal: () => void }) {
         </div>
       </section>
       <FloatingButton />
-    </>
+    </DataContext.Provider>
   );
 }
 

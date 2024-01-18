@@ -10,6 +10,7 @@ export const ModalLayout = styled.form`
   position: absolute;
   z-index: 2;
 `;
+
 export const ModalBox = styled.div`
   width: 36rem;
   padding: 4rem 3.2rem;
