@@ -72,7 +72,7 @@ export default function SignUpPage() {
               value={values.email}
               onChange={handleChange}
             />
-            <span className={cx('error-message')}>이메일 입력해주세요</span>
+            <p className={cx('error-message')}>이메일 입력해주세요</p>
           </div>
           <div>
             <label htmlFor="password">비밀번호</label>
@@ -85,7 +85,7 @@ export default function SignUpPage() {
               value={values.password}
               onChange={handleChange}
             />
-            <span className={cx('error-message')}>비밀번호를 입력해주세요</span>
+            <p className={cx('error-message')}>비밀번호를 입력해주세요</p>
           </div>
           <div>
             <label htmlFor="passwordRepeat">비밀번호 확인</label>
@@ -98,7 +98,7 @@ export default function SignUpPage() {
               value={values.passwordRepeat}
               onChange={handleChange}
             />
-            <span className={cx('error-message')}>비밀번호를 입력해주세요</span>
+            <p className={cx('error-message')}>비밀번호를 입력해주세요</p>
           </div>
         </div>
         <Button variant={'primary'} size={'large'} className={cx('button')}>

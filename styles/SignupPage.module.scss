@@ -41,14 +41,9 @@
   }
 
   .error-message {
-    display: none;
     margin-top: 0.6rem;
     font-size: 1.4rem;
     color: var(--color-red);
-
-    &.active {
-      display: block;
-    }
   }
 
   .button {
