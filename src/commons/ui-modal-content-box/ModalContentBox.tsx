@@ -23,7 +23,7 @@ export const ModalContentBox = ({
       <button onClick={onCloseClick}>
         <img
           className={cx('close')}
-          src="images/close.svg"
+          src="../images/close.svg"
           alt="X모양 닫기 버튼"
         />
       </button>

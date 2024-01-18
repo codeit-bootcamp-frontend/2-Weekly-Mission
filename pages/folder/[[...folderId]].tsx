@@ -10,7 +10,7 @@ import { CardList } from '@/src/link/feature-card-list/CardList';
 import { LinkForm } from '@/src/link/feature-link-form/LinkForm';
 import { SearchBar } from '@/src/link/ui-search-bar/SearchBar';
 import { ALL_LINKS_ID } from '@/src/link/util/constant';
-import { useGetLinks } from '@/src/link/util/useGetLinks';
+import { useGetLink } from '@/src/link/util/useGetLink';
 import { useSearchLink } from '@/src/link/util/useSearchLink';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -20,7 +20,7 @@ export default function Folder() {
   const { data: folders } = useGetFolders();
   const [selectedFolderId, setSelectedFolderId] =
     useState<SelectedFolderId>(ALL_LINKS_ID);
-  const { data: links, loading } = useGetLinks(selectedFolderId);
+  const { data: links, loading } = useGetLink(selectedFolderId);
   const { searchValue, handleChange, handleCloseClick, result } =
     useSearchLink(links);
   const { ref, isIntersecting } = useIntersectionObserver<HTMLDivElement>();
