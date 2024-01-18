@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import Head from "next/head";
 import { useFetch } from "usehooks-ts";
-import { FolderLayout } from "@/components/FolderLayout";
 import { Folder } from "@/types/folder.type";
+import { FolderLayout } from "@/layouts/folder";
 
 function FolderPage() {
   //임시 상수
   const linksUrl = "/api/links";
+  // 14주차 미션 때 교체 예정.
   const folderId = 1;
 
   const [selected, setSelected] = useState<string>("전체");
@@ -15,19 +17,17 @@ function FolderPage() {
   const { data: linksData } = useFetch<Folder>(url);
 
   const onClick = (name: string, linksId?: number) => {
-    let url;
     setSelected(name);
-    if (linksId) {
-      url = `${linksUrl}/${linksId}`;
-    } else {
-      url = linksUrl;
-    }
-
-    setUrl(url);
+    setUrl(linksId ? `${linksUrl}/${linksId}` : linksUrl);
   };
 
   return (
-    <FolderLayout links={linksData?.links || []} folderData={folderNameData} selected={selected} onClick={onClick} />
+    <>
+      <Head>
+        <title>Linkbrary | Folder</title>
+      </Head>
+      <FolderLayout links={linksData?.links || []} folderData={folderNameData} selected={selected} onClick={onClick} />
+    </>
   );
 }
 

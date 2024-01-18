@@ -1,11 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { END_POINT } from "@/lib/constents";
+import { folderServices } from "../address";
 
 async function hanlder(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { id },
   } = req;
-  const { data: folder } = await fetch(`${END_POINT}/users/${id}/folders`)
+
+  const userId = id as string;
+
+  const { data: folder } = await fetch(folderServices.getAllFolder(userId))
     .then((res) => res.json())
     .catch((e) => {
       throw Error(`잘못된 요청 ${e}`);
