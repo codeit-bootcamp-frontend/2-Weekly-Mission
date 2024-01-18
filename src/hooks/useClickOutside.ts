@@ -1,4 +1,4 @@
-import { MouseEventHandler, RefObject, useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
 const useOutsideClick = (ref: RefObject<HTMLElement>, closePopover: () => void) => {
   useEffect(() => {

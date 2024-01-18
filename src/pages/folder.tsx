@@ -1,34 +1,61 @@
 import AddLinkBar from 'components/common/AddLinkBar';
 import { Cards } from 'components/common/Cards';
-import FloatingActionButton from 'components/common/FloatingActionButton';
+const FloatingActionButton = dynamic(() => import('components/common/FloatingActionButton'), { ssr: false });
+const Filtering = dynamic(() => import('components/others/Filtering'), { ssr: false });
+
 import Footer from 'components/common/Footer';
 import Gnb from 'components/common/Gnb';
 import SearchBar from 'components/common/SearchBar';
 import ContentLayout from 'components/others/ContentLayout';
-import Filtering from 'components/others/Filtering';
 import FolderEditButtons from 'components/others/FolderEditButtons';
-import { LinkItem } from 'constants/type';
+import { FolderItem, LinkItem, UserInfo } from 'constants/type';
 import { useSearchContext } from 'context/SearchContext';
 import { SearchContextProvider } from 'context/SearchContext';
-import { getFolder, getLinks } from 'utils/api/fetchApi';
-import { useEffect, useState } from 'react';
+import { getFolder, getLinks, getUser } from 'utils/api/fetchApi';
+import { useEffect } from 'react';
 import styles from 'styles/folder.module.css';
 import filterLinks from 'utils/filtering';
+import { PageContextProvider, usePageContext } from 'context/PageContext';
+import dynamic from 'next/dynamic';
 
-export default function FolderPage() {
+export async function getStaticProps() {
+  const folderList = await getFolder();
+  const linkList = await getLinks(0); // 전체 링크 리스트 불러오기
+
+  const userData = await getUser();
+
+  return {
+    props: {
+      folderList,
+      linkList,
+      userData: userData[0],
+    },
+  };
+}
+
+interface StaticProps {
+  folderList: FolderItem[];
+  linkList: LinkItem[];
+  userData: UserInfo;
+}
+
+export default function FolderPage({ folderList, linkList, userData }: StaticProps) {
   return (
     <SearchContextProvider>
-      <Gnb />
-      <FolderLayout />
-      <Footer />
+      <PageContextProvider initialFolderList={folderList} initialLinkList={linkList}>
+        <Gnb userData={userData} />
+        <FolderLayout />
+        <Footer />
+      </PageContextProvider>
     </SearchContextProvider>
   );
 }
 
 function FolderLayout() {
-  const { searchValue, selectedFolder, folderList, setFolderList, linkList, setLinkList } = useSearchContext();
+  const { searchValue, selectedFolder } = useSearchContext();
+  const { folderList, setFolderList, linkList, setLinkList } = usePageContext();
 
-  const [filteredLinks, setFilteredLinks] = useState<LinkItem[]>([]);
+  const filteredLinks = filterLinks(searchValue, linkList);
 
   async function loadFolder() {
     const data = await getFolder();
@@ -38,7 +65,6 @@ function FolderLayout() {
   async function loadLinks() {
     const data = await getLinks(selectedFolder.id);
     setLinkList(data);
-    setFilteredLinks(data);
   }
 
   useEffect(() => {
@@ -48,10 +74,6 @@ function FolderLayout() {
   useEffect(() => {
     loadLinks();
   }, [selectedFolder.id, selectedFolder.name]);
-
-  useEffect(() => {
-    setFilteredLinks(filterLinks(searchValue, linkList));
-  }, [searchValue]);
 
   return (
     <ContentLayout>

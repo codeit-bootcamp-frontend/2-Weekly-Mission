@@ -1,23 +1,23 @@
-import { forwardRef, useState } from 'react';
+import { HTMLProps, forwardRef, useRef, useState } from 'react';
 import styles from './Input.module.css';
 import clsx from 'clsx';
 
 type InputType = 'text' | 'email' | 'password';
 
-interface InputProps {
+interface InputProps extends HTMLProps<HTMLInputElement> {
   label: string;
-  errors: unknown;
+  errors: any;
   type: InputType;
 }
 
-const Input = forwardRef<InputProps, any>(({ label, errors, type, className, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ label, errors, type, className, ...props }, ref) => {
   const { name: inputName } = props;
 
   let hasToBeToggled = false;
   if (type === 'password') hasToBeToggled = true;
-  const hasError = !!errors?.[inputName]?.message;
+  const hasError = !!errors?.[inputName ?? '']?.message;
 
-  const [inputType, setInputType] = useState<'password' | 'text'>(type);
+  const [inputType, setInputType] = useState<'password' | 'text' | 'email'>(type);
 
   const handleClickToggle = () => {
     if (inputType === 'text') setInputType('password');
@@ -27,6 +27,7 @@ const Input = forwardRef<InputProps, any>(({ label, errors, type, className, ...
   const IMG_PATH = {
     password: '/assets/eye-off.svg',
     text: '/assets/eye-on.svg',
+    email: '',
   };
 
   return (
@@ -45,7 +46,7 @@ const Input = forwardRef<InputProps, any>(({ label, errors, type, className, ...
           </button>
         )}
       </div>
-      <p className={styles.errorMessage}>{errors?.[inputName]?.message}</p>
+      <p className={styles.errorMessage}>{errors?.[inputName ?? '']?.message}</p>
     </div>
   );
 });

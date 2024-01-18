@@ -1,38 +1,21 @@
+import dynamic from 'next/dynamic';
 import LoginButton from 'components/common/LoginButton';
-import Profile from 'components/others/Profile';
-import { getUser } from 'utils/api/fetchApi';
-import { useEffect, useState } from 'react';
+import { UserInfo } from 'constants/type';
+const Profile = dynamic(() => import('components/others/Profile'), { ssr: false });
 
 import styles from './Gnb.module.css';
-import { UserInfo } from 'constants/type';
 
-function Gnb() {
-  const [profile, setProfile] = useState<UserInfo>({
-    id: 0,
-    created_at: '',
-    name: '',
-    image_source: '',
-    email: '',
-    auth_id: '',
-  });
+function Gnb({ userData }: { userData: UserInfo }) {
+  const userProfile = userData;
 
-  async function handleLoadProfile() {
-    const data = await getUser();
-    setProfile(data[0]);
-  }
-
-  useEffect(() => {
-    handleLoadProfile();
-  }, []);
-
-  const didLogin = !!profile.id;
+  const didLogin = !!userProfile.id;
   return (
     <nav className={styles.navContainer}>
       <div className={styles.nav}>
         <a href="index.html">
           <img src="/assets/logo.svg" className="logo-img" alt="홈으로 연결된 Linkbrary 로고" />
         </a>
-        {didLogin ? <Profile profile={profile} /> : <LoginButton />}
+        {didLogin ? <Profile profile={userProfile} /> : <LoginButton />}
       </div>
     </nav>
   );

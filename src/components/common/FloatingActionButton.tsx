@@ -1,11 +1,12 @@
 import { useMediaQuery } from 'react-responsive';
 import useModal from 'hooks/useModal';
-import Modal from 'components/common/Modal';
 import styles from './FloatingActionButton.module.css';
 import stylesForModal from 'components/common/Modal.module.css';
+import Modal from 'components/common/Modal';
 
 export default function FloatingActionButton() {
   const [addFoldermodalRef, openAddFolderModal, closeAddFoldereModal] = useModal();
+
   const isMobile = useMediaQuery({
     query: '(max-width :767px)',
   });

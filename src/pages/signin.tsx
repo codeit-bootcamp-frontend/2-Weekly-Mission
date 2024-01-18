@@ -23,7 +23,7 @@ const INPUT_SETTING = {
   },
 };
 
-type SigninFormData = {
+export type SigninFormData = {
   email: string;
   password: string;
 };
@@ -67,7 +67,9 @@ export default function Signin() {
     <div className={styles.signupPageWrapper}>
       <div className={styles.signupContainer}>
         <header className={styles.headerWrapper}>
-          <img className={styles.header__logo} alt="홈으로 가는 링크브러리 로고" src="/assets/linkbrary-logo.svg"></img>
+          <Link href="/">
+            <img className={styles.header__logo} alt="홈으로 가는 링크브러리 로고" src="/assets/linkbrary-logo.svg" />
+          </Link>
           <div className={styles.header__content}>
             <p className={styles.header__text}>회원이 아니신가요? </p>
             <Link className={styles.header__link} href="/signup">
@@ -107,20 +109,20 @@ export default function Signin() {
           <div className={styles.snsSignBox}>
             <p className={styles.snsSignBox__text}>소셜 로그인</p>
             <div className={styles.snsSignBox__logo}>
-              <div className={styles.snsSignBox__logoItem}>
+              <a className={styles.snsSignBox__logoItem} href="https://www.google.com">
                 <img
                   className={styles.snsSignBox__logoImg}
                   src="/assets/google-logo.png"
                   alt="구글 홈으로 연결되는 아이콘"
                 />
-              </div>
-              <div className={styles.snsSignBox__logoItem}>
+              </a>
+              <a className={styles.snsSignBox__logoItem} href="https://www.kakaocorp.com/page">
                 <img
                   className={styles.snsSignBox__logoImg}
                   src="/assets/kakao-logo.png"
                   alt="카카오 홈으로 연결되는 아이콘"
                 />
-              </div>
+              </a>
             </div>
           </div>
         </footer>

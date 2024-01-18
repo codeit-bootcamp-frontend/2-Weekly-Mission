@@ -50,6 +50,7 @@ export default function Signup() {
     redirectToIfAccessTokenExists('./folder');
   }, []);
 
+  // 회원가입 로직
   const onSubmit = async (data: SignupFormData) => {
     const userInfo = {
       email: data.email,
@@ -63,6 +64,7 @@ export default function Signup() {
     router.push('/folder');
   };
 
+  // 중복 이메일 확인
   const checkDuplicateEmail = async (value: string) => {
     const isUsable = await isUsableEmail(value);
     if (!isUsable) return '이미 사용 중인 이메일입니다.';
@@ -72,7 +74,9 @@ export default function Signup() {
     <div className={styles.signupPageWrapper}>
       <div className={styles.signupContainer}>
         <header className={styles.headerWrapper}>
-          <img className={styles.header__logo} alt="홈으로 가는 링크브러리 로고" src="/assets/linkbrary-logo.svg"></img>
+          <Link href="/">
+            <img className={styles.header__logo} alt="홈으로 가는 링크브러리 로고" src="/assets/linkbrary-logo.svg" />
+          </Link>
           <div className={styles.header__content}>
             <p className={styles.header__text}>이미 회원이신가요? </p>
             <Link className={styles.header__link} href="/signin">
@@ -132,20 +136,20 @@ export default function Signup() {
           <div className={styles.snsSignBox}>
             <p className={styles.snsSignBox__text}>다른 방식으로 가입하기</p>
             <div className={styles.snsSignBox__logo}>
-              <div className={styles.snsSignBox__logoItem}>
+              <a className={styles.snsSignBox__logoItem} href="https://www.google.com">
                 <img
                   className={styles.snsSignBox__logoImg}
                   src="/assets/google-logo.png"
                   alt="구글 홈으로 연결되는 아이콘"
                 />
-              </div>
-              <div className={styles.snsSignBox__logoItem}>
+              </a>
+              <a className={styles.snsSignBox__logoItem} href="https://www.kakaocorp.com/page">
                 <img
                   className={styles.snsSignBox__logoImg}
                   src="/assets/kakao-logo.png"
                   alt="카카오 홈으로 연결되는 아이콘"
                 />
-              </div>
+              </a>
             </div>
           </div>
         </footer>

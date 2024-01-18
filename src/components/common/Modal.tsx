@@ -29,7 +29,10 @@ const Modal = forwardRef<HTMLDialogElement | null, ModalProps>(
       setIsCSR(true);
     }, []);
 
-    if (typeof window === 'undefined') return <></>;
+    // 사전렌더링에서의 참조에러를 방지함
+    if (typeof document === 'undefined') return <></>;
+
+    // hydration fail을 방지함
     if (!isCSR) return <></>;
 
     return ReactDOM.createPortal(
