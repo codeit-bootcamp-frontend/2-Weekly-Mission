@@ -3,23 +3,13 @@ import Image from 'next/image';
 import Dropdown from '../Dropdown/Dropdown';
 import dateFormat from '@/lib/dateFormat';
 import timeFormat from '@/lib/timeFormat';
+import { Link } from '@/lib/apiTypes';
 import emptyImg from '@/public/images/emptyImage.svg';
 import StarImg from '@/public/images/star.svg';
 import KebabImg from '@/public/images/kebab.svg';
 import styles from './Card.module.css';
 
-interface Props {
-  link: {
-    id: string;
-    title: string;
-    created_at: string;
-    description: string;
-    image_source: string;
-    url: string;
-  };
-}
-
-export default function Card({ link: { id, title, created_at, description, image_source, url } }: Props) {
+export default function Card({ link: { id, title, created_at, description, image_source, url } }: { link: Link }) {
   const [logTime, setLogTime] = useState('');
   const [viewDropBox, setViewDropBox] = useState(false);
 
