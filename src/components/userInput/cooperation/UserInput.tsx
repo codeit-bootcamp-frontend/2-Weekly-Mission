@@ -35,6 +35,61 @@ type validation = {
   };
 };
 
+export default function UserInputCommon({
+  label,
+  id,
+  type,
+  placeholder,
+  validation,
+}: InputProps) {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<FormValues>();
+  const [togglePassword, setTogglePassword] = useState<boolean>(false);
+  const [togglePasswordCheck, setTogglePasswordCheck] =
+    useState<boolean>(false);
+
+  const handleClickTogglePassword = () => setTogglePassword((prev) => !prev);
+
+  const handleClickTogglePasswordCheck = () =>
+    setTogglePasswordCheck((prev) => !prev);
+
+  const source = togglePasswordCheck ? EyeOn : EyeOff;
+  const isPassword = type === 'password' ? true : false;
+
+  return (
+    <InputContainer>
+      <InputLabel htmlFor={id}>{label}</InputLabel>
+      <InputWrapper hasError={!!errors[id]}>
+        <InputValue
+          id={id}
+          type={togglePassword ? 'text' : type}
+          placeholder={placeholder}
+          {...register(id, validation)}
+        />
+        {isPassword && (
+          <Button
+            type="button"
+            onClick={() => {
+              handleClickTogglePassword();
+              handleClickTogglePasswordCheck();
+            }}
+          >
+            <Image
+              src={source}
+              alt="비밀번호 숨김 표시"
+              width={16}
+              height={16}
+            />
+          </Button>
+        )}
+      </InputWrapper>
+      <ErrorMessage>{errors[id]?.message}</ErrorMessage>
+    </InputContainer>
+  );
+}
+
 const InputContainer = styled.div`
   position: relative;
   display: flex;
@@ -57,7 +112,8 @@ const InputWrapper = styled.div<{ hasError?: boolean }>`
   padding: 1.8rem 1.5rem;
   border-radius: 0.8rem;
   background: var(--white);
-  outline: ${({ hasError }) => hasError ? '1px solid var(--red)' : '1px solid var(--gray20)'};
+  outline: ${({ hasError }) =>
+    hasError ? '1px solid var(--red)' : '1px solid var(--gray20)'};
 
   &:focus-within {
     outline: 1px solid var(--primary);
@@ -77,7 +133,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   background-color: transparent;
-`
+`;
 
 const ErrorMessage = styled.small`
   width: 100%;
@@ -85,52 +141,3 @@ const ErrorMessage = styled.small`
   font-size: 1.4rem;
   color: var(--red);
 `;
-
-export default function UserInputCommon({
-  label,
-  id,
-  type,
-  placeholder,
-  validation,
-}: InputProps) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext<FormValues>();
-  const [togglePassword, setTogglePassword] = useState<boolean>(false);
-  const [togglePasswordCheck, setTogglePasswordCheck] =
-    useState<boolean>(false);
-
-  const source = togglePasswordCheck ? EyeOn : EyeOff;
-
-  return (
-    <InputContainer>
-      <InputLabel htmlFor={id}>{label}</InputLabel>
-      <InputWrapper hasError={!!errors[id]}>
-        <InputValue
-          id={id}
-          type={togglePassword ? 'text' : type}
-          placeholder={placeholder}
-          {...register(id, validation)}
-        />
-        {type === 'password' && (
-          <Button
-            type="button"
-            onClick={() => {
-              setTogglePassword((prev) => !prev);
-              setTogglePasswordCheck((prev) => !prev);
-            }}
-          >
-            <Image
-              src={source}
-              alt="비밀번호 숨김 표시"
-              width={16}
-              height={16}
-            />
-          </Button>
-        )}
-      </InputWrapper>
-      <ErrorMessage>{errors[id]?.message}</ErrorMessage>
-    </InputContainer>
-  );
-}

@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import { PAGE_CONTENT } from '@/constant';
 
-interface UserButtonProps {
-  handleClickLogin: () => void;
-  handleClickEmailCheck: () => void;
-  handleFocusoutEmpty: () => void;
+export default function UserButton() {
+  const { pathname } = useRouter();
+  const buttonType = pathname === '/signup' ? PAGE_CONTENT.signup.button : PAGE_CONTENT.signin.button;
+
+  return (
+    <ButtonContainer>
+      <Button type="submit">
+        {buttonType}
+      </Button>
+    </ButtonContainer>
+  );
 }
 
 const ButtonContainer = styled.div`
@@ -25,25 +33,3 @@ const Button = styled.button`
   color: var(--gray-f5f5);
   background: linear-gradient(90.99deg, #6d6afe 0.12%, #6ae3fe 101.84%);
 `;
-
-export default function UserButton({ handleClickLogin, handleClickEmailCheck, handleFocusoutEmpty }: UserButtonProps) {
-  const { pathname } = useRouter();
-
-  const handleButtonClick = () => {
-    if(pathname === '/signup'){
-      handleClickEmailCheck();
-    }else{
-      handleClickLogin();
-    }
-
-    handleFocusoutEmpty();
-  }
-
-  return (
-    <ButtonContainer>
-      <Button type="button" onClick={handleButtonClick}>{pathname === '/signup' ? '회원가입' : '로그인'}</Button>
-    </ButtonContainer>
-  );
-}
-
-

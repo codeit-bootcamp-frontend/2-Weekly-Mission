@@ -5,6 +5,170 @@ import ModalContext from '@/src/components/modal/ModalContext';
 import MainContext, { Folder } from '@/src/components/main/MainContext';
 import Image from 'next/image';
 
+async function clipBoard(text: string) {
+  try {
+    await navigator.clipboard.writeText(text);
+    alert(text);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function shareFacebook({ title }: { title: string }, currentUrl: string) {
+  const facebookUrl = encodeURIComponent(`${currentUrl}`);
+  const facebookTitle = title;
+
+  window.open(
+    `http://www.facebook.com/sharer.php?u=${facebookUrl}&t=${facebookTitle}`,
+    '',
+    'width=400, height=400'
+  );
+}
+
+function FolderItem({ folderList }: { folderList: Folder[] }) {
+  const [selectedFolder, setSelectedFolder] = useState<string>('');
+
+  const handleClickFolderList = (folder: Folder) =>
+    setSelectedFolder(folder.name);
+
+  const item = folderList.map((folder) => (
+    <Item
+      key={folder?.id}
+      onClick={() => handleClickFolderList(folder)}
+      className={selectedFolder === folder?.name ? 'active' : ''}
+    >
+      <Name>{folder?.name}</Name>
+      <Count>{folder?.link?.count}개</Count>
+    </Item>
+  ));
+
+  return item;
+}
+
+export default function Modal() {
+  const {
+    modalOpen,
+    handleModalClose: handleModalClose,
+    type,
+    cardUrl,
+  } = useContext(ModalContext);
+  const { title, folderList, selectedMenu } = useContext(MainContext);
+
+  let host;
+  if (typeof window !== 'undefined') host = window.location.href;
+  let userId;
+  if (folderList.length > 0) userId = folderList[0].user_id;
+  const folderId = selectedMenu;
+  const currentUrl = `${host}/shared?user=${userId}&folderId=${folderId}`;
+
+  function ModalType() {
+    switch (type) {
+      case 'share':
+        return '폴더 공유';
+      case 'edit':
+        return '폴더 이름 변경';
+      case 'folderRemove':
+        return '폴더 삭제';
+      case 'linkRemove':
+        return '링크 삭제';
+      case 'folderAdd':
+        return '폴더에 추가';
+      case 'folderListAdd':
+        return '폴더 추가';
+      default:
+        return;
+    }
+  }
+
+  function ButtonType() {
+    switch (type) {
+      case 'edit':
+        return '변경하기';
+      case 'folderRemove':
+        return '삭제하기';
+      case 'linkRemove':
+        return '삭제하기';
+      case 'folderAdd':
+        return '추가하기';
+      case 'folderListAdd':
+        return '추가하기';
+      default:
+        return;
+    }
+  }
+
+  return (
+    <>
+      <ModalContainer modalOpen={modalOpen}>
+        <Title>
+          <ModalType />
+        </Title>
+        {type === 'edit' || type === 'folderListAdd' ? (
+          <Input type="text" placeholder="내용 입력" />
+        ) : (
+          <Text>
+            {type === 'linkRemove' || type === 'folderAdd' ? cardUrl : title}
+          </Text>
+        )}
+        {type === 'folderAdd' && (
+          <FolderList>
+            <FolderItem folderList={folderList} />
+          </FolderList>
+        )}
+        {type !== 'share' ? (
+          <Button
+            type="button"
+            className={
+              type === 'folderRemove' || type === 'linkRemove' ? 'red' : ''
+            }
+          >
+            <ButtonType />
+          </Button>
+        ) : (
+          <Sns>
+            <li>
+              <Image
+                src="/image/ico-kakao-share.svg"
+                alt="카카오톡"
+                width={42}
+                height={42}
+                onClick={() => shareKakao({ title }, currentUrl)}
+              />
+              카카오톡
+            </li>
+            <li>
+              <Image
+                src="/image/ico-facebook-share.svg"
+                alt="페이스북"
+                width={42}
+                height={42}
+                onClick={() => {
+                  shareFacebook({ title }, currentUrl);
+                }}
+              />
+              페이스북
+            </li>
+            <li>
+              <Image
+                src="/image/ico-link-copy.svg"
+                alt="링크 복사"
+                width={42}
+                height={42}
+                onClick={() => clipBoard(currentUrl)}
+              />
+              링크 복사
+            </li>
+          </Sns>
+        )}
+        <CloseButton type="button" onClick={handleModalClose}>
+          닫기
+        </CloseButton>
+      </ModalContainer>
+      <Dim modalOpen={modalOpen}></Dim>
+    </>
+  );
+}
+
 const ModalContainer = styled.div<{ modalOpen?: boolean }>`
   display: ${({ modalOpen }) => (modalOpen ? 'block' : 'none')};
   position: fixed;
@@ -163,163 +327,3 @@ const Count = styled.span`
   font-size: 1.4rem;
   color: var(--gray60);
 `;
-
-async function clipBoard(text: string) {
-  try {
-    await navigator.clipboard.writeText(text);
-    alert(text);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-function shareFacebook({ title }: { title: string }, currentUrl: string) {
-  const facebookUrl = encodeURIComponent(`${currentUrl}`);
-  const facebookTitle = title;
-
-  window.open(
-    `http://www.facebook.com/sharer.php?u=${facebookUrl}&t=${facebookTitle}`,
-    '',
-    'width=400, height=400'
-  );
-}
-
-function FolderItem({ folderList }: { folderList: Folder[] }) {
-  const [selectedFolder, setSelectedFolder] = useState<string>('');
-
-  const handleClickFolderList = (folder: Folder) =>
-    setSelectedFolder(folder.name);
-
-  const item = folderList.map((folder) => (
-    <Item
-      key={folder?.id}
-      onClick={() => handleClickFolderList(folder)}
-      className={selectedFolder === folder?.name ? 'active' : ''}
-    >
-      <Name>{folder?.name}</Name>
-      <Count>{folder?.link?.count}개</Count>
-    </Item>
-  ));
-
-  return item;
-}
-
-export default function Modal() {
-  const { modalOpen, handleClickModalClose, type, cardUrl } =
-    useContext(ModalContext);
-  const { title, folderList, selectedMenu } = useContext(MainContext);
-
-  let host;
-  if (typeof window !== 'undefined') host = window.location.href;
-  let userId;
-  if (folderList.length > 0) userId = folderList[0].user_id;
-  const folderId = selectedMenu;
-  const currentUrl = `${host}/shared?user=${userId}&folderId=${folderId}`;
-
-  function ModalType() {
-    switch (type) {
-      case 'share':
-        return '폴더 공유';
-      case 'edit':
-        return '폴더 이름 변경';
-      case 'folderRemove':
-        return '폴더 삭제';
-      case 'linkRemove':
-        return '링크 삭제';
-      case 'folderAdd':
-        return '폴더에 추가';
-      case 'folderListAdd':
-        return '폴더 추가';
-      default:
-        return;
-    }
-  }
-
-  function ButtonType() {
-    switch (type) {
-      case 'edit':
-        return '변경하기';
-      case 'folderRemove':
-        return '삭제하기';
-      case 'linkRemove':
-        return '삭제하기';
-      case 'folderAdd':
-        return '추가하기';
-      case 'folderListAdd':
-        return '추가하기';
-      default:
-        return;
-    }
-  }
-
-  return (
-    <>
-      <ModalContainer modalOpen={modalOpen}>
-        <Title>
-          <ModalType />
-        </Title>
-        {type === 'edit' || type === 'folderListAdd' ? (
-          <Input type="text" placeholder="내용 입력" />
-        ) : (
-          <Text>
-            {type === 'linkRemove' || type === 'folderAdd' ? cardUrl : title}
-          </Text>
-        )}
-        {type === 'folderAdd' && (
-          <FolderList>
-            <FolderItem folderList={folderList} />
-          </FolderList>
-        )}
-        {type !== 'share' ? (
-          <Button
-            type="button"
-            className={
-              type === 'folderRemove' || type === 'linkRemove' ? 'red' : ''
-            }
-          >
-            <ButtonType />
-          </Button>
-        ) : (
-          <Sns>
-            <li>
-              <Image
-                src="/image/ico-kakao-share.svg"
-                alt="카카오톡"
-                width={42}
-                height={42}
-                onClick={() => shareKakao({ title }, currentUrl)}
-              />
-              카카오톡
-            </li>
-            <li>
-              <Image
-                src="/image/ico-facebook-share.svg"
-                alt="페이스북"
-                width={42}
-                height={42}
-                onClick={() => {
-                  shareFacebook({ title }, currentUrl);
-                }}
-              />
-              페이스북
-            </li>
-            <li>
-              <Image
-                src="/image/ico-link-copy.svg"
-                alt="링크 복사"
-                width={42}
-                height={42}
-                onClick={() => clipBoard(currentUrl)}
-              />
-              링크 복사
-            </li>
-          </Sns>
-        )}
-        <CloseButton type="button" onClick={handleClickModalClose}>
-          닫기
-        </CloseButton>
-      </ModalContainer>
-      <Dim modalOpen={modalOpen}></Dim>
-    </>
-  );
-}

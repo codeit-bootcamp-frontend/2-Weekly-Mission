@@ -2,19 +2,73 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 import ModalContext from '@/src/components/modal/ModalContext';
 import MainContext, { Folder } from '@/src/components/main/MainContext';
+interface All {
+  id: string;
+  name: string;
+}
+interface TabMenuListProps {
+  folderList: Folder[];
+  $selectedMenu: string;
+  handleClickMenu: (folder: Folder) => void;
+}
+
+function TabMenuList({
+  folderList,
+  $selectedMenu,
+  handleClickMenu,
+}: TabMenuListProps) {
+  const All: All = {
+    id: 'all',
+    name: '전체',
+  };
+  const folderListArr = [...folderList];
+  folderListArr.unshift(All);
+
+  const item = folderListArr.map((folder) => (
+    <li key={folder.id}>
+      <button
+        type="button"
+        className={$selectedMenu === folder.id ? 'active' : ''}
+        onClick={() => handleClickMenu(folder)}
+      >
+        {folder.name}
+      </button>
+    </li>
+  ));
+  return item;
+}
+
+export default function TabMenu() {
+  const { folderList, selectedMenu, handleClickMenu } = useContext(MainContext);
+  const { handleModalOpen } = useContext(ModalContext);
+
+  return (
+    <>
+      <TabMenuContainer>
+        <ul>
+          <TabMenuList
+            folderList={folderList}
+            handleClickMenu={handleClickMenu}
+            $selectedMenu={selectedMenu}
+          />
+        </ul>
+        <Button
+          type="button"
+          onClick={() => handleModalOpen('folderListAdd')}
+        ></Button>
+      </TabMenuContainer>
+    </>
+  );
+}
 
 const TabMenuContainer = styled.div`
   position: relative;
 
   ul {
     display: flex;
-    gap: 0 0.8rem;
+    flex-wrap: wrap;
+    gap: 1.2rem 0.8rem;
     list-style-type: none;
-
-    @media screen and (min-width: 375px) and (max-width: 768px) {
-      flex-wrap: wrap;
-      gap: 1.2rem 0.8rem;
-    }
 
     li {
       line-height: 1.9rem;
@@ -57,62 +111,3 @@ const Button = styled.button`
     display: none;
   }
 `;
-interface All {
-  id: string;
-  name: string;
-}
-
-interface TabMenuListProps {
-  folderList: Folder[];
-  $selectedMenu: string;
-  handleClickMenu: (folder: Folder) => void;
-}
-
-function TabMenuList({
-  folderList,
-  $selectedMenu,
-  handleClickMenu,
-}: TabMenuListProps) {
-  const All: All = {
-    id: 'all',
-    name: '전체',
-  };
-  const folderListArr = [...folderList];
-  folderListArr.unshift(All);
-
-  const item = folderListArr.map((folder) => (
-    <li key={folder.id}>
-      <button
-        type="button"
-        className={$selectedMenu === folder.id ? 'active' : ''}
-        onClick={() => handleClickMenu(folder)}
-      >
-        {folder.name}
-      </button>
-    </li>
-  ));
-  return item;
-}
-
-export default function TabMenu() {
-  const { folderList, selectedMenu, handleClickMenu } = useContext(MainContext);
-  const { handleClickModalOpen } = useContext(ModalContext);
-
-  return (
-    <>
-      <TabMenuContainer>
-        <ul>
-          <TabMenuList
-            folderList={folderList}
-            handleClickMenu={handleClickMenu}
-            $selectedMenu={selectedMenu}
-          />
-        </ul>
-        <Button
-          type="button"
-          onClick={() => handleClickModalOpen('folderListAdd')}
-        ></Button>
-      </TabMenuContainer>
-    </>
-  );
-}

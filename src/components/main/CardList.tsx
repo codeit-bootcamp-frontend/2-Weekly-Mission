@@ -8,6 +8,147 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import star from '@/public/image/ico-star.png';
 import Image from 'next/image';
+interface SharedCard {
+  id: string;
+  url: string;
+  imageSource: string;
+  createdAt: string;
+  description: string;
+}
+
+function getDateText({ createdAt }: { createdAt: string }) {
+  const idx = createdAt.indexOf('T');
+  const text = createdAt.slice(0, idx);
+  return text;
+}
+
+function getDateInfo({ createdAt }: { createdAt: string }) {
+  const createdDate = new Date(createdAt);
+  const today = new Date();
+  const result = +today - +createdDate;
+
+  const seconds = result / 1000;
+  const minites = seconds / 60;
+  const hours = minites / 60;
+  const months = hours / 24;
+  const years = months / 30;
+
+  if (minites < 2) return '1 minites ago';
+  if (minites < 60) return `${Math.floor(minites)} minutes ago`;
+  if (hours < 24) return `${Math.floor(hours)} hours ago`;
+  if (months < 30) return `${Math.floor(months)} days ago`;
+  if (years < 12) return `${Math.floor(years)} months ago`;
+  if (years >= 12) {
+    const yearDate = Math.floor(years / 12);
+    return yearDate === 1 ? '1 years ago' : `${years} years ago`;
+  }
+}
+
+export default function CardList() {
+  const { searchResult } = useContext(MainContext);
+  const { pathname } = useRouter();
+  const [popOverOpen, setPopOverOpen] = useState<string | boolean>(false);
+  const [cardList, setCardList] = useState<SharedCard[]>([]);
+  const [getFolderSample] = useAsync({
+    baseUrl: '/sample/folder',
+    folderId: '',
+    path: '',
+    userId: '',
+  });
+
+  const handleClickKebab = (e: MouseEvent<HTMLSpanElement>, cardId: string) => {
+    e.preventDefault();
+    setPopOverOpen((prevOpen) => prevOpen !== cardId && cardId);
+  };
+
+  const handleMouseOver = (e: MouseEvent<HTMLAnchorElement>, isOver: boolean) =>
+    e.currentTarget.classList[isOver ? 'add' : 'remove']('active');
+
+  const handleLoadFolder = async () => {
+    const { folder } = await getFolderSample();
+    const { links } = folder;
+    setCardList(links);
+  };
+
+  useEffect(() => {
+    handleLoadFolder();
+  }, []);
+
+  if (searchResult.length === 0) return <NoLink>저장된 링크가 없습니다</NoLink>;
+
+  const cards =
+    pathname !== '/shared'
+      ? searchResult.map((card: Card) => (
+          <Cards key={card.id}>
+            <Link
+              href={card.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseOver={(e) => handleMouseOver(e, true)}
+              onMouseOut={(e) => handleMouseOver(e, false)}
+            >
+              <ImgBox>
+                <CardImg
+                  src={
+                    card.image_source ? card.image_source : '/image/no-img.svg'
+                  }
+                  alt="카드 이미지"
+                />
+                <StarImg>
+                  <Image src={star} alt="별 이미지" />
+                </StarImg>
+              </ImgBox>
+              <Text>
+                <TimeStamp>
+                  {getDateInfo({ createdAt: card.created_at })}
+                </TimeStamp>
+                <Kebab onClick={(e) => handleClickKebab(e, card.id)}></Kebab>
+                <Desc>{card.description}</Desc>
+                <CreatedDate>
+                  {getDateText({ createdAt: card.created_at })}
+                </CreatedDate>
+              </Text>
+            </Link>
+            <PopOver popOverOpen={card.id === popOverOpen} cardUrl={card.url} />
+          </Cards>
+        ))
+      : cardList.map((card: SharedCard) => (
+          <Cards key={card.id}>
+            <Link
+              href={card.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseOver={(e) => handleMouseOver(e, true)}
+              onMouseOut={(e) => handleMouseOver(e, false)}
+            >
+              <ImgBox>
+                <CardImg
+                  src={
+                    card.imageSource ? card.imageSource : '/image/no-img.svg'
+                  }
+                  alt="카드 이미지"
+                />
+              </ImgBox>
+              <Text>
+                <TimeStamp>
+                  {getDateInfo({ createdAt: card.createdAt })}
+                </TimeStamp>
+                <Desc>{card.description}</Desc>
+                <CreatedDate>
+                  {getDateText({ createdAt: card.createdAt })}
+                </CreatedDate>
+              </Text>
+            </Link>
+          </Cards>
+        ));
+  return (
+    <>
+      <CardContainer>
+        <CardBox>{cards}</CardBox>
+      </CardContainer>
+    </>
+  );
+}
 
 const CardContainer = styled.div`
   margin: 4rem 0 0;
@@ -125,139 +266,3 @@ const NoLink = styled.p`
   text-align: center;
   font-size: 1.6rem;
 `;
-interface SharedCard {
-  id: string;
-  url: string;
-  imageSource: string;
-  createdAt: string;
-  description: string;
-}
-
-function getDateText({ createdAt }: { createdAt: string }) {
-  const idx = createdAt.indexOf('T');
-  const text = createdAt.slice(0, idx);
-  return text;
-}
-
-function getDateInfo({ createdAt }: { createdAt: string }) {
-  const createdDate = new Date(createdAt);
-  const today = new Date();
-  const result = +today - +createdDate;
-
-  const seconds = result / 1000;
-  const minites = seconds / 60;
-  const hours = minites / 60;
-  const months = hours / 24;
-  const years = months / 30;
-
-  if (minites < 2) return '1 minites ago';
-  if (minites < 60) return `${Math.floor(minites)} minutes ago`;
-  if (hours < 24) return `${Math.floor(hours)} hours ago`;
-  if (months < 30) return `${Math.floor(months)} days ago`;
-  if (years < 12) return `${Math.floor(years)} months ago`;
-  if (years >= 12) {
-    const yearDate = Math.floor(years / 12);
-    return yearDate === 1 ? '1 years ago' : `${years} years ago`;
-  }
-}
-
-export default function CardList() {
-  const { searchResult } = useContext(MainContext);
-  const { pathname } = useRouter();
-  const [popOverOpen, setPopOverOpen] = useState<string | boolean>(false);
-  const [cardList, setCardList] = useState<SharedCard[]>([]);
-  const [getFolderSample] = useAsync('/sample/folder', '', '', '');
-
-  const handleClickKebab = (e: MouseEvent<HTMLSpanElement>, cardId: string) => {
-    e.preventDefault();
-    setPopOverOpen((prevOpen) => prevOpen !== cardId && cardId);
-  };
-
-  const handleMouseOver = (e: MouseEvent<HTMLAnchorElement>, isOver: boolean) =>
-    e.currentTarget.classList[isOver ? 'add' : 'remove']('active');
-
-  const handleLoadFolder = async () => {
-    const { folder } = await getFolderSample();
-    const { links } = folder;
-    setCardList(links);
-  };
-
-  useEffect(() => {
-    handleLoadFolder();
-  }, []);
-
-  if (searchResult.length === 0) return <NoLink>저장된 링크가 없습니다</NoLink>;
-
-  const cards =
-    pathname !== '/shared'
-      ? searchResult.map((card: Card) => (
-          <Cards key={card.id}>
-            <Link
-              href={card.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onMouseOver={(e) => handleMouseOver(e, true)}
-              onMouseOut={(e) => handleMouseOver(e, false)}
-            >
-              <ImgBox>
-                <CardImg
-                  src={
-                    card.image_source ? card.image_source : '/image/no-img.svg'
-                  }
-                  alt="카드 이미지"
-                />
-                <StarImg>
-                  <Image src={star} alt="별 이미지" />
-                </StarImg>
-              </ImgBox>
-              <Text>
-                <TimeStamp>
-                  {getDateInfo({ createdAt: card.created_at })}
-                </TimeStamp>
-                <Kebab onClick={(e) => handleClickKebab(e, card.id)}></Kebab>
-                <Desc>{card.description}</Desc>
-                <CreatedDate>
-                  {getDateText({ createdAt: card.created_at })}
-                </CreatedDate>
-              </Text>
-            </Link>
-            <PopOver popOverOpen={card.id === popOverOpen} cardUrl={card.url} />
-          </Cards>
-        ))
-      : cardList.map((card: SharedCard) => (
-          <Cards key={card.id}>
-            <Link
-              href={card.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onMouseOver={(e) => handleMouseOver(e, true)}
-              onMouseOut={(e) => handleMouseOver(e, false)}
-            >
-              <ImgBox>
-                <CardImg
-                  src={
-                    card.imageSource ? card.imageSource : '/image/no-img.svg'
-                  }
-                  alt="카드 이미지"
-                />
-              </ImgBox>
-              <Text>
-                <TimeStamp>
-                  {getDateInfo({ createdAt: card.createdAt })}
-                </TimeStamp>
-                <Desc>{card.description}</Desc>
-                <CreatedDate>
-                  {getDateText({ createdAt: card.createdAt })}
-                </CreatedDate>
-              </Text>
-            </Link>
-          </Cards>
-        ));
-  return (
-    <>
-      <CardContainer>
-        <CardBox>{cards}</CardBox>
-      </CardContainer>
-    </>
-  );
-}

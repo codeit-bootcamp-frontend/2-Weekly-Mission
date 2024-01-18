@@ -6,6 +6,69 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import logo from '@/public/image/logo.svg';
 
+export default function Nav() {
+  const [profileImg, setProfileImg] = useState<string | null>(null);
+  const [profileEmail, setProfileEmail] = useState<string>('');
+  const [position, setPosition] = useState<string>('');
+  const { pathname } = useRouter();
+  const [getProfile] = useAsync({
+    baseUrl: '/users',
+    folderId: '/1',
+    path: '',
+    userId: '',
+  });
+  const [getProfileSample] = useAsync({
+    baseUrl: '/sample/user',
+    folderId: '',
+    path: '',
+    userId: '',
+  });
+
+  const handleProfileShared = async () => {
+    const { email, profileImageSource } = await getProfileSample();
+
+    setProfileImg(profileImageSource);
+    setProfileEmail(email);
+  };
+
+  const handleProfileFolder = async () => {
+    const { data } = await getProfile();
+
+    setProfileImg(data[0]?.image_source);
+    setProfileEmail(data[0]?.email);
+  };
+
+  useEffect(() => {
+    handleProfileShared();
+    handleProfileFolder();
+    setPosition('static');
+  }, []);
+
+  return (
+    <NavContainer $position={position}>
+      <Logo>
+        <Link href="/">
+          <LogoImg>
+            <Image fill src={logo} alt="linkbrary 로고" object-fit="cover" />
+          </LogoImg>
+        </Link>
+      </Logo>
+      {profileImg ? (
+        <Profile>
+          <Link href="/">
+            <ProfileImg src={profileImg} alt="프로필 이미지" />
+            <ProfileEmail>{profileEmail}</ProfileEmail>
+          </Link>
+        </Profile>
+      ) : (
+        <Link href="/">
+          <Login>로그인</Login>
+        </Link>
+      )}
+    </NavContainer>
+  );
+}
+
 const NavContainer = styled.nav<{ $position: string }>`
   display: flex;
   justify-content: space-between;
@@ -37,7 +100,7 @@ const LogoImg = styled.div`
   position: relative;
   width: 13.3rem;
   height: 2.4rem;
-  
+
   @media screen and (min-width: 375px) and (max-width: 768px) {
     width: 8.8rem;
   }
@@ -89,54 +152,3 @@ const Login = styled.div`
     font-size: 2.4rem;
   }
 `;
-
-export default function Nav() {
-  const [profileImg, setProfileImg] = useState<string | null>(null);
-  const [profileEmail, setProfileEmail] = useState<string>('');
-  const [position, setPosition] = useState<string>('');
-  const { pathname } = useRouter();
-  const [getProfile] = useAsync('/users', '/1', '', '');
-  const [getProfileSample] = useAsync('/sample/user', '', '', '');
-
-  const handleLoadProfile = async () => {
-    const { email, profileImageSource } = await getProfileSample();
-    const { data } = await getProfile();
-
-    if (pathname === '/shared') {
-      setProfileImg(profileImageSource);
-      setProfileEmail(email);
-    } else {
-      setProfileImg(data[0]?.image_source);
-      setProfileEmail(data[0]?.email);
-      setPosition('static');
-    }
-  };
-
-  useEffect(() => {
-    handleLoadProfile();
-  }, []);
-
-  return (
-    <NavContainer $position={position}>
-      <Logo>
-        <Link href="/">
-          <LogoImg>
-            <Image fill src={logo} alt="linkbrary 로고" object-fit="cover" />
-          </LogoImg>
-        </Link>
-      </Logo>
-      {profileImg ? (
-        <Profile>
-          <Link href="/">
-            <ProfileImg src={profileImg} alt="프로필 이미지" />
-            <ProfileEmail>{profileEmail}</ProfileEmail>
-          </Link>
-        </Profile>
-      ) : (
-        <Link href="/">
-          <Login>로그인</Login>
-        </Link>
-      )}
-    </NavContainer>
-  );
-}

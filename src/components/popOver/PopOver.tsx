@@ -1,10 +1,31 @@
 import styled from 'styled-components';
 import { useContext } from 'react';
 import ModalContext from '@/src/components/modal/ModalContext';
+import { POPOVER_BUTTONS } from '@/constant';
 
 interface PopOverProps {
   popOverOpen: boolean;
   cardUrl: string;
+}
+
+export default function PopOver({ popOverOpen, cardUrl }: PopOverProps) {
+  const { handleModalOpen } = useContext(ModalContext);
+
+  return (
+    <>
+      <PopOverContainer $popOverOpen={popOverOpen}>
+        {POPOVER_BUTTONS.map((button) => (
+          <Button
+            key={button.id}
+            type="button"
+            onClick={() => handleModalOpen(button.id, cardUrl)}
+          >
+            {button.name}
+          </Button>
+        ))}
+      </PopOverContainer>
+    </>
+  );
 }
 
 const PopOverContainer = styled.div<{ $popOverOpen?: boolean }>`
@@ -35,34 +56,3 @@ const Button = styled.button`
     background-color: var(--gray10);
   }
 `;
-
-export default function PopOver({ popOverOpen, cardUrl }: PopOverProps) {
-  const { handleClickModalOpen } = useContext(ModalContext);
-
-  const BUTTON = [
-    {
-      id: 'linkRemove',
-      name: '삭제하기',
-    },
-    {
-      id: 'folderAdd',
-      name: '폴더에 추가',
-    },
-  ];
-
-  return (
-    <>
-      <PopOverContainer $popOverOpen={popOverOpen}>
-        {BUTTON.map((button) => (
-          <Button
-            key={button.id}
-            type="button"
-            onClick={() => handleClickModalOpen(button.id, cardUrl)}
-          >
-            {button.name}
-          </Button>
-        ))}
-      </PopOverContainer>
-    </>
-  );
-}
