@@ -26,6 +26,16 @@ export default function Folder() {
   const { ref, isIntersecting } = useIntersectionObserver<HTMLDivElement>();
 
   useEffect(() => {
+    if (router.isReady) {
+      const currentFolder = router.query['folderId']
+        ? Number(router.query['folderId'][0])
+        : ALL_LINKS_ID;
+
+      setSelectedFolderId(currentFolder);
+    }
+  }, [router.isReady, selectedFolderId]);
+
+  useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
       router.replace('/signin');
