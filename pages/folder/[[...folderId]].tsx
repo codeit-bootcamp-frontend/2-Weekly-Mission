@@ -33,7 +33,7 @@ export default function Folder() {
 
       setSelectedFolderId(currentFolder);
     }
-  }, [router.isReady, selectedFolderId]);
+  }, [router.isReady, router.query]);
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
@@ -57,7 +57,6 @@ export default function Folder() {
           <FolderToolBar
             folders={folders}
             selectedFolderId={selectedFolderId}
-            onFolderClick={setSelectedFolderId}
           />
         }
         cardList={loading ? null : <CardList links={result} />}
