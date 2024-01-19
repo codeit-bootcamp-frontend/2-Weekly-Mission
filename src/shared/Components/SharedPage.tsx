@@ -1,9 +1,8 @@
 import { useSharedPageFolder } from "@/src/shared/hooks/sharedPageHooks";
-import LinkCard from "@/src/common/Components/LinkCard/LinkCard";
 import FolderOwner from "@/src/shared/Components/FolderOwner";
 import SearchBar from "@/src/common/Components/SearchBar/SearchBar";
-import style from './Folder.module.css';
 import { LinkType, OwnerType } from '@/types/type';
+import CardSection from "@/src/common/Components/CardSection/CardSection";
 
 
 const SharedPage = () => {
@@ -17,9 +16,7 @@ const SharedPage = () => {
     <main className="contents folder-link--main">
       <FolderOwner owner={owner} name={name} />
       <SearchBar/>
-      <section className={style['card--section']}>
-        {links.map((link) => <LinkCard key={link.id} link={link} />)}
-      </section>
+      <CardSection links={links} />
     </main>
   )
 };

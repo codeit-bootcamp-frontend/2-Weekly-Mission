@@ -1,15 +1,14 @@
-import AddLinkForm from "../AddLinkForm";
-// import '../../styles/Folder.css';
-import SearchBar from "../SearchBar";
-import NoLink from "../NoLink";
-import FolderLists from "../FolderLists";
-import Card from "../Card";
-import FolderTitle from "../FolderTitle";
-import { useFolderPageFolder } from "../../hooks/folderPageHooks";
+import AddLinkForm from "./AddLinkForm";
+import SearchBar from "@/src/common/Components/SearchBar/SearchBar";
+import NoLink from "./NoLink";
+import FolderLists from "./FolderLists";
+import FolderTitle from "./FolderTitle";
+import { useFolderPageFolder } from "../hooks/folderPageHooks";
 import { useEffect, useState } from "react";
-import { ALL_FOLDER, FOLDER_API_URL } from "../../constants/constants";
+import { ALL_FOLDER, FOLDER_API_URL } from "@/constants/constants";
 import axios from "axios";
-import { LinkType } from "../../constants/type";
+import { LinkType } from "@/types/type";
+import CardSection from "@/src/common/Components/CardSection/CardSection";
 
 const linkURL = (forderId:number) => {
   if(forderId === 0) return `${FOLDER_API_URL}/1/links`;
@@ -37,7 +36,7 @@ const FolderPage = () => {
 
   if(!folders) return;
 
-  const handleActiveButton:(id: number) => void = (id:number) => {
+  const handleActiveButton = (id:number) => {
     setActiveFolder(id);
   }
 
@@ -51,9 +50,7 @@ const FolderPage = () => {
           <FolderLists folders={folders} activeFolder={activeFolder} onClick={handleActiveButton}/>
           <FolderTitle folders={folders} activeFolder={activeFolder}/>
           {links.length === 0 && <NoLink />}
-          <section className="card--section">
-            {links?.map((link) => <Card key={link.id} link={link} />)}
-          </section>
+          <CardSection links={links}/>
         </>
       }
     </main>

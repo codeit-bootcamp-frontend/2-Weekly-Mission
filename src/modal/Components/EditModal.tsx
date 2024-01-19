@@ -1,5 +1,5 @@
-import style from '../../styles/Modal/EditModal.module.css';
-import xbutton from '../../assets/x.svg';
+import style from './EditModal.module.css';
+import xbutton from '@/src/assets/x.svg';
 
 const EditModal = ({title, button, onClick} : {title:string, button:string, onClick:() => void}) => {
   return(
