@@ -1,5 +1,13 @@
-.inputForm {
-  position: relative;
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.labelForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 
 .default {
@@ -24,7 +32,12 @@
   color: var(--color-red);
 }
 
+.passwordWrap {
+  position: relative;
+}
+
 .passwordBtn {
   position: absolute;
-  transform: translate(-30px, 110%);
+  top: 53%;
+  right: 5%;
 }

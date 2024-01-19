@@ -1,3 +1,15 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.labelForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
 .default {
   width: 100%;
   padding: 1.8rem 1.5rem;
@@ -18,4 +30,14 @@
 
 .errorMsg {
   color: var(--color-red);
+}
+
+.passwordWrap {
+  position: relative;
+}
+
+.passwordBtn {
+  position: absolute;
+  top: 53%;
+  right: 5%;
 }
