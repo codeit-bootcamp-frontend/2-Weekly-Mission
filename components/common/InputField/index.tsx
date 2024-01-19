@@ -21,7 +21,8 @@ function InputField({ labelName, label, type, placeholder, validationRules }: In
   const [inputType, setInputType] = useState(type);
 
   const togglePasswordVisibility = () => {
-    setInputType(inputType === "password" ? "text" : "password");
+    const type = inputType === "password" ? "text" : "password";
+    setInputType(type);
   };
 
   const triggerValidationOnBlur = async () => {
@@ -39,7 +40,7 @@ function InputField({ labelName, label, type, placeholder, validationRules }: In
   return (
     <S.SignInputBox>
       <S.SignInputLabel htmlFor={labelName}>{label}</S.SignInputLabel>
-      <S.InputWrapper $isError={!!errorText}>
+      <S.InputWrapper>
         <Controller
           name={labelName}
           control={control}
@@ -47,7 +48,7 @@ function InputField({ labelName, label, type, placeholder, validationRules }: In
           defaultValue=""
           render={({ field }) => {
             return (
-              <input
+              <S.SignInput
                 type={inputType}
                 placeholder={placeholder}
                 {...field}
@@ -56,6 +57,7 @@ function InputField({ labelName, label, type, placeholder, validationRules }: In
                   field.onBlur();
                   await triggerValidationOnBlur();
                 }}
+                $isError={!!errorText}
               />
             );
           }}

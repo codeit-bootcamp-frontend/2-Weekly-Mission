@@ -4,9 +4,8 @@ import { useFormContext } from "react-hook-form";
 import { userServices } from "@/pages/api/address";
 import AuthFooter from "../Footer";
 import Cta from "@/components/common/Cta";
-
-import * as S from "./styled";
 import { authMapping } from "@/lib/mapping/auth";
+import * as S from "./styled";
 
 interface AuthSectionProps {
   type: "signIn" | "signUp";

@@ -1,7 +1,7 @@
-import Modal from "@/components/common/Modal";
-import Portal from "@/components/common/Modal/Portal";
 import React, { createContext, useState, ReactNode, useContext } from "react";
 import { useToggle } from "usehooks-ts";
+import Portal from "@/components/common/Modal/Portal";
+import Modal from "@/components/common/Modal";
 
 interface ModalContextType {
   isModalVisible: boolean;

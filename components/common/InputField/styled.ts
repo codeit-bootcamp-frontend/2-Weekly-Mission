@@ -12,23 +12,22 @@ const SignInputLabel = styled.label`
   font-weight: 400;
 `;
 
-const InputWrapper = styled.div<{ $isError: boolean }>`
+const InputWrapper = styled.div`
   position: relative;
-  input {
-    padding: 1.8rem 1.5rem;
-    width: 100%;
-    border-radius: 0.8rem;
-    border: 0.1rem solid ${({ $isError, theme }) => ($isError ? theme.red : theme.gray300)};
-    font-size: 1.6rem;
-    line-height: 150%;
-
-    &:focus {
-      border-color: ${({ $isError, theme }) => ($isError ? theme.red : theme.gray300)};
-    }
-  }
 `;
 
-const SignInput = styled.input``;
+const SignInput = styled.input<{ $isError: boolean }>`
+  padding: 1.8rem 1.5rem;
+  width: 100%;
+  border-radius: 0.8rem;
+  border: 0.1rem solid ${({ $isError, theme }) => ($isError ? theme.red : theme.gray300)};
+  font-size: 1.6rem;
+  line-height: 150%;
+
+  &:focus {
+    border-color: ${({ $isError, theme }) => ($isError ? theme.red : theme.gray300)};
+  }
+`;
 
 const EyeButton = styled.button`
   position: absolute;
