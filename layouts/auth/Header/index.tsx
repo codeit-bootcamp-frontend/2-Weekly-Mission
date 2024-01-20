@@ -2,9 +2,10 @@ import React from "react";
 import Image from "next/image";
 import { authMapping } from "@/lib/mapping/auth";
 import * as S from "./styled";
+import { AuthType } from "@/types/global.type";
 
 interface AuthHeaderTypes {
-  type: "signIn" | "signUp";
+  type: AuthType;
 }
 
 function AuthHeader({ type }: AuthHeaderTypes) {

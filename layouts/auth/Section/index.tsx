@@ -6,9 +6,10 @@ import AuthFooter from "../Footer";
 import Cta from "@/components/common/Cta";
 import { authMapping } from "@/lib/mapping/auth";
 import * as S from "./styled";
+import { AuthType } from "@/types/global.type";
 
 interface AuthSectionProps {
-  type: "signIn" | "signUp";
+  type: AuthType;
   children: ReactNode;
 }
 

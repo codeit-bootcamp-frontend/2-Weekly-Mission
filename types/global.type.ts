@@ -6,3 +6,5 @@ export interface Links {
   imageSource: string;
   createdAt: string;
 }
+
+export type AuthType = "signIn" | "signUp";
