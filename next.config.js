@@ -6,6 +6,7 @@ const nextConfig = {
   },
   images: {
     domains: ["codeit-images.codeit.com"],
+    domains: ["avatars.githubusercontent.com"],
   },
   webpack(config) {
     config.module.rules.push({

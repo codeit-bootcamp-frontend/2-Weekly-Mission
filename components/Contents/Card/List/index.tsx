@@ -1,14 +1,16 @@
 import React from "react";
 import Item from "../Item";
-import { FolderLinks } from "@/types/folder.type";
+import { FolderLinks } from "@/types/contents.type";
 import { Links } from "@/types/global.type";
 import * as S from "./styled";
+import Spinner from "@/components/common/Spinner";
 
 interface ListProps {
   folder: Links[] | FolderLinks[];
 }
 
 function List({ folder }: ListProps) {
+  if (!folder) return <Spinner />;
   return (
     <>
       <S.Wrapper>

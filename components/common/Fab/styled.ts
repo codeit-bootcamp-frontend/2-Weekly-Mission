@@ -8,6 +8,7 @@ interface AddIconProps {
 const StyledAddIcon = styled(AddIcon)<AddIconProps>`
   display: ${(props) => props.$mobile && "none"};
   color: ${(props) => props.theme.primary};
+  cursor: pointer;
   @media (max-width: ${(props) => props.theme.deviceSizes.mobile}) {
     display: ${(props) => props.$mobile && "block"};
     color: ${(props) => props.theme.gray100};

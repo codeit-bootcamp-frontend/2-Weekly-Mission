@@ -1,72 +1,54 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import { useFetch } from "usehooks-ts";
 import Cta from "@/components/common/Cta";
-import * as S from "./styled";
+import useTokenFetch from "@/hooks/useTokenFetch";
 import account from "@/public/images/account.png";
-
-interface Auth {
-  ok: boolean;
-  users: [
-    {
-      id: number;
-      created_at: string;
-      name: string;
-      image_source: string;
-      email: string;
-      auth_id: string;
-    }
-  ];
-}
+import * as S from "./styled";
+import { UserResponse } from "@/types/user.type";
+import { API_PATH } from "@/lib/constents";
 
 function Header() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const userData = useTokenFetch<UserResponse>(API_PATH.GET_USER);
+
   const router = useRouter();
-  //14주차 미션 진행 시 수정 예정
-  const userId = 1;
-  const { data } = useFetch<Auth>(`/api/users/${userId}`);
-  const [users] = data?.users || [];
 
   const onLogin = () => {
     router.push("/auth/signin");
   };
 
   useEffect(() => {
-    if (data) {
-      setIsLoading(false);
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      setIsLogin(true);
     }
-  }, [data]);
+  }, []);
 
   useEffect(() => {
-    const getAccesstoken = localStorage.getItem("accessToken");
-    if (getAccesstoken) setIsLogin(true);
-  }, []);
+    if (userData) {
+      setIsLoading(false);
+    }
+  }, [userData]);
+
+  const user = userData?.user;
 
   return (
     <S.Wrapper $location={router.pathname}>
       <S.Container>
         <Link href="/">
           <S.LogoContainer>
-            <Image
-              src="/logo.svg"
-              fill
-              style={{
-                objectFit: "contain",
-              }}
-              priority
-              alt="홈으로 연결된 Linkbrary 로고"
-            />
+            <Image src="/logo.svg" fill style={{ objectFit: "contain" }} priority alt="홈으로 연결된 Linkbrary 로고" />
           </S.LogoContainer>
         </Link>
 
         <S.AccountContainer $isLoading={isLoading}>
           {isLogin ? (
             <S.Account>
-              <Image src={users?.image_source || account} width={24} height={24} alt="account" unoptimized />
-              <S.Email>{users?.email}</S.Email>
+              <Image src={user?.image_source || account} width={24} height={24} alt="account" unoptimized />
+              <S.Email>{user?.email}</S.Email>
             </S.Account>
           ) : (
             <Cta $type="short" onClick={onLogin}>
@@ -78,4 +60,5 @@ function Header() {
     </S.Wrapper>
   );
 }
+
 export default Header;

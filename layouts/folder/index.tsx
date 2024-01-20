@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FolderLinks } from "@/types/folder.type";
+import { FolderData, FolderLinks } from "@/types/contents.type";
 import WithFolderHeader from "./Header";
 import FolderHeader from "./Section/Header";
 import Content from "@/components/Contents";
 
 interface FolderLayoutProps {
   links: FolderLinks[];
-  folderData: any;
+  folder: FolderData[];
   selected: string;
   onClick: (name: string, linksId?: number) => void;
 }
 
-export function FolderLayout({ links, folderData, selected, onClick }: FolderLayoutProps) {
+export function FolderLayout({ links, folder, selected, onClick }: FolderLayoutProps) {
   const [isInterSecting, setIsIntersecting] = useState<boolean>(true);
   const ref = useRef<HTMLDivElement>(null);
   const pageEndRef = useRef<HTMLDivElement>(null);
@@ -59,7 +59,7 @@ export function FolderLayout({ links, folderData, selected, onClick }: FolderLay
     <>
       <WithFolderHeader ref={ref} isInterSecting={isInterSecting} />
       <Content links={links}>
-        <FolderHeader data={folderData} selected={selected} onClick={onClick} />
+        <FolderHeader folder={folder} selected={selected} onClick={onClick} />
       </Content>
       <div ref={pageEndRef} />
     </>

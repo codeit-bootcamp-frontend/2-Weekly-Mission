@@ -14,3 +14,10 @@ export const MODAL_TYPE: Record<string, string> = {
   deleteLink: "deleteLink",
   add: "add",
 };
+
+export const API_PATH = {
+  GET_USER: "/api/users",
+  GET_FOLDER: "/api/folder",
+  GET_LINKS: "/api/links",
+  GET_SELECTED_FOLDER_LINKS: (id: string) => `/api/links/${id}`,
+};

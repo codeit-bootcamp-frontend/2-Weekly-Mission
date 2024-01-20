@@ -5,7 +5,16 @@ import * as S from "./styled";
 import { KebobIcon, StarIcon } from "@/public/icons/folderItem";
 import Popover from "@/components/common/Popover";
 
-function Item({ data: { createdAt, url, description, imageSource } }: any) {
+interface CardItemProps {
+  data: {
+    createdAt: string;
+    url: string;
+    description: string;
+    imageSource: string;
+  };
+}
+
+function Item({ data: { createdAt, url, description, imageSource } }: CardItemProps) {
   const { openModal } = useModal();
 
   const timeAgo = getDateAgo(createdAt);

@@ -1,18 +1,18 @@
 import Image from "next/image";
-import { SharedData } from "@/types/shared.type";
 import * as S from "./styled";
 import avatar from "@/public/images/Avatar.png";
+import { User } from "@/types/user.type";
 
 interface SharedHeaderProps {
-  folder: SharedData;
+  user?: User;
+  folderName: string;
 }
 
-function SharedHeader({ folder }: SharedHeaderProps) {
-  const { owner, name } = folder;
+function SharedHeader({ user, folderName }: SharedHeaderProps) {
   return (
     <S.Wrapper>
       <Image
-        src={folder?.owner.profileImageSource || avatar}
+        src={user?.image_source || avatar}
         style={{
           objectFit: "contain",
         }}
@@ -20,8 +20,8 @@ function SharedHeader({ folder }: SharedHeaderProps) {
         height={60}
         alt="avatar"
       />
-      <S.SharedOwner>{owner.name || "@codeit"}</S.SharedOwner>
-      <S.SharedFolder>{name || "⭐️ 즐겨찾기"}</S.SharedFolder>
+      <S.SharedOwner>{user?.name || "@codeit"}</S.SharedOwner>
+      <S.SharedFolder>{folderName || "⭐️ 즐겨찾기"}</S.SharedFolder>
     </S.Wrapper>
   );
 }

@@ -1,19 +1,9 @@
 import React from "react";
 import * as S from "./styled";
-
-interface NameTag {
-  id: number;
-  created_at: string;
-  name: string;
-  user_id: number;
-  favorite: boolean;
-  link: {
-    count: number;
-  };
-}
+import { FolderData } from "@/types/contents.type";
 
 interface NameTagProps {
-  tags: NameTag[];
+  tags: FolderData[];
   selected?: string;
   onClick: (name: string, linksId?: number) => void;
 }

@@ -5,20 +5,21 @@ import { useModal } from "@/contexts/ModalContext";
 import Fab from "@/components/common/Fab";
 import * as S from "./styled";
 import { folderIcon } from "@/public/icons/folder";
+import { FolderData } from "@/types/contents.type";
 
 interface FolderNameProps {
-  data: any;
+  folder: FolderData[];
   selected: string;
   onClick: (name: string, linksId?: number) => void;
 }
 
-function FolderHeader({ data, selected, onClick }: FolderNameProps) {
+function FolderHeader({ folder, selected, onClick }: FolderNameProps) {
   const { openModal } = useModal();
 
   return (
     <>
       <S.Sorts>
-        <NameTag tags={data?.folder} selected={selected} onClick={onClick} />
+        <NameTag tags={folder} selected={selected} onClick={onClick} />
         <Fab />
       </S.Sorts>
       <S.Header>
