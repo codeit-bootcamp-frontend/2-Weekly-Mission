@@ -4,6 +4,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import AuthLayout from "@/layouts/auth";
 import InputField from "@/components/common/InputField";
 import { userServices } from "@/pages/api/address";
+import { instance } from "../api/instance";
+import axios from "axios";
 
 interface AuthForm {
   email: string;
@@ -14,17 +16,15 @@ const SignUpPage = () => {
   const methods = useForm<AuthForm>();
 
   const checkedEmail = async (email: string) => {
-    const response = await fetch(userServices.checkedEmail, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
-    if (response?.status === 409) {
-      return "이미 사용중인 이메일입니다.";
+    try {
+      await instance.post(userServices.checkedEmail, { email });
+      return true;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return "이미 사용중인 이메일입니다.";
+      }
+      throw error;
     }
-    return true;
   };
 
   return (

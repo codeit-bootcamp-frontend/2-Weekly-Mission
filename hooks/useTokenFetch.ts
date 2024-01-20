@@ -1,22 +1,22 @@
 import { useState, useEffect, useCallback } from "react";
+import axios, { CancelTokenSource } from "axios";
 
 function useTokenFetch<T>(url: string): { data: T | null; loading: boolean } {
   const [fetchData, setFetchData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetching = useCallback(
-    async (token: string, controller: AbortController) => {
+    async (token: string, cancelToken: CancelTokenSource) => {
       setLoading(true);
       try {
-        const response = await fetch(url, {
+        const response = await axios.get(url, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          signal: controller.signal,
+          cancelToken: cancelToken.token,
         });
 
-        const data = (await response.json()) as T;
-        setFetchData(data);
+        setFetchData(response.data);
       } catch (error) {
         console.error(error);
         setFetchData(null);
@@ -29,16 +29,16 @@ function useTokenFetch<T>(url: string): { data: T | null; loading: boolean } {
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
-    const controller = new AbortController();
+    const cancelToken = axios.CancelToken.source();
 
     if (token) {
-      fetching(token, controller);
+      fetching(token, cancelToken);
     } else {
       setLoading(false);
     }
 
     return () => {
-      controller.abort();
+      cancelToken.cancel();
     };
   }, [fetching]);
 

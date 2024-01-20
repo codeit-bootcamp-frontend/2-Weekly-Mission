@@ -7,6 +7,7 @@ import Cta from "@/components/common/Cta";
 import { authMapping } from "@/lib/mapping/auth";
 import * as S from "./styled";
 import { AuthType } from "@/types/global.type";
+import { instance } from "@/pages/api/instance";
 
 interface AuthSectionProps {
   type: AuthType;
@@ -31,20 +32,16 @@ function AuthSection({ type, children }: AuthSectionProps) {
   const serviceTypeUrl = userServices[type];
 
   const onSubmit = async (data: AuthForm) => {
-    await fetch(serviceTypeUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...data }),
-    })
-      .then((res) => res.json())
-      .then((response: Response) => {
-        const { accessToken } = response.data;
-        localStorage.setItem("accessToken", accessToken);
-      })
-      .then(() => router.push("/folder"))
-      .catch((e) => console.error(e));
+    try {
+      const response = await instance.post(serviceTypeUrl, data);
+      const {
+        data: { accessToken },
+      } = response.data;
+      localStorage.setItem("accessToken", accessToken);
+      router.push("/folder");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

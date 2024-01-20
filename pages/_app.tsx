@@ -13,9 +13,10 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const getAccessToken = localStorage.getItem("accessToken");
     const protectedPaths = ["/shared", "/folder"];
+    const isProtectedPath = protectedPaths.some((path) => router.pathname.startsWith(path));
     const isAuthPath = router.pathname.startsWith("/auth");
 
-    if (protectedPaths.includes(router.pathname) && !getAccessToken) {
+    if (isProtectedPath && !getAccessToken) {
       router.push("/");
     } else if (isAuthPath && getAccessToken) {
       router.push("/folder");

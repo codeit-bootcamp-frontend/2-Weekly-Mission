@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import SharedLayout from "@/layouts/share";
 import { FolderData, LinksResponse } from "@/types/contents.type";
-import { useRouter } from "next/router";
 import useTokenFetch from "@/hooks/useTokenFetch";
 import { API_PATH } from "@/lib/constents";
 import { UserResponse } from "@/types/user.type";
@@ -22,7 +22,7 @@ function SharedPage({ folders }: { folders: FolderData }) {
   const name = folders.name;
 
   useEffect(() => {
-    if (!folderLoading && !linksLoading) {
+    if (!folderLoading && linksLoading) {
       setIsLoading(false);
     } else {
       setIsLoading(true);

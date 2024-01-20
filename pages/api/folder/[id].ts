@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { folderServices } from "../address";
-import { apiClient, setAuthToken } from "../instance";
+import { instance, setAuthToken } from "../instance";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
@@ -12,7 +12,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const token = req.headers.authorization;
   setAuthToken(token);
   try {
-    const { data: response } = await apiClient.get(folderServices.getSelectedFolder(folderId));
+    const { data: response } = await instance.get(folderServices.getSelectedFolder(folderId));
     return res.json({
       ok: true,
       folders: response.data,

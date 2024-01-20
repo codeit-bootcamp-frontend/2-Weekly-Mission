@@ -2,13 +2,13 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { folderServices } from "../address";
 import { LinkData } from "@/types/contents.type";
 import { Links } from "@/types/global.type";
-import { apiClient, setAuthToken } from "../instance";
+import { instance, setAuthToken } from "../instance";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const token = req.headers.authorization;
   setAuthToken(token);
   try {
-    const { data: response } = await apiClient.get(folderServices.getLinks);
+    const { data: response } = await instance.get(folderServices.getLinks);
     const { folder } = response.data;
 
     const convertLinks: Links[] = folder.map((link: LinkData) => ({

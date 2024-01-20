@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { userServices } from "../address";
-import { apiClient, setAuthToken } from "../instance";
+import { instance, setAuthToken } from "../instance";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const token = req.headers.authorization;
   setAuthToken(token);
   try {
-    const { data: users } = await apiClient.get(userServices.getProfile);
+    const { data: users } = await instance.get(userServices.getProfile);
     const user = users.data[0];
 
     return res.json({
