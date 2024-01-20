@@ -12,7 +12,7 @@ import { API_PATH } from "@/lib/constents";
 function Header() {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const userData = useTokenFetch<UserResponse>(API_PATH.GET_USER);
+  const { data: userData } = useTokenFetch<UserResponse>(API_PATH.GET_USER);
 
   const router = useRouter();
 

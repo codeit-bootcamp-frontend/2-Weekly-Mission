@@ -20,8 +20,8 @@ function SharedHeader({ user, folderName }: SharedHeaderProps) {
         height={60}
         alt="avatar"
       />
-      <S.SharedOwner>{user?.name || "@codeit"}</S.SharedOwner>
-      <S.SharedFolder>{folderName || "⭐️ 즐겨찾기"}</S.SharedFolder>
+      <S.SharedOwner>{user?.name}</S.SharedOwner>
+      <S.SharedFolder>{folderName}</S.SharedFolder>
     </S.Wrapper>
   );
 }

@@ -3,15 +3,18 @@ import { FolderData, FolderLinks } from "@/types/contents.type";
 import WithFolderHeader from "./Header";
 import FolderHeader from "./Section/Header";
 import Content from "@/components/Contents";
+import * as S from "./styled";
+import Spinner from "@/components/common/Spinner";
 
 interface FolderLayoutProps {
+  isLoading: boolean;
   links: FolderLinks[];
   folder: FolderData[];
   selected: string;
   onClick: (name: string, linksId?: number) => void;
 }
 
-export function FolderLayout({ links, folder, selected, onClick }: FolderLayoutProps) {
+export function FolderLayout({ isLoading, links, folder, selected, onClick }: FolderLayoutProps) {
   const [isInterSecting, setIsIntersecting] = useState<boolean>(true);
   const ref = useRef<HTMLDivElement>(null);
   const pageEndRef = useRef<HTMLDivElement>(null);
@@ -58,9 +61,11 @@ export function FolderLayout({ links, folder, selected, onClick }: FolderLayoutP
   return (
     <>
       <WithFolderHeader ref={ref} isInterSecting={isInterSecting} />
-      <Content links={links}>
-        <FolderHeader folder={folder} selected={selected} onClick={onClick} />
-      </Content>
+      <S.Article>
+        <Content isLoading={isLoading} links={links}>
+          <FolderHeader folder={folder} selected={selected} onClick={onClick} />
+        </Content>
+      </S.Article>
       <div ref={pageEndRef} />
     </>
   );

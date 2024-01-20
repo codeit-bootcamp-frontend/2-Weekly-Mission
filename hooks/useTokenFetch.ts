@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 
-function useTokenFetch<T>(url: string): T | null {
+function useTokenFetch<T>(url: string): { data: T | null; loading: boolean } {
   const [fetchData, setFetchData] = useState<T | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetching = useCallback(
     async (token: string, controller: AbortController) => {
+      setLoading(true);
       try {
         const response = await fetch(url, {
           headers: {
@@ -18,6 +20,8 @@ function useTokenFetch<T>(url: string): T | null {
       } catch (error) {
         console.error(error);
         setFetchData(null);
+      } finally {
+        setLoading(false);
       }
     },
     [url]
@@ -29,6 +33,8 @@ function useTokenFetch<T>(url: string): T | null {
 
     if (token) {
       fetching(token, controller);
+    } else {
+      setLoading(false);
     }
 
     return () => {
@@ -36,7 +42,7 @@ function useTokenFetch<T>(url: string): T | null {
     };
   }, [fetching]);
 
-  return fetchData;
+  return { data: fetchData, loading };
 }
 
 export default useTokenFetch;

@@ -3,14 +3,15 @@ import { useDebounce } from "usehooks-ts";
 import { Links } from "@/types/global.type";
 import List from "./Card/List";
 import SearchBar from "@/components/common/SearchBar";
-import { Article } from "./styled";
+import Spinner from "../common/Spinner";
 
 interface ContentProps<T extends Links> {
   children?: ReactNode;
   links: T[];
+  isLoading?: boolean;
 }
 
-function Content<T extends Links>({ children, links }: ContentProps<T>) {
+function Content<T extends Links>({ children, links, isLoading }: ContentProps<T>) {
   const [search, setSearch] = useState<string>("");
   const [filteredLinks, setFilteredLinks] = useState<T[]>([]);
   const debouncedValue = useDebounce<string>(search, 500);
@@ -39,11 +40,11 @@ function Content<T extends Links>({ children, links }: ContentProps<T>) {
   }, [debouncedValue, links]);
 
   return (
-    <Article>
+    <>
       <SearchBar value={search} handleSearchBar={handleSearchBar} initialState={initialState} />
       {children}
-      <List folder={filteredLinks} />
-    </Article>
+      {isLoading ? <Spinner /> : <List folder={filteredLinks} />}
+    </>
   );
 }
 
