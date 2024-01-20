@@ -39,7 +39,7 @@ const Form = () => {
 
   return (
     <FormBox onSubmit={handleSubmit(onSubmit)}>
-      <EmailBox isError={!!errors.email}>
+      <EmailBox isValid={!!errors.email}>
         <label>이메일</label>
         <input
           placeholder="이메일을 입력해 주세요"
@@ -58,7 +58,7 @@ const Form = () => {
       </EmailBox>
       <InputLayout>
         <label>비밀번호</label>
-        <InputBox isError={!!errors.password}>
+        <InputBox isValid={!!errors.password}>
           <input
             type="password"
             placeholder="비밀번호를 입력해주세요"
@@ -81,7 +81,7 @@ const Form = () => {
       </InputLayout>
       <InputLayout>
         <label>비밀번호 확인</label>
-        <InputBox isError={!!errors.passwordConfirm}>
+        <InputBox isValid={!!errors.passwordConfirm}>
           <input
             type="password"
             placeholder="비밀번호와 일치하는 값을 입력해 주세요"
@@ -106,8 +106,8 @@ const Form = () => {
   );
 };
 
-interface IsError {
-  isError?: boolean;
+interface IsValid {
+  isValid?: boolean;
 }
 
 const FormBox = styled.form`
@@ -117,7 +117,7 @@ const FormBox = styled.form`
   gap: 2.4rem;
 `;
 
-const EmailBox = styled.div<IsError>`
+const EmailBox = styled.div<IsValid>`
   & > label {
     font-size: 1.4rem;
     color: #000000;
@@ -131,7 +131,7 @@ const EmailBox = styled.div<IsError>`
     border-radius: 0.8rem;
     border: 1px solid var(--gray-lighter);
     border-color: ${(props) =>
-      props.isError ? "var(--focus-alert)" : "var(--gray-lighter)"};
+      props.isValid ? "var(--focus-alert)" : "var(--gray-lighter)"};
     padding-left: 1.5rem;
     padding-right: 4rem;
     outline: none;

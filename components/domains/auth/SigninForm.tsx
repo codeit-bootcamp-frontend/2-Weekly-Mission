@@ -10,6 +10,8 @@ import {
 import { signIn } from "../../../pages/api/AuthApi";
 import SnsAuth from "./SnsAuth";
 import { useForm } from "react-hook-form";
+import isEmail from "validator/lib/isEmail";
+import { passwordRegex } from "../../../utils/regex";
 
 const Form = () => {
   const {
@@ -40,15 +42,15 @@ const Form = () => {
 
   return (
     <FormBox onSubmit={handleSubmit(onSubmit)}>
-      <EmailBox isError={!!errors?.email}>
+      <EmailBox isValid={!!errors?.email}>
         <label>이메일</label>
         <input
           placeholder="이메일을 입력해 주세요"
           {...register("email", {
             required: "이메일을 입력해주세요.",
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "올바른 이메일 주소가 아닙니다."
+            validate: {
+              email: (value) =>
+                isEmail(value) || "올바른 이메일 주소가 아닙니다."
             }
           })}
         />
@@ -56,14 +58,14 @@ const Form = () => {
       </EmailBox>
       <InputLayout>
         <label>비밀번호</label>
-        <InputBox isError={!!errors.password}>
+        <InputBox isValid={!!errors.password}>
           <input
             type="password"
             placeholder="비밀번호를 입력해주세요"
             {...register("password", {
               required: "비밀번호를 입력해주세요.",
               pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                value: passwordRegex,
                 message: "비밀번호는 영문,숫자 조합 8자 이상 입력해 주세요."
               }
             })}
@@ -83,8 +85,8 @@ const Form = () => {
   );
 };
 
-interface IsError {
-  isError?: boolean;
+interface IsValid {
+  isValid?: boolean;
 }
 
 const FormBox = styled.form`
@@ -94,7 +96,7 @@ const FormBox = styled.form`
   gap: 2.4rem;
 `;
 
-const EmailBox = styled.div<IsError>`
+const EmailBox = styled.div<IsValid>`
   & > label {
     font-size: 1.4rem;
     color: #000000;
@@ -108,7 +110,7 @@ const EmailBox = styled.div<IsError>`
     border-radius: 0.8rem;
     border: 1px solid var(--gray-lighter);
     border-color: ${(props) =>
-      props.isError ? "var(--focus-alert)" : "var(--gray-lighter)"};
+      props.isValid ? "var(--focus-alert)" : "var(--gray-lighter)"};
     padding-left: 1.5rem;
     padding-right: 4rem;
     outline: none;

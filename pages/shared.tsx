@@ -6,7 +6,7 @@ import styles from "../styles/sharedPage.module.css";
 import { getSharedFolderData } from "./api/SharedApi";
 import { SharedPageData } from "../types/common";
 import { Link } from "../types/common";
-import { DataContext } from "../contexts/LocaleContext";
+import { SharedDataContext } from "../contexts/LocaleContext";
 
 function SharedPage() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -55,7 +55,7 @@ function SharedPage() {
   }, []);
 
   return (
-    <DataContext.Provider value={sharedFolder}>
+    <SharedDataContext.Provider value={sharedFolder}>
       <Banner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
@@ -67,7 +67,7 @@ function SharedPage() {
           <CardList links={sharedFolder?.links} />
         </div>
       </section>
-    </DataContext.Provider>
+    </SharedDataContext.Provider>
   );
 }
 

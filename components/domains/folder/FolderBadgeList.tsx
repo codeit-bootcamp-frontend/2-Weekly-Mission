@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
-import FolderBadge from "../folder/folderTitle/FolderBadge";
+import FolderBadge from "./FolderBadge";
 import { FolderPageData, Link, ModalControl } from "../../../types/common";
-import { ModalContext, DataContext } from "../../../contexts/LocaleContext";
-import { DataContextType } from "../../../contexts/LocaleContext";
+import { ModalContext } from "../../../contexts/LocaleContext";
+import { FolderDataContext } from "../../../contexts/LocaleContext";
 
 function FolderBadgeList({
   setSelectFolderLinks,
@@ -12,9 +12,7 @@ function FolderBadgeList({
   setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const folderList = useContext<DataContextType>(
-    DataContext
-  ) as FolderPageData[];
+  const folderList = useContext<FolderPageData[]>(FolderDataContext);
   const { openModal } = useContext<ModalControl>(ModalContext);
   return (
     <div>

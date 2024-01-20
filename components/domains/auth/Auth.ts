@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-interface IsError {
-  isError?: boolean;
+interface IsValid {
+  isValid?: boolean;
 }
 
 export const InputLayout = styled.div`
@@ -16,7 +16,7 @@ export const InputLayout = styled.div`
   }
 `;
 
-export const InputBox = styled.div<IsError>`
+export const InputBox = styled.div<IsValid>`
   width: 100%;
   position: relative;
   display: flex;
@@ -28,7 +28,7 @@ export const InputBox = styled.div<IsError>`
     border-radius: 0.8rem;
     border: 1px solid var(--gray-lighter);
     border-color: ${(props) =>
-      props.isError ? "var(--focus-alert)" : "var(--gray-lighter)"};
+      props.isValid ? "var(--focus-alert)" : "var(--gray-lighter)"};
     outline: none;
 
     &::placeholder {

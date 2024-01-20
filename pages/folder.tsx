@@ -9,7 +9,7 @@ import FloatingButton from "../components/domains/folder/FloatingButton";
 import { getAllLinksData, getUserFoldersData } from "./api/FolderApi";
 import { FolderPageData } from "../types/common";
 import { Link } from "../types/common";
-import { DataContext } from "../contexts/LocaleContext";
+import { FolderDataContext } from "../contexts/LocaleContext";
 
 function FolderPage() {
   const [folderList, setFolderList] = useState<FolderPageData[]>([]);
@@ -55,7 +55,7 @@ function FolderPage() {
   }, [id]);
 
   return (
-    <DataContext.Provider value={folderList}>
+    <FolderDataContext.Provider value={folderList}>
       <AddLinkBanner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
@@ -85,7 +85,7 @@ function FolderPage() {
         </div>
       </section>
       <FloatingButton />
-    </DataContext.Provider>
+    </FolderDataContext.Provider>
   );
 }
 

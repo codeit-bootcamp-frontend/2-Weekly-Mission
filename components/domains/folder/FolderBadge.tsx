@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
-import { getSelectData } from "../../../../pages/api/FolderApi";
-import { FolderPageData, Link } from "../../../../types/common";
+import { getSelectData } from "../../../pages/api/FolderApi";
+import { FolderPageData, Link } from "../../../types/common";
 
 function FolderBadge({
   folder,
@@ -19,16 +19,16 @@ function FolderBadge({
   };
 
   return (
-    <Button
+    <FolderSelectBadge
       onClick={() => {
         handleChangeID();
       }}
     >
       {folder && folder.name}
-    </Button>
+    </FolderSelectBadge>
   );
 }
-const Button = styled.button`
+const FolderSelectBadge = styled.button`
   background-color: #ffffff;
   border: 1px solid var(--primary-color);
   font-size: 1.6rem;
