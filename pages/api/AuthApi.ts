@@ -45,12 +45,10 @@ export async function signIn(
       email,
       password
     });
+    console.log(response);
     if (response.status === 200) {
-      localStorage.setItem(
-        "signInAccessToken",
-        JSON.stringify(response.data.accessToken)
-      );
-      window.location.href = "../folder";
+      localStorage.setItem("signInAccessToken", response.data.data.accessToken);
+      // window.location.href = "../folder";
     }
   } catch (error) {
     setError("password", {

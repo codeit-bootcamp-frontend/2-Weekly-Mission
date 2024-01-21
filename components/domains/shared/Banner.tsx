@@ -4,20 +4,11 @@ import { useContext } from "react";
 import { SharedPageData } from "../../../types/common";
 import { SharedDataContext } from "../../../contexts/LocaleContext";
 
-function Banner() {
-  const folder = useContext<SharedPageData>(SharedDataContext);
+function Banner({ children }: { children: ReactNode }) {
+  const sharedData = useContext(SharedDataContext);
   return (
     <BannerLayout>
-      <BannerBox>
-        <Image
-          width={60}
-          height={60}
-          src={folder.owner.profileImageSource}
-          alt="배너 프로필 이미지"
-        />
-        <BannerText>{folder.owner.name}</BannerText>
-        <BannerTitle>{folder.name}</BannerTitle>
-      </BannerBox>
+      <BannerBox>{children}</BannerBox>
     </BannerLayout>
   );
 }
@@ -34,13 +25,6 @@ const BannerBox = styled.section`
   height: 16.4rem;
   gap: 2rem;
   margin: 0 auto;
-`;
-
-const BannerText = styled.div`
-  font-size: 1.6rem;
-`;
-const BannerTitle = styled.h1`
-  font-size: 4rem;
 `;
 
 export default Banner;

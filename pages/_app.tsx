@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 import { ModalContext } from "../contexts/LocaleContext";
-import { getUserData } from "./api/SharedApi";
+
 import Header from "../components/commons/Header";
 import Footer from "../components/commons/Footer";
 import GlobalStyle from "../styles/GlobalStyles";
@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const Modal = modals.get(modal.name);
 
   useEffect(() => {
-    getUserData().then(setUser);
+    // getUserData().then(setUser);
   }, []);
 
   return (
@@ -32,9 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <GlobalStyle />
       <ModalContext.Provider value={{ openModal, closeModal }}>
         {modal.isOpen && Modal ? <Modal onConfirm={closeModal} /> : null}
-        {pathname !== "/signin" && pathname !== "/signup" ? (
-          <Header user={user} />
-        ) : null}
+        {pathname !== "/signin" && pathname !== "/signup" ? <Header /> : null}
         <Component closeModal={closeModal} {...pageProps} />
         {pathname !== "/signin" && pathname !== "/signup" ? <Footer /> : null}
       </ModalContext.Provider>
