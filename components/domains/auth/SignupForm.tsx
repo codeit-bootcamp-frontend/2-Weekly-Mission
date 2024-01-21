@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import SubmitButton from "./SubmitButton";
 import { isDuplicateEmail } from "../../../pages/api/AuthApi";
 import SnsAuth from "./SnsAuth";
+import isEmail from "validator/lib/isEmail";
 
 const Form = () => {
   const {
@@ -50,6 +51,8 @@ const Form = () => {
               message: "올바른 이메일 주소가 아닙니다."
             },
             validate: {
+              email: (value) =>
+                isEmail(value) || "올바른 이메일 주소가 아닙니다.",
               duplicateEmail: async (value) => await isDuplicateEmail(value)
             }
           })}

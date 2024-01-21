@@ -1,19 +1,17 @@
-import axios from "axios";
+import axiosInstance from "axios";
 import API_BASE_URL from "../../constants";
+import axios from "axios";
 
 export async function signUp(email: string, password: string) {
   try {
-    const response = await axios.post(`${API_BASE_URL}/sign-up`, {
+    const response = await axiosInstance.post(`${API_BASE_URL}sign-up`, {
       email,
       password
     });
 
     if (response.status === 200) {
       const data = response.data;
-      localStorage.setItem(
-        "signUpAccessToken",
-        JSON.stringify(data.data.accessToken)
-      );
+      localStorage.setItem("signUpAccessToken", data.data.accessToken);
       window.location.href = "../folder";
     }
   } catch (error) {
@@ -23,7 +21,7 @@ export async function signUp(email: string, password: string) {
 
 export async function isDuplicateEmail(email: string) {
   try {
-    const response = await axios.post(`${API_BASE_URL}/check-email`, {
+    const response = await axiosInstance.post(`${API_BASE_URL}check-email`, {
       email
     });
     if (response?.status === 200) {
@@ -41,14 +39,14 @@ export async function signIn(
   setError: (inputName: string, { message }: { message: string }) => void
 ) {
   try {
-    const response = await axios.post(`${API_BASE_URL}/sign-in`, {
+    const response = await axiosInstance.post(`${API_BASE_URL}sign-in`, {
       email,
       password
     });
-    console.log(response);
+
     if (response.status === 200) {
-      localStorage.setItem("signInAccessToken", response.data.data.accessToken);
-      // window.location.href = "../folder";
+      localStorage.setItem("accessToken", response.data.data.accessToken);
+      window.location.href = "../folder";
     }
   } catch (error) {
     setError("password", {

@@ -3,17 +3,17 @@ import requestApi from "./RequestApi";
 const DEFAULT_USER_ID = "1";
 
 export async function getUserData(userId = DEFAULT_USER_ID) {
-  return requestApi(`/users/${userId}`);
+  return requestApi(`users/${userId}`);
 }
 
 export async function getUserFoldersData(userId = DEFAULT_USER_ID) {
-  return requestApi(`/users/${userId}/folders`);
+  return requestApi(`users/${userId}/folders`);
 }
 
 export async function getAllLinksData(userId = DEFAULT_USER_ID) {
-  return requestApi(`/users/${userId}/links`);
+  return requestApi(`users/${userId}/links`);
 }
 
-export async function getSelectData(id: number) {
-  return requestApi(`/users/1/links?folderId=${id}`);
+export async function getSelectData(folderId: string) {
+  return requestApi(`links?folderId=${folderId}`);
 }

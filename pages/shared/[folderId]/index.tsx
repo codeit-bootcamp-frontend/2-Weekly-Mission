@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import Banner from "../../../components/domains/shared/Banner";
 import CardList from "../../../components/commons/CardList";
 import SearchInput from "../../../components/commons/SearchInput";
 import styles from "../../../styles/sharedPage.module.css";
-import {
-  getFolderData,
-  getOwnerData,
-  getAllLinksData,
-  getLinkData
-} from "../../api/SharedApi";
-import { SharedPageData } from "../../../types/common";
+import { getFolderData, getOwnerData, getLinkData } from "../../api/SharedApi";
 import { Link } from "../../../types/common";
 import { SharedDataContext } from "../../../contexts/LocaleContext";
 import { useRouter } from "next/router";
@@ -19,27 +12,6 @@ function SharedPage() {
   const router = useRouter();
   const { folderId }: ParsedUrlQuery = router.query;
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-  const [sharedFolder, setSharedFolder] = useState<SharedPageData>({
-    id: 1,
-    name: "",
-    owner: {
-      id: 2,
-      name: "",
-      profileImageSource: ""
-    },
-    links: [
-      {
-        id: 1,
-        url: "",
-        title: "",
-        description: "",
-        image_source: "",
-        created_at: ""
-      }
-    ]
-  });
-
-  // 하나의 상태 객체로 합침
   const [sharedData, setSharedData] = useState<{
     folder?: any;
     user?: any;
@@ -55,11 +27,7 @@ function SharedPage() {
       if (folderId) {
         // Fetch folder data
         const { data: folder } = await getFolderData(folderId as string);
-
-        // // Fetch owner data
         const ownerResponse = await getOwnerData(folder[0].user_id as string);
-
-        // // Fetch link data
         const linkResponse = await getLinkData(
           ownerResponse.data[0].id,
           folder[0].user_id

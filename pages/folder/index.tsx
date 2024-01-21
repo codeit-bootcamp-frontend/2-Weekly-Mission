@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import AddLinkBanner from "../components/domains/folder/AddLinkBanner";
-import CardList from "../components/commons/CardList";
-import SearchInput from "../components/commons/SearchInput";
-import styles from "../styles/folderPage.module.css";
-import FolderBadgeList from "../components/domains/folder/FolderBadgeList";
-import FolderTitles from "../components/domains/folder/folderTitle/FolderTitles";
-import FloatingButton from "../components/domains/folder/FloatingButton";
-import { getAllLinksData, getUserFoldersData } from "./api/FolderApi";
-import { FolderPageData } from "../types/common";
-import { Link } from "../types/common";
-import { FolderDataContext } from "../contexts/LocaleContext";
+import AddLinkBanner from "../../components/domains/folder/AddLinkBanner";
+import CardList from "../../components/commons/CardList";
+import SearchInput from "../../components/commons/SearchInput";
+import styles from "../../styles/folderPage.module.css";
+import FolderBadgeList from "../../components/domains/folder/FolderBadgeList";
+import FolderTitles from "../../components/domains/folder/folderTitle/FolderTitles";
+import FloatingButton from "../../components/domains/folder/FloatingButton";
+import { getAllLinksData, getUserFoldersData } from "../api/FolderApi";
+import { FolderPageData } from "../../types/common";
+import { Link } from "../../types/common";
+import { FolderDataContext } from "../../contexts/LocaleContext";
+import { useRouter } from "next/router";
 
 function FolderPage() {
   const [folderList, setFolderList] = useState<FolderPageData[]>([]);
@@ -17,6 +18,7 @@ function FolderPage() {
   const [id, setId] = useState<number>(0);
   const [searchLinks, setSearchLinks] = useState<Link[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const router = useRouter();
 
   const handleFoldersLoad = async () => {
     const allLinksFolder: FolderPageData = {
@@ -34,6 +36,7 @@ function FolderPage() {
         }
       ]
     };
+
     const allData = await getAllLinksData();
     const { data } = await getUserFoldersData();
     allLinksFolder.links = allData.data;
@@ -51,6 +54,10 @@ function FolderPage() {
   };
 
   useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      router.push("/signin");
+    }
     handleFoldersLoad();
   }, [id]);
 
@@ -64,23 +71,12 @@ function FolderPage() {
             setSearchKeyword={setSearchKeyword}
             onSearch={searchLink}
           />
-          <FolderBadgeList
-            setSelectFolderLinks={setSelectFolderLinks}
-            setId={setId}
-          />
-          <FolderTitles searchKeyword={searchKeyword} id={id} />
-          {searchKeyword !== "" ? (
-            <CardList links={searchLinks} />
-          ) : searchKeyword !== "" ? (
-            <CardList links={searchLinks} />
-          ) : id === 0 ? (
-            <CardList links={folderList[0]?.links} />
-          ) : selectFolderLinks.length !== 0 ? (
-            <CardList links={selectFolderLinks} />
+          <FolderBadgeList />
+          <FolderTitles searchKeyword={searchKeyword} />
+          {searchKeyword == "" ? (
+            <CardList links={folderList} />
           ) : (
-            <div className={styles.linksNull}>
-              <div>저장된 링크가 없습니다.</div>
-            </div>
+            <CardList links={searchLinks} />
           )}
         </div>
       </section>

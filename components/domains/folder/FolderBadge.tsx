@@ -1,27 +1,16 @@
 import styled from "styled-components";
 import React from "react";
-import { getSelectData } from "../../../pages/api/FolderApi";
-import { FolderPageData, Link } from "../../../types/common";
 
-function FolderBadge({
-  folder,
-  setSelectFolderLinks,
-  setId
-}: {
-  folder: FolderPageData;
-  setSelectFolderLinks: React.Dispatch<React.SetStateAction<Link[]>>;
-  setId: React.Dispatch<React.SetStateAction<number>>;
-}) {
-  const handleChangeID = async () => {
-    const { data } = await getSelectData(folder.id);
-    setSelectFolderLinks(data);
-    setId(folder.id);
-  };
+import { FolderPageData } from "../../../types/common";
+import { useRouter } from "next/router";
+
+function FolderBadge({ folder }: { folder: FolderPageData }) {
+  const router = useRouter();
 
   return (
     <FolderSelectBadge
       onClick={() => {
-        handleChangeID();
+        router.push(`/folder/${folder.id}`);
       }}
     >
       {folder && folder.name}

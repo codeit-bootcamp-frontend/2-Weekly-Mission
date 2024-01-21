@@ -1,12 +1,5 @@
 import requestApi from "./RequestApi";
 
-export async function getUserData() {
-  return requestApi(`sample/user`);
-}
-
-export async function getAllLinksData() {
-  return requestApi(`sample/folder`);
-}
 export async function getFolderData(folderId: string) {
   return requestApi(`folders/${folderId}`);
 }

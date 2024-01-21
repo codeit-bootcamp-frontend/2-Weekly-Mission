@@ -1,48 +1,21 @@
 import axios from "axios";
+import API_BASE_URL from "../../constants";
 
 const axiosInstance = axios.create();
 
-interface SharedFolderLink {
-  id: number;
-  createdAt: string;
-  url: string;
-  title: string;
-  description: string;
-  imageSource: string;
-}
-
-interface SharedFolder {
-  folder: {
-    id: number;
-    name: string;
-    owner: {
-      id: number;
-      name: string;
-      profileImageSource: string;
-    };
-    links: SharedFolderLink[];
-  };
-}
-
-const convertToSnakeCase = (data: SharedFolder) => {
-  const { links } = data.folder;
-  const convertedLinks = links.map((link) => {
-    const convertedLink = Object.fromEntries(
-      Object.entries(link).map(([key, value]) => [
-        key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`),
-        value
-      ])
-    );
-    return convertedLink;
-  });
-  return convertedLinks;
-};
-
-axiosInstance.interceptors.response.use((response) => {
-  if (response?.data.folder) {
-    response.data.folder.links = convertToSnakeCase(response.data);
+axiosInstance.interceptors.response.use(
+  (res) => res,
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      await axiosInstance.post(`${API_BASE_URL}refresh-token`, {
+        _retry: true
+      });
+      originalRequest._retry = true;
+      return axiosInstance(originalRequest);
+    }
+    return Promise.reject(error);
   }
-  return response;
-});
+);
 
 export default axiosInstance;
