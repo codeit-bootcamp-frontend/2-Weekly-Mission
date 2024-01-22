@@ -1,32 +1,32 @@
-import React from "react";
-import IconFaceBook from "../../images/facebook.svg";
-import IconTwitter from "../../images/twitter.svg";
-import IconYoutube from "../../images/youtube.svg";
-import IconInstagram from "../../images/instagram.svg";
-import Link from "./Link";
-import SocialLink from "./SocialLink";
+import React from 'react';
+import IconFaceBook from '../../images/facebook.svg';
+import IconTwitter from '../../images/twitter.svg';
+import IconYoutube from '../../images/youtube.svg';
+import IconInstagram from '../../images/instagram.svg';
+import Link from './Link';
+import SocialLink from './SocialLink';
 
 export default function Footer() {
   const socialMediaLinks = [
     {
-      href: "https://www.facebook.com/",
+      href: 'https://www.facebook.com/',
       iconSrc: IconFaceBook,
-      altText: "Facebook logo connected to Facebook homepage",
+      altText: 'Facebook logo connected to Facebook homepage',
     },
     {
-      href: "https://twitter.com/",
+      href: 'https://twitter.com/',
       iconSrc: IconTwitter,
-      altText: "Twitter logo linked to Twitter homepage",
+      altText: 'Twitter logo linked to Twitter homepage',
     },
     {
-      href: "https://www.youtube.com/",
+      href: 'https://www.youtube.com/',
       iconSrc: IconYoutube,
-      altText: "YouTube logo linked to YouTube homepage",
+      altText: 'YouTube logo linked to YouTube homepage',
     },
     {
-      href: "https://www.instagram.com/",
+      href: 'https://www.instagram.com/',
       iconSrc: IconInstagram,
-      altText: "Instagram logo linked to Instagram homepage",
+      altText: 'Instagram logo linked to Instagram homepage',
     },
   ];
 

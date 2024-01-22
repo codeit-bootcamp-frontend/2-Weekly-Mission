@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import MainSearchBar from './MainSearchBar';
+import MainSearchBar from '../Main/MainSearchBar';
 import FolderButtons from './FolderButtons';
 import FolderCardContainer from './FolderCardContainer';
-import '../../CSS/Folder.css';
+import '../Folder/CSS/Folder.css';
 
 export default function FolderMain() {
   const [selectedValue, setSelectedValue] = useState('전체');

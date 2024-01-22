@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { LoginProfile } from '../../api';
-import '../../CSS/Landing.css';
+import '../Main/CSS/Landing.css';
 import { UserFolderT } from '../../apiType';
 
 

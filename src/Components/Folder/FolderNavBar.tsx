@@ -2,7 +2,8 @@ import React from 'react';
 import LogoImg from '../../images/logo.svg';
 import { FolderHeaderApi } from '../../api';
 import { useEffect, useState } from 'react';
-import '../../CSS/Folder.css';
+import '../Folder/CSS/Folder.css';
+import { useNavigate } from 'react-router-dom';
 
 type NavTypes = {
   image_source: string;
@@ -12,6 +13,7 @@ type NavTypes = {
 
 export default function FolderNavBar() {
   const [userData, setUserData] = useState<NavTypes[]>([]);
+  const navigate = useNavigate();
 
   const fetchData = async (): Promise<void> => {
     try {
@@ -26,6 +28,9 @@ export default function FolderNavBar() {
     fetchData();
   }, []);
 
+  const homeNavigate = () => {
+    navigate('/');
+  };
   return (
     <nav className="FolderNavContainer">
       <div className="FolderNavBox">
@@ -33,6 +38,7 @@ export default function FolderNavBar() {
           src={LogoImg}
           alt="홈으로 연결된 Linkbrary 로고"
           className="Folderlogo"
+          onClick={homeNavigate}
         />
         {userData ? (
           userData.map((item) => (

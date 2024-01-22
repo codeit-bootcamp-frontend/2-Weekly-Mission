@@ -9,4 +9,5 @@
     "moduleDetection": "force",
   },
   "include": ["src","custom.d.ts"],
+  "typeRoots": ["images"],
 }

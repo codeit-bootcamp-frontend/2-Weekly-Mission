@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../CSS/select.css';
+import '../Folder/CSS/select.css';
 
 export default function KebobMenu() {
   const selectList: [string, string] = ['삭제하기', '폴더에 추가'];

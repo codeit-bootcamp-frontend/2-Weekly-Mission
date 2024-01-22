@@ -3,7 +3,7 @@ import { FolderLoginProfile } from '../../api';
 import KebabIcon from '../../images/kebab.svg';
 import StarIcon from '../../images/star.svg';
 import NullImg from '../../images/logo.svg';
-import '../../CSS/Folder.css';
+import '../Folder/CSS/Folder.css';
 import KebobMenu from './KebobMenu';
 
 interface FolderCardContainerProps {
@@ -121,7 +121,9 @@ export default function FolderCardContainer({
           </div>
         ))
       ) : (
-        <p className="FolderNullText">저장된 링크가 없습니다.</p>
+        <div className="FolderNullText">
+          <p>저장된 링크가 없습니다.</p>
+        </div>
       )}
     </div>
   );

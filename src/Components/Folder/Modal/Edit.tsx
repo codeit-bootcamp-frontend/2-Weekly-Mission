@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../CSS/modal.css';
-import closeImg from '../../images/_close.svg';
+import '../CSS/modal.css';
+import closeImg from '../../../images/_close.svg';
 
 export default function Edit() {
   return (

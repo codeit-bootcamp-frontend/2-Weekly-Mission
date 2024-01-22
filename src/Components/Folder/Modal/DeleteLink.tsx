@@ -1,12 +1,13 @@
 import React from 'react';
-import closeImg from '../../images/_close.svg';
+import '../CSS/modal.css';
+import closeImg from '../../../images/_close.svg';
 
-export default function DeleteFolder() {
+export default function DeleteLink() {
   return (
     <div className="modal-container">
-      <h4 className="modal-title">폴더 삭제</h4>
+      <h4 className="modal-title">링크 삭제</h4>
       <form className="modal-form">
-        <label htmlFor=""></label>
+        <label htmlFor="" className="modal-folder-title"></label>
         <button className="modal-Delete">삭제하기</button>
       </form>
       <button className="modal-close">

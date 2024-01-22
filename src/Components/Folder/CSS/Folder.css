@@ -1,22 +1,20 @@
-@import "./global.css";
-body {
+@import '../../../CSS/global.css';
+.root {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0;
+  z-index: 0;
 }
 
-.nav-container {
+.FolderNavContainer {
   display: flex;
   justify-content: center;
-  position: sticky;
-  top: 0;
   width: 100%;
   background-color: #edf7ff;
-  z-index: 1;
 }
-.nav-box {
+.FolderNavBox {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,30 +34,29 @@ body {
   }
 }
 
-.logo {
+.Folderlogo {
   height: 16px;
+  cursor: pointer;
 
   @media (min-width: 768px) {
     height: 24px;
   }
 }
 
-.UserContainer {
-  width: 158px;
-  height: 28px;
+.FolderUserContainer {
   display: flex;
   align-items: center;
   gap: 6px;
 }
-.UserImg {
-  width: 17px;
-  height: 17px;
+.FolderUserImg {
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
   border-radius: 50%;
 }
 
-.UserEmail {
-  color: var(--gray100);
+.FolderUserEmail {
+  color: var(--linkbrary-gray-100);
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -67,81 +64,167 @@ body {
   line-height: normal;
 }
 
-.HeaderContainer {
-  width: 100%;
-  padding-bottom: 10%;
-  gap: 8px;
-  background: var(--linkbrary-bg);
-  @media (min-width: 768px) {
-    width: 100%;
+.FolderHeaderContainer {
+  position: relative;
+  padding: 6rem 3.2rem 9rem 3.2rem;
+  background-color: #edf7ff;
+}
+
+.FolderHeaderInputBox {
+  display: flex;
+  padding: 0 15rem;
+  @media (max-width: 768px) {
+    padding: 0 3.2rem;
   }
 }
-.HeaderBox {
-  display: flex;
-  flex-direction: column;
+.FolderHeaderInput {
+  width: 100%;
+  padding: 1.5rem 3.2rem;
+  border-radius: 1rem;
+  border: 0.1rem solid var(--primary);
+  background: var(--white);
+}
+
+.FolderHeaderInput:focus:invalid {
+  outline-color: #ff8383;
+  background-color: #fff3f3;
+}
+
+.FolderHeaderImg {
+  position: absolute;
   align-items: center;
-  gap: 20px;
+  width: 100%;
+  top: 7.3rem;
+  left: 18rem;
+  padding: 0 1rem;
+  bottom: 100%;
+  @media (max-width: 768px) {
+    left: 6.5rem;
+  }
 }
-
-.ImgHeader {
-  display: flex;
-  height: 100px;
-  padding: 16px 17px 0px 15px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 47px;
-}
-
-.HeaderText {
-  color: var(--text-color-light-mode);
+.FolderHeaderBtn {
+  position: absolute;
+  top: 6.6rem;
+  right: 19rem;
+  padding: 1rem 1.6rem;
+  border-radius: 0.8rem;
+  background: var(
+    --gra-purpleblue-to-skyblue,
+    linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%)
+  );
+  color: var(--grey-light);
   font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-}
-
-.HeaderDescription {
-  color: #000;
-  text-align: center;
-  font-feature-settings: "clig" off, "liga" off;
-  font-family: Pretendard;
-  font-size: 40px;
-  font-style: normal;
+  font-size: 14px;
   font-weight: 600;
-  line-height: normal;
+  @media (max-width: 768px) {
+    right: 7rem;
+  }
 }
-
-.Main {
-  padding: 40px 0px;
+.FolderMain {
+  padding: 40px 40px 0 40px;
 }
 
 .MainSearchBarContainer {
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 4rem;
 }
 
 .MainSearchBar {
   width: 100%;
   display: flex;
-  padding: 15px 32px;
+  padding: 1.5rem 3.2rem;
   justify-content: space-between;
-  border-radius: 10px;
+  border-radius: 1rem;
   border-style: none;
-  background: #f5f5f5;
+  background: var(--grey-light);
 }
 
 .SearchBtn {
   position: absolute;
-  top: 15px;
-  left: 10px;
+  top: 1.5rem;
+  left: 1rem;
   bottom: 100%;
 }
 
-.CardBoxContainer {
+.BtnContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.BtnBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.FolderBtn {
+  display: flex;
+  padding: 8px 12px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid var(--primary);
+  background: #fff;
+}
+
+.FolderBtn:focus {
+  border-radius: 5px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.FolderPlusBtn {
+  width: 16px;
+  height: 16px;
+}
+
+.FolderCardHeaderContainer {
+  display: flex;
+  width: 100%;
+  padding-top: 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.FolderLinksBtn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.FolderBtnName {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.2px;
+}
+
+.FolderLinks {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--gray60);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.FolderCardBoxContainer {
   display: grid;
+  width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
+  justify-content: center;
+  padding: 0 10px 0 40px;
+  margin: 5rem 0 5rem;
   @media (max-width: 1124px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -155,7 +238,7 @@ body {
   }
 }
 
-.CardBox {
+.FolderCardBox {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
@@ -163,20 +246,34 @@ body {
   margin-right: 20px;
 }
 
-.CardImg {
+.FolderCardImg {
+  position: relative;
   width: 100%;
   height: 150px;
   transform: scale(1);
   transition: 0.3s all;
 }
 
-.CardImg:hover {
+.FolderCardImg:hover {
   transform: scale(1.3);
   align-items: center;
   padding-bottom: 15px;
 }
 
-.CardUpLoadTime {
+.StarBtn {
+  position: absolute;
+  margin: 5px -40px;
+  cursor: copy;
+}
+
+.KebabBtn {
+  display: inline;
+  float: right;
+  padding: 0 10px;
+  cursor: context-menu;
+}
+
+.FolderCardUpLoadTime {
   color: #666;
   font-family: Pretendard;
   font-size: 13px;
@@ -186,11 +283,11 @@ body {
   margin-bottom: 8px;
 }
 
-.CardTextDescription {
+.FolderCardTextDescription {
   height: 49px;
   align-self: stretch;
   overflow: hidden;
-  color: #000;
+  color: var(--text-color-light-mode);
   text-overflow: ellipsis;
   white-space: nowrap;
   font-family: Pretendard;
@@ -201,7 +298,7 @@ body {
   margin-bottom: 8px;
 }
 
-.CardTextYears {
+.FolderCardTextYears {
   height: 19px;
   align-self: stretch;
   overflow: hidden;
@@ -215,6 +312,23 @@ body {
   line-height: normal;
 }
 
+.FolderNullText {
+  all: unset;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 4.1rem 90rem 3.5rem 10rem;
+  color: var(--black);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  @media (max-width: 1124px) {
+    padding: 0 75rem;
+  }
+}
+
 .cta {
   display: flex;
   justify-content: center;
@@ -223,7 +337,7 @@ body {
   cursor: pointer;
   background-image: linear-gradient(135deg, #6d6afe 0%, #6ae3fe 100%);
   border-radius: 8px;
-  color: #f5f5f5;
+  color: var(--grey-light);
   font-size: 14px;
   font-weight: 600;
 
@@ -254,16 +368,16 @@ body {
   display: grid;
   justify-content: space-between;
   grid-template:
-    "footer-links sns"
-    ". ." 1fr
-    "copyright .";
+    'footer-links sns'
+    '. .' 1fr
+    'copyright .';
   width: 100%;
   padding: 32px;
 
   @media (min-width: 768px) {
     display: flex;
     justify-content: space-between;
-    grid-template: "copyright footer-links sns";
+    grid-template: 'copyright footer-links sns';
     height: fit-content;
     max-width: 1920px;
     padding: 32px 104px 0;
