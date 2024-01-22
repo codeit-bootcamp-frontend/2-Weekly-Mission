@@ -1,11 +1,12 @@
-import * as S from "./styled";
+import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import axios from "@/lib/axios";
+
 import Favor from "../../components/Favor";
 import Search from "../../components/Search";
 import Card from "../../components/Card";
-// import { useLocation } from "react-router";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import axios from "@/lib/axios";
+
+import * as S from "./styled";
 
 interface UserFolder {
   img: string;
@@ -31,29 +32,40 @@ function App() {
   const [cardData, setCardData] = useState<CardData[]>([]);
   const [folderResult, setFolderResult] = useState([]);
   const [userStatus, setUserStatus] = useState();
-  // const [sharedSearch, setSharedSearch] = useState<string>("");
+
   const router = useRouter();
   const { id } = router.query;
+
   const queryParams = new URLSearchParams(router.asPath.split(/\?/)[1]);
   const searchValue = queryParams.get("search");
 
-  async function getFolders() {
-    const res = await axios.get(`/sample/folder`);
-    setCardData(res.data.folder.links);
-    setFolderResult(res.data.folder.links);
-    setUserStatus(res.data.folder);
+  async function getFolders(id: string | string[]) {
+    console.log(id);
+    const res = await axios.get(`/folders/${id}`);
+    console.log(res);
+    setFolderResult(res.data.data[0] || []);
+  }
+  async function getUser(id: string | string[]) {
+    const res = await axios.get(`/users/${id}/links`);
+    const ress = await axios.get(`/users/${id}`);
+    console.log(ress);
+    setCardData(res.data.data);
+    setUserStatus(ress.data.data[0]);
   }
 
   useEffect(() => {
-    getFolders();
-  }, []);
+    if (id) {
+      getFolders(id);
+      getUser(id);
+    }
+  }, [id]);
 
   useEffect(() => {
     if (!searchValue) {
-      setCardData([...folderResult]);
+      setCardData([...cardData]);
       return;
     }
-    const filteredLinks = folderResult.filter(
+    const filteredLinks = cardData.filter(
       (item: any) =>
         (item.description && item.description.indexOf(searchValue) !== -1) ||
         (item.title && item.title.indexOf(searchValue) !== -1) ||
@@ -64,7 +76,7 @@ function App() {
 
   return (
     <>
-      {userStatus ? <Favor user={userStatus} /> : <S.shared>로그인을 해주세요</S.shared>}
+      {userStatus ? <Favor user={userStatus} folder={folderResult} /> : <S.shared>데이터가 없습니다.</S.shared>}
       <Search id={id} name={"shared"} />
       <S.cardBox>
         {cardData.map((data) => (

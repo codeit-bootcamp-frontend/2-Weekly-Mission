@@ -1,8 +1,11 @@
 import { useState } from "react";
-import * as S from "./styled";
+import Link from "next/link";
+import Image from "next/image";
+
 import { formatDateYMD } from "../../utils/formatDateYMD";
 import { sortAgo } from "../../utils/sortAgo";
-import Link from "next/link";
+
+import * as S from "./styled";
 
 interface CardData {
   created_at?: string;
@@ -17,7 +20,7 @@ interface CardData {
 
 interface CardProps {
   data: CardData;
-  modalOpen: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  modalOpen: any;
 }
 
 function Card({ data, modalOpen }: CardProps) {
@@ -49,28 +52,34 @@ function Card({ data, modalOpen }: CardProps) {
         <S.cardImgWrap>
           {!image ? (
             <>
-              <S.img src="/img/nullimg.png" alt={`${title}`} />
-              <S.nullImg src="/img/logo.png" alt="logo" />
+              <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                <S.img src="/img/nullimg.png" alt={`${title}`} fill />
+              </div>
+              <div style={{ width: "130px", height: "20px", position: "absolute" }}>
+                <S.nullImg src="/img/logo.png" alt="logo" fill />
+              </div>
             </>
           ) : (
-            <S.img src={`${image}`} alt={`${title}`} />
+            <div style={{ width: "100%", height: "100%", position: "relative" }}>
+              <S.img src={`${image}`} alt={`${title}`} fill />
+            </div>
           )}
         </S.cardImgWrap>
-        <S.star src="/img/star.png" />
+        <div style={{ width: "34px", height: "34px", position: "absolute", top: "15px", right: "15px" }}>
+          <S.star src="/img/star.png" fill alt="star" />
+        </div>
         <S.cardText>
           <S.kebabAgo>
             <S.ago>{`${ago}`}</S.ago>
             <S.kebab onClick={handleKebabClick}>
-              <img src="/img/kebab.png" alt="kebab" />
+              <div style={{ width: "21px", height: "17px", position: "relative" }}>
+                <Image src="/img/kebab.png" alt="kebab" fill />
+              </div>
             </S.kebab>
             {kebabOpen ? (
               <S.kebabSelect>
-                <S.kebabSelectList onClick={modalOpen} data-title="링크 삭제" data-stat={url}>
-                  삭제하기
-                </S.kebabSelectList>
-                <S.kebabSelectList onClick={modalOpen} data-title="폴더에 추가" data-stat="링크 주소">
-                  폴더에 추가
-                </S.kebabSelectList>
+                <S.kebabSelectList onClick={modalOpen("링크 삭제", url)}>삭제하기</S.kebabSelectList>
+                <S.kebabSelectList onClick={modalOpen("폴더에 추가", "링크 주소")}>폴더에 추가</S.kebabSelectList>
               </S.kebabSelect>
             ) : null}
           </S.kebabAgo>

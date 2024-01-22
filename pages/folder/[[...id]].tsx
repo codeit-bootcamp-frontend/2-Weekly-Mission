@@ -1,26 +1,21 @@
-import * as F from "./styled";
+import { useContext, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
-import Search from "../../components/Search";
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import axios from "@/lib/axios";
+
+import Search from "../../components/Search";
 import Choice from "../../components/Choice";
 import Card from "../../components/Card";
-import Modal from "../../components/modal";
+import Modal from "../../components/Modal";
+
 import { useTargetRef, useFootRef } from "../../hooks/useTargetRef";
-// import { useFootRef } from "../../hooks/useFootRef";
-
 import { useGetFolderLink } from "../../hooks/useFolder";
-import { useRouter } from "next/router";
 
-// interface CardData {
-//   createdAt: string;
-//   description: string;
-//   id: number;
-//   imageSource: string;
-//   title: string;
-//   url: string;
-// }
+import * as F from "./styled";
+import AddLink from "@/components/AddLink";
 
+import { Cont } from "@/pages/_app";
 function Folder() {
   const [foldData, setFoldeData] = useState<any[]>([]);
   const [selectList, setSelectList] = useState<number>(0);
@@ -31,41 +26,79 @@ function Folder() {
   const [modalValue, setModalValue] = useState<string>("");
   const [modalSub, setModalSub] = useState<string>("");
   const [scrollAddUrl, setScrollAddUrl] = useState<boolean>(true);
-  // const [cardData, setCardData] = useState<CardData[]>([]);
 
   const targetRef = useRef<HTMLDivElement>(null);
   const footTargetRef = useRef<HTMLDivElement>(null);
   useTargetRef({ targetRef, setScrollAddUrl });
   useFootRef({ footTargetRef, setScrollAddUrl });
 
+  const userIdd = useContext(Cont);
+
   const router = useRouter();
   const { id } = router.query;
+  useEffect(() => {
+    if (router.isReady) {
+      const queryId = router.query.id;
+      if (queryId) {
+        const numericId = Number(queryId);
+        if (!isNaN(numericId)) {
+          setSelectList(numericId);
+          // 필요한 데이터 로딩 함수 호출
+          // 예: getFolders(userIdd); 또는 folderData(userIdd); 등
+        }
+      }
+    }
+  }, [router.isReady, router.query.id]);
+
+  useEffect(() => {
+    const LS = localStorage.getItem("login");
+    if (LS === null) {
+      router.push(`/signin`);
+    }
+  }, []);
+  useEffect(() => {
+    if (id) {
+      setSelectList(Number(id));
+    }
+  }, [id]);
 
   //api 부분
   //카드 데이터
   async function getFolders(userId: string | string[]) {
     const res = await axios.get(`/users/${userId}/links`);
+    console.log(res);
     setFoldLinkMock(res.data.data);
   }
   // 태그 이름 가져오는거
   async function folderData(userId: string | string[]) {
     const res = await axios.get(`/users/${userId}/folders`);
+    console.log(res);
     setFoldeData(res.data.data);
+  }
+  async function folderTest(userId: string | string[]) {
+    const res = await axios.get(`/folders/${userId}`);
+    console.log(res);
   }
 
   useEffect(() => {
-    if (id) {
-      getFolders(id);
-      folderData(id);
+    if (userIdd) {
+      getFolders(userIdd);
+      folderData(userIdd);
+      folderTest(userIdd);
     }
-  }, [id]);
+  }, [userIdd]);
 
   // api 끝
 
   const clickList = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLButtonElement;
-    setSelectList(Number(target.value));
+    const newId = Number(target.value);
+    setSelectList(newId);
     setFoldLinkTitle(target.title);
+
+    // URL 쿼리 파라미터 업데이트 (브라우저 히스토리를 직접 조작)
+    const newUrl = newId === 0 ? `/folder` : `/folder/${newId}`;
+    window.history.pushState({}, "", newUrl);
   };
 
   const FolderHeaderStyle = createGlobalStyle`
@@ -74,16 +107,22 @@ function Folder() {
   }
 `;
 
-  const ClickModalOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const ClickModalOpen = (modalValue: string, modalSub: string) => (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const modalValue = e.currentTarget.getAttribute("data-title");
-    const modalSub = e.currentTarget.getAttribute("data-stat");
     setModalOpen(true);
-    setModalValue(modalValue || "");
-    setModalSub(modalSub || "");
+    setModalValue(modalValue);
+    setModalSub(modalSub);
   };
 
   useGetFolderLink({ selectList, folderLinkMock, setFoldLink });
+
+  // useEffect(() => {
+  //   if (id) {
+  //     console.log(id);
+  //     setSelectList(id);
+  //     router.push(`/folder/${selectList}`);
+  //   }
+  // }, []);
 
   return (
     <div>
@@ -98,44 +137,38 @@ function Folder() {
         />
       ) : null}
 
-      <F.Main ref={targetRef}>
-        {scrollAddUrl ? (
-          <F.addLink>
-            <img src="/img/link.png" alt="linkimg" />
-            <F.addInput placeholder="링크를 추가해 보세요" />
-            <F.addButton>추가하기</F.addButton>
-          </F.addLink>
-        ) : null}
-      </F.Main>
+      <F.Main ref={targetRef}>{scrollAddUrl && <AddLink />}</F.Main>
       {!scrollAddUrl ? (
         <F.BotMain>
-          <F.addLink>
-            <img src="/img/link.png" alt="linkimg" />
-            <F.addInput placeholder="링크를 추가해 보세요" />
-            <F.addButton>추가하기</F.addButton>
-          </F.addLink>
+          <AddLink />
         </F.BotMain>
       ) : null}
       <Search id={id} name={"folder"} />
-      <Choice data={foldData} selectList={selectList} clickList={clickList} />
+      <Choice data={foldData} selectList={selectList} clickList={clickList} setSelectList={setSelectList} />
       <F.cardTitle>
         <F.cardTitleH2>{foldLinkTitle}</F.cardTitleH2>
-        {foldLinkTitle !== "전체" ? (
+        {foldLinkTitle !== "전체" && (
           <F.cardTitleBtnBox>
-            <F.cardTitleBtn onClick={ClickModalOpen} data-title="폴더 공유" data-stat={foldLinkTitle}>
-              <img src="/img/share.png" alt="shareImg" />
+            <F.cardTitleBtn onClick={ClickModalOpen("폴더 공유", foldLinkTitle)}>
+              <div style={{ width: "20px", height: "20px", position: "relative" }}>
+                <Image src="/img/share.png" alt="shareImg" fill />
+              </div>
               <p>공유</p>
             </F.cardTitleBtn>
-            <F.cardTitleBtn onClick={ClickModalOpen} data-title="폴더 이름 변경">
-              <img src="/img/pen.png" alt="renameImg" />
+            <F.cardTitleBtn onClick={ClickModalOpen("폴더 이름 변경", foldLinkTitle)}>
+              <div style={{ width: "20px", height: "20px", position: "relative" }}>
+                <Image src="/img/pen.png" alt="renameImg" fill />
+              </div>
               <p>이름 변경</p>
             </F.cardTitleBtn>
-            <F.cardTitleBtn onClick={ClickModalOpen} data-title="폴더 삭제" data-stat={foldLinkTitle}>
-              <img src="/img/delete.png" alt="deleteImg" />
+            <F.cardTitleBtn onClick={ClickModalOpen("폴더 삭제", foldLinkTitle)}>
+              <div style={{ width: "20px", height: "20px", position: "relative" }}>
+                <Image src="/img/delete.png" alt="deleteImg" fill />
+              </div>
               <p>삭제</p>
             </F.cardTitleBtn>
           </F.cardTitleBtnBox>
-        ) : null}
+        )}
       </F.cardTitle>
       {foldLink.length > 0 ? (
         <F.cardBox>
