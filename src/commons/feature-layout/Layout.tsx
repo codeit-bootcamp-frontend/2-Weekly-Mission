@@ -1,9 +1,9 @@
 import { ReactNode, RefObject } from 'react';
 import styles from './Layout.module.scss';
 import classNames from 'classnames/bind';
-import { useGetUser } from '@/src/user/useGetUser';
 import { Footer } from '../ui-footer/Footer';
 import { NavigationBar } from '../ui-navigation-bar/NavigationBar';
+import { useGetCurrentUser } from '@/src/user/useGetCurrentUser';
 
 // 클래스명
 const cx = classNames.bind(styles);
@@ -21,9 +21,10 @@ export const Layout = ({
   isSticky = true,
   footerRef,
 }: LayoutProps) => {
-  const { data } = useGetUser();
+  const { data } = useGetCurrentUser();
+
   const profile = data
-    ? { email: data.email, imageSource: data.profileImageSource }
+    ? { email: data.email, imageSource: data.profileImage }
     : null;
   return (
     <div>

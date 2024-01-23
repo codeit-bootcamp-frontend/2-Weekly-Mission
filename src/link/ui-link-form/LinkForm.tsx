@@ -29,7 +29,11 @@ export const LinkForm = forwardRef<HTMLFormElement, LinkFormProps>(
     return (
       <form ref={ref} className={cx('form')} onSubmit={handleSubmit}>
         <div className={cx('input-box')}>
-          <img className={cx('icon')} src="images/link.svg" alt="링크 아이콘" />
+          <img
+            className={cx('icon')}
+            src="../images/link.svg"
+            alt="링크 아이콘"
+          />
           <input
             className={cx('input')}
             type="text"

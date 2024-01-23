@@ -1,17 +1,30 @@
-import { SampleFolderRawData } from '../type';
+import { FolderRawData } from '../type';
 import { useAsync } from '@/src/commons/util/useAsync';
 import { axiosInstance } from '@/src/commons/util/axiosInstance';
-import { mapFolderData } from './map/mapFolderData';
 
 // 샘플 폴더 데이터를 가져오는 커스텀 훅
-export const useGetFolder = () => {
+export const useGetFolder = (folderId: string) => {
   // 샘플 폴더 데이터 불러오는 함수
   const getFolder = () =>
-    axiosInstance.get<{ folder: SampleFolderRawData }>('sample/folder');
-  const { loading, error, data } = useAsync(getFolder); // useAsync 훅을 이용해 getFolder 함수 실행
+    axiosInstance.get<{ data: FolderRawData[] }>(`folders/${folderId}`);
+  const { loading, error, data } = useAsync({
+    asyncFunction: getFolder,
+    reload: !!folderId,
+  }); // 처음에 useRouter에서 params를 못가져와서 새로고침용 reload
 
-  //   폴더 데이터 매칭시킴
-  const folderData = mapFolderData(data?.folder);
+  const folderResponse = data?.data?.[0];
+
+  const folderData = folderResponse
+    ? {
+        folderId: folderResponse.id,
+        userId: folderResponse.user_id,
+        name: folderResponse.name,
+      }
+    : {
+        folderId: 0,
+        userId: 0,
+        name: '',
+      };
 
   return { loading, error, data: folderData };
 };

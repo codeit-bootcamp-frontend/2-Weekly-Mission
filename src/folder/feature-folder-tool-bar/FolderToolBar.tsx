@@ -17,24 +17,25 @@ import { InputModal } from '@/src/commons/ui-input-modal/InputModal';
 import { AlertModal } from '@/src/commons/ui-alert-modal/AlertModal';
 import { IconAndTextButton } from '@/src/commons/ui-icon-and-text-button/IconAndTextButton';
 import { ShareModal } from '../ui-share-modal/ShareModal';
+import { useRouter } from 'next/router';
 const cx = classNames.bind(styles);
 
 // 폴더 툴바 프롭 타입 선언
 type FolderToolBarProps = {
   folders: Folder[];
   selectedFolderId: SelectedFolderId;
-  onFolderClick: (folderId: SelectedFolderId) => void;
 };
 
 // 폴더 툴바 컴포넌트(기능 동작)
 export const FolderToolBar = ({
   folders,
   selectedFolderId,
-  onFolderClick,
 }: FolderToolBarProps) => {
   const { shareKakao } = useKakaoSdk(); // kakao 커스텀 훅
   const [currentModal, setCurrentModal] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState<string>('');
+
+  const router = useRouter();
 
   //   툴바에 표시될 폴더 명
   const folderName =
@@ -80,14 +81,16 @@ export const FolderToolBar = ({
         <FolderButton
           key={ALL_LINKS_ID}
           text={ALL_LINKS_TEXT}
-          onClick={() => onFolderClick(ALL_LINKS_ID)}
+          onClick={() => {
+            router.push('/folder');
+          }}
           isSelected={ALL_LINKS_ID === selectedFolderId}
         />
         {folders?.map(({ id, name }) => (
           <FolderButton
             key={id}
             text={name}
-            onClick={() => onFolderClick(id)}
+            onClick={() => router.push(`/folder/${id}`)}
             isSelected={id === selectedFolderId}
           />
         ))}

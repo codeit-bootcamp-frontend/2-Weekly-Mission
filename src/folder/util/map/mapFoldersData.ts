@@ -12,7 +12,7 @@ export const mapFoldersData = (folders?: FolderRawData[]): Folder[] => {
       createdAt: created_at,
       name,
       userId: user_id,
-      linkCount: link.count,
+      linkCount: link?.count || 0,
     };
   });
 };

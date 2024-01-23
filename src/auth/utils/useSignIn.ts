@@ -5,11 +5,14 @@ import { Token } from '../type';
 export const useSignIn = (email: string, password: string) => {
   const signIn = () =>
     axiosInstance.post<{ data: Token }>('sign-in', {
-      email: email,
-      password: password,
+      email,
+      password,
     });
 
-  const { execute, loading, error, data } = useAsync(signIn, true);
+  const { execute, loading, error, data } = useAsync({
+    asyncFunction: signIn,
+    initLater: true,
+  });
 
   return {
     execute,

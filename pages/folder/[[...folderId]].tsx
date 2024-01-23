@@ -10,18 +10,37 @@ import { CardList } from '@/src/link/feature-card-list/CardList';
 import { LinkForm } from '@/src/link/feature-link-form/LinkForm';
 import { SearchBar } from '@/src/link/ui-search-bar/SearchBar';
 import { ALL_LINKS_ID } from '@/src/link/util/constant';
-import { useGetLinks } from '@/src/link/util/useGetLinks';
+import { useGetLink } from '@/src/link/util/useGetLink';
 import { useSearchLink } from '@/src/link/util/useSearchLink';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 export default function Folder() {
+  const router = useRouter();
   const { data: folders } = useGetFolders();
   const [selectedFolderId, setSelectedFolderId] =
     useState<SelectedFolderId>(ALL_LINKS_ID);
-  const { data: links, loading } = useGetLinks(selectedFolderId);
+  const { data: links, loading } = useGetLink(selectedFolderId);
   const { searchValue, handleChange, handleCloseClick, result } =
     useSearchLink(links);
   const { ref, isIntersecting } = useIntersectionObserver<HTMLDivElement>();
+
+  useEffect(() => {
+    if (router.isReady) {
+      const currentFolder = router.query['folderId']
+        ? Number(router.query['folderId'][0])
+        : ALL_LINKS_ID;
+
+      setSelectedFolderId(currentFolder);
+    }
+  }, [router.isReady, router.query]);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+      router.replace('/signin');
+    }
+  }, []);
 
   return (
     <Layout isSticky={false} footerRef={ref}>
@@ -38,7 +57,6 @@ export default function Folder() {
           <FolderToolBar
             folders={folders}
             selectedFolderId={selectedFolderId}
-            onFolderClick={setSelectedFolderId}
           />
         }
         cardList={loading ? null : <CardList links={result} />}

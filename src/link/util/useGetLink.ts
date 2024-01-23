@@ -7,27 +7,24 @@ import { LinkRawData } from '../type';
 import { useCallback, useEffect } from 'react';
 
 // 링크 데이터 가져오는 커스텀 훅
-export const useGetLinks = (
-  folderId: SelectedFolderId = ALL_LINKS_ID,
-  userId: number
-) => {
+export const useGetLink = (folderId: SelectedFolderId = ALL_LINKS_ID) => {
   const queryString = folderId === ALL_LINKS_ID ? '' : `?folderId=${folderId}`;
   const getLinks = useCallback(
     () =>
-      axiosInstance.get<{ data: LinkRawData[] }>(
-        `users/${userId}/links${queryString}`
+      axiosInstance.get<{ data: { folder: LinkRawData[] } }>(
+        `links${queryString}`
       ),
-    [userId, queryString]
+    [queryString]
   );
   const { execute, loading, error, data } = useAsync({
     asyncFunction: getLinks,
-    reload: !!userId && !!folderId,
+    reload: !!folderId,
   });
 
   useEffect(() => {
     execute();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId, folderId]);
+  }, [folderId]);
 
   const mapDataFormat = ({
     id,
@@ -47,7 +44,8 @@ export const useGetLinks = (
     description,
   });
 
-  const linksData = data?.data?.map(mapDataFormat).map(mapLinksData) ?? [];
+  const linksData =
+    data?.data.folder?.map(mapDataFormat).map(mapLinksData) ?? [];
 
   return { execute, loading, error, data: linksData };
 };
