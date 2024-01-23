@@ -3,66 +3,43 @@ import Banner from "../../../components/domains/shared/Banner";
 import CardList from "../../../components/commons/CardList";
 import SearchInput from "../../../components/commons/SearchInput";
 import styles from "../../../styles/sharedPage.module.css";
-import { getFolderData, getOwnerData, getLinkData } from "../../api/SharedApi";
+import { getLinkData } from "../../api/PageApi";
 import { Link } from "../../../types/common";
-import { SharedDataContext } from "../../../contexts/LocaleContext";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
+import { useContext } from "react";
+import { DataContext } from "../../../contexts/LocaleContext";
+
 function SharedPage() {
   const router = useRouter();
   const { folderId }: ParsedUrlQuery = router.query;
+  const [linkInfo, setLinkInfo] = useState<Link[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-  const [sharedData, setSharedData] = useState<{
-    folder?: any;
-    user?: any;
-    links?: Link[];
-  }>({
-    folder: {},
-    user: {},
-    links: []
-  });
+  const { userInfo } = useContext(DataContext);
 
-  const sharedPageData = async () => {
-    try {
-      if (folderId) {
-        // Fetch folder data
-        const { data: folder } = await getFolderData(folderId as string);
-        const ownerResponse = await getOwnerData(folder[0].user_id as string);
-        const linkResponse = await getLinkData(
-          ownerResponse.data[0].id,
-          folder[0].user_id
-        );
-        setSharedData({
-          folder: folder[0],
-          user: ownerResponse.data[0],
-          links: linkResponse.data
-        });
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+  const handleLinksInfoLoad = async (userId: number, folderId: string) => {
+    const { data } = await getLinkData(userId, folderId);
+    console.log(data);
+    setLinkInfo(data);
   };
 
   const searchLink = async (keyword: string) => {
-    const filteredLinks = sharedData.links?.filter(
+    const filteredLinks = linkInfo?.filter(
       (link: Link) =>
         link.url?.includes(keyword) ||
         link.title?.includes(keyword) ||
         link.description?.includes(keyword)
     );
 
-    setSharedData({
-      ...sharedData,
-      links: filteredLinks
-    });
+    setLinkInfo(filteredLinks);
   };
 
   useEffect(() => {
-    sharedPageData();
+    handleLinksInfoLoad(userInfo.id, folderId);
   }, [folderId]);
 
   return (
-    <SharedDataContext.Provider value={sharedData}>
+    <>
       <Banner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
@@ -71,10 +48,10 @@ function SharedPage() {
             setSearchKeyword={setSearchKeyword}
             onSearch={searchLink}
           />
-          <CardList links={sharedData.links} />
+          <CardList links={linkInfo} />
         </div>
       </section>
-    </SharedDataContext.Provider>
+    </>
   );
 }
 
