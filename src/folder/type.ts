@@ -23,10 +23,9 @@ export type FolderRawData = {
 
 export type Folder = {
   id: number;
-  createdAt: string;
+  created_at: string;
   name: string;
-  userId: number;
-  linkCount: number;
+  user_id: number;
 };
 
 export type SelectedFolderId = number | "all";
