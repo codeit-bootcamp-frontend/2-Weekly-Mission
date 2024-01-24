@@ -7,7 +7,7 @@ export interface Link {
   created_at: string;
 }
 
-export interface PageUserInfo {
+export interface UserInfo {
   id: number;
   created_at: string;
   name: string;
@@ -16,7 +16,7 @@ export interface PageUserInfo {
   auth_id: string;
 }
 
-export interface PageFolderInfo {
+export interface FolderInfo {
   id: number;
   created_at: string;
   name: string;

@@ -3,7 +3,6 @@ import Banner from "../../../components/domains/shared/Banner";
 import CardList from "../../../components/commons/CardList";
 import SearchInput from "../../../components/commons/SearchInput";
 import styles from "../../../styles/sharedPage.module.css";
-import { getLinkData } from "../../api/PageApi";
 import { Link } from "../../../types/common";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
@@ -13,30 +12,21 @@ import { DataContext } from "../../../contexts/LocaleContext";
 function SharedPage() {
   const router = useRouter();
   const { folderId }: ParsedUrlQuery = router.query;
-  const [linkInfo, setLinkInfo] = useState<Link[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-  const { userInfo } = useContext(DataContext);
-
-  const handleLinksInfoLoad = async (userId: number, folderId: string) => {
-    const { data } = await getLinkData(userId, folderId);
-    console.log(data);
-    setLinkInfo(data);
-  };
+  const { sharedLinkInfo, setSharedLinkInfo } = useContext(DataContext);
 
   const searchLink = async (keyword: string) => {
-    const filteredLinks = linkInfo?.filter(
+    const filteredLinks = sharedLinkInfo?.filter(
       (link: Link) =>
         link.url?.includes(keyword) ||
         link.title?.includes(keyword) ||
         link.description?.includes(keyword)
     );
 
-    setLinkInfo(filteredLinks);
+    setSharedLinkInfo(filteredLinks);
   };
 
-  useEffect(() => {
-    handleLinksInfoLoad(userInfo.id, folderId);
-  }, [folderId]);
+  useEffect(() => {}, [folderId]);
 
   return (
     <>
@@ -48,7 +38,7 @@ function SharedPage() {
             setSearchKeyword={setSearchKeyword}
             onSearch={searchLink}
           />
-          <CardList links={linkInfo} />
+          <CardList links={sharedLinkInfo} />
         </div>
       </section>
     </>

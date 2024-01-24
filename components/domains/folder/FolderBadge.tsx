@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import React from "react";
 
-import { FolderPageData } from "../../../types/common";
+import { FolderInfo } from "../../../types/common";
 import { useRouter } from "next/router";
 
-function FolderBadge({ folder }: { folder: FolderPageData }) {
+function FolderBadge({ folder }: { folder: FolderInfo }) {
   const router = useRouter();
 
   return (

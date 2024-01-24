@@ -1,19 +1,19 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
 import FolderBadge from "./FolderBadge";
-import { FolderPageData, ModalControl } from "../../../types/common";
+import { FolderInfo, ModalControl } from "../../../types/common";
 import { ModalContext } from "../../../contexts/LocaleContext";
-import { FolderDataContext } from "../../../contexts/LocaleContext";
+import { DataContext } from "../../../contexts/LocaleContext";
 
 function FolderBadgeList() {
-  const folderList = useContext<FolderPageData[]>(FolderDataContext);
+  const { folderListInfo } = useContext(DataContext);
   const { openModal } = useContext<ModalControl>(ModalContext);
 
   return (
     <div>
       <FolderBadgeListBox>
         <FolderBadges>
-          {folderList?.map((folder) => (
+          {folderListInfo?.map((folder: FolderInfo) => (
             <FolderBadge folder={folder} key={folder.id} />
           ))}
         </FolderBadges>

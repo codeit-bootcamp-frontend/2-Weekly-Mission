@@ -1,8 +1,8 @@
 import { createContext } from "react";
-import { ModalControl, PageFolderInfo } from "../types/common";
+import { ModalControl, FolderInfo, UserInfo } from "../types/common";
 
 export const FolderDataContext = createContext();
-export const DataContext = createContext<PageFolderInfo>();
+export const DataContext = createContext<FolderInfo | UserInfo>();
 export const FolderSelectDataContext = createContext();
 export const ModalContext = createContext<ModalControl>({
   openModal: () => {},

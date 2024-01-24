@@ -7,15 +7,19 @@ import GlobalStyle from "../styles/GlobalStyles";
 import useModal from "../hook/useModal";
 import { modals } from "../components/commons/modals/modalList";
 import { NextRouter, useRouter } from "next/router";
-import { getFolderData, getOwnerData } from "./api/PageApi";
-import { PageUserInfo, PageFolderInfo } from "../types/common";
+import { getFolderData, getOwnerData, getLinkData } from "./api/SharedApi";
+import { UserInfo, FolderInfo, Link } from "../types/common";
 import { DataContext } from "../contexts/LocaleContext";
 import { ParsedUrlQuery } from "querystring";
+import { getAllLinkData, getAllFolderData } from "./api/FolderApi";
 
 export default function App({ Component, pageProps }: AppProps) {
   const { modal, openModal, closeModal } = useModal();
-  const [folderInfo, setFolderInfo] = useState<PageFolderInfo[]>([]);
-  const [userInfo, setUserInfo] = useState<PageUserInfo[]>([]);
+  const [folderInfo, setFolderInfo] = useState<FolderInfo[]>([]);
+  const [userInfo, setUserInfo] = useState<UserInfo[]>([]);
+  const [sharedLinkInfo, setSharedLinkInfo] = useState<Link[]>([]);
+  const [folderAllLinkInfo, setFolderAllLinkInfo] = useState<Link[]>([]);
+  const [folderListInfo, setFolderListInfo] = useState<Link[]>([]);
 
   const router: NextRouter = useRouter();
   const pathname = router.pathname;
@@ -34,9 +38,35 @@ export default function App({ Component, pageProps }: AppProps) {
   const handleUserInfoLoad = async (userId: number) => {
     const { data } = await getOwnerData(userId);
     setUserInfo(data[0]);
+    handleSharedLinksInfoLoad(data[0].id, folderId as string);
+  };
+
+  const handleSharedLinksInfoLoad = async (
+    userId: number,
+    folderId: string
+  ) => {
+    const { data } = await getLinkData(userId, folderId);
+    setSharedLinkInfo(data);
+  };
+
+  const handleFolderListLoad = async () => {
+    const allLinksFolder = {
+      id: 0,
+      name: "전체",
+      user_id: 1
+    };
+    const { data: folder } = await getAllFolderData();
+    setFolderListInfo([allLinksFolder, ...folder.folder]);
+  };
+
+  const handleAllLinkLoad = async () => {
+    const { data: folder } = await getAllLinkData();
+    setFolderAllLinkInfo(folder.folder);
   };
 
   useEffect(() => {
+    handleFolderListLoad();
+    handleAllLinkLoad();
     if (folderId) {
       handleFolderInfoLoad();
     }
@@ -45,7 +75,16 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyle />
-      <DataContext.Provider value={{ folderInfo, userInfo }}>
+      <DataContext.Provider
+        value={{
+          folderInfo,
+          userInfo,
+          sharedLinkInfo,
+          setSharedLinkInfo,
+          folderAllLinkInfo,
+          folderListInfo
+        }}
+      >
         <ModalContext.Provider value={{ openModal, closeModal }}>
           {modal.isOpen && Modal ? <Modal onConfirm={closeModal} /> : null}
           {pathname !== "/signin" && pathname !== "/signup" ? <Header /> : null}

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Card from "./Card";
 import { Link } from "../../types/common";
 
-function CardList({ links }: { links: any }) {
+function CardList({ links }: { links: Link[] }) {
   return (
     <CardWrapper>
       {links?.map((link) => <Card key={link.id} link={link} />)}

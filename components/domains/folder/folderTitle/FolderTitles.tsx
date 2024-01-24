@@ -1,14 +1,18 @@
 import { useContext } from "react";
 import CategoryList from "./CategoryList";
-import { FolderPageData } from "../../../../types/common";
-import { FolderDataContext } from "../../../../contexts/LocaleContext";
+import { DataContext } from "../../../../contexts/LocaleContext";
 import { useRouter } from "next/router";
-function FoldersTitles({ searchKeyword }: { searchKeyword: string }) {
-  const folderList = useContext<FolderPageData[]>(FolderDataContext);
-  const router = useRouter();
-  const { folderId } = router.query;
+import { FolderInfo } from "../../../../types/common";
+import { ParsedUrlQuery } from "querystring";
 
-  const folder = folderList.find((folder) => folder.id === +folderId);
+function FoldersTitles({ searchKeyword }: { searchKeyword: string }) {
+  const { folderListInfo } = useContext(DataContext);
+  const router = useRouter();
+  const { folderId }: ParsedUrlQuery = router.query;
+
+  const folder = folderListInfo.find(
+    (folder: FolderInfo) => String(folder.id) === folderId
+  );
 
   return (
     <CategoryList

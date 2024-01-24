@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { DataContext } from "../../contexts/LocaleContext";
 import { useContext } from "react";
+
 function Header() {
   const { userInfo } = useContext(DataContext);
 
@@ -34,6 +35,7 @@ function Header() {
     </HeaderLayout>
   );
 }
+import { UserInfo } from "../../types/common";
 
 const HeaderLayout = styled.header`
   background-color: var(--gray-bg-color);
