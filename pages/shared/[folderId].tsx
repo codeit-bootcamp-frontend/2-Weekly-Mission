@@ -56,9 +56,6 @@ interface Props {
 }
 
 const SharedPage = ({ folder, owner, links }: Props) => {
-  console.log("folder", folder);
-  console.log("owner", owner);
-
   const { name: folderName } = folder;
   const { name: ownerName, image_source: profileImage } = owner;
   const { searchValue, handleChange, handleCloseClick, result } = useSearchLink(

@@ -26,6 +26,16 @@ export type Folder = {
   created_at: string;
   name: string;
   user_id: number;
+  favorite: boolean;
+};
+
+export type FolderShown = {
+  id: number;
+  createdAt: string;
+  name: string;
+  userId: number;
+  favorite: boolean;
+  linkCount?: number;
 };
 
 export type SelectedFolderId = number | "all";
