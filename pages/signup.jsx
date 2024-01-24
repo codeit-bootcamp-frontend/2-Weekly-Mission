@@ -4,7 +4,7 @@ import { errorMessages, emailRegex, passwordRegex } from "../utils/regexp";
 import { signUp, checkEmail } from "../lib/loginApi";
 import Image from "next/image";
 import styles from "../styles/Sign.module.css";
-import LogoTitle from "../components/signPage/LogoTitle";
+import LogoTitle from "../components/elements/LogoTitle";
 import SubmitButton from "../components/elements/SubmitButton";
 import SnsLogin from "../components/elements/snsLogin";
 
@@ -21,18 +21,6 @@ function Signup() {
     await checkEmail(watch("email"), setError);
   };
 
-  const onValid = (data) => {
-    if (data.password !== data.passwordValid) {
-      setError(
-        "passwordValid",
-        { message: errorMessages.passwordNotCorrect },
-        { shouldFocus: true }
-      );
-    } else {
-      onSubmit();
-    }
-  };
-
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prevState) => !prevState);
   };
@@ -42,7 +30,7 @@ function Signup() {
 
   return (
     <>
-      <form className={styles.Container} onSubmit={handleSubmit(onValid)}>
+      <form className={styles.Container} onSubmit={handleSubmit(onSubmit)}>
         <LogoTitle />
 
         <div className={styles.GapWrapper}>
@@ -62,7 +50,11 @@ function Signup() {
             })}
             placeholder="이메일을 입력해 주세요."
           />
-          <span className={styles.ErrorMessage}>{errors?.email?.message}</span>
+          {!!errors.email && (
+            <span className={styles.ErrorMessage}>
+              {errors?.email?.message}
+            </span>
+          )}
         </div>
 
         <div className={styles.GapWrapper}>
@@ -124,6 +116,11 @@ function Signup() {
                   value: passwordRegex,
                   message: errorMessages.passwordValid,
                 },
+                validate: (value, { password }) => {
+                  if (value !== password) {
+                    return errorMessages.passwordNotCorrect;
+                  }
+                },
               })}
               type={isPasswordValidVisible ? "text" : "password"}
               placeholder="비밀번호를 입력해 주세요."
@@ -154,7 +151,7 @@ function Signup() {
         </div>
 
         <div className={styles.subBtn}>
-          <SubmitButton text={"로그인"} />
+          <SubmitButton text={"회원가입"} />
         </div>
         <SnsLogin />
       </form>

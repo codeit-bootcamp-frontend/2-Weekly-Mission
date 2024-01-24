@@ -4,7 +4,7 @@ import { errorMessages, emailRegex, passwordRegex } from "../utils/regexp";
 import { signIn } from "../lib/loginApi";
 import Image from "next/image";
 import styles from "../styles/Sign.module.css";
-import LogoTitle from "../components/signPage/LogoTitle";
+import LogoTitle from "../components/elements/LogoTitle";
 import SubmitButton from "../components/elements/SubmitButton";
 import SnsLogin from "../components/elements/snsLogin";
 
@@ -44,7 +44,11 @@ function Signin() {
             })}
             placeholder="이메일을 입력해 주세요."
           />
-          <span className={styles.ErrorMessage}>{errors?.email?.message}</span>
+          {!!errors.email && (
+            <span className={styles.ErrorMessage}>
+              {errors?.email?.message}
+            </span>
+          )}
         </div>
         <div className={styles.GapWrapper}>
           <label htmlFor="password" className={styles.Label}>
@@ -85,9 +89,11 @@ function Signin() {
               </div>
             </div>
           </div>
-          <span className={styles.ErrorMessage}>
-            {errors?.password?.message}
-          </span>
+          {!!errors.password && (
+            <span className={styles.ErrorMessage}>
+              {errors?.password?.message}
+            </span>
+          )}
         </div>
         <div className={styles.subBtn}>
           <SubmitButton text={"로그인"} />
