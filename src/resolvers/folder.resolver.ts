@@ -1,11 +1,12 @@
-import { getFolderList } from "@/apis/folder/folder";
-import { FolderVO } from "@/apis/folder/folder.schema";
+import { getFolderList, getMyFolderList } from "@/apis/folder/folder";
 import { getLinkList } from "@/apis/link/link";
-import { LinkVO } from "@/apis/link/link.schema";
 import { getUser } from "@/apis/user/user";
-import { UserVO } from "@/apis/user/user.schema";
-import { Folder, LinkInfo } from "@/types/folder";
-import { User } from "@/types/user";
+import {
+  createFolderListWithFolderListVO,
+  createLinkListWithLinkListVO,
+  createMyFolderListWithMyFolderListVO,
+  createUserWithUserVO,
+} from "@/resolvers/helper";
 
 export const resolvers = {
   resolveFolderPage: async () => {
@@ -24,44 +25,16 @@ export const resolvers = {
 
     return createFolderListWithFolderListVO(folderList);
   },
-  resolveLinkList: async (userId: number, folderId?: number) => {
-    const { data: linkList } = await getLinkList(userId, folderId);
+  resolveLinkList: async (folderId?: number) => {
+    const {
+      data: { folder: linkList },
+    } = await getLinkList(folderId);
 
     return createLinkListWithLinkListVO(linkList);
   },
-};
+  resolveMyFolderList: async () => {
+    const { data: folderList } = await getMyFolderList();
 
-const createUserWithUserVO = (vo: UserVO): User => {
-  return {
-    id: vo.id,
-    name: vo.name,
-    createdAt: vo.created_at,
-    email: vo.email,
-    authId: vo.auth_id,
-    imageSource: vo.image_source,
-  };
-};
-
-const createFolderListWithFolderListVO = (vo: FolderVO[]): Folder[] => {
-  return vo.map((fvo) => ({
-    id: fvo.id,
-    name: fvo.name,
-    createdAt: fvo.created_at,
-    userId: fvo.user_id,
-    favorite: fvo.favorite,
-    link: fvo.link,
-  }));
-};
-
-const createLinkListWithLinkListVO = (vo: LinkVO[]): LinkInfo[] => {
-  return vo.map((lvo) => ({
-    id: lvo.id,
-    title: lvo.title,
-    createdAt: lvo.created_at,
-    updatedAt: lvo.updated_at,
-    url: lvo.url,
-    description: lvo.description,
-    folderId: lvo.folder_id,
-    imageSource: lvo.image_source,
-  }));
+    return createMyFolderListWithMyFolderListVO(folderList.folder);
+  },
 };
