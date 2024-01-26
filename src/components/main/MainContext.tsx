@@ -27,6 +27,7 @@ interface MainContext {
   searchKeyword: string;
   searchResult: Card[];
   cardUrl: string;
+  userId: string;
   handleClickMenu: (folder: Folder) => void;
   handleChangeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -40,6 +41,7 @@ const MainContext = createContext<MainContext>({
   searchKeyword: '',
   searchResult: [],
   cardUrl: '',
+  userId: '',
   handleClickMenu: () => {},
   handleChangeSearch: () => {},
 });

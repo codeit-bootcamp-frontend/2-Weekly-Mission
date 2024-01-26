@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import useAsync from '@/src/hook/useAsync';
 import Image from 'next/image';
+import MainContext from '@/src/components/main/MainContext';
+import { useRouter } from 'next/router';
 
 export default function FolderUser() {
   const [folderUserProfile, setFolderUserProfile] = useState<string | null>(
@@ -9,23 +11,38 @@ export default function FolderUser() {
   );
   const [folderUserName, setFolderUserName] = useState<string>('');
   const [folderName, setFolderName] = useState<string>('');
+  const { userId } = useContext(MainContext);
   const [getFolderSample] = useAsync({
-    baseUrl: '/sample/folder',
-    folderId: '',
-    path: '',
-    userId: '',
+    baseUrl: '/users',
+    folderId: userId,
+  });
+
+  const router = useRouter();
+  const { id } = router.query;
+  const [getFolderId] = useAsync({
+    baseUrl: '/folders/',
+    folderId: id,
   });
 
   const handleLoadFolder = async () => {
-    const { folder } = await getFolderSample();
-    setFolderName(folder?.name);
-    setFolderUserName(folder?.owner?.name);
-    setFolderUserProfile(folder?.owner?.profileImageSource);
+    const { data } = await getFolderSample();
+    setFolderUserName(data[0]?.name);
+    setFolderUserProfile(data[0]?.image_source);
+  };
+
+  const handleLoadFolderId = async () => {
+    const { data } = await getFolderId();
+    setFolderName(data[0]?.name);
   };
 
   useEffect(() => {
     handleLoadFolder();
   }, []);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    handleLoadFolderId();
+  }, [router.isReady]);
 
   return (
     <FolderUserContainer>
@@ -48,6 +65,7 @@ export default function FolderUser() {
 const FolderUserContainer = styled.div`
   padding: 2rem 0 6rem 0;
   text-align: center;
+  margin: 9rem 0 0;
 
   @media screen and (min-width: 375px) and (max-width: 768px) {
     margin: 6.3rem 0 0;

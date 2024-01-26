@@ -2,6 +2,7 @@ import MainContext from '@/src/components/main/MainContext';
 import { useState, useEffect, ReactNode } from 'react';
 import useAsync from '@/src/hook/useAsync';
 import { Folder, Card } from '@/src/components/main/MainContext';
+import { useRouter } from 'next/router';
 
 interface MainProviderProps {
   cardUrl: string;
@@ -16,44 +17,51 @@ export default function MainProvider({ children, cardUrl }: MainProviderProps) {
   const [cardList, setCardList] = useState<Card[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>('');
   const [searchResult, setSearchResult] = useState<Card[]>([]);
+  const [userId, setUserId] = useState<string>('');
+
+  const router = useRouter();
+  const { id } = router.query;
+
   const [getfolderList] = useAsync({
-    baseUrl: '/users',
-    folderId: '/1',
-    path: '/folders',
-    userId: '',
+    baseUrl: '/folders',
+    folderId: '',
   });
   const [getFolderAll] = useAsync({
-    baseUrl: '/users',
-    folderId: '/1',
-    path: '/links',
-    userId: '',
+    baseUrl: '/links',
+    folderId: '',
   });
-  const [getFolderData] = useAsync({
-    baseUrl: '/users',
-    folderId: '/1',
-    path: '/links?folderId=',
-    userId: selectedMenu,
+
+  const [getSelectedFolder] = useAsync({
+    baseUrl: '/links?folderId=',
+    folderId: selectedMenu,
   });
+
+  const [getFolderId] = useAsync({
+    baseUrl: '/links?folderId=',
+    folderId: id,
+  });
+
+  const handleFolderList = async () => {
+    const { data } = await getfolderList();
+    setFolderList(data?.folder);
+    setUserId(data?.folder[0]?.user_id);
+  };
+
+  const handleSelectedFolder = async (selectedMenu: string) => {
+    if (selectedMenu !== 'all') {
+      const { data } = await getSelectedFolder();
+      setCardList(data?.folder);
+    } else {
+      const { data } = await getFolderAll();
+      setCardList(data?.folder);
+    }
+  };
 
   const handleClickMenu = (folder: Folder) => {
     setSelectedMenu(folder?.id);
     setButtonOption(folder?.name !== '전체' && true);
     setTitle(folder?.name !== '전체' ? folder?.name : '');
-  };
-
-  const handleLoadFolderList = async () => {
-    const { data } = await getfolderList();
-    setFolderList(data);
-  };
-
-  const handleLoadFolderData = async (options: string) => {
-    if (options !== 'all') {
-      const { data } = await getFolderData();
-      setCardList(data);
-    } else {
-      const { data } = await getFolderAll();
-      setCardList(data);
-    }
+    router.push(folder?.name !== '전체' ? `/folder/${folder?.id}` : '/folder');
   };
 
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,17 +78,24 @@ export default function MainProvider({ children, cardUrl }: MainProviderProps) {
     if (!e.target.value) setSearchResult(cardList);
   };
 
+  const handleFolderIdData = async () => {
+    const { data } = await getFolderId();
+    if(id) setSearchResult(data?.folder);
+  };
+
   useEffect(() => {
-    handleLoadFolderList();
+    if (!router.isReady) return;
+    handleFolderIdData();
+    setSearchResult(cardList);
+  }, [router.isReady, id, cardList]);
+
+  useEffect(() => {
+    handleFolderList();
   }, []);
 
   useEffect(() => {
-    handleLoadFolderData(selectedMenu);
+    handleSelectedFolder(selectedMenu);
   }, [selectedMenu]);
-
-  useEffect(() => {
-    setSearchResult(cardList);
-  }, [cardList]);
 
   return (
     <>
@@ -94,6 +109,7 @@ export default function MainProvider({ children, cardUrl }: MainProviderProps) {
           folderList,
           searchKeyword,
           cardUrl,
+          userId,
           handleClickMenu,
           handleChangeSearch,
         }}

@@ -29,7 +29,7 @@ function FolderItem({ folderList }: { folderList: Folder[] }) {
   const [selectedFolder, setSelectedFolder] = useState<string>('');
 
   const handleClickFolderList = (folder: Folder) =>
-    setSelectedFolder(folder.name);
+    setSelectedFolder(folder?.name);
 
   const item = folderList.map((folder) => (
     <Item
@@ -56,8 +56,10 @@ export default function Modal() {
 
   let host;
   if (typeof window !== 'undefined') host = window.location.href;
+
   let userId;
   if (folderList.length > 0) userId = folderList[0].user_id;
+  
   const folderId = selectedMenu;
   const currentUrl = `${host}/shared?user=${userId}&folderId=${folderId}`;
 
@@ -99,7 +101,7 @@ export default function Modal() {
 
   return (
     <>
-      <ModalContainer modalOpen={modalOpen}>
+      <ModalContainer $modalOpen={modalOpen}>
         <Title>
           <ModalType />
         </Title>
@@ -164,13 +166,13 @@ export default function Modal() {
           닫기
         </CloseButton>
       </ModalContainer>
-      <Dim modalOpen={modalOpen}></Dim>
+      <Dim $modalOpen={modalOpen}></Dim>
     </>
   );
 }
 
-const ModalContainer = styled.div<{ modalOpen?: boolean }>`
-  display: ${({ modalOpen }) => (modalOpen ? 'block' : 'none')};
+const ModalContainer = styled.div<{ $modalOpen?: boolean }>`
+  display: ${({ $modalOpen }) => ($modalOpen ? 'block' : 'none')};
   position: fixed;
   left: 50%;
   top: 50%;
@@ -239,8 +241,8 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 
-const Dim = styled.div<{ modalOpen?: boolean }>`
-  display: ${({ modalOpen }) => (modalOpen ? 'block' : 'none')};
+const Dim = styled.div<{ $modalOpen?: boolean }>`
+  display: ${({ $modalOpen }) => ($modalOpen ? 'block' : 'none')};
   position: fixed;
   left: 0;
   top: 0;

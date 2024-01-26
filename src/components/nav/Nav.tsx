@@ -1,39 +1,39 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import useAsync from '@/src/hook/useAsync';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import logo from '@/public/image/logo.svg';
+import MainContext from '@/src/components/main/MainContext';
+import { useRouter } from 'next/router';
 
 export default function Nav() {
   const [profileImg, setProfileImg] = useState<string | null>(null);
   const [profileEmail, setProfileEmail] = useState<string>('');
-  const [position, setPosition] = useState<string>('');
-  const { pathname } = useRouter();
-  const [getProfile] = useAsync({
+  const { userId } = useContext(MainContext);
+  const router = useRouter();
+  const path = router.pathname === '/shared' ? true : false;
+
+  const [getProfileFolder] = useAsync({
     baseUrl: '/users',
-    folderId: '/1',
-    path: '',
-    userId: '',
-  });
-  const [getProfileSample] = useAsync({
-    baseUrl: '/sample/user',
     folderId: '',
-    path: '',
-    userId: '',
+  });
+
+  const [getProfileShared] = useAsync({
+    baseUrl: '/users/',
+    folderId: userId,
   });
 
   const handleProfileShared = async () => {
-    const { email, profileImageSource } = await getProfileSample();
-
-    setProfileImg(profileImageSource);
-    setProfileEmail(email);
+    if (userId) {
+      const { data } = await getProfileShared();
+      setProfileImg(data[0]?.image_source);
+      setProfileEmail(data[0]?.email);
+    }
   };
 
   const handleProfileFolder = async () => {
-    const { data } = await getProfile();
-
+    const { data } = await getProfileFolder();
     setProfileImg(data[0]?.image_source);
     setProfileEmail(data[0]?.email);
   };
@@ -41,11 +41,10 @@ export default function Nav() {
   useEffect(() => {
     handleProfileShared();
     handleProfileFolder();
-    setPosition('static');
   }, []);
 
   return (
-    <NavContainer $position={position}>
+    <NavContainer className={path ? '' : 'active'}>
       <Logo>
         <Link href="/">
           <LogoImg>
@@ -69,11 +68,11 @@ export default function Nav() {
   );
 }
 
-const NavContainer = styled.nav<{ $position: string }>`
+const NavContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: ${({ $position }) => $position || 'fixed'};
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 10;
@@ -81,6 +80,10 @@ const NavContainer = styled.nav<{ $position: string }>`
   height: 9.4rem;
   padding: 0 20rem;
   background-color: var(--bg);
+
+  &.active {
+    position: static;
+  }
 
   @media screen and (max-width: 1124px) {
     padding: 0 3.2rem;

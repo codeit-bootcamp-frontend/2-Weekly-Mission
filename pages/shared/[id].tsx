@@ -3,7 +3,7 @@ import FolderUser from '@/src/components/folderUser/FolderUser';
 import Nav from '@/src/components/nav/Nav';
 import Footer from '@/src/components/footer/Footer';
 import SearchBar from '@/src/components/main/SearchBar';
-import CardList from '@/src/components/main/CardList';
+import SharedCard from '@/src/components/card/SharedCard';
 
 export default function SharedPage() {
   return (
@@ -14,11 +14,11 @@ export default function SharedPage() {
       <div>
         <header>
           <Nav />
-          <FolderUser/>
+          <FolderUser />
         </header>
         <main>
           <SearchBar />
-          <CardList />
+          <SharedCard />
         </main>
         <footer>
           <Footer />
