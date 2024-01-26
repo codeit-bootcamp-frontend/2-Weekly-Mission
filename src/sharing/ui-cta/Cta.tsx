@@ -9,5 +9,9 @@ type CtaProps = {
 };
 
 export const Cta = ({ children }: CtaProps) => {
-  return <div className={cx("container")}>{children}</div>;
+  return (
+    <button type="submit" className={cx("container")}>
+      {children}
+    </button>
+  );
 };

@@ -1,4 +1,4 @@
-import styles from "./AuthInput.module.scss";
+import styles from "./SignUpInput.module.scss";
 import classNames from "classnames/bind";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
@@ -7,25 +7,33 @@ import {
   EYEON_IMAGE,
   EMAIL_REGEX,
   PASSWORD_REGEX,
+  ERROR_MESSAGE,
 } from "./constant";
 
 const cx = classNames.bind(styles);
 
-export const AuthInput = ({
-  password,
-  check,
-  input,
-  setInput,
+export const SignUpInput = ({
   placeholder,
+  type,
+  value,
+  onChange,
+  password,
+  isUsable = true,
+  whichError,
 }) => {
-  const initialType = password ? "password" : "email";
-
-  const [inputType, setInputType] = useState(initialType);
+  const initialType = type;
+  const [inputType, setInputType] = useState(type);
   const [isFocused, setIsFocused] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
 
-  // 이메일, 비밀번호 유효성 검사
+  useEffect(() => {
+    if (!isUsable) {
+      console.log("이거 실행되냐");
+      setErrorMessage(ERROR_MESSAGE.emailAlreadyExist);
+    }
+  }, []);
+
   const isValidEmail = (input) => {
     return EMAIL_REGEX.test(input) ? true : false;
   };
@@ -36,9 +44,9 @@ export const AuthInput = ({
 
   const handleEmailError = (e) => {
     if (!e.target.value) {
-      setErrorMessage("이메일을 입력해 주세요");
+      setErrorMessage(ERROR_MESSAGE.emailRequired);
     } else if (!isValidEmail(e.target.value)) {
-      setErrorMessage("올바른 이메일 주소가 아닙니다");
+      setErrorMessage(ERROR_MESSAGE.emailInvalid);
     } else {
       setErrorMessage("");
     }
@@ -46,52 +54,53 @@ export const AuthInput = ({
 
   const handlePasswordError = (e) => {
     if (!e.target.value) {
-      setErrorMessage("비밀번호를 입력해 주세요");
+      setErrorMessage(ERROR_MESSAGE.passwordRequired);
     } else if (!isValidPassword(e.target.value)) {
-      setInput(e.target.value);
-      setErrorMessage("비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요");
+      setErrorMessage(ERROR_MESSAGE.passwordInvalid);
     } else {
-      setInput(e.target.value);
       setErrorMessage("");
     }
   };
 
-  const handleCheckPasswordError = (e) => {
+  const handlePasswordConfirmError = (e) => {
     if (!e.target.value) {
-      setErrorMessage("비밀번호를 입력해 주세요");
-    } else if (e.target.value !== input) {
-      setErrorMessage("비밀번호가 일치하지 않아요.");
+      setErrorMessage(ERROR_MESSAGE.passwordRequired);
+    } else if (e.target.value !== password) {
+      setErrorMessage(ERROR_MESSAGE.confirmedPasswordNotMatch);
     } else {
       setErrorMessage("");
     }
   };
 
-  const inputRef = useRef();
-
-  useEffect(() => {
-    if (!password) {
-      inputRef.current?.addEventListener("focusout", handleEmailError);
-    } else if (!check) {
-      inputRef.current?.addEventListener("focusout", handlePasswordError);
-    } else {
-      inputRef.current?.addEventListener("focusout", handleCheckPasswordError);
-    }
-  }, [input]);
-
-  // 비밀번호 보이기/숨기기
   const handlePasswordShown = (e) => {
     setIsVisible(!isVisible);
     isVisible ? setInputType("password") : setInputType("text");
   };
 
-  // input focus시 파란 테두리
   const handleFocus = () => {
     setIsFocused(true);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e) => {
     setIsFocused(false);
+    if (type == "email") handleEmailError(e);
+    else if (type == "password") handlePasswordError(e);
+    else if (type == "confirmedPassword") handlePasswordConfirmError(e);
   };
+
+  useEffect(() => {
+    if (!isUsable) {
+      if (type == "email") setErrorMessage(ERROR_MESSAGE.emailAlreadyExist);
+    }
+  }, [isUsable]);
+
+  useEffect(() => {
+    if (whichError) {
+      if (whichError.includes("already" && type == "email"))
+        setErrorMessage(ERROR_MESSAGE.emailAlreadyExist);
+    }
+  }, [whichError]);
+
   return (
     <div>
       <div className={cx("container")}>
@@ -99,11 +108,13 @@ export const AuthInput = ({
           className={cx("input", { focused: isFocused, error: errorMessage })}
           type={inputType}
           placeholder={placeholder}
-          ref={inputRef}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          name={initialType}
+          value={value}
+          onChange={onChange}
         />
-        {password &&
+        {type.includes("password") &&
           (isVisible ? (
             <Image
               src={EYEON_IMAGE}

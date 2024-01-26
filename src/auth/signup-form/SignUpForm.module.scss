@@ -1,0 +1,15 @@
+@import "sharing/styles/global.scss";
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.button {
+  width: inherit;
+  margin-top: 30px;
+  height: 5.4rem;
+  font-size: 18px;
+  font-weight: 600;
+}

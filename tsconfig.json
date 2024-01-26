@@ -76,7 +76,8 @@
     "**/*.tsx",
     "src/auth/ui-sign-input/SignInput.jsx",
     "src/pages/SignInPage.ㅓsx",
-    "src/pages/auth/signup.jsx"
+    "src/pages/auth/signup.jsx",
+    "src/page-layout/SignUpLayout/SignUpLayout.jsx"
   ],
   "exclude": ["node_modules"]
 }

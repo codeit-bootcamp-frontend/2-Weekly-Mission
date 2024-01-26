@@ -1,16 +1,10 @@
 import { ReactNode } from "react";
-import styles from "./SignInLayout.module.scss";
+import styles from "./SignUpLayout.module.scss";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-type SignInLayoutProps = {
-  header: ReactNode;
-  form: ReactNode;
-  social: ReactNode;
-};
-
-export const SignInLayout = ({ header, form, social }: SignInLayoutProps) => {
+export const SignUpLayout = ({ header, form, social }) => {
   return (
     <div className={cx("auth-page")}>
       <div className={cx("container")}>
