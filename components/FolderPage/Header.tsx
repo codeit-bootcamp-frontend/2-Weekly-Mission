@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import * as S from "./Styled";
 import { profileApi } from "../../pages/folder/folder.api.ts";
 import { ProfileData } from "../../pages/folder/type";
+import LogoutButton from "./LogoutButton";
 
-function Header() {
+function Header({userData}: any) {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
 
   const fetchProfileData = async () => {
@@ -20,6 +21,13 @@ function Header() {
     fetchProfileData();
   }, []);
 
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+        userData = !!accessToken;
+    } 
+  }, []);
+  
   return (
     <>
       <S.Nav>
@@ -30,17 +38,18 @@ function Header() {
               alt="홈으로 연결된 Linkbrary 로고"
             />
           </a>
-          {profileData && (
+          {userData && (
             <S.ProfileBox>
               <S.ProfileBoxImg
-                src={profileData?.data[0].image_source}
+                src={userData.image_source}
                 alt="프로필 로고"
               />
               <S.ProfileText>
-                <span>{profileData?.data[0].email || ""}</span>
+                <span>{userData.email || ""}</span>
               </S.ProfileText>
             </S.ProfileBox>
           )}
+          <LogoutButton />
         </S.Gnd>
       </S.Nav>
     </>

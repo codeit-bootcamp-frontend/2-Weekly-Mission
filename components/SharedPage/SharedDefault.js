@@ -6,7 +6,7 @@ import Card from "./Card";
 import { useEffect, useState } from "react";
 import Search from "./Search";
 
-function Shared() {
+function SharedDefault() {
   const [cardUser, setCardUser] = useState();
   useEffect(() => {
     fetch("https://bootcamp-api.codeit.kr/api/sample/folder")
@@ -20,15 +20,17 @@ function Shared() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Section />
       <Search />
       <div className={styles.cardBox}>
-      {cardUser ? cardUser.map((data) => <Card key={data.id} data={data} />) : null}
+        {cardUser
+          ? cardUser.map((data) => <Card key={data.id} data={data} />)
+          : null}
       </div>
-      <Footer></Footer>
+      {/* <Footer /> */}
     </>
   );
 }
 
-export default Shared;
+export default SharedDefault;

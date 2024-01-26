@@ -21,17 +21,6 @@ export async function showFolders(): Promise<FolderLink[]> {
   }
 }
 
-export async function fetchFolderData(userId: number): Promise<FolderData[]> {
-  try {
-    const url = `users/${userId}/folders`;
-    const response = await axiosInstance.get(url);
-    return response.data.data;
-  } catch (error) {
-    console.error('Error fetching folder data:', error);
-    throw error;
-  }
-}
-
 export async function showAll(userId: number): Promise<LinkData[]> {
   try {
     const url = `users/${userId}/links`;
@@ -39,6 +28,28 @@ export async function showAll(userId: number): Promise<LinkData[]> {
     return response.data.data;
   } catch (error) {
     console.error('Error fetching links data:', error);
+    throw error;
+  }
+}
+
+export async function getFolders(){
+  try {
+    const url = `folders`;
+    const response = await axiosInstance.get(url);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching links data:', error);
+    throw error;
+  }
+}
+
+export async function userFolders(userId: string | string[]){
+  try {
+    const url = `folders/${userId}`;
+    const response = await axiosInstance.get(url);
+    return response;
+  } catch (error) {
+    console.error('Error fetching users folders data:', error);
     throw error;
   }
 }

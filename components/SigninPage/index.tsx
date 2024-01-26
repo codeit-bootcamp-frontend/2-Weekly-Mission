@@ -1,32 +1,23 @@
-import { ComponentPropsWithRef, useState, FocusEvent, useEffect } from "react";
+import { ComponentPropsWithRef, useState, FocusEvent, useEffect, useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import * as S from "./styled";
+import axiosInstance from "@/lib/axios";
 import { useInput } from "../FolderPage/hooks/useInput";
 import styles from "./input.module.css";
 import Icon from "@/components/common/Icon";
-import { signin } from '@/pages/signin/signin.api.ts';
+import { signin } from "@/pages/signin/signin.api.ts";
+import { contextUserId } from "@/pages/_app";
 
 interface InputType {
   email: string;
   password: string;
 }
 
-interface Props
-  extends Omit<ComponentPropsWithRef<"input">, "type" | "className"> {
-  type?: "text" | "password";
-  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
-}
-
-function Signin({ type = "password", onBlur }: Props) {
+function Signin() {
   const [errorMessage, setErrorMessage] = useState<string | boolean>("");
   const [emailError, setEmailError] = useState<string | boolean>("");
-  const {
-    handleClickPasswordToggle,
-    passwordVisible,
-  } = useInput();
-
-  const router = useRouter();
+  const { handleClickPasswordToggle, passwordVisible } = useInput();
   const hasError = !!errorMessage;
   const hasEmailError = !!emailError;
 
@@ -38,12 +29,20 @@ function Signin({ type = "password", onBlur }: Props) {
     };
     handleSignin(userData);
   };
+
+  const ContextUserId = useContext(contextUserId);
+  const router = useRouter();
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken !== null) {
+      router.push(`/folder/${ContextUserId}`);
+    }
+  }, []);
+
   const emailVal = watch("email");
   const passwordVal = watch("password");
-  // console.log(emailVal);
 
   const handleBlurSignin = (e: React.FocusEvent<HTMLInputElement>) => {
-    console.log("asd");
     const isValidEmail = (email: string): boolean => {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       return emailRegex.test(email);
@@ -68,38 +67,29 @@ function Signin({ type = "password", onBlur }: Props) {
         !/\d/.test(passwordVal) ||
         !/[a-zA-Z]/.test(passwordVal)
       ) {
-        newErrorMessage =
-          "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.";
+        newErrorMessage = "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.";
       } else {
         newErrorMessage = ""; // 입력이 비어 있지 않은 경우 오류 메시지를 초기화합니다.
       }
     }
     setEmailError(emailErrorMessage);
     setErrorMessage(newErrorMessage);
-    console.log(errorMessage);
   };
 
   const handleSignin = async (userData: any) => {
     try {
       const response = await signin(userData);
-      if (response) {
-        localStorage.setItem("sign", response.data.data.accessToken);
-        router.push("/folder");
-        console.log("POST 요청이 성공했습니다.");
-      }
+      console.log(response);
+      if (response.status === 200) {
+        localStorage.setItem("accessToken", response.data.data.accessToken);
+          router.push(`/folder/${ContextUserId}`);
+        }
     } catch (error) {
       console.error("로그인 실패", error);
       setErrorMessage("아이디 혹은 비밀번호가 잘못되었습니다.");
       setEmailError("아이디 혹은 비밀번호가 잘못되었습니다.");
     }
   };
-
-  useEffect(() => {
-    const LocalStorage = localStorage.getItem("sign");
-    if (LocalStorage !== null) {
-      router.push("/folder");
-    }
-  }, []);
 
   return (
     <S.Container>
