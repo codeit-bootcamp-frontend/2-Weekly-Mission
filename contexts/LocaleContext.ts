@@ -1,12 +1,9 @@
 import { createContext } from "react";
-import { SharedPageData, FolderPageData, ModalControl } from "../types/common";
+import { ModalControl, FolderInfo, UserInfo } from "../types/common";
 
-export type DataContextType =
-  | SharedPageData
-  | FolderPageData[]
-  | SharedPageData[];
-
-export const DataContext = createContext<DataContextType>([]);
+export const FolderDataContext = createContext();
+export const DataContext = createContext<FolderInfo | UserInfo>();
+export const FolderSelectDataContext = createContext();
 export const ModalContext = createContext<ModalControl>({
   openModal: () => {},
   closeModal: () => {}

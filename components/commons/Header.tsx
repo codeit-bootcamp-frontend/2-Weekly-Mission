@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { UserInfo } from "../../types/common";
+import { DataContext } from "../../contexts/LocaleContext";
+import { useContext } from "react";
 
-function Header({ user }: { user: UserInfo }) {
+function Header() {
+  const { userInfo } = useContext(DataContext);
+
   return (
     <HeaderLayout>
       <HeaderBox>
@@ -15,15 +18,15 @@ function Header({ user }: { user: UserInfo }) {
             alt="로고이미지"
           />
         </Link>
-        {user ? (
+        {userInfo ? (
           <HeaderProfileBox>
             <Image
               width={28}
               height={28}
-              src={user?.profileImageSource}
+              src={userInfo.image_source}
               alt="프로필 아이콘"
             />
-            <div>{user?.email}</div>
+            <div>{userInfo.email}</div>
           </HeaderProfileBox>
         ) : (
           <HeaderLoginButton>로그인</HeaderLoginButton>
@@ -32,6 +35,7 @@ function Header({ user }: { user: UserInfo }) {
     </HeaderLayout>
   );
 }
+import { UserInfo } from "../../types/common";
 
 const HeaderLayout = styled.header`
   background-color: var(--gray-bg-color);

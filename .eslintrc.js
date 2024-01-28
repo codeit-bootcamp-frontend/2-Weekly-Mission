@@ -24,7 +24,6 @@ module.exports = {
   rules: {
     "prettier/prettier": ["error", { endOfLine: "auto", useTabs: false }],
     "no-nested-ternary": "off",
-    "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
     "react/jsx-filename-extension": ["error", { extensions: [".ts", ".tsx"] }],
     "import/extensions": [

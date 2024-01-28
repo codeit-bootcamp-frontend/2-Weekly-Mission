@@ -9,9 +9,19 @@ export interface Link {
 
 export interface UserInfo {
   id: number;
+  created_at: string;
   name: string;
+  image_source: string;
   email: string;
-  profileImageSource: string;
+  auth_id: string;
+}
+
+export interface FolderInfo {
+  id: number;
+  created_at: string;
+  name: string;
+  user_id: number;
+  favorite: boolean;
 }
 
 export interface Modal {
@@ -22,23 +32,4 @@ export interface Modal {
 export interface ModalControl {
   openModal: (text: string) => void;
   closeModal?: () => void;
-}
-
-export interface FolderPageData {
-  id: number;
-  favorite: boolean;
-  name: string;
-  user_id: number;
-  links: Link[];
-}
-
-export interface SharedPageData {
-  id: number;
-  name: string;
-  owner: {
-    id: number;
-    name: string;
-    profileImageSource: string;
-  };
-  links: Link[];
 }

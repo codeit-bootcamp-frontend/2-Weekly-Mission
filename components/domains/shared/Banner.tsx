@@ -1,22 +1,21 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { useContext } from "react";
-import { SharedPageData } from "../../../types/common";
-import { DataContext, DataContextType } from "../../../contexts/LocaleContext";
+import { DataContext } from "../../../contexts/LocaleContext";
 
 function Banner() {
-  const folder = useContext<DataContextType>(DataContext) as SharedPageData;
+  const { folderInfo, userInfo } = useContext(DataContext);
   return (
     <BannerLayout>
       <BannerBox>
         <Image
           width={60}
           height={60}
-          src={folder.owner.profileImageSource}
+          src={userInfo?.image_source}
           alt="배너 프로필 이미지"
         />
-        <BannerText>{folder.owner.name}</BannerText>
-        <BannerTitle>{folder.name}</BannerTitle>
+        <BannerText>{userInfo?.name}</BannerText>
+        <BannerTitle>{folderInfo[0]?.name}</BannerTitle>
       </BannerBox>
     </BannerLayout>
   );

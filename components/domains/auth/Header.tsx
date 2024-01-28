@@ -12,8 +12,8 @@ const Header = ({ children }: { children: ReactNode }) => {
           height={38}
           alt="로고 이미지"
         />
-        <LinkBox>{children}</LinkBox>
       </Link>
+      <LinkBox>{children}</LinkBox>
     </HeaderBox>
   );
 };
