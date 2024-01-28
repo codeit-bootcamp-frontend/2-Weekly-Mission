@@ -5,26 +5,23 @@ import axios from "@/lib/axios";
 import { useRouter } from "next/router";
 
 export default function SignIn() {
-  const [email, setEmail] = useState("");
+  const [email, setEmailValue] = useState("");
   const [password, setPassword] = useState("");
   const [isFailedSignIn, setisFailedSignIn] = useState(false);
-  const [signInData, setSignInData] = useState({
-    email: "",
-    password: "",
-  });
   const router = useRouter();
-  const setInputValueToEmail = (value: string) => setEmail(value);
+  const setInputValueToEmail = (value: string) => setEmailValue(value);
   const setInputValueToPassword = (value: string) => setPassword(value);
 
-  useEffect(
-    () => setSignInData({ email: email, password: password }),
-    [email, password]
-  );
+  const signInData = {
+    email,
+    password,
+  };
 
   const formSubmitHandler = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const res = await axios.post("/sign-in", signInData);
+      localStorage.setItem("accessToken", res.data.data.accessToken);
       router.push("/folder");
     } catch (e) {
       setisFailedSignIn(true);

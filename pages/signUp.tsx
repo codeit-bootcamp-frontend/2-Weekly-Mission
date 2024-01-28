@@ -8,24 +8,23 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFailedSignUp, setisFailedSignUp] = useState(false);
-  const [signUpData, setSignUpData] = useState({
-    email: "",
-    password: "",
+  const [comparePassword, setComparePassword] = useState({
+    pw: "",
+    confirmPW: "",
   });
-  const [comparePassword, setComparePassword] = useState({ pw: "", pw2: "" });
   const [matchedPassword, setMachedPassword] = useState(true);
   const router = useRouter();
   const setInputValueToEmail = (value: string) => setEmail(value);
   const setInputValueToPassword = (value: string) => setPassword(value);
   const setComparePW = (value: string) =>
     setComparePassword({ ...comparePassword, pw: value });
-  const setComparePW2 = (value: string) =>
-    setComparePassword({ ...comparePassword, pw2: value });
+  const setCompareConfirmPW = (value: string) =>
+    setComparePassword({ ...comparePassword, confirmPW: value });
 
-  useEffect(
-    () => setSignUpData({ email: email, password: password }),
-    [email, password]
-  );
+  const signUpData = {
+    email,
+    password,
+  };
 
   const formSubmitHandler = async (e: FormEvent) => {
     e.preventDefault();
@@ -39,12 +38,12 @@ export default function Signup() {
   };
 
   useEffect(() => {
-    if (comparePassword.pw !== comparePassword.pw2) {
+    if (comparePassword.pw !== comparePassword.confirmPW) {
       setMachedPassword(false);
     } else {
       setMachedPassword(true);
     }
-  }, [comparePassword.pw2]);
+  }, [comparePassword.confirmPW]);
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -71,7 +70,7 @@ export default function Signup() {
           setInputValueToPassword={setInputValueToPassword}
           isFailedSignUp={isFailedSignUp}
           isComparePassword={true}
-          setComparePW2={setComparePW2}
+          setCompareConfirmPW={setCompareConfirmPW}
           matchedPassword={matchedPassword}
         />
         <button className="mt-[30px] mb-[32px] w-[400px] flex justify-center items-center px-[20px] py-[16px] bg-[#6D6AFE]">

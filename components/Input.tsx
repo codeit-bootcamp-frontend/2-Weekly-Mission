@@ -11,7 +11,7 @@ interface InputProps {
   isSignUp?: boolean;
   isComparePassword?: boolean;
   setComparePW?: () => void;
-  setComparePW2?: () => void;
+  setCompareConfirmPW?: () => void;
   matchedPassword?: boolean;
 }
 
@@ -36,7 +36,7 @@ export default function Input({
   isSignUp,
   isComparePassword,
   setComparePW,
-  setComparePW2,
+  setCompareConfirmPW,
   matchedPassword,
 }: InputProps) {
   const [pwdViewMod, setPwdViewMod] = useState(isEmailInput);
@@ -56,17 +56,18 @@ export default function Input({
 
   useEffect(() => {
     if (isFailedSignIn) {
-      setErrorType(
-        isEmailInput ? "FAILED_SIGNIN_EMAIL" : "FAILED_SIGNIN_PASSWORD"
-      );
+      const errorType = isEmailInput
+        ? "FAILED_SIGNIN_EMAIL"
+        : "FAILED_SIGNIN_PASSWORD";
+      setErrorType(errorType);
     }
   }, [isFailedSignIn]);
 
   useEffect(() => {
     if (isFailedSignUp) {
-      setErrorType(
-        !isEmailInput && !isComparePassword ? "FAILED_SIGNIN_PASSWORD" : ""
-      );
+      const errorType =
+        !isEmailInput && !isComparePassword ? "FAILED_SIGNIN_PASSWORD" : "";
+      setErrorType(errorType);
     }
   }, [isFailedSignUp]);
 
@@ -83,19 +84,20 @@ export default function Input({
       return;
     }
 
-    if (
+    const invalidPassword =
       !isEmailInput &&
       isSignUp &&
       !isComparePassword &&
-      !validatePassword(inputValue)
-    ) {
+      !validatePassword(inputValue);
+
+    if (invalidPassword) {
       setErrorType("INVALID_PASSWORD");
       setComparePW(inputValue);
       return;
     }
 
     if (isComparePassword) {
-      setComparePW2(inputValue);
+      setCompareConfirmPW(inputValue);
     }
 
     if (isComparePassword && !matchedPassword) {
