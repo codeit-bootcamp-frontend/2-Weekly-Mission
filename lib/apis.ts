@@ -19,8 +19,8 @@ export const checkedEmail = async (email: string) => {
   }
 };
 export const fetchFolder = async () => {
-  const { data } = await axios.get(API_PATH.FOLDER);
-  return data;
+  const response = await axios.get(API_PATH.FOLDER);
+  return response.data;
 };
 
 export async function putFolder({ id, ...data }: { id: string; name: string }) {
@@ -39,16 +39,21 @@ export const postFolder = async (data: FieldValues) => {
 };
 
 export const fetchSelectedLinks = async (id: string) => {
-  const { data } = await axios.get(API_PATH.SELECTED_FOLDER_LINKS(id));
-  return data;
+  const response = await axios.get(API_PATH.SELECTED_FOLDER_LINKS(id));
+  return response.data;
 };
 export const fetchLinks = async () => {
-  const { data } = await axios.get(API_PATH.LINKS);
-  return data;
+  const response = await axios.get(API_PATH.LINKS);
+  return response.data;
 };
 
 export const postLink = async ({ id, ...data }: { id: string; url: string }) => {
   const response = await axios.post(API_PATH.SELECTED_FOLDER_LINKS(id), data);
+  return response.data;
+};
+
+export const putLink = async ({ id, ...data }: { id: string; favorite: boolean }) => {
+  const response = await axios.put(API_PATH.SELECTED_FOLDER_LINKS(id), data);
   return response.data;
 };
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import defaultImage from "@/public/images/defaultImage.png";
-
+import { StarIcon } from "@/public/icons/folderItem";
 const defaultImageUrl = defaultImage.src;
 
 const ImageContainer = styled.div`
@@ -10,6 +10,10 @@ const ImageContainer = styled.div`
     top: 15px;
     right: 15px;
   }
+`;
+
+const SIcon = styled(StarIcon)`
+  opacity: ${(props) => (props.$isFavorite ? 1 : 0.2)};
 `;
 
 const Image = styled.div<{ $imageSource: string }>`
@@ -82,4 +86,4 @@ const Description = styled.p`
   line-height: 150%;
 `;
 
-export { ImageContainer, Container, Image, Flavor, FlaverHeader, Posted, CreateAt, Description };
+export { ImageContainer, SIcon, Container, Image, Flavor, FlaverHeader, Posted, CreateAt, Description };

@@ -26,6 +26,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       return res.json({
         ok: true,
       });
+    } else if (req.method === "PUT") {
+      await service(req.method, folderServices.selectedLinks(folderId), token, req.body);
+      return res.json({
+        ok: true,
+      });
     } else if (req.method === "DELETE") {
       await service(req.method, folderServices.selectedLinks(folderId), token);
       return res.json({

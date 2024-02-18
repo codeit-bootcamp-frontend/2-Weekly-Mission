@@ -1,10 +1,11 @@
 export interface Links {
   id: number;
-  description: string;
+  favorite: boolean;
+  created_at: string;
   url: string;
   title: string;
-  imageSource: string;
-  createdAt: string;
+  image_source: string;
+  description: string;
 }
 
 export type AuthType = "signIn" | "signUp";

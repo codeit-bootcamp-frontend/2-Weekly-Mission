@@ -1,25 +1,33 @@
+import { useState } from "react";
 import Link from "next/link";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@/contexts/ModalContext";
 import getDateAgo from "@/lib/utills/getDateAgo";
-import * as S from "./styled";
-import { KebobIcon, StarIcon } from "@/public/icons/folderItem";
+import { KebobIcon } from "@/public/icons/folderItem";
 import Popover from "@/components/common/Popover";
+import { putLink } from "@/lib/apis";
+import * as S from "./styled";
 
 interface CardItemProps {
   data: {
     id: number;
-    createdAt: string;
+    favorite: boolean;
+    created_at: string;
     url: string;
+    title: string;
+    image_source: string;
     description: string;
-    imageSource: string;
   };
 }
 
-function Item({ data: { id, createdAt, url, description, imageSource } }: CardItemProps) {
+function Item({ data }: CardItemProps) {
+  const { favorite, id, created_at, url, description, image_source } = data;
+  const [isFavorite, setIsFavorite] = useState(favorite);
+  const queryClient = useQueryClient();
   const { openModal } = useModal();
 
-  const timeAgo = getDateAgo(createdAt);
-  const date = new Date(createdAt).toLocaleDateString();
+  const timeAgo = getDateAgo(created_at);
+  const date = new Date(created_at).toLocaleDateString();
 
   const popoverContent = [
     {
@@ -32,13 +40,26 @@ function Item({ data: { id, createdAt, url, description, imageSource } }: CardIt
     },
   ];
 
+  const { mutate } = useMutation({
+    mutationFn: putLink,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["folder"] });
+    },
+  });
+
+  const toggleFav = () => {
+    const favorite = !isFavorite;
+    setIsFavorite(favorite);
+    mutate({ id: String(id), favorite });
+  };
+
   return (
     <S.Container>
       <S.ImageContainer>
         <Link href={url} target="_blank">
-          <S.Image $imageSource={imageSource} />
+          <S.Image $imageSource={image_source} />
         </Link>
-        <StarIcon />
+        <S.SIcon $isFavorite={isFavorite} onClick={toggleFav} />
       </S.ImageContainer>
       <S.Flavor>
         <S.FlaverHeader>
