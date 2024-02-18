@@ -8,18 +8,18 @@ import { folderIcon } from "@/public/icons/folder";
 import { FolderData } from "@/types/contents.type";
 
 interface FolderNameProps {
-  folder: FolderData[];
+  tags: FolderData[];
   selected: string;
   onClick: (name: string, linksId?: number) => void;
 }
 
-function FolderHeader({ folder, selected, onClick }: FolderNameProps) {
+function FolderHeader({ tags, selected, onClick }: FolderNameProps) {
   const { openModal } = useModal();
 
   return (
     <>
       <S.Sorts>
-        <NameTag tags={folder} selected={selected} onClick={onClick} />
+        <NameTag tags={tags} selected={selected} onClick={onClick} />
         <Fab />
       </S.Sorts>
       <S.Header>
@@ -32,7 +32,7 @@ function FolderHeader({ folder, selected, onClick }: FolderNameProps) {
                   <S.Option
                     key={iconName}
                     onClick={() => {
-                      openModal(iconName);
+                      openModal({ currentType: iconName });
                     }}
                   >
                     <Icon />

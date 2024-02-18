@@ -3,9 +3,8 @@ import Head from "next/head";
 import { FormProvider, useForm } from "react-hook-form";
 import AuthLayout from "@/layouts/auth";
 import InputField from "@/components/common/InputField";
-import { userServices } from "@/pages/api/address";
-import { instance } from "../api/instance";
-import axios from "axios";
+import { authPageServerSideProps } from ".";
+import { checkedEmail } from "@/lib/apis";
 
 interface AuthForm {
   email: string;
@@ -14,18 +13,6 @@ interface AuthForm {
 
 const SignUpPage = () => {
   const methods = useForm<AuthForm>();
-
-  const checkedEmail = async (email: string) => {
-    try {
-      await instance.post(userServices.checkedEmail, { email });
-      return true;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        return "이미 사용중인 이메일입니다.";
-      }
-      throw error;
-    }
-  };
 
   return (
     <FormProvider {...methods}>
@@ -86,3 +73,5 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
+
+export const getServerSideProps = authPageServerSideProps;

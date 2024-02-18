@@ -1,13 +1,12 @@
 import React, { ReactNode } from "react";
 import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
-import { userServices } from "@/pages/api/address";
+import { postAuth } from "@/lib/apis";
+import { authMapping } from "@/lib/mapping/auth";
 import AuthFooter from "../Footer";
 import Cta from "@/components/common/Cta";
-import { authMapping } from "@/lib/mapping/auth";
 import * as S from "./styled";
 import { AuthType } from "@/types/global.type";
-import { instance } from "@/pages/api/instance";
 
 interface AuthSectionProps {
   type: AuthType;
@@ -19,26 +18,16 @@ interface AuthForm {
   password: string;
 }
 
-interface Response {
-  data: {
-    accessToken: string;
-  };
-}
-
 function AuthSection({ type, children }: AuthSectionProps) {
   const router = useRouter();
   const { handleSubmit } = useFormContext<AuthForm>();
 
-  const serviceTypeUrl = userServices[type];
-
   const onSubmit = async (data: AuthForm) => {
     try {
-      const response = await instance.post(serviceTypeUrl, data);
-      const {
-        data: { accessToken },
-      } = response.data;
-      localStorage.setItem("accessToken", accessToken);
-      router.push("/folder");
+      const response = await postAuth(type, data);
+      if (response.ok) {
+        router.push("/folder");
+      }
     } catch (error) {
       console.error(error);
     }

@@ -1,41 +1,49 @@
-import React, { createContext, useState, ReactNode, useContext } from "react";
-import { useToggle } from "usehooks-ts";
+import React, { createContext, useContext, ReactNode, useState } from "react";
 import Portal from "@/components/common/Modal/Portal";
 import Modal from "@/components/common/Modal";
+import { MODAL_TYPE } from "@/lib/constents";
+
+export type ModalContentProps = {
+  currentType: keyof typeof MODAL_TYPE;
+  [key: string]: any; // 추가적인 props
+};
 
 interface ModalContextType {
   isModalVisible: boolean;
-  modalContent: string;
-  openModal: (content: string) => void;
+  modalContent: ModalContentProps | null;
+  openModal: (content: ModalContentProps) => void;
   closeModal: () => void;
 }
+
+const ModalContext = createContext<ModalContextType | undefined>(undefined);
+
+export const useModal = () => {
+  const context = useContext(ModalContext);
+  if (context === undefined) {
+    throw new Error("useModal must be used within a ModalProvider");
+  }
+  return context;
+};
 
 interface ModalProviderProps {
   children: ReactNode;
 }
 
-const ModalContext = createContext<ModalContextType>({
-  isModalVisible: false,
-  modalContent: "",
-  openModal: () => {},
-  closeModal: () => {},
-});
-
 export function ModalProvider({ children }: ModalProviderProps) {
-  const [isModalVisible, toggleModalVisible] = useToggle(false);
-  const [modalContent, setModalContent] = useState<string>("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState<ModalContentProps | null>(null);
 
-  const openModal = (content: string) => {
+  const openModal = (content: ModalContentProps) => {
     setModalContent(content);
-    toggleModalVisible();
+    setIsModalVisible(true);
   };
 
   const closeModal = () => {
-    setModalContent("");
-    toggleModalVisible();
+    setModalContent(null);
+    setIsModalVisible(false);
   };
 
-  const contextValue: ModalContextType = {
+  const contextValue = {
     isModalVisible,
     modalContent,
     openModal,
@@ -45,15 +53,11 @@ export function ModalProvider({ children }: ModalProviderProps) {
   return (
     <ModalContext.Provider value={contextValue}>
       {children}
-      {isModalVisible && (
+      {isModalVisible && modalContent && (
         <Portal>
-          <Modal currentType={modalContent} onClose={closeModal} />
+          <Modal modalContent={modalContent} onClose={closeModal} />
         </Portal>
       )}
     </ModalContext.Provider>
   );
 }
-
-export const useModal = () => {
-  return useContext(ModalContext);
-};

@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
-import FolderAddLink from "@/components/common/AddLink";
 import * as S from "./styled";
+import AddLink from "@/components/common/AddLink";
 
 const WithFolderHeader = forwardRef<HTMLDivElement, { isInterSecting: boolean }>(function Folder(
   { isInterSecting },
@@ -10,7 +10,7 @@ const WithFolderHeader = forwardRef<HTMLDivElement, { isInterSecting: boolean }>
     <>
       <S.Wrapper ref={ref}>
         <S.FolderInputContainer $isInterSecting={isInterSecting}>
-          <FolderAddLink />
+          <AddLink />
         </S.FolderInputContainer>
       </S.Wrapper>
     </>

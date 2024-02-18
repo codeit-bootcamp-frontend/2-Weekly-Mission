@@ -3,6 +3,7 @@ import Head from "next/head";
 import { FormProvider, useForm } from "react-hook-form";
 import AuthLayout from "@/layouts/auth";
 import InputField from "@/components/common/InputField";
+import { authPageServerSideProps } from ".";
 
 interface AuthForm {
   email: string;
@@ -50,3 +51,5 @@ const SignInPage = () => {
 };
 
 export default SignInPage;
+
+export const getServerSideProps = authPageServerSideProps;

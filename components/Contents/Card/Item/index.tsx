@@ -7,6 +7,7 @@ import Popover from "@/components/common/Popover";
 
 interface CardItemProps {
   data: {
+    id: number;
     createdAt: string;
     url: string;
     description: string;
@@ -14,7 +15,7 @@ interface CardItemProps {
   };
 }
 
-function Item({ data: { createdAt, url, description, imageSource } }: CardItemProps) {
+function Item({ data: { id, createdAt, url, description, imageSource } }: CardItemProps) {
   const { openModal } = useModal();
 
   const timeAgo = getDateAgo(createdAt);
@@ -23,11 +24,11 @@ function Item({ data: { createdAt, url, description, imageSource } }: CardItemPr
   const popoverContent = [
     {
       title: "삭제하기",
-      onClick: () => openModal("deleteLink"),
+      onClick: () => openModal({ currentType: "deleteLink", linkId: id, url }),
     },
     {
       title: "폴더에 추가",
-      onClick: () => openModal("addtoFolder"),
+      onClick: () => openModal({ currentType: "addtoFolder", url }),
     },
   ];
 

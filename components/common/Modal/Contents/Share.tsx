@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import * as S from "./styled";
@@ -6,7 +6,6 @@ import * as S from "./styled";
 import kakao from "@/public/icons/modal/kakao.png";
 import facebook from "@/public/icons/modal/facebook.png";
 import copyLink from "@/public/icons/modal/copyLink.png";
-import Head from "next/head";
 import Script from "next/script";
 
 declare global {

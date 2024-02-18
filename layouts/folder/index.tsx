@@ -4,7 +4,6 @@ import WithFolderHeader from "./Header";
 import FolderHeader from "./Section/Header";
 import Content from "@/components/Contents";
 import * as S from "./styled";
-import Spinner from "@/components/common/Spinner";
 
 interface FolderLayoutProps {
   isLoading: boolean;
@@ -63,7 +62,7 @@ export function FolderLayout({ isLoading, links, folder, selected, onClick }: Fo
       <WithFolderHeader ref={ref} isInterSecting={isInterSecting} />
       <S.Article>
         <Content isLoading={isLoading} links={links}>
-          <FolderHeader folder={folder} selected={selected} onClick={onClick} />
+          <FolderHeader tags={folder} selected={selected} onClick={onClick} />
         </Content>
       </S.Article>
       <div ref={pageEndRef} />

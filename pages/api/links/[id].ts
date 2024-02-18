@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { folderServices } from "../address";
-import { LinkData } from "@/types/contents.type";
-import { Links } from "@/types/global.type";
-import { instance, setAuthToken } from "../instance";
+import { service } from "../instance";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
@@ -11,27 +9,29 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const folderId = id as string;
 
-  const token = req.headers.authorization;
-  setAuthToken(token);
+  const token = req.headers.cookie;
   try {
-    const { data: response } = await instance.get(folderServices.getSelectedFolderLinks(folderId));
-    const { folder } = response.data;
-
-    const convertLinks: Links[] = folder.map((link: LinkData) => ({
-      id: link.id,
-      updatedAt: link.update_at,
-      description: link.description,
-      url: link.url,
-      title: link.title,
-      folderId: link.folder_id,
-      imageSource: link.image_source,
-      createdAt: link.created_at,
-    }));
-
-    return res.json({
-      ok: true,
-      links: convertLinks,
-    });
+    if (req.method === "GET") {
+      const { data: links } = await service(req.method, folderServices.getSelectedFolderLinks(folderId), token);
+      return res.json({
+        ok: true,
+        links,
+      });
+    } else if (req.method === "POST") {
+      const form = {
+        ...req.body,
+        folderId,
+      };
+      await service(req.method, folderServices.links, token, form);
+      return res.json({
+        ok: true,
+      });
+    } else if (req.method === "DELETE") {
+      await service(req.method, folderServices.selectedLinks(folderId), token);
+      return res.json({
+        ok: true,
+      });
+    }
   } catch (e) {
     console.error(e);
   }

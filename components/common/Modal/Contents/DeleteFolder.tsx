@@ -1,12 +1,35 @@
 import React from "react";
 import * as S from "./styled";
+import { useRouter } from "next/router";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteFolder } from "@/lib/apis";
 
-function DeleteFolder() {
+function DeleteFolder({ onClose, name = "" }: any) {
+  const router = useRouter();
+  const folderId = (router.query.id as string) || "";
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: deleteFolder,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["folder"] });
+      onClose();
+    },
+  });
+
+  const onClick = () => {
+    if (folderId) {
+      mutate(folderId);
+    }
+  };
+
   return (
     <>
       <S.Title>폴더 삭제</S.Title>
-      <S.SubTitle>폴더명</S.SubTitle>
-      <S.Button color="#ff5b56">삭제하기</S.Button>
+      <S.SubTitle>{name}</S.SubTitle>
+      <S.Button color="#ff5b56" onClick={onClick}>
+        삭제하기
+      </S.Button>
     </>
   );
 }

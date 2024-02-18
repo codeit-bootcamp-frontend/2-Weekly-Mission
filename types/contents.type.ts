@@ -21,9 +21,7 @@ interface FolderData {
   name: string;
   user_id: number;
   favorite: boolean;
-  link?: {
-    count: number;
-  };
+  link_count: number;
 }
 
 interface FolderResponse {

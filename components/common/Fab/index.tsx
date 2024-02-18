@@ -7,12 +7,12 @@ const Fab = () => {
   const { openModal } = useModal();
 
   return isMobile ? (
-    <S.FloatButton onClick={() => openModal("add")}>
+    <S.FloatButton onClick={() => openModal({ currentType: "add" })}>
       <span>폴더 추가</span>
       <S.StyledAddIcon $mobile />
     </S.FloatButton>
   ) : (
-    <S.StyledAddIcon onClick={() => openModal("add")} />
+    <S.StyledAddIcon onClick={() => openModal({ currentType: "add" })} />
   );
 };
 

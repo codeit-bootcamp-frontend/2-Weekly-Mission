@@ -1,39 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchUser } from "@/lib/apis";
 import Cta from "@/components/common/Cta";
-import useTokenFetch from "@/hooks/useTokenFetch";
-import account from "@/public/images/account.png";
 import * as S from "./styled";
-import { UserResponse } from "@/types/user.type";
-import { API_PATH } from "@/lib/constents";
+import account from "@/public/images/account.png";
+import { useQuery } from "@tanstack/react-query";
 
 function Header() {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { data: userData } = useTokenFetch<UserResponse>(API_PATH.GET_USER);
-
   const router = useRouter();
-
+  const { data: user, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUser,
+    enabled: router.pathname !== "/",
+  });
   const onLogin = () => {
     router.push("/auth/signin");
   };
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      setIsLogin(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (userData) {
-      setIsLoading(false);
-    }
-  }, [userData]);
-
-  const user = userData?.user;
 
   return (
     <S.Wrapper $location={router.pathname}>
@@ -43,17 +27,16 @@ function Header() {
             <Image src="/logo.svg" fill style={{ objectFit: "contain" }} priority alt="홈으로 연결된 Linkbrary 로고" />
           </S.LogoContainer>
         </Link>
-
         <S.AccountContainer $isLoading={isLoading}>
-          {isLogin ? (
+          {router.pathname === "/" ? (
+            <Cta $type="short" onClick={onLogin}>
+              로그인
+            </Cta>
+          ) : (
             <S.Account>
               <Image src={user?.image_source || account} width={24} height={24} alt="account" unoptimized />
               <S.Email>{user?.email}</S.Email>
             </S.Account>
-          ) : (
-            <Cta $type="short" onClick={onLogin}>
-              로그인
-            </Cta>
           )}
         </S.AccountContainer>
       </S.Container>

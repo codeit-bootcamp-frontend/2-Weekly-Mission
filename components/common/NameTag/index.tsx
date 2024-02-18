@@ -14,11 +14,15 @@ function NameTag({ tags, selected, onClick }: NameTagProps) {
       <S.TagItem $selected={selected === "전체"} onClick={() => onClick("전체")}>
         전체
       </S.TagItem>
-      {tags?.map((tag) => (
-        <S.TagItem key={tag.id} $selected={selected === tag.name} onClick={() => onClick(tag.name, tag.id)}>
-          {tag.name}
-        </S.TagItem>
-      ))}
+      {tags ? (
+        tags?.map((tag) => (
+          <S.TagItem key={tag.id} $selected={selected === tag.name} onClick={() => onClick(tag.name, tag.id)}>
+            {tag.name}({tag.link_count})
+          </S.TagItem>
+        ))
+      ) : (
+        <></>
+      )}
     </S.TageList>
   );
 }
