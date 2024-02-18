@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./styled";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteLink } from "@/lib/apis";
+import { QUERY_KEYS } from "@/lib/queryKeys";
 
 interface DeleteLinkProps {
   onClose: () => void;
@@ -14,7 +15,7 @@ function DeleteLink({ onClose, linkId, url }: DeleteLinkProps) {
   const { mutate } = useMutation({
     mutationFn: deleteLink,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["links"] });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.links });
       onClose();
     },
   });

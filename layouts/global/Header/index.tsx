@@ -2,16 +2,17 @@ import React from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "@/lib/apis";
+import { QUERY_KEYS } from "@/lib/queryKeys";
 import Cta from "@/components/common/Cta";
 import * as S from "./styled";
 import account from "@/public/images/account.png";
-import { useQuery } from "@tanstack/react-query";
 
 function Header() {
   const router = useRouter();
   const { data: user, isLoading } = useQuery({
-    queryKey: ["users"],
+    queryKey: QUERY_KEYS.user,
     queryFn: fetchUser,
     enabled: router.pathname !== "/",
   });

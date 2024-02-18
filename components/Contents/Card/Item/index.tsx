@@ -7,6 +7,7 @@ import { KebobIcon } from "@/public/icons/folderItem";
 import Popover from "@/components/common/Popover";
 import { putLink } from "@/lib/apis";
 import * as S from "./styled";
+import { QUERY_KEYS } from "@/lib/queryKeys";
 
 interface CardItemProps {
   data: {
@@ -43,7 +44,7 @@ function Item({ data }: CardItemProps) {
   const { mutate } = useMutation({
     mutationFn: putLink,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["folder"] });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.folder });
     },
   });
 

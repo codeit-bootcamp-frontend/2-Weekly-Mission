@@ -5,6 +5,7 @@ import { useFolderData } from "@/hooks/useQueryData";
 import { FolderData } from "@/types/contents.type";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postLink } from "@/lib/apis";
+import { QUERY_KEYS } from "@/lib/queryKeys";
 
 interface AddLinkStyleProps {
   selected: boolean;
@@ -23,7 +24,7 @@ function AddLink({ onClose, url = "" }: AddLinkProps) {
   const { mutate } = useMutation({
     mutationFn: postLink,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["folder"] });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.folder });
       onClose();
     },
   });

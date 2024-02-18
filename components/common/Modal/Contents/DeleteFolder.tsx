@@ -3,6 +3,7 @@ import * as S from "./styled";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteFolder } from "@/lib/apis";
+import { QUERY_KEYS } from "@/lib/queryKeys";
 
 function DeleteFolder({ onClose, name = "" }: any) {
   const router = useRouter();
@@ -12,7 +13,7 @@ function DeleteFolder({ onClose, name = "" }: any) {
   const { mutate } = useMutation({
     mutationFn: deleteFolder,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["folder"] });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.folder });
       onClose();
     },
   });

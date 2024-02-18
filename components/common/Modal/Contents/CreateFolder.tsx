@@ -3,6 +3,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postFolder } from "@/lib/apis";
 import * as S from "./styled";
+import { QUERY_KEYS } from "@/lib/queryKeys";
 
 interface CreateFolderProps {
   onClose: () => void;
@@ -14,7 +15,7 @@ function CreateFolder({ onClose }: CreateFolderProps) {
   const { mutate, status } = useMutation({
     mutationFn: postFolder,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["folder"] });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.folder });
       onClose();
     },
   });
