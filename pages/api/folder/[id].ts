@@ -15,7 +15,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       const { data }: ServiceResponse<any> = await service(req.method, folderServices.selectedFolder(folderId), token);
       return res.json({
         ok: true,
-        folders: data,
+        folders: data[0],
       });
     } else if (req.method === "PUT") {
       await service(req.method, folderServices.selectedFolder(folderId), token, req.body);

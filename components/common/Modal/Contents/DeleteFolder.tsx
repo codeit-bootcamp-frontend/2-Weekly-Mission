@@ -5,9 +5,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteFolder } from "@/lib/apis";
 import { QUERY_KEYS } from "@/lib/queryKeys";
 
-function DeleteFolder({ onClose, name = "" }: any) {
+interface DeleteFolderProps {
+  onClose: () => void;
+  name?: string;
+}
+
+function DeleteFolder({ onClose, name = "" }: DeleteFolderProps) {
   const router = useRouter();
-  const folderId = (router.query.id as string) || "";
+  const folderId = router.query.id as string;
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({

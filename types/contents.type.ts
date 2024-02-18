@@ -1,9 +1,5 @@
 import { Links } from "./global.type";
 
-interface FolderLinks extends Links {
-  folderId: number;
-}
-
 interface LinkData {
   id: number;
   folder_id: number;
@@ -31,7 +27,7 @@ interface FolderResponse {
 
 interface LinksResponse {
   ok: boolean;
-  links: FolderLinks[];
+  links: Links[];
 }
 
-export type { FolderLinks, LinkData, FolderData, FolderResponse, LinksResponse };
+export type { LinkData, FolderData, FolderResponse, LinksResponse };

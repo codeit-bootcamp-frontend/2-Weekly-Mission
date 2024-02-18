@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { putFolder } from "@/lib/apis";
 import { QUERY_KEYS } from "@/lib/queryKeys";
 
-function Edit({ onClose }: any) {
+function Edit({ onClose }: { onClose: () => void }) {
   const { register, handleSubmit } = useForm();
   const queryClient = useQueryClient();
   const router = useRouter();

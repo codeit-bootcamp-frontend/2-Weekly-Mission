@@ -1,9 +1,9 @@
 import React from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { QUERY_KEYS } from "@/lib/queryKeys";
 import { postFolder } from "@/lib/apis";
 import * as S from "./styled";
-import { QUERY_KEYS } from "@/lib/queryKeys";
 
 interface CreateFolderProps {
   onClose: () => void;

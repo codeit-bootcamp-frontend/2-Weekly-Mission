@@ -1,15 +1,15 @@
 import React from "react";
-import LinkIcon from "@/public/icons/link.svg";
-import * as S from "./styled";
-import { useRouter } from "next/router";
 import { FieldValues, useForm } from "react-hook-form";
 import { useModal } from "@/contexts/ModalContext";
+import * as S from "./styled";
+import LinkIcon from "@/public/icons/link.svg";
 
 function AddLink() {
   const { register, handleSubmit } = useForm();
   const { openModal } = useModal();
 
   const onSubmit = (data: FieldValues) => {
+    if (!data.url) return;
     openModal({ currentType: "addtoFolder", url: data.url });
   };
   return (

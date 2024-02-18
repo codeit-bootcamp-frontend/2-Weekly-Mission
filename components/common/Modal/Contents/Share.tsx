@@ -7,6 +7,8 @@ import kakao from "@/public/icons/modal/kakao.png";
 import facebook from "@/public/icons/modal/facebook.png";
 import copyLink from "@/public/icons/modal/copyLink.png";
 import Script from "next/script";
+import { useFolderData, useFolderDetailData, useUserData } from "@/hooks/useQueryData";
+import { useRouter } from "next/router";
 
 declare global {
   interface Window {
@@ -15,10 +17,14 @@ declare global {
 }
 
 function Share() {
+  const router = useRouter();
   const host = window.location.host;
-  const userId = 1;
-  const folderId = 1;
-  const shareUrl = `https://${host}/shared?user=${userId}&folder=${folderId}`;
+
+  const folderId = router.query.id as string;
+  const {
+    folderDetailData: { folders },
+  } = useFolderDetailData(folderId);
+  const shareUrl = `https://${host}/shared?user=${folders.user_id}&folder=${folderId}`;
 
   const shareToKaKao = () => {
     if (!window.Kakao || !window.Kakao.isInitialized()) {
@@ -62,6 +68,9 @@ function Share() {
         integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8"
         crossOrigin="anonymous"
         onLoad={() => {
+          if (!process.env.NEXT_PUBLIC_ACCESS_KEY) {
+            return;
+          }
           if (window.Kakao && !window.Kakao.isInitialized()) {
             0;
             window.Kakao.init(process.env.NEXT_PUBLIC_ACCESS_KEY);
@@ -70,19 +79,19 @@ function Share() {
       ></Script>
       <S.TitleWrapper>
         <S.Title>폴더 공유</S.Title>
-        <S.SubTitle>폴더 명</S.SubTitle>
+        <S.SubTitle>{folders.name}</S.SubTitle>
       </S.TitleWrapper>
       <LinkWrapper>
         <LinkItem>
-          <Image src={kakao} alt="kakao" onClick={shareToKaKao} />
+          <Image src={kakao} alt="kakao" style={{ cursor: "pointer" }} onClick={shareToKaKao} />
           <span>카카오톡</span>
         </LinkItem>
         <LinkItem>
-          <Image src={facebook} alt="facebook" onClick={shareToFacebook} />
+          <Image src={facebook} alt="facebook" style={{ cursor: "pointer" }} onClick={shareToFacebook} />
           <span>페이스북</span>
         </LinkItem>
         <LinkItem onClick={copyLinkToClipboard}>
-          <Image src={copyLink} alt="copyLink" />
+          <Image src={copyLink} alt="copyLink" style={{ cursor: "pointer" }} />
           <span>링크복사</span>
         </LinkItem>
       </LinkWrapper>
@@ -103,7 +112,6 @@ const LinkItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
   & > span {
     color: var(--Linkbrary-gray100, #373740);
     text-align: center;

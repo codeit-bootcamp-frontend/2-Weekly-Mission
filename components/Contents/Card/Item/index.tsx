@@ -2,23 +2,16 @@ import { useState } from "react";
 import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@/contexts/ModalContext";
+import { Links } from "@/types/global.type";
 import getDateAgo from "@/lib/utills/getDateAgo";
-import { KebobIcon } from "@/public/icons/folderItem";
-import Popover from "@/components/common/Popover";
 import { putLink } from "@/lib/apis";
-import * as S from "./styled";
 import { QUERY_KEYS } from "@/lib/queryKeys";
+import Popover from "@/components/common/Popover";
+import * as S from "./styled";
+import { KebobIcon } from "@/public/icons/folderItem";
 
 interface CardItemProps {
-  data: {
-    id: number;
-    favorite: boolean;
-    created_at: string;
-    url: string;
-    title: string;
-    image_source: string;
-    description: string;
-  };
+  data: Links;
 }
 
 function Item({ data }: CardItemProps) {

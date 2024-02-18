@@ -1,12 +1,11 @@
 import React from "react";
 import Item from "../Item";
-import { FolderLinks } from "@/types/contents.type";
 import { Links } from "@/types/global.type";
-import * as S from "./styled";
 import Spinner from "@/components/common/Spinner";
+import * as S from "./styled";
 
 interface ListProps {
-  folder: Links[] | FolderLinks[];
+  folder: Links[];
 }
 
 function List({ folder }: ListProps) {

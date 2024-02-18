@@ -1,4 +1,4 @@
-import { fetchFolder, fetchLinks, fetchSelectedLinks, fetchUser } from "@/lib/apis";
+import { fetchFolder, fetchFolderDetail, fetchLinks, fetchSelectedLinks, fetchUser } from "@/lib/apis";
 import { QUERY_KEYS } from "@/lib/queryKeys";
 import { useQuery } from "@tanstack/react-query";
 
@@ -8,6 +8,13 @@ export const useFolderData = () => {
     queryFn: fetchFolder,
   });
   return { folderData, folderLoading };
+};
+export const useFolderDetailData = (id: string) => {
+  const { data: folderDetailData, isLoading: folderDetailLoding } = useQuery({
+    queryKey: QUERY_KEYS.selectedFolder(id),
+    queryFn: () => fetchFolderDetail(id),
+  });
+  return { folderDetailData, folderDetailLoding };
 };
 
 export const useLinksData = () => {
@@ -20,7 +27,7 @@ export const useLinksData = () => {
 
 export const useSelectedLinksData = (id: string) => {
   const { data: selectedLinksData, isLoading: selectedLoading } = useQuery({
-    queryKey: QUERY_KEYS.selectedFolder(id),
+    queryKey: QUERY_KEYS.selectedFolderLinks(id),
     queryFn: () => fetchSelectedLinks(id),
     enabled: !!id,
   });

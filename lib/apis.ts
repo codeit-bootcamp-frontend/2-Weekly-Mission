@@ -23,6 +23,11 @@ export const fetchFolder = async () => {
   return response.data;
 };
 
+export const fetchFolderDetail = async (id: string) => {
+  const response = await axios.get(API_PATH.SELECTED_FOLDER(id));
+  return response.data;
+};
+
 export async function putFolder({ id, ...data }: { id: string; name: string }) {
   const response = await axios.put(API_PATH.SELECTED_FOLDER(id), data);
   return response.data;
