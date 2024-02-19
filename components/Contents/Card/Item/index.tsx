@@ -50,7 +50,7 @@ function Item({ data }: CardItemProps) {
   return (
     <S.Container>
       <S.ImageContainer>
-        <Link href={url} target="_blank">
+        <Link href={`http://${url}`} target="_blank">
           <S.Image $imageSource={image_source} />
         </Link>
         <S.SIcon $isFavorite={isFavorite} onClick={toggleFav} />

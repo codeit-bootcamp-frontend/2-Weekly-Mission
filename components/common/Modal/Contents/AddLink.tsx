@@ -6,6 +6,7 @@ import { FolderData } from "@/types/contents.type";
 import { postLink } from "@/lib/apis";
 import { QUERY_KEYS } from "@/lib/queryKeys";
 import * as S from "./styled";
+import { useRouter } from "next/router";
 
 interface AddLinkStyleProps {
   selected: boolean;
@@ -21,10 +22,15 @@ function AddLink({ onClose, url = "" }: AddLinkProps) {
   const { folderData } = useFolderData();
   const queryClient = useQueryClient();
 
+  const router = useRouter();
+  const folderId = router.query.id as string;
+
   const { mutate } = useMutation({
     mutationFn: postLink,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.selectedFolderLinks(folderId) });
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.folder });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.links });
       onClose();
     },
   });

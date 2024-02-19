@@ -3,6 +3,7 @@ import * as S from "./styled";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteLink } from "@/lib/apis";
 import { QUERY_KEYS } from "@/lib/queryKeys";
+import { useRouter } from "next/router";
 
 interface DeleteLinkProps {
   onClose: () => void;
@@ -12,9 +13,13 @@ interface DeleteLinkProps {
 
 function DeleteLink({ onClose, linkId, url }: DeleteLinkProps) {
   const queryClient = useQueryClient();
+  const router = useRouter();
+  const folderId = router.query.id as string;
   const { mutate } = useMutation({
     mutationFn: deleteLink,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.selectedFolderLinks(folderId) });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.folder });
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.links });
       onClose();
     },
