@@ -1,14 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import Script from "next/script";
+import { useRouter } from "next/router";
+import { useFolderDetailData } from "@/hooks/useQueryData";
 import styled from "styled-components";
+import Spinner from "../../Spinner";
 import * as S from "./styled";
-
 import kakao from "@/public/icons/modal/kakao.png";
 import facebook from "@/public/icons/modal/facebook.png";
 import copyLink from "@/public/icons/modal/copyLink.png";
-import Script from "next/script";
-import { useFolderData, useFolderDetailData, useUserData } from "@/hooks/useQueryData";
-import { useRouter } from "next/router";
 
 declare global {
   interface Window {
@@ -21,9 +21,10 @@ function Share() {
   const host = window.location.host;
 
   const folderId = router.query.id as string;
-  const {
-    folderDetailData: { folders },
-  } = useFolderDetailData(folderId);
+  const { folderDetailData, folderDetailLoding } = useFolderDetailData(folderId);
+  if (folderDetailLoding) return <Spinner />;
+
+  const { folders } = folderDetailData!;
   const shareUrl = `https://${host}/shared?user=${folders.user_id}&folder=${folderId}`;
 
   const shareToKaKao = () => {
@@ -83,15 +84,15 @@ function Share() {
       </S.TitleWrapper>
       <LinkWrapper>
         <LinkItem>
-          <Image src={kakao} alt="kakao" style={{ cursor: "pointer" }} onClick={shareToKaKao} />
+          <Image src={kakao} alt="kakao" onClick={shareToKaKao} />
           <span>카카오톡</span>
         </LinkItem>
         <LinkItem>
-          <Image src={facebook} alt="facebook" style={{ cursor: "pointer" }} onClick={shareToFacebook} />
+          <Image src={facebook} alt="facebook" onClick={shareToFacebook} />
           <span>페이스북</span>
         </LinkItem>
-        <LinkItem onClick={copyLinkToClipboard}>
-          <Image src={copyLink} alt="copyLink" style={{ cursor: "pointer" }} />
+        <LinkItem>
+          <Image src={copyLink} alt="copyLink" onClick={copyLinkToClipboard} />
           <span>링크복사</span>
         </LinkItem>
       </LinkWrapper>
@@ -111,7 +112,9 @@ const LinkWrapper = styled.div`
 const LinkItem = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
+  cursor: pointer;
   & > span {
     color: var(--Linkbrary-gray100, #373740);
     text-align: center;

@@ -32,6 +32,7 @@ const ContentItem = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
+  align-items: center;
   padding: 3.2rem 4rem;
   gap: 2.4rem;
 

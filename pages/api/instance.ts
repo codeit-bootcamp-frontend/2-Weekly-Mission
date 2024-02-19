@@ -10,11 +10,11 @@ export interface ServiceResponse<T> {
 
 const instance = axios.create({
   baseURL: END_POINT,
+  timeout: 10000,
 });
 
 instance.interceptors.request.use(
   (config) => {
-    // 기본 헤더 설정
     config.headers = config.headers ?? {};
     if (config.data instanceof FormData) {
       config.headers["Content-Type"] = "multipart/form-data";
@@ -24,9 +24,7 @@ instance.interceptors.request.use(
 
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 export async function service<T, U>(
@@ -35,16 +33,24 @@ export async function service<T, U>(
   token?: string,
   data?: U
 ): Promise<ServiceResponse<T>> {
-  const accessToken = token && token?.split("accessToken=")[1];
-  const requestConfig: AxiosRequestConfig = {
-    method,
-    url,
-    data,
-    headers: {
-      ...(token ? { Authorization: `Bearer ${accessToken}` } : {}),
-    },
-  };
+  try {
+    const accessToken = token ? token.split("accessToken=")[1] : undefined;
+    const requestConfig: AxiosRequestConfig = {
+      method,
+      url,
+      data,
+      headers: {
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+      },
+    };
+    const response: AxiosResponse<T> = await instance(requestConfig);
 
-  const response: AxiosResponse<T> = await instance(requestConfig);
-  return { data: response.data, errorMessage: null };
+    return { data: response.data, errorMessage: null };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return { errorMessage: error.message };
+    } else {
+      return { errorMessage: "알수 없는 에러 발생" };
+    }
+  }
 }

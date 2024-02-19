@@ -19,8 +19,6 @@ export function FolderLayout({ isLoading, links, folder, selected, onClick }: Fo
   const ref = useRef<HTMLDivElement>(null);
   const pageEndRef = useRef<HTMLDivElement>(null);
 
-  console.log(links);
-
   useEffect(() => {
     const target = ref.current;
     const endTarget = pageEndRef.current;
