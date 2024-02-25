@@ -1,10 +1,33 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { useContext } from "react";
-import { DataContext } from "../../../contexts/LocaleContext";
 
 function Banner() {
-  const { folderInfo, userInfo } = useContext(DataContext);
+  const router = useRouter();
+  const { folderId }: ParsedUrlQuery = router.query;
+
+  // folderInfo 쿼리 실행
+  const { data: folderInfo } = useQuery({
+    queryKey: ["folderInfo", folderId],
+    queryFn: async () => {
+      const response = await getFolderData(folderId as string);
+      return response[0];
+    },
+    enabled: !!folderId,
+    staleTime: Infinity
+  });
+
+  // userInfo 쿼리 실행
+  const { data: userInfo } = useQuery({
+    queryKey: ["userInfo", folderInfo?.user_id],
+    queryFn: async () => {
+      const response = await getOwnerData(folderInfo?.user_id);
+      return response[0];
+    },
+    enabled: !!folderId && !!folderInfo,
+    staleTime: Infinity
+  });
+
+  console.log(folderInfo, userInfo);
   return (
     <BannerLayout>
       <BannerBox>

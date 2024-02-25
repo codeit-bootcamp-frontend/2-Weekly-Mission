@@ -1,11 +1,34 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { DataContext } from "../../contexts/LocaleContext";
-import { useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getFolderData, getOwnerData } from "../../../pages/api/SharedApi";
 
 function Header() {
-  const { userInfo } = useContext(DataContext);
+  const router = useRouter();
+  const { folderId }: ParsedUrlQuery = router.query;
+
+  const { data: folderInfo } = useQuery({
+    queryKey: ["folderInfo", folderId],
+    queryFn: async () => {
+      const response = await getFolderData(folderId as string);
+      return response[0];
+    },
+    enabled: !!folderId,
+    staleTime: Infinity
+  });
+
+  const { data: userInfo } = useQuery({
+    queryKey: ["userInfo", folderInfo?.user_id],
+    queryFn: async () => {
+      const response = await getOwnerData(folderInfo?.user_id);
+      return response[0];
+    },
+    enabled: !!folderId && !!folderInfo,
+    staleTime: Infinity
+  });
+
+  console.log(folderInfo, userInfo);
 
   return (
     <HeaderLayout>

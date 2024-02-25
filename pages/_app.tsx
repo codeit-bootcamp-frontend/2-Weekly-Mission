@@ -12,6 +12,9 @@ import { UserInfo, FolderInfo, Link } from "../types/common";
 import { DataContext } from "../contexts/LocaleContext";
 import { ParsedUrlQuery } from "querystring";
 import { getAllLinkData, getAllFolderData } from "./api/FolderApi";
+import { QueryClientProvider, QueryClient } from "react-query";
+
+const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   const { modal, openModal, closeModal } = useModal();
@@ -49,31 +52,31 @@ export default function App({ Component, pageProps }: AppProps) {
     setSharedLinkInfo(data);
   };
 
-  const handleFolderListLoad = async () => {
-    const allLinksFolder = {
-      id: 0,
-      name: "전체",
-      user_id: 1
-    };
-    const { data: folder } = await getAllFolderData();
-    setFolderListInfo([allLinksFolder, ...folder.folder]);
-  };
+  // const handleFolderListLoad = async () => {
+  //   const allLinksFolder = {
+  //     id: 0,
+  //     name: "전체",
+  //     user_id: 1
+  //   };
+  //   const { data: folder } = await getAllFolderData();
+  //   setFolderListInfo([allLinksFolder, ...folder.folder]);
+  // };
 
-  const handleAllLinkLoad = async () => {
-    const { data: folder } = await getAllLinkData();
-    setFolderAllLinkInfo(folder.folder);
-  };
+  // const handleAllLinkLoad = async () => {
+  //   const { data: folder } = await getAllLinkData();
+  //   setFolderAllLinkInfo(folder.folder);
+  // };
 
   useEffect(() => {
-    handleFolderListLoad();
-    handleAllLinkLoad();
+    // handleFolderListLoad();
+    // handleAllLinkLoad();
     if (folderId) {
       handleFolderInfoLoad();
     }
   }, [folderId]);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <GlobalStyle />
       <DataContext.Provider
         value={{
@@ -92,6 +95,6 @@ export default function App({ Component, pageProps }: AppProps) {
           {pathname !== "/signin" && pathname !== "/signup" ? <Footer /> : null}
         </ModalContext.Provider>
       </DataContext.Provider>
-    </>
+    </QueryClientProvider>
   );
 }
