@@ -1,45 +1,25 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { useContext } from "react";
+import { DataContext } from "../../../contexts/LocaleContext";
 
 function Banner() {
-  const router = useRouter();
-  const { folderId }: ParsedUrlQuery = router.query;
+  const { folderInfo, userInfo } = useContext(DataContext);
 
-  // folderInfo 쿼리 실행
-  const { data: folderInfo } = useQuery({
-    queryKey: ["folderInfo", folderId],
-    queryFn: async () => {
-      const response = await getFolderData(folderId as string);
-      return response[0];
-    },
-    enabled: !!folderId,
-    staleTime: Infinity
-  });
-
-  // userInfo 쿼리 실행
-  const { data: userInfo } = useQuery({
-    queryKey: ["userInfo", folderInfo?.user_id],
-    queryFn: async () => {
-      const response = await getOwnerData(folderInfo?.user_id);
-      return response[0];
-    },
-    enabled: !!folderId && !!folderInfo,
-    staleTime: Infinity
-  });
-
-  console.log(folderInfo, userInfo);
   return (
     <BannerLayout>
-      <BannerBox>
-        <Image
-          width={60}
-          height={60}
-          src={userInfo?.image_source}
-          alt="배너 프로필 이미지"
-        />
-        <BannerText>{userInfo?.name}</BannerText>
-        <BannerTitle>{folderInfo[0]?.name}</BannerTitle>
-      </BannerBox>
+      {folderInfo && userInfo ? (
+        <BannerBox>
+          <Image
+            width={60}
+            height={60}
+            src={userInfo?.image_source}
+            alt="배너 프로필 이미지"
+          />
+          <BannerText>{userInfo?.name}</BannerText>
+          <BannerTitle>{folderInfo?.name}</BannerTitle>
+        </BannerBox>
+      ) : null}
     </BannerLayout>
   );
 }

@@ -1,18 +1,17 @@
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 import { ModalContext } from "../contexts/LocaleContext";
-import Header from "../components/commons/Header";
-import Footer from "../components/commons/Footer";
 import GlobalStyle from "../styles/GlobalStyles";
 import useModal from "../hook/useModal";
 import { modals } from "../components/commons/modals/modalList";
 import { NextRouter, useRouter } from "next/router";
 import { getFolderData, getOwnerData, getLinkData } from "./api/SharedApi";
 import { UserInfo, FolderInfo, Link } from "../types/common";
-import { DataContext } from "../contexts/LocaleContext";
 import { ParsedUrlQuery } from "querystring";
 import { getAllLinkData, getAllFolderData } from "./api/FolderApi";
-import { QueryClientProvider, QueryClient } from "react-query";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import Layout from "../components/Layout";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -29,28 +28,28 @@ export default function App({ Component, pageProps }: AppProps) {
   const Modal = modals.get(modal.name);
   const { folderId }: ParsedUrlQuery = router.query;
 
-  const handleFolderInfoLoad = async () => {
-    const { data } = await getFolderData(folderId as string);
-    setFolderInfo(data);
+  // const handleFolderInfoLoad = async () => {
+  //   const { data } = await getFolderData(folderId as string);
+  //   setFolderInfo(data);
 
-    if (data && data.length > 0 && data[0].user_id) {
-      handleUserInfoLoad(data[0].user_id);
-    }
-  };
+  //   if (data && data.length > 0 && data[0].user_id) {
+  //     handleUserInfoLoad(data[0].user_id);
+  //   }
+  // };
 
-  const handleUserInfoLoad = async (userId: number) => {
-    const { data } = await getOwnerData(userId);
-    setUserInfo(data[0]);
-    handleSharedLinksInfoLoad(data[0].id, folderId as string);
-  };
+  // const handleUserInfoLoad = async (userId: number) => {
+  //   const { data } = await getOwnerData(userId);
+  //   setUserInfo(data[0]);
+  //   handleSharedLinksInfoLoad(data[0].id, folderId as string);
+  // };
 
-  const handleSharedLinksInfoLoad = async (
-    userId: number,
-    folderId: string
-  ) => {
-    const { data } = await getLinkData(userId, folderId);
-    setSharedLinkInfo(data);
-  };
+  // const handleSharedLinksInfoLoad = async (
+  //   userId: number,
+  //   folderId: string
+  // ) => {
+  //   const { data } = await getLinkData(userId, folderId);
+  //   setSharedLinkInfo(data);
+  // };
 
   // const handleFolderListLoad = async () => {
   //   const allLinksFolder = {
@@ -70,31 +69,23 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // handleFolderListLoad();
     // handleAllLinkLoad();
-    if (folderId) {
-      handleFolderInfoLoad();
-    }
+    // if (folderId) {
+    //   handleFolderInfoLoad();
+    // }
   }, [folderId]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
-      <DataContext.Provider
-        value={{
-          folderInfo,
-          userInfo,
-          sharedLinkInfo,
-          setSharedLinkInfo,
-          folderAllLinkInfo,
-          folderListInfo
-        }}
-      >
-        <ModalContext.Provider value={{ openModal, closeModal }}>
-          {modal.isOpen && Modal ? <Modal onConfirm={closeModal} /> : null}
-          {pathname !== "/signin" && pathname !== "/signup" ? <Header /> : null}
+
+      <ModalContext.Provider value={{ openModal, closeModal }}>
+        {modal.isOpen && Modal ? <Modal onConfirm={closeModal} /> : null}
+        <Layout>
           <Component closeModal={closeModal} {...pageProps} />
-          {pathname !== "/signin" && pathname !== "/signup" ? <Footer /> : null}
-        </ModalContext.Provider>
-      </DataContext.Provider>
+        </Layout>
+      </ModalContext.Provider>
+
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

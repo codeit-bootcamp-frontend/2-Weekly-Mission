@@ -1,34 +1,13 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
-import { getFolderData, getOwnerData } from "../../../pages/api/SharedApi";
+import { useAccessToken } from "../../hook/useAccessToken";
+import { useContext } from "react";
+import { DataContext } from "../../contexts/LocaleContext";
 
 function Header() {
-  const router = useRouter();
-  const { folderId }: ParsedUrlQuery = router.query;
-
-  const { data: folderInfo } = useQuery({
-    queryKey: ["folderInfo", folderId],
-    queryFn: async () => {
-      const response = await getFolderData(folderId as string);
-      return response[0];
-    },
-    enabled: !!folderId,
-    staleTime: Infinity
-  });
-
-  const { data: userInfo } = useQuery({
-    queryKey: ["userInfo", folderInfo?.user_id],
-    queryFn: async () => {
-      const response = await getOwnerData(folderInfo?.user_id);
-      return response[0];
-    },
-    enabled: !!folderId && !!folderInfo,
-    staleTime: Infinity
-  });
-
-  console.log(folderInfo, userInfo);
+  const { userInfo } = useContext(DataContext);
+  const { accessToken } = useAccessToken();
 
   return (
     <HeaderLayout>
@@ -41,15 +20,15 @@ function Header() {
             alt="로고이미지"
           />
         </Link>
-        {userInfo ? (
+        {accessToken ? (
           <HeaderProfileBox>
             <Image
               width={28}
               height={28}
-              src={userInfo.image_source}
+              src={userInfo?.image_source}
               alt="프로필 아이콘"
             />
-            <div>{userInfo.email}</div>
+            <div>{userInfo?.email}</div>
           </HeaderProfileBox>
         ) : (
           <HeaderLoginButton>로그인</HeaderLoginButton>
@@ -58,7 +37,6 @@ function Header() {
     </HeaderLayout>
   );
 }
-import { UserInfo } from "../../types/common";
 
 const HeaderLayout = styled.header`
   background-color: var(--gray-bg-color);
