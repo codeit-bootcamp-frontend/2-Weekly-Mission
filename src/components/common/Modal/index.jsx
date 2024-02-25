@@ -1,58 +1,47 @@
-import { useRef, useEffect } from 'react';
 import Image from 'next/image';
-
-import styles from './Modal.module.scss';
+import ReactModal from 'react-modal';
 import classNames from 'classnames/bind';
-
-import { Overlay } from 'components/common/Overlay';
-import { handleOutsideClick } from 'utils';
 import { ICON } from 'constants/importImg';
+import styles from './Modal.module.scss';
 
 const cx = classNames.bind(styles);
 const { close } = ICON;
 
-const Dialog = ({ onClose, modalTitle, subTitle, children }) => {
-  const modalRef = useRef();
-
-  useEffect(() => {
-    document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = '';
-      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleClick = (e) => {
-      handleOutsideClick(e, modalRef, onClose);
-    };
-    window.addEventListener('mousedown', handleClick);
-    return () => window.removeEventListener('mousedown', handleClick);
-  }, [onClose]);
-
+const Modal = ({
+  isModalOpen,
+  handleModalClose,
+  modalTitle,
+  subTitle,
+  renderContent = null,
+  children = null,
+}) => {
   return (
-    <Overlay>
-      <div ref={modalRef} className={cx('modal')}>
+    <ReactModal
+      isOpen={isModalOpen}
+      onRequestClose={handleModalClose}
+      shouldCloseOnOverlayClick={true}
+      contentLabel='common-label'
+      className={cx('modal')}
+      overlayClassName={cx('modal-overlay')}
+      bodyOpenClassName={cx('body-open')}
+    >
+      <header className={cx('modal-header')}>
         <button
-          className={cx('modal-btn-close')}
+          className={cx('modal-header-btn-close')}
           aria-label='모달창 닫기 버튼'
-          onClick={onClose}
+          onClick={handleModalClose}
         >
-          <Image src={close.url} alt={close.alt} />
+          <Image src={close.url} alt={close.alt} width={18} height={18} />
         </button>
-        <header className={cx('modal-header')}>
-          <h1 className={cx('modal-header-title')}>{modalTitle}</h1>
-          <p className={cx('modal-header-sub-title')}>{subTitle}</p>
-        </header>
-        {children}
-      </div>
-    </Overlay>
+        <div className={cx('modal-header-inner')}>
+          <h1 className={cx('modal-header-inner-title')}>{modalTitle}</h1>
+          <p className={cx('modal-header-inner-sub')}>{subTitle}</p>
+        </div>
+      </header>
+      {renderContent}
+      {children}
+    </ReactModal>
   );
 };
 
-export default Dialog;
+export default Modal;

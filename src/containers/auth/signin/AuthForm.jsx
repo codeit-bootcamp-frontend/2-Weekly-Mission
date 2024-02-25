@@ -1,92 +1,60 @@
-import { useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
+import Auth from 'apis/auth';
+import InputField from 'components/common/InputField/InputField';
+import BaseButton from 'components/common/Button/BaseButton';
+import AuthFormHeader from './AuthFormHeader';
+import AuthFormSocial from './AuthFormSocial';
+import { USER_INPUT_VALIDATION } from 'constants/auth';
+import { redirectToPage } from 'utils';
 import styles from './AuthForm.module.scss';
 
-import { signin } from 'services/api';
-import { redirectToPage } from 'utils';
-
-import { isAccessToken } from 'constants/auth';
-import { SOCIAL_LOGIN } from 'constants/listOption';
-import { ICON } from 'constants/importImg';
-
-import TextField from 'components/common/TextField';
-import StyledButton from 'components/common/Button/StyledButton';
-import IconButton from 'components/common/Button/IconButton';
-
 const cx = classNames.bind(styles);
-const { logo } = ICON;
+const { email, password } = USER_INPUT_VALIDATION;
 
 const AuthForm = () => {
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors },
-  } = useForm({ mode: 'onBlur' });
-
-  const onSubmit = (data) => signin(data, setError);
-
-  useEffect(() => {
-    if (isAccessToken) {
+  const { handleSubmit, setError, reset } = useFormContext();
+  const { mutate: signinMutation } = useMutation({
+    mutationFn: Auth.signin,
+    onSuccess: () => {
       redirectToPage('/folder');
-    }
-  }, []);
+      reset();
+    },
+    onError: () => {
+      setError('email', { message: email.errorMessage.check });
+      setError('password', { message: password.errorMessage.check });
+    },
+  });
+
+  const onValid = (data) => {
+    signinMutation(data);
+  };
 
   return (
     <div className={cx('auth-form')}>
       <fieldset>
         <legend className='visually-hidden'>Login Linkbrary Account</legend>
-
-        <header className={cx('auth-form-header')}>
-          <h1 className={cx('logo')}>
-            <Link href={'/'}>
-              <Image width={210} src={logo.url} alt={logo.alt} />
-            </Link>
-          </h1>
-          <p className={cx('auth-form-header-info')}>
-            회원이 아니신가요?
-            <Link href={'/signup'}>
-              <span className={cx('auth-form-header-signup')}>회원 가입하기</span>
-            </Link>
-          </p>
-        </header>
-
-        <form onSubmit={handleSubmit(onSubmit)} className={cx('auth-form-login')}>
-          <TextField
+        <AuthFormHeader />
+        <form onSubmit={handleSubmit(onValid)} className={cx('auth-form-login')}>
+          <InputField
             type='email'
             name='email'
             label='이메일'
-            register={register}
-            errors={errors}
-            placeholder='이메일을 입력해 주세요.'
+            autoComplete='email'
+            placeholder={email.errorMessage.empty}
           />
-          <TextField
+          <InputField
             type='password'
             name='password'
             label='비밀번호'
-            register={register}
-            errors={errors}
-            placeholder='비밀번호를 입력해 주세요.'
+            maxLength={15}
+            autoComplete='current-password'
+            placeholder={password.errorMessage.empty}
           />
-          <StyledButton text='로그인' size='lg' type='submit' />
+          <BaseButton text='로그인' size='lg' type='submit' />
         </form>
-
-        <div className={cx('auth-form-social')}>
-          <span className={cx('auth-form-social-title')}>소셜 로그인</span>
-          <ul className={cx('auth-form-social-list')}>
-            {SOCIAL_LOGIN.map((item) => (
-              <li key={item.id} className={cx('auth-form-social-item')}>
-                <Link href={item.url}>
-                  <IconButton svg={item.src} iconSize={42} alt={item.alt} />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <AuthFormSocial />
       </fieldset>
     </div>
   );

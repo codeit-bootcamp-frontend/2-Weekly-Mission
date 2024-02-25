@@ -1,11 +1,15 @@
-import AuthLayout from 'components/layout/AuthLayout';
+import Head from 'next/head';
+
 import AuthForm from 'containers/auth/signup/AuthForm';
 
 const SignupPage = () => {
   return (
-    <AuthLayout>
+    <>
+      <Head>
+        <title>회원가입 | Linkbrary</title>
+      </Head>
       <AuthForm />
-    </AuthLayout>
+    </>
   );
 };
 

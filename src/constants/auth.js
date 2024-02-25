@@ -7,7 +7,7 @@ export const REFRESH_TOKEN = 'refreshToken';
 export const AUTHORIZATION = 'Authorization';
 export const REFRESH_TOKEN_URL = '/api/refresh-token';
 
-export const isAccessToken = !!LocalStorage.getItem(ACCESS_TOKEN);
+export const isLoggedIn = !!LocalStorage.getItem(ACCESS_TOKEN);
 
 export const STATUS_CODE = {
   BAD_REQUEST: 400,
@@ -19,7 +19,7 @@ export const STATUS_CODE = {
   SUCCESS: 200,
 };
 
-export const AUTHENTICATION = {
+export const USER_INPUT_VALIDATION = {
   email: {
     regex: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
     errorMessage: {
@@ -39,7 +39,6 @@ export const AUTHENTICATION = {
   },
   passwordConfirm: {
     errorMessage: {
-      empty: '비밀번호를 입력해주세요.',
       confirm: '비밀번호가 일치하지 않아요.',
     },
   },

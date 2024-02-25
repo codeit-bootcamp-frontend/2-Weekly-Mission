@@ -1,36 +1,34 @@
-import { useState } from 'react';
 import Image from 'next/image';
-
-import styles from './AddLinkFrom.module.scss';
 import classNames from 'classnames/bind';
-
-import { useAsync } from 'hooks/useAsync';
-import Api from 'apis/apiCall';
-
-import StyledButton from 'components/common/Button/StyledButton';
+import { useQuery } from '@tanstack/react-query';
+import { useFormContext } from 'react-hook-form';
+import { getFolders } from 'apis/folder';
 import FolderList from 'containers/folder/ModalContent/FolderList';
-import Dialog from 'components/common/Modal';
-
-import { INITIAL_FILTER_DATA } from 'constants/initialData';
+import BaseButton from 'components/common/Button/BaseButton';
+import Modal from 'components/common/Modal';
+import useModalState from 'hooks/useModalState';
 import { ICON } from 'constants/importImg';
+import styles from './AddLinkFrom.module.scss';
 
 const cx = classNames.bind(styles);
 const { liked } = ICON;
 
 const AddLinkForm = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { register, getValues } = useFormContext();
+  const { modalState, toggleModal } = useModalState(['addLink']);
+  const { data: folderList } = useQuery({
+    queryKey: ['folders'],
+    queryFn: getFolders,
+  });
 
-  const {
-    data: { data: filterData },
-  } = useAsync(() => Api.getFolderList(), INITIAL_FILTER_DATA);
+  const folderName = getValues('name');
 
-  const handleValueChange = (e) => setInputValue(e.target.value);
-  const handleAddButtonClick = () => setIsModalOpen(true);
-  const handleModalClose = () => setIsModalOpen(false);
+  const handleAddLinkClick = () => {
+    toggleModal('addLink');
+  };
 
   return (
-    <>
+    <div>
       <form className={cx('link-form')}>
         <div className={cx('link-input-group')}>
           <Image
@@ -40,26 +38,29 @@ const AddLinkForm = () => {
             className={cx('link-input-group-img')}
           />
           <input
+            {...register('name')}
             type='text'
-            name='link-url'
-            value={inputValue}
             placeholder='링크를 추가해 보세요'
-            onChange={handleValueChange}
             className={cx('link-input')}
           />
         </div>
-        <StyledButton text='추가하기' size='sm' onClick={handleAddButtonClick} />
+        <BaseButton text='추가하기' size='sm' onClick={handleAddLinkClick} />
       </form>
 
-      {isModalOpen && (
-        <Dialog onClose={handleModalClose} modalTitle='폴더에 추가' subTitle={inputValue}>
-          <div className={cx('modal-content')}>
-            <FolderList folderList={filterData} />
-            <StyledButton text='추가하기' size='lg' />
-          </div>
-        </Dialog>
-      )}
-    </>
+      <Modal
+        isModalOpen={modalState.addLink}
+        handleModalClose={handleAddLinkClick}
+        modalTitle='폴더에 추가'
+        subTitle={folderName}
+        renderContent={
+          <FolderList
+            folderList={folderList}
+            url={folderName}
+            handleModalClose={handleAddLinkClick}
+          />
+        }
+      />
+    </div>
   );
 };
 

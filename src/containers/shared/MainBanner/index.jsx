@@ -1,18 +1,28 @@
+import { useRouter } from 'next/router';
 import Image from 'next/image';
-
-import styles from './MainBanner.module.scss';
 import classNames from 'classnames/bind';
-
-import { LinkContext } from 'stores/provider/LinkProvider';
-import { useStoredData } from 'hooks/useStoredData';
+import { useQuery } from '@tanstack/react-query';
+import { getFolder } from 'apis/folder';
+import { getUser } from 'apis/user';
 import { ICON } from 'constants/importImg';
+import styles from './MainBanner.module.scss';
 
 const cx = classNames.bind(styles);
 const { avatar } = ICON;
 
 const MainBanner = () => {
-  const { storedData } = useStoredData(LinkContext);
-  const { name, owner } = storedData;
+  const router = useRouter();
+  const { folderId } = router.query;
+
+  const { data: folderInfo } = useQuery({
+    queryKey: ['folders', folderId],
+    queryFn: () => getFolder(folderId),
+  });
+
+  const { data: profileData } = useQuery({
+    queryKey: ['user'],
+    queryFn: getUser,
+  });
 
   return (
     <section className={cx('main-banner')}>
@@ -25,17 +35,18 @@ const MainBanner = () => {
                 <Image
                   fill
                   className={cx('profile-avatar-img')}
-                  src={owner.profileImageSource || avatar.default.url}
+                  src={profileData?.image_source || avatar.default.url}
                   alt={avatar.default.alt}
                 />
               </div>
-              <span className={cx('profile-name')}>{owner.name}</span>
+              <span className={cx('profile-name')}>{profileData?.name}</span>
             </div>
-            <h3 className={cx('folder-name')}>{name}</h3>
+            <h3 className={cx('folder-name')}>{folderInfo?.name}</h3>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
 export default MainBanner;

@@ -24,7 +24,9 @@ const MixButton = ({
       type={type}
       {...props}
     >
-      {startIcon && <Image src={startIcon} alt={alt} width={iconSize} />}
+      {startIcon && (
+        <Image src={startIcon} alt={alt} width={iconSize} height={iconSize} />
+      )}
       {text && (
         <span
           style={{ color: textColor }}
@@ -33,7 +35,7 @@ const MixButton = ({
           {text}
         </span>
       )}
-      {endIcon && <Image src={endIcon} alt={alt} width={iconSize} />}
+      {endIcon && <Image src={endIcon} alt={alt} width={iconSize} height={iconSize} />}
     </button>
   );
 };

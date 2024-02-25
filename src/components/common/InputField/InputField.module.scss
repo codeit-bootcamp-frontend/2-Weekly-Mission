@@ -1,0 +1,59 @@
+%input-base {
+  @include text-style(16, $blue-gray-100);
+
+  width: 100%;
+  padding: 1.8rem 1.5rem;
+  border-radius: 0.8rem;
+  border: 0.1rem solid $blue-gray-60;
+  background-color: $white;
+  transition: all ease-in-out 0.2s;
+
+  &::placeholder {
+    color: $blue-gray-80;
+  }
+
+  &:focus {
+    border-color: $primary;
+  }
+}
+
+.input-field {
+  @include column-flexbox(start, start, 1.2rem);
+
+  position: relative;
+  width: 100%;
+
+  &-label {
+    @include text-style(14, $black);
+  }
+
+  &-messsage {
+    @include text-style(14, $red);
+
+    position: absolute;
+    bottom: -1.8rem;
+    display: block;
+    width: 100%;
+  }
+
+  .input-group {
+    position: relative;
+    width: 100%;
+
+    .input {
+      @extend %input-base;
+
+      &.error {
+        border-color: $red;
+      }
+    }
+
+    .btn-password-toggle {
+      @include pos-center-y;
+
+      right: 1.5rem;
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+}

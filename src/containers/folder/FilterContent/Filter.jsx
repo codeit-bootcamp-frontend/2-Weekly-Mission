@@ -1,35 +1,32 @@
-import { useState } from 'react';
-
-import styles from './Filter.module.scss';
+import { useRouter } from 'next/router';
 import classNames from 'classnames/bind';
-
-import { FolderContext } from 'stores/provider/FolderProvider';
-import { useSetStoredData } from 'hooks/useStoredData';
-
-import StyledButton from 'components/common/Button/StyledButton';
+import { useFormContext } from 'react-hook-form';
 import IconButton from 'components/common/Button/IconButton';
 import MixButton from 'components/common/Button/MixButton';
-import Dialog from 'components/common/Modal';
-import Input from 'components/common/Input';
-
+import Modal from 'components/common/Modal';
+import AddFolder from 'containers/folder/ModalContent/AddFolder';
+import useModalState from 'hooks/useModalState';
 import { ICON } from 'constants/importImg';
+import styles from './Filter.module.scss';
 
 const cx = classNames.bind(styles);
 const { Addfilter } = ICON;
 
-const Filter = ({ filterData, setTitle }) => {
-  const { setCurrentId } = useSetStoredData(FolderContext);
-  const [isActiveId, setIsActiveId] = useState(undefined);
-  const [isFolderAddModalOpen, setIsFolderAddModalOpen] = useState(false);
+const Filter = ({ folderList, setFolderId, folderId, setTitle }) => {
+  const router = useRouter();
+  const { modalState, toggleModal } = useModalState(['addFolder']);
+  const { reset } = useFormContext();
 
   const handleFilterClick = (id, name) => {
-    setCurrentId(id);
-    setIsActiveId(id);
+    setFolderId(id);
     setTitle(name);
+    router.push(folderId ? `/folder/${folderId}` : '/folder');
   };
 
-  const handleFolderAdd = () => setIsFolderAddModalOpen(true);
-  const handleModalClose = () => setIsFolderAddModalOpen(false);
+  const handleAddFolderModalClose = () => {
+    toggleModal('addFolder');
+    reset();
+  };
 
   return (
     <>
@@ -39,7 +36,7 @@ const Filter = ({ filterData, setTitle }) => {
             <button
               type='button'
               className={cx('filter-outlined', 'filter-lg', {
-                'is-active': isActiveId === undefined,
+                'is-active': folderId === undefined,
               })}
               onClick={() => handleFilterClick(undefined, '전체')}
             >
@@ -47,7 +44,7 @@ const Filter = ({ filterData, setTitle }) => {
             </button>
           </li>
 
-          {filterData?.map((item) => (
+          {folderList?.map((item) => (
             <li
               key={item.id}
               className={cx('filter-list-item')}
@@ -56,7 +53,7 @@ const Filter = ({ filterData, setTitle }) => {
               <button
                 type='button'
                 className={cx('filter-outlined', 'filter-lg', {
-                  'is-active': isActiveId === item.id,
+                  'is-active': folderId === item.id,
                 })}
               >
                 <span className={cx('filter-lg-name')}>{item.name}</span>
@@ -71,7 +68,7 @@ const Filter = ({ filterData, setTitle }) => {
           alt={Addfilter.lg.alt}
           iconSize={16}
           showMode='lg'
-          onClick={handleFolderAdd}
+          onClick={() => toggleModal('addFolder')}
         />
 
         <MixButton
@@ -83,18 +80,21 @@ const Filter = ({ filterData, setTitle }) => {
           alt={Addfilter.sm.alt}
           showMode='sm'
           fill={true}
-          onClick={handleFolderAdd}
+          onClick={() => toggleModal('addFolder')}
         />
       </div>
 
-      {isFolderAddModalOpen && (
-        <Dialog modalTitle='폴더 추가' onClose={handleModalClose}>
-          <div className={cx('modal-content')}>
-            <Input placeholder='내용 입력' />
-          </div>
-          <StyledButton text='추가하기' size='lg' />
-        </Dialog>
-      )}
+      <Modal
+        isModalOpen={modalState.addFolder}
+        handleModalClose={handleAddFolderModalClose}
+        modalTitle='폴더 추가'
+        renderContent={
+          <AddFolder
+            toggleModal={toggleModal}
+            handleModalClose={handleAddFolderModalClose}
+          />
+        }
+      />
     </>
   );
 };

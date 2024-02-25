@@ -1,8 +1,11 @@
 .feature-content {
   width: 100%;
+  background-color: $white;
 
   &-save {
     .textbox-sub-title {
+      width: 25.9rem;
+
       span {
         @include gradient-text;
 
@@ -17,6 +20,8 @@
     }
 
     .textbox-sub-title {
+      width: 25.9rem;
+
       span {
         @include gradient-text;
 
@@ -27,6 +32,8 @@
 
   &-share {
     .textbox-sub-title {
+      width: 25.9rem;
+
       span {
         @include gradient-text;
 
@@ -41,6 +48,8 @@
     }
 
     .textbox-sub-title {
+      width: 25.9rem;
+
       span {
         @include gradient-text;
 
@@ -56,7 +65,7 @@
     .feature-wrapper {
       @include flexbox(between);
 
-      padding: 5rem 10.1rem;
+      padding: 5rem 0;
 
       .textbox {
         width: 29.1rem;
@@ -123,7 +132,7 @@
 
     .sm-only {
       .textbox-sub-title {
-        margin: 4rem 0 2rem;
+        padding: 4rem 0 2rem;
       }
 
       .textbox-desc {

@@ -41,6 +41,8 @@ const Footer = () => {
                     src={item.icon.url}
                     alt={item.icon.alt}
                     className={cx('social-list-item-link-icon')}
+                    width={20}
+                    height={20}
                   />
                 </Link>
               </li>

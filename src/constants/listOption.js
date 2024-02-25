@@ -63,11 +63,11 @@ export const SELECT_MENU = [
   {
     id: 1,
     name: '삭제하기',
-    type: 'remove',
+    type: 'deleteLink',
   },
   {
     id: 2,
     name: '폴더에 추가',
-    type: 'add',
+    type: 'addLink',
   },
 ];

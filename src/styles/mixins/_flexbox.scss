@@ -11,21 +11,33 @@ $flex-map: (
   @return map-get($flex-map, $key);
 }
 
-@mixin flexbox($jc: center, $ai: center) {
+@mixin flexbox($jc: center, $ai: center, $gap: false) {
   display: flex;
   align-items: flex-value($ai);
   justify-content: flex-value($jc);
+
+  @if type-of($gap) == number {
+    gap: $gap;
+  }
 }
 
-@mixin inline-flexbox($jc: center, $ai: center) {
+@mixin inline-flexbox($jc: center, $ai: center, $gap: false) {
   display: inline-flex;
   align-items: flex-value($ai);
   justify-content: flex-value($jc);
+
+  @if type-of($gap) == number {
+    gap: $gap;
+  }
 }
 
-@mixin column-flexbox($jc: center, $ai: center) {
+@mixin column-flexbox($jc: center, $ai: center, $gap: false) {
   display: flex;
   flex-direction: column;
   align-items: flex-value($ai);
   justify-content: flex-value($jc);
+
+  @if type-of($gap) == number {
+    gap: $gap;
+  }
 }

@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import {
   ACCESS_TOKEN,
   REFRESH_TOKEN,
@@ -7,7 +6,6 @@ import {
   REFRESH_TOKEN_URL,
   STATUS_CODE,
 } from 'constants/auth';
-
 import LocalStorage from 'services/localstorage';
 
 const instance = axios.create({
@@ -25,8 +23,7 @@ instance.interceptors.request.use(
     if (!accessToken) {
       return config;
     } else {
-      config.headers['Content-Type'] = 'application/json';
-      config.headers[AUTHORIZATION] = `${accessToken}`;
+      config.headers[AUTHORIZATION] = `Bearer ${accessToken}`;
     }
 
     return config;
@@ -59,7 +56,7 @@ instance.interceptors.response.use(
         return originalResponse;
       } else {
         LocalStorage.clear();
-        redirectToPage();
+        redirectToPage('/');
       }
     }
     return Promise.reject(error);

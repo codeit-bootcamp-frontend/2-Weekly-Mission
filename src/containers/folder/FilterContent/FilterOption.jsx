@@ -1,15 +1,15 @@
-import { useState } from 'react';
-
-import styles from './FilterOption.module.scss';
 import classNames from 'classnames/bind';
-
-import StyledButton from 'components/common/Button/StyledButton';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useFormContext } from 'react-hook-form';
+import { deleteFolder } from 'apis/folder';
+import BaseButton from 'components/common/Button/BaseButton';
 import MixButton from 'components/common/Button/MixButton';
-import Dialog from 'components/common/Modal';
-import Input from 'components/common/Input';
+import Modal from 'components/common/Modal';
 import SharedLink from 'containers/folder/ModalContent/SharedLink';
-
+import EditFolder from 'containers/folder/ModalContent/EditFolder';
+import useModalState from 'hooks/useModalState';
 import { ICON } from 'constants/importImg';
+import styles from './FilterOption.module.scss';
 
 const cx = classNames.bind(styles);
 const {
@@ -17,18 +17,28 @@ const {
 } = ICON;
 
 const FilterOptions = ({ currentFolder, currentFolderId }) => {
-  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
+  const { reset } = useFormContext();
+  const queryClient = useQueryClient();
+  const { modalState, toggleModal } = useModalState([
+    'shareFolder',
+    'editFolder',
+    'deleteFolder',
+  ]);
 
-  const handleFolderShareClick = () => setIsShareModalOpen(true);
-  const handleFolderEditClcik = () => setIsEditModalOpen(true);
-  const handleFolderRemoveClick = () => setIsRemoveModalOpen(true);
+  const handleFolderShareClick = () => toggleModal('shareFolder');
+  const handleFolderEditClcik = () => toggleModal('editFolder');
+  const handleFolderDeleteClick = () => toggleModal('deleteFolder');
 
-  const handleModalClose = () => {
-    setIsShareModalOpen(false);
-    setIsEditModalOpen(false);
-    setIsRemoveModalOpen(false);
+  const { mutate: deleteFolderMutation } = useMutation({
+    mutationFn: deleteFolder,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['folders'] });
+    },
+  });
+
+  const handleDeleteFolder = () => {
+    deleteFolderMutation(currentFolderId);
+    handleFolderDeleteClick();
   };
 
   return (
@@ -59,38 +69,44 @@ const FilterOptions = ({ currentFolder, currentFolderId }) => {
           startIcon={remove.url}
           iconSize={18}
           alt={remove.alt}
-          onClick={handleFolderRemoveClick}
+          onClick={handleFolderDeleteClick}
         />
       </div>
 
-      {isShareModalOpen && (
-        <Dialog
-          modalTitle='폴더 공유'
-          subTitle={currentFolder}
-          onClose={handleModalClose}
-        >
-          <SharedLink currentFolderId={currentFolderId} />
-        </Dialog>
-      )}
+      <Modal
+        isModalOpen={modalState.shareFolder}
+        handleModalClose={handleFolderShareClick}
+        modalTitle='폴더 공유'
+        subTitle={currentFolder}
+        renderContent={<SharedLink folderId={currentFolderId} />}
+      />
 
-      {isEditModalOpen && (
-        <Dialog modalTitle='폴더 이름 변경' onClose={handleModalClose}>
-          <div className={cx('modal-content')}>
-            <Input placeholder='내용 입력' />
-          </div>
-          <StyledButton text='변경하기' size='lg' />
-        </Dialog>
-      )}
+      <Modal
+        isModalOpen={modalState.editFolder}
+        handleModalClose={handleFolderEditClcik}
+        modalTitle='폴더 이름 변경'
+        renderContent={
+          <EditFolder
+            folderId={currentFolderId}
+            handleModalClose={handleFolderEditClcik}
+          />
+        }
+      ></Modal>
 
-      {isRemoveModalOpen && (
-        <Dialog
-          modalTitle='폴더 삭제'
-          subTitle={currentFolder}
-          onClose={handleModalClose}
-        >
-          <StyledButton text=' 삭제하기' variant='delete' size='lg' />
-        </Dialog>
-      )}
+      <Modal
+        isModalOpen={modalState.deleteFolder}
+        handleModalClose={handleFolderDeleteClick}
+        modalTitle='폴더 삭제'
+        subTitle={currentFolder}
+        renderContent={
+          <BaseButton
+            text=' 삭제하기'
+            variant='delete'
+            size='lg'
+            onClick={handleDeleteFolder}
+          />
+        }
+      />
     </>
   );
 };
