@@ -7,53 +7,81 @@ import FolderBadgeList from "../../components/domains/folder/FolderBadgeList";
 import FolderTitles from "../../components/domains/folder/folderTitle/FolderTitles";
 import FloatingButton from "../../components/domains/folder/FloatingButton";
 import { Link } from "../../types/common";
-import { DataContext } from "../../contexts/LocaleContext";
+import { FolderDataContext } from "../../contexts/LocaleContext";
 import { useRouter } from "next/router";
+import { getAllLinkData, getAllFolderData } from "../api/FolderApi";
+import { useQuery } from "@tanstack/react-query";
 
 function FolderPage() {
   const [searchLinks, setSearchLinks] = useState<Link[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-  const router = useRouter();
-  const { folderAllLinkInfo } = useContext(DataContext);
 
-  const searchLink = async (keyword: string) => {
-    const filteredLinks = folderAllLinkInfo.filter(
-      (link: Link) =>
-        link.url?.includes(keyword) ||
-        link.title?.includes(keyword) ||
-        link.description?.includes(keyword)
-    );
-    setSearchLinks(filteredLinks);
-  };
+  // const handleFolderListLoad = async () => {
+  //   const allLinksFolder = {
+  //     id: 0,
+  //     name: "전체",
+  //     user_id: 1
+  //   };
+  //   const { data: folder } = await getAllFolderData();
+  //   setFolderListInfo([allLinksFolder, ...folder.folder]);
+  // };
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-      router.push("/signin");
+  const { data: allLink } = useQuery({
+    queryKey: ["allLink "],
+    queryFn: async () => {
+      const response = await getAllLinkData();
+      return response;
     }
-  }, []);
+  });
+
+  const { data: folderList } = useQuery({
+    queryKey: ["folderList"],
+    queryFn: async () => {
+      const response = await getAllFolderData();
+      return response;
+    }
+  });
+
+  // console.log(folderList, allLink);
+
+  // const searchLink = async (keyword: string) => {
+  //   const filteredLinks = folderAllLinkInfo.filter(
+  //     (link: Link) =>
+  //       link.url?.includes(keyword) ||
+  //       link.title?.includes(keyword) ||
+  //       link.description?.includes(keyword)
+  //   );
+  //   setSearchLinks(filteredLinks);
+  // };
+
+  // useEffect(() => {
+  //   const accessToken = localStorage.getItem("accessToken");
+  //   if (!accessToken) {
+  //     router.push("/signin");
+  //   }
+  // }, []);
 
   return (
-    <>
+    <FolderDataContext.Provider
+      value={{
+        allLink,
+        folderList
+      }}
+    >
       <AddLinkBanner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
           <SearchInput
             searchKeyword={searchKeyword}
             setSearchKeyword={setSearchKeyword}
-            onSearch={searchLink}
           />
           <FolderBadgeList />
           <FolderTitles searchKeyword={searchKeyword} />
-          {searchKeyword == "" ? (
-            <CardList links={folderAllLinkInfo} />
-          ) : (
-            <CardList links={searchLinks} />
-          )}
+          <CardList links={searchKeyword == "" ? allLink : searchLinks} />
         </div>
       </section>
       <FloatingButton />
-    </>
+    </FolderDataContext.Provider>
   );
 }
 

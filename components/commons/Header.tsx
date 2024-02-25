@@ -8,7 +8,7 @@ import { DataContext } from "../../contexts/LocaleContext";
 function Header() {
   const { userInfo } = useContext(DataContext);
   const { accessToken } = useAccessToken();
-
+  console.log(userInfo);
   return (
     <HeaderLayout>
       <HeaderBox>

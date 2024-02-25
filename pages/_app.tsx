@@ -26,14 +26,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const Modal = modals.get(modal.name);
   const { folderId }: ParsedUrlQuery = router.query;
 
-  // const handleSharedLinksInfoLoad = async (
-  //   userId: number,
-  //   folderId: string
-  // ) => {
-  //   const { data } = await getLinkData(userId, folderId);
-  //   setSharedLinkInfo(data);
-  // };
-
   // const handleFolderListLoad = async () => {
   //   const allLinksFolder = {
   //     id: 0,

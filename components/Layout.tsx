@@ -5,10 +5,19 @@ import { getOwnerData, getFolderData } from "../pages/api/SharedApi";
 import { useRouter, NextRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { DataContext } from "../contexts/LocaleContext";
+import { getUserData } from "../pages/api/FolderApi";
 
 export default function Layout({ children }) {
   const router: NextRouter = useRouter();
   const { folderId }: ParsedUrlQuery = router.query;
+
+  const { data: userInfo } = useQuery({
+    queryKey: ["userInfo"],
+    queryFn: async () => {
+      const response = await getUserData();
+      return response[0];
+    }
+  });
 
   const { data: folderInfo } = useQuery({
     queryKey: ["folderInfo", folderId],
@@ -20,7 +29,7 @@ export default function Layout({ children }) {
     staleTime: Infinity
   });
 
-  const { data: userInfo } = useQuery({
+  const { data: folderOwnerInfo } = useQuery({
     queryKey: ["userInfo", folderInfo?.user_id],
     queryFn: async () => {
       const response = await getOwnerData(folderInfo.user_id);
@@ -29,6 +38,7 @@ export default function Layout({ children }) {
     enabled: !!folderInfo,
     staleTime: Infinity
   });
+  console.log("이건뭐지:", folderInfo);
 
   console;
   return (
