@@ -9,45 +9,61 @@
   background-color: $white;
   animation: show-modal ease-in-out 0.3s;
 
-  &-btn-close {
+  &-overlay {
     @include flexbox;
 
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: 50%;
-    background-color: $blue-gray-40;
-    cursor: pointer;
-
-    i {
-      font-size: 1.6rem;
-    }
+    position: fixed;
+    inset: 0;
+    background: rgba(0 0 0 / 40%);
+    box-shadow: 0 4px 25px 0 rgba(0 0 0 / 10%);
+    z-index: $overlay-level;
+    overflow: hidden;
   }
 
   &-header {
     width: 100%;
-    text-align: center;
-    padding-bottom: 2.4rem;
 
-    &-title {
-      @include text-style(20, $blue-gray-100);
+    &-btn-close {
+      @include flexbox;
+
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      background-color: $blue-gray-40;
+      cursor: pointer;
+
+      i {
+        font-size: 1.6rem;
+      }
     }
 
-    &-sub-title {
-      @include text-style(14, $blue-gray-80);
+    &-inner {
+      width: 100%;
+      text-align: center;
+      padding-bottom: 2.4rem;
 
-      margin-top: 0.8rem;
+      &-title {
+        @include text-style(20, $blue-gray-100);
+      }
+
+      &-sub {
+        @include text-style(14, $blue-gray-80);
+
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 0.8rem;
+      }
     }
   }
+}
 
-  &-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-  }
+.body-open {
+  overflow: hidden;
 }
 
 @keyframes show-modal {
