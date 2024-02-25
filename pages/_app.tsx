@@ -17,8 +17,6 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   const { modal, openModal, closeModal } = useModal();
-  const [folderInfo, setFolderInfo] = useState<FolderInfo[]>([]);
-  const [userInfo, setUserInfo] = useState<UserInfo[]>([]);
   const [sharedLinkInfo, setSharedLinkInfo] = useState<Link[]>([]);
   const [folderAllLinkInfo, setFolderAllLinkInfo] = useState<Link[]>([]);
   const [folderListInfo, setFolderListInfo] = useState<Link[]>([]);
@@ -27,21 +25,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const pathname = router.pathname;
   const Modal = modals.get(modal.name);
   const { folderId }: ParsedUrlQuery = router.query;
-
-  // const handleFolderInfoLoad = async () => {
-  //   const { data } = await getFolderData(folderId as string);
-  //   setFolderInfo(data);
-
-  //   if (data && data.length > 0 && data[0].user_id) {
-  //     handleUserInfoLoad(data[0].user_id);
-  //   }
-  // };
-
-  // const handleUserInfoLoad = async (userId: number) => {
-  //   const { data } = await getOwnerData(userId);
-  //   setUserInfo(data[0]);
-  //   handleSharedLinksInfoLoad(data[0].id, folderId as string);
-  // };
 
   // const handleSharedLinksInfoLoad = async (
   //   userId: number,
@@ -77,14 +60,12 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
-
       <ModalContext.Provider value={{ openModal, closeModal }}>
         {modal.isOpen && Modal ? <Modal onConfirm={closeModal} /> : null}
         <Layout>
           <Component closeModal={closeModal} {...pageProps} />
         </Layout>
       </ModalContext.Provider>
-
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
