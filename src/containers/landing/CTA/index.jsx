@@ -15,7 +15,7 @@ const CTA = () => {
               <span className={cx('br', 'title-br')}>
                 <span className={cx('title-gradient')}>세상의 모든 정보</span>를
               </span>
-              <span className={cx('br')}>쉽게 저장하고</span>
+              <span className={cx('br')}>쉽게 저장하고 </span>
               <span className={cx('br')}>관리해 보세요</span>
             </h2>
             <LinkButton

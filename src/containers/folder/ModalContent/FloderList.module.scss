@@ -1,38 +1,67 @@
-.add-folder-list {
+.add-folder {
   width: 100%;
-  margin-bottom: 2.4rem;
 
-  &-item {
-    display: flex;
-    align-items: center;
+  &-list {
     width: 100%;
-    padding: 8px;
-    border-radius: 8px;
-    background-color: $white;
-    cursor: pointer;
+    margin-bottom: 2.4rem;
+    padding-right: 1rem;
+    max-height: 17.2rem;
+    overflow-y: auto;
 
-    p {
-      font-size: 16px;
-      line-height: 24px;
-      color: $blue-gray-100;
+    &::-webkit-scrollbar {
+      width: 0.6rem;
     }
 
-    span {
-      font-size: 14px;
-      color: $blue-gray-80;
-      margin-left: 8px;
+    &::-webkit-scrollbar-thumb {
+      background-color: $blue-gray-80;
+      border-radius: 6rem;
     }
 
-    &:not(:last-child) {
-      margin-bottom: 4px;
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
     }
 
-    &:hover {
-      background-color: $light-blue;
-    }
+    &-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: $white;
+      transition: all ease-in-out 0.2s;
+      cursor: pointer;
 
-    &:hover p {
-      color: $primary;
+      p {
+        font-size: 16px;
+        line-height: 24px;
+        color: $blue-gray-100;
+      }
+
+      span {
+        font-size: 14px;
+        color: $blue-gray-80;
+        margin-left: 8px;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 4px;
+      }
+
+      &:hover {
+        background-color: $light-blue;
+      }
+
+      &:hover p {
+        color: $primary;
+      }
+
+      &.active {
+        background-color: $light-blue;
+
+        p {
+          color: $primary;
+        }
+      }
     }
   }
 }

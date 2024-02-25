@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
-
-import styles from './SharedLink.module.scss';
 import classNames from 'classnames/bind';
-
-import { shareKakaoLink } from 'utils';
+import { useQuery } from '@tanstack/react-query';
+import { getUser } from 'apis/user';
 import IconButton from 'components/common/Button/IconButton';
-
+import { shareKakaoLink } from 'utils';
 import { ICON } from 'constants/importImg';
+import styles from './SharedLink.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -14,10 +13,16 @@ const {
   shared: { kakao, facebook, linkcopy },
 } = ICON;
 
-const ShareLink = ({ currentFolderId }) => {
-  const userId = 1;
+const ShareLink = ({ folderId }) => {
   const currentURL = window.location.href;
-  const shareURL = `${currentURL}/shared?user=${userId}&folder=${currentFolderId}`;
+  const { data: userInfo } = useQuery({
+    queryKey: ['user'],
+    queryFn: getUser,
+  });
+
+  const userId = userInfo?.id;
+
+  const shareURL = `${currentURL}/shared?user=${userId}&folder=${folderId}`;
 
   useEffect(() => {
     const script = document.createElement('script');

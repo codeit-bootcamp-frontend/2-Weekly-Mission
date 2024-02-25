@@ -1,29 +1,46 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import styles from './CardItem.module.scss';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteLink } from 'apis/link';
 import classNames from 'classnames/bind';
-
-import StyledButton from 'components/common/Button/StyledButton';
+import BaseButton from 'components/common/Button/BaseButton';
 import IconButton from 'components/common/Button/IconButton';
-import Dialog from 'components/common/Modal';
+import Modal from 'components/common/Modal';
 import FolderList from 'containers/folder/ModalContent/FolderList';
-
+import useModalState from 'hooks/useModalState';
 import { getDateDiff, getFormatDate, handleOutsideClick } from 'utils';
-
 import { IMAGE_URL, ICON } from 'constants/importImg';
 import { SELECT_MENU } from 'constants/listOption';
+import styles from './CardItem.module.scss';
 
 const cx = classNames.bind(styles);
 const { empty } = IMAGE_URL;
 const { star, more } = ICON;
 
-const CardItem = ({ url, image_source, created_at, description, filterData }) => {
+const CardItem = ({ id, url, image_source, created_at, description, folderList }) => {
   const selectRef = useRef(null);
+  const queryClient = useQueryClient();
+  const { modalState, toggleModal } = useModalState(['addLink', 'deleteLink']);
   const [toggle, setToggle] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
-  const [modalType, setModalType] = useState(null);
+  const { mutate: deleteLinkMutation } = useMutation({
+    mutationFn: deleteLink,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['folders', folderId, 'links'] });
+    },
+  });
+
+  const handleStarToggleClick = () => setToggle((prev) => !prev);
+  const handleMenuClick = () => setIsMenuActive((prev) => !prev);
+  const handleClose = () => setIsMenuActive(false);
+  const handleModalType = (type) => {
+    toggleModal(type);
+  };
+  const handleDeleteLink = () => {
+    deleteLinkMutation(id);
+    toggleModal('deleteLink');
+  };
 
   useEffect(() => {
     const handleClick = (e) => {
@@ -32,15 +49,6 @@ const CardItem = ({ url, image_source, created_at, description, filterData }) =>
     window.addEventListener('mousedown', handleClick);
     return () => window.removeEventListener('mousedown', handleClick);
   }, []);
-
-  const handleModalType = (type) => {
-    setModalType(type);
-  };
-
-  const handleModalClose = () => setModalType(null);
-  const handleStarToggleClick = () => setToggle((prev) => !prev);
-  const handleMenuClick = () => setIsMenuActive((prev) => !prev);
-  const handleClose = () => setIsMenuActive(false);
 
   return (
     <>
@@ -59,6 +67,7 @@ const CardItem = ({ url, image_source, created_at, description, filterData }) =>
           <Link className={cx('card-item-imgbox')} href={url}>
             <Image
               fill
+              sizes='100%'
               src={image_source || empty.url}
               alt='link-thumbnail'
               className={cx('card-item-imgbox-img')}
@@ -106,22 +115,34 @@ const CardItem = ({ url, image_source, created_at, description, filterData }) =>
         </div>
       </div>
 
-      {modalType === 'remove' && (
-        <Dialog onClose={handleModalClose} modalTitle='링크 삭제' subTitle={url}>
-          <div className={cx('modal-content')}>
-            <StyledButton text='삭제하기' variant='delete' size='lg' />
-          </div>
-        </Dialog>
-      )}
+      <Modal
+        isModalOpen={modalState.addLink}
+        handleModalClose={() => toggleModal('addLink')}
+        modalTitle='폴더에 추가'
+        subTitle={url}
+        renderContent={
+          <FolderList
+            folderList={folderList}
+            url={url}
+            handleModalClose={() => toggleModal('addLink')}
+          />
+        }
+      />
 
-      {modalType === 'add' && (
-        <Dialog onClose={handleModalClose} modalTitle='폴더에 추가' subTitle={url}>
-          <div className={cx('modal-content')}>
-            <FolderList folderList={filterData} />
-            <StyledButton text='추가하기' size='lg' />
-          </div>
-        </Dialog>
-      )}
+      <Modal
+        isModalOpen={modalState.deleteLink}
+        handleModalClose={() => toggleModal('deleteLink')}
+        modalTitle='링크 삭제'
+        subTitle={url}
+        renderContent={
+          <BaseButton
+            text='삭제하기'
+            variant='delete'
+            size='lg'
+            onClick={handleDeleteLink}
+          />
+        }
+      />
     </>
   );
 };

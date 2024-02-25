@@ -3,7 +3,7 @@ const APP_KEY = process.env.KAKAO_APP_KEY;
 export const shareKakaoLink = (url, image) => {
   const kakao = window.Kakao;
 
-  if (!window.Kakao) {
+  if (!kakao) {
     return;
   }
 

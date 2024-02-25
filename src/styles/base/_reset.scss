@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: $font-main;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -15,7 +14,6 @@ html {
 
 body {
   color: $blue-gray-100;
-  font-family: $font-main;
 }
 
 h1 {
