@@ -1,0 +1,23 @@
+.loading-spinner {
+  @include flexbox;
+
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: $primary;
+  z-index: $overlay-level;
+
+  .spinner {
+    @include column-flexbox;
+
+    h1 {
+      @include text-style(16);
+
+      margin-top: 1.6rem;
+      color: $white;
+    }
+  }
+}
