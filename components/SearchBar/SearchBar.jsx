@@ -13,7 +13,7 @@ export const SearchBar = ({ value, onChange, onCloseClick }) => {
       <div className={styles["search-icon"]}>
         <Image
           fill
-          src="/serach.svg"
+          src="/search.svg"
           alt="검색창인 것을 알려주는 돋보기 아이콘"
         />
       </div>

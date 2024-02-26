@@ -1,30 +1,55 @@
-// Input.jsx
-
-import React, { forwardRef } from "react";
 import classNames from "classnames";
 import styles from "./Input.module.css";
+import Image from "next/image";
 
-const Input = forwardRef(
-  ({ state, type = "text", placeholder, errorMessage, ...props }, ref) => {
-    const combinedStyles = classNames(styles["input-base"], {
-      [styles["input-state"]]: state === "error",
-    });
-
-    return (
-      <>
+const Input = ({
+  label,
+  type,
+  error,
+  placeholder,
+  id,
+  value,
+  onKeyPress,
+  onChangeType,
+  onChange,
+  defaultValue,
+  registerConfig,
+}) => {
+  return (
+    <>
+      <label className={styles.label} htmlFor={id}>
+        {label}
+      </label>
+      <div className={styles.inputBox}>
         <input
-          ref={ref}
+          className={classNames(styles.input, { [styles.error]: error })}
           type={type}
-          className={combinedStyles}
+          id={id}
           placeholder={placeholder}
-          {...props}
+          defaultValue={defaultValue}
+          value={value}
+          onChange={onChange}
+          {...registerConfig}
         />
-        {errorMessage && (
-          <p className={styles["error-message"]}>{errorMessage}</p>
+        {(type === "password" || type === "text") && onChangeType && (
+          <button
+            className={classNames(styles.imgWrapper)}
+            onClick={onChangeType}
+            type="button"
+            tabIndex={-1}
+          >
+            <Image
+              src={`/eye-${type === "password" ? "off" : "on"}.svg`}
+              alt="eye-icon"
+              width={24}
+              height={24}
+            />
+          </button>
         )}
-      </>
-    );
-  }
-);
+      </div>
+      {error && <p className={styles.errorMessage}>{error}</p>}
+    </>
+  );
+};
 
 export default Input;
