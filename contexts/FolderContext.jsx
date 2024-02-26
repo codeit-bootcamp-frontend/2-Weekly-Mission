@@ -4,13 +4,7 @@ const FolderContext = createContext();
 
 export function FolderContextProvider({ children }) {
   const [folderList, setFolderList] = useState([]);
-  const [clickedOption, setClickedOption] = useState({
-    addFolderLink: false,
-    shareFolder: false,
-    editFolderName: false,
-    deleteFolder: false,
-    addNewFolder: false,
-  });
+  const [clickedOption, setClickedOption] = useState({});
   const [addedLink, setAddedLink] = useState('');
   const [keyword, setKeyword] = useState('');
   const [filteredLinks, setFilteredLinks] = useState([]);
@@ -21,8 +15,8 @@ export function FolderContextProvider({ children }) {
       value={{
         clickedOption,
         setClickedOption,
-        setAddedLink,
         addedLink,
+        setAddedLink,
         folderList,
         setFolderList,
         keyword,

@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { Dispatch, SetStateAction, createContext, useState } from 'react';
 
 const KebabContext = createContext();
 
