@@ -13,7 +13,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { modal, openModal, closeModal } = useModal();
   const [sharedLinkInfo, setSharedLinkInfo] = useState<Link[]>([]);
   const [folderAllLinkInfo, setFolderAllLinkInfo] = useState<Link[]>([]);
   const [folderListInfo, setFolderListInfo] = useState<Link[]>([]);
@@ -47,11 +46,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
-      <ModalContext.Provider value={{ modal, openModal, closeModal }}>
-        <Layout>
-          <Component closeModal={closeModal} {...pageProps} />
-        </Layout>
-      </ModalContext.Provider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

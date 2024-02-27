@@ -12,12 +12,12 @@ import { getAllLinkData, getAllFolderData } from "../api/FolderApi";
 import { useQuery } from "@tanstack/react-query";
 import Modal from "../../components/commons/modals";
 import ModalPortal from "../../components/commons/modals/ModalPortal";
-import { useContext } from "react";
+import useModal from "../../hook/useModal";
 
 function FolderPage() {
+  const { modal, openModal, closeModal } = useModal();
   const [searchLinks, setSearchLinks] = useState<Link[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-  const { modal } = useContext<ModalControl>(ModalContext);
 
   // const handleFolderListLoad = async () => {
   //   const allLinksFolder = {
@@ -65,31 +65,33 @@ function FolderPage() {
   // }, []);
 
   return (
-    <FolderDataContext.Provider
-      value={{
-        allLink,
-        folderList
-      }}
-    >
-      <AddLinkBanner />
-      <section className={styles.contentFlex}>
-        <div className={styles.contentBox}>
-          <SearchInput
-            searchKeyword={searchKeyword}
-            setSearchKeyword={setSearchKeyword}
-          />
-          <FolderBadgeList />
-          <FolderTitles searchKeyword={searchKeyword} />
-          <CardList links={searchKeyword == "" ? allLink : searchLinks} />
-        </div>
-      </section>
-      <FloatingButton />
-      {modal?.isOpen ? (
-        <ModalPortal>
-          <Modal title={modal?.title} />
-        </ModalPortal>
-      ) : null}
-    </FolderDataContext.Provider>
+    <ModalContext.Provider value={{ modal, openModal, closeModal }}>
+      <FolderDataContext.Provider
+        value={{
+          allLink,
+          folderList
+        }}
+      >
+        <AddLinkBanner />
+        <section className={styles.contentFlex}>
+          <div className={styles.contentBox}>
+            <SearchInput
+              searchKeyword={searchKeyword}
+              setSearchKeyword={setSearchKeyword}
+            />
+            <FolderBadgeList />
+            <FolderTitles searchKeyword={searchKeyword} />
+            <CardList links={searchKeyword == "" ? allLink : searchLinks} />
+          </div>
+        </section>
+        <FloatingButton />
+        {modal?.isOpen ? (
+          <ModalPortal>
+            <Modal title={modal?.title} onClose={closeModal} />
+          </ModalPortal>
+        ) : null}
+      </FolderDataContext.Provider>
+    </ModalContext.Provider>
   );
 }
 

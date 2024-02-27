@@ -3,14 +3,14 @@ import CloseButton from "../modals/commons/CloseButton";
 import SubmitButton from "./commons/SubmitButton";
 import { modalContentsList } from "./modalContentsList";
 
-export default function Modal({ title }) {
+export default function Modal({ title, onClose }) {
   const ModalComponent = modalContentsList.get(title);
 
   return (
     <ModalLayout>
       <ModalBox>
         <h3>{title}</h3>
-        <CloseButton />
+        <CloseButton onClose={onClose} />
         {ModalComponent && <ModalComponent />}
         {title !== "폴더 공유" ? (
           <SubmitButton title={title} type="button" />
