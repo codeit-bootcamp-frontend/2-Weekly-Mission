@@ -19,7 +19,7 @@ function FolderBadgeList() {
         </FolderBadges>
         <AddLink
           onClick={() => {
-            openModal("폴더추가");
+            openModal("폴더 추가");
           }}
         >
           +

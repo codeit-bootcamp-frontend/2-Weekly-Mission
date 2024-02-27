@@ -4,10 +4,8 @@ import { ModalContext } from "../contexts/LocaleContext";
 import GlobalStyle from "../styles/GlobalStyles";
 import useModal from "../hook/useModal";
 import { NextRouter, useRouter } from "next/router";
-import { getFolderData, getOwnerData, getLinkData } from "./api/SharedApi";
 import { UserInfo, FolderInfo, Link } from "../types/common";
 import { ParsedUrlQuery } from "querystring";
-import { getAllLinkData, getAllFolderData } from "./api/FolderApi";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import Layout from "../components/Layout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -21,7 +19,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const [folderListInfo, setFolderListInfo] = useState<Link[]>([]);
 
   const router: NextRouter = useRouter();
-  const pathname = router.pathname;
   const { folderId }: ParsedUrlQuery = router.query;
 
   // const handleFolderListLoad = async () => {
@@ -50,7 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
-      <ModalContext.Provider value={{ openModal, closeModal }}>
+      <ModalContext.Provider value={{ modal, openModal, closeModal }}>
         <Layout>
           <Component closeModal={closeModal} {...pageProps} />
         </Layout>

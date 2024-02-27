@@ -39,7 +39,6 @@ export default function Layout({ children }) {
     staleTime: Infinity
   });
 
-  console;
   return (
     <>
       <DataContext.Provider

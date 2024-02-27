@@ -5,12 +5,13 @@ import { modalContentsList } from "./modalContentsList";
 
 export default function Modal({ title }) {
   const ModalComponent = modalContentsList.get(title);
+
   return (
     <ModalLayout>
       <ModalBox>
         <h3>{title}</h3>
         <CloseButton />
-        <ModalComponent />
+        {ModalComponent && <ModalComponent />}
         {title !== "폴더 공유" ? (
           <SubmitButton title={title} type="button" />
         ) : null}

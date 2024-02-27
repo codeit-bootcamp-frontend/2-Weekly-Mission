@@ -10,7 +10,6 @@ export async function signUp(email: string, password: string) {
 
     if (response.status === 200) {
       window.location.href = "../sigin";
-      console.log("가입완료");
     }
   } catch (error) {
     console.log(error);

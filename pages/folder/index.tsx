@@ -7,14 +7,17 @@ import FolderBadgeList from "../../components/domains/folder/FolderBadgeList";
 import FolderTitles from "../../components/domains/folder/folderTitle/FolderTitles";
 import FloatingButton from "../../components/domains/folder/FloatingButton";
 import { Link } from "../../types/common";
-import { FolderDataContext } from "../../contexts/LocaleContext";
+import { FolderDataContext, ModalContext } from "../../contexts/LocaleContext";
 import { getAllLinkData, getAllFolderData } from "../api/FolderApi";
 import { useQuery } from "@tanstack/react-query";
 import Modal from "../../components/commons/modals";
+import ModalPortal from "../../components/commons/modals/ModalPortal";
+import { useContext } from "react";
 
 function FolderPage() {
   const [searchLinks, setSearchLinks] = useState<Link[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const { modal } = useContext<ModalControl>(ModalContext);
 
   // const handleFolderListLoad = async () => {
   //   const allLinksFolder = {
@@ -68,7 +71,6 @@ function FolderPage() {
         folderList
       }}
     >
-      <Modal title="폴더에 추가" />
       <AddLinkBanner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>
@@ -82,6 +84,11 @@ function FolderPage() {
         </div>
       </section>
       <FloatingButton />
+      {modal?.isOpen ? (
+        <ModalPortal>
+          <Modal title={modal?.title} />
+        </ModalPortal>
+      ) : null}
     </FolderDataContext.Provider>
   );
 }

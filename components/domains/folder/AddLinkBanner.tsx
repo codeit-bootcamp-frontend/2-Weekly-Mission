@@ -19,7 +19,7 @@ function AddLinkBanner() {
         />
         <button
           onClick={() => {
-            openModal("폴더에 추가");
+            openModal("추가하기");
           }}
           type="button"
         >
