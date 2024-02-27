@@ -1,23 +1,24 @@
-import { axiosInstance, useAsync } from "@/src/sharing/util";
-import { useCallback } from "react";
+import { axiosInstance, useAsync } from '@/src/sharing/util';
+import { useMutation } from '@tanstack/react-query';
+import { useCallback } from 'react';
 
 export const useCheckEmailDuplicate = (email: string) => {
   const checkEmailDuplicate = useCallback(
     () =>
-      axiosInstance.post<{ data: { isUsableNickname: boolean } }>("check-email", {
+      axiosInstance.post<{ isUsableNickname: boolean }>('users/check-email', {
         email,
       }),
     [email]
   );
-  const { execute, loading, error, data } = useAsync({
-    asyncFunction: checkEmailDuplicate,
-    lazyMode: true,
+
+  const { data, isPending, isError, mutate } = useMutation({
+    mutationFn: checkEmailDuplicate,
   });
 
   return {
-    execute,
-    loading,
-    error,
+    mutate,
+    isPending,
+    isError,
     data,
   };
 };

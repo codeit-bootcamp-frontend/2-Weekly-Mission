@@ -16,17 +16,18 @@ export const SignUpForm = () => {
     mode: 'onBlur',
     reValidateMode: 'onBlur',
   });
-  const { execute } = useCheckEmailDuplicate(watch('email'));
+  const { mutate: mutateEmail, data: checkEmailResult } =
+    useCheckEmailDuplicate(watch('email'));
 
-  const { mutate, data } = useSignUp({
+  const { mutate: mutateSignUp, data: signUpResult } = useSignUp({
     email: watch('email'),
     password: watch('password'),
   });
 
-  useTokenRedirect(data?.data.accessToken);
+  useTokenRedirect(signUpResult?.data.accessToken);
 
   return (
-    <form className={cx('form')} onSubmit={handleSubmit(() => mutate())}>
+    <form className={cx('form')} onSubmit={handleSubmit(() => mutateSignUp())}>
       <div className={cx('input-box')}>
         <label className={cx('label')}>이메일</label>
         <Controller
@@ -40,8 +41,8 @@ export const SignUpForm = () => {
             },
             validate: {
               alreadyExist: async () => {
-                const response = await execute();
-                if (!response?.data?.data.isUsableNickname) {
+                mutateEmail();
+                if (!checkEmailResult?.data.isUsableNickname) {
                   return ERROR_MESSAGE.emailAlreadyExist;
                 }
                 return true;
