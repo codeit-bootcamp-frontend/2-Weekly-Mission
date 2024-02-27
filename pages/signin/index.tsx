@@ -1,7 +1,11 @@
-import { SignLayout } from "@/components/page-layout/SignLayout/SignLayout";
-import { SignInForm } from "@/components/sign/ui-sign-in-form/SignInForm";
-import { SignHeader } from "@/components/sign/ui-sign-header/SignHeader";
+import AuthForm from "@/components/Auth/Form";
 
 export default function Signin() {
-  return <SignLayout header={<SignHeader />} signForm={<SignInForm />} />;
+  return (
+    <div>
+      로그인
+      <br />
+      <AuthForm />
+    </div>
+  );
 }
