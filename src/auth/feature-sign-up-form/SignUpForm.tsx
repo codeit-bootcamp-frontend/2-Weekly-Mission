@@ -40,9 +40,9 @@ export const SignUpForm = () => {
               message: ERROR_MESSAGE.emailInvalid,
             },
             validate: {
-              alreadyExist: async () => {
+              alreadyExist: () => {
                 mutateEmail();
-                if (!checkEmailResult?.data.isUsableNickname) {
+                if (!checkEmailResult?.data.isUsableEmail) {
                   return ERROR_MESSAGE.emailAlreadyExist;
                 }
                 return true;
