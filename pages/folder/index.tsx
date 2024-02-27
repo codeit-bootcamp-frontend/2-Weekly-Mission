@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import AddLinkBanner from "../../components/domains/folder/AddLinkBanner";
 import CardList from "../../components/commons/CardList";
 import SearchInput from "../../components/commons/SearchInput";
@@ -8,9 +8,9 @@ import FolderTitles from "../../components/domains/folder/folderTitle/FolderTitl
 import FloatingButton from "../../components/domains/folder/FloatingButton";
 import { Link } from "../../types/common";
 import { FolderDataContext } from "../../contexts/LocaleContext";
-import { useRouter } from "next/router";
 import { getAllLinkData, getAllFolderData } from "../api/FolderApi";
 import { useQuery } from "@tanstack/react-query";
+import Modal from "../../components/commons/modals";
 
 function FolderPage() {
   const [searchLinks, setSearchLinks] = useState<Link[]>([]);
@@ -68,6 +68,7 @@ function FolderPage() {
         folderList
       }}
     >
+      <Modal title="폴더에 추가" />
       <AddLinkBanner />
       <section className={styles.contentFlex}>
         <div className={styles.contentBox}>

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SharedPage from "./shared/[folderId]";
+import SharedPage from "./shared";
 
 export default function HomePage() {
   return (

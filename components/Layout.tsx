@@ -38,7 +38,6 @@ export default function Layout({ children }) {
     enabled: !!folderInfo,
     staleTime: Infinity
   });
-  console.log("이건뭐지:", folderInfo);
 
   console;
   return (

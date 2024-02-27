@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { ModalContext } from "../contexts/LocaleContext";
 import GlobalStyle from "../styles/GlobalStyles";
 import useModal from "../hook/useModal";
-import { modals } from "../components/commons/modals/modalList";
 import { NextRouter, useRouter } from "next/router";
 import { getFolderData, getOwnerData, getLinkData } from "./api/SharedApi";
 import { UserInfo, FolderInfo, Link } from "../types/common";
@@ -23,7 +22,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const router: NextRouter = useRouter();
   const pathname = router.pathname;
-  const Modal = modals.get(modal.name);
   const { folderId }: ParsedUrlQuery = router.query;
 
   // const handleFolderListLoad = async () => {
@@ -53,7 +51,6 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
       <ModalContext.Provider value={{ openModal, closeModal }}>
-        {modal.isOpen && Modal ? <Modal onConfirm={closeModal} /> : null}
         <Layout>
           <Component closeModal={closeModal} {...pageProps} />
         </Layout>
