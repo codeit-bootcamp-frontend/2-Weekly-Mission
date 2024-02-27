@@ -8,7 +8,7 @@ type UseSignUpParams = { email: string; password: string };
 export const useSignUp = ({ email, password }: UseSignUpParams) => {
   const signUp = useCallback(
     () =>
-      axiosInstance.post<Token>('sign-up', {
+      axiosInstance.post<Token>('auth/sign-up', {
         email,
         password,
       }),
