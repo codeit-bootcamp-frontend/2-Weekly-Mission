@@ -1,6 +1,6 @@
 import Footer from "./commons/Footer";
 import Header from "./commons/Header";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getOwnerData, getFolderData } from "../pages/api/SharedApi";
 import { useRouter, NextRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";

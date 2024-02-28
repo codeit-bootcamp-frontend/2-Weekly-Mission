@@ -18,4 +18,4 @@ const Header = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default c;
+export default Header;
