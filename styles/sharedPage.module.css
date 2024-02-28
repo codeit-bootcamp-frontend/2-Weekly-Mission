@@ -1,0 +1,9 @@
+.contentFlex {
+  display: flex;
+  justify-content: center;
+}
+
+.contentBox {
+  width: 106rem;
+  margin-top: 4rem;
+}
