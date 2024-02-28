@@ -1,13 +1,17 @@
 import axios from 'axios';
-import { getToken, isTokenExpired, tokenRefresh } from '@/utils/getTokenInfo';
+import {
+  getCookie,
+  isTokenExpired,
+  tokenRefresh,
+} from '@/utils/manageTokenInfo';
 
-const instance = axios.create({
-  baseURL: 'https://bootcamp-api.codeit.kr/api/',
+export const axiosInstanceWithToken = axios.create({
+  baseURL: 'https://bootcamp-api.codeit.kr/api/linkbrary/v1',
 });
 
-instance.interceptors.request.use(
+axiosInstanceWithToken.interceptors.request.use(
   (config) => {
-    const accessToken = getToken();
+    const accessToken = getCookie('accessToken');
 
     config.headers['Content-Type'] = 'application/json';
     config.headers['Authorization'] = `Bearer ${accessToken}`;
@@ -20,7 +24,7 @@ instance.interceptors.request.use(
   }
 );
 
-instance.interceptors.response.use(
+axiosInstanceWithToken.interceptors.response.use(
   (response) => {
     if (response.status === 404) {
       console.log('404 페이지로 넘어가야 함!');
@@ -32,7 +36,7 @@ instance.interceptors.response.use(
     if (error.response?.status === 401) {
       if (isTokenExpired()) await tokenRefresh();
 
-      const accessToken = getToken();
+      const accessToken = getCookie('accessToken');
 
       error.config.headers = {
         'Content-Type': 'application/json',
@@ -45,5 +49,3 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-export default instance;

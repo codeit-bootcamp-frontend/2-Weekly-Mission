@@ -1,9 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getFolderListQueryKey } from '@/api/queryKeys';
+import { getFolderListApi } from '@/api/api';
 
+import styled from 'styled-components';
 import { Folder } from '@/types/FolderType';
-import instance from '@/api/InterceptorManager';
+import Image from 'next/image';
+
+interface ListItemProps {
+  selected: boolean;
+}
 
 const AddFolderList = styled.ul`
   display: flex;
@@ -13,13 +20,14 @@ const AddFolderList = styled.ul`
   margin-bottom: 2.4rem;
 `;
 
-const AddFolderListItem = styled.li`
+const AddFolderListItem = styled.li<ListItemProps>`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   padding: 8px;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: ${(props) => (props.selected ? '#f0f6ff' : '#fff')};
   cursor: pointer;
 
   &:hover {
@@ -29,6 +37,11 @@ const AddFolderListItem = styled.li`
   &:hover p {
     color: #6d6afe;
   }
+`;
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const FolderName = styled.p`
@@ -44,40 +57,58 @@ const LinkCount = styled.span`
 `;
 
 interface FolderListProps {
-  folderList: Folder[];
+  selectedFolderId: number;
+  setSelectedFolderId: (id: number) => void;
 }
 
-const FolderList = ({ folderList }: FolderListProps) => {
-  const [folderListItems, setFolderListItems] = useState<React.ReactNode[]>([]);
+const FolderList = ({
+  selectedFolderId,
+  setSelectedFolderId,
+}: FolderListProps) => {
+  const {
+    data: folderListData,
+    isError: isFolderListError,
+    isLoading: isFolderListLoading,
+  } = useQuery({
+    queryKey: getFolderListQueryKey(),
+    queryFn: () => getFolderListApi(),
+    staleTime: 1000 * 60 * 5,
+  });
 
-  const getLinkList = async (folderId: number) => {
-    const endpoint = `/links?folderId=${folderId}`;
-    const linkListResponse = await instance.get(endpoint);
-    const linkListData = linkListResponse.data.data.folder;
-    return linkListData.length;
-  };
+  if (isFolderListLoading) {
+    return <div>Loading...</div>;
+  }
 
-  const renderFolderList = async () => {
-    const items = await Promise.all(
-      folderList.map(async (item) => {
-        const linkCount = await getLinkList(item.id);
+  if (isFolderListError) {
+    return <div>Error!</div>;
+  }
+
+  return (
+    <AddFolderList>
+      {folderListData.map((folder: Folder) => {
         return (
-          <AddFolderListItem key={item.id}>
-            <FolderName>{item.name}</FolderName>
-            <LinkCount>{linkCount}개 링크</LinkCount>
+          <AddFolderListItem
+            key={folder.id}
+            onClick={() => setSelectedFolderId(folder.id)}
+            selected={folder.id === selectedFolderId}
+          >
+            <Container>
+              <FolderName>{folder.name}</FolderName>
+              <LinkCount>{folder.link_count}개 링크</LinkCount>
+            </Container>
+            {folder.id === selectedFolderId && (
+              <Image
+                src="/images/check.svg"
+                alt="체크 아이콘"
+                width={14}
+                height={14}
+              />
+            )}
           </AddFolderListItem>
         );
-      })
-    );
-
-    setFolderListItems(items);
-  };
-
-  useEffect(() => {
-    renderFolderList();
-  }, []);
-
-  return <AddFolderList>{folderListItems}</AddFolderList>;
+      })}
+    </AddFolderList>
+  );
 };
 
 export default FolderList;

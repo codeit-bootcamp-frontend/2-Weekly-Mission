@@ -23,7 +23,7 @@ import { getCookie } from '@/utils/manageTokenInfo';
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const queryClient = new QueryClient();
   const { accessToken } = context.req.cookies;
-  const folderId = '';
+  const folderId = context.query['folderId'];
 
   await queryClient.prefetchQuery({
     queryKey: getUserQueryKey(),
@@ -37,7 +37,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   // await queryClient.prefetchQuery({
   //   queryKey: getLinkListQueryKey(folderId),
-  //   queryFn: () => getLinkListApi(folderId, accessToken),
+  //   queryFn: () => getLinkListApi(folderId),
   // });
 
   return {

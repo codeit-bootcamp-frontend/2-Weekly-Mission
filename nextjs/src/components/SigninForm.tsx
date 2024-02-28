@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import useSignin from '@/hooks/useSignin';
 import { useTokenRedirect } from '@/hooks/useTokenRedirect';
 
 import Input from './common/Input';
@@ -9,21 +8,49 @@ import PasswordEyeButton from './common/PasswordEyeButton';
 import { SignForm } from '@/styles/SignForm';
 
 import { SIGN_ERROR_MESSAGE } from '@/stores/constants';
+import { useMutation } from '@tanstack/react-query';
+import { postSigninApi } from '@/api/api';
+import { EnteredSignInfo } from '@/types/apiType';
+import { saveAccessToken, saveRefreshToken } from '@/utils/manageTokenInfo';
 
 const SigninForm = () => {
-  const { control, handleSubmit, watch, setError } = useForm({
+  const [accessToken, setAccessToken] = useState('');
+  const [refreshToken, setRefreshToken] = useState('');
+
+  const { control, handleSubmit, setError } = useForm({
     defaultValues: { email: '', password: '' },
     mode: 'onBlur',
   });
 
-  const { execute, error, apiData } = useSignin({
-    email: watch('email'),
-    password: watch('password'),
-  });
-  useTokenRedirect(apiData?.data?.accessToken);
+  const { error: signinSubmitError, mutateAsync: mutateAsyncForToken } =
+    useMutation({
+      mutationFn: (enteredSigninInfo: EnteredSignInfo) =>
+        postSigninApi(enteredSigninInfo),
+    });
+
+  useTokenRedirect(accessToken);
+
+  const postSignin = async (enteredSigninInfo: EnteredSignInfo) => {
+    try {
+      const tokens = await mutateAsyncForToken(enteredSigninInfo);
+      if (tokens?.accessToken) {
+        setAccessToken(tokens.accessToken);
+        setRefreshToken(tokens.refreshToken);
+      }
+    } catch (error) {
+      console.error('Error while signing in:', error);
+    }
+  };
 
   useEffect(() => {
-    if (error) {
+    if (accessToken) {
+      saveAccessToken(accessToken);
+      saveRefreshToken(refreshToken);
+    }
+  }, [accessToken, refreshToken]);
+
+  useEffect(() => {
+    if (signinSubmitError) {
       setError('email', {
         type: 'invalid',
         message: SIGN_ERROR_MESSAGE.wrongEmail,
@@ -33,10 +60,10 @@ const SigninForm = () => {
         message: SIGN_ERROR_MESSAGE.wrongPassword,
       });
     }
-  }, [error, setError]);
+  }, [signinSubmitError, setError]);
 
   return (
-    <SignForm onSubmit={handleSubmit(execute)}>
+    <SignForm onSubmit={handleSubmit(postSignin)}>
       <div className="sign-input">
         <div className="sign-input-element">
           <label>이메일</label>

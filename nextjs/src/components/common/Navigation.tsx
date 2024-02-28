@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -34,7 +35,11 @@ const Nav = styled.nav<NavProps>`
     width: 12.8rem;
     border: none;
     border-radius: 0.8rem;
-    background-image: linear-gradient(91deg, var(--primary) 0.12%, #6ae3fe 101.84%);
+    background-image: linear-gradient(
+      91deg,
+      var(--primary) 0.12%,
+      #6ae3fe 101.84%
+    );
     color: #f5f5f5;
     font-size: 1.8rem;
     font-weight: 600;
@@ -95,18 +100,32 @@ interface NavigationProps {
 }
 
 function Navigation({ userProfile, isSticky = true }: NavigationProps) {
+  const { image_source, email } = userProfile;
+
   return (
     <Nav $isSticky={isSticky}>
       <div className="gnb">
         <Link href="/">
-          <Image className="cta logo" src="/images/logo.svg" width={88.7} height={16} alt="로고" />
+          <Image
+            className="cta logo"
+            src="/images/logo.svg"
+            width={88.7}
+            height={16}
+            alt="로고"
+          />
         </Link>
         {userProfile ? (
           <div className="cta profile">
-            {userProfile.image_source && (
-              <Image className="profile-logo" src={userProfile.image_source} width={28} height={28} alt="프로필 로고" />
+            {image_source && (
+              <img
+                className="profile-logo"
+                src={image_source}
+                width={28}
+                height={28}
+                alt="프로필 로고"
+              />
             )}
-            <span className="profile-email">{userProfile.email}</span>
+            <span className="profile-email">{email}</span>
           </div>
         ) : (
           <button className="cta login" type="button">
