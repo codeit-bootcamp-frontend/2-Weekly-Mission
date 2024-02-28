@@ -3,23 +3,23 @@ import React, { useContext } from "react";
 import FolderBadge from "./FolderBadge";
 import { FolderInfo, ModalControl } from "../../../types/common";
 import { ModalContext } from "../../../contexts/LocaleContext";
-import { DataContext } from "../../../contexts/LocaleContext";
+import { FolderDataContext } from "../../../contexts/LocaleContext";
 
 function FolderBadgeList() {
-  const { folderListInfo } = useContext(DataContext);
+  const { folderList } = useContext(FolderDataContext);
   const { openModal } = useContext<ModalControl>(ModalContext);
 
   return (
     <div>
       <FolderBadgeListBox>
         <FolderBadges>
-          {folderListInfo?.map((folder: FolderInfo) => (
+          {folderList?.map((folder: FolderInfo) => (
             <FolderBadge folder={folder} key={folder.id} />
           ))}
         </FolderBadges>
         <AddLink
           onClick={() => {
-            openModal("폴더추가");
+            openModal("폴더 추가");
           }}
         >
           +

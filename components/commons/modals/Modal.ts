@@ -1,29 +1,5 @@
 import styled from "styled-components";
 
-export const ModalLayout = styled.form`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 2;
-`;
-
-export const ModalBox = styled.div`
-  width: 36rem;
-  padding: 4rem 3.2rem;
-  border: 1px solid black;
-  background-color: #ffffff;
-  border-radius: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 0.1rem solid rgba(204, 213, 227, 1);
-  position: relative;
-`;
-
 export const FolderSharedModalBox = styled(ModalBox)`
   & h3 {
     font-size: 2rem;

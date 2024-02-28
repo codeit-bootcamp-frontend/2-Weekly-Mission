@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { DataContext } from "../../contexts/LocaleContext";
+import { useAccessToken } from "../../hook/useAccessToken";
 import { useContext } from "react";
+import { DataContext } from "../../contexts/LocaleContext";
 
 function Header() {
   const { userInfo } = useContext(DataContext);
-
+  const { accessToken } = useAccessToken();
+  console.log(userInfo);
   return (
     <HeaderLayout>
       <HeaderBox>
@@ -18,15 +20,15 @@ function Header() {
             alt="로고이미지"
           />
         </Link>
-        {userInfo ? (
+        {accessToken ? (
           <HeaderProfileBox>
             <Image
               width={28}
               height={28}
-              src={userInfo.image_source}
+              src={userInfo?.image_source}
               alt="프로필 아이콘"
             />
-            <div>{userInfo.email}</div>
+            <div>{userInfo?.email}</div>
           </HeaderProfileBox>
         ) : (
           <HeaderLoginButton>로그인</HeaderLoginButton>
@@ -35,7 +37,6 @@ function Header() {
     </HeaderLayout>
   );
 }
-import { UserInfo } from "../../types/common";
 
 const HeaderLayout = styled.header`
   background-color: var(--gray-bg-color);

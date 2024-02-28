@@ -5,18 +5,21 @@ import { DataContext } from "../../../contexts/LocaleContext";
 
 function Banner() {
   const { folderInfo, userInfo } = useContext(DataContext);
+
   return (
     <BannerLayout>
-      <BannerBox>
-        <Image
-          width={60}
-          height={60}
-          src={userInfo?.image_source}
-          alt="배너 프로필 이미지"
-        />
-        <BannerText>{userInfo?.name}</BannerText>
-        <BannerTitle>{folderInfo[0]?.name}</BannerTitle>
-      </BannerBox>
+      {folderInfo && userInfo ? (
+        <BannerBox>
+          <Image
+            width={60}
+            height={60}
+            src={userInfo?.image_source}
+            alt="배너 프로필 이미지"
+          />
+          <BannerText>{userInfo?.name}</BannerText>
+          <BannerTitle>{folderInfo?.name}</BannerTitle>
+        </BannerBox>
+      ) : null}
     </BannerLayout>
   );
 }

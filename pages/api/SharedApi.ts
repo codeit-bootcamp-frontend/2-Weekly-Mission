@@ -7,6 +7,6 @@ export async function getFolderData(folderId: string) {
 export async function getOwnerData(userId: number) {
   return requestApi(`users/${userId}`);
 }
-export async function getLinkData(userId: number, folderId: string) {
-  return requestApi(`users/${userId}/links?folderId=${folderId}`);
+export async function getLinkData(folderId: string) {
+  return requestApi(`folders/${folderId}/links`);
 }
