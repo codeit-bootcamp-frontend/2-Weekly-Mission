@@ -1,10 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ModalContext from '@/src/components/modal/ModalContext';
-import MainContext, { Folder } from '@/src/components/main/MainContext';
 import { useRouter } from 'next/router';
 import { All } from '@/constant';
-
+import useAsync from '@/src/hook/useAsync';
+import ButtonOption from '@/src/components/buttonOption/ButtonOption';
+import FolderCard from '@/src/components/card/FolderCard';
+import SearchBar from '@/src/components/searchBar/SearchBar';
+import Modal from '@/src/components/modal/Modal';
 interface TabMenuListProps {
   folderList: Folder[];
   $selectedMenu: string | boolean;
@@ -12,20 +15,57 @@ interface TabMenuListProps {
   id: number | string;
 }
 
-function TabMenuList({
-  folderList,
-  $selectedMenu,
-  handleClickMenu,
-  id,
-}: TabMenuListProps) {
+interface Folder {
+  id: string;
+  name: string;
+}
+
+interface Card {
+  id: string;
+  title: string;
+  url: string;
+  description: string;
+  image_source: string;
+  created_at: string;
+}
+
+interface Folder {
+  id: string;
+  name: string;
+}
+
+interface Card {
+  id: string;
+  title: string;
+  url: string;
+  description: string;
+  image_source: string;
+  created_at: string;
+}
+
+interface Folder {
+  id: string;
+  name: string;
+}
+
+interface Card {
+  id: string;
+  title: string;
+  url: string;
+  description: string;
+  image_source: string;
+  created_at: string;
+}
+
+function TabMenuList({ folderList, handleClickMenu, id }: TabMenuListProps) {
   const item = folderList.map((folder) => (
-    <li key={folder?.id}>
+    <li key={folder.id}>
       <button
         type="button"
-        className={id === folder?.id ? 'active' : ''}
+        className={id === folder.id ? 'active' : ''}
         onClick={() => handleClickMenu(folder)}
       >
-        {folder?.name}
+        {folder.name}
       </button>
     </li>
   ));
@@ -34,7 +74,7 @@ function TabMenuList({
     <>
       <button
         type="button"
-        className={!id && $selectedMenu === All.id ? 'active' : ''}
+        className={!id ? 'active' : ''}
         onClick={() => handleClickMenu(All)}
       >
         전체
@@ -45,18 +85,75 @@ function TabMenuList({
 }
 
 export default function TabMenu() {
-  const { folderList, selectedMenu, handleClickMenu } = useContext(MainContext);
   const { handleModalOpen } = useContext(ModalContext);
+  const [selectedMenu, setSelectedMenu] = useState<string>('all');
+  const [title, setTitle] = useState<string>('');
+  const [buttonOption, setButtonOption] = useState<boolean>(false);
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [searchResult, setSearchResult] = useState<Card[]>([]);
 
   const router = useRouter();
   const id = Number(router.query.id);
+  
+  
+  
+  const { data: folders, isLoading: foldersLoading } = useAsync({
+    baseUrl: '/folders',
+    folderId: '',
+  });
+
+  const { data: all, isLoading: allLoading } = useAsync({
+    baseUrl: '/links',
+    folderId: '',
+  });
+
+  const { data: selectedFolder, isLoading: selectedFolderLoading } = useAsync({
+    baseUrl: `/folders/${selectedMenu}`,
+    folderId: '/links',
+  });
+
+  const cardList = selectedMenu !== 'all' ? selectedFolder : all;
+
+  const handleClickMenu = (folder: Folder) => {
+    setSelectedMenu(folder.id);
+    setButtonOption(folder.name !== '전체' && true);
+    setTitle(folder.name !== '전체' ? folder.name : '');
+    router.push(folder.name !== '전체' ? `/folder/${folder.id}` : '/folder');
+  };
+
+  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchKeyword(e.target.value);
+
+    const filterItem = cardList.filter(
+      (card: Card) =>
+        card.title.includes(e.target.value.toLowerCase()) ||
+        card.description?.includes(e.target.value.toLowerCase()) ||
+        card.url.includes(e.target.value.toLowerCase())
+    );
+    setSearchResult(filterItem);
+    if (!e.target.value) setSearchResult(cardList);
+  };
+
+  useEffect(() => {
+    if (cardList) {
+      setSearchResult(cardList);
+    }
+  }, [cardList]);
+
+  if (foldersLoading || allLoading || selectedFolderLoading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <>
+      <SearchBar
+        handleChangeSearch={handleChangeSearch}
+        searchKeyword={searchKeyword}
+      />
       <TabMenuContainer>
         <ul>
           <TabMenuList
-            folderList={folderList}
+            folderList={folders}
             handleClickMenu={handleClickMenu}
             $selectedMenu={selectedMenu}
             id={id}
@@ -67,6 +164,13 @@ export default function TabMenu() {
           onClick={() => handleModalOpen('folderListAdd')}
         ></Button>
       </TabMenuContainer>
+      <ButtonOption
+        title={title}
+        buttonOption={buttonOption}
+        selectedMenu={selectedMenu}
+      />
+      <FolderCard searchResult={searchResult} />
+      <Modal title={title} selectedMenu={selectedMenu} folderList={folders} />
     </>
   );
 }

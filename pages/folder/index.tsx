@@ -1,12 +1,11 @@
-
 import Head from 'next/head';
 import Footer from '@/src/components/footer/Footer';
 import AddLinkBar from '@/src/components/addLinkBar/AddLinkBar';
 import Nav from '@/src/components/nav/Nav';
-import Main from '@/src/components/main/Main';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-
+import TabMenu from '@/src/components/tabMenu/TabMenu';
+import Modal from '@/src/components/modal/Modal';
 export default function FolderPage() {
   const router = useRouter();
 
@@ -26,7 +25,7 @@ export default function FolderPage() {
           <AddLinkBar />
         </header>
         <main>
-          <Main />
+          <TabMenu />
         </main>
         <footer>
           <Footer />

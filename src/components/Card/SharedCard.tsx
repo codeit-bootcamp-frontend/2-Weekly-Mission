@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import MainContext, { Card } from '@/src/components/main/MainContext';
-import { useState, useContext, useEffect } from 'react';
 import useAsync from '@/src/hook/useAsync';
 import { useRouter } from 'next/router';
 import {
@@ -21,35 +19,31 @@ import {
   CardBox,
 } from '@/src/components/card/CardStyle';
 
-export default function SharedCard() {
-  const { userId } = useContext(MainContext);
-  const [cardList, setCardList] = useState<Card[]>([]);
+interface Card {
+  id: string;
+  title: string;
+  url: string;
+  description: string;
+  image_source: string;
+  created_at: string;
+}
 
+export default function SharedCard() {
   const router = useRouter();
   const { id } = router.query;
-  const [getFolderLink] = useAsync({
-    baseUrl: `/users/${userId}/links?folderId=`,
-    folderId: id,
+  const { data: cardList, isLoading: cardListLoading } = useAsync({
+    baseUrl: `/folders/${id}`,
+    folderId: '/links',
   });
 
-  const handleLoadLinkList = async () => {
-    if (userId) {
-      const { data } = await getFolderLink();
-      setCardList(data);
-    }
-  };
-
-  useEffect(() => {
-    if (!router.isReady) return;
-    handleLoadLinkList();
-  }, [router.isReady, userId]);
+  if (cardListLoading) return <div>Loading</div>;
 
   if (cardList.length === 0) return <NoLink>저장된 링크가 없습니다</NoLink>;
 
   const cards = cardList.map((card: Card) => (
-    <Cards key={card?.id}>
+    <Cards key={card.id}>
       <Link
-        href={card?.url}
+        href={card.url}
         target="_blank"
         rel="noopener noreferrer"
         onMouseOver={(e) => handleMouseOver(e, true)}
@@ -57,15 +51,15 @@ export default function SharedCard() {
       >
         <ImgBox>
           <CardImg
-            src={card?.image_source ? card?.image_source : '/image/no-img.svg'}
+            src={card.image_source ? card.image_source : '/image/no-img.svg'}
             alt="카드 이미지"
           />
         </ImgBox>
         <Text>
-          <TimeStamp>{getDateInfo({ createdAt: card?.created_at })}</TimeStamp>
+          <TimeStamp>{getDateInfo({ createdAt: card.created_at })}</TimeStamp>
           <Desc>{card.description}</Desc>
           <CreatedDate>
-            {getDateText({ createdAt: card?.created_at })}
+            {getDateText({ createdAt: card.created_at })}
           </CreatedDate>
         </Text>
       </Link>

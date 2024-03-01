@@ -1,21 +1,28 @@
 import styled from 'styled-components';
-import MainContext from '@/src/components/main/MainContext';
-import { ChangeEvent, useContext } from 'react'
+import { ChangeEvent } from 'react';
+interface Props {
+  handleChangeSearch?: (e: ChangeEvent<HTMLInputElement>) => void;
+  searchKeyword?: string;
+}
 
-export default function SearchBar() {
-  const { handleChangeSearch, searchKeyword } = useContext(MainContext);
+export default function SearchBar({
+  handleChangeSearch,
+  searchKeyword,
+}: Props) {
   return (
-    <SearchBarContainer>
-      <Input
-        type="search"
-        placeholder="링크를 검색해 보세요."
-        value={searchKeyword}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => handleChangeSearch(e)}
-      />
-      <Text $searchKeyword={searchKeyword}>
-        <span>{searchKeyword}</span>로 검색한 결과입니다.
-      </Text>
-    </SearchBarContainer>
+    <>
+      <SearchBarContainer>
+        <Input
+          type="search"
+          placeholder="링크를 검색해 보세요."
+          value={searchKeyword}
+          onChange={(e) => handleChangeSearch && handleChangeSearch(e)}
+        />
+        <Text $searchKeyword={searchKeyword ? searchKeyword : ''}>
+          <span>{searchKeyword}</span>로 검색한 결과입니다.
+        </Text>
+      </SearchBarContainer>
+    </>
   );
 }
 
